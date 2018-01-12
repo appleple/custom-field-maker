@@ -1,0 +1,49 @@
+var path = require('path');
+var webpack = require('webpack');
+var ExternalsPlugin = webpack.ExternalsPlugin;
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: __dirname,
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  module: {
+    
+    loaders: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: ['babel-loader'],
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react'],
+          plugins: ['transform-runtime']
+        }
+      },
+      {
+        test: /\.(scss|css)$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+      }, {
+        test: /\.(jpg|png)$/,
+        loader: 'url-loader'
+      }
+    ]
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+    "process.env": { 
+        NODE_ENV: JSON.stringify("production") 
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+  ],
+}

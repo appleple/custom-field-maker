@@ -1,0 +1,288 @@
+.customFieldCopied {
+	position: fixed;
+	top: 50%;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0);
+	padding: 10px;
+	color: #ffffff;
+	text-align: center;
+	width: 100%;
+	-webkit-transition: background-color .2s ease-in;
+	-moz-transition: background-color .2s ease-in;
+	-ms-transition: background-color .2s ease-in;
+	-o-transition: background-color .2s ease-in;
+	transition: background-color .2s ease-in;
+}
+
+.customFieldLabelRequired {
+	background-color: #c40f32;
+	color: #ffffff;
+	font-size: 11px;
+	padding: 2px 5px;
+	border-radius: 2px;
+	margin-left: 10px;
+}
+
+.customFieldUseSnippet {
+	display: inline-block;
+	margin-left: 25px;
+}
+
+.customFieldLine {
+	height: 1px;
+	background-color: #cccccc;
+	border: none;
+}
+
+.customFieldValidatorArea {
+	background-color: #e0e0e3;
+	border: 1px solid #cccccc;
+	padding: 10px;
+}
+
+.customFieldValidatorArea .acms-admin-icon-tooltip {
+	margin-left: 10px;
+}
+
+.customFieldBold .acms-admin-icon-tooltip {
+	margin-left: 10px;
+}
+
+.customFieldOptionTable {
+	width: auto !important;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.customFieldOptionTable th,
+.customFieldOptionTable td {
+	border: none;
+	white-space: nowrap;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.customFieldOptionTable th:nth-child(1) {
+	width: 20%;
+}
+
+.customFieldOptionTable th:nth-child(2) {
+	width: 12%;
+}
+
+.customFieldOptionTable th:nth-child(3) {
+	width: 62%;
+}
+
+.customFieldOptionTable tr {
+	border-bottom: 1px solid #cccccc;
+}
+
+.customFieldOptionTable th:first-child,
+.customFieldOptionTable td:first-child {
+	padding-left: 0;
+}
+
+.customFieldOptionTable th:last-child,
+.customFieldOptionTable td:last-child {
+	padding-right: 0;
+}
+
+.customFieldOptionTable td:last-child {
+	width: 50px;
+}
+
+.customFieldOptionTable .acms-admin-btn-admin {
+	margin-right: 0 !important;
+}
+
+.customFieldOptionTableInput {
+	display: table;
+	/*width: 100%;*/
+}
+
+.customFieldOptionTableAppend {
+	display: table-cell;
+}
+
+.customFieldOptionTable input {
+	display: table-cell;
+}
+
+.customFieldBasicTable {
+	border: none !important;
+}
+
+.customFieldBasicTable tr {
+	border: none !important;
+}
+
+.customFieldBasicTable td {
+	border-bottom: none !important;
+}
+
+.customFieldBasicTable .acms-admin-label {
+	margin-left: 10px;
+}
+
+.customFieldBasicTable th {
+	white-space: nowrap;
+}
+
+.customFieldBasicTableFirst td:nth-child(1) {
+	width: 12%;
+}
+
+.customFieldBasicTableFirst td:nth-child(2) {
+	width: 20%;
+}
+
+.customFieldBasicTableFirst td:nth-child(3) {
+	width: 20%;
+}
+
+.customFieldBasicTableFirst td:nth-child(4) {
+	width: 48%;
+}
+
+.customFieldBasicTableFirst {
+	margin-bottom: 10px;
+}
+
+.customFieldBasicTable tr:last-child td {
+	padding-bottom: 5px;
+}
+
+.customFieldSizeInput {
+	width: 50%;
+}
+
+.customFieldLine {
+	height: 1px;
+	background-color: #cccccc;
+}
+
+.customFieldBasicTableImg td {
+	width: 25%;
+	white-space: nowrap;
+}
+
+.customFieldBasicTableFile td:nth-child(1) {
+	width: 25%;
+}
+
+.customFieldInputGroup {
+	position: relative;
+	display: table;
+	border-collapse: separate;
+	width: 100%;
+}
+
+.customFieldInputGroup input {
+	display: table-cell;
+	position: relative;
+	z-index: 2;
+	float: left;
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.customFieldInputGroupAddon {
+	width: 1%;
+	white-space: nowrap;
+	vertical-align: middle;
+	display: table-cell;
+	padding-right: 10px;
+}
+
+.customFieldBasicTableGroup {
+	border-bottom: none;
+	width: 40%;
+}
+
+.customFieldGroupBtn {
+	width: 185px;
+}
+
+.customFieldBasicTable tr {
+	border: none;
+}
+
+.customFieldBasicTable tr:last-child td {
+	border-bottom: none;
+}
+
+.customFieldBasicTable th:first-child,
+.customFieldBasicTable td:first-child {
+	padding-left: 0 !important;
+}
+
+.customFieldSubTable {
+	background: transparent;
+	border: none;
+	border-top: 1px solid #cccccc;
+	margin-top: 10px;
+}
+
+.customFieldGroupSubTable {
+	border-top: none;
+	margin-top: 0;
+}
+
+.customFieldSubTable tr {
+	border: none;
+}
+
+.customFieldSubTable tbody tr:last-child td,
+.customFieldSubTable tbody tr:last-child th {
+	border-bottom: none;
+}
+
+.customFieldCopied.active {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#converter {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.customFieldBold {
+	font-weight: bold;
+}
+
+.customFieldSnippet {
+	margin-left: 10px;
+}
+
+.customFieldOptionBlock {
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.customFieldCopyBtn {
+	position: relative;
+	top: -2px;
+}
+
+.prettyprint {
+	margin-top: -5px;
+}
+
+.customFieldPreview {
+	background-color: #ffffff;
+	padding: 15px;
+}
+
+.customFieldPreview input[type=text],
+.customFieldPreview textarea {
+	color: #dddddd;
+}
+
+.customFieldUseSnippetLabel {
+    color:#006DEC;
+    cursor:pointer;
+    display:inline-block;
+    height:27px;
+    vertical-align:middle;
+    line-height:27px;
+}
