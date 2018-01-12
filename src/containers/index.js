@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import Highlighter from '../components/highlighter';
 import Field from '../components/field';
+import FieldGroup from '../components/field-group';
 import FieldSource from '../components/field-source';
 import * as actions from '../actions';
 
@@ -66,6 +67,7 @@ class CustomfieldMaker extends Component {
           </label>
         </div>
         {mode === 'normal' && <Field actions={actions} />}
+        {mode === 'group' && <FieldGroup actions={actions} />}
         <div className="acms-admin-tabs">
           <ul className="js-acms_tabs">
             <li><a href="#source" className={classnames('js-acms_tab', {'js-acms_tab-active': editMode === 'source'})} onClick={this.updateState.bind(this, 'editMode', 'source')}>入力用ソース</a></li>
