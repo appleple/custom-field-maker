@@ -50,6 +50,24 @@ export default class FieldGroup extends Base {
     }
   }
 
+  addGroup() {
+    const { actions } = this.props;
+    const { type, title, name, groupName } = this.state;
+    if (name == groupName) {
+      this.setState({
+        duplicatedField: true
+      });
+      return;
+    }
+    if (type && title && name) {
+      actions.addGroupItem(this.state);
+    } else {
+      this.setState({
+        alert: true
+      })
+    }
+  }
+
   render() {
     const { groupAlert, duplicatedField, openGroup, groupTitle, groupName, type, title, name, tooltip } = this.state;
     return (
@@ -118,8 +136,8 @@ export default class FieldGroup extends Base {
               </div>
             }
             <p>
-              <button data-action="clearGroupInput" className="acms-admin-btn-admin">クリア</button>
-              <button data-action="addGroup" className="acms-admin-btn-admin acms-admin-btn-admin-primary acms-admin-btn-admin-save">生成</button>
+              <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin">クリア</button>
+              <button onClick={this.addGroup.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary acms-admin-btn-admin-save">生成</button>
             </p>
           </div>}
       </div>
