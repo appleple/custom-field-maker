@@ -5,17 +5,16 @@ export default class Field extends Component {
   constructor(props) {
     super(props);
     this.state = {
-			type:"text",
-			title:"",
-			alert:"",
-			groupTitle:"",
-			groupName:"",
-			groupAlert:"",
-			duplicatedField:"",
-			path:"path",
-			converter:"",
-			normal:"size",
-			resize:"true",
+			type: "text",
+      title: "",
+      name: "",
+      tooltip: "",
+			alert: "",
+			duplicatedField: "",
+			path: "path",
+			converter: "",
+			normal: "size",
+			resize: "true",
 			option:[{
         value: "",
         label: ""
@@ -25,10 +24,9 @@ export default class Field extends Component {
         value: "",
         message: ""
       }],
-			optionFormat:"pref",
-			openValidator:false,
-			openConverter:false,
-			acmscss:"true",
+			optionFormat: "pref",
+			openValidator: false,
+			openConverter: false
     };
   }
 
@@ -47,10 +45,42 @@ export default class Field extends Component {
     );
   }
 
+  submit() {
+    const { name, type, title } = this.state;
+    const { actions } = this.props;
+    if (name && type　&& title) {
+      actions.addCustomfield(this.state);
+    } else {
+      this.setState({
+        alert: true
+      })
+    }
+  }
+
   updateState(prop, value) {
     this.setState({
       [prop]: value
     });
+  }
+
+  clearValue() {
+    this.setState({
+      title: '',
+      name: '',
+      path: '',
+      normalSize: '',
+      tiny: '',
+      tinySize: '',
+      large: '',
+      largeSize: '',
+      square: '',
+      squareSize: '',
+      alt: '',
+      openConverter: '',
+      openValidator: '',
+      converter: '',
+      tooltip: ''
+    })
   }
 
   addOption() {
@@ -95,6 +125,80 @@ export default class Field extends Component {
         }),
         ...option.slice(idx + 1)
       ]
+    });
+  }
+
+  addValidator() {
+    const { validator } = this.state;
+    this.setState({
+      validator: [...validator, {
+        option: "",
+        value: "",
+        message: "" 
+      }]
+    });
+  }
+
+  removeValidator(idx) {
+    const { validator } = this.state;
+    this.setState({
+      validator: [...validator.slice(0, idx), ...validator.slice(idx + 1)]
+    });
+  }
+
+  updateValidatorOption(idx, option) {
+    const { validator } = this.state;
+    const item = validator[idx];
+    this.setState({
+      validator: [
+        ...validator.slice(0, idx),
+        Object.assign({}, item, {
+          option
+        }),
+        ...validator.slice(idx + 1)
+      ]
+    });
+  }
+
+  updateValidatorValue(idx, value) {
+    const { validator } = this.state;
+    const item = validator[idx];
+    this.setState({
+      validator: [
+        ...validator.slice(0, idx),
+        Object.assign({}, item, {
+          value
+        }),
+        ...validator.slice(idx + 1)
+      ]
+    });
+  }
+
+  updateValidatorMessage(idx, message) {
+    const { validator } = this.state;
+    const item = validator[idx];
+    this.setState({
+      validator: [
+        ...validator.slice(0, idx),
+        Object.assign({}, item, {
+          message
+        }),
+        ...validator.slice(idx + 1)
+      ]
+    });
+  }
+
+  addConverter(item) {
+    let { converter } = this.state;
+    const reg = new RegExp(item, "i");
+    if (converter.search(reg) === -1){
+      converter += item;
+    } else {
+      converter = converter.replace(item.toUpperCase(), item);
+      converter = converter.replace(item.toLowerCase(), item);
+    }
+    this.setState({
+      converter
     });
   }
 
@@ -168,15 +272,15 @@ export default class Field extends Component {
   }
 
   renderModal() {
-    const {openConverter} = this.state;
+    const {openConverter, converter} = this.state;
     return (
       <div>
         {openConverter &&
-        <div className="acms-admin-modal" id="converter" data-action="hiddenConverter" style={{display: 'block'}}>
+        <div className="acms-admin-modal in" id="converter" style={{display: 'block'}}>
           <div className="acms-admin-modal-dialog">
             <div className="acms-admin-modal-content">
               <div className="acms-admin-modal-header">
-                <i className="acms-admin-modal-hide acms-admin-icon-delete" id="converter-close"></i>
+                <i className="acms-admin-modal-hide acms-admin-icon-delete" onClick={this.updateState.bind(this, 'openConverter', false)}></i>
                 <h3>コンバーター参照</h3>
               </div>
               <div className="acms-admin-modal-body">
@@ -190,89 +294,89 @@ export default class Field extends Component {
                     <tr>
                       <td>r</td>
                       <td>「全角」英字を「半角」に変換します</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(r)">追加</button></td>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'r')}>追加</button></td>
                     </tr>
                     <tr>
                       <td>R</td>
                       <td>「半角」英字を「全角」に変換します</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(R)">追加</button></td>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'R')}>追加</button></td>
                     </tr>
                     <tr>
                       <td>n</td>
                       <td>「全角」数字を「半角」に変換します</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(n)">追加</button></td>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'n')}>追加</button></td>
                     </tr>
                     <tr>
                       <td>N</td>
                       <td>「半角」数字を「全角」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(N)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'N')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>a</td>
                       <td>「全角」英数字を「半角」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(a)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'a')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>A</td>
                       <td>「半角」英数字を「全角」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(A)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'A')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>s</td>
                       <td>「全角」スペースを「半角」に変換します（U+3000 -> U+0020）。
                     </td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(s)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 's')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>S</td>
                       <td>「半角」スペースを「全角」に変換します（U+0020 -> U+3000）。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(S)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'S')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>k</td>
                       <td>「全角カタカナ」を「半角カタカナ」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(k)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'k')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>K</td>
                       <td>「半角カタカナ」を「全角カタカナ」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(K)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'K')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>h</td>
                       <td>「全角ひらがな」を「半角カタカナ」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(h)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'h')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>H</td>
                       <td>「半角カタカナ」を「全角ひらがな」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(H)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'H')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>c</td>
                       <td>「全角カタカナ」を「全角ひらがな」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(c)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'c')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>C</td>
                       <td>「全角ひらがな」を「全角カタカナ」に変換します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(C)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'C')}>追加</button>
                       </td>
                     </tr>
                     <tr>
                       <td>V</td>
                       <td>濁点付きの文字を一文字に変換します。"K", "H" と共に使用します。</td>
-                      <td><button className="acms-admin-btn" data-action="addConverter(V)">追加</button>
+                      <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'V')}>追加</button>
                       </td>
                     </tr>
                   </table>
@@ -287,7 +391,7 @@ export default class Field extends Component {
   }
 
   renderValidator() {
-    const { openValidator, validator } = this.state;
+    const { openValidator, validator, converter } = this.state;
     return (
       <div>
         <p>
@@ -300,8 +404,8 @@ export default class Field extends Component {
             {/text|textarea|radio|select/.exec(type) && this.noSearchCheckRender()}
             <p className="customFieldBold">テキストの変換<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。"></i></p>
             <p>
-              <input type="text" data-bind="converter" className="acms-admin-form-width-quarter" placeholder="例）rs" />
-              <button className="acms-admin-btn" onClick>コンバーター参照</button>
+              <input type="text" value={converter} onInput={(e) => {this.updateState('converter', e.target.value)}} className="acms-admin-form-width-quarter" placeholder="例）rs" />
+              <button className="acms-admin-btn" onClick={this.updateState.bind(this, 'openConverter', true)}>コンバーター参照</button>
             </p>
             <table className="acms-admin-table customFieldOptionTable">
               <tr>
@@ -310,10 +414,10 @@ export default class Field extends Component {
                 <th>メッセージ<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。"></i></th>
                 <th></th>
               </tr>
-              {validator.map((item) =>
+              {validator.map((item, idx) =>
                 (<tr>
                   <td>
-                    <select data-bind="validator.{i}.option" className="acms-admin-form-width-full">
+                    <select className="acms-admin-form-width-full" onChange={(e) => {this.updateValidatorOption(idx, e.target.value)}}>
                       <option value="">▼ バリデータを選択</option>
                       <optgroup label="入力値の制限">
                         <option value="required">必須 ( required )</option>
@@ -333,18 +437,18 @@ export default class Field extends Component {
                     </select>
                   </td>
                   <td>
-                    <input type="text" data-bind="validator.{i}.value" className="acms-admin-form-width-full" />
+                    <input type="text" value={item.value} onInput={(e) => {this.updateValidatorValue(idx, e.target.value)}} className="acms-admin-form-width-full" />
                   </td>
                   <td>
-                    <input type="text" data-bind="validator.{i}.message" className="acms-admin-form-width-full" />
+                    <input type="text" value={item.message} onInput={(e) => {this.updateValidatorMessage(idx, e.target.value)}} className="acms-admin-form-width-full" />
                   </td>
                   <td>
-                    <button data-action="removeValidator(validator.{i});" className="acms-admin-btn-admin acms-admin-btn-admin-danger">削除</button>
+                    <button onClick={this.removeValidator.bind(this, idx)} className="acms-admin-btn-admin acms-admin-btn-admin-danger">削除</button>
                   </td>
                 </tr>
                 ))}
             </table>
-            <p><button data-action="addValidator" className="acms-admin-btn">追加</button></p>
+            <p><button onClick={this.addValidator.bind(this)} className="acms-admin-btn">追加</button></p>
           </div>
         }
       </div>
@@ -354,8 +458,8 @@ export default class Field extends Component {
   renderMake() {
     return (
       <p>
-        <button data-action="refresh" className="acms-admin-btn-admin">クリア</button>
-        <button data-action="submit" className="acms-admin-btn-admin acms-admin-btn-admin-primary acms-admin-btn-admin-save">生成</button>
+        <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin">クリア</button>
+        <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary acms-admin-btn-admin-save">生成</button>
       </p>
     )
   }
@@ -373,13 +477,13 @@ export default class Field extends Component {
         <td>
           <div className="acms-form-group">
             <div className="controls">
-              <select name="normal" data-bind="normal">
+              <select name="normal" onChange={(e) => {this.updateState('normal', e.target.value)}}>
                 <option value="size">長辺</option>
                 <option value="width">幅</option>
                 <option value="height">高さ</option>
               </select>
               <span className="input-append">
-                <input type="text" autocomplete="off" name="normalSize" data-bind="normalSize" className="customFieldSizeInput" placeholder="例）200px"/><span className="add-on"> px</span>
+                <input type="text" autocomplete="off" name="normalSize" onInput={(e) => {this.updateState('normalSize', e.target.value)}} className="customFieldSizeInput" placeholder="例）200px"/><span className="add-on"> px</span>
               </span>
             </div>
           </div>
@@ -387,13 +491,13 @@ export default class Field extends Component {
         <td>
           <div className="acms-form-group">
             <div className="controls">
-              <select name="large" data-bind="large">
+              <select name="large" onChange={(e) => {this.updateState('large', e.target.value)}}>
                 <option value="">作らない</option>
                 <option value="largeWidth">width</option>
                 <option value="largeHeight">height</option>
               </select>
               <span className="input-append">
-                <input type="text" autocomplete="off" name="largeSize" data-bind="largeSize" className="customFieldSizeInput" placeholder="例）400px"/><span className="add-on"> px</span>
+                <input type="text" autocomplete="off" name="largeSize" onInput={(e) => {this.updateState('largeSize', e.target.value)}} className="customFieldSizeInput" placeholder="例）400px"/><span className="add-on"> px</span>
               </span>
             </div>
           </div>
@@ -401,13 +505,13 @@ export default class Field extends Component {
         <td>
           <div className="acms-form-group">
             <div className="controls">
-              <select name="tiny" data-bind="tiny">
+              <select name="tiny" onChange={(e) => {this.updateState('tiny', e.target.value)}}>
                 <option value="">作らない</option>
                 <option value="tinyWidth">width</option>
                 <option value="tinyHeight">height</option>
               </select>
               <span className="input-append">
-                <input type="text" autocomplete="off" name="tinySize" data-bind="tinySize" className="customFieldSizeInput" placeholder="例）100px"/><span className="add-on"> px</span>
+                <input type="text" autocomplete="off" name="tinySize" onInput={(e) => {this.updateState('tinySize', e.target.value)}} className="customFieldSizeInput" placeholder="例）100px"/><span className="add-on"> px</span>
               </span>
             </div>
           </div>
@@ -415,12 +519,12 @@ export default class Field extends Component {
         <td>
           <div className="acms-form-group">
             <div className="controls">
-              <select name="square" data-bind="square">
+              <select name="square" onChange={(e) => {this.updateState('square', e.target.value)}}>
                 <option value="">作らない</option>
                 <option value="squareWidth">width</option>
               </select>
               <span className="input-append">
-                <input type="text" autocomplete="off" name="squareSize" data-bind="squareSize" className="customFieldSizeInput" placeholder="例）250px"/><span className="add-on"> px</span>
+                <input type="text" autocomplete="off" name="squareSize" onInput={(e) => {this.updateState('squareSize', e.target.value)}} className="customFieldSizeInput" placeholder="例）250px"/><span className="add-on"> px</span>
               </span>
             </div>
           </div>
@@ -431,17 +535,18 @@ export default class Field extends Component {
   }
 
   renderImageResize() {
+    const { resize, alt } = this.state;
     return (
     <div>
       <p className="acms-admin-form-checkbox">
-        <input type="checkbox" data-bind="resize" value="true" id="resize-checkbox"/>
+        <input type="checkbox" onChange={this.updateState.bind(this, 'resize', !resize)} value="true" id="resize-checkbox"/>
         <label for="resize-checkbox">
           <i className="acms-admin-ico-checkbox"></i>
           ブラウザ側のリサイズ機能を使用する
         </label>
       </p>
       <p className="acms-admin-form-checkbox">
-        <input type="checkbox" value="check" data-bind="alt" id="alt-checkbox"/>
+        <input type="checkbox" value="check" onChange={this.updateState.bind(this, 'alt', !alt)} id="alt-checkbox"/>
         <label for="alt-checkbox">
           <i className="acms-admin-ico-checkbox"></i> alt表示用入力欄を使用する
         </label>
@@ -450,8 +555,34 @@ export default class Field extends Component {
     );
   }
 
+  renderFile() {
+    const { extension, fileName } = this.state;
+    return (
+      <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFile">
+        <tr>
+          <th className="acms-admin-table-left">
+            ファイルの拡張子<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="アップロードするファイルの拡張子となります。（例、txt, doc, docx, pdf, ppt, pptx, xls, xlsx, csvなど） *拡張子は一つしか指定できません。"></i>
+          </th>
+          <th className="acms-admin-table-left">
+            固定のファイル名<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="設定しないとファイル名がランダムの文字列となります。 拡張子も明記する必要があります。（例、hoge.pdf)<!--/T-->"></i>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" value={extension} onInput={(e) => {this.updateState.bind(this, 'extension')}} className="acms-admin-form-width-full" placeholder="例）pdf" />
+          </td>
+          <td>
+            <div className="customFieldInputGroup">
+              <input type="text" value={fileName} onInput={(e) => {this.updateState.bind(this, 'fileName')}} className="acms-admin-form-width-full" placeholder="例）example.pdf" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    );
+  }
+
   render() {
-    const { type } = this.state;
+    const { type, title, name, tooltip } = this.state;
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムフィールド</h2>
@@ -466,9 +597,9 @@ export default class Field extends Component {
             </tr>
             <tr>
               <td>{this.renderSelect()}</td>
-              <td><input type="text" value="" data-bind="title" className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
-              <td><input type="text" value="" data-bind="name" className="acms-admin-form-width-full" placeholder="例）name" /></td>
-              <td><input type="text" data-bind="tooltip" className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
+              <td><input type="text" value={title} onInput={(e) => {this.updateState('title', e.target.value)}} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
+              <td><input type="text" value={name} onInput={(e) => {this.updateState('name', e.target.value)}} className="acms-admin-form-width-full" placeholder="例）name" /></td>
+              <td><input type="text" value={tooltip} onInput={(e) => {this.updateState('tooltip', e.target.value)}} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
             </tr>
           </table>
           <div className="customFieldLine"></div>
@@ -498,7 +629,7 @@ export default class Field extends Component {
           }
           {type === 'file' &&
             <div>
-              {this.fileRender()}
+              {this.renderFile()}
             </div>
           }
           {this.renderValidator()}
