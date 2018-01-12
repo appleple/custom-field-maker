@@ -10,6 +10,8 @@ export default class Highlighter extends Component {
     let html = this.source.innerHTML;
     html = this.removeReactText(html);
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
+    html = html.replace(/&lt;/g, '<');
+    html = html.replace(/&gt;/g, '>');
     this.pre.innerHTML = entities.encode(beautifyHtml(html, {
       indentInnerHtml: true
     }));

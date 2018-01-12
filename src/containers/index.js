@@ -14,7 +14,8 @@ class CustomfieldMaker extends Component {
     super(props);
     this.state = {
       mode: 'normal',
-      editMode:"source"
+      editMode:"source",
+      acmscss: false
     }
   }
 
@@ -40,7 +41,7 @@ class CustomfieldMaker extends Component {
   render() {
     const { mode, editMode, acmscss } = this.state;
     const { actions, customfield } = this.props;
-    console.log(actions);
+
     return (
       <div className="acms-admin-form">
         <div className="acms-admin-form-radio">
@@ -74,8 +75,8 @@ class CustomfieldMaker extends Component {
           <div className="acms-admin-tabs-panel">
             <p>
               <div className="acms-admin-form-checkbox">
-                <input type="checkbox" data-bind="acmscss" value="true" data-action="toggleCss" id="acmscss-checkbox" />
-                <label for="acmscss-checkbox">
+                <input type="checkbox" onChange={this.updateState.bind(this, 'acmscss', !acmscss)} value={acmscss} id="acmscss-checkbox" />
+                <label htmlFor="acmscss-checkbox">
                   <i className="acms-admin-ico-checkbox"></i>
                   acms-admin.cssを使用する
                 </label>
