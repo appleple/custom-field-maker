@@ -27,6 +27,18 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         customunit: [...state.customunit, action.item]
       });
+    case types.CLEARCUSTOMFIELD:
+      return Object.assign({}, state, {
+        customfield: []
+      });
+    case types.CLEARGROUPITEM:
+      return Object.assign({}, state, {
+        groupitems: []
+      });
+    case types.CLEARCUSTOMUNIT:
+      return Object.assign({}, state, {
+        customunit: []
+      })
     default:
       return state;
   }

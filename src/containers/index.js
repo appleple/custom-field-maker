@@ -91,9 +91,9 @@ class CustomfieldMaker extends Component {
                 </label>
               </div>
                 {editMode !== 'preview' && <button data-action="copy" className="acms-admin-btn-admin">ソースをコピー</button>}
-                {mode === 'normal' && <button data-action="historyClear" className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
-                {mode === 'group' && <button data-action="clearGroup" className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
-                {mode === 'unit' && <button data-action="clearUnit" className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'normal' && <button onClick={actions.clearCustomfield} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'group' && <button onClick={actions.clearGroupItem} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'unit' && <button onClick={actions.clearCustomUnit} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
             </p>
             {editMode === 'source' && 
             <Highlighter>
