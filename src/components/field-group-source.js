@@ -9,6 +9,7 @@ export default class FieldGroupSource extends Component {
 
   render() {
     const { groupName, groupTitle, acmscss, groupitems } = this.props;
+
     return(<div>
     {groupTitle && <h2 className={classnames({'acms-admin-admin-title2': acmscss})}>{groupTitle}</h2>}
     {groupName && <table className={classnames('js-fieldgroup-sortable', {'adminTable acms-admin-table-admin-edit': acmscss})}>

@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
       });
     case types.ADDGROUPITEM:
       return Object.assign({}, state, {
-        customfield: [...state.groupitems, action.item]
+        groupitems: [...state.groupitems, action.item]
       })
     case types.SETGROUPTITLENAME:
       return Object.assign({}, state, {
