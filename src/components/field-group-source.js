@@ -9,6 +9,7 @@ export default class FieldGroupSource extends Component {
 
   render() {
     const { groupName, groupTitle, acmscss, groupitems } = this.props;
+    const groupLength = groupitems.length;
 
     return(<div>
     {groupTitle && <h2 className={classnames({'acms-admin-admin-title2': acmscss})}>{groupTitle}</h2>}
@@ -185,8 +186,57 @@ export default class FieldGroupSource extends Component {
             }
           })}
         </tr>
+        <tfoot>
+          <tr>
+            <td colspan={groupLength}>
+              <input type="button" className={classnames("item-insert", {"acms-admin-btn-admin": acmscss})} value="追加" />
+            </td>
+          </tr>
+        </tfoot>
       </tbody>
     </table>}
+    {groupName && <div>
+      {groupitems.map((item) => {
+        return (<div>
+        {item.type === 'image' && <div>
+          {item.square && <div>
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squarePath`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squareAlt`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squareX`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squareY`} />
+          </div>}
+          {item.large && <div>
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largePath`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largeAlt`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largeX`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largeY`} />
+          </div>}
+          {item.tiny && <div>
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyPath`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyAlt`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyX`} />
+            <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyY`} />
+          </div>}
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@path`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@alt`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@x`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@y`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@edit`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@old`} />
+          <input type="hidden" name={`${item.name}:extension`} value="image" />
+        </div>}
+        {item.type === 'file' && <div>
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@path`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@alt`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@edit`} />
+          <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@old`} />
+          <input type="hidden" name={`${item.name}:extension`} value="file" />
+        </div>}
+        <input type="hidden" name={`@${groupName}[]`} value={name} />
+        <input type="hidden" name="field[]" value={name} />
+        {item.noSearch && <input type="hidden" name="{name}:search" value="0" />}
+      </div>);
+    })}</div>}
     </div>);
   }
 }
