@@ -8,6 +8,8 @@ import Field from '../components/field';
 import FieldGroup from '../components/field-group';
 import FieldSource from '../components/field-source';
 import FieldGroupSource from '../components/field-group-source';
+import Unit from '../components/unit';
+import UnitSource from '../components/unit-source';
 import * as actions from '../actions';
 
 class CustomfieldMaker extends Component {
@@ -42,7 +44,7 @@ class CustomfieldMaker extends Component {
 
   render() {
     const { mode, editMode, acmscss } = this.state;
-    const { actions, customfield, groupitems, groupTitle, groupName } = this.props;
+    const { actions, customfield, groupitems, customunit, groupTitle, groupName } = this.props;
 
     return (
       <div className="acms-admin-form">
@@ -69,6 +71,7 @@ class CustomfieldMaker extends Component {
         </div>
         {mode === 'normal' && <Field actions={actions} />}
         {mode === 'group' && <FieldGroup actions={actions} />}
+        {mode === 'unit' && <Unit actions={actions}/>}
         <div className="acms-admin-tabs">
           <ul className="js-acms_tabs">
             <li><a href="#source" className={classnames('js-acms_tab', {'js-acms_tab-active': editMode === 'source'})} onClick={this.updateState.bind(this, 'editMode', 'source')}>入力用ソース</a></li>
@@ -91,12 +94,15 @@ class CustomfieldMaker extends Component {
             </p>
             {editMode === 'source' && 
             <Highlighter>
-              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss}/>}
-              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName}/>}
+              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} />}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
+              {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
             </Highlighter>}
             {editMode === 'preview' && 
             <div className="customFieldPreview">
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss}/>}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
+              {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
             </div>}
             {editMode === 'confirm' &&
               <pre className="prettyprint lang-html linenums" data-id="prettyPrintConfirm"></pre>
