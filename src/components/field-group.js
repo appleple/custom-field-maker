@@ -37,7 +37,7 @@ export default class FieldGroup extends Base {
 
   showGroup() {
     const { actions } = this.props;
-    const { groupName } = this.state;
+    const { groupName, groupTitle } = this.state;
     if (!groupName) {
       this.setState({
         groupAlert: true
@@ -47,9 +47,12 @@ export default class FieldGroup extends Base {
         groupAlert: false,
         duplicatedField: false,
         openGroup: true
+      });
+      actions.setGroupTitleName({
+        groupTitle, groupName
       })
     }
-    
+
   }
 
   addGroup() {

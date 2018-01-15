@@ -42,7 +42,7 @@ class CustomfieldMaker extends Component {
 
   render() {
     const { mode, editMode, acmscss } = this.state;
-    const { actions, customfield, groupitems } = this.props;
+    const { actions, customfield, groupitems, groupTitle, groupName } = this.props;
 
     return (
       <div className="acms-admin-form">
@@ -92,7 +92,7 @@ class CustomfieldMaker extends Component {
             {editMode === 'source' && 
             <Highlighter>
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss}/>}
-              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss}/>}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName}/>}
             </Highlighter>}
             {editMode === 'preview' && 
             <div className="customFieldPreview">

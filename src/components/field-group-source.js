@@ -67,7 +67,69 @@ export default class FieldGroupSource extends Component {
                 })}
               </td>);
             } else if (item.type === 'file') {
+              let src = "/images/fileicon/";
+              let alt = 'file';
+              if (item.extension) {
+                src += `${extension}.gif`;
+                alt += extension;
+              } else {
+                src += 'file.gif';
+              }
+
               return (<td>
+                {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                <div className={classnames({'acms-admin-form-checkbox': acmscss})}>
+                  <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit`}/>
+                  <label for="input-checkbox-{name}@edit">
+                  {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除</label>
+                </div>
+                <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
+                  <img src={src} width="64" height="64" alt={alt} />
+                </a>
+                {`<!-- END_IF -->`}
+                <input type="hidden" name="{name}@old[]" value={`{${item.name}@path}`} />
+                <input type="file" name="{name}[]"/><br />
+                {`<!-- BEGIN alt:veil -->`}
+                  代替テキスト:
+                  <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
+                {`<!-- END alt:veil -->`}
+              </td>)
+            } else if (item.type === 'image') {
+              const style = {};
+              if (item.normalSize) {
+                style.width = `${item.normalSize}px`;
+              } 
+              const hiddenStyle = Object.assign({}, style, {'display': 'none'});
+
+              return (<td className={classnames({'js-img_resize_cf': item.resize})}>
+                {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                <div>
+                  <img 
+                    src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} 
+                    className={classnames({'js-img_resize_preview': item.resize})} style={style} />
+				        </div>
+				        <input type="hidden" name="{name}@old[]" value={`{${item.name}@path}`} />
+                {`<!-- ELSE -->`}
+                  <img 
+                    src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} 
+                    className={classnames({'js-img_resize_preview': item.resize})} style={hiddenStyle}/>
+                {`<!-- END_IF -->`}
+                <input type="file" name={`${item.name}[]`} className={classnames({'js-img_resize_input': item.resize})} /><br />
+                {`<!-- BEGIN alt:veil -->`}
+                代替テキスト:<input type="text" name="{name}@alt[]" value={`{${item.name}@alt}`} size="40" />
+                {`<!-- END alt:veil -->`}
+                {`<!-- BEGIN normalSize:veil -->`}
+                <input type="hidden" name={`${item.name}@${item.normal}[]`} value="{normalSize}" />
+                {`<!-- END normalSize:veil -->`}
+                {`<!-- BEGIN tiny:veil -->`}
+                <input type="hidden" name={`${item.name}@${item.tiny}[]`} value="{tinySize}" />
+                {`<!-- END tiny:veil -->`}
+                {`<!-- BEGIN large:veil -->`}
+                <input type="hidden" name={`${item.name}@${item.large}[]`} value="{largeSize}" />
+                {`<!-- END large:veil -->`}
+                {`<!-- BEGIN square:veil -->`}
+                <input type="hidden" name={`${item.name}@${item.square}[]`} value="{squareSize}" />
+                {`<!-- END square:veil -->`}
               </td>)
             }
           })}

@@ -2,7 +2,9 @@ import * as types from '../constants/action-types';
 
 const initialState = {
   customfield: [],
-  groupitems: []
+  groupitems: [],
+  groupTitle: null,
+  groupName: null
 }
 
 export default (state = initialState, action) => {
@@ -15,6 +17,11 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         customfield: [...state.groupitems, action.item]
       })
+    case types.SETGROUPTITLENAME:
+      return Object.assign({}, state, {
+        groupTitle: action.groupTitle,
+        groupName: action.groupName
+      });
     default:
       return state;
   }
