@@ -232,8 +232,8 @@ export default class FieldGroupSource extends Component {
           <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@old`} />
           <input type="hidden" name={`${item.name}:extension`} value="file" />
         </div>}
-        <input type="hidden" name={`@${groupName}[]`} value={name} />
-        <input type="hidden" name="field[]" value={name} />
+        <input type="hidden" name={`@${groupName}[]`} value={item.name} />
+        <input type="hidden" name="field[]" value={item.name} />
         {item.noSearch && <input type="hidden" name="{name}:search" value="0" />}
       </div>);
     })}</div>}
