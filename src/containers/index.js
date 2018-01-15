@@ -9,8 +9,10 @@ import FieldGroup from '../components/field-group';
 import FieldSource from '../components/field-source';
 import FieldConfirmSource from '../components/field-confirm-source';
 import FieldGroupSource from '../components/field-group-source';
+import FieldGroupConfirmSource from '../components/field-group-confirm-source';
 import Unit from '../components/unit';
 import UnitSource from '../components/unit-source';
+import UnitConfirmSource from '../components/unit-confirm-source';
 import * as actions from '../actions';
 
 class CustomfieldMaker extends Component {
@@ -108,6 +110,8 @@ class CustomfieldMaker extends Component {
             {editMode === 'confirm' &&
               <Highlighter>
                 {mode === 'normal' && <FieldConfirmSource customfield={customfield} acmscss={acmscss} />}
+                {mode === 'group' && <FieldGroupConfirmSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
+                {mode === 'unit' && <UnitConfirmSource customunit={customunit} acmscss={acmscss} />}
               </Highlighter>
             }
           </div>
