@@ -20,6 +20,8 @@ export default class Highlighter extends Component {
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
     html = html.replace(/&lt;/g, '<');
     html = html.replace(/&gt;/g, '>');
+    html = html.replace(/<div>/g, '');
+    html = html.replace(/<\/div>/g, '');
     this.pre.innerHTML = entities.encode(beautifyHtml(html, {
       indentInnerHtml: true
     }));
