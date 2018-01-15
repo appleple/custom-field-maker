@@ -7,6 +7,7 @@ import Highlighter from '../components/highlighter';
 import Field from '../components/field';
 import FieldGroup from '../components/field-group';
 import FieldSource from '../components/field-source';
+import FieldConfirmSource from '../components/field-confirm-source';
 import FieldGroupSource from '../components/field-group-source';
 import Unit from '../components/unit';
 import UnitSource from '../components/unit-source';
@@ -105,7 +106,9 @@ class CustomfieldMaker extends Component {
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
             </div>}
             {editMode === 'confirm' &&
-              <pre className="prettyprint lang-html linenums" data-id="prettyPrintConfirm"></pre>
+              <Highlighter>
+                {mode === 'normal' && <FieldConfirmSource customfield={customfield} acmscss={acmscss} />}
+              </Highlighter>
             }
           </div>
         </div>
