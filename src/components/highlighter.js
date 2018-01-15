@@ -22,10 +22,10 @@ export default class Highlighter extends Component {
     html = html.replace(/&gt;/g, '>');
     html = html.replace(/<div>/g, '');
     html = html.replace(/<\/div>/g, '');
-    this.pre.innerHTML = entities.encode(beautifyHtml(html, {
+    this.code.innerHTML = entities.encode(beautifyHtml(html, {
       indentInnerHtml: true
     }));
-    hljs.highlightBlock(this.pre);
+    hljs.highlightBlock(this.code);
   }
 
   removeReactText(html) {
@@ -37,7 +37,7 @@ export default class Highlighter extends Component {
     return (
       <div>
         <div ref={(source) => {this.source = source}} style={{display:'none'}}>{this.props.children}</div>
-        <pre ref={(pre) => {this.pre = pre}}></pre>
+        <pre><code className="html" ref={(code) => {this.code = code}}></code></pre>
       </div>
     )
   }
