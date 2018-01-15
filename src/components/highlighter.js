@@ -7,6 +7,14 @@ const entities = new XmlEntities();
 export default class Highlighter extends Component {
 
   componentDidUpdate() {
+    this.buildSource();
+  }
+
+  componentDidMount() {
+    this.buildSource();
+  }
+
+  buildSource() {
     let html = this.source.innerHTML;
     html = this.removeReactText(html);
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
