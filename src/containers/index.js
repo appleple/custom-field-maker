@@ -7,6 +7,7 @@ import Highlighter from '../components/highlighter';
 import Field from '../components/field';
 import FieldGroup from '../components/field-group';
 import FieldSource from '../components/field-source';
+import FieldGroupSource from '../components/field-group-source';
 import * as actions from '../actions';
 
 class CustomfieldMaker extends Component {
@@ -41,7 +42,7 @@ class CustomfieldMaker extends Component {
 
   render() {
     const { mode, editMode, acmscss } = this.state;
-    const { actions, customfield } = this.props;
+    const { actions, customfield, groupitems } = this.props;
 
     return (
       <div className="acms-admin-form">
@@ -90,11 +91,12 @@ class CustomfieldMaker extends Component {
             </p>
             {editMode === 'source' && 
             <Highlighter>
-              <FieldSource customfield={customfield} acmscss={acmscss}/>
+              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss}/>}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss}/>}
             </Highlighter>}
             {editMode === 'preview' && 
             <div className="customFieldPreview">
-              <FieldSource customfield={customfield} acmscss={acmscss}/>
+              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss}/>}
             </div>}
             {editMode === 'confirm' &&
               <pre className="prettyprint lang-html linenums" data-id="prettyPrintConfirm"></pre>

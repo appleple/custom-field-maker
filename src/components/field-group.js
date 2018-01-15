@@ -36,6 +36,7 @@ export default class FieldGroup extends Base {
   }
 
   showGroup() {
+    const { actions } = this.props;
     const { groupName } = this.state;
     if (!groupName) {
       this.setState({
@@ -48,6 +49,7 @@ export default class FieldGroup extends Base {
         openGroup: true
       })
     }
+    
   }
 
   addGroup() {
