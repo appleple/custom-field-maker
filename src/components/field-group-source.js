@@ -115,26 +115,75 @@ export default class FieldGroupSource extends Component {
                     className={classnames({'js-img_resize_preview': item.resize})} style={hiddenStyle}/>
                 {`<!-- END_IF -->`}
                 <input type="file" name={`${item.name}[]`} className={classnames({'js-img_resize_input': item.resize})} /><br />
-                {`<!-- BEGIN alt:veil -->`}
-                代替テキスト:<input type="text" name="{name}@alt[]" value={`{${item.name}@alt}`} size="40" />
-                {`<!-- END alt:veil -->`}
-                {`<!-- BEGIN normalSize:veil -->`}
-                <input type="hidden" name={`${item.name}@${item.normal}[]`} value="{normalSize}" />
-                {`<!-- END normalSize:veil -->`}
-                {`<!-- BEGIN tiny:veil -->`}
-                <input type="hidden" name={`${item.name}@${item.tiny}[]`} value="{tinySize}" />
-                {`<!-- END tiny:veil -->`}
-                {`<!-- BEGIN large:veil -->`}
-                <input type="hidden" name={`${item.name}@${item.large}[]`} value="{largeSize}" />
-                {`<!-- END large:veil -->`}
-                {`<!-- BEGIN square:veil -->`}
-                <input type="hidden" name={`${item.name}@${item.square}[]`} value="{squareSize}" />
-                {`<!-- END square:veil -->`}
+                {item.alt && <div>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" /></div>}
+                {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
+                {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
+                {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
+                {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
               </td>)
             }
           })}
         </tr>
         {`<!-- END ${groupName}:loop -->`}
+        <tr className="sortable-item item-template">
+          <td class="item-handle">{acmscss && <i className="acms-admin-icon-sort"></i>}</td>
+          {groupitems.map((item) => {
+            if (item.type === 'text') {
+              return (<td>
+                <input type="text" name={`${item.name}[]`} value="" className={classnames({"acms-admin-form-width-full": acmscss})}/>
+              </td>);
+            } else if (item.type === 'textarea') {
+              return (<td>
+                <textarea name={`${item.name}[]`} className={classnames({"acms-admin-form-width-full": acmscss})}></textarea>
+              </td>)
+            } else if (item.type === 'select') {
+              return (<td>
+                <select name={`${item.name}[]`} className={classnames({"acms-admin-form-width-full": acmscss})}>
+                  <option value=""></option>
+                  {item.option.map((option) => {
+                    return (<option value={option.value}>{option.label}</option>);
+                  })}
+                </select>
+              </td>)
+            } else if (item.type === 'radio') {
+              return (<td>
+                {item.option.map((option) => {
+                  return (
+                    <div className={classnames({'acms-admin-form-radio':acmscss})}>
+                      <input type="radio" name="{name}[]" value={option.value} id={`input-radio-${item.name}-${option.value}`} />
+                      <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+                        {acmscss && <i class="acms-admin-ico-radio"></i>}
+                        {label}
+                      </label>
+                    </div>
+                  );
+                })}
+              </td>);
+            } else if (item.type === 'file') {
+              return (<td>
+                <input type="file" name="{name}[]" />
+                {item.extension && <input type="hidden" name="{name}@extension[]" value="{extension}" />}
+                {item.fileName && <input type="hidden" name="{name}@filename[]" value="{fileName}" />}
+              </td>);
+            } else if (item.type === 'image') {
+              const style = {};
+              if (item.normalSize) {
+                style.width = `${item.normalSize}px`;
+              } 
+              const hiddenStyle = Object.assign({}, style, {'display': 'none'});
+
+              return (<td className={classnames({'js-img_resize_cf': item.resize})}>
+                <img src="" style={hiddenStyle} class="js-img_resize_preview"/>
+                <input type="file" name="{name}[]" style={style}/><br />
+                {item.alt && <div>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value="" size="40" /></div>}
+                {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
+                {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
+                {item.large && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
+                {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
+              </td>);
+            }
+          })}
+        </tr>
       </tbody>
     </table>}
     </div>);
