@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import Highlighter from '../components/highlighter';
 import Field from '../components/field';
@@ -22,7 +23,8 @@ class CustomfieldMaker extends Component {
     this.state = {
       mode: 'normal',
       editMode:"source",
-      acmscss: false
+      acmscss: false,
+      source: ''
     }
   }
 
@@ -45,8 +47,14 @@ class CustomfieldMaker extends Component {
     });
   }
 
+  setSource(source) {
+    this.setState({
+      source
+    });
+  }
+
   render() {
-    const { mode, editMode, acmscss } = this.state;
+    const { mode, editMode, acmscss, source } = this.state;
     const { actions, customfield, groupitems, customunit, groupTitle, groupName } = this.props;
 
     return (
@@ -90,13 +98,13 @@ class CustomfieldMaker extends Component {
                   acms-admin.cssを使用する
                 </label>
               </div>
-                {editMode !== 'preview' && <button data-action="copy" className="acms-admin-btn-admin">ソースをコピー</button>}
+                {editMode !== 'preview' && <CopyToClipboard text={source}><button className="acms-admin-btn-admin">ソースをコピー</button></CopyToClipboard>}
                 {mode === 'normal' && <button onClick={actions.clearCustomfield} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'group' && <button onClick={actions.clearGroupItem} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'unit' && <button onClick={actions.clearCustomUnit} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
             </p>
             {editMode === 'source' && 
-            <Highlighter>
+            <Highlighter onSourceGenerated={this.setSource.bind(this)}>
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} />}
               {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
@@ -108,7 +116,7 @@ class CustomfieldMaker extends Component {
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
             </div>}
             {editMode === 'confirm' &&
-              <Highlighter>
+              <Highlighter onSourceGenerated={this.setSource.bind(this)}>
                 {mode === 'normal' && <FieldConfirmSource customfield={customfield} acmscss={acmscss} />}
                 {mode === 'group' && <FieldGroupConfirmSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
                 {mode === 'unit' && <UnitConfirmSource customunit={customunit} acmscss={acmscss} />}

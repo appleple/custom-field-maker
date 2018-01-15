@@ -6,6 +6,13 @@ const entities = new XmlEntities();
 
 export default class Highlighter extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      source: ''
+    };
+  }
+
   componentDidUpdate() {
     this.buildSource();
   }
@@ -15,6 +22,7 @@ export default class Highlighter extends Component {
   }
 
   buildSource() {
+    const {source} = this.state;
     let html = this.source.innerHTML;
     html = this.removeReactText(html);
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
@@ -26,6 +34,12 @@ export default class Highlighter extends Component {
       indentInnerHtml: true
     }));
     hljs.highlightBlock(this.code);
+    if (source !== this.code.innerText && this.props.onSourceGenerated) {
+      this.props.onSourceGenerated(this.code.innerText);
+      this.setState({
+        source: this.code.innerText
+      })
+    }
   }
 
   removeReactText(html) {
