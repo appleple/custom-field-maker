@@ -28,7 +28,8 @@ export default class Field extends Base {
       }],
       optionFormat: "pref",
       openValidator: false,
-      openConverter: false
+      openConverter: false,
+      noSearch: false
     };
   }
 

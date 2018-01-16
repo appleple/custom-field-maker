@@ -385,7 +385,7 @@ export default class Base extends Component {
     const { noSearch } = this.state;
     return (<p className="acms-admin-form-checkbox">
     <input type="checkbox" value={noSearch} id="noSearch-checkbox" onChange={this.updateState.bind(this, 'noSearch', !noSearch)}/>
-    <label for="noSearch-checkbox">
+    <label htmlFor="noSearch-checkbox">
       <i className="acms-admin-ico-checkbox"></i>
       カスタムフィールド検索の対象外にする
     </label>
