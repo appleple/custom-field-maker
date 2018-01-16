@@ -29,7 +29,8 @@ export default class Field extends Base {
       optionFormat: "pref",
       openValidator: false,
       openConverter: false,
-      noSearch: false
+      noSearch: false,
+      extension: ''
     };
   }
 

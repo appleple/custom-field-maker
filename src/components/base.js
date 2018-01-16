@@ -641,11 +641,11 @@ export default class Base extends Component {
         </tr>
         <tr>
           <td>
-            <input type="text" value={extension} onInput={(e) => { this.updateState.bind(this, 'extension') }} className="acms-admin-form-width-full" placeholder="例）pdf" />
+            <input type="text" value={extension} onInput={(e) => { this.updateState('extension', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）pdf" />
           </td>
           <td>
             <div className="customFieldInputGroup">
-              <input type="text" value={fileName} onInput={(e) => { this.updateState.bind(this, 'fileName') }} className="acms-admin-form-width-full" placeholder="例）example.pdf" />
+              <input type="text" value={fileName} onInput={(e) => { this.updateState('fileName', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）example.pdf" />
             </div>
           </td>
         </tr>
