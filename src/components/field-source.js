@@ -13,20 +13,20 @@ export default class FieldSource extends Component {
     }
     return (
       <div>
-      {item.validator.map((validator) => {
-        if (!validator.option) {
-          return null;
-        }
-        return (<div>
-          <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} />
-          {validator.message && <div>
-          {`<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
-            <p className={classnames({"acms-admin-text-error": acmscss})}>{validator.message}</p>
-          {`<!-- END ${item.name}:validator#${validator.option} -->`}
-          </div>}
-        {item.converter && <input type="hidden" name="{name}:c" value="{converter}"/>}
-        </div>);
-      })}
+        {item.validator.map((validator) => {
+          if (!validator.option) {
+            return null;
+          }
+          return (<div>
+            <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} />
+            {validator.message && <div>
+              {`<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
+              <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
+              {`<!-- END ${item.name}:validator#${validator.option} -->`}
+            </div>}
+          </div>);
+        })}
+        {item.converter && <input type="hidden" name={`${item.name}:c`} value={item.converter} />}
       </div>
     );
   }
@@ -57,7 +57,7 @@ export default class FieldSource extends Component {
       <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
         {customfield.map(item => {
           if (item.type === 'text') {
-            return(<tr>
+            return (<tr>
               {this.renderTh(item, acmscss)}
               <td>
                 <input type="text" name={item.name} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} />
@@ -71,7 +71,7 @@ export default class FieldSource extends Component {
               <tr>
                 {this.renderTh(item, acmscss)}
                 <td>
-                  <textarea name={item.name} className={classnames({"acms-admin-form-width-full":acmscss})}>{`{${item.name}}`}</textarea>
+                  <textarea name={item.name} className={classnames({ "acms-admin-form-width-full": acmscss })}>{`{${item.name}}`}</textarea>
                   <input type="hidden" name="field[]" value={item.name} />
                   {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}
@@ -83,7 +83,7 @@ export default class FieldSource extends Component {
               <tr>
                 {this.renderTh(item, acmscss)}
                 <td>
-                  <select name={item.name} className={classnames({"acms-admin-form-width-full":acmscss})}>
+                  <select name={item.name} className={classnames({ "acms-admin-form-width-full": acmscss })}>
                     <option value=""></option>
                     {item.option.map(option => {
                       if (!option.label) {
@@ -109,7 +109,7 @@ export default class FieldSource extends Component {
                       return null;
                     } else {
                       return (
-                        <div className={classnames({"acms-admin-form-radio":acmscss})}>
+                        <div className={classnames({ "acms-admin-form-radio": acmscss })}>
                           <input type="radio" name={item.name} value={option.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-radio-${item.name}-${option.value}`} />
                           <label htmlFor={`input-radio-${item.name}-${option.value}`}>
                             <i className="acms-admin-ico-radio"></i>
@@ -135,7 +135,7 @@ export default class FieldSource extends Component {
                       return null;
                     } else {
                       return (
-                        <div className={classnames({"acms-admin-form-checkbox":acmscss})}>
+                        <div className={classnames({ "acms-admin-form-checkbox": acmscss })}>
                           <input type="checkbox" name={`${item.name}[]`} value={option.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-checkbox-${item.name}-${option.value}`} />
                           <label htmlFor={`input-checkbox-${item.name}-${option.value}`}>
                             <i className="acms-admin-ico-checkbox"></i>
@@ -151,38 +151,38 @@ export default class FieldSource extends Component {
           } else if (item.type === 'image') {
             return (<tr>
               {this.renderTh(item)}
-              <td className={classnames({'js-img_resice_cf': item.resize})}>
-              {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-              <div>
-                <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} />
-              </div>
-              <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
-              <div className={classnames({'acms-admin-form-checkbox':acmscss})}>
-                <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
-                <label htmlFor={`input-checkbox-${item.name}@edit`}>
-                  {acmscss &&
-                    <i className="acms-admin-ico-checkbox"></i> 
-                  }
-                  削除
+              <td className={classnames({ 'js-img_resice_cf': item.resize })}>
+                {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                <div>
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px` } : null} />
+                </div>
+                <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
+                <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+                  <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
+                  <label htmlFor={`input-checkbox-${item.name}@edit`}>
+                    {acmscss &&
+                      <i className="acms-admin-ico-checkbox"></i>
+                    }
+                    削除
                 </label>
-              </div>
-              {`<!-- ELSE -->`}
-              <div>
-              <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`, display: 'none'} : {display: 'none'}} />
-              </div>
-              {`<!-- END_IF -->`}
-              <input type="file" name={item.name} size="20" className={classnames({'js-img_resize_input': item.resize})} /><br />
-              {item.alt && <span>代替テキスト:<input type="text" name={`${item.name}@alt`} value="{{name}@alt}" size="40" /></span>}
-              <input type="hidden" name="field[]" value={item.name} />
-              <input type="hidden" name={`${item.name}:extension`} value="image" />
-              {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}`} value={item.normalSize} />}
-              {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}`} value={item.tinySize} />}
-              {item.large && <input type="hidden" name={`${item.name}@${item.large}`} value={item.largeSize} />}
-              {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={item.squareSize} />}        
-              <input type="hidden" name={`${item.name}@filename`} value="" />
-              {this.renderValidator(item, acmscss)}
-            </td>
-          </tr>);
+                </div>
+                {`<!-- ELSE -->`}
+                <div>
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px`, display: 'none' } : { display: 'none' }} />
+                </div>
+                {`<!-- END_IF -->`}
+                <input type="file" name={item.name} size="20" className={classnames({ 'js-img_resize_input': item.resize })} /><br />
+                {item.alt && <span>代替テキスト:<input type="text" name={`${item.name}@alt`} value={`${item.name}@alt`} size="40" /></span>}
+                <input type="hidden" name="field[]" value={item.name} />
+                <input type="hidden" name={`${item.name}:extension`} value="image" />
+                {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}`} value={item.normalSize} />}
+                {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}`} value={item.tinySize} />}
+                {item.large && <input type="hidden" name={`${item.name}@${item.large}`} value={item.largeSize} />}
+                {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={item.squareSize} />}
+                <input type="hidden" name={`${item.name}@filename`} value="" />
+                {this.renderValidator(item, acmscss)}
+              </td>
+            </tr>);
           } else if (item.type === 'file') {
             let src = "/images/fileicon/";
             let alt = 'file';
@@ -200,7 +200,7 @@ export default class FieldSource extends Component {
                 <input type="hidden" name={`{${item.name}@old}`} value={`{${item.name}@path}`} />
                 <input type="hidden" name={`${item.name}@secret`} value={`{${item.name}@secret}`} />
                 <input type="hidden" name={`${item.name}@fileSize`} value={`{${item.name}@fileSize}`} />
-                <label htmlFor={`input-checkbox-${item.name}@edit`} className={classnames({"acms-admin-form-checkbox": acmscss})}>
+                <label htmlFor={`input-checkbox-${item.name}@edit`} className={classnames({ "acms-admin-form-checkbox": acmscss })}>
                   <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
                   {acmscss && <i class="acms-admin-ico-checkbox"></i>}
                   削除
