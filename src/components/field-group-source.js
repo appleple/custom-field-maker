@@ -125,6 +125,9 @@ export default class FieldGroupSource extends Component {
               </td>)
             }
           })}
+          <td>
+            <input type="button" className={classnames("item-delete", {"acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss})} value="削除" />
+          </td>
         </tr>
         {`<!-- END ${groupName}:loop -->`}
         <tr className="sortable-item item-template">
@@ -185,6 +188,9 @@ export default class FieldGroupSource extends Component {
               </td>);
             }
           })}
+          <td>
+            <input type="button" className={classnames("item-delete", {"acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss})} value="削除" />
+          </td>
         </tr>
         <tfoot>
           <tr>
@@ -236,6 +242,7 @@ export default class FieldGroupSource extends Component {
         <input type="hidden" name="field[]" value={item.name} />
         {item.noSearch && <input type="hidden" name="{name}:search" value="0" />}
       </div>);
+      <input type="hidden" name="field[]" value={`@${groupName}`} />
     })}</div>}
     </div>);
   }

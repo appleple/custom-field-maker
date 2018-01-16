@@ -15,6 +15,7 @@ import Unit from '../components/unit';
 import UnitSource from '../components/unit-source';
 import UnitConfirmSource from '../components/unit-confirm-source';
 import Notify from '../components/notify';
+import { STORAGENAME } from '../constants';
 import * as actions from '../actions';
 
 class CustomfieldMaker extends Component {
@@ -27,6 +28,14 @@ class CustomfieldMaker extends Component {
       acmscss: false,
       source: '',
       copied: false
+    }
+  }
+
+  componentDidMount() {
+    const { actions } = this.props;
+    const storage = JSON.parse(localStorage.getItem(STORAGENAME));
+    if (storage) {
+      actions.restore(storage);
     }
   }
 

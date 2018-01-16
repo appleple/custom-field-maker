@@ -39,6 +39,8 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         customunit: []
       })
+    case types.RESTORE:
+      return Object.assign({}, state, action.storage);
     default:
       return state;
   }

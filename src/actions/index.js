@@ -7,3 +7,4 @@ export const addCustomUnit = (item) => ({ type: types.ADDCUSTOMUNIT, item });
 export const clearCustomfield = () => ({ type: types.CLEARCUSTOMFIELD });
 export const clearGroupItem = () => ({ type: types.CLEARGROUPITEM });
 export const clearCustomUnit = () => ({ type: types.CLEARCUSTOMUNIT });
+export const restore = (storage) => ({ type: types.RESTORE, storage });
