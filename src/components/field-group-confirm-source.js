@@ -56,8 +56,8 @@ export default class FieldGroupConfirmSource extends Component {
                 let src = "/images/fileicon/";
                 let alt = 'file';
                 if (item.extension) {
-                  src += `${extension}.gif`;
-                  alt += extension;
+                  src += `${item.extension}.gif`;
+                  alt += item.extension;
                 } else {
                   src += 'file.gif';
                 }
