@@ -129,7 +129,7 @@ class CustomfieldMaker extends Component {
           <input type="radio" value="unit-group" id="input-radio-mode-unit-group" checked={mode === 'unit-group'} onChange={this.updateState.bind(this, 'mode', 'unit-group')}/>
           <label htmlFor="input-radio-mode-unit-group">
             <i className="acms-admin-ico-radio"></i>
-            カスタムユニットグループ
+            カスタムユニット（フィールドグループ）
           </label>
         </div>
         {mode === 'normal' && <Field actions={actions} />}
