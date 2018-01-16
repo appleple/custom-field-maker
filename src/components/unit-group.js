@@ -26,8 +26,8 @@ export default class UnitGroup extends Base {
         message: ""
       }],
       optionFormat: "pref",
-      groupTitle: '',
-      groupName: '',
+      unitGroupTitle: '',
+      unitGroupName: '',
       openValidator: false,
       openConverter: false,
       groupAlert: false,
@@ -37,8 +37,8 @@ export default class UnitGroup extends Base {
 
   showGroup() {
     const { actions } = this.props;
-    const { groupName, groupTitle } = this.state;
-    if (!groupName) {
+    const { unitGroupName, unitGroupTitle } = this.state;
+    if (!unitGroupName) {
       this.setState({
         groupAlert: true
       })
@@ -49,7 +49,7 @@ export default class UnitGroup extends Base {
         openGroup: true
       });
       actions.setUnitGroupTitleName({
-        groupTitle, groupName
+        unitGroupTitle, unitGroupName
       })
     }
 
@@ -57,8 +57,8 @@ export default class UnitGroup extends Base {
 
   addGroup() {
     const { actions } = this.props;
-    const { type, title, name, groupName } = this.state;
-    if (name == groupName) {
+    const { type, title, name, unitGroupName } = this.state;
+    if (name == unitGroupName) {
       this.setState({
         duplicatedField: true
       });
@@ -74,7 +74,7 @@ export default class UnitGroup extends Base {
   }
 
   render() {
-    const { groupAlert, duplicatedField, openGroup, groupTitle, groupName, type, title, name, tooltip } = this.state;
+    const { groupAlert, duplicatedField, openGroup, unitGroupTitle, unitGroupName, type, title, name, tooltip } = this.state;
     return (
       <div>
         {groupAlert && <p className="acms-admin-alert acms-admin-alert-danger"><button className="js-acms-alert-close" data-action="removeGroupAlert">×</button>group名を入力しないとgroupを生成できません。</p>}
@@ -87,8 +87,8 @@ export default class UnitGroup extends Base {
               <th className="acms-admin-table-left" colspan="2">フィールド名（変数）<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="カスタムフィールドグループのフィールド名です。値を必ず入力してください。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
             </tr>
             <tr>
-              <td><input type="text" value={groupTitle} onInput={(e) => { this.updateState('groupTitle', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）スタッフリスト" /></td>
-              <td><input type="text" value={groupName} onInput={(e) => { this.updateState('groupName', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）group_staff" /></td>
+              <td><input type="text" value={unitGroupTitle} onInput={(e) => { this.updateState('unitGroupTitle', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）スタッフリスト" /></td>
+              <td><input type="text" value={unitGroupName} onInput={(e) => { this.updateState('unitGroupName', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）group_staff" /></td>
             </tr>
             <tr>
               <td colspan="2">
@@ -103,20 +103,7 @@ export default class UnitGroup extends Base {
             <div>
               <div className="customFieldLine"></div>
               {this.renderModal()}
-              <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
-                <tr>
-                  <th className="acms-admin-table-left">入力欄の種類<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="フィールドのタイプとなります。選択しないと生成ボタンを押してもソースコードが生成されません。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-                  <th className="acms-admin-table-left">タイトル<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="見出しになります。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-                  <th className="acms-admin-table-left">フィールド<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="フィールド名です。name属性として使用されます。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-                  <th className="acms-admin-table-left">ツールチップ<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="カスタムフィールドの説明用のツールチップを付与します。"></i></th>
-                </tr>
-                <tr>
-                  <td>{this.renderSelect()}</td>
-                  <td><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
-                  <td><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）name" /></td>
-                  <td><input type="text" value={tooltip} onInput={(e) => { this.updateState('tooltip', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
-                </tr>
-              </table>
+              {this.renderBasic()}
 
               <div className="customFieldLine"></div>
               {type === 'select' &&

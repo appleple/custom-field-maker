@@ -4,8 +4,11 @@ const initialState = {
   customfield: [],
   groupitems: [],
   customunit: [],
+  unitgroupitems: [],
   groupTitle: null,
   groupName: null,
+  unitGroupTitle: null,
+  unitGroupName: null,
   acmscss: true
 }
 
@@ -24,9 +27,18 @@ export default (state = initialState, action) => {
         groupTitle: action.groupTitle,
         groupName: action.groupName
       });
+    case types.SETUNITGROUPTITLENAME:
+      return Object.assign({}, state, {
+        unitGroupTitle: action.unitGroupTitle,
+        unitGroupName: action.unitGroupName
+      });
     case types.ADDCUSTOMUNIT:
       return Object.assign({}, state, {
         customunit: [...state.customunit, action.item]
+      });
+    case types.ADDUNITGROUPITEM:
+      return Object.assign({}, state, {
+        unitgroupitems: [...state.unitgroupitems, action.item]
       });
     case types.CLEARCUSTOMFIELD:
       return Object.assign({}, state, {
@@ -39,7 +51,11 @@ export default (state = initialState, action) => {
     case types.CLEARCUSTOMUNIT:
       return Object.assign({}, state, {
         customunit: []
-      })
+      });
+    case types.CLEARUNITGROUPITEM:
+      return Object.assign({}, state, {
+        unitgroupitems: []
+      });
     case types.RESTORE:
       return Object.assign({}, state, action.storage);
     case types.TOGGLEACMSCSS:

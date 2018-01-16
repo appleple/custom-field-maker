@@ -14,6 +14,9 @@ import FieldGroupConfirmSource from '../components/field-group-confirm-source';
 import Unit from '../components/unit';
 import UnitSource from '../components/unit-source';
 import UnitConfirmSource from '../components/unit-confirm-source';
+import UnitGroup from '../components/unit-group';
+import UnitGroupSource from '../components/unit-group-source';
+import UnitGroupConfirmSource from '../components/unit-group-confirm-source';
 import Notify from '../components/notify';
 import { STORAGENAME } from '../constants';
 import * as actions from '../actions';
@@ -87,7 +90,10 @@ class CustomfieldMaker extends Component {
 
   render() {
     const { mode, editMode, source, copied } = this.state;
-    const { actions, customfield, groupitems, customunit, groupTitle, groupName, acmscss } = this.props;
+    const { actions, customfield, groupitems, 
+      customunit, unitgroupitems, groupTitle, 
+      unitGroupTitle, unitGroupName,
+      groupName, acmscss } = this.props;
 
     return (
       <div className="acms-admin-form">
@@ -112,9 +118,17 @@ class CustomfieldMaker extends Component {
             カスタムユニット
           </label>
         </div>
+        <div className="acms-admin-form-radio">
+          <input type="radio" value="unit-group" id="input-radio-mode-unit-group" checked={mode === 'unit-group'} onChange={this.updateState.bind(this, 'mode', 'unit-group')}/>
+          <label htmlFor="input-radio-mode-unit-group">
+            <i className="acms-admin-ico-radio"></i>
+            カスタムユニットグループ
+          </label>
+        </div>
         {mode === 'normal' && <Field actions={actions} />}
         {mode === 'group' && <FieldGroup actions={actions} />}
         {mode === 'unit' && <Unit actions={actions}/>}
+        {mode === 'unit-group' && <UnitGroup actions={actions}/>}
         <div className="acms-admin-tabs">
           <ul className="js-acms_tabs">
             <li><a href="#source" className={classnames('js-acms_tab', {'js-acms_tab-active': editMode === 'source'})} onClick={this.updateState.bind(this, 'editMode', 'source')}>入力用ソース</a></li>
@@ -140,18 +154,21 @@ class CustomfieldMaker extends Component {
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} />}
               {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
+              {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName}/>}
             </Highlighter>}
             {editMode === 'preview' && 
             <div className="customFieldPreview">
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss}/>}
               {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
+              {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName}/>}
             </div>}
             {editMode === 'confirm' &&
               <Highlighter onSourceGenerated={this.setSource.bind(this)}>
                 {mode === 'normal' && <FieldConfirmSource customfield={customfield} acmscss={acmscss} />}
                 {mode === 'group' && <FieldGroupConfirmSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
                 {mode === 'unit' && <UnitConfirmSource customunit={customunit} acmscss={acmscss} />}
+                {mode === 'unit-group' && <UnitGroupConfirmSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName} />}
               </Highlighter>
             }
           </div>

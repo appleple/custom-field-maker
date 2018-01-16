@@ -89,8 +89,8 @@ export default class FieldGroupSource extends Component {
                     <img src={src} width="64" height="64" alt={alt} />
                   </a>
                   {`<!-- END_IF -->`}
-                  <input type="hidden" name="{name}@old[]" value={`{${item.name}@path}`} />
-                  <input type="file" name="{name}[]" /><br />
+                  <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
+                  <input type="file" name={`${item.name}[]`} /><br />
                   {`<!-- BEGIN alt:veil -->`}
                   代替テキスト:
                   <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
@@ -110,7 +110,7 @@ export default class FieldGroupSource extends Component {
                       src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
                       className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
                   </div>
-                  <input type="hidden" name="{name}@old[]" value={`{${item.name}@path}`} />
+                  <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
                   {`<!-- ELSE -->`}
                   <img
                     src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
@@ -155,7 +155,7 @@ export default class FieldGroupSource extends Component {
                   {item.option.map((option) => {
                     return (
                       <div className={classnames({ 'acms-admin-form-radio': acmscss })}>
-                        <input type="radio" name="{name}[]" value={option.value} id={`input-radio-${item.name}-${option.value}`} />
+                        <input type="radio" name={`${item.name}[]`} value={option.value} id={`input-radio-${item.name}-${option.value}`} />
                         <label htmlFor={`input-radio-${item.name}-${option.value}`}>
                           {acmscss && <i class="acms-admin-ico-radio"></i>}
                           {label}
@@ -166,9 +166,9 @@ export default class FieldGroupSource extends Component {
                 </td>);
               } else if (item.type === 'file') {
                 return (<td>
-                  <input type="file" name="{name}[]" />
-                  {item.extension && <input type="hidden" name="{name}@extension[]" value="{extension}" />}
-                  {item.fileName && <input type="hidden" name="{name}@filename[]" value="{fileName}" />}
+                  <input type="file" name={`${item.name}[]`} />
+                  {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value="{extension}" />}
+                  {item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="{fileName}" />}
                 </td>);
               } else if (item.type === 'image') {
                 const style = {};
@@ -179,7 +179,7 @@ export default class FieldGroupSource extends Component {
 
                 return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
                   <img src="" style={hiddenStyle} class="js-img_resize_preview" />
-                  <input type="file" name="{name}[]" style={style} /><br />
+                  <input type="file" name={`${item.name}[]`} style={style} /><br />
                   {item.alt && <div>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value="" size="40" /></div>}
                   {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
                   {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
@@ -240,7 +240,7 @@ export default class FieldGroupSource extends Component {
             </div>}
             <input type="hidden" name={`@${groupName}[]`} value={item.name} />
             <input type="hidden" name="field[]" value={item.name} />
-            {item.noSearch && <input type="hidden" name="{name}:search" value="0" />}
+            {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
           </div>);
         })}
         <input type="hidden" name="field[]" value={`@${groupName}`} />
