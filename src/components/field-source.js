@@ -197,7 +197,7 @@ export default class FieldSource extends Component {
               {this.renderTh(item, acmscss)}
               <td>
                 {`<!-- BEGIN ${item.name}@path:veil -->`}
-                <input type="hidden" name={`{${item.name}@old}`} value={`{${item.name}@path}`} />
+                <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
                 <input type="hidden" name={`${item.name}@secret`} value={`{${item.name}@secret}`} />
                 <input type="hidden" name={`${item.name}@fileSize`} value={`{${item.name}@fileSize}`} />
                 <label htmlFor={`input-checkbox-${item.name}@edit`} className={classnames({ "acms-admin-form-checkbox": acmscss })}>
