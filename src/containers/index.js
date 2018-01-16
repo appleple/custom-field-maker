@@ -64,6 +64,27 @@ class CustomfieldMaker extends Component {
     });
   }
 
+  clearCustomfield() {
+    const { actions } = this.props;
+    if (confirm('履歴を削除してもよろしいですか？')) {
+      actions.clearCustomfield();
+    }
+  }
+
+  clearGroupItem() {
+    const { actions } = this.props;
+    if (confirm('履歴を削除してもよろしいですか？')) {
+      actions.clearGroupItem();
+    }
+  }
+
+  clearCustomUnit() {
+    const { actions } = this.props;
+    if (confirm('履歴を削除してもよろしいですか？')) {
+      actions.clearCustomUnit();
+    }
+  }
+
   render() {
     const { mode, editMode, acmscss, source, copied } = this.state;
     const { actions, customfield, groupitems, customunit, groupTitle, groupName } = this.props;
@@ -110,9 +131,9 @@ class CustomfieldMaker extends Component {
                 </label>
               </div>
                 {editMode !== 'preview' && <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}><button className="acms-admin-btn-admin">ソースをコピー</button></CopyToClipboard>}
-                {mode === 'normal' && <button onClick={actions.clearCustomfield} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
-                {mode === 'group' && <button onClick={actions.clearGroupItem} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
-                {mode === 'unit' && <button onClick={actions.clearCustomUnit} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'normal' && <button onClick={this.clearCustomfield.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'group' && <button onClick={this.clearGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
             </p>
             {editMode === 'source' && 
             <Highlighter onSourceGenerated={this.setSource.bind(this)}>
