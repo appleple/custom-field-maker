@@ -5,7 +5,8 @@ const initialState = {
   groupitems: [],
   customunit: [],
   groupTitle: null,
-  groupName: null
+  groupName: null,
+  acmscss: true
 }
 
 export default (state = initialState, action) => {
@@ -41,6 +42,10 @@ export default (state = initialState, action) => {
       })
     case types.RESTORE:
       return Object.assign({}, state, action.storage);
+    case types.TOGGLEACMSCSS:
+      return Object.assign({}, state, {
+        acmscss: !state.acmscss
+      });
     default:
       return state;
   }
