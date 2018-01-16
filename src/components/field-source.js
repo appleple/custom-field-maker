@@ -45,7 +45,7 @@ export default class FieldSource extends Component {
       <th>
         {item.title}
         {item.tooltip &&
-          <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip}></i>
+          <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip}></i>
         }
       </th>
     )
