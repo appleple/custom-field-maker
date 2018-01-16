@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { XmlEntities } from 'html-entities';
-import { html as beautifyHtml } from 'js-beautify';
+import pretty from 'pretty';
 import hljs from 'highlight.js';
 const entities = new XmlEntities();
 
@@ -30,9 +30,7 @@ export default class Highlighter extends Component {
     html = html.replace(/&gt;/g, '>');
     html = html.replace(/<div>/g, '');
     html = html.replace(/<\/div>/g, '');
-    this.code.innerHTML = entities.encode(beautifyHtml(html, {
-      indentInnerHtml: true
-    }));
+    this.code.innerHTML = entities.encode(pretty(html));
     hljs.highlightBlock(this.code);
     if (source !== this.code.innerText && this.props.onSourceGenerated) {
       this.props.onSourceGenerated(this.code.innerText);
