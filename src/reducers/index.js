@@ -5,6 +5,7 @@ const initialState = {
   groupitems: [],
   customunit: [],
   unitgroupitems: [],
+  snippets: [],
   groupTitle: null,
   groupName: null,
   unitGroupTitle: null,
@@ -61,6 +62,13 @@ export default (state = initialState, action) => {
     case types.TOGGLEACMSCSS:
       return Object.assign({}, state, {
         acmscss: !state.acmscss
+      });
+    case types.ADDSNIPPET:
+      return Object.assign({}, state, {
+        snippets: [...state.snippets, {
+          name: action.name,
+          value: action.value
+        }]
       });
     default:
       return state;

@@ -88,6 +88,13 @@ class CustomfieldMaker extends Component {
     }
   }
 
+  clearUnitGroupItem() {
+    const { actions } = this.props;
+    if (confirm('履歴を削除してもよろしいですか？')) {
+      actions.clearUnitGroupItem();
+    }
+  }
+
   render() {
     const { mode, editMode, source, copied } = this.state;
     const { actions, customfield, groupitems, 
@@ -148,6 +155,7 @@ class CustomfieldMaker extends Component {
                 {mode === 'normal' && <button onClick={this.clearCustomfield.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'group' && <button onClick={this.clearGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'unit-group' && <button onClick={this.clearUnitGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
             </p>
             {editMode === 'source' && 
             <Highlighter onSourceGenerated={this.setSource.bind(this)}>

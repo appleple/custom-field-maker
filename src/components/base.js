@@ -209,7 +209,7 @@ export default class Base extends Component {
         </span>
         <span className="customFieldUseSnippet">
           <label className="customFieldUseSnippetLabel">
-            <input type="checkbox" data-bind="useSnippet" style={{ display: 'none' }} value="true" data-action="update" />
+            <input type="checkbox" style={{ display: 'none' }} value="true" />
             {useSnippet ? "スニペットを使用しない" : "スニペットを使用する"}
           </label>
           {useSnippet &&
@@ -381,8 +381,19 @@ export default class Base extends Component {
     </table>);
   }
 
+  noSearchCheckRender() {
+    const { noSearch } = this.state;
+    return (<p className="acms-admin-form-checkbox">
+    <input type="checkbox" value={noSearch} id="noSearch-checkbox" onChange={this.updateState.bind(this, 'noSearch', !noSearch)}/>
+    <label for="noSearch-checkbox">
+      <i className="acms-admin-ico-checkbox"></i>
+      カスタムフィールド検索の対象外にする
+    </label>
+  </p>);
+  }
+
   renderValidator() {
-    const { openValidator, validator, converter } = this.state;
+    const { openValidator, validator, converter, type } = this.state;
     return (
       <div>
         <p>
