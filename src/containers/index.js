@@ -14,6 +14,7 @@ import FieldGroupConfirmSource from '../components/field-group-confirm-source';
 import Unit from '../components/unit';
 import UnitSource from '../components/unit-source';
 import UnitConfirmSource from '../components/unit-confirm-source';
+import Notify from '../components/notify';
 import * as actions from '../actions';
 
 class CustomfieldMaker extends Component {
@@ -24,7 +25,8 @@ class CustomfieldMaker extends Component {
       mode: 'normal',
       editMode:"source",
       acmscss: false,
-      source: ''
+      source: '',
+      copied: false
     }
   }
 
@@ -54,7 +56,7 @@ class CustomfieldMaker extends Component {
   }
 
   render() {
-    const { mode, editMode, acmscss, source } = this.state;
+    const { mode, editMode, acmscss, source, copied } = this.state;
     const { actions, customfield, groupitems, customunit, groupTitle, groupName } = this.props;
 
     return (
@@ -98,7 +100,7 @@ class CustomfieldMaker extends Component {
                   acms-admin.cssを使用する
                 </label>
               </div>
-                {editMode !== 'preview' && <CopyToClipboard text={source}><button className="acms-admin-btn-admin">ソースをコピー</button></CopyToClipboard>}
+                {editMode !== 'preview' && <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}><button className="acms-admin-btn-admin">ソースをコピー</button></CopyToClipboard>}
                 {mode === 'normal' && <button onClick={actions.clearCustomfield} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'group' && <button onClick={actions.clearGroupItem} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'unit' && <button onClick={actions.clearCustomUnit} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
@@ -124,6 +126,7 @@ class CustomfieldMaker extends Component {
             }
           </div>
         </div>
+        <Notify message="クリップボードにコピーしました" show={copied} onFinish={() => {this.setState({copied: false})}}/>
       </div>
     );
   }
