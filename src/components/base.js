@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactTooltip from 'react-tooltip';
+
 import ModalDialog from './modal-dialog';
 
 export default class Base extends Component {
@@ -214,7 +216,10 @@ export default class Base extends Component {
       <p>
         <span className="customFieldBold">
           選択項目（option要素）
-          <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="option要素の選択項目になります。"></i>
+          <i className="acms-admin-icon-tooltip" data-tip data-for="option-value-tip"></i>
+          <ReactTooltip id="option-value-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+            <span>option要素の選択項目になります。</span>
+          </ReactTooltip>
         </span>
         <span className="customFieldUseSnippet">
           <label className="customFieldUseSnippetLabel">
@@ -348,21 +353,48 @@ export default class Base extends Component {
         <p>
           <label style={{ color: "#006DEC", cursor: "pointer" }}>
             <input type="checkbox" value={openValidator} onChange={this.updateState.bind(this, 'openValidator', !openValidator)} style={{ display: 'none' }} />
-            オプション</label><i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="変換・入力チェック用の項目を表示します。" style={{ marginLeft: "5px" }}></i>
+            オプション</label>
+              <i className="acms-admin-icon-tooltip" data-for="option-tip" data-tip="React-tooltip" style={{ marginLeft: "5px" }}></i>
+              <ReactTooltip id="option-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                <span>変換・入力チェック用の項目を表示します。</span>
+              </ReactTooltip>
         </p>
         {openValidator &&
           <div className="customFieldValidatorArea">
             {/text|textarea|radio|select/.exec(type) && this.noSearchCheckRender()}
-            <p className="customFieldBold">テキストの変換<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。"></i></p>
+            <p className="customFieldBold">
+              テキストの変換
+              <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip"></i>
+              <ReactTooltip id="convert-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                <span>テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。</span>
+              </ReactTooltip>
+            </p>
             <p>
               <input type="text" value={converter} onInput={(e) => { this.updateState('converter', e.target.value) }} className="acms-admin-form-width-quarter" placeholder="例）rs" />
               <button className="acms-admin-btn" onClick={this.updateState.bind(this, 'openConverter', true)}>コンバーター参照</button>
             </p>
             <table className="acms-admin-table customFieldOptionTable">
               <tr>
-                <th>入力チェック<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="フィールドに入力された値が条件に合っているかをチェックします。"></i></th>
-                <th>値<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="最小文字数や、正規表現チェックをバリデータに設定した際に設定する値となります。"></i></th>
-                <th>メッセージ<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。"></i></th>
+                <th>
+                  入力チェック
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-tip"></i>
+                  <ReactTooltip id="validate-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                    <span>フィールドに入力された値が条件に合っているかをチェックします。</span>
+                  </ReactTooltip>
+                </th>
+                <th>値
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-value-tip"></i>
+                  <ReactTooltip id="validate-value-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                    <span>最小文字数や、正規表現チェックをバリデータに設定した際に設定する値となります。</span>
+                  </ReactTooltip>
+                </th>
+                <th>
+                  メッセージ
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-message-tip"></i>
+                  <ReactTooltip id="validate-message-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                    <span>フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。</span>
+                  </ReactTooltip>
+                </th>
                 <th></th>
               </tr>
               {validator.map((item, idx) =>
@@ -419,10 +451,34 @@ export default class Base extends Component {
     return (
       <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableImg">
         <tr>
-          <th className="acms-admin-table-left">画像サイズ<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="通常画像の画像サイズを指定します。"></i></th>
-          <th className="acms-admin-table-left">large画像生成<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="通常画像よりも大きい画像を生成できます。"></i></th>
-          <th className="acms-admin-table-left">tiny画像生成<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="通常画像よりも小さい画像を生成できます。"></i></th>
-          <th className="acms-admin-table-left">square画像生成<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="通常画像を指定したサイズで中央から正方形にトリミングして生成します。"></i></th>
+          <th className="acms-admin-table-left">
+            画像サイズ
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-size-tip"></i>
+            <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <span>通常画像の画像サイズを指定します</span>
+            </ReactTooltip>
+          </th>
+          <th className="acms-admin-table-left">
+            large画像生成
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-large-size-tip"></i>
+            <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <span>通常画像よりも大きい画像を生成できます。</span>
+            </ReactTooltip>
+          </th>
+          <th className="acms-admin-table-left">
+            tiny画像生成
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-tiny-size-tip"></i>
+            <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <span>通常画像よりも小さい画像を生成できます。</span>
+            </ReactTooltip>
+          </th>
+          <th className="acms-admin-table-left">
+            square画像生成
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-square-size-tip"></i>
+            <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <span>通常画像を指定したサイズで中央から正方形にトリミングして生成します。</span>
+            </ReactTooltip>
+          </th>
         </tr>
         <tr>
           <td>
@@ -512,10 +568,18 @@ export default class Base extends Component {
       <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFile">
         <tr>
           <th className="acms-admin-table-left">
-            ファイルの拡張子<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="アップロードするファイルの拡張子となります。（例、txt, doc, docx, pdf, ppt, pptx, xls, xlsx, csvなど） *拡張子は一つしか指定できません。"></i>
+            ファイルの拡張子
+            <i className="acms-admin-icon-tooltip" data-tip data-for="file-ext-tip"></i>
+            <ReactTooltip id="file-ext-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <span>アップロードするファイルの拡張子となります。（例、txt, doc, docx, pdf, ppt, pptx, xls, xlsx, csvなど） *拡張子は一つしか指定できません。</span>
+            </ReactTooltip>
           </th>
           <th className="acms-admin-table-left">
-            固定のファイル名<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="設定しないとファイル名がランダムの文字列となります。 拡張子も明記する必要があります。（例、hoge.pdf)<!--/T-->"></i>
+            固定のファイル名
+            <i className="acms-admin-icon-tooltip" data-tip data-for="file-name-tip"></i>
+            <ReactTooltip id="file-name-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <span>設定しないとファイル名がランダムの文字列となります。 拡張子も明記する必要があります。（例、hoge.pdf)</span>
+            </ReactTooltip>
           </th>
         </tr>
         <tr>

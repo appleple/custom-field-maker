@@ -54,8 +54,8 @@ export default class Field extends Base {
           <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
             <tr>
               <th className="acms-admin-table-left">入力欄の種類
-                <i className="acms-admin-icon-tooltip" data-tip="React-tooltip"></i>
-                <ReactTooltip place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="type-tip"></i>
+                <ReactTooltip id="type-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
                   <span>フィールドのタイプとなります。<br/>選択しないと生成ボタンを押してもソースコードが生成されません。</span>
                 </ReactTooltip>
                 <span className="acms-admin-label acms-admin-label-danger">必須</span>
