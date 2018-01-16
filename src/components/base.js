@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
+import axios from 'axios';
 
 import ModalDialog from './modal-dialog';
 
@@ -196,8 +197,18 @@ export default class Base extends Component {
     );
   }
 
+  applySnippet() {
+    const { optionFormat, option } = this.state;
+    axios.get(`./json/${optionFormat}.json`)
+    .then((res) => {
+      this.setState({
+        option: [...option, ...res.data]
+      });
+    });
+  }
+
   renderSnippet() {
-    const { useSnippet } = this.state;
+    const { useSnippet, optionFormat } = this.state;
     return (
       <p>
         <span className="customFieldBold">
@@ -208,19 +219,19 @@ export default class Base extends Component {
           </ReactTooltip>
         </span>
         <span className="customFieldUseSnippet">
-          <label className="customFieldUseSnippetLabel">
-            <input type="checkbox" style={{ display: 'none' }} value="true" />
+          <label className="customFieldUseSnippetLabel" style={{marginRight: '5px'}}>
+            <input type="checkbox" style={{ display: 'none' }} value="true" onChange={() => {this.updateState('useSnippet', !useSnippet)}}/>
             {useSnippet ? "スニペットを使用しない" : "スニペットを使用する"}
           </label>
           {useSnippet &&
-            <div>
-              <select data-bind="optionFormat" style={{ verticalAlign: 'middle' }}>
+            <span>
+              <select style={{ verticalAlign: 'middle', marginRight: '5px' }} value={optionFormat} onChange={(e) => {this.updateState('optionFormat', e.target.value)}}>
                 <option value="pref">都道府県</option>
                 <option value="pref-en">都道府県（英語）</option>
                 <option value="pref-number">都道府県（連番）</option>
               </select>
-              <button className="acms-admin-btn" data-action="addSnippet" style={{ verticalAlign: 'middle' }}>追加</button>
-            </div>
+              <button className="acms-admin-btn" onClick={this.applySnippet.bind(this)} style={{ verticalAlign: 'middle' }}>追加</button>
+            </span>
           }
         </span>
       </p>

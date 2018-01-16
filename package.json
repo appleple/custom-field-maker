@@ -13,6 +13,7 @@
   "author": "steelydylan",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "classnames": "^2.2.5",
     "highlight.js": "^9.10.0",
     "html-entities": "^1.2.1",
