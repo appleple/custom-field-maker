@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import Base from './base';
 
 export default class UnitGroup extends Base {
@@ -83,8 +84,19 @@ export default class UnitGroup extends Base {
         <div className="acms-admin-filter">
           <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
             <tr>
-              <th className="acms-admin-table-left">グループのタイトル<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="カスタムフィールドグループのテーブル用のタイトルとなります。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-              <th className="acms-admin-table-left" colspan="2">フィールド名（変数）<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="カスタムフィールドグループのフィールド名です。値を必ず入力してください。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
+              <th className="acms-admin-table-left">ユニットグループのタイトル
+                <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-title-tip"></i>
+                <ReactTooltip id="unit-group-title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                  <span>カスタムユニットグループのテーブル用のタイトルとなります。</span>
+                </ReactTooltip>
+                <span className="acms-admin-label acms-admin-label-danger">必須</span>
+              </th>
+              <th className="acms-admin-table-left" colspan="2">フィールド名（変数）
+                <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-field-tip"></i>
+                <ReactTooltip id="unit-group-field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                  <span>カスタムユニットグループのフィールド名です。値を必ず入力してください。</span>
+                </ReactTooltip>
+                <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
             </tr>
             <tr>
               <td><input type="text" value={unitGroupTitle} onInput={(e) => { this.updateState('unitGroupTitle', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）スタッフリスト" /></td>
