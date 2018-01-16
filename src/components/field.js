@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import Base from './base';
 
 export default class Field extends Base {
@@ -52,10 +53,31 @@ export default class Field extends Base {
           {this.renderModal()}
           <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
             <tr>
-              <th className="acms-admin-table-left">入力欄の種類<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="フィールドのタイプとなります。選択しないと生成ボタンを押してもソースコードが生成されません。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-              <th className="acms-admin-table-left">タイトル<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="見出しになります。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-              <th className="acms-admin-table-left">フィールド<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="フィールド名です。name属性として使用されます。"></i><span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-              <th className="acms-admin-table-left">ツールチップ<i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="カスタムフィールドの説明用のツールチップを付与します。"></i></th>
+              <th className="acms-admin-table-left">入力欄の種類
+                <i className="acms-admin-icon-tooltip" data-tip="React-tooltip"></i>
+                <ReactTooltip place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                  <span>フィールドのタイプとなります。<br/>選択しないと生成ボタンを押してもソースコードが生成されません。</span>
+                </ReactTooltip>
+                <span className="acms-admin-label acms-admin-label-danger">必須</span>
+              </th>
+              <th className="acms-admin-table-left">タイトル
+                <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip"></i>
+                <ReactTooltip id="title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                  <span>見出しになります。</span>
+                </ReactTooltip>
+                <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
+              <th className="acms-admin-table-left">フィールド
+                <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip"></i>
+                <ReactTooltip id="field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                  <span>フィールド名です。name属性として使用されます。</span>
+                </ReactTooltip>
+                <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
+              <th className="acms-admin-table-left">ツールチップ
+                <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="tooltip-tip"></i>
+                <ReactTooltip id="tooltip-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                  <span>カスタムフィールドの説明用のツールチップを付与します。</span>
+                </ReactTooltip>
+              </th>
             </tr>
             <tr>
               <td>{this.renderSelect()}</td>

@@ -279,10 +279,19 @@
 }
 
 .customFieldUseSnippetLabel {
-    color:#006DEC;
-    cursor:pointer;
-    display:inline-block;
-    height:27px;
-    vertical-align:middle;
-    line-height:27px;
+  color:#006DEC;
+  cursor:pointer;
+  display:inline-block;
+  height:27px;
+  vertical-align:middle;
+  line-height:27px;
+}
+
+.customFieldTooltip {
+	font-weight: normal;
+  white-space: normal;
+  word-wrap: break-word;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  font-size: 12px;
 }
