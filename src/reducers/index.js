@@ -47,7 +47,9 @@ export default (state = initialState, action) => {
       });
     case types.CLEARGROUPITEM:
       return Object.assign({}, state, {
-        groupitems: []
+        groupitems: [],
+        groupTitle: null,
+        groupName: null
       });
     case types.CLEARCUSTOMUNIT:
       return Object.assign({}, state, {
@@ -55,7 +57,9 @@ export default (state = initialState, action) => {
       });
     case types.CLEARUNITGROUPITEM:
       return Object.assign({}, state, {
-        unitgroupitems: []
+        unitgroupitems: [],
+        unitGroupTitle: null,
+        unitGroupName: null
       });
     case types.RESTORE:
       return Object.assign({}, state, action.storage);

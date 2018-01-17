@@ -58,7 +58,7 @@ export default class FieldGroup extends Base {
 
   addGroup() {
     const { actions } = this.props;
-    const { type, title, name, groupName } = this.state;
+    const { type, title, name, groupTitle, groupName } = this.state;
     if (name == groupName) {
       this.setState({
         duplicatedField: true
@@ -66,6 +66,9 @@ export default class FieldGroup extends Base {
       return;
     }
     if (type && title && name) {
+      actions.setGroupTitleName({
+        groupTitle, groupName
+      });
       actions.addGroupItem(this.state);
     } else {
       this.setState({
