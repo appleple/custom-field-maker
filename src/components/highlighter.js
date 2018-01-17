@@ -28,7 +28,6 @@ export default class Highlighter extends Component {
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
     html = html.replace(/&lt;/g, '<');
     html = html.replace(/&gt;/g, '>');
-    html = html.replace(/<div>(([\\n\\r\\t]|.)*?)<\/div>/g, '$1');
     this.code.innerHTML = entities.encode(pretty(html));
     hljs.highlightBlock(this.code);
     if (source !== this.code.innerText && this.props.onSourceGenerated) {

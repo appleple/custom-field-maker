@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
 export default class UnitGroupConfirmSource extends Component {
   render () {
     const {unitGroupTitle, unitGroupName, unitgroupitems, acmscss} = this.props;
-    return (<div>
+    return (<Fragment>
       {unitGroupTitle && <h2 className={classnames({"acms-admin-admin-title2": acmscss})}>{unitGroupTitle}</h2>}
       <table className={classnames({"adminTable acms-admin-table-admin-edit": acmscss})}>
         <thead className={classnames({"acms-admin-hide-sp": acmscss})}>
@@ -83,6 +83,6 @@ export default class UnitGroupConfirmSource extends Component {
           {`<!-- END ${unitGroupName}:loop -->`}
         </tbody>
       </table>
-    </div>)
+    </Fragment>)
   }
 }

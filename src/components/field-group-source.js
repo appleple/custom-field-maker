@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
 export default class FieldGroupSource extends Component {
@@ -11,7 +11,7 @@ export default class FieldGroupSource extends Component {
     const { groupName, groupTitle, acmscss, groupitems } = this.props;
     const groupLength = groupitems.length;
 
-    return (<div>
+    return (<Fragment>
       {groupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{groupTitle}</h2>}
       {groupName && <table className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}>
         <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
@@ -105,11 +105,8 @@ export default class FieldGroupSource extends Component {
 
                 return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
                   {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-                  <div>
-                    <img
-                      src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
                       className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
-                  </div>
                   <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
                   {`<!-- ELSE -->`}
                   <img
@@ -117,7 +114,7 @@ export default class FieldGroupSource extends Component {
                     className={classnames({ 'js-img_resize_preview': item.resize })} style={hiddenStyle} />
                   {`<!-- END_IF -->`}
                   <input type="file" name={`${item.name}[]`} className={classnames({ 'js-img_resize_input': item.resize })} /><br />
-                  {item.alt && <div>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" /></div>}
+                  {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" /></Fragment>}
                   {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
                   {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
                   {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
@@ -180,7 +177,7 @@ export default class FieldGroupSource extends Component {
                 return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
                   <img src="" style={hiddenStyle} class="js-img_resize_preview" />
                   <input type="file" name={`${item.name}[]`} style={style} /><br />
-                  {item.alt && <div>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value="" size="40" /></div>}
+                  {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value="" size="40" /></Fragment>}
                   {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
                   {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
                   {item.large && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
@@ -201,28 +198,28 @@ export default class FieldGroupSource extends Component {
           </tfoot>
         </tbody>
       </table>}
-      {groupName && <div>
+      {groupName && <Fragment>
         {groupitems.map((item) => {
-          return (<div>
-            {item.type === 'image' && <div>
-              {item.square && <div>
+          return (<Fragment>
+            {item.type === 'image' && <Fragment>
+              {item.square && <Fragment>
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squarePath`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squareAlt`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squareX`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@squareY`} />
-              </div>}
-              {item.large && <div>
+              </Fragment>}
+              {item.large && <Fragment>
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largePath`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largeAlt`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largeX`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@largeY`} />
-              </div>}
-              {item.tiny && <div>
+              </Fragment>}
+              {item.tiny && <Fragment>
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyPath`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyAlt`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyX`} />
                 <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@tinyY`} />
-              </div>}
+              </Fragment>}
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@path`} />
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@alt`} />
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@x`} />
@@ -230,21 +227,21 @@ export default class FieldGroupSource extends Component {
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@edit`} />
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@old`} />
               <input type="hidden" name={`${item.name}:extension`} value="image" />
-            </div>}
-            {item.type === 'file' && <div>
+            </Fragment>}
+            {item.type === 'file' && <Fragment>
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@path`} />
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@alt`} />
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@edit`} />
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@old`} />
               <input type="hidden" name={`${item.name}:extension`} value="file" />
-            </div>}
+            </Fragment>}
             <input type="hidden" name={`@${groupName}[]`} value={item.name} />
             <input type="hidden" name="field[]" value={item.name} />
             {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
-          </div>);
+          </Fragment>);
         })}
         <input type="hidden" name="field[]" value={`@${groupName}`} />
-      </div>}
-    </div>);
+      </Fragment>}
+    </Fragment>);
   }
 }

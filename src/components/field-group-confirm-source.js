@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
 export default class FieldGroupConfirmSource extends Component {
   render () {
     const {groupTitle, groupName, groupitems, acmscss} = this.props;
-    return (<div>
+    return (<Fragment>
       {groupTitle && <h2 className={classnames({"acms-admin-admin-title2": acmscss})}>{groupTitle}</h2>}
       <table className={classnames({"adminTable acms-admin-table-admin-edit": acmscss})}>
         <thead className={classnames({"acms-admin-hide-sp": acmscss})}>
@@ -83,6 +83,6 @@ export default class FieldGroupConfirmSource extends Component {
           {`<!-- END ${groupName}:loop -->`}
         </tbody>
       </table>
-    </div>)
+    </Fragment>)
   }
 }

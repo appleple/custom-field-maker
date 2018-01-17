@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
 export default class UnitGroupSource extends Component {
@@ -11,7 +11,7 @@ export default class UnitGroupSource extends Component {
     const { unitGroupName, unitGroupTitle, acmscss, unitgroupitems } = this.props;
     const groupLength = unitgroupitems.length;
 
-    return (<div>
+    return (<Fragment>
       {unitGroupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{unitGroupTitle}</h2>}
       {unitGroupName && <table className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}>
         <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
@@ -201,28 +201,28 @@ export default class UnitGroupSource extends Component {
           </tfoot>
         </tbody>
       </table>}
-      {unitGroupName && <div>
+      {unitGroupName && <Fragment>
         {unitgroupitems.map((item) => {
-          return (<div>
-            {item.type === 'image' && <div>
-              {item.square && <div>
+          return (<Fragment>
+            {item.type === 'image' && <Fragment>
+              {item.square && <Fragment>
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@squarePath`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@squareAlt`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@squareX`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@squareY`} />
-              </div>}
-              {item.large && <div>
+              </Fragment>}
+              {item.large && <Fragment>
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@largePath`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@largeAlt`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@largeX`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@largeY`} />
-              </div>}
-              {item.tiny && <div>
+              </Fragment>}
+              {item.tiny && <Fragment>
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@tinyPath`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@tinyAlt`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@tinyX`} />
                 <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@tinyY`} />
-              </div>}
+              </Fragment>}
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@path`} />
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@alt`} />
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@x`} />
@@ -230,21 +230,21 @@ export default class UnitGroupSource extends Component {
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@edit`} />
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@old`} />
               <input type="hidden" name={`${item.name}:extension`} value="image" />
-            </div>}
-            {item.type === 'file' && <div>
+            </Fragment>}
+            {item.type === 'file' && <Fragment>
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@path`} />
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@alt`} />
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@edit`} />
               <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@old`} />
               <input type="hidden" name={`${item.name}:extension`} value="file" />
-            </div>}
+            </Fragment>}
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}`} />
             <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`}  />
             {item.noSearch && <input type="hidden" name={`${item.name}{id}:search`} value="0" />}
-          </div>);
+          </Fragment>);
         })}
         <input type="hidden" name="unit{id}[]" value={`@${unitGroupName}{id}`} />
-      </div>}
-    </div>);
+      </Fragment>}
+    </Fragment>);
   }
 }

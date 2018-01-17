@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
 export default class FieldSource extends Component {
@@ -12,22 +12,22 @@ export default class FieldSource extends Component {
       return null;
     }
     return (
-      <div>
+      <Fragment>
       {item.validator.map((validator) => {
         if (!validator.option) {
           return null;
         }
-        return (<div>
+        return (<Fragment>
           <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} />
-          {validator.message && <div>
+          {validator.message && <Fragment>
           {`<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
             <p className={classnames({"acms-admin-text-error": acmscss})}>{validator.message}</p>
           {`<!-- END ${item.name}:validator#${validator.option} -->`}
-          </div>}
+          </Fragment>}
         {item.converter && <input type="hidden" name="{name}:c" value="{converter}"/>}
-        </div>);
+        </Fragment>);
       })}
-      </div>
+      </Fragment>
     );
   }
 
@@ -127,9 +127,7 @@ export default class FieldSource extends Component {
               {this.renderTh(item)}
               <td className={classnames({'js-img_resice_cf': item.resize})}>
               {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-              <div>
-                <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} />
-              </div>
+              <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} />
               <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
               <div className={classnames({'acms-admin-form-checkbox':acmscss})}>
                 <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
@@ -141,12 +139,10 @@ export default class FieldSource extends Component {
                 </label>
               </div>
               {`<!-- ELSE -->`}
-              <div>
               <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`, display: 'none'} : {display: 'none'}} />
-              </div>
               {`<!-- END_IF -->`}
               <input type="file" name={item.name} size="20" className={classnames({'js-img_resize_input': item.resize})} /><br />
-              {item.alt && <span>代替テキスト:<input type="text" name={`${item.name}{id}@alt`} value="{{name}@alt}" size="40" /></span>}
+              {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}{id}@alt`} value="{{name}@alt}" size="40" /></Fragment>}
               <input type="hidden" name="unit{id}[]" value={item.name} />
               <input type="hidden" name={`${item.name}{id}:extension`} value="image" />
               {item.normalSize && <input type="hidden" name={`${item.name}{id}@${item.normal}`} value={item.normalSize} />}
