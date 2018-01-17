@@ -29,7 +29,8 @@ export default class Base extends Component {
       largeSize: '',
       square: '',
       squareSize: '',
-      alt: '',
+      alt: true,
+      resize: true,
       openConverter: '',
       openValidator: '',
       converter: '',
@@ -603,15 +604,15 @@ export default class Base extends Component {
     return (
       <div>
         <p className="acms-admin-form-checkbox">
-          <input type="checkbox" onChange={this.updateState.bind(this, 'resize', !resize)} value="true" id="resize-checkbox" />
-          <label for="resize-checkbox">
+          <input type="checkbox" onChange={this.updateState.bind(this, 'resize', !resize)} checked={resize} id="resize-checkbox" />
+          <label htmlFor="resize-checkbox">
             <i className="acms-admin-ico-checkbox"></i>
             ブラウザ側のリサイズ機能を使用する
         </label>
         </p>
         <p className="acms-admin-form-checkbox">
-          <input type="checkbox" value="check" onChange={this.updateState.bind(this, 'alt', !alt)} id="alt-checkbox" />
-          <label for="alt-checkbox">
+          <input type="checkbox" onChange={this.updateState.bind(this, 'alt', !alt)} checked={alt} id="alt-checkbox" />
+          <label htmlFor="alt-checkbox">
             <i className="acms-admin-ico-checkbox"></i> alt表示用入力欄を使用する
         </label>
         </p>
