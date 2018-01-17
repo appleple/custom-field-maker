@@ -172,7 +172,7 @@ export default class FieldSource extends Component {
                 </div>
                 {`<!-- END_IF -->`}
                 <input type="file" name={item.name} size="20" className={classnames({ 'js-img_resize_input': item.resize })} /><br />
-                {item.alt && <span>代替テキスト:<input type="text" name={`${item.name}@alt`} value={`${item.name}@alt`} size="40" /></span>}
+                {item.alt && <span>代替テキスト:<input type="text" name={`${item.name}@alt`} value={`{${item.name}@alt}`} size="40" /></span>}
                 <input type="hidden" name="field[]" value={item.name} />
                 <input type="hidden" name={`${item.name}:extension`} value="image" />
                 {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}`} value={item.normalSize} />}
