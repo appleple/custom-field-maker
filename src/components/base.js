@@ -376,21 +376,29 @@ export default class Base extends Component {
       </tr>
       <tr>
         <td>
-          <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
-            <option value="text">テキスト</option>
-            <option value="textarea">テキストエリア</option>
-            <option value="select">セレクトボックス</option>
-            <option value="radio">ラジオボタン</option>
-            {this.constructor.name === 'Field' && <option value="checkbox">チェックボックス</option>}
-            <option value="file">ファイル</option>
-            <option value="image">画像</option>
-          </select>
+          {this.typeSelectRender()}
         </td>
         <td><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
         <td><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）name" /></td>
         <td><input type="text" value={tooltip} onInput={(e) => { this.updateState('tooltip', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
       </tr>
     </table>);
+  }
+
+  typeSelectRender() {
+    const { type } = this.state;
+    
+    return (
+      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
+      <option value="text">テキスト</option>
+      <option value="textarea">テキストエリア</option>
+      <option value="select">セレクトボックス</option>
+      <option value="radio">ラジオボタン</option>
+      <option value="checkbox">チェックボックス</option>
+      <option value="file">ファイル</option>
+      <option value="image">画像</option>
+    </select>
+    )
   }
 
   noSearchCheckRender() {
@@ -500,7 +508,7 @@ export default class Base extends Component {
     return (
       <p>
         <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>クリア</button>
-        <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary acms-admin-btn-admin-save">生成</button>
+        <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary">生成</button>
       </p>
     )
   }
