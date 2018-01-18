@@ -92,7 +92,7 @@ export default class FieldSource extends Component {
                       }
                     })}
                   </select>
-                  <input type="hidden" name="unit{id}[]" value={item.name} />
+                  <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   {this.renderValidator(item, acmscss)}
                 </td>
               </tr>
@@ -117,7 +117,7 @@ export default class FieldSource extends Component {
                       )
                     }
                   })}
-                  <input type="hidden" name="unit{id}[]" value={item.name} />
+                  <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   {this.renderValidator(item, acmscss)}
                 </td>
               </tr>
