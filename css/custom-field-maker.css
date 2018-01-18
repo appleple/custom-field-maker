@@ -295,3 +295,23 @@
   padding-right: 10px !important;
   font-size: 12px;
 }
+
+.customFieldFileContainer {
+	padding-top: 10px;
+}
+
+.customFieldInputFileGroup {
+	display: inline-block;
+	width: 300px;
+	padding-right: 5px;
+}
+
+.customFieldInputFileExtGroup {
+	width: 100px;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.customFieldFileNameOptContainer {
+	padding-bottom: 10px;
+}

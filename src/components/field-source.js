@@ -212,7 +212,9 @@ export default class FieldSource extends Component {
                 <input type="hidden" name={`${item.name}@baseName`} value={`{${item.name}@baseName}`} />
                 <input type="hidden" name={`${item.name}:extension`} value="file" />
                 {item.extension && <input type="hidden" name={`${item.name}@extension`} value={item.extension} />}
-                {item.fileName && <input type="hidden" name={`${item.name}@filename`} value={item.fileName} />}
+                {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename`} value="" />}
+                {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename`} value={`${item.fileName}.${item.extension}`} />}
+                {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename`} value="@rawfilename" />}
                 {this.renderValidator(item, acmscss)}
               </td>
             </tr>);
