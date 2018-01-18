@@ -7,7 +7,7 @@ export default class Field extends Base {
   constructor(props) {
     super(props);
     this.state = {
-      type: "file",
+      type: "text",
       title: "",
       name: "",
       tooltip: "",
