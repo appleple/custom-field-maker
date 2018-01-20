@@ -9,7 +9,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js', '.css']
   },
   module: {
     rules: [
@@ -25,8 +25,11 @@ module.exports = {
         }
       },
       {
-        test: /\.(scss|css)$/,
-        use: [ 'style-loader', 'css-loader' ]
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader'},
+          { loader: 'css-loader'}
+        ]
       }, {
         test: /\.(jpg|png)$/,
         use: {
