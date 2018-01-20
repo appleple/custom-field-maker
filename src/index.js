@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import CustomFieldMaker from './containers';
 import { STORAGENAME } from './constants';
+import './css/custom-field-maker.css';
 
 const store = createStore(reducer);
 

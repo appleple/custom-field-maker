@@ -12,7 +12,10 @@ module.exports = {
   ],
   module: {
     rules: [
-      // add your custom rules.
+      {
+        test: /\.(scss|css)$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+      }, 
     ],
   },
 };

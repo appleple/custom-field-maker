@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { XmlEntities } from 'html-entities';
 import pretty from 'pretty';
 import hljs from 'highlight.js';
+import 'highlight.js/styles/default.css';
+import 'highlight.js/styles/xcode.css';
+
 const entities = new XmlEntities();
 
 export default class Highlighter extends Component {

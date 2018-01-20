@@ -9,7 +9,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js']
   },
   module: {
     // preLoaders: [
@@ -22,19 +22,23 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: ['babel-loader'],
         exclude: /node_modules/,
-        options: {
-          presets: ['es2015', 'react'],
-          plugins: ['transform-runtime']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'react'],
+            plugins: ['transform-runtime']
+          }
         }
       },
       {
         test: /\.(scss|css)$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        use: 'css-loader'
       }, {
         test: /\.(jpg|png)$/,
-        loader: 'url-loader'
+        use: {
+          loader: 'url-loader'
+        }
       }
     ]
   }
