@@ -4,24 +4,30 @@
   "description": "custom field maker for a-blog cms",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack --config webpack.config.prod.js",
     "dev": "open http://localhost:8080/webpack-dev-server/ && webpack-dev-server --progress --colors --watch",
     "start": "npm-run-all -p dev",
-    "prettier": "prettier ./src/**/*.js --write"
+    "prettier": "prettier ./src/**/*.js --write",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "steelydylan",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",
     "classnames": "^2.2.5",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "highlight.js": "^9.10.0",
     "html-entities": "^1.2.1",
+    "jest": "^22.1.4",
     "pretty": "^2.0.0",
     "react": "^16.2.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.1",
+    "react-test-renderer": "^16.2.0",
     "react-tooltip": "^3.4.0",
     "redux": "^3.6.0",
     "redux-actions": "^1.2.1"
@@ -52,7 +58,10 @@
     "sass-loader": "^4.1.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.3"
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3",
+    "@storybook/addon-actions": "^3.3.3",
+    "@storybook/addon-links": "^3.3.3",
+    "@storybook/react": "^3.3.3"
   }
 }

@@ -13,12 +13,12 @@ module.exports = {
   },
   module: {
     
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         loader: ['babel-loader'],
         exclude: /node_modules/,
-        query: {
+        options: {
           presets: ['es2015', 'react'],
           plugins: ['transform-runtime']
         }
