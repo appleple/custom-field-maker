@@ -1,11 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExternalsPlugin = webpack.ExternalsPlugin;
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, 'app'),
+    path: __dirname,
     filename: 'bundle.js'
   },
   resolve: {

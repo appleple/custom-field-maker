@@ -507,7 +507,7 @@ export default class Base extends Component {
     return (
       <p>
         <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>クリア</button>
-        <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary">生成</button>
+        <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn">生成</button>
       </p>
     )
   }
