@@ -11,27 +11,28 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  module: {
-    
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: ['babel-loader'],
-        exclude: /node_modules/,
+  rules: [
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
         options: {
           presets: ['es2015', 'react'],
           plugins: ['transform-runtime']
         }
-      },
-      {
-        test: /\.(scss|css)$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
-      }, {
-        test: /\.(jpg|png)$/,
+      }
+    },
+    {
+      test: /\.(scss|css)$/,
+      use: [ 'style-loader', 'css-loader' ]
+    }, {
+      test: /\.(jpg|png)$/,
+      use: {
         loader: 'url-loader'
       }
-    ]
-  },
+    }
+  ],
   plugins: [
     new webpack.DefinePlugin({
     "process.env": { 
