@@ -94,7 +94,6 @@ export default class FieldSource extends Component {
                     })}
                   </select>
                   <input type="hidden" name="field[]" value={item.name} />
-                  {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}
                 </td>
               </tr>
@@ -120,7 +119,6 @@ export default class FieldSource extends Component {
                     }
                   })}
                   <input type="hidden" name="field[]" value={item.name} />
-                  {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}
                 </td>
               </tr>
@@ -145,6 +143,8 @@ export default class FieldSource extends Component {
                       )
                     }
                   })}
+                  <input type="hidden" name="field[]" value={item.name} />
+                  {this.renderNoSearch(item, acmscss)}
                 </td>
               </tr>
             );
