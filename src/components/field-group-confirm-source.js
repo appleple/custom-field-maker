@@ -28,20 +28,20 @@ export default class FieldGroupConfirmSource extends Component {
                 </td>)
               } else if (item.type === 'select') {
                 return (<td>
-                  {item.option((option) => {
+                  {item.option.map((option) => {
                     if (!option.label) {
                       return null;
                     }
                     return (<div>
                       {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
-                      {label}
+                      {option.label}
                       {`<!-- END_IF -->`}
                     </div>)
                   })}
                 </td>);
               } else if (item.type === 'radio') {
                 return (<td>
-                  {item.option((option) => {
+                  {item.option.map((option) => {
                     if (!option.label) {
                       return null;
                     }
@@ -73,7 +73,7 @@ export default class FieldGroupConfirmSource extends Component {
                 return (<td>
                   {`<!-- BEGIN ${item.name}@path:veil -->`}
                   <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                    <img src={src} width="64" height="64" alt={item.alt} />
+                    <img src={item.src} width="64" height="64" alt={item.alt} />
                   </a>
                   {`<!-- END ${item.name}@path:veil -->`}
                 </td>)
