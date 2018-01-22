@@ -8,7 +8,7 @@ export default class FieldGroupSource extends Component {
   }
 
   render() {
-    const { groupName, groupTitle, acmscss, groupitems } = this.props;
+    const { groupName, groupTitle, acmscss, groupitems, preview } = this.props;
     const groupLength = groupitems.length;
 
     return (<Fragment>
@@ -27,7 +27,7 @@ export default class FieldGroupSource extends Component {
           </tr>
         </thead>
         <tbody>
-          {`<!-- BEGIN ${groupName}:loop -->`}
+          {preview ? null : `<!-- BEGIN ${groupName}:loop -->`}
           <tr className="sortable-item">
             <td className="item-handle">
               {acmscss && <i className="acms-admin-icon-sort"></i>}
@@ -79,7 +79,7 @@ export default class FieldGroupSource extends Component {
                 }
 
                 return (<td>
-                  {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                  {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                     <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit`} />
                     <label for="input-checkbox-{name}@edit">
@@ -88,13 +88,13 @@ export default class FieldGroupSource extends Component {
                   <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
                     <img src={src} width="64" height="64" alt={alt} />
                   </a>
-                  {`<!-- END_IF -->`}
+                  {preview ? null : `<!-- END_IF -->`}
                   <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
                   <input type="file" name={`${item.name}[]`} /><br />
-                  {`<!-- BEGIN alt:veil -->`}
+                  {preview ? null : `<!-- BEGIN alt:veil -->`}
                   代替テキスト:
                   <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
-                  {`<!-- END alt:veil -->`}
+                  {preview ? null : `<!-- END alt:veil -->`}
                 </td>)
               } else if (item.type === 'image') {
                 const style = {};
@@ -104,15 +104,15 @@ export default class FieldGroupSource extends Component {
                 const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
                 return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
-                  {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                  {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
                       className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
                   <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
-                  {`<!-- ELSE -->`}
+                  {preview ? null : `<!-- ELSE -->`}
                   <img
                     src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
                     className={classnames({ 'js-img_resize_preview': item.resize })} style={hiddenStyle} />
-                  {`<!-- END_IF -->`}
+                  {preview ? null : `<!-- END_IF -->`}
                   <input type="file" name={`${item.name}[]`} className={classnames({ 'js-img_resize_input': item.resize })} /><br />
                   {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" /></Fragment>}
                   {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
@@ -126,7 +126,7 @@ export default class FieldGroupSource extends Component {
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
           </tr>
-          {`<!-- END ${groupName}:loop -->`}
+          {preview ? null : `<!-- END ${groupName}:loop -->`}
           <tr className="sortable-item item-template">
             <td class="item-handle">{acmscss && <i className="acms-admin-icon-sort"></i>}</td>
             {groupitems.map((item) => {
@@ -244,4 +244,8 @@ export default class FieldGroupSource extends Component {
       </Fragment>}
     </Fragment>);
   }
+}
+
+FieldGroupSource.defaultProps = {
+  preview: false
 }

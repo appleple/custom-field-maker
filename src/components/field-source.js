@@ -20,9 +20,9 @@ export default class FieldSource extends Component {
           return (<Fragment>
             <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} />
             {validator.message && <Fragment>
-              {`<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
+              {preview ? null : `<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
               <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
-              {`<!-- END ${item.name}:validator#${validator.option} -->`}
+              {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
             </Fragment>}
           </Fragment>);
         })}
@@ -52,7 +52,7 @@ export default class FieldSource extends Component {
   }
 
   render() {
-    const { acmscss, customfield } = this.props;
+    const { acmscss, customfield, preview } = this.props;
     return (
       <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
         {customfield.map(item => {
@@ -152,7 +152,7 @@ export default class FieldSource extends Component {
             return (<tr>
               {this.renderTh(item)}
               <td className={classnames({ 'js-img_resice_cf': item.resize })}>
-                {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <Fragment>
                   <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px` } : null} />
                 </Fragment>
@@ -166,11 +166,11 @@ export default class FieldSource extends Component {
                     削除
                 </label>
                 </div>
-                {`<!-- ELSE -->`}
+                {preview ? null : `<!-- ELSE -->`}
                 <Fragment>
                   <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px`, display: 'none' } : { display: 'none' }} />
                 </Fragment>
-                {`<!-- END_IF -->`}
+                {preview ? null : `<!-- END_IF -->`}
                 <input type="file" name={item.name} size="20" className={classnames({ 'js-img_resize_input': item.resize })} /><br />
                 {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt`} value={`{${item.name}@alt}`} size="40" /></Fragment>}
                 <input type="hidden" name="field[]" value={item.name} />
@@ -196,7 +196,7 @@ export default class FieldSource extends Component {
             return (<tr>
               {this.renderTh(item, acmscss)}
               <td>
-                {`<!-- BEGIN ${item.name}@path:veil -->`}
+                {preview ? null : `<!-- BEGIN ${item.name}@path:veil -->`}
                 <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
                 <input type="hidden" name={`${item.name}@secret`} value={`{${item.name}@secret}`} />
                 <input type="hidden" name={`${item.name}@fileSize`} value={`{${item.name}@fileSize}`} />
@@ -206,7 +206,7 @@ export default class FieldSource extends Component {
                   削除
                 </label>
                 <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={alt} /></a>
-                {`<!-- END ${item.name}@path:veil -->`}
+                {preview ? null : `<!-- END ${item.name}@path:veil -->`}
                 <input type="file" name={item.name} />
                 <input type="hidden" name="field[]" value={item.name} />
                 <input type="hidden" name={`${item.name}@baseName`} value={`{${item.name}@baseName}`} />
@@ -223,4 +223,8 @@ export default class FieldSource extends Component {
       </table>
     )
   }
+}
+
+FieldSource.defaultProps = {
+  preview: false
 }

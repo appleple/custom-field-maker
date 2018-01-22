@@ -166,10 +166,10 @@ class CustomfieldMaker extends Component {
             </Highlighter>}
             {editMode === 'preview' && 
             <div className="customFieldPreview">
-              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss}/>}
-              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
-              {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
-              {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName}/>}
+              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} preview={true}/>}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} preview={true}/>}
+              {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} preview={true}/>}
+              {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName} preview={true}/>}
             </div>}
             {editMode === 'confirm' &&
               <Highlighter onSourceGenerated={this.setSource.bind(this)}>

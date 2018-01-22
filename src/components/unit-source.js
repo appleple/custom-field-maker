@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
-export default class FieldSource extends Component {
+export default class UnitSource extends Component {
 
   constructor(props) {
     super(props);
@@ -52,7 +52,7 @@ export default class FieldSource extends Component {
   }
 
   render() {
-    const { acmscss, customunit } = this.props;
+    const { acmscss, customunit, preview } = this.props;
     return (
       <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
         {customunit.map(item => {
@@ -126,7 +126,7 @@ export default class FieldSource extends Component {
             return (<tr>
               {this.renderTh(item)}
               <td className={classnames({'js-img_resice_cf': item.resize})}>
-              {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+              {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
               <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} />
               <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
               <div className={classnames({'acms-admin-form-checkbox':acmscss})}>
@@ -138,9 +138,9 @@ export default class FieldSource extends Component {
                   削除
                 </label>
               </div>
-              {`<!-- ELSE -->`}
+              {preview ? null : `<!-- ELSE -->`}
               <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`, display: 'none'} : {display: 'none'}} />
-              {`<!-- END_IF -->`}
+              {preview ? null : `<!-- END_IF -->`}
               <input type="file" name={item.name} size="20" className={classnames({'js-img_resize_input': item.resize})} /><br />
               {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}{id}@alt`} value={`{${item.name}@alt}`} size="40" /></Fragment>}
               <input type="hidden" name="unit{id}[]" value={item.name} />
@@ -166,7 +166,7 @@ export default class FieldSource extends Component {
             return (<tr>
               {this.renderTh(item, acmscss)}
               <td>
-                {`<!-- BEGIN ${item.name}@path:veil -->`}
+                {preview ? null : `<!-- BEGIN ${item.name}@path:veil -->`}
                 <input type="hidden" name={`{${item.name}{id}@old}`} value={`{${item.name}@path}`} />
                 <input type="hidden" name={`${item.name}{id}@secret`} value={`{${item.name}@secret}`} />
                 <input type="hidden" name={`${item.name}{id}@fileSize`} value={`{${item.name}@fileSize}`} />
@@ -176,7 +176,7 @@ export default class FieldSource extends Component {
                   削除
                 </label>
                 <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={alt} /></a>
-                {`<!-- END ${item.name}@path:veil -->`}
+                {preview ? null : `<!-- END ${item.name}@path:veil -->`}
                 <input type="file" name={`${item.name}{id}`} />
                 <input type="hidden" name="field[]" value={`${item.name}{id}`} />
                 <input type="hidden" name={`${item.name}{id}@baseName`} value={`{${item.name}@baseName}`} />
@@ -191,4 +191,8 @@ export default class FieldSource extends Component {
       </table>
     )
   }
+}
+
+UnitSource.defaultProps = {
+  preview: false
 }
