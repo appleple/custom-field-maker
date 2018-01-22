@@ -8,7 +8,7 @@ export default class UnitGroupSource extends Component {
   }
 
   render() {
-    const { unitGroupName, unitGroupTitle, acmscss, unitgroupitems } = this.props;
+    const { unitGroupName, unitGroupTitle, acmscss, unitgroupitems, preview } = this.props;
     const groupLength = unitgroupitems.length;
 
     return (<Fragment>
@@ -27,7 +27,7 @@ export default class UnitGroupSource extends Component {
           </tr>
         </thead>
         <tbody>
-          {`<!-- BEGIN ${unitGroupName}:loop -->`}
+          {preview ? null : `<!-- BEGIN ${unitGroupName}:loop -->`}
           <tr className="sortable-item">
             <td className="item-handle">
               {acmscss && <i className="acms-admin-icon-sort"></i>}
@@ -79,7 +79,7 @@ export default class UnitGroupSource extends Component {
                 }
 
                 return (<td>
-                  {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                  {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                     <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit`} />
                     <label for="input-checkbox-{name}@edit">
@@ -88,13 +88,13 @@ export default class UnitGroupSource extends Component {
                   <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
                     <img src={src} width="64" height="64" alt={alt} />
                   </a>
-                  {`<!-- END_IF -->`}
+                  {preview ? null : `<!-- END_IF -->`}
                   <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
                   <input type="file" name={`${item.name}{id}[]`} /><br />
-                  {`<!-- BEGIN alt:veil -->`}
+                  {preview ? null : `<!-- BEGIN alt:veil -->`}
                   代替テキスト:
                   <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
-                  {`<!-- END alt:veil -->`}
+                  {preview ? null : `<!-- END alt:veil -->`}
                 </td>)
               } else if (item.type === 'image') {
                 const style = {};
@@ -104,18 +104,18 @@ export default class UnitGroupSource extends Component {
                 const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
                 return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
-                  {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                  {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div>
                     <img
                       src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
                       className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
                   </div>
                   <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
-                  {`<!-- ELSE -->`}
+                  {preview ? null : `<!-- ELSE -->`}
                   <img
                     src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
                     className={classnames({ 'js-img_resize_preview': item.resize })} style={hiddenStyle} />
-                  {`<!-- END_IF -->`}
+                  {preview ? null : `<!-- END_IF -->`}
                   <input type="file" name={`${item.name}{id}[]`} className={classnames({ 'js-img_resize_input': item.resize })} /><br />
                   {item.alt && <div>代替テキスト:<input type="text" name={`${item.name}{id}@alt[]`} value={`{${item.name}@alt}`} size="40" /></div>}
                   {item.normal && item.normalSize && <input type="hidden" name={`${item.name}{id}@${item.normal}[]`} value={item.normalSize} />}
@@ -129,7 +129,7 @@ export default class UnitGroupSource extends Component {
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
           </tr>
-          {`<!-- END ${unitGroupName}:loop -->`}
+          {preview ? null : `<!-- END ${unitGroupName}:loop -->`}
           <tr className="sortable-item item-template">
             <td class="item-handle">{acmscss && <i className="acms-admin-icon-sort"></i>}</td>
             {unitgroupitems.map((item) => {
@@ -247,4 +247,8 @@ export default class UnitGroupSource extends Component {
       </Fragment>}
     </Fragment>);
   }
+}
+
+UnitGroupSource.defaultProps = {
+  preview: false
 }
