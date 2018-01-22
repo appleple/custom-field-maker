@@ -63,7 +63,7 @@ export default class UnitGroupSource extends Component {
                       <input type="radio" name={`${item.name}{id}[]`} value={item.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-radio-${item.name}-${option.value}`} />
                       <label htmlFor={`input-radio-${item.name}-${option.value}`}>
                         {acmscss && <i class="acms-admin-ico-radio"></i>}
-                        {label}
+                        {option.label}
                       </label>
                     </div>);
                   })}
@@ -158,7 +158,7 @@ export default class UnitGroupSource extends Component {
                         <input type="radio" name={`${item.name}{id}[]`} value={option.value} id={`input-radio-${item.name}-${option.value}`} />
                         <label htmlFor={`input-radio-${item.name}-${option.value}`}>
                           {acmscss && <i class="acms-admin-ico-radio"></i>}
-                          {label}
+                          {option.label}
                         </label>
                       </div>
                     );
