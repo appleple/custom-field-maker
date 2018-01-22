@@ -144,7 +144,7 @@ export default class FieldGroup extends Base {
                 </div>
               }
               <p>
-                <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin">クリア</button>
+                <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>クリア</button>
                 <button onClick={this.addGroup.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary">生成</button>
               </p>
             </div>}
