@@ -50,7 +50,7 @@ export default class Highlighter extends Component {
     return (
       <div>
         <div ref={(source) => {this.source = source}} style={{display:'none'}}>{this.props.children}</div>
-        <pre><code className="html" ref={(code) => {this.code = code}}></code></pre>
+        <pre className="acms-admin-customfield-maker"><code className="html" ref={(code) => {this.code = code}}></code></pre>
       </div>
     )
   }
