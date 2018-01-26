@@ -138,9 +138,9 @@ class CustomfieldMaker extends Component {
         {mode === 'unit-group' && <UnitGroup actions={actions}/>}
         <div className="acms-admin-tabs">
           <ul className="js-acms_tabs">
-            <li><a href="#source" className={classnames('js-acms_tab', {'js-acms_tab-active': editMode === 'source'})} onClick={this.updateState.bind(this, 'editMode', 'source')}>入力用ソース</a></li>
-            <li><a href="#preview" className={classnames('js-acms_tab', {'js-acms_tab-active': editMode === 'preview'})} onClick={this.updateState.bind(this, 'editMode', 'preview')}>プレビュー</a></li>
-            <li><a href="#confirm" className={classnames('js-acms_tab', {'js-acms_tab-active': editMode === 'confirm'})} onClick={this.updateState.bind(this, 'editMode', 'confirm')}>出力用ソース</a></li>
+            <li><a href="#source" className={classnames({'js-acms_tab-active': editMode === 'source'})} onClick={this.updateState.bind(this, 'editMode', 'source')}>入力用ソース</a></li>
+            <li><a href="#preview" className={classnames({'js-acms_tab-active': editMode === 'preview'})} onClick={this.updateState.bind(this, 'editMode', 'preview')}>プレビュー</a></li>
+            <li><a href="#confirm" className={classnames({'js-acms_tab-active': editMode === 'confirm'})} onClick={this.updateState.bind(this, 'editMode', 'confirm')}>出力用ソース</a></li>
           </ul>
           <div className="acms-admin-tabs-panel">
             <p>
