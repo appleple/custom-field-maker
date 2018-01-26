@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
-import axios from 'axios';
 
 import ModalDialog from './modal-dialog';
+
+const snippetJSON = {
+  'pref': require('../../json/pref.json'),
+  'pref-en': require('../../json/pref-en.json'),
+  'pref-number': require('../../json/pref-number.json')
+}
+
 
 export default class Base extends Component {
 
@@ -200,11 +206,9 @@ export default class Base extends Component {
 
   applySnippet() {
     const { optionFormat, option } = this.state;
-    axios.get(`./json/${optionFormat}.json`)
-    .then((res) => {
-      this.setState({
-        option: [...option, ...res.data]
-      });
+    const res = snippetJSON[optionFormat];
+    this.setState({
+      option: [...option, ...res.data]
     });
   }
 
