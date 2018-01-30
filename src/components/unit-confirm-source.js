@@ -76,7 +76,7 @@ export default class UnitConfirmSource extends Component {
         return (<tr>
           <th>{item.title}</th>
           <td>
-          <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={item.alt} /></a>
+          <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={item.src} width="64" height="64" alt={item.alt} /></a>
           </td>
         </tr>)
       }
