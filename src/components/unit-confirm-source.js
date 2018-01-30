@@ -52,6 +52,20 @@ export default class UnitConfirmSource extends Component {
             })}
           </td>
         </tr>);
+      } else if (item.type === 'checkbox') {
+        return (<tr>
+          <th>{item.title}</th>
+          <td>
+            {`<!-- BEGIN ${item.name}:loop -->`}
+            {`<!-- BEGIN glue -->,<!-- END glue -->`}
+            {item.option.map((option) => {
+              return `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
+              ${option.value}
+              <!-- END_IF -->`;
+            })}
+            {`<!-- END ${item.name}:loop -->`}
+          </td>
+        </tr>)
       } else if (item.type === 'file') {
         let src = "/images/fileicon/";
         let alt = 'file';

@@ -43,6 +43,22 @@ export default class Unit extends Base {
     }
   }
 
+  typeSelectRender() {
+    const { type } = this.state;
+    
+    return (
+      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
+      <option value="text">テキスト</option>
+      <option value="textarea">テキストエリア</option>
+      <option value="select">セレクトボックス</option>
+      <option value="radio">ラジオボタン</option>
+      <option value="checkbox">チェックボックス</option>
+      <option value="file">ファイル</option>
+      <option value="image">画像</option>
+    </select>
+    )
+  }
+
   render() {
     const { type, title, name, tooltip } = this.state;
     return (
@@ -59,6 +75,12 @@ export default class Unit extends Base {
             </div>
           }
           {type === 'radio' &&
+            <div>
+              {this.renderSnippet()}
+              {this.renderOption()}
+            </div>
+          }
+          {type === 'checkbox' &&
             <div>
               {this.renderSnippet()}
               {this.renderOption()}

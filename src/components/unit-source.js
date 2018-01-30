@@ -122,6 +122,31 @@ export default class UnitSource extends Component {
                 </td>
               </tr>
             );
+          } else if (item.type === 'checkbox') {
+            return (
+              <tr>
+                {this.renderTh(item)}
+                <td>
+                  {item.option.map(option => {
+                    if (!option.label) {
+                      return null;
+                    } else {
+                      return (
+                        <div className={classnames({"acms-admin-form-checkbox":acmscss})}>
+                          <input type="checkbox" name={`${item.name}{id}[]`} value={option.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-checkbox-${item.name}-${option.value}-{id}`} />
+                          <label htmlFor={`input-checkbox-${item.name}-${option.value}-{id}`}>
+                            <i className="acms-admin-ico-checkbox"></i>
+                            {option.label}
+                          </label>
+                        </div>
+                      )
+                    }
+                  })}
+                  <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+                  {this.renderValidator(item, acmscss)}
+                </td>
+              </tr>
+            );
           } else if (item.type === 'image') {
             return (<tr>
               {this.renderTh(item)}
