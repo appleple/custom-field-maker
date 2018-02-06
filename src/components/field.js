@@ -113,8 +113,6 @@ export default class Field extends Base {
           {this.renderModal()}
           {this.renderBasic()}
           <div className="customFieldLine"></div>
-          {type === 'text' && <div>{this.renderValidator()}</div>}
-          {type === 'textarea' && <div>{this.renderValidator()}</div>}
           {type === 'select' &&
             <div>
               {this.renderSnippet()}
@@ -144,6 +142,7 @@ export default class Field extends Base {
               {this.renderFile()}
             </div>
           }
+          {this.renderValidator()}
           {this.renderMake()}
         </div>
       </div>

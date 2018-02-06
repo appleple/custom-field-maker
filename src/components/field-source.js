@@ -8,9 +8,12 @@ export default class FieldSource extends Component {
   }
 
   renderValidator(item, acmscss) {
+    const { preview } = this.props;
+
     if (!item.openValidator) {
       return null;
     }
+    
     return (
       <Fragment>
         {item.validator.map((validator) => {
