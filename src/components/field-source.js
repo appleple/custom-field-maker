@@ -154,7 +154,7 @@ export default class FieldSource extends Component {
           } else if (item.type === 'image') {
             return (<tr>
               {this.renderTh(item)}
-              <td className={classnames({ 'js-img_resice_cf': item.resize })}>
+              <td className={classnames({ 'js-img_resize_cf': item.resize })}>
                 {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <Fragment>
                   <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px` } : null} />
