@@ -166,9 +166,9 @@ export default class UnitSource extends Component {
               {preview ? null : `<!-- ELSE -->`}
               <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`, display: 'none'} : {display: 'none'}} />
               {preview ? null : `<!-- END_IF -->`}
-              <input type="file" name={item.name} size="20" className={classnames({'js-img_resize_input': item.resize})} /><br />
+              <input type="file" name={`${item.name}{id}`} size="20" className={classnames({'js-img_resize_input': item.resize})} /><br />
               {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}{id}@alt`} value={`{${item.name}@alt}`} size="40" /></Fragment>}
-              <input type="hidden" name="unit{id}[]" value={item.name} />
+              <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
               <input type="hidden" name={`${item.name}{id}:extension`} value="image" />
               {item.normalSize && <input type="hidden" name={`${item.name}{id}@${item.normal}`} value={item.normalSize} />}
               {item.tiny && <input type="hidden" name={`${item.name}{id}@${item.tiny}`} value={item.tinySize} />}
