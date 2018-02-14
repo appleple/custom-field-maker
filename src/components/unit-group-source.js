@@ -206,36 +206,36 @@ export default class UnitGroupSource extends Component {
           return (<Fragment>
             {item.type === 'image' && <Fragment>
               {item.square && item.squareSize && <Fragment>
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@squarePath`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@squareAlt`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@squareX`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@squareY`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squarePath`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareAlt`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareX`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareY`} />
               </Fragment>}
               {item.large && item.largeSize && <Fragment>
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@largePath`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@largeAlt`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@largeX`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@largeY`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largePath`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeAlt`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeX`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeY`} />
               </Fragment>}
               {item.tiny && item.tinySize && <Fragment>
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@tinyPath`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@tinyAlt`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@tinyX`} />
-                <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}@tinyY`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@tinyPath`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyAlt`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyX`} />
+                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyY`} />
               </Fragment>}
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@path`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@alt`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@x`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@y`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@edit`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@old`} />
-              <input type="hidden" name={`${item.name}:extension`} value="image" />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@path`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@alt`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@x`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@y`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@edit`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@old`} />
+              <input type="hidden" name={`${item.name}{id}:extension`} value="image" />
             </Fragment>}
             {item.type === 'file' && <Fragment>
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@path`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@alt`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@edit`} />
-              <input type="hidden" name={`@${unitGroupName}[]`} value={`${item.name}{id}@old`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@path`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@alt`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@edit`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@old`} />
               <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
             </Fragment>}
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}`} />

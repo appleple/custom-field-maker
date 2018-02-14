@@ -72,9 +72,7 @@ export default class FieldGroupConfirmSource extends Component {
               } else if (item.type === 'image') {
                 return (<td>
                   {`<!-- BEGIN ${item.name}@path:veil -->`}
-                  <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                    <img src={item.src} width="64" height="64" alt={item.alt} />
-                  </a>
+                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={item.alt} />
                   {`<!-- END ${item.name}@path:veil -->`}
                 </td>)
               }

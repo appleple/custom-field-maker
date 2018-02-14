@@ -57,7 +57,10 @@ export default (state = initialState, action) => {
       });
     case types.CLEARUNITGROUPITEM:
       return Object.assign({}, state, {
-        unitgroupitems: [],
+        unitgroupitems: []
+      });
+    case types.CLEARUNITGROUPTITLENAME:
+      return Object.assign({}, state, {
         unitGroupTitle: null,
         unitGroupName: null
       });
