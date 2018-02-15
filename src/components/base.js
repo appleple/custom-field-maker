@@ -391,7 +391,7 @@ export default class Base extends Component {
 
   typeSelectRender() {
     const { type } = this.state;
-    
+
     return (
       <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
       <option value="text">テキスト</option>
@@ -439,7 +439,7 @@ export default class Base extends Component {
               </ReactTooltip>
             </p>
             <p>
-              <input type="text" value={converter} onInput={(e) => { this.updateState('converter', e.target.value) }} className="acms-admin-form-width-quarter" placeholder="例）rs" />
+              <input type="text" value={converter} onInput={(e) => { this.updateState('converter', e.target.value) }} className="acms-admin-form-width-quarter acms-admin-margin-right-small" placeholder="例）rs" />
               <button className="acms-admin-btn" onClick={this.updateState.bind(this, 'openConverter', true)}>コンバーター参照</button>
             </p>
             <table className="acms-admin-table customFieldOptionTable">
@@ -553,7 +553,7 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="normal" onChange={(e) => { this.updateState('normal', e.target.value) }}>
+                <select name="normal" onChange={(e) => { this.updateState('normal', e.target.value) }} className="acms-admin-margin-right-small">
                   <option value="size">長辺</option>
                   <option value="width">幅</option>
                   <option value="height">高さ</option>
@@ -567,7 +567,7 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="large" onChange={(e) => { this.updateState('large', e.target.value) }}>
+                <select name="large" onChange={(e) => { this.updateState('large', e.target.value) }} className="acms-admin-margin-right-small">
                   <option value="">作らない</option>
                   <option value="largeWidth">width</option>
                   <option value="largeHeight">height</option>
@@ -581,7 +581,7 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="tiny" onChange={(e) => { this.updateState('tiny', e.target.value) }}>
+                <select name="tiny" onChange={(e) => { this.updateState('tiny', e.target.value) }} className="acms-admin-margin-right-small">
                   <option value="">作らない</option>
                   <option value="tinyWidth">width</option>
                   <option value="tinyHeight">height</option>
@@ -595,7 +595,7 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="square" onChange={(e) => { this.updateState('square', e.target.value) }}>
+                <select name="square" onChange={(e) => { this.updateState('square', e.target.value) }} className="acms-admin-margin-right-small">
                   <option value="">作らない</option>
                   <option value="squareWidth">width</option>
                 </select>

@@ -80,21 +80,21 @@ export default class UnitGroup extends Base {
       <div>
         {groupAlert && <p className="acms-admin-alert acms-admin-alert-danger"><button className="js-acms-alert-close" data-action="removeGroupAlert">×</button>group名を入力しないとgroupを生成できません。</p>}
         {duplicatedField && <p className="acms-admin-alert acms-admin-alert-danger"><button className="js-acms-alert-close" data-action="removeGroupAlert">×</button>group名とフィールド名を同じ値にすることはできません。</p>}
-        <h2 className="acms-admin-admin-title2">カスタムユニットグループ</h2>
+        <h2 className="acms-admin-admin-title2">カスタムユニット（フィールドグループ）</h2>
         <div className="acms-admin-filter">
           <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
             <tr>
-              <th className="acms-admin-table-left">ユニットグループのタイトル
+              <th className="acms-admin-table-left">グループのタイトル
                 <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-title-tip"></i>
                 <ReactTooltip id="unit-group-title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
-                  <span>カスタムユニットグループのテーブル用のタイトルとなります。</span>
+                  <span>フィールドグループのテーブル用のタイトルとなります。</span>
                 </ReactTooltip>
                 <span className="acms-admin-label acms-admin-label-danger">必須</span>
               </th>
               <th className="acms-admin-table-left" colspan="2">フィールド名（変数）
                 <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-field-tip"></i>
                 <ReactTooltip id="unit-group-field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
-                  <span>カスタムユニットグループのフィールド名です。値を必ず入力してください。</span>
+                  <span>フィールドグループのフィールド名です。値を必ず入力してください。</span>
                 </ReactTooltip>
                 <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
             </tr>
