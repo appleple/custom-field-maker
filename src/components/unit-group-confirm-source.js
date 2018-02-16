@@ -28,20 +28,20 @@ export default class UnitGroupConfirmSource extends Component {
                 </td>)
               } else if (item.type === 'select') {
                 return (<td>
-                  {item.option((option) => {
+                  {item.option.map((option) => {
                     if (!option.label) {
                       return null;
                     }
                     return (<div>
                       {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
-                      {label}
+                      {option.label}
                       {`<!-- END_IF -->`}
                     </div>)
                   })}
                 </td>);
               } else if (item.type === 'radio') {
                 return (<td>
-                  {item.option((option) => {
+                  {item.option.map((option) => {
                     if (!option.label) {
                       return null;
                     }
