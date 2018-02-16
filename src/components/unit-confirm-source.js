@@ -57,7 +57,7 @@ export default class UnitConfirmSource extends Component {
           <th>{item.title}</th>
           <td>
             {`<!-- BEGIN ${item.name}:loop -->`}
-            {`<!-- BEGIN glue -->,<!-- END glue -->`}
+            {`<!-- BEGIN ${item.name}:glue -->,<!-- END ${item.name}:glue -->`}
             {item.option.map((option) => {
               return `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
               ${option.value}

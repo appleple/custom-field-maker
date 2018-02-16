@@ -3,12 +3,15 @@ import ReactTooltip from 'react-tooltip';
 
 import ModalDialog from './modal-dialog';
 
-const snippetJSON = {
-  'pref': require('../../json/pref.json'),
-  'pref-en': require('../../json/pref-en.json'),
-  'pref-number': require('../../json/pref-number.json')
-}
+import prefJson from '../../json/pref.json';
+import prefEnJson from '../../json/pref-en.json';
+import prefNumberJson from '../../json/pref-number.json';
 
+const snippetJSON = {
+  'pref': prefJson,
+  'pref-en': prefEnJson,
+  'pref-number': prefNumberJson
+}
 
 export default class Base extends Component {
 
@@ -208,7 +211,7 @@ export default class Base extends Component {
     const { optionFormat, option } = this.state;
     const res = snippetJSON[optionFormat];
     this.setState({
-      option: [...option, ...res.data]
+      option: [...option, ...res]
     });
   }
 
