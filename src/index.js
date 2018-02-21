@@ -1,4 +1,3 @@
-import { render } from 'react-dom';
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -13,9 +12,9 @@ store.subscribe(() => {
   localStorage.setItem(STORAGENAME, JSON.stringify(store.getState()));
 });
 
-render(
+export default () => {
+return (
   <Provider store={store}>
     <CustomFieldMaker />
-  </Provider>,
-  document.getElementById('app'),
-);
+  </Provider>);
+}
