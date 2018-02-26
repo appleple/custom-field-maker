@@ -194,7 +194,7 @@ export default class UnitGroupSource extends Component {
           </tr>
           <tfoot>
             <tr>
-              <td colspan={groupLength}>
+              <td colspan={groupLength + 2}>
                 <input type="button" className={classnames("item-insert", { "acms-admin-btn-admin": acmscss })} value="追加" />
               </td>
             </tr>

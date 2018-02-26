@@ -97,6 +97,7 @@ export default class FieldSource extends Component {
                     })}
                   </select>
                   <input type="hidden" name="field[]" value={item.name} />
+                  {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}
                 </td>
               </tr>
@@ -122,6 +123,7 @@ export default class FieldSource extends Component {
                     }
                   })}
                   <input type="hidden" name="field[]" value={item.name} />
+                  {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}
                 </td>
               </tr>
@@ -147,6 +149,7 @@ export default class FieldSource extends Component {
                     }
                   })}
                   <input type="hidden" name="field[]" value={item.name} />
+                  {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}
                 </td>
               </tr>
@@ -184,6 +187,7 @@ export default class FieldSource extends Component {
                 {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={item.squareSize} />}
                 <input type="hidden" name={`${item.name}@filename`} value="" />
                 {this.renderValidator(item, acmscss)}
+                {this.renderNoSearch(item, acmscss)}
               </td>
             </tr>);
           } else if (item.type === 'file') {
@@ -219,6 +223,7 @@ export default class FieldSource extends Component {
                 {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename`} value={`${item.fileName}.${item.extension}`} />}
                 {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename`} value="@rawfilename" />}
                 {this.renderValidator(item, acmscss)}
+                {this.renderNoSearch(item, acmscss)}
               </td>
             </tr>);
           }
