@@ -11,7 +11,8 @@
     "start": "npm-run-all -p dev",
     "prettier": "prettier ./src/**/*.js --write",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy": "np --no-cleanup"
   },
   "author": "steelydylan",
   "license": "MIT",
@@ -34,6 +35,9 @@
     "redux-actions": "^1.2.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.3",
+    "@storybook/addon-links": "^3.3.3",
+    "@storybook/react": "^3.3.3",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -53,16 +57,14 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "file-loader": "^0.10.0",
-    "prettier": "^1.9.2",
     "node-sass": "^4.7.2",
+    "np": "^2.20.1",
     "npm-run-all": "^4.1.1",
+    "prettier": "^1.9.2",
     "sass-loader": "^4.1.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.3",
-    "@storybook/addon-actions": "^3.3.3",
-    "@storybook/addon-links": "^3.3.3",
-    "@storybook/react": "^3.3.3"
+    "webpack-dev-server": "^2.9.3"
   }
 }
