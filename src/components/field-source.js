@@ -160,7 +160,7 @@ export default class FieldSource extends Component {
               <td className={classnames({ 'js-img_resize_cf': item.resize })}>
                 {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <Fragment>
-                  <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px` } : null} />
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px` } : null} />
                 </Fragment>
                 <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
                 <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
@@ -174,7 +174,7 @@ export default class FieldSource extends Component {
                 </div>
                 {preview ? null : `<!-- ELSE -->`}
                 <Fragment>
-                  <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px`, display: 'none' } : { display: 'none' }} />
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px`, display: 'none' } : { display: 'none' }} />
                 </Fragment>
                 {preview ? null : `<!-- END_IF -->`}
                 <input type="file" name={item.name} size="20" className={classnames({ 'js-img_resize_input': item.resize })} /><br />

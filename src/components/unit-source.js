@@ -152,7 +152,7 @@ export default class UnitSource extends Component {
               {this.renderTh(item)}
               <td className={classnames({'js-img_resize_cf': item.resize})}>
               {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-              <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} />
+              <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} />
               <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
               <div className={classnames({'acms-admin-form-checkbox':acmscss})}>
                 <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
@@ -164,7 +164,7 @@ export default class UnitSource extends Component {
                 </label>
               </div>
               {preview ? null : `<!-- ELSE -->`}
-              <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`, display: 'none'} : {display: 'none'}} />
+              <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`, display: 'none'} : {display: 'none'}} />
               {preview ? null : `<!-- END_IF -->`}
               <input type="file" name={`${item.name}{id}`} size="20" className={classnames({'js-img_resize_input': item.resize})} /><br />
               {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}{id}@alt`} value={`{${item.name}@alt}`} size="40" /></Fragment>}

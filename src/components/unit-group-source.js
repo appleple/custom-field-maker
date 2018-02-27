@@ -107,13 +107,13 @@ export default class UnitGroupSource extends Component {
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div>
                     <img
-                      src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
+                      src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                       className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
                   </div>
                   <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
                   {preview ? null : `<!-- ELSE -->`}
                   <img
-                    src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
+                    src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                     className={classnames({ 'js-img_resize_preview': item.resize })} style={hiddenStyle} />
                   {preview ? null : `<!-- END_IF -->`}
                   <input type="file" name={`${item.name}{id}[]`} className={classnames({ 'js-img_resize_input': item.resize })} /><br />

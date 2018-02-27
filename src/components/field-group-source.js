@@ -105,12 +105,12 @@ export default class FieldGroupSource extends Component {
 
                 return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-                  <img src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                       className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
                   <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
                   {preview ? null : `<!-- ELSE -->`}
                   <img
-                    src={`%{ARCHIVES_DIR}{${item.name}@${item.path}}`}
+                    src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                     className={classnames({ 'js-img_resize_preview': item.resize })} style={hiddenStyle} />
                   {preview ? null : `<!-- END_IF -->`}
                   <input type="file" name={`${item.name}[]`} className={classnames({ 'js-img_resize_input': item.resize })} /><br />
