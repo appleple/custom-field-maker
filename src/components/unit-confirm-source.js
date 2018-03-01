@@ -46,9 +46,9 @@ export default class UnitConfirmSource extends Component {
           <th>{item.title}</th>
           <td>
             {item.option.map((option) => {
-              {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
-              {option.label}
-              {`<!-- END_IF -->`}
+              return (`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
+              ${option.label}
+              <!-- END_IF -->`);
             })}
           </td>
         </tr>);

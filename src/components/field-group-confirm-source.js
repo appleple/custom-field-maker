@@ -45,11 +45,9 @@ export default class FieldGroupConfirmSource extends Component {
                     if (!option.label) {
                       return null;
                     }
-                    return (<div>
-                      {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
-                      {label}
-                      {`<!-- END_IF -->`}
-                    </div>)
+                    return (`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
+                      ${option.label}
+                      <!-- END_IF -->`);
                   })}
                 </td>)
               } else if (item.type === 'file') {
