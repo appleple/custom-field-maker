@@ -53,7 +53,17 @@ export default class UnitGroup extends Base {
         unitGroupTitle, unitGroupName
       })
     }
+  }
 
+  addNewGroup() {
+    const { actions } = this.props;
+    actions.clearUnitGroupItem();
+    this.clearValue();
+    this.setState({
+      openGroup: false,
+      unitGroupTitle: '',
+      unitGroupName: ''
+    });
   }
 
   addGroup() {
@@ -82,38 +92,62 @@ export default class UnitGroup extends Base {
         {duplicatedField && <p className="acms-admin-alert acms-admin-alert-danger"><button className="js-acms-alert-close" data-action="removeGroupAlert">×</button>group名とフィールド名を同じ値にすることはできません。</p>}
         <h2 className="acms-admin-admin-title2">カスタムユニット（フィールドグループ）</h2>
         <div className="acms-admin-filter">
-          <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
-            <tr>
-              <th className="acms-admin-table-left">グループのタイトル
+          {openGroup ? <div style={{ paddingBottom: '15px' }}>
+            <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={this.addNewGroup.bind(this)}>新規グループ作成</button></div>
+            :
+            <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
+              <tr>
+                <th className="acms-admin-table-left">グループのタイトル
                 <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-title-tip"></i>
-                <ReactTooltip id="unit-group-title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
-                  <span>フィールドグループのテーブル用のタイトルとなります。</span>
-                </ReactTooltip>
-                <span className="acms-admin-label acms-admin-label-danger">必須</span>
-              </th>
-              <th className="acms-admin-table-left" colspan="2">フィールド名（変数）
+                  <ReactTooltip id="unit-group-title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                    <span>フィールドグループのテーブル用のタイトルとなります。</span>
+                  </ReactTooltip>
+                  <span className="acms-admin-label acms-admin-label-danger">必須</span>
+                </th>
+                <th className="acms-admin-table-left" colspan="2">フィールド名（変数）
                 <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-field-tip"></i>
-                <ReactTooltip id="unit-group-field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
-                  <span>フィールドグループのフィールド名です。値を必ず入力してください。</span>
-                </ReactTooltip>
-                <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
-            </tr>
-            <tr>
-              <td><input type="text" value={unitGroupTitle} onInput={(e) => { this.updateState('unitGroupTitle', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）スタッフリスト" /></td>
-              <td><input type="text" value={unitGroupName} onInput={(e) => { this.updateState('unitGroupName', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）group_staff" /></td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                {openGroup ?
-                  <button className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn" disabled>グループ生成</button> :
-                  <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={this.showGroup.bind(this)}>グループ生成</button>
-                }
-              </td>
-            </tr>
-          </table>
+                  <ReactTooltip id="unit-group-field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                    <span>フィールドグループのフィールド名です。値を必ず入力してください。</span>
+                  </ReactTooltip>
+                  <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
+              </tr>
+              <tr>
+                <td><input type="text" value={unitGroupTitle} onInput={(e) => { this.updateState('unitGroupTitle', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）スタッフリスト" /></td>
+                <td><input type="text" value={unitGroupName} onInput={(e) => { this.updateState('unitGroupName', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）group_staff" /></td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  {openGroup ?
+                    <button className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn" disabled>グループ生成</button> :
+                    <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={this.showGroup.bind(this)}>グループ生成</button>
+                  }
+                </td>
+              </tr>
+            </table>
+          }
           {openGroup &&
             <div>
               <div className="customFieldLine"></div>
+              <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
+                <tr>
+                  <th className="acms-admin-table-left">グループのタイトル
+                <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-title-tip"></i>
+                    <ReactTooltip id="unit-group-title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                      <span>フィールドグループのテーブル用のタイトルとなります。</span>
+                    </ReactTooltip>
+                  </th>
+                  <th className="acms-admin-table-left" colspan="2">フィールド名（変数）
+                <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-field-tip"></i>
+                    <ReactTooltip id="unit-group-field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                      <span>フィールドグループのフィールド名です。値を必ず入力してください。</span>
+                    </ReactTooltip>
+                  </th>
+                </tr>
+                <tr>
+                  <td>{unitGroupTitle}</td>
+                  <td>{unitGroupName}</td>
+                </tr>
+              </table>
               {this.renderModal()}
               {this.renderBasic()}
 
