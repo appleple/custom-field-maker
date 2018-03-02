@@ -1,5 +1,6 @@
 import * as types from '../constants/action-types';
 
+export const setState = (state) => ({ type: types.SETSTATE, state });
 export const addCustomfield = (item) => ({ type: types.ADDCUSTOMFIELD, item });
 export const addGroupItem = (item) => ({ type: types.ADDGROUPITEM, item });
 export const setGroupTitleName = ({groupTitle, groupName}) => ({ type: types.SETGROUPTITLENAME, groupTitle, groupName });

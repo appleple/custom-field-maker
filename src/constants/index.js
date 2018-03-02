@@ -1,1 +1,1 @@
-const STORAGENAME = 'custom_field_maker';
+export const STORAGENAME = 'custom_field_maker';

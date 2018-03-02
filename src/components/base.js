@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import ModalDialog from './modal-dialog';
-
+import stateManger from '../lib/history'; 
 import prefJson from '../../json/pref.json';
 import prefEnJson from '../../json/pref-en.json';
 import prefNumberJson from '../../json/pref-number.json';
@@ -418,6 +418,14 @@ export default class Base extends Component {
   </p>);
   }
 
+  backState() {
+    const { actions } = this.props;
+    const state = stateManger.undo();
+    if (state) {
+      actions.setState(state);
+    }
+  }
+
   renderValidator() {
     const { openValidator, validator, converter, type } = this.state;
     return (
@@ -514,7 +522,8 @@ export default class Base extends Component {
     return (
       <p>
         <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>クリア</button>
-        <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn">生成</button>
+        <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn" style={{ marginRight: '5px' }}>生成</button>
+        <button onClick={this.backState.bind(this)} className="acms-admin-btn-admin">元に戻す</button>
       </p>
     )
   }

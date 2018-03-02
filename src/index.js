@@ -8,7 +8,8 @@ import { STORAGENAME } from './constants';
 const store = createStore(reducer);
 
 store.subscribe(() => {
-  localStorage.setItem(STORAGENAME, JSON.stringify(store.getState()));
+  const state = store.getState();
+  localStorage.setItem(STORAGENAME, JSON.stringify(state));
 });
 
 export default () => {
