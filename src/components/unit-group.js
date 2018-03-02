@@ -84,10 +84,6 @@ export default class UnitGroup extends Base {
     }
   }
 
-  backState() {
-    
-  }
-
   render() {
     const { groupAlert, duplicatedField, openGroup, unitGroupTitle, unitGroupName, type, title, name, tooltip } = this.state;
     return (
