@@ -81,8 +81,8 @@ export default class FieldGroupSource extends Component {
                 return (<td>
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit`} />
-                    <label for="input-checkbox-{name}@edit">
+                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit[]`} />
+                    <label for="input-checkbox-{name}@edit[]">
                       {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除</label>
                   </div>
                   <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
@@ -112,6 +112,11 @@ export default class FieldGroupSource extends Component {
                   <img src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                       className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
                   <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
+                  <label htmlFor={`input-checkbox-${item.name}@edit[]`} className={classnames({ "acms-admin-form-checkbox": acmscss })}>
+                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit[]`} />
+                    {acmscss && <i class="acms-admin-ico-checkbox"></i>}
+                    削除
+                  </label>
                   {preview ? null : `<!-- ELSE -->`}
                   <img
                     src={`%{ARCHIVES_DIR}{${item.name}@path}`}
