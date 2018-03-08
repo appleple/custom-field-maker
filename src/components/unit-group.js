@@ -69,7 +69,7 @@ export default class UnitGroup extends Base {
 
   addGroup() {
     const { actions } = this.props;
-    const { type, title, name, unitGroupName } = this.state;
+    const { type, title, name, unitGroupName, unitGroupTitle } = this.state;
     if (name == unitGroupName) {
       this.setState({
         duplicatedField: true
@@ -77,6 +77,9 @@ export default class UnitGroup extends Base {
       return;
     }
     if (type && title && name) {
+      actions.setUnitGroupTitleName({
+        unitGroupName, unitGroupTitle
+      });
       actions.addUnitGroupItem(this.state);
     } else {
       this.setState({
