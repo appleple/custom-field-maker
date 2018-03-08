@@ -32,7 +32,8 @@ export default class FieldGroup extends Base {
       openValidator: false,
       openConverter: false,
       groupAlert: false,
-      openGroup: false
+      openGroup: false,
+      fileNameMethod: 'random'
     };
   }
 

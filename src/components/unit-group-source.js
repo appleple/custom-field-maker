@@ -90,6 +90,9 @@ export default class UnitGroupSource extends Component {
                   </a>
                   {preview ? null : `<!-- END_IF -->`}
                   <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
+                  {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value="" />}
+                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value={item.fileName} />}
+                  {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}{id}@filename[]`} value="@rawfilename" />}
                   <input type="file" name={`${item.name}{id}[]`} /><br />
                   {preview ? null : `<!-- BEGIN alt:veil -->`}
                   代替テキスト:
@@ -168,7 +171,9 @@ export default class UnitGroupSource extends Component {
                 return (<td>
                   <input type="file" name={`${item.name}{id}[]`} />
                   {item.extension && <input type="hidden" name={`${item.name}{id}@extension[]`} value="{extension}" />}
-                  {item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value="{fileName}" />}
+                  {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value="" />}
+                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value={item.fileName} />}
+                  {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}{id}@filename[]`} value="@rawfilename" />}
                 </td>);
               } else if (item.type === 'image') {
                 const style = {};

@@ -32,7 +32,8 @@ export default class UnitGroup extends Base {
       openValidator: false,
       openConverter: false,
       groupAlert: false,
-      openGroup: false
+      openGroup: false,
+      fileNameMethod: 'random'
     };
   }
 

@@ -644,36 +644,44 @@ export default class Base extends Component {
   }
 
   renderFile() {
-    const { extension, fileName } = this.state;
+    const { extension, fileName, fileNameMethod } = this.state;
     return (
-      <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFile">
-        <tr>
-          <th className="acms-admin-table-left">
-            ファイルの拡張子
-            <i className="acms-admin-icon-tooltip" data-tip data-for="file-ext-tip"></i>
-            <ReactTooltip id="file-ext-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
-              <span>アップロードするファイルの拡張子となります。（例、txt, doc, docx, pdf, ppt, pptx, xls, xlsx, csvなど） *拡張子は一つしか指定できません。</span>
-            </ReactTooltip>
-          </th>
-          <th className="acms-admin-table-left">
-            固定のファイル名
-            <i className="acms-admin-icon-tooltip" data-tip data-for="file-name-tip"></i>
-            <ReactTooltip id="file-name-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
-              <span>設定しないとファイル名がランダムの文字列となります。 拡張子も明記する必要があります。（例、hoge.pdf)</span>
-            </ReactTooltip>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input type="text" value={extension} onInput={(e) => { this.updateState('extension', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）pdf" />
-          </td>
-          <td>
-            <div className="customFieldInputGroup">
-              <input type="text" value={fileName} onInput={(e) => { this.updateState('fileName', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）example.pdf" />
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div className="customFieldFileContainer">
+        <div className="customFieldFileNameOptContainer">
+          <div className="acms-admin-form-radio">
+            <input type="radio" checked={fileNameMethod === 'random'} id="file-name-method-random" onChange={this.updateState.bind(this, 'fileNameMethod', 'random')}/>
+            <label htmlFor="file-name-method-random">
+              <i className="acms-admin-ico-radio"></i>
+              ファイル名（ランダム）
+            </label>
+          </div>
+          <div className="acms-admin-form-radio">
+            <input type="radio" checked={fileNameMethod === 'fix'} id="file-name-method-fix" onChange={this.updateState.bind(this, 'fileNameMethod', 'fix')}/>
+            <label htmlFor="file-name-method-fix">
+              <i className="acms-admin-ico-radio"></i>
+              ファイル名（固定）
+            </label>
+          </div>
+          <div className="acms-admin-form-radio">
+            <input type="radio" checked={fileNameMethod === 'asis'} id="file-name-method-asis" onChange={this.updateState.bind(this, 'fileNameMethod', 'asis')}/>
+            <label htmlFor="file-name-method-asis">
+              <i className="acms-admin-ico-radio"></i>
+              ファイル名（そのまま）
+            </label>
+          </div>
+        </div>
+        <div>
+        <div className="customFieldInputGroup customFieldInputFileGroup">
+          {fileNameMethod === 'random' && <input type="text" placeholder="ランダムの文字列が入ります" disabled/>}
+          {fileNameMethod === 'fix' && <input type="text" value={fileName} onInput={(e) => { this.updateState('fileName', e.target.value) }} placeholder="例）example.pdf" />}
+          {fileNameMethod === 'asis' && <input type="text" placeholder="アップロードされたファイル名" disabled/>}
+        </div>
+        </div>
+        <div>
+          <p>拡張子制限（pdfなど）</p>
+          <input type="text" value={extension} onInput={(e) => { this.updateState('extension', e.target.value) }} placeholder="例）pdf" />
+        </div>
+      </div>
     );
   }
 }

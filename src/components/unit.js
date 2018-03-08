@@ -27,7 +27,8 @@ export default class Unit extends Base {
       }],
       optionFormat: "pref",
       openValidator: false,
-      openConverter: false
+      openConverter: false,
+      fileNameMethod: 'random'
     };
   }
 

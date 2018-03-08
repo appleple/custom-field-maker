@@ -48,46 +48,6 @@ export default class Field extends Base {
     }
   }
 
-  renderFile() {
-    const { extension, fileName, fileNameMethod } = this.state;
-    return (
-      <div className="customFieldFileContainer">
-        <div className="customFieldFileNameOptContainer">
-          <div className="acms-admin-form-radio">
-            <input type="radio" checked={fileNameMethod === 'random'} id="file-name-method-random" onChange={this.updateState.bind(this, 'fileNameMethod', 'random')}/>
-            <label htmlFor="file-name-method-random">
-              <i className="acms-admin-ico-radio"></i>
-              ファイル名（ランダム）
-            </label>
-          </div>
-          <div className="acms-admin-form-radio">
-            <input type="radio" checked={fileNameMethod === 'fix'} id="file-name-method-fix" onChange={this.updateState.bind(this, 'fileNameMethod', 'fix')}/>
-            <label htmlFor="file-name-method-fix">
-              <i className="acms-admin-ico-radio"></i>
-              ファイル名（固定）
-            </label>
-          </div>
-          <div className="acms-admin-form-radio">
-            <input type="radio" checked={fileNameMethod === 'asis'} id="file-name-method-asis" onChange={this.updateState.bind(this, 'fileNameMethod', 'asis')}/>
-            <label htmlFor="file-name-method-asis">
-              <i className="acms-admin-ico-radio"></i>
-              ファイル名（そのまま）
-            </label>
-          </div>
-        </div>
-        <div className="customFieldInputGroup customFieldInputFileGroup">
-          {fileNameMethod === 'random' && <input type="text" placeholder="ランダムの文字列が入ります" disabled/>}
-          {fileNameMethod === 'fix' && <input type="text" value={fileName} onInput={(e) => { this.updateState('fileName', e.target.value) }} placeholder="例）example" />}
-          {fileNameMethod === 'asis' && <input type="text" placeholder="アップロードされたファイル名" disabled/>}
-        </div>
-        .
-        <div className="customFieldInputGroup customFieldInputFileExtGroup">
-          <input type="text" value={extension} onInput={(e) => { this.updateState('extension', e.target.value) }} placeholder="例）pdf" />
-        </div>
-      </div>
-    );
-  }
-
   typeSelectRender() {
     const { type } = this.state;
     

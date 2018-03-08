@@ -90,6 +90,10 @@ export default class FieldGroupSource extends Component {
                   </a>
                   {preview ? null : `<!-- END_IF -->`}
                   <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
+                  {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value={item.extension} />}
+                  {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
+                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
+                  {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
                   <input type="file" name={`${item.name}[]`} /><br />
                   {preview ? null : `<!-- BEGIN alt:veil -->`}
                   代替テキスト:
@@ -164,8 +168,10 @@ export default class FieldGroupSource extends Component {
               } else if (item.type === 'file') {
                 return (<td>
                   <input type="file" name={`${item.name}[]`} />
-                  {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value="{extension}" />}
-                  {item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="{fileName}" />}
+                  {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value={item.extension} />}
+                  {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
+                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
+                  {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
                 </td>);
               } else if (item.type === 'image') {
                 const style = {};
@@ -189,14 +195,14 @@ export default class FieldGroupSource extends Component {
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
           </tr>
-          <tfoot>
-            <tr>
-              <td colspan={groupLength + 2}>
-                <input type="button" className={classnames("item-insert", { "acms-admin-btn-admin": acmscss })} value="追加" />
-              </td>
-            </tr>
-          </tfoot>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan={groupLength + 2}>
+              <input type="button" className={classnames("item-insert", { "acms-admin-btn-admin": acmscss })} value="追加" />
+            </td>
+          </tr>
+        </tfoot>
       </table>}
       {groupName && <Fragment>
         {groupitems.map((item) => {
