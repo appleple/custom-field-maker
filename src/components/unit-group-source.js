@@ -102,7 +102,7 @@ export default class UnitGroupSource extends Component {
               } else if (item.type === 'image') {
                 const style = {};
                 if (item.normalSize) {
-                  style.width = `${item.normalSize}px`;
+                  style.maxWidth = `${item.normalSize}px`;
                 }
                 const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
@@ -178,7 +178,7 @@ export default class UnitGroupSource extends Component {
               } else if (item.type === 'image') {
                 const style = {};
                 if (item.normalSize) {
-                  style.width = `${item.normalSize}px`;
+                  style.maxWidth = `${item.normalSize}px`;
                 }
                 const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
@@ -197,14 +197,14 @@ export default class UnitGroupSource extends Component {
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
           </tr>
-          <tfoot>
-            <tr>
-              <td colspan={groupLength + 2}>
-                <input type="button" className={classnames("item-insert", { "acms-admin-btn-admin": acmscss })} value="追加" />
-              </td>
-            </tr>
-          </tfoot>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan={groupLength + 2}>
+              <input type="button" className={classnames("item-insert", { "acms-admin-btn-admin": acmscss })} value="追加" />
+            </td>
+          </tr>
+        </tfoot>
       </table>}
       {unitGroupName && <Fragment>
         {unitgroupitems.map((item) => {

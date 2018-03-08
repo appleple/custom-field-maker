@@ -103,7 +103,7 @@ export default class FieldGroupSource extends Component {
               } else if (item.type === 'image') {
                 const style = {};
                 if (item.normalSize) {
-                  style.width = `${item.normalSize}px`;
+                  style.maxWidth = `${item.normalSize}px`;
                 }
                 const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
@@ -176,7 +176,7 @@ export default class FieldGroupSource extends Component {
               } else if (item.type === 'image') {
                 const style = {};
                 if (item.normalSize) {
-                  style.width = `${item.normalSize}px`;
+                  style.maxWidth = `${item.normalSize}px`;
                 }
                 const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
