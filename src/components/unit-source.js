@@ -208,7 +208,7 @@ export default class UnitSource extends Component {
                 <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
                 {item.extension && <input type="hidden" name={`${item.name}{id}@extension`} value={item.extension} />}
                 {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename`} value="" />}
-                {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename`} value={`${item.fileName}`} />}
+                {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename`} value={item.fileName} />}
                 {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}{id}@filename`} value="@rawfilename" />}
                 {this.renderValidator(item, acmscss)}
               </td>

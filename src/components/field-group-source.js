@@ -175,7 +175,7 @@ export default class FieldGroupSource extends Component {
                   <input type="file" name={`${item.name}[]`} />
                   {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value={item.extension} />}
                   {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
-                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
+                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
                   {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
                 </td>);
               } else if (item.type === 'image') {
