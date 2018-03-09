@@ -1,17 +1,42 @@
 .customFieldCopied {
-  position: fixed;
-  top: 50%;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: -40px;
+  left: -30px;
+  background-color: rgba(0, 0, 0, .5);
+  font-size: 10px;
+  width: 150px;
   padding: 10px;
   color: #ffffff;
   text-align: center;
-  width: 100%;
+  display: inline-block;
+  border-radius: 3px;
   -webkit-transition: background-color .2s ease-in;
   -moz-transition: background-color .2s ease-in;
   -ms-transition: background-color .2s ease-in;
   -o-transition: background-color .2s ease-in;
   transition: background-color .2s ease-in;
+}
+
+.customFieldCopied:after {
+  content: ' ';
+  position: absolute;
+	height: 0;
+  width: 0;
+  top: 0;
+	left: 50%;
+	border: 6px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, .5);
+  margin-top: -12px;
+  margin-left: -6px;
+  -webkit-transition: border .2s ease-in;
+  -moz-transition: border .2s ease-in;
+  -ms-transition: border .2s ease-in;
+  -o-transition: border .2s ease-in;
+  transition: border .2s ease-in;
+}
+
+.customFieldCopied.active:after {
+  border-bottom-color: rgba(0, 0, 0, .8);
 }
 
 .customFieldLabelRequired {
@@ -239,7 +264,7 @@
 }
 
 .customFieldCopied.active {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 #converter {

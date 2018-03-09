@@ -151,7 +151,14 @@ class CustomfieldMaker extends Component {
                   acms-admin.cssを使用する
                 </label>
               </div>
-                {editMode !== 'preview' && <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}><button className="acms-admin-btn-admin">ソースをコピー</button></CopyToClipboard>}
+                {editMode !== 'preview' && 
+                  <div style={{display:'inline-block', position: 'relative'}}>
+                    <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}>
+                      <button className="acms-admin-btn-admin">ソースをコピー</button>
+                    </CopyToClipboard>
+                    <Notify message="クリップボードにコピーしました" show={copied} onFinish={() => {this.setState({copied: false})}}/>
+                  </div>
+                }
                 {mode === 'normal' && <button onClick={this.clearCustomfield.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'group' && <button onClick={this.clearGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
@@ -181,7 +188,6 @@ class CustomfieldMaker extends Component {
             }
           </div>
         </div>
-        <Notify message="クリップボードにコピーしました" show={copied} onFinish={() => {this.setState({copied: false})}}/>
       </div>
     );
   }
