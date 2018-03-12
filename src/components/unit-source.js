@@ -152,7 +152,7 @@ export default class UnitSource extends Component {
               {this.renderTh(item)}
               <td className={classnames({'js-img_resize_cf': item.resize})}>
               {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-              <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} />
+              <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} alt={`{${item.name}@alt}`} />
               <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
               <div className={classnames({'acms-admin-form-checkbox':acmscss})}>
                 <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
@@ -192,7 +192,7 @@ export default class UnitSource extends Component {
               {this.renderTh(item, acmscss)}
               <td>
                 {preview ? null : `<!-- BEGIN ${item.name}@path:veil -->`}
-                <input type="hidden" name={`{${item.name}{id}@old}`} value={`{${item.name}@path}`} />
+                <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
                 <input type="hidden" name={`${item.name}{id}@secret`} value={`{${item.name}@secret}`} />
                 <input type="hidden" name={`${item.name}{id}@fileSize`} value={`{${item.name}@fileSize}`} />
                 <label htmlFor={`input-checkbox-${item.name}@edit`} className={classnames({"acms-admin-form-checkbox": acmscss})}>

@@ -160,7 +160,7 @@ export default class FieldSource extends Component {
               <td className={classnames({ 'js-img_resize_cf': item.resize })}>
                 {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <Fragment>
-                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px` } : null} />
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px` } : null} alt={`{${item.name}@alt}`} />
                 </Fragment>
                 <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
                 <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>

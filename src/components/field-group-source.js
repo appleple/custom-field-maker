@@ -110,7 +110,7 @@ export default class FieldGroupSource extends Component {
                 return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <img src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-                      className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
+                      className={classnames({ 'js-img_resize_preview': item.resize })} style={style} alt={`{${item.name}@alt}`} />
                   <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
                   <label htmlFor={`input-checkbox-${item.name}@edit[]`} className={classnames({ "acms-admin-form-checkbox": acmscss })}>
                     <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit[]`} />

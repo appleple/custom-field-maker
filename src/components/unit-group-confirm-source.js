@@ -70,7 +70,7 @@ export default class UnitGroupConfirmSource extends Component {
               } else if (item.type === 'image') {
                 return (<td>
                   {`<!-- BEGIN ${item.name}@path:veil -->`}
-                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={item.alt} />
+                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
                   {`<!-- END ${item.name}@path:veil -->`}
                 </td>)
               }

@@ -81,9 +81,10 @@ export default class UnitGroupSource extends Component {
                 return (<td>
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit[]`} />
-                    <label for="input-checkbox-{name}@edit[]">
-                      {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除</label>
+                    <input type="checkbox" name={`${item.name}{id}@edit[]`} value="delete" id={`input-checkbox-${item.name}{id}@edit[]`} />
+                    <label for={`input-checkbox-${item.name}{id}@edit[]`}>
+                      {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除
+                    </label>
                   </div>
                   <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
                     <img src={src} width="64" height="64" alt={alt} />
@@ -111,7 +112,7 @@ export default class UnitGroupSource extends Component {
                   <div>
                     <img
                       src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-                      className={classnames({ 'js-img_resize_preview': item.resize })} style={style} />
+                      className={classnames({ 'js-img_resize_preview': item.resize })} style={style} alt={`{${item.name}@alt}`} />
                   </div>
                   <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
                   <label htmlFor={`input-checkbox-${item.name}{id}@edit[]`} className={classnames({ "acms-admin-form-checkbox": acmscss })}>
