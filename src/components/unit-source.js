@@ -195,15 +195,15 @@ export default class UnitSource extends Component {
                 <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
                 <input type="hidden" name={`${item.name}{id}@secret`} value={`{${item.name}@secret}`} />
                 <input type="hidden" name={`${item.name}{id}@fileSize`} value={`{${item.name}@fileSize}`} />
-                <label htmlFor={`input-checkbox-${item.name}@edit`} className={classnames({"acms-admin-form-checkbox": acmscss})}>
-                  <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
+                <label htmlFor={`input-checkbox-${item.name}{id}@edit`} className={classnames({"acms-admin-form-checkbox": acmscss})}>
+                  <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}{id}@edit`} />
                   {acmscss && <i class="acms-admin-ico-checkbox"></i>}
                   削除
                 </label>
                 <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={alt} /></a>
                 {preview ? null : `<!-- END ${item.name}@path:veil -->`}
                 <input type="file" name={`${item.name}{id}`} />
-                <input type="hidden" name="field[]" value={`${item.name}{id}`} />
+                <input type="hidden" name="field[]" value={`${item.name}{id}[]`} />
                 <input type="hidden" name={`${item.name}{id}@baseName`} value={`{${item.name}@baseName}`} />
                 <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
                 {item.extension && <input type="hidden" name={`${item.name}{id}@extension`} value={item.extension} />}
