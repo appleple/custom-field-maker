@@ -155,8 +155,8 @@ export default class UnitSource extends Component {
               <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize})} style={item.normalSize ? {width: `${item.normalSize}px`} : null} alt={`{${item.name}@alt}`} />
               <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
               <div className={classnames({'acms-admin-form-checkbox':acmscss})}>
-                <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
-                <label htmlFor={`input-checkbox-${item.name}@edit`}>
+                <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}{id}@edit`} />
+                <label htmlFor={`input-checkbox-${item.name}{id}@edit`}>
                   {acmscss &&
                     <i className="acms-admin-ico-checkbox"></i> 
                   }
