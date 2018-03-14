@@ -203,7 +203,7 @@ export default class UnitSource extends Component {
                 <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={alt} /></a>
                 {preview ? null : `<!-- END ${item.name}@path:veil -->`}
                 <input type="file" name={`${item.name}{id}`} />
-                <input type="hidden" name="field[]" value={`${item.name}{id}[]`} />
+                <input type="hidden" name="unit{id}[]" value={`${item.name}{id}[]`} />
                 <input type="hidden" name={`${item.name}{id}@baseName`} value={`{${item.name}@baseName}`} />
                 <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
                 {item.extension && <input type="hidden" name={`${item.name}{id}@extension`} value={item.extension} />}
