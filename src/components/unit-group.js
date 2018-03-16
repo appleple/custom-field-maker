@@ -33,7 +33,7 @@ export default class UnitGroup extends Base {
       openConverter: false,
       groupAlert: false,
       openGroup: false,
-      alt: true,
+      alt: false,
       resize: true,
       fileNameMethod: 'random'
     };
@@ -94,10 +94,11 @@ export default class UnitGroup extends Base {
     const { groupAlert, duplicatedField, openGroup, unitGroupTitle, unitGroupName, type, title, name, tooltip } = this.state;
     return (
       <div>
-        {groupAlert && <p className="acms-admin-alert acms-admin-alert-danger"><button className="js-acms-alert-close" data-action="removeGroupAlert">×</button>group名を入力しないとgroupを生成できません。</p>}
-        {duplicatedField && <p className="acms-admin-alert acms-admin-alert-danger"><button className="js-acms-alert-close" data-action="removeGroupAlert">×</button>group名とフィールド名を同じ値にすることはできません。</p>}
         <h2 className="acms-admin-admin-title2">カスタムユニット（フィールドグループ）</h2>
         <div className="acms-admin-filter">
+          {this.renderGroupAlert()}
+          {this.renderDuplicateAlert()}
+          {this.renderAlert()}
           {openGroup ? <div style={{ paddingBottom: '15px' }}>
             <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={this.addNewGroup.bind(this)}>新規グループ作成</button></div>
             :

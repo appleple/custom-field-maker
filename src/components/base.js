@@ -26,6 +26,24 @@ export default class Base extends Component {
     });
   }
 
+  removeAlert() {
+    this.setState({
+      alert: false
+    })
+  }
+
+  removeGroupAlert() {
+    this.setState({
+      groupAlert: false
+    })
+  }
+
+  removeDuplicateAlert() {
+    this.setState({
+      duplicatedField: false
+    })
+  }
+
   clearValue() {
     this.setState({
       title: '',
@@ -641,6 +659,42 @@ export default class Base extends Component {
         </p>
       </div>
     );
+  }
+
+  renderAlert() {
+    const { alert } = this.state;
+    if (alert) {
+      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{fontSize: '12px'}}>
+          <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true"></span>
+          typeとタイトルとフィールド、全てを入力しないとソースコードを生成できません。
+          <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeAlert.bind(this)}>×</button>
+        </p>)
+    }
+    return null;
+  }
+
+  renderGroupAlert() {
+    const { groupAlert } = this.state;
+    if (groupAlert) {
+      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{fontSize: '12px'}}>
+      <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true"></span>
+      group名を入力しないとgroupを生成できません。
+      <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeGroupAlert.bind(this)}>×</button>
+    </p>);
+    }
+    return null;
+  }
+
+  renderDuplicateAlert() {
+    const { duplicatedField } = this.state;
+    if (duplicatedField) {
+      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{fontSize: '12px'}}>
+      <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true"></span>
+      group名とフィールド名を同じ値にすることはできません。
+      <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeDuplicateAlert.bind(this)}>×</button>
+    </p>)
+    }
+    return null;
   }
 
   renderFile() {

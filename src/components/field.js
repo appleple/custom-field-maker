@@ -11,12 +11,12 @@ export default class Field extends Base {
       title: "",
       name: "",
       tooltip: "",
-      alert: "",
+      alert: false,
       duplicatedField: "",
       path: "path",
       converter: "",
       normal: "size",
-      alt: true,
+      alt: false,
       resize: true,
       option: [{
         value: "",
@@ -39,7 +39,7 @@ export default class Field extends Base {
   submit() {
     const { name, type, title } = this.state;
     const { actions } = this.props;
-    if (name && type 　&& title) {
+    if (name && type && title) {
       actions.addCustomfield(this.state);
     } else {
       this.setState({
@@ -71,6 +71,7 @@ export default class Field extends Base {
         <h2 className="acms-admin-admin-title2">カスタムフィールド</h2>
         <div className="acms-admin-filter">
           {this.renderModal()}
+          {this.renderAlert()}
           {this.renderBasic()}
           <div className="customFieldLine"></div>
           {type === 'select' &&

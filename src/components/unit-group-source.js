@@ -82,7 +82,7 @@ export default class UnitGroupSource extends Component {
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                     <input type="checkbox" name={`${item.name}{id}@edit[]`} value="delete" id={`input-checkbox-${item.name}{id}@edit[]`} />
-                    <label for={`input-checkbox-${item.name}{id}@edit[]`}>
+                    <label htmlFor={`input-checkbox-${item.name}{id}@edit[]`}>
                       {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除
                     </label>
                   </div>
@@ -94,11 +94,7 @@ export default class UnitGroupSource extends Component {
                   {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value="" />}
                   {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value={item.fileName} />}
                   {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}{id}@filename[]`} value="@rawfilename" />}
-                  <input type="file" name={`${item.name}{id}[]`} /><br />
-                  {preview ? null : `<!-- BEGIN alt:veil -->`}
-                  代替テキスト:
-                  <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
-                  {preview ? null : `<!-- END alt:veil -->`}
+                  <input type="file" name={`${item.name}{id}[]`} />
                 </td>)
               } else if (item.type === 'image') {
                 const style = {};

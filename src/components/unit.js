@@ -28,7 +28,7 @@ export default class Unit extends Base {
       optionFormat: "pref",
       openValidator: false,
       openConverter: false,
-      alt: true,
+      alt: false,
       resize: true,
       fileNameMethod: 'random'
     };
@@ -69,6 +69,7 @@ export default class Unit extends Base {
         <h2 className="acms-admin-admin-title2">カスタムユニット</h2>
         <div className="acms-admin-filter">
           {this.renderModal()}
+          {this.renderAlert()}
           {this.renderBasic()}
           <div className="customFieldLine"></div>
           {type === 'select' &&

@@ -81,8 +81,8 @@ export default class FieldGroupSource extends Component {
                 return (<td>
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                   <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit[]`} />
-                    <label for="input-checkbox-{name}@edit[]">
+                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}{i}@edit[]`} />
+                    <label htmlFor={`input-checkbox-${item.name}{i}@edit[]`}>
                       {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除</label>
                   </div>
                   <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
@@ -94,11 +94,7 @@ export default class FieldGroupSource extends Component {
                   {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
                   {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
                   {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
-                  <input type="file" name={`${item.name}[]`} /><br />
-                  {preview ? null : `<!-- BEGIN alt:veil -->`}
-                  代替テキスト:
-                  <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
-                  {preview ? null : `<!-- END alt:veil -->`}
+                  <input type="file" name={`${item.name}[]`} />
                 </td>)
               } else if (item.type === 'image') {
                 const style = {};
