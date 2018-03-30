@@ -97,8 +97,8 @@ class CustomfieldMaker extends Component {
 
   render() {
     const { mode, editMode, source, copied } = this.state;
-    const { actions, customfield, groupitems, 
-      customunit, unitgroupitems, groupTitle, 
+    const { actions, customfield, groupitems,
+      customunit, unitgroupitems, groupTitle,
       unitGroupTitle, unitGroupName,
       groupName, acmscss } = this.props;
 
@@ -137,10 +137,10 @@ class CustomfieldMaker extends Component {
         {mode === 'unit' && <Unit actions={actions}/>}
         {mode === 'unit-group' && <UnitGroup actions={actions}/>}
         <div className="acms-admin-tabs">
-          <ul className="js-acms_tabs">
-            <li><a href="#source" className={classnames({'js-acms_tab-active': editMode === 'source'})} onClick={this.updateState.bind(this, 'editMode', 'source')}>入力用ソース</a></li>
-            <li><a href="#preview" className={classnames({'js-acms_tab-active': editMode === 'preview'})} onClick={this.updateState.bind(this, 'editMode', 'preview')}>プレビュー</a></li>
-            <li><a href="#confirm" className={classnames({'js-acms_tab-active': editMode === 'confirm'})} onClick={this.updateState.bind(this, 'editMode', 'confirm')}>出力用ソース</a></li>
+          <ul className="customFieldTabs">
+            <li><a href="#source" className={classnames({'customFieldTabActive': editMode === 'source'})} onClick={this.updateState.bind(this, 'editMode', 'source')}>入力用ソース</a></li>
+            <li><a href="#preview" className={classnames({'customFieldTabActive': editMode === 'preview'})} onClick={this.updateState.bind(this, 'editMode', 'preview')}>プレビュー</a></li>
+            <li><a href="#confirm" className={classnames({'customFieldTabActive': editMode === 'confirm'})} onClick={this.updateState.bind(this, 'editMode', 'confirm')}>出力用ソース</a></li>
           </ul>
           <div className="acms-admin-tabs-panel">
             <p>
@@ -151,7 +151,7 @@ class CustomfieldMaker extends Component {
                   acms-admin.cssを使用する
                 </label>
               </div>
-                {editMode !== 'preview' && 
+                {editMode !== 'preview' &&
                   <div style={{display:'inline-block', position: 'relative'}}>
                     <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}>
                       <button className="acms-admin-btn-admin">ソースをコピー</button>
@@ -164,14 +164,14 @@ class CustomfieldMaker extends Component {
                 {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'unit-group' && <button onClick={this.clearUnitGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
             </p>
-            {editMode === 'source' && 
+            {editMode === 'source' &&
             <Highlighter onSourceGenerated={this.setSource.bind(this)}>
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} />}
               {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
               {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName}/>}
             </Highlighter>}
-            {editMode === 'preview' && 
+            {editMode === 'preview' &&
             <div className="customFieldPreview">
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} preview={true}/>}
               {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} preview={true}/>}
