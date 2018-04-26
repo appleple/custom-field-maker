@@ -158,7 +158,7 @@ export default class UnitSource extends Component {
                 <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}{id}@edit`} />
                 <label htmlFor={`input-checkbox-${item.name}{id}@edit`}>
                   {acmscss &&
-                    <i className="acms-admin-ico-checkbox"></i> 
+                    <i className="acms-admin-ico-checkbox"></i>
                   }
                   削除
                 </label>
@@ -173,7 +173,7 @@ export default class UnitSource extends Component {
               {item.normalSize && <input type="hidden" name={`${item.name}{id}@${item.normal}`} value={item.normalSize} />}
               {item.tiny && <input type="hidden" name={`${item.name}{id}@${item.tiny}`} value={item.tinySize} />}
               {item.large && <input type="hidden" name={`${item.name}{id}@${item.large}`} value={item.largeSize} />}
-              {item.square && <input type="hidden" name={`${item.name}{id}@${item.square}`} value={item.squareSize} />}        
+              {item.square && <input type="hidden" name={`${item.name}{id}@${item.square}`} value={item.squareSize} />}
               <input type="hidden" name={`${item.name}{id}@filename`} value="" />
               {this.renderValidator(item, acmscss)}
             </td>
@@ -183,6 +183,9 @@ export default class UnitSource extends Component {
             let alt = 'file';
             if (item.extension) {
               src += `${item.extension}.gif`;
+              if (item.extension === 'svg') {
+                src = `%{ARCHIVES_DIR}{${item.name}@path}`;
+              }
               alt += item.extension;
             } else {
               src += 'file.gif';
@@ -191,7 +194,7 @@ export default class UnitSource extends Component {
             return (<tr>
               {this.renderTh(item, acmscss)}
               <td>
-                {preview ? null : `<!-- BEGIN ${item.name}@path:veil -->`}
+                {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
                 <input type="hidden" name={`${item.name}{id}@secret`} value={`{${item.name}@secret}`} />
                 <input type="hidden" name={`${item.name}{id}@fileSize`} value={`{${item.name}@fileSize}`} />
@@ -201,9 +204,9 @@ export default class UnitSource extends Component {
                   削除
                 </label>
                 <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={alt} /></a>
-                {preview ? null : `<!-- END ${item.name}@path:veil -->`}
+                {preview ? null : `<!-- END_IF -->`}
                 <input type="file" name={`${item.name}{id}`} />
-                <input type="hidden" name="unit{id}[]" value={`${item.name}{id}[]`} />
+                <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                 <input type="hidden" name={`${item.name}{id}@baseName`} value={`{${item.name}@baseName}`} />
                 <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
                 {item.extension && <input type="hidden" name={`${item.name}{id}@extension`} value={item.extension} />}
