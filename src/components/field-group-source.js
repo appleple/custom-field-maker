@@ -60,7 +60,7 @@ export default class FieldGroupSource extends Component {
                       return null;
                     }
                     return (<div className={classnames({ 'acms-admin-form-radio': acmscss })}>
-                      <input type="radio" name={`${item.name}[]`} value={item.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-radio-${item.name}-${option.value}`} />
+                      <input type="radio" name={`${item.name}[]`} value={option.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-radio-${item.name}-${option.value}`} />
                       <label htmlFor={`input-radio-${item.name}-${option.value}`}>
                         {acmscss && <i class="acms-admin-ico-radio"></i>}
                         {option.label}
