@@ -70,6 +70,8 @@ export default class FieldSource extends Component {
   render() {
     const { acmscss, customfield, preview, jsValidator } = this.props;
     return (
+    <Fragment>
+      {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
       <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
         {customfield.map(item => {
           if (item.type === 'text') {
@@ -242,6 +244,8 @@ export default class FieldSource extends Component {
           }
         })}
       </table>
+      {jsValidator && '<!-- </form> -->'}
+    </Fragment>
     )
   }
 }

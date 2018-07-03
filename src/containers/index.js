@@ -152,13 +152,15 @@ class CustomfieldMaker extends Component {
                 </label>
 
               </div>
-              <div className="acms-admin-form-checkbox">
-              <input type="checkbox" onChange={actions.toggleJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
-                <label htmlFor="jsvalidator-checkbox">
-                  <i className="acms-admin-ico-checkbox"></i>
-                  jsバリデーターを使用する
-                </label>
-              </div>
+                {mode === 'normal' &&
+                <div className="acms-admin-form-checkbox">
+                <input type="checkbox" onChange={actions.toggleJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
+                    <label htmlFor="jsvalidator-checkbox">
+                    <i className="acms-admin-ico-checkbox"></i>
+                    jsバリデーターを使用する
+                    </label>
+                </div>
+                }
                 {editMode !== 'preview' &&
                   <div style={{display:'inline-block', position: 'relative'}}>
                     <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}>
