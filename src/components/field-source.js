@@ -21,18 +21,18 @@ export default class FieldSource extends Component {
             return null;
           }
           return (<Fragment>
-            <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} />
+            <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} id={`${item.name}-v-${validator.option}`} />
             {validator.message && <Fragment>
               {preview ? null : `<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
               <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
               {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
             </Fragment>}
             {jsValidator &&
-            <label htmlFor={`${item.name}-v-${validator.option}`} className={`validator-result-{${item.name}:v#${validator.option}}`}>
+            <div data-validator-label={`${item.name}-v-${validator.option}`} className={`validator-result-{${item.name}:v#${validator.option}}`}>
               <p className="error-text">
                 <span className="acms-icon acms-icon-attension" />{validator.message}
               </p>
-            </label>
+            </div>
             }
           </Fragment>);
         })}
