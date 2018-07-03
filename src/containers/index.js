@@ -100,7 +100,7 @@ class CustomfieldMaker extends Component {
     const { actions, customfield, groupitems,
       customunit, unitgroupitems, groupTitle,
       unitGroupTitle, unitGroupName,
-      groupName, acmscss } = this.props;
+      groupName, acmscss, jsValidator } = this.props;
 
     return (
       <div className="acms-admin-form">
@@ -150,6 +150,14 @@ class CustomfieldMaker extends Component {
                   <i className="acms-admin-ico-checkbox"></i>
                   acms-admin.cssを使用する
                 </label>
+
+              </div>
+              <div className="acms-admin-form-checkbox">
+              <input type="checkbox" onChange={actions.toggleJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
+                <label htmlFor="jsvalidator-checkbox">
+                  <i className="acms-admin-ico-checkbox"></i>
+                  jsバリデーターを使用する
+                </label>
               </div>
                 {editMode !== 'preview' &&
                   <div style={{display:'inline-block', position: 'relative'}}>
@@ -166,10 +174,10 @@ class CustomfieldMaker extends Component {
             </p>
             {editMode === 'source' &&
             <Highlighter onSourceGenerated={this.setSource.bind(this)}>
-              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} />}
-              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
+              {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} jsValidator={jsValidator} />}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} jsValidator={jsValidator} groupTitle={groupTitle} groupName={groupName} />}
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
-              {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName}/>}
+              {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} jsValidator={jsValidator} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName}/>}
             </Highlighter>}
             {editMode === 'preview' &&
             <div className="customFieldPreview">

@@ -8,12 +8,12 @@ export default class FieldSource extends Component {
   }
 
   renderValidator(item, acmscss) {
-    const { preview } = this.props;
+    const { preview, jsValidator } = this.props;
 
     if (!item.openValidator) {
       return null;
     }
-    
+
     return (
       <Fragment>
         {item.validator.map((validator) => {
@@ -27,6 +27,13 @@ export default class FieldSource extends Component {
               <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
               {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
             </Fragment>}
+            {jsValidator &&
+            <label htmlFor={`${item.name}-v-${validator.option}`} className={`validator-result-{${item.name}:v#${validator.option}}`}>
+              <p className="error-text">
+                <span className="acms-icon acms-icon-attension" />{validator.message}
+              </p>
+            </label>
+            }
           </Fragment>);
         })}
         {item.converter && <input type="hidden" name={`${item.name}:c`} value={item.converter} />}
@@ -44,26 +51,32 @@ export default class FieldSource extends Component {
   }
 
   renderTh(item) {
+    const { jsValidator } = this.props;
     return (
       <th>
         {item.title}
         {item.tooltip &&
           <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip}></i>
         }
+        {jsValidator &&
+          <label className="valid-mark" data-validator={item.name}>
+            <span className="acms-admin-icon acms-admin-icon-checklist"></span>
+          </label>
+        }
       </th>
     )
   }
 
   render() {
-    const { acmscss, customfield, preview } = this.props;
+    const { acmscss, customfield, preview, jsValidator } = this.props;
     return (
       <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
         {customfield.map(item => {
           if (item.type === 'text') {
             return (<tr>
-              {this.renderTh(item, acmscss)}
+              {this.renderTh(item, acmscss, jsValidator)}
               <td>
-                <input type="text" name={item.name} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} />
+                <input type="text" name={item.name} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} {...(jsValidator ? { 'data-validator': item.name } : {})} />
                 <input type="hidden" name="field[]" value={item.name} />
                 {this.renderValidator(item, acmscss)}
                 {this.renderNoSearch(item)}
@@ -74,7 +87,7 @@ export default class FieldSource extends Component {
               <tr>
                 {this.renderTh(item, acmscss)}
                 <td>
-                  <textarea name={item.name} className={classnames({ "acms-admin-form-width-full": acmscss })}>{`{${item.name}}`}</textarea>
+                  <textarea name={item.name} className={classnames({ "acms-admin-form-width-full": acmscss })} {...(jsValidator ? { 'data-validator': item.name } : {})}>{`{${item.name}}`}</textarea>
                   <input type="hidden" name="field[]" value={item.name} />
                   {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}

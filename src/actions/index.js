@@ -13,5 +13,6 @@ export const clearCustomUnit = () => ({ type: types.CLEARCUSTOMUNIT });
 export const clearUnitGroupItem = () => ({ type: types.CLEARUNITGROUPITEM });
 export const clearUnitGroupTitleName = () => ({ type: types.CLEARUNITGROUPTITLENAME });
 export const toggleAcmsCss = () => ({ type: types.TOGGLEACMSCSS });
+export const toggleJsValidator = () => ({ type: types.TOGGLEJSVALIDATOR });
 export const restore = (storage) => ({ type: types.RESTORE, storage });
 export const addSnippet = (name, value) => ({ type: types.ADDSNIPPET, name, value });

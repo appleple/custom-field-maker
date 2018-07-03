@@ -1,5 +1,5 @@
 import * as types from '../constants/action-types';
-import stateManger from '../lib/history'; 
+import stateManger from '../lib/history';
 
 const initialState = {
   customfield: [],
@@ -11,7 +11,8 @@ const initialState = {
   groupName: null,
   unitGroupTitle: null,
   unitGroupName: null,
-  acmscss: true
+  acmscss: true,
+  jsValidator: false
 }
 
 const preserveState = (state) => {
@@ -79,6 +80,10 @@ export default (state = initialState, action) => {
     case types.TOGGLEACMSCSS:
       return preserveState(Object.assign({}, state, {
         acmscss: !state.acmscss
+      }));
+    case types.TOGGLEJSVALIDATOR:
+      return preserveState(Object.assign({}, state, {
+        jsValidator: !state.jsValidator
       }));
     case types.ADDSNIPPET:
       return preserveState(Object.assign({}, state, {
