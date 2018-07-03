@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import ModalDialog from './modal-dialog';
-import stateManger from '../lib/history'; 
+import stateManger from '../lib/history';
 import prefJson from '../../json/pref.json';
 import prefEnJson from '../../json/pref-en.json';
 import prefNumberJson from '../../json/pref-number.json';
@@ -502,8 +502,8 @@ export default class Base extends Component {
                       <option value="">▼ バリデータを選択</option>
                       <optgroup label="入力値の制限">
                         <option value="required">必須 ( required )</option>
-                        <option value="minLength">最小文字数 ( minLength )</option>
-                        <option value="maxLength">最大文字数 ( maxLength )</option>
+                        <option value="minlength">最小文字数 ( minlength )</option>
+                        <option value="maxlength">最大文字数 ( maxlength )</option>
                         <option value="min">下限値 ( min )</option>
                         <option value="max">上限値 ( max )</option>
                       </optgroup>
