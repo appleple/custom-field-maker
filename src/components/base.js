@@ -510,6 +510,8 @@ export default class Base extends Component {
                       <optgroup label="形式チェック">
                         <option value="digits">数字チェック ( digits )</option>
                         <option value="email">メールアドレスチェック ( email )</option>
+                        <option value="hiragana">ひらがなチェック ( hiragana )</option>
+                        <option value="katakana">カタカナチェック ( katakana )</option>
                         <option value="url">URLチェック ( url )</option>
                         <option value="dates">日付チェック ( dates )</option>
                         <option value="times">時間チェック ( times )</option>
