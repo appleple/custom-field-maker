@@ -157,7 +157,7 @@ class CustomfieldMaker extends Component {
                 <input type="checkbox" onChange={actions.toggleJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
                     <label htmlFor="jsvalidator-checkbox">
                     <i className="acms-admin-ico-checkbox"></i>
-                    jsバリデーターを使用する
+                    JavaScriptによるバリデートを使用する
                     </label>
                 </div>
                 }
