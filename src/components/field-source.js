@@ -22,10 +22,12 @@ export default class FieldSource extends Component {
           }
           return (<Fragment>
             <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} id={`${item.name}-v-${validator.option}`} />
-            {validator.message && <Fragment>
+            {!jsValidator && <Fragment>
+              {validator.message && <Fragment>
               {preview ? null : `<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
               <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
               {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
+              </Fragment>}
             </Fragment>}
             {jsValidator &&
             <div data-validator-label={`${item.name}-v-${validator.option}`} className={`validator-result-{${item.name}:v#${validator.option}}`}>
