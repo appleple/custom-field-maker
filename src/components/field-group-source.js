@@ -20,7 +20,7 @@ export default class FieldGroupSource extends Component {
             {groupitems.map((item) => {
               return (<th className={classnames({ 'acms-admin-table-left': acmscss })}>
                 {item.title}
-                {item.tooltip && <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="{tooltip}"></i>}
+                {item.tooltip && <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip}></i>}
               </th>);
             })}
             <th className={classnames({ 'acms-admin-table-left acms-admin-admin-config-table-action': acmscss })}>削除</th>
