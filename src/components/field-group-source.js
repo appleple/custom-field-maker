@@ -7,6 +7,30 @@ export default class FieldGroupSource extends Component {
     super(props);
   }
 
+  renderValidator(item, acmscss) {
+    const { preview, jsValidator } = this.props;
+
+    if (!item.openValidator) {
+      return null;
+    }
+
+    return (<Fragment>
+      {item.validator.map((validator) => {
+        return (<Fragment>
+          {!jsValidator && <Fragment>
+            {validator.message && <Fragment>
+            {preview ? null : `<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
+            <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
+            {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
+            </Fragment>}
+          </Fragment>}
+        </Fragment>);
+      })}
+    </Fragment>);
+
+    return null;
+  }
+
   render() {
     const { groupName, groupTitle, acmscss, groupitems, preview } = this.props;
     const groupLength = groupitems.length;
@@ -36,10 +60,12 @@ export default class FieldGroupSource extends Component {
               if (item.type === 'text') {
                 return (<td>
                   <input type="text" name={`${item.name}[]`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} />
+                  {this.renderValidator(item, acmscss)}
                 </td>);
               } else if (item.type === 'textarea') {
                 return (<td>
                   <textarea name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
+                  {this.renderValidator(item, acmscss)}
                 </td>);
               } else if (item.type === 'select') {
                 return (<td>
@@ -52,6 +78,7 @@ export default class FieldGroupSource extends Component {
                       return <option value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>{option.label}</option>
                     })}
                   </select>
+                  {this.renderValidator(item, acmscss)}
                 </td>);
               } else if (item.type === 'radio') {
                 return (<td>
@@ -67,6 +94,7 @@ export default class FieldGroupSource extends Component {
                       </label>
                     </div>);
                   })}
+                  {this.renderValidator(item, acmscss)}
                 </td>);
               } else if (item.type === 'file') {
                 let src = "/images/fileicon/";
@@ -245,9 +273,16 @@ export default class FieldGroupSource extends Component {
             <input type="hidden" name={`@${groupName}[]`} value={item.name} />
             <input type="hidden" name="field[]" value={item.name} />
             {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
+            {item.validator.map((validator) => {
+              if (!validator.option) {
+                return null;
+              }
+              return <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} id={`${item.name}-v-${validator.option}`} />
+            })}
           </Fragment>);
         })}
         <input type="hidden" name="field[]" value={`@${groupName}`} />
+        
       </Fragment>}
     </Fragment>);
   }
