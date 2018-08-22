@@ -164,7 +164,8 @@ class CustomfieldMaker extends Component {
                 {mode === 'group' &&
                   <Fragment>
                     <div className="acms-admin-form-radio">
-                      <input type="radio" id="direction-horizontal" onChange={() => {
+                      <input type="radio" id="direction-horizontal" 
+                      onChange={() => {
                         actions.changeDirection('horizontal');
                       }} checked={direction === 'horizontal'}/>
                       <label htmlFor="direction-horizontal">
@@ -173,7 +174,8 @@ class CustomfieldMaker extends Component {
                       </label>
                     </div>
                     <div className="acms-admin-form-radio">
-                      <input type="radio" id="direction-vertical" onChange={() => {
+                      <input type="radio" id="direction-vertical" 
+                      onChange={() => {
                         actions.changeDirection('vertical')
                       }} checked={direction === 'vertical'} />
                       <label htmlFor="direction-vertical">

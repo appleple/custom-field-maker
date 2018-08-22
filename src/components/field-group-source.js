@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
+const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
+
 export default class FieldGroupSource extends Component {
 
   constructor(props) {
@@ -29,6 +31,17 @@ export default class FieldGroupSource extends Component {
     </Fragment>);
 
     return null;
+  }
+
+  wrapTable(children, title) {
+    const { direction } = this.props;
+    return (<ConditionalWrap 
+      condition={direction === 'vertical'}
+      wrap={(children) => <tr>
+        <th>{title}</th>
+        {children}
+      </tr>}
+    >{children}</ConditionalWrap>);
   }
 
   render() {
@@ -61,105 +74,110 @@ export default class FieldGroupSource extends Component {
             <td className="item-handle">
               {acmscss && <i className="acms-admin-icon-sort"></i>}
             </td>
-            {groupitems.map((item) => {
-              if (item.type === 'text') {
-                return (<td>
-                  <input type="text" name={`${item.name}[]`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} />
-                  {this.renderValidator(item, acmscss)}
-                </td>);
-              } else if (item.type === 'textarea') {
-                return (<td>
-                  <textarea name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
-                  {this.renderValidator(item, acmscss)}
-                </td>);
-              } else if (item.type === 'select') {
-                return (<td>
-                  <select name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
-                    <option value=""></option>
+            <ConditionalWrap 
+              condition={direction === 'vertical'}
+              wrap={children => <td><table>{children}</table></td>}
+            >
+              {groupitems.map((item) => {
+                if (item.type === 'text') {
+                  return this.wrapTable(<td>
+                    <input type="text" name={`${item.name}[]`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} />
+                    {this.renderValidator(item, acmscss)}
+                  </td>, item.title);
+                } else if (item.type === 'textarea') {
+                  return this.wrapTable(<td>
+                    <textarea name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
+                    {this.renderValidator(item, acmscss)}
+                  </td>);
+                } else if (item.type === 'select') {
+                  return this.wrapTable(<td>
+                    <select name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+                      <option value=""></option>
+                      {item.option.map((option) => {
+                        if (!option.label) {
+                          return null;
+                        }
+                        return <option value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>{option.label}</option>
+                      })}
+                    </select>
+                    {this.renderValidator(item, acmscss)}
+                  </td>);
+                } else if (item.type === 'radio') {
+                  return this.wrapTable(<td>
                     {item.option.map((option) => {
                       if (!option.label) {
                         return null;
                       }
-                      return <option value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>{option.label}</option>
+                      return (<div className={classnames({ 'acms-admin-form-radio': acmscss })}>
+                        <input type="radio" name={`${item.name}[]`} value={option.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-radio-${item.name}-${option.value}`} />
+                        <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+                          {acmscss && <i class="acms-admin-ico-radio"></i>}
+                          {option.label}
+                        </label>
+                      </div>);
                     })}
-                  </select>
-                  {this.renderValidator(item, acmscss)}
-                </td>);
-              } else if (item.type === 'radio') {
-                return (<td>
-                  {item.option.map((option) => {
-                    if (!option.label) {
-                      return null;
-                    }
-                    return (<div className={classnames({ 'acms-admin-form-radio': acmscss })}>
-                      <input type="radio" name={`${item.name}[]`} value={option.value} data-tmp={`{${item.name}:checked#${option.value}}`} id={`input-radio-${item.name}-${option.value}`} />
-                      <label htmlFor={`input-radio-${item.name}-${option.value}`}>
-                        {acmscss && <i class="acms-admin-ico-radio"></i>}
-                        {option.label}
-                      </label>
-                    </div>);
-                  })}
-                  {this.renderValidator(item, acmscss)}
-                </td>);
-              } else if (item.type === 'file') {
-                let src = "/images/fileicon/";
-                let alt = 'file';
-                if (item.extension) {
-                  src += `${item.extension}.gif`;
-                  alt += item.extension;
-                } else {
-                  src += 'file.gif';
-                }
+                    {this.renderValidator(item, acmscss)}
+                  </td>, item.title);
+                } else if (item.type === 'file') {
+                  let src = "/images/fileicon/";
+                  let alt = 'file';
+                  if (item.extension) {
+                    src += `${item.extension}.gif`;
+                    alt += item.extension;
+                  } else {
+                    src += 'file.gif';
+                  }
 
-                return (<td>
-                  {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-                  <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}{i}@edit[]`} />
-                    <label htmlFor={`input-checkbox-${item.name}{i}@edit[]`}>
-                      {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除</label>
-                  </div>
-                  <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                    <img src={src} width="64" height="64" alt={alt} />
-                  </a>
-                  {preview ? null : `<!-- END_IF -->`}
-                  <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
-                  {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value={item.extension} />}
-                  {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
-                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
-                  {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
-                  <input type="file" name={`${item.name}[]`} />
-                </td>)
-              } else if (item.type === 'image') {
-                const style = {};
-                if (item.normalSize) {
-                  style.maxWidth = `${item.normalSize}px`;
-                }
-                const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
+                  return this.wrapTable(<td>
+                    {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                    <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+                      <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}{i}@edit[]`} />
+                      <label htmlFor={`input-checkbox-${item.name}{i}@edit[]`}>
+                        {acmscss && <i class="acms-admin-ico-checkbox"></i>} 削除</label>
+                    </div>
+                    <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
+                      <img src={src} width="64" height="64" alt={alt} />
+                    </a>
+                    {preview ? null : `<!-- END_IF -->`}
+                    <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
+                    {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value={item.extension} />}
+                    {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
+                    {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
+                    {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
+                    <input type="file" name={`${item.name}[]`} />
+                  </td>, item.title)
+                } else if (item.type === 'image') {
+                  const style = {};
+                  if (item.normalSize) {
+                    style.maxWidth = `${item.normalSize}px`;
+                  }
+                  const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
-                return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
-                  {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-                      className={classnames({ 'js-img_resize_preview': item.resize })} style={style} alt={`{${item.name}@alt}`} />
-                  <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
-                  <label htmlFor={`input-checkbox-${item.name}@edit[]`} className={classnames({ "acms-admin-form-checkbox": acmscss })}>
-                    <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit[]`} />
-                    {acmscss && <i class="acms-admin-ico-checkbox"></i>}
-                    削除
-                  </label>
-                  {preview ? null : `<!-- ELSE -->`}
-                  <img
-                    src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-                    className={classnames({ 'js-img_resize_preview': item.resize })} style={hiddenStyle} />
-                  {preview ? null : `<!-- END_IF -->`}
-                  <input type="file" name={`${item.name}[]`} className={classnames({ 'js-img_resize_input': item.resize })} /><br />
-                  {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" /></Fragment>}
-                  {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
-                  {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
-                  {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
-                  {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
-                </td>)
-              }
-            })}
+                  return this.wrapTable(<td className={classnames({ 'js-img_resize_cf': item.resize })}>
+                    {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`}
+                        className={classnames({ 'js-img_resize_preview': item.resize })} style={style} alt={`{${item.name}@alt}`} />
+                    <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
+                    <label htmlFor={`input-checkbox-${item.name}@edit[]`} className={classnames({ "acms-admin-form-checkbox": acmscss })}>
+                      <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`input-checkbox-${item.name}@edit[]`} />
+                      {acmscss && <i class="acms-admin-ico-checkbox"></i>}
+                      削除
+                    </label>
+                    {preview ? null : `<!-- ELSE -->`}
+                    <img
+                      src={`%{ARCHIVES_DIR}{${item.name}@path}`}
+                      className={classnames({ 'js-img_resize_preview': item.resize })} style={hiddenStyle} />
+                    {preview ? null : `<!-- END_IF -->`}
+                    <input type="file" name={`${item.name}[]`} className={classnames({ 'js-img_resize_input': item.resize })} /><br />
+                    {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" /></Fragment>}
+                    {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
+                    {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
+                    {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
+                    {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
+                  </td>, item.title)
+                }
+              })}
+            </ConditionalWrap>
             <td>
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
@@ -167,64 +185,69 @@ export default class FieldGroupSource extends Component {
           {preview ? null : `<!-- END ${groupName}:loop -->`}
           <tr className="sortable-item item-template">
             <td class="item-handle">{acmscss && <i className="acms-admin-icon-sort"></i>}</td>
-            {groupitems.map((item) => {
-              if (item.type === 'text') {
-                return (<td>
-                  <input type="text" name={`${item.name}[]`} value="" className={classnames({ "acms-admin-form-width-full": acmscss })} />
-                </td>);
-              } else if (item.type === 'textarea') {
-                return (<td>
-                  <textarea name={`${item.name}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}></textarea>
-                </td>)
-              } else if (item.type === 'select') {
-                return (<td>
-                  <select name={`${item.name}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}>
-                    <option value=""></option>
+            <ConditionalWrap 
+              condition={direction === 'vertical'}
+              wrap={children => <td><table>{children}</table></td>}
+            >
+              {groupitems.map((item) => {
+                if (item.type === 'text') {
+                  return this.wrapTable(<td>
+                    <input type="text" name={`${item.name}[]`} value="" className={classnames({ "acms-admin-form-width-full": acmscss })} />
+                  </td>, item.title);
+                } else if (item.type === 'textarea') {
+                  return this.wrapTable(<td>
+                    <textarea name={`${item.name}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}></textarea>
+                  </td>, item.title)
+                } else if (item.type === 'select') {
+                  return this.wrapTable(<td>
+                    <select name={`${item.name}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}>
+                      <option value=""></option>
+                      {item.option.map((option) => {
+                        return (<option value={option.value}>{option.label}</option>);
+                      })}
+                    </select>
+                  </td>, item.title)
+                } else if (item.type === 'radio') {
+                  return this.wrapTable(<td>
                     {item.option.map((option) => {
-                      return (<option value={option.value}>{option.label}</option>);
+                      return (
+                        <div className={classnames({ 'acms-admin-form-radio': acmscss })}>
+                          <input type="radio" name={`${item.name}[]`} value={option.value} id={`input-radio-${item.name}-${option.value}`} />
+                          <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+                            {acmscss && <i class="acms-admin-ico-radio"></i>}
+                            {option.label}
+                          </label>
+                        </div>
+                      );
                     })}
-                  </select>
-                </td>)
-              } else if (item.type === 'radio') {
-                return (<td>
-                  {item.option.map((option) => {
-                    return (
-                      <div className={classnames({ 'acms-admin-form-radio': acmscss })}>
-                        <input type="radio" name={`${item.name}[]`} value={option.value} id={`input-radio-${item.name}-${option.value}`} />
-                        <label htmlFor={`input-radio-${item.name}-${option.value}`}>
-                          {acmscss && <i class="acms-admin-ico-radio"></i>}
-                          {option.label}
-                        </label>
-                      </div>
-                    );
-                  })}
-                </td>);
-              } else if (item.type === 'file') {
-                return (<td>
-                  <input type="file" name={`${item.name}[]`} />
-                  {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value={item.extension} />}
-                  {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
-                  {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
-                  {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
-                </td>);
-              } else if (item.type === 'image') {
-                const style = {};
-                if (item.normalSize) {
-                  style.maxWidth = `${item.normalSize}px`;
-                }
-                const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
+                  </td>, item.title);
+                } else if (item.type === 'file') {
+                  return this.wrapTable(<td>
+                    <input type="file" name={`${item.name}[]`} />
+                    {item.extension && <input type="hidden" name={`${item.name}@extension[]`} value={item.extension} />}
+                    {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
+                    {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
+                    {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
+                  </td>, item.title);
+                } else if (item.type === 'image') {
+                  const style = {};
+                  if (item.normalSize) {
+                    style.maxWidth = `${item.normalSize}px`;
+                  }
+                  const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
-                return (<td className={classnames({ 'js-img_resize_cf': item.resize })}>
-                  <img src="" style={hiddenStyle} class="js-img_resize_preview" />
-                  <input type="file" name={`${item.name}[]`} style={style} /><br />
-                  {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value="" size="40" /></Fragment>}
-                  {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
-                  {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
-                  {item.large && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
-                  {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
-                </td>);
-              }
-            })}
+                  return this.wrapTable(<td className={classnames({ 'js-img_resize_cf': item.resize })}>
+                    <img src="" style={hiddenStyle} class="js-img_resize_preview" />
+                    <input type="file" name={`${item.name}[]`} style={style} /><br />
+                    {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value="" size="40" /></Fragment>}
+                    {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
+                    {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
+                    {item.large && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
+                    {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
+                  </td>, item.title);
+                }
+              })}
+            </ConditionalWrap>
             <td>
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
