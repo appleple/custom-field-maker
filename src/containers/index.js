@@ -199,14 +199,14 @@ class CustomfieldMaker extends Component {
             {editMode === 'source' &&
             <Highlighter onSourceGenerated={this.setSource.bind(this)}>
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} jsValidator={jsValidator} />}
-              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} jsValidator={jsValidator} groupTitle={groupTitle} groupName={groupName} />}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} jsValidator={jsValidator} groupTitle={groupTitle} groupName={groupName} direction={direction} />}
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
               {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} jsValidator={jsValidator} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName}/>}
             </Highlighter>}
             {editMode === 'preview' &&
             <div className="customFieldPreview">
               {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} preview={true}/>}
-              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} preview={true}/>}
+              {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} preview={true} direction={direction}/>}
               {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} preview={true}/>}
               {mode === 'unit-group' && <UnitGroupSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName} preview={true}/>}
             </div>}

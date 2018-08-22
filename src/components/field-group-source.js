@@ -32,7 +32,7 @@ export default class FieldGroupSource extends Component {
   }
 
   render() {
-    const { groupName, groupTitle, acmscss, groupitems, preview } = this.props;
+    const { groupName, groupTitle, acmscss, groupitems, preview, direction } = this.props;
     const groupLength = groupitems.length;
 
     return (<Fragment>
@@ -41,12 +41,17 @@ export default class FieldGroupSource extends Component {
         <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
           <tr>
             <th className={classnames({ 'acms-admin-table-left acms-admin-admin-config-table-item-handle': acmscss })}>&nbsp;</th>
-            {groupitems.map((item) => {
-              return (<th className={classnames({ 'acms-admin-table-left': acmscss })}>
-                {item.title}
-                {item.tooltip && <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip}></i>}
-              </th>);
-            })}
+            {direction === 'horizontal' &&
+              <Fragment>
+                {groupitems.map((item) => {
+                  return (<th className={classnames({ 'acms-admin-table-left': acmscss })}>
+                    {item.title}
+                    {item.tooltip && <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip}></i>}
+                  </th>);
+                })}
+              </Fragment>
+            }
+            {direction === 'vertical' && <th></th>}
             <th className={classnames({ 'acms-admin-table-left acms-admin-admin-config-table-action': acmscss })}>削除</th>
           </tr>
         </thead>
