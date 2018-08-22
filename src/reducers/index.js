@@ -12,7 +12,8 @@ const initialState = {
   unitGroupTitle: null,
   unitGroupName: null,
   acmscss: true,
-  jsValidator: false
+  jsValidator: false,
+  direction: 'horizontal'
 }
 
 const preserveState = (state) => {
@@ -91,6 +92,10 @@ export default (state = initialState, action) => {
           name: action.name,
           value: action.value
         }]
+      }));
+    case types.CHANGEDIRECTION:
+      return preserveState(Object.assign({}, state, {
+        direction: action.direction
       }));
     default:
       return state;

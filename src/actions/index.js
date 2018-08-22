@@ -16,3 +16,4 @@ export const toggleAcmsCss = () => ({ type: types.TOGGLEACMSCSS });
 export const toggleJsValidator = () => ({ type: types.TOGGLEJSVALIDATOR });
 export const restore = (storage) => ({ type: types.RESTORE, storage });
 export const addSnippet = (name, value) => ({ type: types.ADDSNIPPET, name, value });
+export const changeDirection = (direction) => ({ type: types.CHANGEDIRECTION, direction });

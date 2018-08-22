@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -100,7 +100,7 @@ class CustomfieldMaker extends Component {
     const { actions, customfield, groupitems,
       customunit, unitgroupitems, groupTitle,
       unitGroupTitle, unitGroupName,
-      groupName, acmscss, jsValidator } = this.props;
+      groupName, acmscss, jsValidator, direction } = this.props;
 
     return (
       <div className="acms-admin-form">
@@ -154,12 +154,34 @@ class CustomfieldMaker extends Component {
               </div>
                 {mode === 'normal' &&
                 <div className="acms-admin-form-checkbox">
-                <input type="checkbox" onChange={actions.toggleJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
+                  <input type="checkbox" onChange={actions.toggleJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
                     <label htmlFor="jsvalidator-checkbox">
                     <i className="acms-admin-ico-checkbox"></i>
                     JavaScriptによるバリデートを使用する
                     </label>
                 </div>
+                }
+                {mode === 'group' &&
+                  <Fragment>
+                    <div className="acms-admin-form-radio">
+                      <input type="radio" id="direction-horizontal" onChange={() => {
+                        actions.changeDirection('horizontal');
+                      }} checked={direction === 'horizontal'}/>
+                      <label htmlFor="direction-horizontal">
+                      <i className="acms-admin-ico-radio"></i>
+                      横方向
+                      </label>
+                    </div>
+                    <div className="acms-admin-form-radio">
+                      <input type="radio" id="direction-vertical" onChange={() => {
+                        actions.changeDirection('vertical')
+                      }} checked={direction === 'vertical'} />
+                      <label htmlFor="direction-vertical">
+                      <i className="acms-admin-ico-radio"></i>
+                      縦方向
+                      </label>
+                    </div>
+                  </Fragment>
                 }
                 {editMode !== 'preview' &&
                   <div style={{display:'inline-block', position: 'relative'}}>
