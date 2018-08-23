@@ -388,3 +388,36 @@
     height: 1px;
     background: #f2f2f4
 }
+
+.customFieldDirectionBtnGroup {
+  display: inline-table;
+  overflow: hidden;
+  margin-right: 15px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.customFieldDirectionBtnGroup input {
+  display: none;
+}
+
+.customFieldDirectionBtnGroupSide {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.customFieldDirectionBtn {
+  display: table-cell;
+  background-color: #F7F7F7;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.customFieldDirectionBtn img {
+  display: inline-block;
+  width: 20px;
+  height: auto;
+  vertical-align: middle;
+}

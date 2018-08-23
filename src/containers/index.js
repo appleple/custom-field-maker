@@ -20,6 +20,8 @@ import UnitGroupConfirmSource from '../components/unit-group-confirm-source';
 import Notify from '../components/notify';
 import { STORAGENAME } from '../constants';
 import * as actions from '../actions';
+import columnIcon from '../assets/images/add_column.svg';
+import rowIcon from '../assets/images/add_row.svg';
 
 class CustomfieldMaker extends Component {
 
@@ -163,25 +165,26 @@ class CustomfieldMaker extends Component {
                 }
                 {(mode === 'group' || mode === 'unit-group') &&
                   <Fragment>
-                    <div className="acms-admin-form-radio">
-                      <input type="radio" id="direction-horizontal" 
-                      onChange={() => {
-                        actions.changeDirection('horizontal');
-                      }} checked={direction === 'horizontal'}/>
-                      <label htmlFor="direction-horizontal">
-                      <i className="acms-admin-ico-radio"></i>
-                      横方向
-                      </label>
-                    </div>
-                    <div className="acms-admin-form-radio">
-                      <input type="radio" id="direction-vertical" 
-                      onChange={() => {
-                        actions.changeDirection('vertical')
-                      }} checked={direction === 'vertical'} />
-                      <label htmlFor="direction-vertical">
-                      <i className="acms-admin-ico-radio"></i>
-                      縦方向
-                      </label>
+                    <span className="customFieldDirectionBtnGroupSide">ソースの出力方法</span>
+                    <div className="customFieldDirectionBtnGroup">
+                      <div className="customFieldDirectionBtn">
+                        <input type="radio" id="direction-horizontal" 
+                        onChange={() => {
+                          actions.changeDirection('horizontal');
+                        }} checked={direction === 'horizontal'}/>
+                        <label htmlFor="direction-horizontal">
+                        <img src={columnIcon} />
+                        </label>
+                      </div>
+                      <div className="customFieldDirectionBtn">
+                        <input type="radio" id="direction-vertical" 
+                        onChange={() => {
+                          actions.changeDirection('vertical')
+                        }} checked={direction === 'vertical'} />
+                        <label htmlFor="direction-vertical">
+                        <img src={rowIcon} />
+                        </label>
+                      </div>
                     </div>
                   </Fragment>
                 }

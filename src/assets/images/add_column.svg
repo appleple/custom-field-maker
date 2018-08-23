@@ -1,0 +1,17 @@
+<svg id="グループ化_11" data-name="グループ化 11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #000;
+      }
+    </style>
+  </defs>
+  <rect id="長方形_5" data-name="長方形 5" class="cls-1" width="7.4" height="18.9" transform="translate(0.5 0.5)"/>
+  <g id="グループ化_9" data-name="グループ化 9">
+    <path id="パス_5" data-name="パス 5" d="M16,.1H14v1h2V.1ZM12.6.1h-1v1h0v.6h1V.1Zm0,3.6h-1v2h1v-2Zm0,4h-1v2h1v-2Zm0,4h-1v2h1v-2Zm0,4h-1v2h1v-2Zm.6,3.3H11.5v.7h0v0h0V20h1.7V19Zm4,0h-2v1h2V19Zm2.8-.2H19V20h1V18.8Zm0-4H19v2h1v-2Zm0-4H19v2h1v-2Zm0-4H19v2h1v-2Zm0-4H19v2h1v-2ZM20,.1H18v1h2V.1Z"/>
+  </g>
+  <g id="グループ化_10" data-name="グループ化 10">
+    <rect id="長方形_6" data-name="長方形 6" width="4.5" height="1" transform="translate(13.5 9.6)"/>
+    <rect id="長方形_7" data-name="長方形 7" width="4.5" height="1" transform="translate(16.238 7.786) rotate(90)"/>
+  </g>
+</svg>
