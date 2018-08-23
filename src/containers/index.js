@@ -161,7 +161,7 @@ class CustomfieldMaker extends Component {
                     </label>
                 </div>
                 }
-                {mode === 'group' &&
+                {(mode === 'group' || mode === 'unit-group') &&
                   <Fragment>
                     <div className="acms-admin-form-radio">
                       <input type="radio" id="direction-horizontal" 

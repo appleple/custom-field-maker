@@ -58,11 +58,11 @@ export default class UnitGroupSource extends Component {
                 if (item.type === 'text') {
                   return this.wrapTable(<td>
                     <input type="text" name={`${item.name}{id}[]`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} />
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     <textarea name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
                     <select name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
@@ -74,7 +74,7 @@ export default class UnitGroupSource extends Component {
                         return <option value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>{option.label}</option>
                       })}
                     </select>
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'radio') {
                   return this.wrapTable(<td>
                     {item.option.map((option) => {
@@ -89,7 +89,7 @@ export default class UnitGroupSource extends Component {
                         </label>
                       </div>);
                     })}
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'file') {
                   let src = "/images/fileicon/";
                   let alt = 'file';
@@ -117,7 +117,7 @@ export default class UnitGroupSource extends Component {
                     {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value={item.fileName} />}
                     {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}{id}@filename[]`} value="@rawfilename" />}
                     <input type="file" name={`${item.name}{id}[]`} />
-                  </td>)
+                  </td>, item.title)
                 } else if (item.type === 'image') {
                   const style = {};
                   if (item.normalSize) {
@@ -149,7 +149,7 @@ export default class UnitGroupSource extends Component {
                     {item.tiny && item.tinySize && <input type="hidden" name={`${item.name}{id}@${item.tiny}[]`} value={item.tinySize} />}
                     {item.large && item.largeSize && <input type="hidden" name={`${item.name}{id}@${item.large}[]`} value={item.largeSize} />}
                     {item.square && item.squareSize && <input type="hidden" name={`${item.name}{id}@${item.square}[]`} value={item.squareSize} />}
-                  </td>)
+                  </td>, item.title)
                 }
               })}
             </ConditionalWrap>
@@ -168,11 +168,11 @@ export default class UnitGroupSource extends Component {
                 if (item.type === 'text') {
                   return this.wrapTable(<td>
                     <input type="text" name={`${item.name}{id}[]`} value="" className={classnames({ "acms-admin-form-width-full": acmscss })} />
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     <textarea name={`${item.name}{id}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}></textarea>
-                  </td>)
+                  </td>, item.title)
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
                     <select name={`${item.name}{id}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}>
@@ -195,7 +195,7 @@ export default class UnitGroupSource extends Component {
                         </div>
                       );
                     })}
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'file') {
                   return this.wrapTable(<td>
                     <input type="file" name={`${item.name}{id}[]`} />
@@ -203,7 +203,7 @@ export default class UnitGroupSource extends Component {
                     {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value="" />}
                     {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value={item.fileName} />}
                     {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}{id}@filename[]`} value="@rawfilename" />}
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'image') {
                   const style = {};
                   if (item.normalSize) {
@@ -219,7 +219,7 @@ export default class UnitGroupSource extends Component {
                     {item.tiny && <input type="hidden" name={`${item.name}{id}@${item.tiny}[]`} value={item.tinySize} />}
                     {item.large && <input type="hidden" name={`${item.name}{id}@${item.large}[]`} value={item.largeSize} />}
                     {item.square && <input type="hidden" name={`${item.name}{id}@${item.square}[]`} value={item.squareSize} />}
-                  </td>);
+                  </td>, item.title);
                 }
               })}
             </ConditionalWrap>
