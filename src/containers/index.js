@@ -215,9 +215,9 @@ class CustomfieldMaker extends Component {
             {editMode === 'confirm' &&
               <Highlighter onSourceGenerated={this.setSource.bind(this)}>
                 {mode === 'normal' && <FieldConfirmSource customfield={customfield} acmscss={acmscss} />}
-                {mode === 'group' && <FieldGroupConfirmSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} />}
+                {mode === 'group' && <FieldGroupConfirmSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} direction={direction} />}
                 {mode === 'unit' && <UnitConfirmSource customunit={customunit} acmscss={acmscss} />}
-                {mode === 'unit-group' && <UnitGroupConfirmSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName} />}
+                {mode === 'unit-group' && <UnitGroupConfirmSource unitgroupitems={unitgroupitems} acmscss={acmscss} unitGroupTitle={unitGroupTitle} unitGroupName={unitGroupName} direction={direction} />}
               </Highlighter>
             }
           </div>
