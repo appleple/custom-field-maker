@@ -88,7 +88,7 @@ export default class FieldGroupSource extends Component {
                   return this.wrapTable(<td>
                     <textarea name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
                     {this.renderValidator(item, acmscss)}
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
                     <select name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
@@ -101,7 +101,7 @@ export default class FieldGroupSource extends Component {
                       })}
                     </select>
                     {this.renderValidator(item, acmscss)}
-                  </td>);
+                  </td>, item.title);
                 } else if (item.type === 'radio') {
                   return this.wrapTable(<td>
                     {item.option.map((option) => {
@@ -255,7 +255,7 @@ export default class FieldGroupSource extends Component {
         </tbody>
         <tfoot>
           <tr>
-            <td colspan={groupLength + 2}>
+            <td colspan={direction === 'horizontal' ? groupLength + 2 : 3}>
               <input type="button" className={classnames("item-insert", { "acms-admin-btn-admin": acmscss })} value="追加" />
             </td>
           </tr>
