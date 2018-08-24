@@ -12,7 +12,8 @@
     "prettier": "prettier ./src/**/*.js --write",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deploy": "np --no-cleanup"
+    "deploy": "np --no-cleanup",
+    "svgo": "svgo ./src/assets/images/*.svg ./lib/assets/images/*.svg"
   },
   "author": "steelydylan",
   "license": "MIT",
@@ -64,6 +65,7 @@
     "prettier": "^1.9.2",
     "sass-loader": "^4.1.0",
     "style-loader": "^0.13.1",
+    "svgo": "^1.0.5",
     "url-loader": "^0.5.7",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
