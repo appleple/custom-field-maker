@@ -181,7 +181,7 @@ export default class UnitGroupSource extends Component {
                         return (<option value={option.value}>{option.label}</option>);
                       })}
                     </select>
-                  </td>)
+                  </td>, item.title);
                 } else if (item.type === 'radio') {
                   return this.wrapTable(<td>
                     {item.option.map((option) => {

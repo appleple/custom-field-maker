@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import ReactTooltip from 'react-tooltip';
 
 import Highlighter from '../components/highlighter';
 import Field from '../components/field';
@@ -165,27 +166,33 @@ class CustomfieldMaker extends Component {
                 }
                 {(mode === 'group' || mode === 'unit-group') &&
                   <Fragment>
-                    <span className="customFieldDirectionBtnGroupSide">ソースの出力方法</span>
+                    <span className="customFieldDirectionBtnGroupSide">ソースの追加方法</span>
                     <div className="customFieldDirectionBtnGroup">
-                      <div className="customFieldDirectionBtn">
+                      <label htmlFor="direction-horizontal" className={classnames("customFieldDirectionBtn", {
+                        "active": direction === 'horizontal'
+                      })} data-tip data-for="group-field-direction-horizontal">
                         <input type="radio" id="direction-horizontal" 
                         onChange={() => {
                           actions.changeDirection('horizontal');
                         }} checked={direction === 'horizontal'}/>
-                        <label htmlFor="direction-horizontal">
                         <img src={columnIcon} />
-                        </label>
-                      </div>
-                      <div className="customFieldDirectionBtn">
+                      </label>
+                      <label htmlFor="direction-vertical" className={classnames("customFieldDirectionBtn", {
+                        "active": direction === 'vertical'
+                      })} data-tip data-for="group-field-direction-vertical">
                         <input type="radio" id="direction-vertical" 
                         onChange={() => {
                           actions.changeDirection('vertical')
                         }} checked={direction === 'vertical'} />
-                        <label htmlFor="direction-vertical">
                         <img src={rowIcon} />
-                        </label>
-                      </div>
+                      </label>
                     </div>
+                    <ReactTooltip id="group-field-direction-vertical" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                      <span>縦向きレイアウト用にソースコードを生成します。</span>
+                    </ReactTooltip>
+                    <ReactTooltip id="group-field-direction-horizontal" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                      <span>横向きレイアウト用にソースコードを生成します。</span>
+                    </ReactTooltip>
                   </Fragment>
                 }
                 {editMode !== 'preview' &&
