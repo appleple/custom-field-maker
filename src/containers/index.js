@@ -155,7 +155,7 @@ class CustomfieldMaker extends Component {
                 </label>
 
               </div>
-                {mode === 'normal' &&
+                {(mode === 'normal' || mode === 'group')&&
                 <div className="acms-admin-form-checkbox">
                   <input type="checkbox" onChange={actions.toggleJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
                     <label htmlFor="jsvalidator-checkbox">
@@ -164,8 +164,20 @@ class CustomfieldMaker extends Component {
                     </label>
                 </div>
                 }
+                {editMode !== 'preview' &&
+                  <div style={{display:'inline-block', position: 'relative'}}>
+                    <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}>
+                      <button className="acms-admin-btn-admin">ソースをコピー</button>
+                    </CopyToClipboard>
+                    <Notify message="クリップボードにコピーしました" show={copied} onFinish={() => {this.setState({copied: false})}}/>
+                  </div>
+                }
+                {mode === 'normal' && <button onClick={this.clearCustomfield.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'group' && <button onClick={this.clearGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'unit-group' && <button onClick={this.clearUnitGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {(mode === 'group' || mode === 'unit-group') &&
-                  <Fragment>
+                  <div>
                     <span className="customFieldDirectionBtnGroupSide">ソースの追加方法</span>
                     <div className="customFieldDirectionBtnGroup">
                       <label htmlFor="direction-horizontal" className={classnames("customFieldDirectionBtn", {
@@ -193,20 +205,8 @@ class CustomfieldMaker extends Component {
                     <ReactTooltip id="group-field-direction-horizontal" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
                       <span>横向きレイアウト用にソースコードを生成します。</span>
                     </ReactTooltip>
-                  </Fragment>
-                }
-                {editMode !== 'preview' &&
-                  <div style={{display:'inline-block', position: 'relative'}}>
-                    <CopyToClipboard text={source} onCopy={() => this.setState({copied: true})}>
-                      <button className="acms-admin-btn-admin">ソースをコピー</button>
-                    </CopyToClipboard>
-                    <Notify message="クリップボードにコピーしました" show={copied} onFinish={() => {this.setState({copied: false})}}/>
                   </div>
                 }
-                {mode === 'normal' && <button onClick={this.clearCustomfield.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
-                {mode === 'group' && <button onClick={this.clearGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
-                {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
-                {mode === 'unit-group' && <button onClick={this.clearUnitGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
             </p>
             {editMode === 'source' &&
             <Highlighter onSourceGenerated={this.setSource.bind(this)}>

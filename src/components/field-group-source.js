@@ -26,6 +26,13 @@ export default class FieldGroupSource extends Component {
             {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
             </Fragment>}
           </Fragment>}
+          {jsValidator &&
+            <div data-validator-label={`${item.name}-v-${validator.option}`} className={`validator-result-{${item.name}:v#${validator.option}}`}>
+              <p className="error-text">
+                <span className="acms-icon acms-icon-attension" />{validator.message}
+              </p>
+            </div>
+          }
         </Fragment>);
       })}
     </Fragment>);
