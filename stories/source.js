@@ -81,31 +81,4 @@ export const groupItems = [{
   "noSearch": false,
   "extension": "",
   "fileNameMethod": "random"
-}, {
-  "type": "text",
-  "title": "aaa",
-  "name": "bb",
-  "tooltip": "",
-  "alert": "",
-  "duplicatedField": "",
-  "path": "path",
-  "converter": "",
-  "normal": "size",
-  "alt": true,
-  "resize": true,
-  "option": [{
-      "value": "",
-      "label": ""
-  }],
-  "validator": [{
-      "option": "",
-      "value": "",
-      "message": ""
-  }],
-  "optionFormat": "pref",
-  "openValidator": false,
-  "openConverter": false,
-  "noSearch": false,
-  "extension": "",
-  "fileNameMethod": "random"
 }];

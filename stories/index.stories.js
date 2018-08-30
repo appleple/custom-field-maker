@@ -40,6 +40,7 @@ storiesOf('UI', module)
 storiesOf('Source', module)
   .add('basic field', () => <Highlighter><FieldSource acmscss={true} customfield={customfield}/></Highlighter>)
   .add('group field', () => <Highlighter><FieldGroupSource acmscss={true} groupitems={groupItems} groupTitle="グループテスト" groupName="testGroup" /></Highlighter>)
+  .add('group field (js-validator)', () => <Highlighter><FieldGroupSource acmscss={true} groupitems={groupItems} groupTitle="グループテスト" groupName="testGroup" jsValidator={true} /></Highlighter>)
 
 storiesOf('All', module)
   .add('all', () => <Provider store={store}>

@@ -200,10 +200,12 @@ export default class FieldGroupSource extends Component {
                 if (item.type === 'text') {
                   return this.wrapTable(<td>
                     <input type="text" name={`${item.name}[]`} value="" className={classnames({ "acms-admin-form-width-full": acmscss })} />
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title);
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     <textarea name={`${item.name}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}></textarea>
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title)
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
@@ -213,6 +215,7 @@ export default class FieldGroupSource extends Component {
                         return (<option value={option.value}>{option.label}</option>);
                       })}
                     </select>
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title)
                 } else if (item.type === 'radio') {
                   return this.wrapTable(<td>
@@ -227,6 +230,7 @@ export default class FieldGroupSource extends Component {
                         </div>
                       );
                     })}
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title);
                 } else if (item.type === 'file') {
                   return this.wrapTable(<td>
