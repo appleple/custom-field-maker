@@ -9,7 +9,7 @@ export default class FieldGroupSource extends Component {
     super(props);
   }
 
-  renderValidator(item, acmscss) {
+  renderValidator(item, acmscss, bottom = false) {
     const { preview, jsValidator } = this.props;
 
     if (!item.openValidator) {
@@ -18,8 +18,9 @@ export default class FieldGroupSource extends Component {
 
     return (<Fragment>
       {item.validator.map((validator) => {
+        const classSuffix = bottom ? '1' : `{${item.name}:v#${validator.option}}`;
         return (<Fragment>
-          {!jsValidator && <Fragment>
+          {(!jsValidator && !bottom) && <Fragment>
             {validator.message && <Fragment>
             {preview ? null : `<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
             <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
@@ -27,7 +28,7 @@ export default class FieldGroupSource extends Component {
             </Fragment>}
           </Fragment>}
           {jsValidator &&
-            <div data-validator-label={`${item.name}-v-${validator.option}`} className={`validator-result-{${item.name}:v#${validator.option}}`}>
+            <div data-validator-label={`${item.name}-v-${validator.option}`} className={`validator-result-${classSuffix}`}>
               <p className="error-text">
                 <span className="acms-icon acms-icon-attension" />{validator.message}
               </p>
@@ -200,12 +201,12 @@ export default class FieldGroupSource extends Component {
                 if (item.type === 'text') {
                   return this.wrapTable(<td>
                     <input type="text" name={`${item.name}[]`} value="" className={classnames({ "acms-admin-form-width-full": acmscss })} />
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, true)}
                   </td>, item.title);
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     <textarea name={`${item.name}[]`} className={classnames({ "acms-admin-form-width-full": acmscss })}></textarea>
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, true)}
                   </td>, item.title)
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
@@ -215,7 +216,7 @@ export default class FieldGroupSource extends Component {
                         return (<option value={option.value}>{option.label}</option>);
                       })}
                     </select>
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, true)}
                   </td>, item.title)
                 } else if (item.type === 'radio') {
                   return this.wrapTable(<td>
@@ -230,7 +231,7 @@ export default class FieldGroupSource extends Component {
                         </div>
                       );
                     })}
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, true)}
                   </td>, item.title);
                 } else if (item.type === 'file') {
                   return this.wrapTable(<td>
