@@ -1,6 +1,6 @@
 {
   "name": "custom-field-maker",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "custom field maker for a-blog cms",
   "main": "lib/index.js",
   "scripts": {
