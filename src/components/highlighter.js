@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { XmlEntities } from 'html-entities';
 import pretty from 'pretty';
 import hljs from 'highlight.js';
@@ -26,8 +27,9 @@ export default class Highlighter extends Component {
 
   buildSource() {
     const {source} = this.state;
-    let html = this.source.innerHTML;
-    html = this.removeReactText(html);
+    const { children } = this.props;
+    let html = renderToStaticMarkup(children);
+    html = html.replace(/&quot;/g, '"');
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
     html = html.replace(/&lt;/g, '<');
     html = html.replace(/&gt;/g, '>');
@@ -49,7 +51,6 @@ export default class Highlighter extends Component {
   render() {
     return (
       <div>
-        <div ref={(source) => {this.source = source}} style={{display:'none'}}>{this.props.children}</div>
         <pre className="acms-admin-customfield-maker"><code className="html" ref={(code) => {this.code = code}}></code></pre>
       </div>
     )
