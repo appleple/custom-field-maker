@@ -35,6 +35,10 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.3"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+  },
   "devDependencies": {
     "@storybook/addon-actions": "^3.3.3",
     "@storybook/addon-links": "^3.3.3",
