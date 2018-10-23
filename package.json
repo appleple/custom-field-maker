@@ -24,6 +24,7 @@
     "highlight.js": "^9.10.0",
     "html-entities": "^1.2.1",
     "js-beautify": "~1.7.5",
+    "pretty": "^2.0.0",
     "react-copy-to-clipboard": "^5.0.1",
     "react-redux": "^5.0.1",
     "react-test-renderer": "^16.2.0",
