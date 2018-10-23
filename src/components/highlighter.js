@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { XmlEntities } from 'html-entities';
-import pretty from 'pretty';
+import { html as beautifyHtml } from 'js-beautify';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/default.css';
 import 'highlight.js/styles/xcode.css';
@@ -26,20 +26,26 @@ export default class Highlighter extends Component {
   }
 
   buildSource() {
-    const {source} = this.state;
+    const { source } = this.state;
     const { children } = this.props;
     let html = renderToStaticMarkup(children);
     html = html.replace(/&quot;/g, '"');
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
     html = html.replace(/&lt;/g, '<');
     html = html.replace(/&gt;/g, '>');
-    this.code.innerHTML = entities.encode(pretty(html));
+    this.code.innerHTML = entities.encode(beautifyHtml(html, {
+      unformatted: ['code', 'pre'],
+      indent_inner_html: true,
+      indent_char: ' ',
+      indent_size: 2,
+      sep: '\n'
+    }));
     hljs.highlightBlock(this.code);
     if (source !== this.code.innerText && this.props.onSourceGenerated) {
       this.props.onSourceGenerated(this.code.innerText);
       this.setState({
         source: this.code.innerText
-      })
+      });
     }
   }
 
@@ -47,12 +53,14 @@ export default class Highlighter extends Component {
     html = html.replace(/<!-- (\/?)react-text(.*?)-->/g, '');
     return html;
   }
-  
+
   render() {
     return (
       <div>
-        <pre className="acms-admin-customfield-maker"><code className="html" ref={(code) => {this.code = code}}></code></pre>
+        <pre className="acms-admin-customfield-maker">
+          <code className="html" ref={(code) => { this.code = code; }} />
+        </pre>
       </div>
-    )
+    );
   }
 }

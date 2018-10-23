@@ -183,7 +183,7 @@ class CustomfieldMaker extends Component {
                       <label htmlFor="direction-horizontal" className={classnames("customFieldDirectionBtn", {
                         "active": direction === 'horizontal'
                       })} data-tip data-for="group-field-direction-horizontal">
-                        <input type="radio" id="direction-horizontal" 
+                        <input type="radio" id="direction-horizontal"
                         onChange={() => {
                           actions.changeDirection('horizontal');
                         }} checked={direction === 'horizontal'}/>
@@ -192,7 +192,7 @@ class CustomfieldMaker extends Component {
                       <label htmlFor="direction-vertical" className={classnames("customFieldDirectionBtn", {
                         "active": direction === 'vertical'
                       })} data-tip data-for="group-field-direction-vertical">
-                        <input type="radio" id="direction-vertical" 
+                        <input type="radio" id="direction-vertical"
                         onChange={() => {
                           actions.changeDirection('vertical')
                         }} checked={direction === 'vertical'} />
