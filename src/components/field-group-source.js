@@ -43,7 +43,7 @@ export default class FieldGroupSource extends Component {
 
   wrapTable(children, title) {
     const { direction } = this.props;
-    return (<ConditionalWrap 
+    return (<ConditionalWrap
       condition={direction === 'vertical'}
       wrap={(children) => <tr>
         <th>{title}</th>
@@ -79,10 +79,10 @@ export default class FieldGroupSource extends Component {
         <tbody>
           {preview ? null : `<!-- BEGIN ${groupName}:loop -->`}
           <tr className="sortable-item">
-            <td className="item-handle">
+            <td className="item-handle acms-admin-table-nowrap">
               {acmscss && <i className="acms-admin-icon-sort"></i>}
             </td>
-            <ConditionalWrap 
+            <ConditionalWrap
               condition={direction === 'vertical'}
               wrap={children => <td><table>{children}</table></td>}
             >
@@ -186,14 +186,14 @@ export default class FieldGroupSource extends Component {
                 }
               })}
             </ConditionalWrap>
-            <td>
+            <td className="acms-admin-table-nowrap">
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
           </tr>
           {preview ? null : `<!-- END ${groupName}:loop -->`}
           <tr className="sortable-item item-template">
-            <td class="item-handle">{acmscss && <i className="acms-admin-icon-sort"></i>}</td>
-            <ConditionalWrap 
+            <td className="item-handle acms-admin-table-nowrap">{acmscss && <i className="acms-admin-icon-sort"></i>}</td>
+            <ConditionalWrap
               condition={direction === 'vertical'}
               wrap={children => <td><table>{children}</table></td>}
             >
@@ -260,14 +260,14 @@ export default class FieldGroupSource extends Component {
                 }
               })}
             </ConditionalWrap>
-            <td>
+            <td className="acms-admin-table-nowrap">
               <input type="button" className={classnames("item-delete", { "acms-admin-btn-admin acms-admin-btn-admin-danger": acmscss })} value="削除" />
             </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan={direction === 'horizontal' ? groupLength + 2 : 3}>
+            <td colSpan={direction === 'horizontal' ? groupLength + 2 : 3}>
               <input type="button" className={classnames("item-insert", { "acms-admin-btn-admin": acmscss })} value="追加" />
             </td>
           </tr>
@@ -322,7 +322,7 @@ export default class FieldGroupSource extends Component {
           </Fragment>);
         })}
         <input type="hidden" name="field[]" value={`@${groupName}`} />
-        
+
       </Fragment>}
     </Fragment>);
   }
