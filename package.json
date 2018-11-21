@@ -15,6 +15,9 @@
     "deploy": "np --no-cleanup --any-branch",
     "svgo": "svgo ./src/assets/images/*.svg ./lib/assets/images/*.svg"
   },
+  "jest": {
+    "testURL": "http://localhost:3030/"
+  },
   "author": "steelydylan",
   "license": "MIT",
   "dependencies": {
