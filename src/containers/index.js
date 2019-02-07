@@ -54,6 +54,7 @@ class CustomfieldMaker extends Component {
         <option value="radio">ラジオボタン</option>
         <option value="file">ファイル</option>
         <option value="image">画像</option>
+        <option value="media">メディア</option>
       </select>
     );
   }

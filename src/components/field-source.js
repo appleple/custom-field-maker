@@ -207,6 +207,32 @@ export default class FieldSource extends Component {
                 {this.renderNoSearch(item, acmscss)}
               </td>
             </tr>);
+          } else if (item.type === 'media') {
+            return (<tr>
+              {this.renderTh(item)}
+              <td>
+                <div>
+                  { `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} 
+                    className={classnames({ 'acms-admin-img-responsive': acmscss })} 
+                    style={item.normalSize ? { width: `${item.normalSize}px` } : null} 
+                    alt={`{${item.name}@alt}`} 
+                    id={`${item.name}-preview`}
+                  />
+                  {`<!-- ELSE -->`}
+                  <img src="" 
+                    style={{ display: 'none'}} 
+                    className={classnames({ 'acms-admin-img-responsive': acmscss })} 
+                    id={`${item.name}-preview`}
+                  />
+                  {`<!-- END_IF -->`}
+                </div>
+                <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}-input`} data-preview={`#${item.name}-preview`}>メディア挿入</button>
+                <input type="text" name={item.name} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} id={`${item.name}-input`} />
+                <input type="hidden" name="field[]" value={item.name} />
+                <input type="hidden" name={`${item.name}:extension`} value="media" />
+              </td>
+            </tr>)
           } else if (item.type === 'file') {
             let src = "/images/fileicon/";
             let alt = 'file';

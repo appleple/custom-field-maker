@@ -93,6 +93,13 @@ export default class FieldConfirmSource extends Component {
             <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
           </td>
         </tr>)
+      } else if (item.type === 'media') {
+        return (<tr>
+          <th>{item.title}</th>
+          <td>
+            <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
+          </td>
+        </tr>)
       }
     })}
     </table>)

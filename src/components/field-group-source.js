@@ -183,6 +183,8 @@ export default class FieldGroupSource extends Component {
                     {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
                     {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
                   </td>, item.title)
+                } else if (item.type === 'media') {
+                  
                 }
               })}
             </ConditionalWrap>
