@@ -212,13 +212,14 @@ export default class FieldSource extends Component {
               {this.renderTh(item)}
               <td>
                 <div>
-                  { `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-                  <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} 
+                  { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
+                  <img src={`{${item.name}@thumbnail}`} 
                     className={classnames({ 'acms-admin-img-responsive': acmscss })} 
                     style={item.normalSize ? { width: `${item.normalSize}px` } : null} 
                     alt={`{${item.name}@alt}`} 
                     id={`${item.name}-preview`}
                   />
+                  <button class="js-media-edit acms-admin-btn" data-mid={`{${item.name}}`} data-preview={`#${item.name}-preview`} id={`${item.name}-edit`}>メディア編集</button>
                   {`<!-- ELSE -->`}
                   <img src="" 
                     style={{ display: 'none'}} 
@@ -227,7 +228,7 @@ export default class FieldSource extends Component {
                   />
                   {`<!-- END_IF -->`}
                 </div>
-                <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}-input`} data-preview={`#${item.name}-preview`}>メディア挿入</button>
+                <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}-input`} data-preview={`#${item.name}-preview`} data-edit={`#${item.name}-edit`}>メディア挿入</button>
                 <input type="text" name={item.name} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} id={`${item.name}-input`} />
                 <input type="hidden" name="field[]" value={item.name} />
                 <input type="hidden" name={`${item.name}:extension`} value="media" />
