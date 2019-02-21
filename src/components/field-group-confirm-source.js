@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
-const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
+const ConditionalWrap = ({ condition, wrap, children }) => condition ? wrap(children) : children;
 
 export default class FieldGroupConfirmSource extends Component {
 
   wrapTable(children, title) {
     const { direction } = this.props;
-    return (<ConditionalWrap 
+    return (<ConditionalWrap
       condition={direction === 'vertical'}
       wrap={(children) => <tr>
         <th>{title}</th>
@@ -16,16 +16,16 @@ export default class FieldGroupConfirmSource extends Component {
     >{children}</ConditionalWrap>);
   }
 
-  render () {
-    const {groupTitle, groupName, groupitems, acmscss, direction} = this.props;
+  render() {
+    const { groupTitle, groupName, groupitems, acmscss, direction } = this.props;
     return (<Fragment>
-      {groupTitle && <h2 className={classnames({"acms-admin-admin-title2": acmscss})}>{groupTitle}</h2>}
-      <table className={classnames({"adminTable acms-admin-table-admin-edit": acmscss})}>
+      {groupTitle && <h2 className={classnames({ "acms-admin-admin-title2": acmscss })}>{groupTitle}</h2>}
+      <table className={classnames({ "adminTable acms-admin-table-admin-edit": acmscss })}>
         {direction === 'horizontal' &&
-          <thead className={classnames({"acms-admin-hide-sp": acmscss})}>
+          <thead className={classnames({ "acms-admin-hide-sp": acmscss })}>
             <tr>
               {groupitems.map((item) => {
-                  return (<th className={classnames({"acms-admin-table-left": acmscss})}>{item.title}</th>);
+                return (<th className={classnames({ "acms-admin-table-left": acmscss })}>{item.title}</th>);
               })}
             </tr>
           </thead>
@@ -33,9 +33,9 @@ export default class FieldGroupConfirmSource extends Component {
         <tbody>
           {`<!-- BEGIN ${groupName}:loop -->`}
           <tr>
-            <ConditionalWrap 
-              condition={direction==='vertical'}
-              wrap={ children => <td><table>{children}</table></td> }
+            <ConditionalWrap
+              condition={direction === 'vertical'}
+              wrap={children => <td><table>{children}</table></td>}
             >
               {groupitems.map((item) => {
                 if (item.type === 'text') {
@@ -90,14 +90,36 @@ export default class FieldGroupConfirmSource extends Component {
                 } else if (item.type === 'image') {
                   return this.wrapTable(<td>
                     {`<!-- BEGIN ${item.name}@path:veil -->`}
-                      <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({"acms-admin-img-responsive": acmscss})} alt={`{${item.name}@alt}`} />
+                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ "acms-admin-img-responsive": acmscss })} alt={`{${item.name}@alt}`} />
                     {`<!-- END ${item.name}@path:veil -->`}
                   </td>, item.title)
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td>
-                    {`<!-- BEGIN ${item.name}@path:veil -->`}
-                      <img src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} className={classnames({"acms-admin-img-responsive": acmscss})} alt={`{${item.name}@alt}`} />
-                    {`<!-- END ${item.name}@path:veil -->`}            
+                    <div className={classnames({ "acms-admin-col-md-4": acmscss })}>
+                      {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                      <a className={classnames({ "acms-admin-thumbnail": acmscss })} href={`{${item.name}@path}`}>
+                        {`<!-- ELSE -->`}
+                        <div className={classnames({ "acms-admin-thumbnail": acmscss })}>
+                          {`<!-- END_IF -->`}
+                          <div style={{ width: '100%', height: '150px' }}>
+                            <img className="js-focused-image"
+                              data-focus-x={`{${item.name}@focalX}`}
+                              data-focus-y={`{${item.name}@focalY}`}
+                              alt={`{${item.name}@alt}`}
+                              src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
+                          </div>
+                          {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
+                          <h3>{`{${item.name}@caption}`}</h3>
+                          {`<!-- END_IF -->`}
+                          {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
+                          <p>{`{${item.name}@text}`}</p>
+                          {`<!-- END_IF -->`}
+                          {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                        </div>
+                        {`<!-- ELSE -->`}
+                      </a>
+                      {`<!-- END_IF -->`}
+                    </div>
                   </td>, item.title)
                 }
               })}
