@@ -58,6 +58,7 @@ export default class Unit extends Base {
       <option value="checkbox">チェックボックス</option>
       <option value="file">ファイル</option>
       <option value="image">画像</option>
+      <option value="media">メディア</option>
     </select>
     )
   }

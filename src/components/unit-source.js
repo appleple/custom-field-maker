@@ -216,6 +216,37 @@ export default class UnitSource extends Component {
                 {this.renderValidator(item, acmscss)}
               </td>
             </tr>);
+          } else if (item.type === 'media') {
+            return (<tr>
+              {this.renderTh(item)}
+              <td>
+                <div>
+                  { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
+                  <img src={`{${item.name}@thumbnail}`} 
+                    className={classnames({ 'acms-admin-img-responsive': acmscss })} 
+                    style={item.normalSize ? { width: `${item.normalSize}px` } : null} 
+                    alt={`{${item.name}@alt}`} 
+                    id={`${item.name}{id}-preview`}
+                  />
+                  {`<!-- ELSE -->`}
+                  <img src="" 
+                    style={{ display: 'none'}} 
+                    className={classnames({ 'acms-admin-img-responsive': acmscss })} 
+                    id={`${item.name}{id}-preview`}
+                  />
+                  {`<!-- END_IF -->`}
+                </div>
+                <div class="acms-admin-margin-top-mini">
+                  {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
+                  <button class="js-media-edit acms-admin-btn" data-mid={`{${item.name}}`} data-preview={`#${item.name}{id}-preview`} id={`${item.name}{id}-edit`}>メディア編集</button>
+                  {`<!-- END_IF -->`}
+                  <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}{id}-input`} data-preview={`#${item.name}{id}-preview`} data-edit={`#${item.name}{id}-edit`}>メディア選択</button>
+                </div>
+                <input type="hidden" name={`${item.name}{id}`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} id={`${item.name}{id}-input`} />
+                <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+                <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
+              </td>
+            </tr>)            
           }
         })}
       </table>

@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
-const ConditionalWrap = ({condition, wrap, children}) => condition ? wrap(children) : children;
+const ConditionalWrap = ({ condition, wrap, children }) => condition ? wrap(children) : children;
 
 export default class UnitGroupConfirmSource extends Component {
 
   wrapTable(children, title) {
     const { direction } = this.props;
-    return (<ConditionalWrap 
+    return (<ConditionalWrap
       condition={direction === 'vertical'}
       wrap={(children) => <tr>
         <th>{title}</th>
@@ -16,87 +16,114 @@ export default class UnitGroupConfirmSource extends Component {
     >{children}</ConditionalWrap>);
   }
 
-  render () {
-    const {unitGroupTitle, unitGroupName, unitgroupitems, acmscss, direction} = this.props;
+  render() {
+    const { unitGroupTitle, unitGroupName, unitgroupitems, acmscss, direction } = this.props;
     return (<Fragment>
-      {unitGroupTitle && <h2 className={classnames({"acms-admin-admin-title2": acmscss})}>{unitGroupTitle}</h2>}
-      <table className={classnames({"adminTable acms-admin-table-admin-edit": acmscss})}>
+      {unitGroupTitle && <h2 className={classnames({ "acms-admin-admin-title2": acmscss })}>{unitGroupTitle}</h2>}
+      <table className={classnames({ "adminTable acms-admin-table-admin-edit": acmscss })}>
         {direction === 'horizontal' &&
-        <thead className={classnames({"acms-admin-hide-sp": acmscss})}>
-          <tr>
-            <Fragment>
-            {unitgroupitems.map((item) => {
-              return (<th className={classnames({"acms-admin-table-left": acmscss})}>{item.title}</th>);
-            })}
-            </Fragment>
-          </tr>
-        </thead>
+          <thead className={classnames({ "acms-admin-hide-sp": acmscss })}>
+            <tr>
+              <Fragment>
+                {unitgroupitems.map((item) => {
+                  return (<th className={classnames({ "acms-admin-table-left": acmscss })}>{item.title}</th>);
+                })}
+              </Fragment>
+            </tr>
+          </thead>
         }
         <tbody>
           {`<!-- BEGIN ${unitGroupName}:loop -->`}
           <tr>
-            <ConditionalWrap 
-              condition={direction==='vertical'}
-              wrap={ children => <td><table>{children}</table></td> }
+            <ConditionalWrap
+              condition={direction === 'vertical'}
+              wrap={children => <td><table>{children}</table></td>}
             >
-            {unitgroupitems.map((item) => {
-              if (item.type === 'text') {
-                return this.wrapTable(<td>
-                  {`{${item.name}}`}
-                </td>, item.title)
-              } else if (item.type === 'textarea') {
-                return this.wrapTable(<td>
-                  {`{${item.name}}[escape|nl2br]`}
-                </td>, item.title)
-              } else if (item.type === 'select') {
-                return this.wrapTable(<td>
-                  {item.option.map((option) => {
-                    if (!option.label) {
-                      return null;
-                    }
-                    return (<div>
-                      {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
-                      {option.label}
-                      {`<!-- END_IF -->`}
-                    </div>)
-                  })}
-                </td>, item.title);
-              } else if (item.type === 'radio') {
-                return this.wrapTable(<td>
-                  {item.option.map((option) => {
-                    if (!option.label) {
-                      return null;
-                    }
-                    return (`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
+              {unitgroupitems.map((item) => {
+                if (item.type === 'text') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}}`}
+                  </td>, item.title)
+                } else if (item.type === 'textarea') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}}[escape|nl2br]`}
+                  </td>, item.title)
+                } else if (item.type === 'select') {
+                  return this.wrapTable(<td>
+                    {item.option.map((option) => {
+                      if (!option.label) {
+                        return null;
+                      }
+                      return (<div>
+                        {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
+                        {option.label}
+                        {`<!-- END_IF -->`}
+                      </div>)
+                    })}
+                  </td>, item.title);
+                } else if (item.type === 'radio') {
+                  return this.wrapTable(<td>
+                    {item.option.map((option) => {
+                      if (!option.label) {
+                        return null;
+                      }
+                      return (`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
                       ${option.label}
                       <!-- END_IF -->`);
-                  })}
-                </td>, item.title)
-              } else if (item.type === 'file') {
-                let src = "/images/fileicon/";
-                let alt = 'file';
-                if (item.extension) {
-                  src += `${item.extension}.gif`;
-                  alt += item.extension;
-                } else {
-                  src += 'file.gif';
-                }
-
-                return this.wrapTable(<td>
-                  {`<!-- BEGIN ${item.name}@path:veil -->`}
-                  <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                    <img src={src} width="64" height="64" alt={alt} />
-                  </a>
-                  {`<!-- END ${item.name}@path:veil -->`}
-                </td>, item.title)
-              } else if (item.type === 'image') {
-                return this.wrapTable(<td>
-                  {`<!-- BEGIN ${item.name}@path:veil -->`}
+                    })}
+                  </td>, item.title)
+                } else if (item.type === 'file') {
+                  let src = "/images/fileicon/";
+                  let alt = 'file';
+                  if (item.extension) {
+                    src += `${item.extension}.gif`;
+                    alt += item.extension;
+                  } else {
+                    src += 'file.gif';
+                  }
+                  return this.wrapTable(<td>
+                    {`<!-- BEGIN ${item.name}@path:veil -->`}
+                    <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
+                      <img src={src} width="64" height="64" alt={alt} />
+                    </a>
+                    {`<!-- END ${item.name}@path:veil -->`}
+                  </td>, item.title)
+                } else if (item.type === 'image') {
+                  return this.wrapTable(<td>
+                    {`<!-- BEGIN ${item.name}@path:veil -->`}
                     <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
-                  {`<!-- END ${item.name}@path:veil -->`}
-                </td>, item.title)
-              }
-            })}
+                    {`<!-- END ${item.name}@path:veil -->`}
+                  </td>, item.title)
+                } else if (item.type === 'media') {
+                  return this.wrapTable(<td>
+                    <div className={classnames({ "acms-admin-col-md-4": acmscss })}>
+                      {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                      <a className={classnames({ "acms-admin-thumbnail": acmscss })} href={`{${item.name}@path}`}>
+                        {`<!-- ELSE -->`}
+                        <div className={classnames({ "acms-admin-thumbnail": acmscss })}>
+                          {`<!-- END_IF -->`}
+                          <div style={{ width: '100%', height: '150px' }}>
+                            <img className="js-focused-image"
+                              data-focus-x={`{${item.name}@focalX}`}
+                              data-focus-y={`{${item.name}@focalY}`}
+                              alt={`{${item.name}@alt}`}
+                              src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
+                          </div>
+                          {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
+                          <h3>{`{${item.name}@caption}`}</h3>
+                          {`<!-- END_IF -->`}
+                          {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
+                          <p>{`{${item.name}@text}`}</p>
+                          {`<!-- END_IF -->`}
+                          {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                        </div>
+                        {`<!-- ELSE -->`}
+                      </a>
+                      {`<!-- END_IF -->`}
+                    </div>
+                  </td>, item.title);
+                }
+              })}
             </ConditionalWrap>
           </tr>
           {`<!-- END ${unitGroupName}:loop -->`}
