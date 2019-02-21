@@ -90,8 +90,14 @@ export default class FieldGroupConfirmSource extends Component {
                 } else if (item.type === 'image') {
                   return this.wrapTable(<td>
                     {`<!-- BEGIN ${item.name}@path:veil -->`}
-                      <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
+                      <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({"acms-admin-img-responsive": acmscss})} alt={`{${item.name}@alt}`} />
                     {`<!-- END ${item.name}@path:veil -->`}
+                  </td>, item.title)
+                } else if (item.type === 'media') {
+                  return this.wrapTable(<td>
+                    {`<!-- BEGIN ${item.name}@path:veil -->`}
+                      <img src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} className={classnames({"acms-admin-img-responsive": acmscss})} alt={`{${item.name}@alt}`} />
+                    {`<!-- END ${item.name}@path:veil -->`}            
                   </td>, item.title)
                 }
               })}

@@ -184,7 +184,22 @@ export default class FieldGroupSource extends Component {
                     {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
                   </td>, item.title)
                 } else if (item.type === 'media') {
-                  
+                  return this.wrapTable(<td>
+                    <div>
+                      {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
+                      <img src="%{MEDIA_ARCHIVES_DIR}{test@thumbnail}" className={classnames({"acms-admin-img-responsive": acmscss})} alt="{test@alt}" id={`media-preview-${item.name}`} />
+                      {`<!-- ELSE -->`}
+                      <img src="" style={{display: "none"}} className={classnames({"acms-admin-img-responsive": acmscss})} id={`media-preview-${item.name}`} />
+                      {`<!-- END_IF -->`}
+                    </div>
+                    <div className={classnames({"acms-admin-margin-top-mini": acmscss})}>
+                      {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
+                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-preview={`#media-preview-${item.name}`} id={`media-edit-${item.name}`}>メディア編集</button>
+                      {`<!-- END_IF -->`}   
+                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`} data-edit={`#media-edit-${item.name}`}>メディア選択</button>
+                    </div>
+                    <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} className="acms-admin-form-width-full" id={`media-input-${item.name}`} />
+                  </td>, item.title);
                 }
               })}
             </ConditionalWrap>
@@ -259,6 +274,16 @@ export default class FieldGroupSource extends Component {
                     {item.large && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
                     {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
                   </td>, item.title);
+                } else if (item.type === 'media') {
+                  return this.wrapTable(<td>
+                    <div>
+                      <img src="" style={{display: "none"}} class="acms-admin-img-responsive" id={`media-preview-${item.name}`} />
+                    </div>
+                    <div className="acms-admin-margin-top-mini">
+                      <button type="button" class="js-media-insert acms-admin-btn" data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア選択</button>
+                    </div>
+                    <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} class="acms-admin-form-width-full" id={`media-input-${item.name}`} />
+                  </td>, item.title);
                 }
               })}
             </ConditionalWrap>
@@ -311,6 +336,9 @@ export default class FieldGroupSource extends Component {
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@edit`} />
               <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@old`} />
               <input type="hidden" name={`${item.name}:extension`} value="file" />
+            </Fragment>}
+            {item.type === 'media' && <Fragment>
+              <input type="hidden" name={`@${item.name}:extension`} value="media" />
             </Fragment>}
             <input type="hidden" name={`@${groupName}[]`} value={item.name} />
             <input type="hidden" name="field[]" value={item.name} />
