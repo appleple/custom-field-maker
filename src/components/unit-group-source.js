@@ -154,7 +154,7 @@ export default class UnitGroupSource extends Component {
                   return this.wrapTable(<td>
                     <div>
                       {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                      <img src="%{MEDIA_ARCHIVES_DIR}{test@thumbnail}" className={classnames({"acms-admin-img-responsive": acmscss})} alt="{test@alt}" id={`media-preview{id}-${item.name}`} />
+                      <img src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@thumbnail}`} className={classnames({"acms-admin-img-responsive": acmscss})} alt="{test@alt}" id={`media-preview{id}-${item.name}`} />
                       {`<!-- ELSE -->`}
                       <img src="" style={{display: "none"}} className={classnames({"acms-admin-img-responsive": acmscss})} id={`media-preview{id}-${item.name}`} />
                       {`<!-- END_IF -->`}
