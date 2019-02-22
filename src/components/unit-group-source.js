@@ -161,9 +161,9 @@ export default class UnitGroupSource extends Component {
                     </div>
                     <div className={classnames({"acms-admin-margin-top-mini": acmscss})}>
                       {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-preview={`#media-preview{id}-${item.name}`} id={`media-edit{id}-${item.name}`}>メディア編集</button>
+                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-preview={`#media-preview{id}-${item.name}`} data-target={`#${item.name}{id}-input`}>メディア編集</button>
                       {`<!-- END_IF -->`}   
-                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`} data-edit={`#media-edit{id}-${item.name}`}>メディア選択</button>
+                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア選択</button>
                     </div>
                     <input type="hidden" name={`${item.name}{id}[]`} value={`{${item.name}}`} className="acms-admin-form-width-full" id={`media-input{id}-${item.name}`} />
                   </td>, item.title);

@@ -229,9 +229,9 @@ export default class FieldSource extends Component {
                 </div>
                 <div class="acms-admin-margin-top-mini">
                   {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                  <button class="js-media-edit acms-admin-btn" data-mid={`{${item.name}}`} data-preview={`#${item.name}-preview`} id={`${item.name}-edit`}>メディア編集</button>
+                  <button class="js-media-edit acms-admin-btn" data-mid={`{${item.name}}`} data-preview={`#${item.name}-preview`} data-target={`#${item.name}-input`}>メディア編集</button>
                   {`<!-- END_IF -->`}
-                  <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}-input`} data-preview={`#${item.name}-preview`} data-edit={`#${item.name}-edit`}>メディア選択</button>
+                  <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}-input`} data-preview={`#${item.name}-preview`}>メディア選択</button>
                 </div>
                 <input type="hidden" name={item.name} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} id={`${item.name}-input`} />
                 <input type="hidden" name="field[]" value={item.name} />

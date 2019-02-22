@@ -194,9 +194,9 @@ export default class FieldGroupSource extends Component {
                     </div>
                     <div className={classnames({"acms-admin-margin-top-mini": acmscss})}>
                       {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-preview={`#media-preview-${item.name}`} id={`media-edit-${item.name}`}>メディア編集</button>
+                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-preview={`#media-preview-${item.name}`} data-target={`#${item.name}-input`}>メディア編集</button>
                       {`<!-- END_IF -->`}   
-                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`} data-edit={`#media-edit-${item.name}`}>メディア選択</button>
+                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア選択</button>
                     </div>
                     <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} className="acms-admin-form-width-full" id={`media-input-${item.name}`} />
                   </td>, item.title);
