@@ -96,31 +96,25 @@ export default class UnitGroupConfirmSource extends Component {
                   </td>, item.title)
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td>
-                    <div className={classnames({ "acms-admin-col-md-4": acmscss })}>
-                      {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-                      <a className={classnames({ "acms-admin-thumbnail": acmscss })} href={`{${item.name}@path}`}>
-                        {`<!-- ELSE -->`}
-                        <div className={classnames({ "acms-admin-thumbnail": acmscss })}>
-                          {`<!-- END_IF -->`}
-                          <div style={{ width: '100%', height: '150px' }}>
-                            <img className="js-focused-image"
-                              data-focus-x={`{${item.name}@focalX}`}
-                              data-focus-y={`{${item.name}@focalY}`}
-                              alt={`{${item.name}@alt}`}
-                              src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
-                          </div>
-                          {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
-                          <h3>{`{${item.name}@caption}`}</h3>
-                          {`<!-- END_IF -->`}
-                          {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
-                          <p>{`{${item.name}@text}`}</p>
-                          {`<!-- END_IF -->`}
-                          {`<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
-                        </div>
-                        {`<!-- ELSE -->`}
-                      </a>
-                      {`<!-- END_IF -->`}
+                    <div style={{ width: '300px', height: '300px' }}>
+                      <img className="js-focused-image"
+                        data-focus-x={`{${item.name}@focalX}`}
+                        data-focus-y={`{${item.name}@focalY}`}
+                        alt={`{${item.name}@alt}`}
+                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
                     </div>
+                    {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
+                    <h3>
+                      {`<!-- BEGIN_IF [{${item.name}@path}/em] -->`}
+                      <a href={`{${item.name}@path}`}>{`{${item.name}@caption}`}</a>
+                      {`<!-- ELSE -->`}
+                      {`{${item.name}@caption}`}
+                      {`<!-- END_IF -->`}
+                    </h3>
+                    {`<!-- END_IF -->`}
+                    {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
+                    <p>{`{${item.name}@text}`}</p>
+                    {`<!-- END_IF -->`}
                   </td>, item.title);
                 }
               })}

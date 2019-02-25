@@ -154,15 +154,13 @@ export default class UnitGroupSource extends Component {
                   return this.wrapTable(<td>
                     <div>
                       {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                      <img src="%{MEDIA_ARCHIVES_DIR}{test@thumbnail}" className={classnames({"acms-admin-img-responsive": acmscss})} alt="{test@alt}" id={`media-preview{id}-${item.name}`} />
+                      <img src={`{${item.name}@thumbnail}`} className={classnames({"acms-admin-img-responsive": acmscss})} alt={`{${item.name}@alt}`} id={`media-preview{id}-${item.name}`} />
                       {`<!-- ELSE -->`}
                       <img src="" style={{display: "none"}} className={classnames({"acms-admin-img-responsive": acmscss})} id={`media-preview{id}-${item.name}`} />
                       {`<!-- END_IF -->`}
                     </div>
                     <div className={classnames({"acms-admin-margin-top-mini": acmscss})}>
-                      {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
                       <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-preview={`#media-preview{id}-${item.name}`} data-target={`#${item.name}{id}-input`}>メディア編集</button>
-                      {`<!-- END_IF -->`}   
                       <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア選択</button>
                     </div>
                     <input type="hidden" name={`${item.name}{id}[]`} value={`{${item.name}}`} className="acms-admin-form-width-full" id={`media-input{id}-${item.name}`} />
@@ -244,6 +242,7 @@ export default class UnitGroupSource extends Component {
                     </div>
                     <div className="acms-admin-margin-top-mini">
                       <button type="button" class="js-media-insert acms-admin-btn" data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア選択</button>
+                      <button type="button" class="js-media-edit acms-admin-btn" data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア編集</button>
                     </div>
                     <input type="hidden" name={`${item.name}{id}[]`} value="" class="acms-admin-form-width-full" id={`media-input{id}-${item.name}`} />
                   </td>, item.title);
