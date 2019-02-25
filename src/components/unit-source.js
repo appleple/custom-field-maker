@@ -241,6 +241,7 @@ export default class UnitSource extends Component {
                   <button class="js-media-edit acms-admin-btn" data-mid={`{${item.name}}`} data-preview={`#${item.name}{id}-preview`} data-target={`#${item.name}-input`}>メディア編集</button>
                   {`<!-- END_IF -->`}
                   <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}{id}-input`} data-preview={`#${item.name}{id}-preview`}>メディア選択</button>
+                  <button className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`#${item.name}{id}-input`} data-preview={`#${item.name}{id}-preview`}>メディア削除</button>
                 </div>
                 <input type="hidden" name={`${item.name}{id}`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} id={`${item.name}{id}-input`} />
                 <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />

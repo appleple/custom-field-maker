@@ -193,8 +193,9 @@ export default class FieldGroupSource extends Component {
                       {`<!-- END_IF -->`}
                     </div>
                     <div className={classnames({"acms-admin-margin-top-mini": acmscss})}>
-                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-preview={`#media-preview-${item.name}`} data-target={`#${item.name}-input`}>メディア編集</button>
+                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`} >メディア編集</button>
                       <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア選択</button>
+                      <button type="button" className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア削除</button>
                     </div>
                     <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} className="acms-admin-form-width-full" id={`media-input-${item.name}`} />
                   </td>, item.title);
@@ -280,6 +281,7 @@ export default class FieldGroupSource extends Component {
                     <div className="acms-admin-margin-top-mini">
                       <button type="button" class="js-media-insert acms-admin-btn" data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア選択</button>
                       <button type="button" class="js-media-edit acms-admin-btn" data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア選択</button>
+                      <button type="button" className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア削除</button>
                     </div>
                     <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} class="acms-admin-form-width-full" id={`media-input-${item.name}`} />
                   </td>, item.title);
