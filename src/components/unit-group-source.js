@@ -161,7 +161,7 @@ export default class UnitGroupSource extends Component {
                     </div>
                     <div className={classnames({"acms-admin-margin-top-mini": acmscss})}>
                       <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-target={`[name="${item.name}{id}"]`} data-preview={`#media-preview{id}-${item.name}`}>メディア編集</button>
-                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`[name="${item.name}{id}"]`} data-preview={`#media-preview{id}-${item.name}`}>メディア選択</button>
+                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`[name="${item.name}{id}"]`} data-preview={`#media-preview{id}-${item.name}`} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
                       <button type="button" className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`[name="${item.name}{id}"]`} data-preview={`#media-preview{id}-${item.name}`}>メディア削除</button>
                     </div>
                     <input type="hidden" name={`${item.name}{id}[]`} value={`{${item.name}}`} className="acms-admin-form-width-full" id={`media-input{id}-${item.name}`} />
@@ -242,7 +242,7 @@ export default class UnitGroupSource extends Component {
                       <img src="" style={{display: "none"}} class="acms-admin-img-responsive" id={`media-preview{id}-${item.name}`} />
                     </div>
                     <div className="acms-admin-margin-top-mini">
-                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア選択</button>
+                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
                       <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア編集</button>
                       <button type="button" className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`#media-input{id}-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア削除</button>
                     </div>

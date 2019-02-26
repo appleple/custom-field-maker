@@ -102,6 +102,11 @@ export default class Unit extends Base {
               {this.renderFile()}
             </div>
           }
+          {type === 'media' && 
+            <div>
+              {this.renderMediaOption()}
+            </div>
+          }
           {this.renderMake()}
         </div>
       </div>);

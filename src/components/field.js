@@ -104,6 +104,11 @@ export default class Field extends Base {
               {this.renderFile()}
             </div>
           }
+          {type === 'media' && 
+            <div>
+              {this.renderMediaOption()}
+            </div>
+          }
           {this.renderValidator()}
           {this.renderMake()}
         </div>

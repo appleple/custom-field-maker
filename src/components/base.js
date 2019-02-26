@@ -652,13 +652,43 @@ export default class Base extends Component {
           <label htmlFor="resize-checkbox">
             <i className="acms-admin-ico-checkbox"></i>
             ブラウザ側のリサイズ機能を使用する
-        </label>
+          </label>
         </p>
         <p className="acms-admin-form-checkbox">
           <input type="checkbox" onChange={this.updateState.bind(this, 'alt', !alt)} checked={alt} id="alt-checkbox" />
           <label htmlFor="alt-checkbox">
             <i className="acms-admin-ico-checkbox"></i> alt表示用入力欄を使用する
         </label>
+        </p>
+      </div>
+    );
+  }
+
+  renderMediaOption() {
+    const { mediaType } = this.state;
+    return (
+      <div>
+        <p style={{ marginBottom: '5px' }}>選べるメディアのタイプを選択</p>
+        <p className="acms-admin-form-radio">
+          <input type="checkbox" onChange={this.updateState.bind(this, 'mediaType', 'all')} checked={mediaType === 'all'} id="media-type-all-radio" />
+          <label htmlFor="media-type-all-radio">
+            <i className="acms-admin-ico-radio"></i>
+            全てのタイプ
+          </label>
+        </p>
+        <p className="acms-admin-form-radio">
+          <input type="checkbox" onChange={this.updateState.bind(this, 'mediaType', 'image')} checked={mediaType === 'image'} id="media-type-image-radio" />
+          <label htmlFor="media-type-image-radio">
+            <i className="acms-admin-ico-radio"></i>
+            画像のみ
+          </label>
+        </p>
+        <p className="acms-admin-form-radio">
+          <input type="checkbox" onChange={this.updateState.bind(this, 'mediaType', 'file')} checked={mediaType === 'file'} id="media-type-file-radio" />
+          <label htmlFor="media-type-file-radio">
+            <i className="acms-admin-ico-radio"></i>
+            ファイルのみ
+          </label>
         </p>
       </div>
     );

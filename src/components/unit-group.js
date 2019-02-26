@@ -182,6 +182,11 @@ export default class UnitGroup extends Base {
                   {this.renderFile()}
                 </div>
               }
+              {type === 'media' && 
+                <div>
+                  {this.renderMediaOption()}
+                </div>
+              }
               <p>
                 <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>クリア</button>
                 <button onClick={this.addGroup.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn" style={{ marginRight: '5px' }}>生成</button>
