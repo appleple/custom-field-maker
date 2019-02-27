@@ -200,7 +200,7 @@ export default class UnitSource extends Component {
                 <input type="hidden" name={`${item.name}{id}@fileSize`} value={`{${item.name}@fileSize}`} />
                 <label htmlFor={`input-checkbox-${item.name}{id}@edit`} className={classnames({"acms-admin-form-checkbox": acmscss})}>
                   <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`input-checkbox-${item.name}{id}@edit`} />
-                  {acmscss && <i class="acms-admin-ico-checkbox"></i>}
+                  {acmscss && <i className="acms-admin-ico-checkbox"></i>}
                   削除
                 </label>
                 <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={alt} /></a>
@@ -219,7 +219,7 @@ export default class UnitSource extends Component {
           } else if (item.type === 'media') {
             return (<tr>
               {this.renderTh(item)}
-              <td>
+              <td className="js-media-field">
                 <div>
                   { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
                   <img src={`{${item.name}@thumbnail}`} 
@@ -236,14 +236,12 @@ export default class UnitSource extends Component {
                   />
                   {`<!-- END_IF -->`}
                 </div>
-                <div class="acms-admin-margin-top-mini">
-                  {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                  <button class="js-media-edit acms-admin-btn" data-mid={`{${item.name}}`} data-preview={`#${item.name}{id}-preview`} data-target={`#${item.name}-input`}>メディア編集</button>
-                  {`<!-- END_IF -->`}
-                  <button className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#${item.name}{id}-input`} data-preview={`#${item.name}{id}-preview`} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
-                  <button className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`#${item.name}{id}-input`} data-preview={`#${item.name}{id}-preview`}>メディア削除</button>
+                <div className="acms-admin-margin-top-mini">
+                  <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
+                  <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>メディア編集</button>
+                  <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
                 </div>
-                <input type="hidden" name={`${item.name}{id}`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} id={`${item.name}{id}-input`} />
+                <input type="hidden" name={`${item.name}{id}`} value={`{${item.name}}`} className="js-value" />
                 <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                 <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
               </td>

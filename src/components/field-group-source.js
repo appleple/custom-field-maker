@@ -184,20 +184,20 @@ export default class FieldGroupSource extends Component {
                     {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
                   </td>, item.title)
                 } else if (item.type === 'media') {
-                  return this.wrapTable(<td>
+                  return this.wrapTable(<td className="js-media-field">
                     <div>
                       {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                      <img src={`{${item.name}@thumbnail}`} className={classnames({"acms-admin-img-responsive": acmscss})} alt={`{${item.name}@alt}`} id={`media-preview-${item.name}`} />
+                      <img src={`{${item.name}@thumbnail}`} className={classnames('js-preview', { 'acms-admin-img-responsive' : acmscss })} alt={`{${item.name}@alt}`} />
                       {`<!-- ELSE -->`}
-                      <img src="" style={{display: "none"}} className={classnames({"acms-admin-img-responsive": acmscss})} id={`media-preview-${item.name}`} />
+                      <img src="" style={{display: "none"}} className={classnames('js-preview', { 'acms-admin-img-responsive' : acmscss })} />
                       {`<!-- END_IF -->`}
                     </div>
-                    <div className={classnames({"acms-admin-margin-top-mini": acmscss})}>
-                      <button type="button" className={classnames("js-media-edit", {"acms-admin-btn": acmscss})} data-mid={`{${item.name}}`} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`} >メディア編集</button>
-                      <button type="button" className={classnames("js-media-insert", {"acms-admin-btn": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
-                      <button type="button" className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア削除</button>
+                    <div className={classnames({"acms-admin-margin-top-mini": acmscss })}>
+                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
+                      <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>メディア編集</button>
+                      <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
                     </div>
-                    <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} className="acms-admin-form-width-full" id={`media-input-${item.name}`} />
+                    <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} className="js-value" />
                   </td>, item.title);
                 }
               })}
@@ -274,16 +274,16 @@ export default class FieldGroupSource extends Component {
                     {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
                   </td>, item.title);
                 } else if (item.type === 'media') {
-                  return this.wrapTable(<td>
+                  return this.wrapTable(<td className="js-media-field">
                     <div>
-                      <img src="" style={{display: "none"}} class="acms-admin-img-responsive" id={`media-preview-${item.name}`} />
+                      <img src="" style={{display: "none"}} className="acms-admin-img-responsive js-preview"/>
                     </div>
                     <div className="acms-admin-margin-top-mini">
-                      <button type="button" class="js-media-insert acms-admin-btn" data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`}>メディア選択</button>
-                      <button type="button" class="js-media-edit acms-admin-btn" data-target={`#media-input-${item.name}`} data-preview={`#media-preview-${item.name}`} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
-                      <button type="button" className={classnames("js-media-remove", {"acms-admin-btn acms-admin-btn-danger": acmscss})} data-target={`#media-input-${item.name}`} data-preview={`#media-preview{id}-${item.name}`}>メディア削除</button>
+                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
+                      <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>メディア編集</button>
+                      <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
                     </div>
-                    <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} class="acms-admin-form-width-full" id={`media-input-${item.name}`} />
+                    <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} className="js-value" />
                   </td>, item.title);
                 }
               })}
