@@ -223,16 +223,14 @@ export default class UnitSource extends Component {
                 <div>
                   { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
                   <img src={`{${item.name}@thumbnail}`} 
-                    className={classnames({ 'acms-admin-img-responsive': acmscss })} 
+                    className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
                     style={item.normalSize ? { width: `${item.normalSize}px` } : null} 
                     alt={`{${item.name}@alt}`} 
-                    id={`${item.name}{id}-preview`}
                   />
                   {`<!-- ELSE -->`}
                   <img src="" 
                     style={{ display: 'none'}} 
-                    className={classnames({ 'acms-admin-img-responsive': acmscss })} 
-                    id={`${item.name}{id}-preview`}
+                    className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
                   />
                   {`<!-- END_IF -->`}
                 </div>
