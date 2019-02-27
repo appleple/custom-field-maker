@@ -51,16 +51,14 @@ export default class Unit extends Base {
     
     return (
       <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
-      <option value="text">テキスト</option>
-      <option value="textarea">テキストエリア</option>
-      <option value="select">セレクトボックス</option>
-      <option value="radio">ラジオボタン</option>
-      <option value="checkbox">チェックボックス</option>
-      <option value="file">ファイル</option>
-      <option value="image">画像</option>
-      <option value="media">メディア</option>
-    </select>
-    )
+        <option value="text">テキスト</option>
+        <option value="textarea">テキストエリア</option>
+        <option value="select">セレクトボックス</option>
+        <option value="radio">ラジオボタン</option>
+        <option value="media">メディア</option>
+        <option value="image">画像</option>
+        <option value="file">ファイル</option>
+    </select>);
   }
 
   render() {

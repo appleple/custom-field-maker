@@ -58,9 +58,9 @@ export default class Field extends Base {
       <option value="select">セレクトボックス</option>
       <option value="radio">ラジオボタン</option>
       <option value="checkbox">チェックボックス</option>
+      <option value="media">メディア</option>
       <option value="file">ファイル</option>
       <option value="image">画像</option>
-      <option value="media">メディア</option>
     </select>
     )
   }
