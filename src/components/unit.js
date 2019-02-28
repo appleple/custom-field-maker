@@ -66,7 +66,7 @@ export default class Unit extends Base {
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムユニット</h2>
-        <div className="acms-admin-filter">
+        <div className="customFieldFunction">
           {this.renderModal()}
           {this.renderAlert()}
           {this.renderBasic()}

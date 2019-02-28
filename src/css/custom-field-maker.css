@@ -17,6 +17,13 @@
   transition: background-color .2s ease-in;
 }
 
+.customFieldFunction {
+  margin-bottom: 20px;
+  padding: 20px 9px 10px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+}
+
 .customFieldCopied:after {
   content: ' ';
   position: absolute;

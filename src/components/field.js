@@ -70,7 +70,7 @@ export default class Field extends Base {
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムフィールド</h2>
-        <div className="acms-admin-filter">
+        <div className="customFieldFunction">
           {this.renderModal()}
           {this.renderAlert()}
           {this.renderBasic()}

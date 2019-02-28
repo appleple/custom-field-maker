@@ -95,7 +95,7 @@ export default class FieldGroup extends Base {
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムフィールドグループ</h2>
-        <div className="acms-admin-filter">
+        <div className="customFieldFunction">
           {this.renderGroupAlert()}
           {this.renderDuplicateAlert()}
           {this.renderAlert()}
