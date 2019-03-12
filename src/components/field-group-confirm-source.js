@@ -95,12 +95,12 @@ export default class FieldGroupConfirmSource extends Component {
                   </td>, item.title)
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td>
-                    <div style={{ width: '300px', height: '300px' }}>
+                    <div style={{ width: '400px', height: '400px' }}>
                       <img className="js-focused-image"
                         data-focus-x={`{${item.name}@focalX}`}
                         data-focus-y={`{${item.name}@focalY}`}
                         alt={`{${item.name}@alt}`}
-                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
+                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`} />
                     </div>
                     {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
                     <h3>

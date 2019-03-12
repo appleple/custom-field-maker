@@ -187,7 +187,7 @@ export default class FieldGroupSource extends Component {
                   return this.wrapTable(<td className="js-media-field">
                     <div>
                       {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                      <img src={`{${item.name}@thumbnail}`} className={classnames('js-preview', { 'acms-admin-img-responsive' : acmscss })} alt={`{${item.name}@alt}`} />
+                      <img src={`{${item.name}@thumbnail}[resizeImg(400)]`} className={classnames('js-preview', { 'acms-admin-img-responsive' : acmscss })} alt={`{${item.name}@alt}`} />
                       {`<!-- ELSE -->`}
                       <img src="" style={{display: "none"}} className={classnames('js-preview', { 'acms-admin-img-responsive' : acmscss })} />
                       {`<!-- END_IF -->`}

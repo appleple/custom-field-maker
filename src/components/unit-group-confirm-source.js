@@ -101,7 +101,7 @@ export default class UnitGroupConfirmSource extends Component {
                         data-focus-x={`{${item.name}@focalX}`}
                         data-focus-y={`{${item.name}@focalY}`}
                         alt={`{${item.name}@alt}`}
-                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
+                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`} />
                     </div>
                     {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
                     <h3>

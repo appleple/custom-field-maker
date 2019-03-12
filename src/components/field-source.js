@@ -213,7 +213,7 @@ export default class FieldSource extends Component {
               <td className="js-media-field">
                 <div>
                   { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                  <img src={`{${item.name}@thumbnail}`} 
+                  <img src={`{${item.name}@thumbnail}[resizeImg(400)]`}
                     className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
                     style={item.normalSize ? { width: `${item.normalSize}px` } : null} 
                     alt={`{${item.name}@alt}`} 
