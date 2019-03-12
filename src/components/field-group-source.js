@@ -265,7 +265,7 @@ export default class FieldGroupSource extends Component {
                   const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
                   return this.wrapTable(<td className={classnames({ 'js-img_resize_cf': item.resize })}>
-                    <img src="" style={hiddenStyle} class="js-img_resize_preview" />
+                    <img src="" style={hiddenStyle} className="js-img_resize_preview" />
                     <input type="file" name={`${item.name}[]`} style={style} /><br />
                     {item.alt && <Fragment>代替テキスト:<input type="text" name={`${item.name}@alt[]`} value="" size="40" /></Fragment>}
                     {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
@@ -276,7 +276,7 @@ export default class FieldGroupSource extends Component {
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td className="js-media-field">
                     <div>
-                      <img src="" style={{display: "none"}} className="acms-admin-img-responsive js-preview"/>
+                      <img src="" style={{display: "none"}} className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} />
                     </div>
                     <div className="acms-admin-margin-top-mini">
                       <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
