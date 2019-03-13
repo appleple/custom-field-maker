@@ -241,10 +241,10 @@ export default class FieldSource extends Component {
             let src = "/images/fileicon/";
             let alt = 'file';
             if (item.extension) {
-              src += `${item.extension}.gif`;
+              src += `${item.extension}.png`;
               alt += item.extension;
             } else {
-              src += 'file.gif';
+              src += 'file.png';
             }
 
             return (<tr>
