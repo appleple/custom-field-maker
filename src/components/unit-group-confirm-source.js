@@ -76,10 +76,10 @@ export default class UnitGroupConfirmSource extends Component {
                   let src = "/images/fileicon/";
                   let alt = 'file';
                   if (item.extension) {
-                    src += `${item.extension}.png`;
+                    src += `${item.extension}.svg`;
                     alt += item.extension;
                   } else {
-                    src += 'file.png';
+                    src += 'file.svg';
                   }
                   return this.wrapTable(<td>
                     {`<!-- BEGIN ${item.name}@path:veil -->`}

@@ -182,13 +182,13 @@ export default class UnitSource extends Component {
             let src = "/images/fileicon/";
             let alt = 'file';
             if (item.extension) {
-              src += `${item.extension}.png`;
+              src += `${item.extension}.svg`;
               if (item.extension === 'svg') {
                 src = `%{ARCHIVES_DIR}{${item.name}@path}`;
               }
               alt += item.extension;
             } else {
-              src += 'file.png';
+              src += 'file.svg';
             }
 
             return (<tr>
