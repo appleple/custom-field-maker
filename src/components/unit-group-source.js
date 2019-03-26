@@ -250,7 +250,7 @@ export default class UnitGroupSource extends Component {
                   const hiddenStyle = Object.assign({}, style, { 'display': 'none' });
 
                   return this.wrapTable(<td className={classnames({ 'js-img_resize_cf': item.resize })}>
-                    <img src="" style={hiddenStyle} class="js-img_resize_preview" />
+                    <img src="" style={hiddenStyle} className="js-img_resize_preview" />
                     <input type="file" name={`${item.name}{id}[]`} style={style} /><br />
                     {item.alt && <div>代替テキスト:<input type="text" name={`${item.name}{id}@alt[]`} value="" size="40" /></div>}
                     {item.normalSize && <input type="hidden" name={`${item.name}{id}@${item.normal}[]`} value={item.normalSize} />}
@@ -269,7 +269,7 @@ export default class UnitGroupSource extends Component {
                           display: 'none'
                         } } : 
                         { style: { display: 'none' }})} 
-                        class="acms-admin-img-responsive js-preview" />
+                        className="acms-admin-img-responsive js-preview" />
                     </div>
                     <div className="acms-admin-margin-top-mini">
                       <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>

@@ -106,7 +106,7 @@ export default class FieldGroupConfirmSource extends Component {
                     }
                     {item.mediaType === 'file' && 
                       <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>
-                        <img src={`{${item.name}@thumbnail}`} />
+                        <img src={`{${item.name}@thumbnail}`}  style={{ width: '64px', height: 'auto' }} />
                       </a>
                     }
                     {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
