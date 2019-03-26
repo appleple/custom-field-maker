@@ -154,14 +154,36 @@ export default class UnitGroupSource extends Component {
                   return this.wrapTable(<td className="js-media-field">
                     <div>
                       {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                      <img src={`{${item.name}@thumbnail}[resizeImg(400)]`} className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} alt={`{${item.name}@alt}`} />
+                      <ConditionalWrap
+                        condition={item.mediaType === 'file'}
+                        wrap={children => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
+                      >
+                      <img 
+                        src={`{${item.name}@thumbnail}`} 
+                        className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
+                        alt={`{${item.name}@alt}`} 
+                        {...(item.mediaType === 'file' && { style: {
+                          width: '64px',
+                          height: 'auto'
+                        } })}
+                      />
+                      </ConditionalWrap>
                       {`<!-- ELSE -->`}
-                      <img src="" style={{display: "none"}} className={classnames('js-preview', { "acms-admin-img-responsive": acmscss })} />
+                      <img src="" 
+                        {...(item.mediaType === 'file' ? 
+                        { style: {
+                          width: '64px',
+                          height: 'auto',
+                          display: 'none'
+                        } } : 
+                        { style: { display: 'none' }})} 
+                        className={classnames('js-preview', { "acms-admin-img-responsive": acmscss })} />
                       {`<!-- END_IF -->`}
                     </div>
                     <div className={classnames({"acms-admin-margin-top-mini": acmscss })}>
-                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
-                      <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>メディア編集</button>
+                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
+                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'} data-mode="upload">アップロード</button>
+                      <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>編集</button>
                       <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
                     </div>
                     <input type="hidden" name={`${item.name}{id}[]`} value={`{${item.name}}`} className="js-value" />
@@ -239,11 +261,20 @@ export default class UnitGroupSource extends Component {
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td className="js-media-field">
                     <div>
-                      <img src="" style={{display: "none"}} class="acms-admin-img-responsive js-preview" />
+                      <img src="" 
+                        {...(item.mediaType === 'file' ? 
+                        { style: {
+                          width: '64px',
+                          height: 'auto',
+                          display: 'none'
+                        } } : 
+                        { style: { display: 'none' }})} 
+                        class="acms-admin-img-responsive js-preview" />
                     </div>
                     <div className="acms-admin-margin-top-mini">
-                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディア選択</button>
-                      <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>メディア編集</button>
+                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
+                      <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'} data-mode="upload">アップロード</button>
+                      <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>編集</button>
                       <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
                     </div>
                     <input type="hidden" name={`${item.name}{id}[]`} value="" className="js-value" />

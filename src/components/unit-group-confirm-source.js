@@ -96,13 +96,19 @@ export default class UnitGroupConfirmSource extends Component {
                   </td>, item.title)
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td>
+                    {item.mediaType !== 'file' &&
                     <div style={{ width: '300px', height: '300px' }}>
                       <img className="js-focused-image"
                         data-focus-x={`{${item.name}@focalX}`}
                         data-focus-y={`{${item.name}@focalY}`}
                         alt={`{${item.name}@alt}`}
                         src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`} />
-                    </div>
+                    </div>}
+                    {item.mediaType === 'file' && 
+                      <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>
+                        <img src={`{${item.name}@thumbnail}`} />
+                      </a>
+                    }
                     {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
                     <h3>
                       {`<!-- BEGIN_IF [{${item.name}@path}/em] -->`}
