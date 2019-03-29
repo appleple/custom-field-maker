@@ -19,12 +19,13 @@ export default class UnitSource extends Component {
         if (!validator.option) {
           return null;
         }
+        const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
         return (<Fragment>
-          <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} />
+          <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} />
           {validator.message && <Fragment>
-          {`<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
+          {`<!-- BEGIN ${name}:validator#${validator.option} -->`}
             <p className={classnames({"acms-admin-text-error": acmscss})}>{validator.message}</p>
-          {`<!-- END ${item.name}:validator#${validator.option} -->`}
+          {`<!-- END ${name}:validator#${validator.option} -->`}
           </Fragment>}
         {item.converter && <input type="hidden" name="{name}:c" value="{converter}"/>}
         </Fragment>);
@@ -259,6 +260,7 @@ export default class UnitSource extends Component {
                 <input type="hidden" name={`${item.name}{id}`} value={`{${item.name}}`} className="js-value" />
                 <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                 <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
+                {this.renderValidator(item, acmscss)}
               </td>
             </tr>)            
           }
