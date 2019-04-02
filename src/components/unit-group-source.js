@@ -291,7 +291,7 @@ export default class UnitGroupSource extends Component {
                     </div>
                     </Fragment>}
                     {item.useDropArea && <Fragment>
-                      <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} style={{width: `${item.dropAreaWidth}px`}} ></div>
+                      <div className="js-droparea" data-type={item.mediaType ? item.mediaType : 'all'} style={{width: `${item.dropAreaWidth}px`}} ></div>
                       <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                       <div className="acms-admin-margin-top-mini">
                         <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
