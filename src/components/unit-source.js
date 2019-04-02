@@ -223,6 +223,7 @@ export default class UnitSource extends Component {
             return (<tr>
               {this.renderTh(item)}
               <td className="js-media-field">
+                {!item.useDropArea && <Fragment>
                 <div>
                   { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
                   <ConditionalWrap
@@ -250,6 +251,7 @@ export default class UnitSource extends Component {
                     className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
                   />
                   {`<!-- END_IF -->`}
+                  <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                 </div>
                 <div className="acms-admin-margin-top-mini">
                   <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
@@ -257,6 +259,14 @@ export default class UnitSource extends Component {
                   <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>編集</button>
                   <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
                 </div>
+                </Fragment>}
+                {item.useDropArea && <Fragment>
+                  <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} style={{width: `${item.dropAreaWidth}px`}} ></div>
+                  <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
+                  <div className="acms-admin-margin-top-mini">
+                    <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
+                  </div>
+                </Fragment>}
                 <input type="hidden" name={`${item.name}{id}`} value={`{${item.name}}`} className="js-value" />
                 <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                 <input type="hidden" name={`${item.name}{id}:extension`} value="media" />

@@ -17,6 +17,9 @@ export default class FieldGroup extends Base {
       converter: "",
       normal: "size",
       resize: "true",
+      useDropArea: true,
+      dropAreaWidth: 200,
+      mediaType: 'image',
       option: [{
         value: "",
         label: ""

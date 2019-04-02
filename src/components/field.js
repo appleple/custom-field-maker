@@ -17,6 +17,9 @@ export default class Field extends Base {
       converter: "",
       normal: "size",
       alt: false,
+      useDropArea: true,
+      dropAreaWidth: 200,
+      mediaType: 'image',
       resize: true,
       option: [{
         value: "",

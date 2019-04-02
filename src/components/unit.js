@@ -30,7 +30,10 @@ export default class Unit extends Base {
       openConverter: false,
       alt: false,
       resize: true,
-      fileNameMethod: 'random'
+      fileNameMethod: 'random',
+      useDropArea: true,
+      dropAreaWidth: 200,
+      mediaType: 'image'
     };
   }
 

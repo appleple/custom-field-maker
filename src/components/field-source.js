@@ -216,42 +216,52 @@ export default class FieldSource extends Component {
             return (<tr>
               {this.renderTh(item)}
               <td className="js-media-field">
-                <div>
-                  { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
-                  <ConditionalWrap
-                    condition={item.mediaType === 'file'}
-                    wrap={children => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
-                  >
-                    <img src={`{${item.name}@thumbnail}`}
-                      className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
-                      alt={`{${item.name}@alt}`} 
-                      id={`${item.name}-preview`}
-                      {...(item.mediaType === 'file' && { style: {
+                {!item.useDropArea && <Fragment>
+                  <div>
+                    { `<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
+                    <ConditionalWrap
+                      condition={item.mediaType === 'file'}
+                      wrap={children => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
+                    >
+                      <img src={`{${item.name}@thumbnail}`}
+                        className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
+                        alt={`{${item.name}@alt}`} 
+                        id={`${item.name}-preview`}
+                        {...(item.mediaType === 'file' && { style: {
+                          width: '64px',
+                          height: 'auto'
+                        } })}
+                      />
+                    </ConditionalWrap>
+                    {`<!-- ELSE -->`}
+                    <img src="" 
+                      {...(item.mediaType === 'file' ? 
+                      { style: {
                         width: '64px',
-                        height: 'auto'
-                      } })}
+                        height: 'auto',
+                        display: 'none'
+                      } } : 
+                      { style: { display: 'none' }})} 
+                      className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
+                      id={`${item.name}-preview`}
                     />
-                  </ConditionalWrap>
-                  {`<!-- ELSE -->`}
-                  <img src="" 
-                    {...(item.mediaType === 'file' ? 
-                    { style: {
-                      width: '64px',
-                      height: 'auto',
-                      display: 'none'
-                    } } : 
-                    { style: { display: 'none' }})} 
-                    className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
-                    id={`${item.name}-preview`}
-                  />
-                  {`<!-- END_IF -->`}
-                </div>
-                <div className="acms-admin-margin-top-mini">
-                  <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
-                  <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'} data-mode="upload">アップロード</button>
-                  <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>編集</button>
-                  <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
-                </div>
+                    {`<!-- END_IF -->`}
+                    <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
+                  </div>
+                  <div className="acms-admin-margin-top-mini">
+                    <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
+                    <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'} data-mode="upload">アップロード</button>
+                    <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>編集</button>
+                    <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
+                  </div>
+                </Fragment>}
+                {item.useDropArea && <Fragment>
+                  <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} style={{width: `${item.dropAreaWidth}px`}} ></div>
+                  <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
+                  <div className="acms-admin-margin-top-mini">
+                    <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
+                  </div>
+                </Fragment>}
                 <input type="hidden" name={item.name} value={`{${item.name}}`} className="js-value" />
                 <input type="hidden" name="field[]" value={item.name} />
                 <input type="hidden" name={`${item.name}:extension`} value="media" />

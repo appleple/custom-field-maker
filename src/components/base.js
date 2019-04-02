@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 import ModalDialog from './modal-dialog';
@@ -58,6 +58,9 @@ export default class Base extends Component {
       squareSize: '',
       alt: true,
       resize: true,
+      useDropArea: true,
+      dropAreaWidth: 200,
+      mediaType: 'image',
       openConverter: '',
       openValidator: '',
       converter: '',
@@ -664,7 +667,7 @@ export default class Base extends Component {
   }
 
   renderMediaOption() {
-    const { mediaType } = this.state;
+    const { mediaType, useDropArea, dropAreaWidth } = this.state;
     return (
       <div>
         <p style={{ marginBottom: '5px' }}>選べるメディアのタイプを選択</p>
@@ -689,6 +692,25 @@ export default class Base extends Component {
             ファイルのみ
           </label>
         </p>
+        <p style={{ marginBottom: '5px' }}>ドロップエリア</p>
+        <div style={{ display: 'flex' }}>
+          <div className="acms-admin-form-checkbox" style={{ paddingTop: '5px' }}>
+            <input type="checkbox" onChange={() => {
+              if (useDropArea) {
+                this.updateState('useDropArea', false);
+              } else {
+                this.updateState('useDropArea', true);
+              }
+            }} checked={useDropArea} id="media-use-droparea" />
+            <label htmlFor="media-use-droparea">
+              <i className="acms-admin-ico-checkbox"></i>
+              ドロップエリアを利用する
+            </label>
+          </div>
+          {useDropArea && <div>
+            幅 <input type="text" defaultValue={dropAreaWidth} /> px
+          </div>}
+        </div>
       </div>
     );
   }
