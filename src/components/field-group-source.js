@@ -18,19 +18,27 @@ export default class FieldGroupSource extends Component {
 
     return (<Fragment>
       {item.validator.map((validator) => {
+        const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+        const classSuffix = bottom ? '1' : `{${name}:v#${validator.option}}`;
+        
         return (<Fragment>
           {!jsValidator && <Fragment>
             {validator.message && <Fragment>
-            {preview ? null : `<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
+            {preview ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
             <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
-            {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
+            {preview ? null : `<!-- END ${name}:validator#${validator.option} -->`}
             </Fragment>}
           </Fragment>}
+          {jsValidator &&
+            <div data-validator-label={`${name}-v-${validator.option}`} className={`validator-result-${classSuffix}`}>
+              <p className="error-text">
+                <span className="acms-icon acms-icon-attension" />{validator.message}
+              </p>
+            </div>
+          }
         </Fragment>);
       })}
     </Fragment>);
-
-    return null;
   }
 
   wrapTable(children, title) {
@@ -82,12 +90,12 @@ export default class FieldGroupSource extends Component {
                 if (item.type === 'text') {
                   return this.wrapTable(<td>
                     <input type="text" name={`${item.name}[]`} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} />
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     <textarea name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
@@ -100,7 +108,7 @@ export default class FieldGroupSource extends Component {
                         return <option value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>{option.label}</option>
                       })}
                     </select>
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
                 } else if (item.type === 'radio') {
                   return this.wrapTable(<td>
@@ -116,7 +124,7 @@ export default class FieldGroupSource extends Component {
                         </label>
                       </div>);
                     })}
-                    {this.renderValidator(item, acmscss)}
+                    {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
                 } else if (item.type === 'file') {
                   let src = "/images/fileicon/";
@@ -145,6 +153,7 @@ export default class FieldGroupSource extends Component {
                     {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
                     {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
                     <input type="file" name={`${item.name}[]`} />
+                    {this.renderValidator(item, acmscss, false)}
                   </td>, item.title)
                 } else if (item.type === 'image') {
                   const style = {};
@@ -174,6 +183,7 @@ export default class FieldGroupSource extends Component {
                     {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
                     {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
                     {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
+                    {this.renderValidator(item, acmscss, false)}
                   </td>, item.title)
                 }
               })}
@@ -228,7 +238,9 @@ export default class FieldGroupSource extends Component {
                     {item.fileNameMethod === 'random' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value="" />}
                     {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}@filename[]`} value={item.fileName} />}
                     {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />}
+                    {this.renderValidator(item, acmscss, true)}
                   </td>, item.title);
+                  
                 } else if (item.type === 'image') {
                   const style = {};
                   if (item.normalSize) {
@@ -244,6 +256,7 @@ export default class FieldGroupSource extends Component {
                     {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
                     {item.large && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
                     {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
+                    {this.renderValidator(item, acmscss, true)}
                   </td>, item.title);
                 }
               })}
@@ -305,7 +318,8 @@ export default class FieldGroupSource extends Component {
               if (!validator.option) {
                 return null;
               }
-              return <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} id={`${item.name}-v-${validator.option}`} />
+              const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+              return <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} id={`${name}-v-${validator.option}`} />
             })}
           </Fragment>);
         })}
