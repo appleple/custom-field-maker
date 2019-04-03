@@ -20,17 +20,20 @@ export default class FieldSource extends Component {
           if (!validator.option) {
             return null;
           }
+
+          const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+          
           return (<Fragment>
-            <input type="hidden" name={`${item.name}:v#${validator.option}`} value={validator.value} id={`${item.name}-v-${validator.option}`} />
+            <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} id={`${name}-v-${validator.option}`} />
             {!jsValidator && <Fragment>
               {validator.message && <Fragment>
-              {preview ? null : `<!-- BEGIN ${item.name}:validator#${validator.option} -->`}
+              {preview ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
               <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
-              {preview ? null : `<!-- END ${item.name}:validator#${validator.option} -->`}
+              {preview ? null : `<!-- END ${name}:validator#${validator.option} -->`}
               </Fragment>}
             </Fragment>}
             {jsValidator &&
-            <div data-validator-label={`${item.name}-v-${validator.option}`} className={`validator-result-{${item.name}:v#${validator.option}}`}>
+            <div data-validator-label={`${name}-v-${validator.option}`} className={`validator-result-{${name}:v#${validator.option}}`}>
               <p className="error-text">
                 <span className="acms-icon acms-icon-attension" />{validator.message}
               </p>
@@ -38,7 +41,7 @@ export default class FieldSource extends Component {
             }
           </Fragment>);
         })}
-        {item.converter && <input type="hidden" name={`${item.name}:c`} value={item.converter} />}
+        {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
       </Fragment>
     );
   }
