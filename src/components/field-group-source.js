@@ -9,7 +9,7 @@ export default class FieldGroupSource extends Component {
     super(props);
   }
 
-  renderValidator(item, acmscss) {
+  renderValidator(item, acmscss, bottom) {
     const { preview, jsValidator } = this.props;
 
     if (!item.openValidator) {
