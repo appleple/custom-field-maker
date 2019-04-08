@@ -262,9 +262,9 @@ export default class UnitSource extends Component {
                   <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                 </div>
                 <div className="acms-admin-margin-top-mini">
-                  <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
-                  <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'} data-mode="upload">アップロード</button>
-                  <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>編集</button>
+                  <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディアを選択</button>
+                  <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'} data-mode="upload">メディアをアップロード</button>
+                  <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>メディアを選択</button>
                   <button type="button" className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}>削除</button>
                 </div>
                 </Fragment>}
@@ -272,7 +272,7 @@ export default class UnitSource extends Component {
                   <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} style={{width: `${item.dropAreaWidth}px`}} ></div>
                   <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                   <div className="acms-admin-margin-top-mini">
-                    <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
+                    <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディアを選択</button>
                   </div>
                 </Fragment>}
                 <input type="hidden" name={`${item.name}{id}`} value={preview ? '' : `{${item.name}}`} className="js-value" />
