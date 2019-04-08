@@ -9,6 +9,14 @@ export default class FieldSource extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    if (window.ACMS && ACMS.dispatchEvent) {
+      ACMS.dispatchEvent("acmsCustomFieldMakerPreview", this.table, {
+        item: this.table
+      });
+    }
+  }
+
   renderValidator(item, acmscss) {
     const { preview, jsValidator } = this.props;
 
@@ -79,7 +87,7 @@ export default class FieldSource extends Component {
     return (
     <Fragment>
       {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
-      <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
+      <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })} ref={(table => this.table = table)}>
         {customfield.map(item => {
           if (item.type === 'text') {
             return (<tr>
@@ -262,7 +270,7 @@ export default class FieldSource extends Component {
                     <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
                   </div>
                 </Fragment>}
-                <input type="hidden" name={item.name} value={`{${item.name}}`} className="js-value" />
+                <input type="hidden" name={item.name} value={preview ? '' : `{${item.name}}`} className="js-value" />
                 <input type="hidden" name="field[]" value={item.name} />
                 <input type="hidden" name={`${item.name}:extension`} value="media" />
               </td>

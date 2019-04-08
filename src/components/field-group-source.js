@@ -9,6 +9,14 @@ export default class FieldGroupSource extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    if (window.ACMS && ACMS.dispatchEvent) {
+      ACMS.dispatchEvent("acmsCustomFieldMakerPreview", this.table, {
+        item: this.table
+      });
+    }
+  }
+
   renderValidator(item, acmscss, bottom = false) {
     const { preview, jsValidator } = this.props;
 
@@ -58,7 +66,7 @@ export default class FieldGroupSource extends Component {
 
     return (<Fragment>
       {groupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{groupTitle}</h2>}
-      {groupName && <table className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}>
+      {groupName && <table className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })} ref={table => this.table = table}>
         <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
           <tr>
             <th className={classnames({ 'acms-admin-table-left acms-admin-admin-config-table-item-handle': acmscss })}>&nbsp;</th>
@@ -231,7 +239,7 @@ export default class FieldGroupSource extends Component {
                         <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
                       </div>
                     </Fragment>}
-                    <input type="hidden" name={`${item.name}[]`} value={`{${item.name}}`} className="js-value" />
+                    <input type="hidden" name={`${item.name}[]`} value={preview ? '' : `{${item.name}}`} className="js-value" />
                     {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
                 }

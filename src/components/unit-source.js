@@ -9,6 +9,14 @@ export default class UnitSource extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    if (window.ACMS && ACMS.dispatchEvent) {
+      ACMS.dispatchEvent("acmsCustomFieldMakerPreview", this.table, {
+        item: this.table
+      });
+    }
+  }
+
   renderValidator(item, acmscss) {
     if (!item.openValidator) {
       return null;
@@ -57,7 +65,7 @@ export default class UnitSource extends Component {
   render() {
     const { acmscss, customunit, preview } = this.props;
     return (
-      <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
+      <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })} ref={(table) => this.table = table}>
         {customunit.map(item => {
           if (item.type === 'text') {
             return(<tr>
@@ -267,7 +275,7 @@ export default class UnitSource extends Component {
                     <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>選択</button>
                   </div>
                 </Fragment>}
-                <input type="hidden" name={`${item.name}{id}`} value={`{${item.name}}`} className="js-value" />
+                <input type="hidden" name={`${item.name}{id}`} value={preview ? '' : `{${item.name}}`} className="js-value" />
                 <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                 <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
                 {this.renderValidator(item, acmscss)}
