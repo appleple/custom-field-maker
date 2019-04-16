@@ -233,7 +233,7 @@ export default class FieldSource extends Component {
                     >
                       <img src={`{${item.name}@thumbnail}`}
                         className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })} 
-                        alt={`{${item.name}@alt}`} 
+                        alt="" 
                         id={`${item.name}-preview`}
                         {...(item.mediaType === 'file' && { style: {
                           width: '64px',

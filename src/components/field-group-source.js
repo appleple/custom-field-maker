@@ -202,10 +202,10 @@ export default class FieldGroupSource extends Component {
                         condition={item.mediaType === 'file'}
                         wrap={children => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
                       >
-                        <img 
+                        <img
                           src={`{${item.name}@thumbnail}`} 
                           className={classnames('js-preview', { 'acms-admin-img-responsive' : acmscss })} 
-                          alt={`{${item.name}@alt}`} 
+                          alt=""
                           {...(item.mediaType === 'file' && { style: {
                             width: '64px',
                             height: 'auto'
@@ -323,7 +323,8 @@ export default class FieldGroupSource extends Component {
                   return this.wrapTable(<td className="js-media-field">
                     {!item.useDropArea && <Fragment>
                     <div>
-                      <img src="" 
+                      <img
+                        src="" 
                         {...(item.mediaType === 'file' ? 
                         { style: {
                           width: '64px',
