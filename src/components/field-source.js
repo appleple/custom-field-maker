@@ -24,14 +24,14 @@ export default class FieldSource extends Component {
       return null;
     }
 
+    const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+
     return (
       <Fragment>
         {item.validator.map((validator) => {
           if (!validator.option) {
             return null;
           }
-
-          const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
           
           return (<Fragment>
             <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} id={`${name}-v-${validator.option}`} />
