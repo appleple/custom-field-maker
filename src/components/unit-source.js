@@ -11,21 +11,22 @@ export default class UnitSource extends Component {
     if (!item.openValidator) {
       return null;
     }
+    const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+
     return (
       <Fragment>
       {item.validator.map((validator) => {
         if (!validator.option) {
           return null;
         }
-        const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
         return (<Fragment>
           <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} />
           {validator.message && <Fragment>
           {`<!-- BEGIN ${name}:validator#${validator.option} -->`}
-            <p className={classnames({"acms-admin-text-error": acmscss})}>{validator.message}</p>
+            <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
           {`<!-- END ${name}:validator#${validator.option} -->`}
           </Fragment>}
-        {item.converter && <input type="hidden" name="{name}:c" value="{converter}"/>}
+        {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter}/>}
         </Fragment>);
       })}
       </Fragment>
