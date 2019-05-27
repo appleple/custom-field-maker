@@ -28,6 +28,32 @@ export default class UnitGroupSource extends Component {
     >{children}</ConditionalWrap>);
   }
 
+  renderValidator(item, acmscss) {
+    if (!item.openValidator) {
+      return null;
+    }
+    const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+
+    return (
+      <Fragment>
+      {item.validator.map((validator) => {
+        if (!validator.option) {
+          return null;
+        }
+        return (<Fragment>
+          <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} />
+          {validator.message && <Fragment>
+          {`<!-- BEGIN ${name}:validator#${validator.option} -->`}
+            <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
+          {`<!-- END ${name}:validator#${validator.option} -->`}
+          </Fragment>}
+        </Fragment>);
+      })}
+      {item.converter && <input type="hidden" name={`${name}{id}:c`} value={item.converter} />}
+      </Fragment>
+    );
+  }
+
   render() {
     const { unitGroupName, unitGroupTitle, acmscss, unitgroupitems, preview, direction } = this.props;
     const groupLength = unitgroupitems.length;
@@ -71,6 +97,7 @@ export default class UnitGroupSource extends Component {
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     <textarea name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title);
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
@@ -98,6 +125,7 @@ export default class UnitGroupSource extends Component {
                         </label>
                       </div>);
                     })}
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title);
                 } else if (item.type === 'file') {
                   let src = "/images/fileicon/";
@@ -126,6 +154,7 @@ export default class UnitGroupSource extends Component {
                     {item.fileNameMethod === 'fix' && item.fileName && <input type="hidden" name={`${item.name}{id}@filename[]`} value={item.fileName} />}
                     {item.fileNameMethod === 'asis' && <input type="hidden" name={`${item.name}{id}@filename[]`} value="@rawfilename" />}
                     <input type="file" name={`${item.name}{id}[]`} />
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title)
                 } else if (item.type === 'image') {
                   const style = {};
@@ -158,6 +187,7 @@ export default class UnitGroupSource extends Component {
                     {item.tiny && item.tinySize && <input type="hidden" name={`${item.name}{id}@${item.tiny}[]`} value={item.tinySize} />}
                     {item.large && item.largeSize && <input type="hidden" name={`${item.name}{id}@${item.large}[]`} value={item.largeSize} />}
                     {item.square && item.squareSize && <input type="hidden" name={`${item.name}{id}@${item.square}[]`} value={item.squareSize} />}
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title)
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td className="js-media-field">
@@ -206,8 +236,10 @@ export default class UnitGroupSource extends Component {
                       </div>
                     </Fragment>}
                     <input type="hidden" name={`${item.name}{id}[]`} value={preview ? '' : `{${item.name}}`} className="js-value" />
+                    {this.renderValidator(item, acmscss)}
                   </td>, item.title);
                 }
+                
               })}
             </ConditionalWrap>
             <td className="acms-admin-table-nowrap">
@@ -367,6 +399,7 @@ export default class UnitGroupSource extends Component {
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}`} />
             <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`}  />
             {item.noSearch && <input type="hidden" name={`${item.name}{id}:search`} value="0" />}
+            {this.renderValidator(item, acmscss)}
           </Fragment>);
         })}
         <input type="hidden" name="unit{id}[]" value={`@${unitGroupName}{id}`} />

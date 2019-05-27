@@ -447,7 +447,7 @@ export default class Base extends Component {
     }
   }
 
-  renderValidator() {
+  renderValidator(showValidator = true) {
     const { openValidator, validator, converter, type } = this.state;
     return (
       <div>
@@ -474,7 +474,7 @@ export default class Base extends Component {
               <input type="text" value={converter} onInput={(e) => { this.updateState('converter', e.target.value) }} className="acms-admin-form-width-quarter acms-admin-margin-right-small" placeholder="例）rs" />
               <button className="acms-admin-btn" onClick={this.updateState.bind(this, 'openConverter', true)}>コンバーター参照</button>
             </p>
-            <table className="acms-admin-table customFieldOptionTable">
+            {showValidator && <table className="acms-admin-table customFieldOptionTable">
               <tr>
                 <th>
                   入力チェック
@@ -533,8 +533,8 @@ export default class Base extends Component {
                   </td>
                 </tr>
                 ))}
-            </table>
-            <p><button onClick={this.addValidator.bind(this)} className="acms-admin-btn">追加</button></p>
+            </table>}
+            {showValidator && <p><button onClick={this.addValidator.bind(this)} className="acms-admin-btn">追加</button></p>}
           </div>
         }
       </div>

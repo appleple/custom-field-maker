@@ -108,6 +108,7 @@ export default class Unit extends Base {
               {this.renderMediaOption()}
             </div>
           }
+          {this.renderValidator(false)}
           {this.renderMake()}
         </div>
       </div>);

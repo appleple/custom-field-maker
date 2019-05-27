@@ -36,9 +36,9 @@ export default class UnitSource extends Component {
             <p className={classnames({ "acms-admin-text-error": acmscss })}>{validator.message}</p>
           {`<!-- END ${name}:validator#${validator.option} -->`}
           </Fragment>}
-        {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
         </Fragment>);
       })}
+      {item.converter && <input type="hidden" name={`${name}{id}:c`} value={item.converter} />}
       </Fragment>
     );
   }

@@ -60,6 +60,8 @@ export default class FieldGroupSource extends Component {
     >{children}</ConditionalWrap>);
   }
 
+  
+
   render() {
     const { groupName, groupTitle, acmscss, groupitems, preview, direction } = this.props;
     const groupLength = groupitems.length;
@@ -419,6 +421,10 @@ export default class FieldGroupSource extends Component {
               const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
               return <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} id={`${name}-v-${validator.option}`} />
             })}
+            {(() => {
+              const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+              return item.converter && (<input type="hidden" name={`${name}:c`} value={item.converter} />);
+            })()}
           </Fragment>);
         })}
         <input type="hidden" name="field[]" value={`@${groupName}`} />
