@@ -94,7 +94,7 @@ export default class UnitGroup extends Base {
   }
 
   render() {
-    const { groupAlert, duplicatedField, openGroup, unitGroupTitle, unitGroupName, type, title, name, tooltip } = this.state;
+    const { openGroup, unitGroupTitle, unitGroupName, type } = this.state;
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムユニット（フィールドグループ）</h2>
