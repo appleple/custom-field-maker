@@ -9,9 +9,9 @@ export default class UnitGroupConfirmSource extends Component {
     const { direction } = this.props;
     return (<ConditionalWrap
       condition={direction === 'vertical'}
-      wrap={(children) => <tr>
+      wrap={child => <tr>
         <th>{title}</th>
-        {children}
+        {child}
       </tr>}
     >{children}</ConditionalWrap>);
   }
@@ -19,15 +19,13 @@ export default class UnitGroupConfirmSource extends Component {
   render() {
     const { unitGroupTitle, unitGroupName, unitgroupitems, acmscss, direction } = this.props;
     return (<Fragment>
-      {unitGroupTitle && <h2 className={classnames({ "acms-admin-admin-title2": acmscss })}>{unitGroupTitle}</h2>}
-      <table className={classnames({ "adminTable acms-admin-table-admin-edit": acmscss })}>
+      {unitGroupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{unitGroupTitle}</h2>}
+      <table className={classnames({ 'adminTable acms-admin-table-admin-edit': acmscss })}>
         {direction === 'horizontal' &&
-          <thead className={classnames({ "acms-admin-hide-sp": acmscss })}>
+          <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
             <tr>
               <Fragment>
-                {unitgroupitems.map((item) => {
-                  return (<th className={classnames({ "acms-admin-table-left": acmscss })}>{item.title}</th>);
-                })}
+                {unitgroupitems.map(item => (<th className={classnames({ 'acms-admin-table-left': acmscss })}>{item.title}</th>))}
               </Fragment>
             </tr>
           </thead>
@@ -43,11 +41,11 @@ export default class UnitGroupConfirmSource extends Component {
                 if (item.type === 'text') {
                   return this.wrapTable(<td>
                     {`{${item.name}}`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     {`{${item.name}}[escape|nl2br]`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
                     {item.option.map((option) => {
@@ -57,8 +55,8 @@ export default class UnitGroupConfirmSource extends Component {
                       return (<div>
                         {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
                         {option.label}
-                        {`<!-- END_IF -->`}
-                      </div>)
+                        {'<!-- END_IF -->'}
+                      </div>);
                     })}
                   </td>, item.title);
                 } else if (item.type === 'radio') {
@@ -71,9 +69,9 @@ export default class UnitGroupConfirmSource extends Component {
                       ${option.label}
                       <!-- END_IF -->`);
                     })}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'file') {
-                  let src = "/images/fileicon/";
+                  let src = '/images/fileicon/';
                   let alt = 'file';
                   if (item.extension) {
                     src += `${item.extension}.svg`;
@@ -87,25 +85,29 @@ export default class UnitGroupConfirmSource extends Component {
                       <img src={src} width="64" height="64" alt={alt} />
                     </a>
                     {`<!-- END ${item.name}@path:veil -->`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'image') {
                   return this.wrapTable(<td>
                     {`<!-- BEGIN ${item.name}@path:veil -->`}
                     <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
                     {`<!-- END ${item.name}@path:veil -->`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td>
                     {item.mediaType !== 'file' &&
-                    <div style={{ width: '300px', height: '300px' }}>
-                      <img
-                        className="js-focused-image"
-                        data-focus-x={`{${item.name}@focalX}`}
-                        data-focus-y={`{${item.name}@focalY}`}
-                        alt=""
-                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`} />
-                    </div>}
-                    {item.mediaType === 'file' && 
+                    <Fragment>
+                      {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
+                        <img
+                          className="js-focused-image"
+                          data-focus-x={`{${item.name}@focalX}`}
+                          data-focus-y={`{${item.name}@focalY}`}
+                          alt={`{${item.name}@alt}`}
+                          src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`}
+                        />
+                      </div>}
+                      {!item.useFocusImage && <img alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />}
+                    </Fragment>}
+                    {item.mediaType === 'file' &&
                       <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>
                         <img src={`{${item.name}@thumbnail}`} style={{ width: '64px', height: 'auto' }} />
                       </a>
@@ -114,11 +116,11 @@ export default class UnitGroupConfirmSource extends Component {
                     <h3>
                       {`<!-- BEGIN_IF [{${item.name}@path}/em] -->`}
                       <a href={`{${item.name}@path}`}>{`{${item.name}@text}`}</a>
-                      {`<!-- ELSE -->`}
+                      {'<!-- ELSE -->'}
                       {`{${item.name}@text}`}
-                      {`<!-- END_IF -->`}
+                      {'<!-- END_IF -->'}
                     </h3>
-                    {`<!-- END_IF -->`}
+                    {'<!-- END_IF -->'}
                   </td>, item.title);
                 }
               })}
@@ -127,6 +129,6 @@ export default class UnitGroupConfirmSource extends Component {
           {`<!-- END ${unitGroupName}:loop -->`}
         </tbody>
       </table>
-    </Fragment>)
+    </Fragment>);
   }
 }

@@ -7,30 +7,34 @@ export default class Field extends Base {
   constructor(props) {
     super(props);
     this.state = {
-      type: "text",
-      title: "",
-      name: "",
-      tooltip: "",
+      type: 'text',
+      title: '',
+      name: '',
+      tooltip: '',
       alert: false,
-      duplicatedField: "",
-      path: "path",
-      converter: "",
-      normal: "size",
+      duplicatedField: '',
+      path: 'path',
+      converter: '',
+      normal: 'size',
       alt: false,
       useDropArea: true,
       dropAreaWidth: 200,
+      dropAreaHeight: 200,
+      useFocusImage: false,
+      focusImageWidth: 400,
+      focusImageHeight: 400,
       mediaType: 'image',
       resize: true,
       option: [{
-        value: "",
-        label: ""
+        value: '',
+        label: ''
       }],
       validator: [{
-        option: "",
-        value: "",
-        message: ""
+        option: '',
+        value: '',
+        message: ''
       }],
-      optionFormat: "pref",
+      optionFormat: 'pref',
       openValidator: false,
       openConverter: false,
       noSearch: false,
@@ -47,25 +51,25 @@ export default class Field extends Base {
     } else {
       this.setState({
         alert: true
-      })
+      });
     }
   }
 
   typeSelectRender() {
     const { type } = this.state;
-    
+
     return (
-      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
-      <option value="text">テキスト</option>
-      <option value="textarea">テキストエリア</option>
-      <option value="select">セレクトボックス</option>
-      <option value="radio">ラジオボタン</option>
-      <option value="checkbox">チェックボックス</option>
-      <option value="media">メディア</option>
-      <option value="file">ファイル</option>
-      <option value="image">画像</option>
-    </select>
-    )
+      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
+        <option value="text">テキスト</option>
+        <option value="textarea">テキストエリア</option>
+        <option value="select">セレクトボックス</option>
+        <option value="radio">ラジオボタン</option>
+        <option value="checkbox">チェックボックス</option>
+        <option value="media">メディア</option>
+        <option value="file">ファイル</option>
+        <option value="image">画像</option>
+      </select>
+    );
   }
 
   render() {
@@ -77,7 +81,7 @@ export default class Field extends Base {
           {this.renderModal()}
           {this.renderAlert()}
           {this.renderBasic()}
-          <div className="customFieldLine"></div>
+          <div className="customFieldLine" />
           {type === 'select' &&
             <div>
               {this.renderSnippet()}
@@ -107,7 +111,7 @@ export default class Field extends Base {
               {this.renderFile()}
             </div>
           }
-          {type === 'media' && 
+          {type === 'media' &&
             <div>
               {this.renderMediaOption()}
             </div>
@@ -116,6 +120,6 @@ export default class Field extends Base {
           {this.renderMake()}
         </div>
       </div>
-    )
+    );
   }
 }

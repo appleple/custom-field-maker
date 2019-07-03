@@ -8,10 +8,10 @@ import prefEnJson from '../../json/pref-en.json';
 import prefNumberJson from '../../json/pref-number.json';
 
 const snippetJSON = {
-  'pref': prefJson,
+  pref: prefJson,
   'pref-en': prefEnJson,
   'pref-number': prefNumberJson
-}
+};
 
 export default class Base extends Component {
 
@@ -29,19 +29,19 @@ export default class Base extends Component {
   removeAlert() {
     this.setState({
       alert: false
-    })
+    });
   }
 
   removeGroupAlert() {
     this.setState({
       groupAlert: false
-    })
+    });
   }
 
   removeDuplicateAlert() {
     this.setState({
       duplicatedField: false
-    })
+    });
   }
 
   clearValue() {
@@ -60,22 +60,26 @@ export default class Base extends Component {
       resize: true,
       useDropArea: true,
       dropAreaWidth: 200,
+      dropAreaHeight: 200,
+      useFocusImage: false,
+      focusImageWidth: 400,
+      focusImageHeight: 400,
       mediaType: 'image',
       openConverter: '',
       openValidator: '',
       converter: '',
       tooltip: ''
-    })
+    });
   }
 
   addOption() {
     const { option } = this.state;
     this.setState({
       option: [...option, {
-        value: "",
-        label: ""
+        value: '',
+        label: ''
       }]
-    })
+    });
   }
 
   removeOption(idx) {
@@ -117,9 +121,9 @@ export default class Base extends Component {
     const { validator } = this.state;
     this.setState({
       validator: [...validator, {
-        option: "",
-        value: "",
-        message: ""
+        option: '',
+        value: '',
+        message: ''
       }]
     });
   }
@@ -175,7 +179,7 @@ export default class Base extends Component {
 
   addConverter(item) {
     let { converter } = this.state;
-    const reg = new RegExp(item, "i");
+    const reg = new RegExp(item, 'i');
     if (converter.search(reg) === -1) {
       converter += item;
     } else {
@@ -196,12 +200,12 @@ export default class Base extends Component {
             (<tr>
               <td>
                 <div className="customFieldOptionTableInput">
-                  <span className="customFieldOptionTableAppend">項目名（label）</span><input type="text" value={item.label} onInput={(e) => { this.updateOptionLabel(idx, e.target.value) }} className="acms-admin-form-width-full" placeholder="例）東京都" />
+                  <span className="customFieldOptionTableAppend">項目名（label）</span><input type="text" value={item.label} onInput={(e) => { this.updateOptionLabel(idx, e.target.value); }} className="acms-admin-form-width-full" placeholder="例）東京都" />
                 </div>
               </td>
               <td>
                 <div className="customFieldOptionTableInput">
-                  <span className="customFieldOptionTableAppend">値（value）</span><input type="text" value={item.value} onInput={(e) => { this.updateOptionValue(idx, e.target.value) }} className="acms-admin-form-width-full" placeholder="例）tokyo" />
+                  <span className="customFieldOptionTableAppend">値（value）</span><input type="text" value={item.value} onInput={(e) => { this.updateOptionValue(idx, e.target.value); }} className="acms-admin-form-width-full" placeholder="例）tokyo" />
                 </div>
               </td>
               <td>
@@ -221,9 +225,9 @@ export default class Base extends Component {
     return (
       <div>
         <p>タイトル</p>
-        <p><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value) }} /></p>
+        <p><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value); }} /></p>
         <p>name属性</p>
-        <p><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value) }} /></p>
+        <p><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value); }} /></p>
       </div>
     );
   }
@@ -242,19 +246,19 @@ export default class Base extends Component {
       <p>
         <span className="customFieldBold">
           選択項目（option要素）
-          <i className="acms-admin-icon-tooltip" data-tip data-for="option-value-tip"></i>
+          <i className="acms-admin-icon-tooltip" data-tip data-for="option-value-tip" />
           <ReactTooltip id="option-value-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
             <span>option要素の選択項目になります。</span>
           </ReactTooltip>
         </span>
         <span className="customFieldUseSnippet">
-          <label className="customFieldUseSnippetLabel" style={{marginRight: '5px'}}>
-            <input type="checkbox" style={{ display: 'none' }} value="true" onChange={() => {this.updateState('useSnippet', !useSnippet)}}/>
-            {useSnippet ? "スニペットを使用しない" : "スニペットを使用する"}
+          <label className="customFieldUseSnippetLabel" style={{ marginRight: '5px' }}>
+            <input type="checkbox" style={{ display: 'none' }} value="true" onChange={() => { this.updateState('useSnippet', !useSnippet); }} />
+            {useSnippet ? 'スニペットを使用しない' : 'スニペットを使用する'}
           </label>
           {useSnippet &&
             <span>
-              <select style={{ verticalAlign: 'middle', marginRight: '5px' }} value={optionFormat} onChange={(e) => {this.updateState('optionFormat', e.target.value)}}>
+              <select style={{ verticalAlign: 'middle', marginRight: '5px' }} value={optionFormat} onChange={(e) => { this.updateState('optionFormat', e.target.value); }}>
                 <option value="pref">都道府県</option>
                 <option value="pref-en">都道府県（英語）</option>
                 <option value="pref-number">都道府県（連番）</option>
@@ -264,7 +268,7 @@ export default class Base extends Component {
           }
         </span>
       </p>
-    )
+    );
   }
 
   renderModal() {
@@ -369,7 +373,7 @@ export default class Base extends Component {
           </table>
         </ModalDialog>
       </div>
-    )
+    );
   }
 
   renderBasic() {
@@ -377,26 +381,26 @@ export default class Base extends Component {
     return (<table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
       <tr>
         <th className="acms-admin-table-left">入力欄の種類
-        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="type-tip"></i>
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="type-tip" />
           <ReactTooltip id="type-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
             <span>フィールドのタイプとなります。<br />選択しないと生成ボタンを押してもソースコードが生成されません。</span>
           </ReactTooltip>
           <span className="acms-admin-label acms-admin-label-danger">必須</span>
         </th>
         <th className="acms-admin-table-left">タイトル
-        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip"></i>
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip" />
           <ReactTooltip id="title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
             <span>見出しになります。</span>
           </ReactTooltip>
           <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
         <th className="acms-admin-table-left">フィールド
-        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip"></i>
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip" />
           <ReactTooltip id="field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
             <span>フィールド名です。name属性として使用されます。</span>
           </ReactTooltip>
           <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
         <th className="acms-admin-table-left">ツールチップ
-        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="tooltip-tip"></i>
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="tooltip-tip" />
           <ReactTooltip id="tooltip-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
             <span>カスタムフィールドの説明用のツールチップを付与します。</span>
           </ReactTooltip>
@@ -406,9 +410,9 @@ export default class Base extends Component {
         <td>
           {this.typeSelectRender()}
         </td>
-        <td><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
-        <td><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）name" /></td>
-        <td><input type="text" value={tooltip} onInput={(e) => { this.updateState('tooltip', e.target.value) }} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
+        <td><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
+        <td><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）name" /></td>
+        <td><input type="text" value={tooltip} onInput={(e) => { this.updateState('tooltip', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
       </tr>
     </table>);
   }
@@ -417,7 +421,7 @@ export default class Base extends Component {
     const { type } = this.state;
 
     return (
-      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
+      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
         <option value="select">セレクトボックス</option>
@@ -431,12 +435,12 @@ export default class Base extends Component {
   noSearchCheckRender() {
     const { noSearch } = this.state;
     return (<p className="acms-admin-form-checkbox">
-    <input type="checkbox" value={noSearch} id="noSearch-checkbox" onChange={this.updateState.bind(this, 'noSearch', !noSearch)}/>
-    <label htmlFor="noSearch-checkbox">
-      <i className="acms-admin-ico-checkbox"></i>
-      カスタムフィールド検索の対象外にする
+      <input type="checkbox" value={noSearch} id="noSearch-checkbox" onChange={this.updateState.bind(this, 'noSearch', !noSearch)} />
+      <label htmlFor="noSearch-checkbox">
+        <i className="acms-admin-ico-checkbox" />
+        カスタムフィールド検索の対象外にする
     </label>
-  </p>);
+    </p>);
   }
 
   backState() {
@@ -452,10 +456,10 @@ export default class Base extends Component {
     return (
       <div>
         <p>
-          <label style={{ color: "#006DEC", cursor: "pointer" }}>
+          <label style={{ color: '#006DEC', cursor: 'pointer' }}>
             <input type="checkbox" value={openValidator} onChange={this.updateState.bind(this, 'openValidator', !openValidator)} style={{ display: 'none' }} />
             オプション</label>
-          <i className="acms-admin-icon-tooltip" data-for="option-tip" data-tip="React-tooltip" style={{ marginLeft: "5px" }}></i>
+          <i className="acms-admin-icon-tooltip" data-for="option-tip" data-tip="React-tooltip" style={{ marginLeft: '5px' }} />
           <ReactTooltip id="option-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
             <span>変換・入力チェック用の項目を表示します。</span>
           </ReactTooltip>
@@ -465,43 +469,43 @@ export default class Base extends Component {
             {/text|textarea|radio|select/.exec(type) && this.noSearchCheckRender()}
             <p className="customFieldBold">
               テキストの変換
-              <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip"></i>
+              <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip" />
               <ReactTooltip id="convert-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
                 <span>テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。</span>
               </ReactTooltip>
             </p>
             <p>
-              <input type="text" value={converter} onInput={(e) => { this.updateState('converter', e.target.value) }} className="acms-admin-form-width-quarter acms-admin-margin-right-small" placeholder="例）rs" />
+              <input type="text" value={converter} onInput={(e) => { this.updateState('converter', e.target.value); }} className="acms-admin-form-width-quarter acms-admin-margin-right-small" placeholder="例）rs" />
               <button className="acms-admin-btn" onClick={this.updateState.bind(this, 'openConverter', true)}>コンバーター参照</button>
             </p>
             {showValidator && <table className="acms-admin-table customFieldOptionTable">
               <tr>
                 <th>
                   入力チェック
-                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-tip"></i>
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-tip" />
                   <ReactTooltip id="validate-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
                     <span>フィールドに入力された値が条件に合っているかをチェックします。</span>
                   </ReactTooltip>
                 </th>
                 <th>値
-                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-value-tip"></i>
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-value-tip" />
                   <ReactTooltip id="validate-value-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
                     <span>最小文字数や、正規表現チェックをバリデータに設定した際に設定する値となります。</span>
                   </ReactTooltip>
                 </th>
                 <th>
                   メッセージ
-                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-message-tip"></i>
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-message-tip" />
                   <ReactTooltip id="validate-message-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
                     <span>フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。</span>
                   </ReactTooltip>
                 </th>
-                <th></th>
+                <th />
               </tr>
               {validator.map((item, idx) =>
                 (<tr>
                   <td>
-                    <select className="acms-admin-form-width-full" onChange={(e) => { this.updateValidatorOption(idx, e.target.value) }}>
+                    <select className="acms-admin-form-width-full" onChange={(e) => { this.updateValidatorOption(idx, e.target.value); }}>
                       <option value="">▼ バリデータを選択</option>
                       <optgroup label="入力値の制限">
                         <option value="required">必須 ( required )</option>
@@ -523,10 +527,10 @@ export default class Base extends Component {
                     </select>
                   </td>
                   <td>
-                    <input type="text" value={item.value} onInput={(e) => { this.updateValidatorValue(idx, e.target.value) }} className="acms-admin-form-width-full" />
+                    <input type="text" value={item.value} onInput={(e) => { this.updateValidatorValue(idx, e.target.value); }} className="acms-admin-form-width-full" />
                   </td>
                   <td>
-                    <input type="text" value={item.message} onInput={(e) => { this.updateValidatorMessage(idx, e.target.value) }} className="acms-admin-form-width-full" />
+                    <input type="text" value={item.message} onInput={(e) => { this.updateValidatorMessage(idx, e.target.value); }} className="acms-admin-form-width-full" />
                   </td>
                   <td>
                     <button onClick={this.removeValidator.bind(this, idx)} className="acms-admin-btn-admin acms-admin-btn-admin-danger">削除</button>
@@ -548,7 +552,7 @@ export default class Base extends Component {
         <button onClick={this.submit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn" style={{ marginRight: '5px' }}>生成</button>
         <button onClick={this.backState.bind(this)} className="acms-admin-btn-admin">元に戻す</button>
       </p>
-    )
+    );
   }
 
   renderImage() {
@@ -557,28 +561,28 @@ export default class Base extends Component {
         <tr>
           <th className="acms-admin-table-left">
             画像サイズ
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-size-tip"></i>
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-size-tip" />
             <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
               <span>通常画像の画像サイズを指定します</span>
             </ReactTooltip>
           </th>
           <th className="acms-admin-table-left">
             large画像生成
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-large-size-tip"></i>
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-large-size-tip" />
             <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
               <span>通常画像よりも大きい画像を生成できます。</span>
             </ReactTooltip>
           </th>
           <th className="acms-admin-table-left">
             tiny画像生成
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-tiny-size-tip"></i>
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-tiny-size-tip" />
             <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
               <span>通常画像よりも小さい画像を生成できます。</span>
             </ReactTooltip>
           </th>
           <th className="acms-admin-table-left">
             square画像生成
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-square-size-tip"></i>
+            <i className="acms-admin-icon-tooltip" data-tip data-for="image-square-size-tip" />
             <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
               <span>通常画像を指定したサイズで中央から正方形にトリミングして生成します。</span>
             </ReactTooltip>
@@ -588,13 +592,13 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="normal" onChange={(e) => { this.updateState('normal', e.target.value) }} className="acms-admin-margin-right-small">
+                <select name="normal" onChange={(e) => { this.updateState('normal', e.target.value); }} className="acms-admin-margin-right-small">
                   <option value="size">長辺</option>
                   <option value="width">幅</option>
                   <option value="height">高さ</option>
                 </select>
                 <span className="input-append">
-                  <input type="text" autocomplete="off" name="normalSize" onInput={(e) => { this.updateState('normalSize', e.target.value) }} className="customFieldSizeInput" placeholder="例）200px" /><span className="add-on"> px</span>
+                  <input type="text" autoComplete="off" name="normalSize" onInput={(e) => { this.updateState('normalSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）200px" /><span className="add-on"> px</span>
                 </span>
               </div>
             </div>
@@ -602,13 +606,13 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="large" onChange={(e) => { this.updateState('large', e.target.value) }} className="acms-admin-margin-right-small">
+                <select name="large" onChange={(e) => { this.updateState('large', e.target.value); }} className="acms-admin-margin-right-small">
                   <option value="">作らない</option>
                   <option value="largeWidth">width</option>
                   <option value="largeHeight">height</option>
                 </select>
                 <span className="input-append">
-                  <input type="text" autocomplete="off" name="largeSize" onInput={(e) => { this.updateState('largeSize', e.target.value) }} className="customFieldSizeInput" placeholder="例）400px" /><span className="add-on"> px</span>
+                  <input type="text" autoComplete="off" name="largeSize" onInput={(e) => { this.updateState('largeSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）400px" /><span className="add-on"> px</span>
                 </span>
               </div>
             </div>
@@ -616,13 +620,13 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="tiny" onChange={(e) => { this.updateState('tiny', e.target.value) }} className="acms-admin-margin-right-small">
+                <select name="tiny" onChange={(e) => { this.updateState('tiny', e.target.value); }} className="acms-admin-margin-right-small">
                   <option value="">作らない</option>
                   <option value="tinyWidth">width</option>
                   <option value="tinyHeight">height</option>
                 </select>
                 <span className="input-append">
-                  <input type="text" autocomplete="off" name="tinySize" onInput={(e) => { this.updateState('tinySize', e.target.value) }} className="customFieldSizeInput" placeholder="例）100px" /><span className="add-on"> px</span>
+                  <input type="text" autoComplete="off" name="tinySize" onInput={(e) => { this.updateState('tinySize', e.target.value); }} className="customFieldSizeInput" placeholder="例）100px" /><span className="add-on"> px</span>
                 </span>
               </div>
             </div>
@@ -630,19 +634,19 @@ export default class Base extends Component {
           <td>
             <div className="acms-form-group">
               <div className="controls">
-                <select name="square" onChange={(e) => { this.updateState('square', e.target.value) }} className="acms-admin-margin-right-small">
+                <select name="square" onChange={(e) => { this.updateState('square', e.target.value); }} className="acms-admin-margin-right-small">
                   <option value="">作らない</option>
                   <option value="squareWidth">width</option>
                 </select>
                 <span className="input-append">
-                  <input type="text" autocomplete="off" name="squareSize" onInput={(e) => { this.updateState('squareSize', e.target.value) }} className="customFieldSizeInput" placeholder="例）250px" /><span className="add-on"> px</span>
+                  <input type="text" autoComplete="off" name="squareSize" onInput={(e) => { this.updateState('squareSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）250px" /><span className="add-on"> px</span>
                 </span>
               </div>
             </div>
           </td>
         </tr>
       </table>
-    )
+    );
   }
 
   renderImageResize() {
@@ -652,14 +656,14 @@ export default class Base extends Component {
         <p className="acms-admin-form-checkbox">
           <input type="checkbox" onChange={this.updateState.bind(this, 'resize', !resize)} checked={resize} id="resize-checkbox" />
           <label htmlFor="resize-checkbox">
-            <i className="acms-admin-ico-checkbox"></i>
+            <i className="acms-admin-ico-checkbox" />
             ブラウザ側のリサイズ機能を使用する
           </label>
         </p>
         <p className="acms-admin-form-checkbox">
           <input type="checkbox" onChange={this.updateState.bind(this, 'alt', !alt)} checked={alt} id="alt-checkbox" />
           <label htmlFor="alt-checkbox">
-            <i className="acms-admin-ico-checkbox"></i> alt表示用入力欄を使用する
+            <i className="acms-admin-ico-checkbox" /> alt表示用入力欄を使用する
         </label>
         </p>
       </div>
@@ -667,48 +671,75 @@ export default class Base extends Component {
   }
 
   renderMediaOption() {
-    const { mediaType, useDropArea, dropAreaWidth } = this.state;
+    const { mediaType, useDropArea, useFocusImage, dropAreaWidth, dropAreaHeight, focusImageWidth, focusImageHeight } = this.state;
     return (
       <div>
         <p style={{ marginBottom: '5px' }}>選べるメディアのタイプを選択</p>
         <p className="acms-admin-form-radio">
           <input type="checkbox" onChange={this.updateState.bind(this, 'mediaType', 'all')} checked={mediaType === 'all'} id="media-type-all-radio" />
           <label htmlFor="media-type-all-radio">
-            <i className="acms-admin-ico-radio"></i>
+            <i className="acms-admin-ico-radio" />
             全てのタイプ
           </label>
         </p>
         <p className="acms-admin-form-radio">
           <input type="checkbox" onChange={this.updateState.bind(this, 'mediaType', 'image')} checked={mediaType === 'image'} id="media-type-image-radio" />
           <label htmlFor="media-type-image-radio">
-            <i className="acms-admin-ico-radio"></i>
+            <i className="acms-admin-ico-radio" />
             画像のみ
           </label>
         </p>
         <p className="acms-admin-form-radio">
           <input type="checkbox" onChange={this.updateState.bind(this, 'mediaType', 'file')} checked={mediaType === 'file'} id="media-type-file-radio" />
           <label htmlFor="media-type-file-radio">
-            <i className="acms-admin-ico-radio"></i>
+            <i className="acms-admin-ico-radio" />
             ファイルのみ
           </label>
         </p>
         <p style={{ marginBottom: '5px' }}>ドロップエリア</p>
         <div style={{ display: 'flex' }}>
           <div className="acms-admin-form-checkbox" style={{ paddingTop: '5px' }}>
-            <input type="checkbox" onChange={() => {
-              if (useDropArea) {
-                this.updateState('useDropArea', false);
-              } else {
-                this.updateState('useDropArea', true);
-              }
-            }} checked={useDropArea} id="media-use-droparea" />
+            <input
+              type="checkbox" onChange={() => {
+                if (useDropArea) {
+                  this.updateState('useDropArea', false);
+                } else {
+                  this.updateState('useDropArea', true);
+                }
+              }} checked={useDropArea} id="media-use-droparea"
+            />
             <label htmlFor="media-use-droparea">
-              <i className="acms-admin-ico-checkbox"></i>
+              <i className="acms-admin-ico-checkbox" />
               ドロップエリアを利用する
             </label>
           </div>
           {useDropArea && <div>
             幅 <input type="text" defaultValue={dropAreaWidth} /> px
+            <span style={{ display: 'inline-block', width: '15px', height: '1px' }} />
+            高さ <input type="text" defaultValue={dropAreaHeight} /> px
+          </div>}
+        </div>
+        <p style={{ marginBottom: '5px' }}>トリミング</p>
+        <div style={{ display: 'flex' }}>
+          <div className="acms-admin-form-checkbox" style={{ paddingTop: '5px' }}>
+            <input
+              type="checkbox" onChange={() => {
+                if (useFocusImage) {
+                  this.updateState('useFocusImage', false);
+                } else {
+                  this.updateState('useFocusImage', true);
+                }
+              }} checked={useFocusImage} id="media-use-focusImage"
+            />
+            <label htmlFor="media-use-focusImage">
+              <i className="acms-admin-ico-checkbox" />
+              中心点を基準に画像をトリミングして表示する
+            </label>
+          </div>
+          {useFocusImage && <div>
+            幅 <input type="text" defaultValue={focusImageWidth} /> px
+            <span style={{ display: 'inline-block', width: '15px', height: '1px' }} />
+            高さ <input type="text" defaultValue={focusImageHeight} /> px
           </div>}
         </div>
       </div>
@@ -718,11 +749,11 @@ export default class Base extends Component {
   renderAlert() {
     const { alert } = this.state;
     if (alert) {
-      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{fontSize: '12px'}}>
-          <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true"></span>
-          typeとタイトルとフィールド、全てを入力しないとソースコードを生成できません。
+      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
+        <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
+        typeとタイトルとフィールド、全てを入力しないとソースコードを生成できません。
           <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeAlert.bind(this)}>×</button>
-        </p>)
+      </p>);
     }
     return null;
   }
@@ -730,11 +761,11 @@ export default class Base extends Component {
   renderGroupAlert() {
     const { groupAlert } = this.state;
     if (groupAlert) {
-      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{fontSize: '12px'}}>
-      <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true"></span>
-      group名を入力しないとgroupを生成できません。
+      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
+        <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
+        group名を入力しないとgroupを生成できません。
       <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeGroupAlert.bind(this)}>×</button>
-    </p>);
+      </p>);
     }
     return null;
   }
@@ -742,11 +773,11 @@ export default class Base extends Component {
   renderDuplicateAlert() {
     const { duplicatedField } = this.state;
     if (duplicatedField) {
-      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{fontSize: '12px'}}>
-      <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true"></span>
-      group名とフィールド名を同じ値にすることはできません。
+      return (<p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
+        <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
+        group名とフィールド名を同じ値にすることはできません。
       <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeDuplicateAlert.bind(this)}>×</button>
-    </p>)
+      </p>);
     }
     return null;
   }
@@ -757,37 +788,37 @@ export default class Base extends Component {
       <div className="customFieldFileContainer">
         <div className="customFieldFileNameOptContainer">
           <div className="acms-admin-form-radio">
-            <input type="radio" checked={fileNameMethod === 'random'} id="file-name-method-random" onChange={this.updateState.bind(this, 'fileNameMethod', 'random')}/>
+            <input type="radio" checked={fileNameMethod === 'random'} id="file-name-method-random" onChange={this.updateState.bind(this, 'fileNameMethod', 'random')} />
             <label htmlFor="file-name-method-random">
-              <i className="acms-admin-ico-radio"></i>
+              <i className="acms-admin-ico-radio" />
               ファイル名（ランダム）
             </label>
           </div>
           <div className="acms-admin-form-radio">
-            <input type="radio" checked={fileNameMethod === 'fix'} id="file-name-method-fix" onChange={this.updateState.bind(this, 'fileNameMethod', 'fix')}/>
+            <input type="radio" checked={fileNameMethod === 'fix'} id="file-name-method-fix" onChange={this.updateState.bind(this, 'fileNameMethod', 'fix')} />
             <label htmlFor="file-name-method-fix">
-              <i className="acms-admin-ico-radio"></i>
+              <i className="acms-admin-ico-radio" />
               ファイル名（固定）
             </label>
           </div>
           <div className="acms-admin-form-radio">
-            <input type="radio" checked={fileNameMethod === 'asis'} id="file-name-method-asis" onChange={this.updateState.bind(this, 'fileNameMethod', 'asis')}/>
+            <input type="radio" checked={fileNameMethod === 'asis'} id="file-name-method-asis" onChange={this.updateState.bind(this, 'fileNameMethod', 'asis')} />
             <label htmlFor="file-name-method-asis">
-              <i className="acms-admin-ico-radio"></i>
+              <i className="acms-admin-ico-radio" />
               ファイル名（そのまま）
             </label>
           </div>
         </div>
         <div>
-        <div className="customFieldInputGroup customFieldInputFileGroup">
-          {fileNameMethod === 'random' && <input type="text" placeholder="ランダムの文字列が入ります" disabled/>}
-          {fileNameMethod === 'fix' && <input type="text" value={fileName} onInput={(e) => { this.updateState('fileName', e.target.value) }} placeholder="例）example.pdf" />}
-          {fileNameMethod === 'asis' && <input type="text" placeholder="アップロードされたファイル名" disabled/>}
-        </div>
+          <div className="customFieldInputGroup customFieldInputFileGroup">
+            {fileNameMethod === 'random' && <input type="text" placeholder="ランダムの文字列が入ります" disabled />}
+            {fileNameMethod === 'fix' && <input type="text" value={fileName} onInput={(e) => { this.updateState('fileName', e.target.value); }} placeholder="例）example.pdf" />}
+            {fileNameMethod === 'asis' && <input type="text" placeholder="アップロードされたファイル名" disabled />}
+          </div>
         </div>
         <div>
           <p>拡張子制限（pdfなど）</p>
-          <input type="text" value={extension} onInput={(e) => { this.updateState('extension', e.target.value) }} placeholder="例）pdf" />
+          <input type="text" value={extension} onInput={(e) => { this.updateState('extension', e.target.value); }} placeholder="例）pdf" />
         </div>
       </div>
     );

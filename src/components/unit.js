@@ -6,26 +6,26 @@ export default class Unit extends Base {
   constructor(props) {
     super(props);
     this.state = {
-      type: "text",
-      title: "",
-      name: "",
-      tooltip: "",
-      alert: "",
-      duplicatedField: "",
-      path: "path",
-      converter: "",
-      normal: "size",
-      resize: "true",
+      type: 'text',
+      title: '',
+      name: '',
+      tooltip: '',
+      alert: '',
+      duplicatedField: '',
+      path: 'path',
+      converter: '',
+      normal: 'size',
+      resize: 'true',
       option: [{
-        value: "",
-        label: ""
+        value: '',
+        label: ''
       }],
       validator: [{
-        option: "",
-        value: "",
-        message: ""
+        option: '',
+        value: '',
+        message: ''
       }],
-      optionFormat: "pref",
+      optionFormat: 'pref',
       openValidator: false,
       openConverter: false,
       alt: false,
@@ -33,6 +33,10 @@ export default class Unit extends Base {
       fileNameMethod: 'random',
       useDropArea: true,
       dropAreaWidth: 200,
+      dropAreaHeight: 200,
+      useFocusImage: false,
+      focusImageWidth: 400,
+      focusImageHeight: 400,
       mediaType: 'image'
     };
   }
@@ -45,15 +49,15 @@ export default class Unit extends Base {
     } else {
       this.setState({
         alert: true
-      })
+      });
     }
   }
 
   typeSelectRender() {
     const { type } = this.state;
-    
+
     return (
-      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value) }}>
+      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
         <option value="select">セレクトボックス</option>
@@ -62,7 +66,7 @@ export default class Unit extends Base {
         <option value="media">メディア</option>
         <option value="image">画像</option>
         <option value="file">ファイル</option>
-    </select>);
+      </select>);
   }
 
   render() {
@@ -74,7 +78,7 @@ export default class Unit extends Base {
           {this.renderModal()}
           {this.renderAlert()}
           {this.renderBasic()}
-          <div className="customFieldLine"></div>
+          <div className="customFieldLine" />
           {type === 'select' &&
             <div>
               {this.renderSnippet()}
@@ -104,7 +108,7 @@ export default class Unit extends Base {
               {this.renderFile()}
             </div>
           }
-          {type === 'media' && 
+          {type === 'media' &&
             <div>
               {this.renderMediaOption()}
             </div>
