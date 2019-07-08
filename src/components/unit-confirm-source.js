@@ -9,7 +9,7 @@ export default class UnitConfirmSource extends Component {
   render() {
     const { customunit, acmscss } = this.props;
 
-    return (<table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
+    return (<table className={classnames({ 'acms-admin-table-admin-edit acms-admin-table-admin-edit-bordered': acmscss })}>
       {customunit.map((item) => {
         if (!item.name) {
           return null;

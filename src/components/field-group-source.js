@@ -67,7 +67,7 @@ export default class FieldGroupSource extends Component {
 
     return (<Fragment>
       {groupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{groupTitle}</h2>}
-      {groupName && <table className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })} ref={table => this.table = table}>
+      {groupName && <table className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit acms-admin-table-admin-edit-bordered': acmscss })} ref={table => this.table = table}>
         <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
           <tr>
             <th className={classnames({ 'acms-admin-table-left acms-admin-admin-config-table-item-handle': acmscss })}>&nbsp;</th>

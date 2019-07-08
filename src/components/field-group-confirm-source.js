@@ -9,7 +9,7 @@ export default class FieldGroupConfirmSource extends Component {
     const { direction } = this.props;
     return (<ConditionalWrap
       condition={direction === 'vertical'}
-      wrap={(children) => <tr>
+      wrap={children => <tr>
         <th>{title}</th>
         {children}
       </tr>}
@@ -19,14 +19,12 @@ export default class FieldGroupConfirmSource extends Component {
   render() {
     const { groupTitle, groupName, groupitems, acmscss, direction } = this.props;
     return (<Fragment>
-      {groupTitle && <h2 className={classnames({ "acms-admin-admin-title2": acmscss })}>{groupTitle}</h2>}
-      <table className={classnames({ "adminTable acms-admin-table-admin-edit": acmscss })}>
+      {groupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{groupTitle}</h2>}
+      <table className={classnames({ 'adminTable acms-admin-table-admin-edit acms-admin-table-admin-edit-bordered': acmscss })}>
         {direction === 'horizontal' &&
-          <thead className={classnames({ "acms-admin-hide-sp": acmscss })}>
+          <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
             <tr>
-              {groupitems.map((item) => {
-                return (<th className={classnames({ "acms-admin-table-left": acmscss })}>{item.title}</th>);
-              })}
+              {groupitems.map((item) => (<th className={classnames({ "acms-admin-table-left": acmscss })}>{item.title}</th>))}
             </tr>
           </thead>
         }
@@ -41,11 +39,11 @@ export default class FieldGroupConfirmSource extends Component {
                 if (item.type === 'text') {
                   return this.wrapTable(<td>
                     {`{${item.name}}`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'textarea') {
                   return this.wrapTable(<td>
                     {`{${item.name}}[escape|nl2br]`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'select') {
                   return this.wrapTable(<td>
                     {item.option.map((option) => {
@@ -55,8 +53,8 @@ export default class FieldGroupConfirmSource extends Component {
                       return (<div>
                         {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
                         {option.label}
-                        {`<!-- END_IF -->`}
-                      </div>)
+                        {'<!-- END_IF -->'}
+                      </div>);
                     })}
                   </td>, item.title);
                 } else if (item.type === 'radio') {
@@ -69,9 +67,9 @@ export default class FieldGroupConfirmSource extends Component {
                         ${option.label}
                         <!-- END_IF -->`);
                     })}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'file') {
-                  let src = "/images/fileicon/";
+                  let src = '/images/fileicon/';
                   let alt = 'file';
                   if (item.extension) {
                     src += `${item.extension}.svg`;
@@ -86,13 +84,13 @@ export default class FieldGroupConfirmSource extends Component {
                       <img src={src} width="64" height="64" alt={alt} />
                     </a>
                     {`<!-- END ${item.name}@path:veil -->`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'image') {
                   return this.wrapTable(<td>
                     {`<!-- BEGIN ${item.name}@path:veil -->`}
-                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ "acms-admin-img-responsive": acmscss })} alt={`{${item.name}@alt}`} />
+                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ 'acms-admin-img-responsive': acmscss })} alt={`{${item.name}@alt}`} />
                     {`<!-- END ${item.name}@path:veil -->`}
-                  </td>, item.title)
+                  </td>, item.title);
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td>
                     {item.mediaType !== 'file' &&
@@ -102,10 +100,11 @@ export default class FieldGroupConfirmSource extends Component {
                           data-focus-x={`{${item.name}@focalX}`}
                           data-focus-y={`{${item.name}@focalY}`}
                           alt=""
-                          src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`} />
+                          src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`}
+                        />
                       </div>
                     }
-                    {item.mediaType === 'file' && 
+                    {item.mediaType === 'file' &&
                       <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>
                         <img src={`{${item.name}@thumbnail}`} style={{ width: '64px', height: 'auto' }} />
                       </a>
@@ -114,12 +113,12 @@ export default class FieldGroupConfirmSource extends Component {
                     <h3>
                       {`<!-- BEGIN_IF [{${item.name}@path}/em] -->`}
                       <a href={`{${item.name}@path}`}>{`{${item.name}@text}`}</a>
-                      {`<!-- ELSE -->`}
+                      {'<!-- ELSE -->'}
                       {`{${item.name}@text}`}
-                      {`<!-- END_IF -->`}
+                      {'<!-- END_IF -->'}
                     </h3>
-                    {`<!-- END_IF -->`}
-                  </td>, item.title)
+                    {'<!-- END_IF -->'}
+                  </td>, item.title);
                 }
               })}
             </ConditionalWrap>
@@ -127,6 +126,6 @@ export default class FieldGroupConfirmSource extends Component {
           {`<!-- END ${groupName}:loop -->`}
         </tbody>
       </table>
-    </Fragment>)
+    </Fragment>);
   }
 }

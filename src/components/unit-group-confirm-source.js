@@ -20,7 +20,7 @@ export default class UnitGroupConfirmSource extends Component {
     const { unitGroupTitle, unitGroupName, unitgroupitems, acmscss, direction } = this.props;
     return (<Fragment>
       {unitGroupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{unitGroupTitle}</h2>}
-      <table className={classnames({ 'adminTable acms-admin-table-admin-edit': acmscss })}>
+      <table className={classnames({ 'adminTable acms-admin-table-admin-edit acms-admin-table-admin-edit-bordered': acmscss })}>
         {direction === 'horizontal' &&
           <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
             <tr>
