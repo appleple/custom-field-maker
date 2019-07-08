@@ -20,7 +20,7 @@ export default class FieldGroupConfirmSource extends Component {
     const { groupTitle, groupName, groupitems, acmscss, direction } = this.props;
     return (<Fragment>
       {groupTitle && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{groupTitle}</h2>}
-      <table className={classnames({ 'adminTable acms-admin-table-admin-edit acms-admin-table-admin-edit-bordered': acmscss })}>
+      <table className={classnames({ 'adminTable acms-admin-table-admin-edit': acmscss })}>
         {direction === 'horizontal' &&
           <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
             <tr>
