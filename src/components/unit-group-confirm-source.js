@@ -96,6 +96,9 @@ export default class UnitGroupConfirmSource extends Component {
                   return this.wrapTable(<td>
                     {item.mediaType !== 'file' &&
                     <Fragment>
+                      {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                      <a href={`{${item.name}@link}`}>
+                      {'<!-- END_IF -->'}
                       {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
                         <img
                           className="js-focused-image"
@@ -106,20 +109,17 @@ export default class UnitGroupConfirmSource extends Component {
                         />
                       </div>}
                       {!item.useFocusImage && <img alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />}
+                    {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                    </a>
+                    {'<!-- END_IF -->'}
                     </Fragment>}
                     {item.mediaType === 'file' &&
                       <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>
                         <img src={`{${item.name}@thumbnail}`} style={{ width: '64px', height: 'auto' }} />
                       </a>
                     }
-                    {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
-                    <h3>
-                      {`<!-- BEGIN_IF [{${item.name}@path}/em] -->`}
-                      <a href={`{${item.name}@path}`}>{`{${item.name}@text}`}</a>
-                      {'<!-- ELSE -->'}
-                      {`{${item.name}@text}`}
-                      {'<!-- END_IF -->'}
-                    </h3>
+                    {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
+                    <p>{`{${item.name}@text}`}</p>
                     {'<!-- END_IF -->'}
                   </td>, item.title);
                 }

@@ -93,16 +93,28 @@ export default class FieldGroupConfirmSource extends Component {
                   </td>, item.title);
                 } else if (item.type === 'media') {
                   return this.wrapTable(<td>
-                    {item.mediaType !== 'file' &&
-                      <div style={{ width: '400px', height: '400px' }}>
+                  {item.mediaType !== 'file' &&
+                    <Fragment>
+                      {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                      <a href={`{${item.name}@link}`}>
+                      {'<!-- END_IF -->'}
+                      {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
                         <img
                           className="js-focused-image"
                           data-focus-x={`{${item.name}@focalX}`}
                           data-focus-y={`{${item.name}@focalY}`}
-                          alt=""
-                          src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(400)]`}
+                          alt={`{${item.name}@alt}`}
+                          src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
                         />
-                      </div>
+                      </div>}
+                      {!item.useFocusImage && <img
+                        alt={`{${item.name}@alt}`}
+                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
+                      />}
+                      {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                      </a>
+                      {'<!-- END_IF -->'}
+                    </Fragment>
                     }
                     {item.mediaType === 'file' &&
                       <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>
@@ -110,13 +122,7 @@ export default class FieldGroupConfirmSource extends Component {
                       </a>
                     }
                     {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
-                    <h3>
-                      {`<!-- BEGIN_IF [{${item.name}@path}/em] -->`}
-                      <a href={`{${item.name}@path}`}>{`{${item.name}@text}`}</a>
-                      {'<!-- ELSE -->'}
-                      {`{${item.name}@text}`}
-                      {'<!-- END_IF -->'}
-                    </h3>
+                    <p>{`{${item.name}@text}`}</p>
                     {'<!-- END_IF -->'}
                   </td>, item.title);
                 }

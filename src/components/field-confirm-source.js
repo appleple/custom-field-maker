@@ -95,6 +95,9 @@ export default class FieldConfirmSource extends Component {
             <td>
               {item.mediaType !== 'file' &&
                 <Fragment>
+                  {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                  <a href={`{${item.name}@link}`}>
+                  {'<!-- END_IF -->'}
                   {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
                     <img
                       className="js-focused-image"
@@ -110,6 +113,9 @@ export default class FieldConfirmSource extends Component {
                       src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
                     />
                   }
+                  {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                  </a>
+                  {'<!-- END_IF -->'}
                 </Fragment>
               }
               {item.mediaType === 'file' &&
@@ -121,14 +127,8 @@ export default class FieldConfirmSource extends Component {
                   />
                 </a>
               }
-              {`<!-- BEGIN_IF [{${item.name}@caption}/nem] -->`}
-              <h3>
-                {`<!-- BEGIN_IF [{${item.name}@path}/em] -->`}
-                <a href={`{${item.name}@path}`}>{`{${item.name}@text}`}</a>
-                {'<!-- ELSE -->'}
-                {`{${item.name}@text}`}
-                {'<!-- END_IF -->'}
-              </h3>
+              {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
+              <p>{`{${item.name}@text}`}</p>
               {'<!-- END_IF -->'}
             </td>
           </tr>);
