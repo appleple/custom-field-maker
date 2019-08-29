@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { XmlEntities } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/highlight';
 import 'highlight.js/styles/default.css';
 import 'highlight.js/styles/xcode.css';
+import xml from 'highlight.js/lib/languages/xml';
+hljs.registerLanguage('xml', xml);
 
 const entities = new XmlEntities();
 
