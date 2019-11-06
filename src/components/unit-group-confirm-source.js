@@ -122,6 +122,18 @@ export default class UnitGroupConfirmSource extends Component {
                     <p>{`{${item.name}@text}`}</p>
                     {'<!-- END_IF -->'}
                   </td>, item.title);
+                } else if (item.type === 'lite-editor') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}}[raw]`}
+                  </td>, item.name);
+                } else if (item.type === 'paper-editor') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}@html}[raw]`}
+                  </td>, item.name);
+                } else if (item.type === 'table') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}}[raw]`}
+                  </td>, item.name);
                 }
               })}
             </ConditionalWrap>

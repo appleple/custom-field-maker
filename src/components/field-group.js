@@ -23,6 +23,8 @@ export default class FieldGroup extends Base {
       useFocusImage: false,
       focusImageWidth: 400,
       focusImageHeight: 400,
+      startHeadingLevel: 2,
+      endHeadingLevel: 3,
       mediaType: 'image',
       option: [{
         value: '',
@@ -36,6 +38,7 @@ export default class FieldGroup extends Base {
       optionFormat: 'pref',
       groupTitle: '',
       groupName: '',
+      useExpand: true,
       openValidator: false,
       openConverter: false,
       groupAlert: false,
@@ -189,6 +192,11 @@ export default class FieldGroup extends Base {
               {type === 'media' &&
                 <div>
                   {this.renderMediaOption()}
+                </div>
+              }
+              {type === 'paper-editor' &&
+                <div>
+                  {this.renderRichEditorOption()}
                 </div>
               }
               {this.renderValidator()}

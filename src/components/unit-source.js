@@ -225,6 +225,69 @@ export default class UnitSource extends Component {
                 {this.renderValidator(item, acmscss)}
               </td>
             </tr>);
+          } else if (item.type === 'lite-editor') {
+            return (
+              <tr>
+                {this.renderTh(item, acmscss)}
+                <td>
+                  <textarea name={`${item.name}{id}`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })} {...(jsValidator ? { 'data-validator': item.name } : {})}>{`{${item.name}}`}</textarea>
+                  <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+                  {this.renderValidator(item, acmscss)}
+                  {this.renderNoSearch(item, acmscss)}
+                </td>
+              </tr>
+            );
+          } else if (item.type === 'paper-editor') {
+            return  (
+              <tr>
+                {this.renderTh(item, acmscss)}
+                <td>
+                  <ConditionalWrap condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
+                    <div className="js-acms-expand-inner">
+                      <button class="js-expand-btn js-acms-expand-btn" type="button">
+                          <i class="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon"></i>
+                      </button>
+                      {children}
+                    </div>
+                  </div>}>
+                    <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
+                      <div class="js-paper-editor-edit"></div>
+                      <input class="js-paper-editor-body" type="hidden" name={`${item.name}{id}`} value={`{${item.name}@html}`} />
+                      <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+                      <input type="hidden" name={`${item.name}{id}:extension`} value="paper-editor" />
+                    </div>
+                  </ConditionalWrap>
+                </td>
+              </tr>
+            );
+          } else if (item.type === 'table') {
+            return (
+              <tr>
+                {this.renderTh(item, acmscss)}
+                <td>
+                  <div class="js-editable-table-field">
+                      <div class="js-editable-table">
+                          {`<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
+                          {`{${item.name}}[raw]`}
+                          {`<!-- ELSE -->`}
+                          <table>
+                              <tr>
+                                  <th>サンプル</th>
+                                  <th>サンプル</th>
+                              </tr>
+                              <tr>
+                                  <td>サンプル</td>
+                                  <td>サンプル</td>
+                              </tr>
+                          </table>
+                          {`<!-- END_IF -->`}
+                          <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={`${item.name}{id}`} />
+                          <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+                      </div>
+                  </div>
+                </td>
+              </tr>
+            );
           } else if (item.type === 'media') {
             return (<tr>
               {this.renderTh(item)}

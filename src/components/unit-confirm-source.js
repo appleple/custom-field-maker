@@ -123,6 +123,27 @@ export default class UnitConfirmSource extends Component {
               {'<!-- END_IF -->'}
             </td>
           </tr>);
+        } else if (item.type === 'paper-editor') {
+          return (<tr>
+            <th>{item.title}</th>
+            <td>
+              {`{${item.name}@html}[raw]`}
+            </td>
+          </tr>)
+        } else if (item.type === 'lite-editor') {
+          return (<tr>
+            <th>{item.title}</th>
+            <td>
+              {`{${item.name}}[raw]`}
+            </td>
+          </tr>)
+        } else if (item.type === 'table') {
+          return (<tr>
+            <th>{item.title}</th>
+            <td>
+              {`{${item.name}}[raw]`}
+            </td>
+          </tr>)
         }
       })}
     </table>);

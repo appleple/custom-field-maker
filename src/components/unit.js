@@ -30,6 +30,7 @@ export default class Unit extends Base {
       openConverter: false,
       alt: false,
       resize: true,
+      useExpand: true,
       fileNameMethod: 'random',
       useDropArea: true,
       dropAreaWidth: 200,
@@ -37,6 +38,8 @@ export default class Unit extends Base {
       useFocusImage: false,
       focusImageWidth: 400,
       focusImageHeight: 400,
+      startHeadingLevel: 2,
+      endHeadingLevel: 3,
       mediaType: 'image'
     };
   }
@@ -60,6 +63,9 @@ export default class Unit extends Base {
       <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
+        <option value="lite-editor">インラインエディター（LiteEditor）</option>
+        <option value="paper-editor">リッチエディター（PaperEditor）</option>
+        <option value="table">テーブル</option>
         <option value="select">セレクトボックス</option>
         <option value="radio">ラジオボタン</option>
         <option value="checkbox">チェックボックス</option>
@@ -111,6 +117,12 @@ export default class Unit extends Base {
           {type === 'media' &&
             <div>
               {this.renderMediaOption()}
+            </div>
+          }
+          {
+            type === 'paper-editor' &&
+            <div>
+              {this.renderRichEditorOption()}
             </div>
           }
           {this.renderValidator(false)}

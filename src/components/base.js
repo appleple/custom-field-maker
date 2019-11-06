@@ -58,12 +58,15 @@ export default class Base extends Component {
       squareSize: '',
       alt: true,
       resize: true,
+      useExpand: true,
       useDropArea: true,
       dropAreaWidth: 200,
       dropAreaHeight: 200,
       useFocusImage: false,
       focusImageWidth: 400,
       focusImageHeight: 400,
+      startHeadingLevel: 2,
+      endHeadingLevel: 3,
       mediaType: 'image',
       openConverter: '',
       openValidator: '',
@@ -424,6 +427,9 @@ export default class Base extends Component {
       <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
+        <option value="lite-editor">インラインエディター（LiteEditor）</option>
+        <option value="paper-editor">リッチエディター（PaperEditor）</option>
+        <option value="table">テーブル</option>
         <option value="select">セレクトボックス</option>
         <option value="radio">ラジオボタン</option>
         <option value="media">メディア</option>
@@ -664,10 +670,47 @@ export default class Base extends Component {
           <input type="checkbox" onChange={this.updateState.bind(this, 'alt', !alt)} checked={alt} id="alt-checkbox" />
           <label htmlFor="alt-checkbox">
             <i className="acms-admin-ico-checkbox" /> alt表示用入力欄を使用する
-        </label>
+          </label>
         </p>
       </div>
     );
+  }
+
+  renderRichEditorOption() {
+    const { useExpand, startHeadingLevel, endHeadingLevel } = this.state;
+    return (<div>
+      <p className="acms-admin-form-checkbox">
+        <input type="checkbox" onChange={this.updateState.bind(this, 'useExpand', !useExpand)} checked={useExpand} id="expand-checkbox" />
+        <label htmlFor="expand-checkbox">
+          <i className="acms-admin-ico-checkbox" /> リッチエディターを拡大表示する
+        </label>
+      </p>
+      <div>
+        開始見出しレベル 
+        <span style={{ display: 'inline-block', width: '5px', height: '1px' }} />
+        <input 
+          type="text" 
+          value={startHeadingLevel} 
+          onInput={(e) => {
+            this.setState({
+              startHeadingLevel: e.target.value
+            });
+          }} 
+        />
+        <span style={{ display: 'inline-block', width: '15px', height: '1px' }} />
+        終了見出しレベル 
+        <span style={{ display: 'inline-block', width: '5px', height: '1px' }} />
+        <input 
+          type="text" 
+          value={endHeadingLevel}
+          onInput={(e) => {
+            this.setState({
+              endHeadingLevel: e.target.value
+            });
+          }} 
+        />
+      </div>
+    </div>);
   }
 
   renderMediaOption() {

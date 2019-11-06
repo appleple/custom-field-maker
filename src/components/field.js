@@ -23,7 +23,10 @@ export default class Field extends Base {
       useFocusImage: false,
       focusImageWidth: 400,
       focusImageHeight: 400,
+      startHeadingLevel: 2,
+      endHeadingLevel: 3,
       mediaType: 'image',
+      useExpand: true,
       resize: true,
       option: [{
         value: '',
@@ -62,12 +65,14 @@ export default class Field extends Base {
       <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
+        <option value="lite-editor">インラインエディター（LiteEditor）</option>
+        <option value="paper-editor">リッチエディター（PaperEditor）</option>
+        <option value="table">テーブル</option>
         <option value="select">セレクトボックス</option>
         <option value="radio">ラジオボタン</option>
-        <option value="checkbox">チェックボックス</option>
         <option value="media">メディア</option>
-        <option value="file">ファイル</option>
         <option value="image">画像</option>
+        <option value="file">ファイル</option>
       </select>
     );
   }
@@ -114,6 +119,12 @@ export default class Field extends Base {
           {type === 'media' &&
             <div>
               {this.renderMediaOption()}
+            </div>
+          }
+          {
+            type === 'paper-editor' &&
+            <div>
+              {this.renderRichEditorOption()}
             </div>
           }
           {this.renderValidator()}

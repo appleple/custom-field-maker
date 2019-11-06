@@ -37,11 +37,14 @@ export default class UnitGroup extends Base {
       resize: true,
       fileNameMethod: 'random',
       useDropArea: true,
+      useExpand: true,
       dropAreaWidth: 200,
       dropAreaHeight: 200,
       useFocusImage: true,
       focusImageWidth: 400,
       focusImageHeight: 400,
+      startHeadingLevel: 2,
+      endHeadingLevel: 3,
       mediaType: 'image'
     };
   }
@@ -192,6 +195,11 @@ export default class UnitGroup extends Base {
               {type === 'media' &&
                 <div>
                   {this.renderMediaOption()}
+                </div>
+              }
+              {type === 'paper-editor' &&
+                <div>
+                  {this.renderRichEditorOption()}
                 </div>
               }
               {this.renderValidator(false)}
