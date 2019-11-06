@@ -88,9 +88,9 @@ export default class FieldSource extends Component {
       <Fragment>
         {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
         <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })} ref={(table => this.table = table)}>
-          {customfield.map((item) => {
+          {customfield.map((item, index) => {
             if (item.type === 'text') {
-              return (<tr>
+              return (<tr key={index}>
                 {this.renderTh(item, acmscss, jsValidator)}
                 <td>
                   <input type="text" name={item.name} value={`{${item.name}}`} className={classnames({ 'acms-admin-form-width-full': acmscss })} {...(jsValidator ? { 'data-validator': item.name } : {})} />
@@ -101,7 +101,7 @@ export default class FieldSource extends Component {
               </tr>);
             } else if (item.type === 'textarea') {
               return (
-                <tr>
+                <tr key={index}>
                   {this.renderTh(item, acmscss)}
                   <td>
                     <textarea name={item.name} className={classnames({ 'acms-admin-form-width-full': acmscss })} {...(jsValidator ? { 'data-validator': item.name } : {})}>{`{${item.name}}`}</textarea>
@@ -113,7 +113,7 @@ export default class FieldSource extends Component {
               );
             } else if (item.type === 'lite-editor') {
               return (
-                <tr>
+                <tr key={index}>
                   {this.renderTh(item, acmscss)}
                   <td>
                     <textarea name={item.name} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })} {...(jsValidator ? { 'data-validator': item.name } : {})}>{`{${item.name}}`}</textarea>
@@ -125,7 +125,7 @@ export default class FieldSource extends Component {
               );
             } else if (item.type === 'paper-editor') {
               return  (
-                <tr>
+                <tr key={index}>
                   {this.renderTh(item, acmscss)}
                   <td>
                     <ConditionalWrap condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
@@ -148,7 +148,7 @@ export default class FieldSource extends Component {
               );
             } else if (item.type === 'table') {
               return (
-                <tr>
+                <tr key={index}>
                   {this.renderTh(item, acmscss)}
                   <td>
                     <div class="js-editable-table-field">
@@ -176,7 +176,7 @@ export default class FieldSource extends Component {
               );
             } else if (item.type === 'select') {
               return (
-                <tr>
+                <tr key={index}>
                   {this.renderTh(item, acmscss)}
                   <td>
                     <select name={item.name} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
@@ -196,7 +196,7 @@ export default class FieldSource extends Component {
               );
             } else if (item.type === 'radio') {
               return (
-                <tr>
+                <tr key={index}>
                   {this.renderTh(item)}
                   <td>
                     {item.option.map((option) => {
@@ -221,7 +221,7 @@ export default class FieldSource extends Component {
               );
             } else if (item.type === 'checkbox') {
               return (
-                <tr>
+                <tr key={index}>
                   {this.renderTh(item)}
                   <td>
                     {item.option.map((option) => {
@@ -245,7 +245,7 @@ export default class FieldSource extends Component {
                 </tr>
               );
             } else if (item.type === 'image') {
-              return (<tr>
+              return (<tr key={index}>
                 {this.renderTh(item)}
                 <td className={classnames({ 'js-img_resize_cf': item.resize })}>
                   {preview ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
@@ -281,7 +281,7 @@ export default class FieldSource extends Component {
                 </td>
               </tr>);
             } else if (item.type === 'media') {
-              return (<tr>
+              return (<tr key={index}>
                 {this.renderTh(item)}
                 <td className="js-media-field">
                   {!item.useDropArea && <Fragment>
@@ -326,7 +326,7 @@ export default class FieldSource extends Component {
                     </div>
                   </Fragment>}
                   {item.useDropArea && <Fragment>
-                    <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaWidth}px`} />
+                    <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaHeight}px`} />
                     <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                     <div className="acms-admin-margin-top-mini">
                       <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディアを選択</button>
@@ -347,7 +347,7 @@ export default class FieldSource extends Component {
                 src += 'file.svg';
               }
 
-              return (<tr>
+              return (<tr key={index}>
                 {this.renderTh(item, acmscss)}
                 <td>
                   {preview ? null : `<!-- BEGIN ${item.name}@path:veil -->`}

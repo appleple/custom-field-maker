@@ -12,26 +12,26 @@ export default class FieldConfirmSource extends Component {
     const { customfield, acmscss } = this.props;
 
     return (<table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
-      {customfield.map((item) => {
+      {customfield.map((item, index) => {
         if (!item.name) {
           return null;
         }
         if (item.type === 'text') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {`{${item.name}}`}
             </td>
           </tr>);
         } else if (item.type === 'textarea') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {`{${item.name}}[escape|nl2br]`}
             </td>
           </tr>);
         } else if (item.type === 'select') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {item.option.map(option => (<div>
@@ -42,7 +42,7 @@ export default class FieldConfirmSource extends Component {
             </td>
           </tr>);
         } else if (item.type === 'radio') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {item.option.map(option => (`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
@@ -51,7 +51,7 @@ export default class FieldConfirmSource extends Component {
             </td>
           </tr>);
         } else if (item.type === 'checkbox') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {`<!-- BEGIN ${item.name}:loop -->`}
@@ -72,7 +72,7 @@ export default class FieldConfirmSource extends Component {
             src += 'file.svg';
           }
 
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {`<!-- BEGIN ${item.name}@path:veil -->`}
@@ -83,14 +83,14 @@ export default class FieldConfirmSource extends Component {
             </td>
           </tr>);
         } else if (item.type === 'image') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
             </td>
           </tr>);
         } else if (item.type === 'media') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {item.mediaType !== 'file' &&
@@ -133,21 +133,21 @@ export default class FieldConfirmSource extends Component {
             </td>
           </tr>);
         } else if (item.type === 'paper-editor') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {`{${item.name}@html}[raw]`}
             </td>
           </tr>)
         } else if (item.type === 'lite-editor') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {`{${item.name}}[raw]`}
             </td>
           </tr>)
         } else if (item.type === 'table') {
-          return (<tr>
+          return (<tr key={index}>
             <th>{item.title}</th>
             <td>
               {`{${item.name}}[raw]`}

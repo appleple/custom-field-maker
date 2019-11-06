@@ -4,7 +4,7 @@
   "description": "custom field maker for a-blog cms",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest ./tests/**.test.js",
     "babel": "babel src --out-dir lib",
     "build": "NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "dev": "open http://localhost:8080/webpack-dev-server/ && webpack-dev-server --progress --colors --watch",
