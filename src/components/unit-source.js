@@ -230,7 +230,7 @@ export default class UnitSource extends Component {
               <tr>
                 {this.renderTh(item, acmscss)}
                 <td>
-                  <textarea name={`${item.name}{id}`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })} {...(jsValidator ? { 'data-validator': item.name } : {})}>{`{${item.name}}`}</textarea>
+                  <textarea name={`${item.name}{id}`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   {this.renderValidator(item, acmscss)}
                   {this.renderNoSearch(item, acmscss)}
