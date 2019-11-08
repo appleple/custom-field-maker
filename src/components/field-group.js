@@ -128,14 +128,14 @@ export default class FieldGroup extends Base {
                   <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
               </tr>
             <tr>
-                <td><input type="text" value={groupTitle} onInput={(e) => { this.updateState('groupTitle', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）スタッフリスト" /></td>
-                <td><input type="text" value={groupName} onInput={(e) => { this.updateState('groupName', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）group_staff" /></td>
+                <td><input type="text" id="groupTitle" value={groupTitle} onInput={(e) => { this.updateState('groupTitle', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）スタッフリスト" /></td>
+                <td><input type="text" id="groupName" value={groupName} onInput={(e) => { this.updateState('groupName', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）group_staff" /></td>
               </tr>
             <tr>
                 <td colSpan="2">
                   {openGroup ?
-                    <button className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn" disabled>グループ生成</button> :
-                    <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={this.showGroup.bind(this)}>グループ生成</button>
+                    <button className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn" id="makeGroup" disabled>グループ生成</button> :
+                    <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" id="makeGroup" onClick={this.showGroup.bind(this)}>グループ生成</button>
                   }
                 </td>
               </tr>

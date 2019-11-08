@@ -2,7 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import FieldConfirmSource from '../src/components/field-confirm-source';
 
-
 describe('custom-field confirm source', () => {
   describe('media', () => {
     test('media confirm source should have js-focused-image', () => {

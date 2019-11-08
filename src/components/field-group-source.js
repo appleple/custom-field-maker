@@ -264,7 +264,7 @@ export default class FieldGroupSource extends Component {
                       <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
                         <div class="js-paper-editor-edit"></div>
                         <input class="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
-                        <input type="hidden" name="hoge:extension" value="paper-editor" />
+                        <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
@@ -414,7 +414,6 @@ export default class FieldGroupSource extends Component {
                       <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
                         <div class="js-paper-editor-edit"></div>
                         <input class="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value="" />
-                        <input type="hidden" name="hoge:extension" value="paper-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
@@ -495,6 +494,9 @@ export default class FieldGroupSource extends Component {
           {item.type === 'media' && <Fragment>
             <input type="hidden" name={`${item.name}:extension`} value="media" />
             </Fragment>}
+          {item.type === 'paper-editor' && <Fragment>
+            <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
+          </Fragment>}
           <input type="hidden" name={`@${groupName}[]`} value={item.name} />
           <input type="hidden" name="field[]" value={item.name} />
           {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}

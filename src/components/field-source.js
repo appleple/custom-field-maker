@@ -140,7 +140,7 @@ export default class FieldSource extends Component {
                         <div class="js-paper-editor-edit"></div>
                         <input class="js-paper-editor-body" type="hidden" name={item.name} value={`{${item.name}@html}`} />
                         <input type="hidden" name="field[]" value={item.name} />
-                        <input type="hidden" name="hoge:extension" value="paper-editor" />
+                        <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>

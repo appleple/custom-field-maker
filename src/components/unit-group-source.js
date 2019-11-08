@@ -260,7 +260,6 @@ export default class UnitGroupSource extends Component {
                       <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
                         <div class="js-paper-editor-edit"></div>
                         <input class="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
-                        <input type="hidden" name="hoge:extension" value="paper-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
@@ -403,7 +402,7 @@ export default class UnitGroupSource extends Component {
                       <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
                         <div class="js-paper-editor-edit"></div>
                         <input class="js-paper-editor-body" type="hidden" name={`${item.name}{id}[]`} value="" />
-                        <input type="hidden" name="hoge:extension" value="paper-editor" />
+                        <input type="hidden" name={`${item.name}{id}:extension`} value="paper-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
@@ -484,6 +483,9 @@ export default class UnitGroupSource extends Component {
           {item.type === 'media' && <Fragment>
             <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
             </Fragment>}
+          {item.type === 'paper-editor' && <Fragment>
+          <input type="hidden" name={`${item.name}{id}:extension`} value="paper-editor" />
+          </Fragment>}
           <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}`} />
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           {item.noSearch && <input type="hidden" name={`${item.name}{id}:search`} value="0" />}
