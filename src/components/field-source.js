@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
-const ConditionalWrap = ({ condition, wrap, children }) => condition ? wrap(children) : children;
+const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
 export default class FieldSource extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -83,7 +82,9 @@ export default class FieldSource extends Component {
   }
 
   render() {
-    const { acmscss, customfield, preview, jsValidator } = this.props;
+    const {
+      acmscss, customfield, preview, jsValidator
+    } = this.props;
     return (
       <Fragment>
         {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
@@ -197,7 +198,7 @@ export default class FieldSource extends Component {
                       <i className="acms-admin-ico-checkbox" />
                     }
                     削除
-                </label>
+                    </label>
                   </div>
                   {preview ? null : '<!-- ELSE -->'}
                   <Fragment>
@@ -233,21 +234,25 @@ export default class FieldSource extends Component {
                           className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                           alt=""
                           id={`${item.name}-preview`}
-                          {...(item.mediaType === 'file' && { style: {
+                          {...(item.mediaType === 'file' && {
+ style: {
                             width: '64px',
                             height: 'auto'
-                          } })}
+                          }
+})}
                         />
                       </ConditionalWrap>
                       {'<!-- ELSE -->'}
                       <img
                         src=""
                         {...(item.mediaType === 'file' ?
-                        { style: {
+                        {
+ style: {
                           width: '64px',
                           height: 'auto',
                           display: 'none'
-                        } } :
+                        }
+} :
                       { style: { display: 'none' } })}
                         className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                         id={`${item.name}-preview`}
@@ -263,7 +268,7 @@ export default class FieldSource extends Component {
                     </div>
                   </Fragment>}
                   {item.useDropArea && <Fragment>
-                    <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaWidth}px`} />
+                    <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-thumbnail-type={`{${item.name}@type}`} data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaWidth}px`} />
                     <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                     <div className="acms-admin-margin-top-mini">
                       <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディアを選択</button>
@@ -295,7 +300,7 @@ export default class FieldSource extends Component {
                     <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
                     {acmscss && <i className="acms-admin-ico-checkbox" />}
                   削除
-                </label>
+                  </label>
                   <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}><img src={src} width="64" height="64" alt={alt} /></a>
                   {preview ? null : `<!-- END ${item.name}@path:veil -->`}
                   <input type="file" name={item.name} />

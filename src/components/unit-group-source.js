@@ -233,7 +233,7 @@ export default class UnitGroupSource extends Component {
                       </div>
                     </Fragment>}
                     {item.useDropArea && <Fragment>
-                      <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaHeight}px`} />
+                      <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-thumbnail-type={`{${item.name}@type}`} data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaHeight}px`} />
                       <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                       <div className="acms-admin-margin-top-mini">
                         <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディアを選択</button>
