@@ -22,7 +22,7 @@
   "author": "steelydylan",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.1",
     "classnames": "^2.2.5",
     "clone": "^2.1.1",
     "highlight.js": "~9.13.1",
