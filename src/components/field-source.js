@@ -124,21 +124,23 @@ export default class FieldSource extends Component {
                 </tr>
               );
             } else if (item.type === 'paper-editor') {
-              return  (
+              return (
                 <tr key={index}>
                   {this.renderTh(item, acmscss)}
                   <td>
-                    <ConditionalWrap condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
-                      <div className="js-acms-expand-inner">
-                        <button class="js-expand-btn js-acms-expand-btn" type="button">
-                            <i class="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon"></i>
-                        </button>
-                        {children}
-                      </div>
-                    </div>}>
-                      <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
-                        <div class="js-paper-editor-edit"></div>
-                        <input class="js-paper-editor-body" type="hidden" name={item.name} value={`{${item.name}@html}`} />
+                    <ConditionalWrap
+                      condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
+                        <div className="js-acms-expand-inner">
+                          <button className="js-expand-btn js-acms-expand-btn" type="button">
+                            <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                          </button>
+                          {children}
+                        </div>
+                      </div>}
+                    >
+                      <div className="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
+                        <div className="js-paper-editor-edit" />
+                        <input className="js-paper-editor-body" type="hidden" name={item.name} value={`{${item.name}@html}`} />
                         <input type="hidden" name="field[]" value={item.name} />
                         <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
                       </div>
@@ -151,25 +153,25 @@ export default class FieldSource extends Component {
                 <tr key={index}>
                   {this.renderTh(item, acmscss)}
                   <td>
-                    <div class="js-editable-table-field">
-                        <div class="js-editable-table">
-                            {`<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
-                            {`{${item.name}}[raw]`}
-                            {`<!-- ELSE -->`}
-                            <table>
-                                <tr>
-                                    <th>サンプル</th>
-                                    <th>サンプル</th>
-                                </tr>
-                                <tr>
-                                    <td>サンプル</td>
-                                    <td>サンプル</td>
-                                </tr>
-                            </table>
-                            {`<!-- END_IF -->`}
-                            <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={item.name} />
-                            <input type="hidden" name="field[]" value={item.name} />
-                        </div>
+                    <div className="js-editable-table-field">
+                      <div className="js-editable-table">
+                        {preview ? null : `<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
+                        {preview ? null : `{${item.name}}[raw]`}
+                        {preview ? null : '<!-- ELSE -->'}
+                        <table>
+                          <tr>
+                            <th>サンプル</th>
+                            <th>サンプル</th>
+                          </tr>
+                          <tr>
+                            <td>サンプル</td>
+                            <td>サンプル</td>
+                          </tr>
+                        </table>
+                        {preview ? null : '<!-- END_IF -->'}
+                        <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={item.name} />
+                        <input type="hidden" name="field[]" value={item.name} />
+                      </div>
                     </div>
                   </td>
                 </tr>

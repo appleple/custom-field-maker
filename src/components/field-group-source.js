@@ -253,39 +253,41 @@ export default class FieldGroupSource extends Component {
                   </td>, item.title);
                 } else if (item.type === 'paper-editor') {
                   return this.wrapTable(<td>
-                    <ConditionalWrap condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
-                      <div className="js-acms-expand-inner">
-                        <button class="js-expand-btn js-acms-expand-btn" type="button">
-                            <i class="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon"></i>
-                        </button>
-                        {children}
-                      </div>
-                    </div>}>
-                      <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
-                        <div class="js-paper-editor-edit"></div>
-                        <input class="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
+                    <ConditionalWrap
+                      condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
+                        <div className="js-acms-expand-inner">
+                          <button className="js-expand-btn js-acms-expand-btn" type="button">
+                            <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                          </button>
+                          {children}
+                        </div>
+                      </div>}
+                    >
+                      <div className="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
+                        <div className="js-paper-editor-edit" />
+                        <input className="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
                         <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
                 } else if (item.type === 'table') {
                   return this.wrapTable(<td>
-                    <div class="js-editable-table-field">
-                      <div class="js-editable-table">
-                        {`<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
-                        {`{${item.name}}[raw]`}
-                        {`<!-- ELSE -->`}
+                    <div className="js-editable-table-field">
+                      <div className="js-editable-table">
+                        {preview ? null : `<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
+                        {preview ? null : `{${item.name}}[raw]`}
+                        {preview ? null : '<!-- ELSE -->'}
                         <table>
-                            <tr>
-                                <th>サンプル</th>
-                                <th>サンプル</th>
-                            </tr>
-                            <tr>
-                                <td>サンプル</td>
-                                <td>サンプル</td>
-                            </tr>
+                          <tr>
+                            <th>サンプル</th>
+                            <th>サンプル</th>
+                          </tr>
+                          <tr>
+                            <td>サンプル</td>
+                            <td>サンプル</td>
+                          </tr>
                         </table>
-                        {`<!-- END_IF -->`}
+                        {preview ? null : '<!-- END_IF -->'}
                         <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={`${item.name}[]`} />
                       </div>
                     </div>
@@ -298,7 +300,7 @@ export default class FieldGroupSource extends Component {
             </td>
           </tr>
           {preview ? null : `<!-- END ${groupName}:loop -->`}
-          <tr className="sortable-item item-template">
+          {preview ? null : <tr className="sortable-item item-template">
             <td className="item-handle acms-admin-table-nowrap">{acmscss && <i className="acms-admin-icon-sort" />}</td>
             <ConditionalWrap
               condition={direction === 'vertical'}
@@ -398,43 +400,45 @@ export default class FieldGroupSource extends Component {
                   </td>, item.title);
                 } else if (item.type === 'lite-editor') {
                   return this.wrapTable(<td>
-                    <textarea name={`${item.name}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })}></textarea>
+                    <textarea name={`${item.name}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })} />
                     {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
                 } else if (item.type === 'paper-editor') {
                   return this.wrapTable(<td>
-                    <ConditionalWrap condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
-                      <div className="js-acms-expand-inner">
-                        <button class="js-expand-btn js-acms-expand-btn" type="button">
-                            <i class="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon"></i>
-                        </button>
-                        {children}
-                      </div>
-                    </div>}>
-                      <div class="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
-                        <div class="js-paper-editor-edit"></div>
-                        <input class="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value="" />
+                    <ConditionalWrap
+                      condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
+                        <div className="js-acms-expand-inner">
+                          <button className="js-expand-btn js-acms-expand-btn" type="button">
+                            <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                          </button>
+                          {children}
+                        </div>
+                      </div>}
+                    >
+                      <div className="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
+                        <div className="js-paper-editor-edit" />
+                        <input className="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value="" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
                 } else if (item.type === 'table') {
                   return this.wrapTable(<td>
-                    <div class="js-editable-table-field">
-                      <div class="js-editable-table">
+                    <div className="js-editable-table-field">
+                      <div className="js-editable-table">
                         {`<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
                         {`{${item.name}}[raw]`}
-                        {`<!-- ELSE -->`}
+                        {'<!-- ELSE -->'}
                         <table>
-                            <tr>
-                                <th>サンプル</th>
-                                <th>サンプル</th>
-                            </tr>
-                            <tr>
-                                <td>サンプル</td>
-                                <td>サンプル</td>
-                            </tr>
+                          <tr>
+                            <th>サンプル</th>
+                            <th>サンプル</th>
+                          </tr>
+                          <tr>
+                            <td>サンプル</td>
+                            <td>サンプル</td>
+                          </tr>
                         </table>
-                        {`<!-- END_IF -->`}
+                        {'<!-- END_IF -->'}
                         <input type="hidden" className="js-editable-table-dest" value="" name={`${item.name}[]`} />
                       </div>
                     </div>
@@ -445,7 +449,7 @@ export default class FieldGroupSource extends Component {
             <td className="acms-admin-table-nowrap">
               <input type="button" className={classnames('item-delete', { 'acms-admin-btn-admin acms-admin-btn-admin-danger': acmscss })} value="削除" />
             </td>
-          </tr>
+          </tr>}
         </tbody>
         <tfoot>
           <tr>
