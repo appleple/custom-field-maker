@@ -138,9 +138,9 @@ export default class FieldSource extends Component {
                         </div>
                       </div>}
                     >
-                      <div className="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
-                        <div className="js-paper-editor-edit" />
-                        <input className="js-paper-editor-body" type="hidden" name={item.name} value={`{${item.name}@html}`} />
+                      <div className="js-smartblock" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
+                        <div className="js-smartblock-edit" />
+                        <input className="js-smartblock-body" type="hidden" name={item.name} value={`{${item.name}@html}`} />
                         <input type="hidden" name="field[]" value={item.name} />
                         <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
                       </div>

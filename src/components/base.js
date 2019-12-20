@@ -427,8 +427,8 @@ export default class Base extends Component {
       <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
-        <option value="lite-editor">インラインエディター（LiteEditor）</option>
-        <option value="paper-editor">リッチエディター（PaperEditor）</option>
+        <option value="lite-editor">インラインエディター</option>
+        <option value="paper-editor">リッチエディター</option>
         <option value="table">テーブル</option>
         <option value="select">セレクトボックス</option>
         <option value="radio">ラジオボタン</option>

@@ -263,9 +263,9 @@ export default class FieldGroupSource extends Component {
                         </div>
                       </div>}
                     >
-                      <div className="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
-                        <div className="js-paper-editor-edit" />
-                        <input className="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
+                      <div className="js-smartblock" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
+                        <div className="js-smartblock-edit" />
+                        <input className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
                         <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
                       </div>
                     </ConditionalWrap>
@@ -415,9 +415,9 @@ export default class FieldGroupSource extends Component {
                         </div>
                       </div>}
                     >
-                      <div className="js-paper-editor" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
-                        <div className="js-paper-editor-edit" />
-                        <input className="js-paper-editor-body" type="hidden" name={`${item.name}[]`} value="" />
+                      <div className="js-smart-block" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
+                        <div className="js-smart-block-edit" />
+                        <input className="js-smart-block-body" type="hidden" name={`${item.name}[]`} value="" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
