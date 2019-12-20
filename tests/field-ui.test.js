@@ -36,15 +36,15 @@ describe('custom-field UI ', () => {
       expect(radio).toBeTruthy();
     });
   });
-  describe('paper-editor', () => {
-    test('paper-editor expand checkbox should be appeared', () => {
+  describe('rich-editor', () => {
+    test('rich-editor expand checkbox should be appeared', () => {
       const field = renderer.create(<Field />).root;
       const select = field.findByProps({
         id: 'type'
       });
       select.props.onChange({
         target: {
-          value: 'paper-editor'
+          value: 'rich-editor'
         }
       });
       const checkbox = field.findByProps({

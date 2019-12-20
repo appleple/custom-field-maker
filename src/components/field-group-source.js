@@ -251,7 +251,7 @@ export default class FieldGroupSource extends Component {
                     <textarea name={`${item.name}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
                     {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
-                } else if (item.type === 'paper-editor') {
+                } else if (item.type === 'rich-editor') {
                   return this.wrapTable(<td>
                     <ConditionalWrap
                       condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
@@ -266,7 +266,7 @@ export default class FieldGroupSource extends Component {
                       <div className="js-smartblock" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
                         <div className="js-smartblock-edit" />
                         <input className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
-                        <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
+                        <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
@@ -403,7 +403,7 @@ export default class FieldGroupSource extends Component {
                     <textarea name={`${item.name}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })} />
                     {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
-                } else if (item.type === 'paper-editor') {
+                } else if (item.type === 'rich-editor') {
                   return this.wrapTable(<td>
                     <ConditionalWrap
                       condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
@@ -498,8 +498,8 @@ export default class FieldGroupSource extends Component {
           {item.type === 'media' && <Fragment>
             <input type="hidden" name={`${item.name}:extension`} value="media" />
             </Fragment>}
-          {item.type === 'paper-editor' && <Fragment>
-            <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
+          {item.type === 'rich-editor' && <Fragment>
+            <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
           </Fragment>}
           <input type="hidden" name={`@${groupName}[]`} value={item.name} />
           <input type="hidden" name="field[]" value={item.name} />

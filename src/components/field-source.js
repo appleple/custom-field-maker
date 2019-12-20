@@ -123,7 +123,7 @@ export default class FieldSource extends Component {
                   </td>
                 </tr>
               );
-            } else if (item.type === 'paper-editor') {
+            } else if (item.type === 'rich-editor') {
               return (
                 <tr key={index}>
                   {this.renderTh(item, acmscss)}
@@ -142,7 +142,7 @@ export default class FieldSource extends Component {
                         <div className="js-smartblock-edit" />
                         <input className="js-smartblock-body" type="hidden" name={item.name} value={`{${item.name}@html}`} />
                         <input type="hidden" name="field[]" value={item.name} />
-                        <input type="hidden" name={`${item.name}:extension`} value="paper-editor" />
+                        <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>

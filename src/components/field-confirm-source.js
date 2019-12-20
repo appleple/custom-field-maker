@@ -132,7 +132,7 @@ export default class FieldConfirmSource extends Component {
               {'<!-- END_IF -->'}
             </td>
           </tr>);
-        } else if (item.type === 'paper-editor') {
+        } else if (item.type === 'rich-editor') {
           return (<tr key={index}>
             <th>{item.title}</th>
             <td>

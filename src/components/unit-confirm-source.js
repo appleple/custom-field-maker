@@ -123,7 +123,7 @@ export default class UnitConfirmSource extends Component {
               {'<!-- END_IF -->'}
             </td>
           </tr>);
-        } else if (item.type === 'paper-editor') {
+        } else if (item.type === 'rich-editor') {
           return (<tr>
             <th>{item.title}</th>
             <td>

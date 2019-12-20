@@ -194,7 +194,7 @@ export default class FieldGroup extends Base {
                   {this.renderMediaOption()}
                 </div>
               }
-              {type === 'paper-editor' &&
+              {type === 'rich-editor' &&
                 <div>
                   {this.renderRichEditorOption()}
                 </div>

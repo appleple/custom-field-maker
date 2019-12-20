@@ -428,7 +428,7 @@ export default class Base extends Component {
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
         <option value="lite-editor">インラインエディター</option>
-        <option value="paper-editor">リッチエディター</option>
+        <option value="rich-editor">リッチエディター</option>
         <option value="table">テーブル</option>
         <option value="select">セレクトボックス</option>
         <option value="radio">ラジオボタン</option>

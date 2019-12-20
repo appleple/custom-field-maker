@@ -126,7 +126,7 @@ export default class UnitGroupConfirmSource extends Component {
                   return this.wrapTable(<td>
                     {`{${item.name}}[raw]`}
                   </td>, item.name);
-                } else if (item.type === 'paper-editor') {
+                } else if (item.type === 'rich-editor') {
                   return this.wrapTable(<td>
                     {`{${item.name}@html}[raw]`}
                   </td>, item.name);

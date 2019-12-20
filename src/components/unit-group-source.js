@@ -247,7 +247,7 @@ export default class UnitGroupSource extends Component {
                     <textarea name={`${item.name}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
                     {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
-                } else if (item.type === 'paper-editor') {
+                } else if (item.type === 'rich-editor') {
                   return this.wrapTable(<td>
                     <ConditionalWrap
                       condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
@@ -391,7 +391,7 @@ export default class UnitGroupSource extends Component {
                     <textarea name={`${item.name}{id}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })} />
                     {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
-                } else if (item.type === 'paper-editor') {
+                } else if (item.type === 'rich-editor') {
                   return this.wrapTable(<td>
                     <ConditionalWrap
                       condition={item.useExpand} wrap={children => <div className="js-expand js-acms-expand">
@@ -406,7 +406,7 @@ export default class UnitGroupSource extends Component {
                       <div className="js-smartblock" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
                         <div className="js-smartblock-edit" />
                         <input className="js-smartblock-body" type="hidden" name={`${item.name}{id}[]`} value="" />
-                        <input type="hidden" name={`${item.name}{id}:extension`} value="paper-editor" />
+                        <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
@@ -487,8 +487,8 @@ export default class UnitGroupSource extends Component {
           {item.type === 'media' && <Fragment>
             <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
             </Fragment>}
-          {item.type === 'paper-editor' && <Fragment>
-            <input type="hidden" name={`${item.name}{id}:extension`} value="paper-editor" />
+          {item.type === 'rich-editor' && <Fragment>
+            <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
           </Fragment>}
           <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}`} />
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />

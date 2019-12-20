@@ -237,7 +237,7 @@ export default class UnitSource extends Component {
                 </td>
               </tr>
             );
-          } else if (item.type === 'paper-editor') {
+          } else if (item.type === 'rich-editor') {
             return (
               <tr>
                 {this.renderTh(item, acmscss)}
@@ -256,7 +256,7 @@ export default class UnitSource extends Component {
                       <div className="js-smartblock-edit" />
                       <input className="js-smartblock-body" type="hidden" name={`${item.name}{id}`} value={`{${item.name}@html}`} />
                       <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
-                      <input type="hidden" name={`${item.name}{id}:extension`} value="paper-editor" />
+                      <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
                     </div>
                   </ConditionalWrap>
                 </td>
