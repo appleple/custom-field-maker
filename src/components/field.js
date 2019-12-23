@@ -69,6 +69,7 @@ export default class Field extends Base {
         <option value="rich-editor">リッチエディター</option>
         <option value="table">テーブル</option>
         <option value="select">セレクトボックス</option>
+        <option value="checkbox">チェックボックス</option>
         <option value="radio">ラジオボタン</option>
         <option value="media">メディア</option>
         <option value="image">画像</option>
