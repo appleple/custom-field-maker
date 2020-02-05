@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
-const ConditionalWrap = ({ condition, wrap, children }) => condition ? wrap(children) : children;
+const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
 export default class UnitGroupSource extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -214,12 +213,12 @@ export default class UnitGroupSource extends Component {
                         <img
                           src=""
                           {...(item.mediaType === 'file' ?
-                          { style: {
-                            width: '64px',
-                            height: 'auto',
-                            display: 'none'
-                          } } :
-                        { style: { display: 'none' } })}
+                            { style: {
+                              width: '64px',
+                              height: 'auto',
+                              display: 'none'
+                            } } :
+                            { style: { display: 'none' } })}
                           className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                         />
                         {'<!-- END_IF -->'}
@@ -327,7 +326,7 @@ export default class UnitGroupSource extends Component {
                           {option.label}
                         </label>
                       </div>
-                      ))}
+                    ))}
                   </td>, item.title);
                 } else if (item.type === 'file') {
                   return this.wrapTable(<td>
@@ -360,12 +359,12 @@ export default class UnitGroupSource extends Component {
                         <img
                           src=""
                           {...(item.mediaType === 'file' ?
-                          { style: {
-                            width: '64px',
-                            height: 'auto',
-                            display: 'none'
-                          } } :
-                          { style: { display: 'none' } })}
+                            { style: {
+                              width: '64px',
+                              height: 'auto',
+                              display: 'none'
+                            } } :
+                            { style: { display: 'none' } })}
                           className="acms-admin-img-responsive js-preview"
                         />
                       </div>
@@ -378,7 +377,7 @@ export default class UnitGroupSource extends Component {
                       </div>
                     </Fragment>}
                     {item.useDropArea && <Fragment>
-                      <div className="js-droparea" data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaHeight}px`} />
+                      <div className="js-droparea" data-type={item.mediaType ? item.mediaType : 'all'} data-current-type={`{${item.name}@type}`} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaHeight}px`} />
                       <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                       <div className="acms-admin-margin-top-mini">
                         <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディアを選択</button>
@@ -451,24 +450,24 @@ export default class UnitGroupSource extends Component {
       {unitGroupName && <Fragment>
         {unitgroupitems.map(item => (<Fragment>
           {item.type === 'image' && <Fragment>
-              {item.square && item.squareSize && <Fragment>
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squarePath`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareAlt`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareX`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareY`} />
-              </Fragment>}
-              {item.large && item.largeSize && <Fragment>
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largePath`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeAlt`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeX`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeY`} />
-              </Fragment>}
-              {item.tiny && item.tinySize && <Fragment>
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@tinyPath`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyAlt`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyX`} />
-                <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyY`} />
-              </Fragment>}
+            {item.square && item.squareSize && <Fragment>
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squarePath`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareAlt`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareX`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@squareY`} />
+            </Fragment>}
+            {item.large && item.largeSize && <Fragment>
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largePath`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeAlt`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeX`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@largeY`} />
+            </Fragment>}
+            {item.tiny && item.tinySize && <Fragment>
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@tinyPath`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyAlt`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyX`} />
+              <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}@tinyY`} />
+            </Fragment>}
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@path`} />
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@alt`} />
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@x`} />
@@ -476,17 +475,17 @@ export default class UnitGroupSource extends Component {
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@edit`} />
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@old`} />
             <input type="hidden" name={`${item.name}{id}:extension`} value="image" />
-            </Fragment>}
+          </Fragment>}
           {item.type === 'file' && <Fragment>
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@path`} />
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@alt`} />
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@edit`} />
             <input type="hidden" name={`@${unitGroupName}{id}[]`} value={`${item.name}{id}@old`} />
             <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
-            </Fragment>}
+          </Fragment>}
           {item.type === 'media' && <Fragment>
             <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
-            </Fragment>}
+          </Fragment>}
           {item.type === 'rich-editor' && <Fragment>
             <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
           </Fragment>}

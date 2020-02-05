@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
-const ConditionalWrap = ({ condition, wrap, children }) => condition ? wrap(children) : children;
+const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
 export default class UnitSource extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -168,9 +167,9 @@ export default class UnitSource extends Component {
                   <label htmlFor={`input-checkbox-${item.name}{id}@edit`}>
                     {acmscss &&
                     <i className="acms-admin-ico-checkbox" />
-                  }
+                    }
                   削除
-                </label>
+                  </label>
                 </div>
                 {preview ? null : '<!-- ELSE -->'}
                 <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })} style={item.normalSize ? { width: `${item.normalSize}px`, display: 'none' } : { display: 'none' }} />
@@ -315,12 +314,12 @@ export default class UnitSource extends Component {
                     <img
                       src=""
                       {...(item.mediaType === 'file' ?
-                      { style: {
-                        width: '64px',
-                        height: 'auto',
-                        display: 'none'
-                      } } :
-                    { style: { display: 'none' } })}
+                        { style: {
+                          width: '64px',
+                          height: 'auto',
+                          display: 'none'
+                        } } :
+                        { style: { display: 'none' } })}
                       className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                     />
                     {'<!-- END_IF -->'}
@@ -334,7 +333,7 @@ export default class UnitSource extends Component {
                   </div>
                 </Fragment>}
                 {item.useDropArea && <Fragment>
-                  <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaHeight}px`} />
+                  <div className="js-droparea" data-thumbnail={`{${item.name}@thumbnail}`} data-type={item.mediaType ? item.mediaType : 'all'} data-current-type={`{${item.name}@type}`} data-width={`${item.dropAreaWidth}px`} data-height={`${item.dropAreaHeight}px`} />
                   <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>許可されていないファイルのため挿入できません。</p>
                   <div className="acms-admin-margin-top-mini">
                     <button type="button" className={classnames('js-insert', { 'acms-admin-btn': acmscss })} data-type={item.mediaType ? item.mediaType : 'all'}>メディアを選択</button>
