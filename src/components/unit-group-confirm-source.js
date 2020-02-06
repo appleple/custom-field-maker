@@ -96,15 +96,11 @@ export default class UnitGroupConfirmSource extends Component {
                   return this.wrapTable(<td>
                     {`<!-- BEGIN_IF [{${item.name}@type}/eq/file] -->`}
                     <a href={`{${item.name}@path}`}>
-                    <div className="js-pdf-viewer">
                       <img
-                        className={classnames("js-preview", {
-                          "acms-admin-img-responsive": acmscss
-                        })}
                         alt={`{${item.name}@alt}`}
-                        data-pdf={`{${item.name}@path}`}
+                        src={`{${item.name}@thumbnail}`}
+                        style={{ width: '64px', height: 'auto' }}
                       />
-                    </div>
                     </a>
                     {`<!-- END_IF -->`}
                     {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
