@@ -99,7 +99,7 @@ export default class UnitGroupConfirmSource extends Component {
                     <div className="js-pdf-viewer">
                       <img
                         className={classnames("js-preview", {
-                          acmscss: "acms-admin-img-responsive"
+                          "acms-admin-img-responsive": acmscss
                         })}
                         alt={`{${item.name}@alt}`}
                         data-pdf={`{${item.name}@path}`}
