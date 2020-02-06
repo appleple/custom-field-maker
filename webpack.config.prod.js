@@ -18,16 +18,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react'],
-            plugins: ['transform-runtime']
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['@babel/plugin-transform-runtime']
           }
         }
       },
       {
         test: /\.css$/,
         use: [
-          { loader: 'style-loader'},
-          { loader: 'css-loader'}
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
         ]
       }, {
         test: /\.(jpg|png|svg)$/,
@@ -36,13 +36,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    })
-  ],
-}
+  }
+};
