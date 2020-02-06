@@ -31,7 +31,7 @@ describe('custom-field confirm source', () => {
       const divs = fieldSource.findAllByProps({
         'className': 'js-droparea',
       });
-      expect(divs).not.toHaveLength();
+      expect(divs.length).toBe(0)
     });
     test('media focusimage width and height should be 400, 400', () => {
       const customfield = [{
