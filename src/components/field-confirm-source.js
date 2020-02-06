@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
-const ConditionalWrap = ({ condition, wrap, children }) => condition ? wrap(children) : children;
+const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
 export default class FieldConfirmSource extends Component {
   constructor(props) {
@@ -93,42 +93,38 @@ export default class FieldConfirmSource extends Component {
           return (<tr key={index}>
             <th>{item.title}</th>
             <td>
-              {item.mediaType !== 'file' &&
-                <Fragment>
-                  {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                  <a href={`{${item.name}@link}`}>
-                  {'<!-- END_IF -->'}
-                  {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
-                    <img
-                      className="js-focused-image"
-                      data-focus-x={`{${item.name}@focalX}`}
-                      data-focus-y={`{${item.name}@focalY}`}
-                      alt={`{${item.name}@alt}`}
-                      src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
-                    />
-                  </div>}
-                  {!item.useFocusImage &&
-                    <img
-                      alt={`{${item.name}@alt}`}
-                      src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
-                    />
-                  }
-                  {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                  </a>
-                  {'<!-- END_IF -->'}
-                </Fragment>
-              }
-              {item.mediaType === 'file' &&
-                <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>
+                {`<!-- BEGIN_IF [{${item.name}@type}/eq/file] -->`}
+                <a href={`{${item.name}@path}`}>
+                <div className="js-pdf-viewer">
                   <img
+                    className={classnames("js-preview", {
+                      acmscss: "acms-admin-img-responsive"
+                    })}
                     alt={`{${item.name}@alt}`}
-                    src={`{${item.name}@thumbnail}`}
-                    style={{ width: '64px', height: 'auto' }}
+                    data-pdf={`{${item.name}@path}`}
                   />
+                </div>
                 </a>
-              }
+                {`<!-- END_IF -->`}
+                {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                <a href={`{${item.name}@link}`}>
+                {`<!-- END_IF -->`}   
+                {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
+                <img className="js-focused-image" data-focus-x={`{${item.name}@focalX}`} data-focus-y={`{${item.name}@focalY}`} alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`} />
+                </div>}
+                {!item.useFocusImage &&
+                <img
+                  alt={`{${item.name}@alt}`}
+                  src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
+                />}
+                {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                </a>
+                {`<!-- END_IF -->`}
+
               {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
               <p>{`{${item.name}@text}`}</p>
+              {'<!-- END_IF -->'}
               {'<!-- END_IF -->'}
             </td>
           </tr>);
