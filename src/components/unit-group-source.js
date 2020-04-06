@@ -243,7 +243,7 @@ export default class UnitGroupSource extends Component {
                   </td>, item.title);
                 } else if (item.type === 'lite-editor') {
                   return this.wrapTable(<td>
-                    <textarea name={`${item.name}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
+                    <textarea name={`${item.name}{id}[]`} className={classnames('js-lite-editor-field', { 'acms-admin-form-width-full': acmscss })}>{`{${item.name}}`}</textarea>
                     {this.renderValidator(item, acmscss, false)}
                   </td>, item.title);
                 } else if (item.type === 'rich-editor') {
@@ -260,7 +260,7 @@ export default class UnitGroupSource extends Component {
                     >
                       <div className="js-smartblock" data-heading-start={item.startHeadingLevel} data-heading-end={item.endHeadingLevel}>
                         <div className="js-smartblock-edit" />
-                        <input className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value={`{${item.name}@html}`} />
+                        <input className="js-smartblock-body" type="hidden" name={`${item.name}{id}[]`} value={`{${item.name}@html}`} />
                       </div>
                     </ConditionalWrap>
                   </td>, item.title);
@@ -282,7 +282,7 @@ export default class UnitGroupSource extends Component {
                           </tr>
                         </table>
                         {preview ? null : '<!-- END_IF -->'}
-                        <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={`${item.name}[]`} />
+                        <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={`${item.name}{id}[]`} />
                       </div>
                     </div>
                   </td>, item.title);
