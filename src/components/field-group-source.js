@@ -40,7 +40,7 @@ export default class FieldGroupSource extends Component {
           {jsValidator &&
             <div data-validator-label={`${name}-v-${validator.option}`} className={`validator-result-${classSuffix}`}>
               <p className="error-text">
-                <span className="acms-icon acms-icon-attension" />{validator.message}
+                <span className="acms-admin-icon acms-admin-icon-attention" />{validator.message}
               </p>
             </div>
           }
