@@ -57,7 +57,7 @@ export default class FieldConfirmSource extends Component {
               {`<!-- BEGIN ${item.name}:loop -->`}
               {`<!-- BEGIN ${item.name}:glue -->,<!-- END ${item.name}:glue -->`}
               {item.option.map(option => `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
-              ${option.value}
+              ${option.label}
               <!-- END_IF -->`)}
               {`<!-- END ${item.name}:loop -->`}
             </td>
