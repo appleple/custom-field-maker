@@ -36,7 +36,7 @@ export default class FieldConfirmSource extends Component {
             <td>
               {item.option.map(option => (<div>
                 {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
-                {option.label}
+                {option.value}
                 {'<!-- END_IF -->'}
               </div>))}
             </td>
