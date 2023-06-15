@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table class="acms-admin-table-admin-edit">
+    <tr>
+      <th>テキスト
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="テキストを入れてください"></i>
+      </th>
+      <td>
+        <textarea name="text" class="acms-admin-form-width-full">{text}</textarea>
+        <input type="hidden" name="field[]" value="text" />
+      </td>
+    </tr>
+    <tr>
+      <th>テキスト
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="テキストを入れてください"></i>
+      </th>
+      <td>
+        <textarea name="text" class="js-lite-editor-field acms-admin-form-width-full">{text}</textarea>
+        <input type="hidden" name="field[]" value="text" />
+      </td>
+    </tr>
+    <tr>
+      <th>テキスト
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="テキストを入れてください"></i>
+      </th>
+      <td>
+        <div class="js-expand js-acms-expand">
+          <div class="js-acms-expand-inner">
+            <button class="js-expand-btn js-acms-expand-btn" type="button">
+              <i class="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon"></i>
+            </button>
+            <div class="js-smartblock" data-heading-start="2" data-heading-end="3">
+              <div class="js-smartblock-edit"></div>
+              <input type="hidden" class="js-smartblock-body" name="text" value="{text@html}" />
+              <input type="hidden" name="field[]" value="text" />
+              <input type="hidden" name="text:extension" value="rich-editor" />
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>テキスト
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="テキストを入れてください"></i>
+      </th>
+      <td>
+        <div class="js-editable-table-field">
+          <div class="js-editable-table">
+            <!-- BEGIN_IF [{text}[delnl]/nem] -->
+            {text}[raw]
+            <!-- ELSE -->
+            <table>
+              <tr>
+                <th>サンプル</th>
+                <th>サンプル</th>
+              </tr>
+              <tr>
+                <td>サンプル</td>
+                <td>サンプル</td>
+              </tr>
+            </table>
+            <!-- END_IF -->
+            <input type="hidden" class="js-editable-table-dest" value="{text}" name="text" />
+            <input type="hidden" name="field[]" value="text" />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>テキスト
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="テキストを入れてください"></i>
+      </th>
+      <td>
+        <select name="text" class="acms-admin-form-width-full">
+          <option value=""></option>
+          <option value="tokyo" {text:selected#tokyo}>tokyo</option>
+          <option value="nagoya" {text:selected#nagoya}>nagoya</option>
+        </select>
+        <input type="hidden" name="field[]" value="text" />
+      </td>
+    </tr>
+    <tr>
+      <th>title
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="title"></i>
+      </th>
+      <td>
+        <div class="acms-admin-form-radio">
+          <input type="radio" name="title" value="tokyo" {title:checked#tokyo} id="input-radio-title-tokyo" />
+          <label for="input-radio-title-tokyo">
+            <i class="acms-admin-ico-radio"></i>tokyo</label>
+        </div>
+        <input type="hidden" name="field[]" value="title" />
+      </td>
+    </tr>
+    <tr>
+      <th>title
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="title"></i>
+      </th>
+      <td class="js-media-field">
+        <div class="js-droparea" data-thumbnail="{title@thumbnail}" data-type="all" data-thumbnail-type="{title@type}" data-width="200px" data-height="200px"></div>
+        <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+        <div class="acms-admin-margin-top-mini">
+          <button type="button" class="js-insert acms-admin-btn" data-type="all">メディアを選択</button>
+        </div>
+        <input type="hidden" name="title" value="{title}" class="js-value" />
+        <input type="hidden" name="field[]" value="title" />
+        <input type="hidden" name="title:extension" value="media" />
+      </td>
+    </tr>
+    <tr>
+      <th>title
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="title"></i>
+      </th>
+      <td class="js-media-field">
+        <div class="js-droparea" data-thumbnail="{title@thumbnail}" data-type="all" data-thumbnail-type="{title@type}" data-width="200px" data-height="200px"></div>
+        <p class="js-text acms-admin-text-danger" style="display:none">許可されていないファイルのため挿入できません。</p>
+        <div class="acms-admin-margin-top-mini">
+          <button type="button" class="js-insert acms-admin-btn" data-type="all">メディアを選択</button>
+        </div>
+        <input type="hidden" name="title" value="{title}" class="js-value" />
+        <input type="hidden" name="field[]" value="title" />
+        <input type="hidden" name="title:extension" value="media" />
+      </td>
+    </tr>
+    <tr>
+      <th>title
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="title"></i>
+      </th>
+      <td class="js-img_resize_cf">
+        <!-- BEGIN_IF [{title@path}/nem] -->
+        <img src="%{ARCHIVES_DIR}{title@path}" class="acms-admin-img-responsive js-img_resize_preview" alt="{title@alt}" />
+        <input type="hidden" name="title@old" value="{title@path}" />
+        <div class="acms-admin-form-checkbox">
+          <input type="checkbox" name="title@edit" value="delete" id="input-checkbox-title@edit" />
+          <label for="input-checkbox-title@edit">
+            <i class="acms-admin-ico-checkbox"></i>削除</label>
+        </div>
+        <!-- ELSE -->
+        <img src="%{ARCHIVES_DIR}{title@path}" class="acms-admin-img-responsive js-img_resize_preview" style="display:none" />
+        <!-- END_IF -->
+        <input type="file" name="title" size="20" class="js-img_resize_input" />
+        <br/>
+        <input type="hidden" name="field[]" value="title" />
+        <input type="hidden" name="title:extension" value="image" />
+        <input type="hidden" name="title@filename" value="" />
+      </td>
+    </tr>
+    <tr>
+      <th>title
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="title"></i>
+      </th>
+      <td>
+        <!-- BEGIN title@path:veil -->
+        <input type="hidden" name="title@old" value="{title@path}" />
+        <input type="hidden" name="title@secret" value="{title@secret}" />
+        <input type="hidden" name="title@fileSize" value="{title@fileSize}" />
+        <label for="input-checkbox-title@edit" class="acms-admin-form-checkbox">
+          <input type="checkbox" name="title@edit" value="delete" id="input-checkbox-title@edit" />
+          <i class="acms-admin-ico-checkbox"></i>削除</label>
+        <a href="%{ARCHIVES_DIR}{title@path}">
+          <img src="/images/fileicon/file.svg" width="64" height="64" alt="file" />
+        </a>
+        <!-- END title@path:veil -->
+        <input type="file" name="title" />
+        <input type="hidden" name="field[]" value="title" />
+        <input type="hidden" name="title@baseName" value="{title@baseName}" />
+        <input type="hidden" name="title:extension" value="file" />
+      </td>
+    </tr>
+    <tr>
+      <th>title
+        <i class="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip="title"></i>
+      </th>
+      <td>
+        <!-- BEGIN title@path:veil -->
+        <input type="hidden" name="title@old" value="{title@path}" />
+        <input type="hidden" name="title@secret" value="{title@secret}" />
+        <input type="hidden" name="title@fileSize" value="{title@fileSize}" />
+        <label for="input-checkbox-title@edit" class="acms-admin-form-checkbox">
+          <input type="checkbox" name="title@edit" value="delete" id="input-checkbox-title@edit" />
+          <i class="acms-admin-ico-checkbox"></i>削除</label>
+        <a href="%{ARCHIVES_DIR}{title@path}">
+          <img src="/images/fileicon/file.svg" width="64" height="64" alt="file" />
+        </a>
+        <!-- END title@path:veil -->
+        <input type="file" name="title" />
+        <input type="hidden" name="field[]" value="title" />
+        <input type="hidden" name="title@baseName" value="{title@baseName}" />
+        <input type="hidden" name="title:extension" value="file" />
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
