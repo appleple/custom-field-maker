@@ -1,16 +1,12 @@
 const path = require('path');
 const webpackMerge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const prod = require('./webpack.prod.js');
 
 process.env.BABEL_ENV = 'development';
 
-module.exports = webpackMerge.merge(common, {
+module.exports = webpackMerge.merge(prod, {
   mode: 'development',
   devtool: 'inline-source-map',
-  resolve: {
-    modules: ['packages', 'node_modules'],
-    extensions: ['.js', '.ts', '.tsx'],
-  },
   devServer: {
     static: {
       directory: path.join(__dirname, ''),
