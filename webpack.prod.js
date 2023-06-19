@@ -1,27 +1,31 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
-  entry: './example/index.js',
+  mode: 'production',
+  cache: true,
+  stats: {
+    children: true,
+  },
+  entry: {
+    index: './example/index.js',
+  },
   output: {
-    path: __dirname,
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: './bundle.js',
+    chunkFilename: `./bundle.chunk.js?date=${new Date().getTime()}`,
   },
   resolve: {
-    extensions: ['.js', '.css']
+    modules: ['node_modules'],
+    extensions: ['.js', '.ts', '.tsx', '.css'],
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['@babel/plugin-transform-runtime']
-          }
-        }
+        },
       },
       {
         test: /\.css$/,
@@ -29,12 +33,13 @@ module.exports = {
           { loader: 'style-loader' },
           { loader: 'css-loader' }
         ]
-      }, {
+      },
+      {
         test: /\.(jpg|png|svg)$/,
         use: {
           loader: 'url-loader'
         }
       }
-    ]
+    ],
   }
 };
