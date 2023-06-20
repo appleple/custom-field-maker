@@ -55,7 +55,7 @@ export default class UnitConfirmSource extends Component {
               {`<!-- BEGIN ${item.name}:loop -->`}
               {`<!-- BEGIN ${item.name}:glue -->,<!-- END ${item.name}:glue -->`}
               {item.option.map(option => `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
-              ${option.value}
+              ${option.label}
               <!-- END_IF -->`)}
               {`<!-- END ${item.name}:loop -->`}
             </td>
@@ -102,7 +102,7 @@ export default class UnitConfirmSource extends Component {
                 {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
                 {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
                 <a href={`{${item.name}@link}`}>
-                {`<!-- END_IF -->`}   
+                {`<!-- END_IF -->`}
                 {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
                 <img className="js-focused-image" data-focus-x={`{${item.name}@focalX}`} data-focus-y={`{${item.name}@focalY}`} alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`} />
                 </div>}
