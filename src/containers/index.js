@@ -30,6 +30,7 @@ class CustomfieldMaker extends Component {
     this.state = {
       mode: 'normal',
       editMode: 'source',
+      tag: 'section',
       acmscss: false,
       source: '',
       copied: false,
@@ -44,19 +45,19 @@ class CustomfieldMaker extends Component {
     }
   }
 
-  renderSelectGroup() {
-    return (
-      <select id="type" value={type} className="acms-admin-form-width-full">
-        <option value="text">テキスト</option>
-        <option value="textarea">テキストエリア</option>
-        <option value="select">セレクトボックス</option>
-        <option value="radio">ラジオボタン</option>
-        <option value="file">ファイル</option>
-        <option value="image">画像</option>
-        <option value="media">メディア</option>
-      </select>
-    );
-  }
+  // renderSelectGroup() {
+  //   return (
+  //     <select id="type" value={type} className="acms-admin-form-width-full">
+  //       <option value="text">テキスト</option>
+  //       <option value="textarea">テキストエリア</option>
+  //       <option value="select">セレクトボックス</option>
+  //       <option value="radio">ラジオボタン</option>
+  //       <option value="file">ファイル</option>
+  //       <option value="image">画像</option>
+  //       <option value="media">メディア</option> */
+  //     </select>
+  //   );
+  // }
 
   updateState(prop, value) {
     this.setState({
@@ -99,6 +100,7 @@ class CustomfieldMaker extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     const { mode, editMode, source, copied } = this.state;
     const {
       actions,
@@ -114,6 +116,13 @@ class CustomfieldMaker extends Component {
       jsValidator,
       direction,
     } = this.props;
+=======
+    const { mode, editMode, source, copied, tag } = this.state;
+    const { actions, customfield, groupitems,
+      customunit, unitgroupitems, groupTitle,
+      unitGroupTitle, unitGroupName,
+      groupName, acmscss, jsValidator, direction } = this.props;
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
 
     return (
       <div className="acms-admin-form">
@@ -228,6 +237,7 @@ class CustomfieldMaker extends Component {
                   </div>
                 )}
 
+<<<<<<< HEAD
                 {mode === 'normal' && (
                   <button
                     onClick={this.clearCustomfield.bind(this)}
@@ -261,6 +271,20 @@ class CustomfieldMaker extends Component {
                   </button>
                 )}
                 {editMode !== 'preview' && (
+=======
+                {mode === 'normal' &&
+                  <select id="tag" onChange={(e) => this.updateState('tag', e.target.value)}  className="acms-admin-form-width-quarter">
+                    <option value="section">--</option>
+                    <option value="table">table</option>
+                  </select>
+                }
+
+                {mode === 'normal' && <button onClick={this.clearCustomfield.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'group' && <button onClick={this.clearGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {mode === 'unit-group' && <button onClick={this.clearUnitGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
+                {editMode !== 'preview' &&
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                   <div style={{ display: 'inline-block', position: 'relative', float: 'right', marginRight: '10px' }}>
                     <CopyToClipboard text={source} onCopy={() => this.setState({ copied: true })}>
                       <button className="acms-admin-btn-admin">コードをコピー</button>
@@ -336,6 +360,7 @@ class CustomfieldMaker extends Component {
               </div>
               {editMode === 'source' && (
                 <Highlighter onSourceGenerated={this.setSource.bind(this)}>
+<<<<<<< HEAD
                   {mode === 'normal' && (
                     <FieldSource customfield={customfield} acmscss={acmscss} jsValidator={jsValidator} />
                   )}
@@ -349,6 +374,19 @@ class CustomfieldMaker extends Component {
                       direction={direction}
                     />
                   )}
+=======
+                  {mode === 'normal' &&
+                    <FieldSource
+                      customfield={customfield}
+                      acmscss={acmscss}
+                      jsValidator={jsValidator}
+                      tag={tag}>
+                      <FieldSource.Section />
+                      <FieldSource.Table />
+                    </FieldSource>
+                  }
+                  {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} jsValidator={jsValidator} groupTitle={groupTitle} groupName={groupName} direction={direction} />}
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                   {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
                   {mode === 'unit-group' && (
                     <UnitGroupSource
@@ -364,6 +402,7 @@ class CustomfieldMaker extends Component {
               )}
               {editMode === 'preview' && (
                 <div className="customFieldPreview">
+<<<<<<< HEAD
                   {mode === 'normal' && <FieldSource customfield={customfield} acmscss={acmscss} preview />}
                   {mode === 'group' && (
                     <FieldGroupSource
@@ -375,6 +414,19 @@ class CustomfieldMaker extends Component {
                       direction={direction}
                     />
                   )}
+=======
+                  {mode === 'normal' &&
+                    <FieldSource
+                      customfield={customfield}
+                      acmscss={acmscss}
+                      tag={tag}
+                      preview>
+                      <FieldSource.Section />
+                      <FieldSource.Table />
+                    </FieldSource>
+                  }
+                  {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} preview direction={direction} />}
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                   {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} preview />}
                   {mode === 'unit-group' && (
                     <UnitGroupSource

@@ -6,6 +6,7 @@ import stateManger from '../lib/history';
 import prefJson from '../../json/pref.json';
 import prefEnJson from '../../json/pref-en.json';
 import prefNumberJson from '../../json/pref-number.json';
+import inputTypesJson from '../../json/input-types.json';
 
 const snippetJSON = {
   pref: prefJson,
@@ -204,6 +205,7 @@ export default class Base extends Component {
       <div>
         <table className="acms-admin-table customFieldOptionTable">
           <tbody>
+<<<<<<< HEAD
             {option.map((item, idx) => (
               <tr key={idx}>
                 <td>
@@ -244,6 +246,24 @@ export default class Base extends Component {
                 </td>
               </tr>
             ))}
+=======
+          {option.map((item, idx) =>
+            (<tr>
+              <td>
+                <div className="customFieldOptionTableInput">
+                  <span className="customFieldOptionTableAppend">項目名（label）</span><input type="text" value={item.label} onInput={(e) => { this.updateOptionLabel(idx, e.target.value); }} className="acms-admin-form-width-full" placeholder="例）東京都" />
+                </div>
+              </td>
+              <td>
+                <div className="customFieldOptionTableInput">
+                  <span className="customFieldOptionTableAppend">値（value）</span><input type="text" value={item.value} onInput={(e) => { this.updateOptionValue(idx, e.target.value); }} className="acms-admin-form-width-full" placeholder="例）tokyo" />
+                </div>
+              </td>
+              <td>
+                <input type="button" className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right" onClick={this.removeOption.bind(this, idx)} value="削除" />
+              </td>
+            </tr>))}
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
           </tbody>
         </table>
         <p>
@@ -505,6 +525,7 @@ export default class Base extends Component {
   }
 
   renderBasic() {
+<<<<<<< HEAD
     const { title, name, tooltip } = this.state;
     return (
       <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
@@ -604,17 +625,67 @@ export default class Base extends Component {
           </tr>
         </tbody>
       </table>
+=======
+    const { title, name, tooltip, type } = this.state;
+    return (
+    <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
+      <tbody>
+      <tr>
+        <th className="acms-admin-table-left">入力欄の種類
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="type-tip" />
+          <ReactTooltip id="type-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+            <span>フィールドのタイプとなります。<br />選択しないと生成ボタンを押してもソースコードが生成されません。</span>
+          </ReactTooltip>
+          <span className="acms-admin-label acms-admin-label-danger">必須</span>
+        </th>
+        <th className="acms-admin-table-left">タイトル
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip" />
+          <ReactTooltip id="title-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+            <span>見出しになります。</span>
+          </ReactTooltip>
+          <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
+        <th className="acms-admin-table-left">フィールド
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip" />
+          <ReactTooltip id="field-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+            <span>フィールド名です。name属性として使用されます。</span>
+          </ReactTooltip>
+          <span className="acms-admin-label acms-admin-label-danger">必須</span></th>
+        <th className="acms-admin-table-left">ツールチップ
+        <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="tooltip-tip" />
+          <ReactTooltip id="tooltip-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+            <span>カスタムフィールドの説明用のツールチップを付与します。</span>
+          </ReactTooltip>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          {this.typeSelectRender()}
+          {this.subTypeSelectRender()}
+        </td>
+        <td><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
+        <td><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）name" /></td>
+        <td><input type="text" value={tooltip} onInput={(e) => { this.updateState('tooltip', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
+      </tr>
+      </tbody>
+    </table>
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
     );
   }
 
   typeSelectRender() {
     const { type } = this.state;
 
+    const onChange = (e) => {
+      this.updateState('subType', '')
+      this.updateState('type', e.target.value)
+    }
+
     return (
       <select
         id="type"
         value={type}
         className="acms-admin-form-width-full"
+<<<<<<< HEAD
         onChange={(e) => {
           this.updateState('type', e.target.value);
         }}
@@ -631,6 +702,33 @@ export default class Base extends Component {
         <option value="file">ファイル</option>
       </select>
     );
+=======
+        onChange={onChange}>
+        {Object.keys(inputTypesJson).map((input) => {
+          return <option value={input}>{inputTypesJson[input].label}</option>
+        })}
+      </select>
+    );
+  }
+
+  subTypeSelectRender() {
+    const { type, subType } = this.state;
+    const subTypes = Array.isArray(inputTypesJson[type]?.subTypes) ? inputTypesJson[type].subTypes : [];
+
+    const onChange = (e) => {
+      this.updateState('subType', e.target.value)
+    }
+
+    if(subTypes.length > 0) {
+      return (
+        <select id="subType" value={subType} className="acms-admin-form-width-full" onChange={onChange}>
+          {subTypes.map((subType) => (
+            <option key={subType.value} value={subType.value}>{subType.label}</option>
+          ))}
+        </select>
+      )
+    }
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
   }
 
   noSearchCheckRender() {
@@ -840,17 +938,33 @@ export default class Base extends Component {
   renderMake() {
     return (
       <p>
+<<<<<<< HEAD
         <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>
+=======
+        <button
+          onClick={this.clearValue.bind(this)}
+          className="acms-admin-btn-admin"
+          style={{ marginRight: '5px' }}>
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
           クリア
         </button>
         <button
           onClick={this.submit.bind(this)}
           className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn"
+<<<<<<< HEAD
           style={{ marginRight: '5px' }}
         >
           生成
         </button>
         <button onClick={this.backState.bind(this)} className="acms-admin-btn-admin">
+=======
+          style={{ marginRight: '5px' }}>
+          生成
+        </button>
+        <button
+          onClick={this.backState.bind(this)}
+          className="acms-admin-btn-admin">
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
           元に戻す
         </button>
       </p>
@@ -864,6 +978,7 @@ export default class Base extends Component {
           <tr>
             <th className="acms-admin-table-left">
               画像サイズ
+<<<<<<< HEAD
               <i className="acms-admin-icon-tooltip" data-tip data-tooltip-id="image-size-tip" />
               <Tooltip
                 id="image-size-tip"
@@ -909,12 +1024,40 @@ export default class Base extends Component {
               >
                 <span>通常画像を指定したサイズで中央から正方形にトリミングして生成します。</span>
               </Tooltip>
+=======
+              <i className="acms-admin-icon-tooltip" data-tip data-for="image-size-tip" />
+              <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                <span>通常画像の画像サイズを指定します</span>
+              </ReactTooltip>
+            </th>
+            <th className="acms-admin-table-left">
+              large画像生成
+              <i className="acms-admin-icon-tooltip" data-tip data-for="image-large-size-tip" />
+              <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                <span>通常画像よりも大きい画像を生成できます。</span>
+              </ReactTooltip>
+            </th>
+            <th className="acms-admin-table-left">
+              tiny画像生成
+              <i className="acms-admin-icon-tooltip" data-tip data-for="image-tiny-size-tip" />
+              <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                <span>通常画像よりも小さい画像を生成できます。</span>
+              </ReactTooltip>
+            </th>
+            <th className="acms-admin-table-left">
+              square画像生成
+              <i className="acms-admin-icon-tooltip" data-tip data-for="image-square-size-tip" />
+              <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+                <span>通常画像を指定したサイズで中央から正方形にトリミングして生成します。</span>
+              </ReactTooltip>
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
             </th>
           </tr>
           <tr>
             <td>
               <div className="acms-form-group">
                 <div className="controls">
+<<<<<<< HEAD
                   <select
                     name="normal"
                     onChange={(e) => {
@@ -922,11 +1065,15 @@ export default class Base extends Component {
                     }}
                     className="acms-admin-margin-right-small"
                   >
+=======
+                  <select name="normal" onChange={(e) => { this.updateState('normal', e.target.value); }} className="acms-admin-margin-right-small">
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                     <option value="size">長辺</option>
                     <option value="width">幅</option>
                     <option value="height">高さ</option>
                   </select>
                   <span className="input-append">
+<<<<<<< HEAD
                     <input
                       type="text"
                       autoComplete="off"
@@ -938,6 +1085,9 @@ export default class Base extends Component {
                       placeholder="例）200px"
                     />
                     <span className="add-on"> px</span>
+=======
+                    <input type="text" autoComplete="off" name="normalSize" onInput={(e) => { this.updateState('normalSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）200px" /><span className="add-on"> px</span>
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                   </span>
                 </div>
               </div>
@@ -945,6 +1095,7 @@ export default class Base extends Component {
             <td>
               <div className="acms-form-group">
                 <div className="controls">
+<<<<<<< HEAD
                   <select
                     name="large"
                     onChange={(e) => {
@@ -952,11 +1103,15 @@ export default class Base extends Component {
                     }}
                     className="acms-admin-margin-right-small"
                   >
+=======
+                  <select name="large" onChange={(e) => { this.updateState('large', e.target.value); }} className="acms-admin-margin-right-small">
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                     <option value="">作らない</option>
                     <option value="largeWidth">width</option>
                     <option value="largeHeight">height</option>
                   </select>
                   <span className="input-append">
+<<<<<<< HEAD
                     <input
                       type="text"
                       autoComplete="off"
@@ -968,6 +1123,9 @@ export default class Base extends Component {
                       placeholder="例）400px"
                     />
                     <span className="add-on"> px</span>
+=======
+                    <input type="text" autoComplete="off" name="largeSize" onInput={(e) => { this.updateState('largeSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）400px" /><span className="add-on"> px</span>
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                   </span>
                 </div>
               </div>
@@ -975,6 +1133,7 @@ export default class Base extends Component {
             <td>
               <div className="acms-form-group">
                 <div className="controls">
+<<<<<<< HEAD
                   <select
                     name="tiny"
                     onChange={(e) => {
@@ -982,11 +1141,15 @@ export default class Base extends Component {
                     }}
                     className="acms-admin-margin-right-small"
                   >
+=======
+                  <select name="tiny" onChange={(e) => { this.updateState('tiny', e.target.value); }} className="acms-admin-margin-right-small">
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                     <option value="">作らない</option>
                     <option value="tinyWidth">width</option>
                     <option value="tinyHeight">height</option>
                   </select>
                   <span className="input-append">
+<<<<<<< HEAD
                     <input
                       type="text"
                       autoComplete="off"
@@ -998,6 +1161,9 @@ export default class Base extends Component {
                       placeholder="例）100px"
                     />
                     <span className="add-on"> px</span>
+=======
+                    <input type="text" autoComplete="off" name="tinySize" onInput={(e) => { this.updateState('tinySize', e.target.value); }} className="customFieldSizeInput" placeholder="例）100px" /><span className="add-on"> px</span>
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                   </span>
                 </div>
               </div>
@@ -1005,6 +1171,7 @@ export default class Base extends Component {
             <td>
               <div className="acms-form-group">
                 <div className="controls">
+<<<<<<< HEAD
                   <select
                     name="square"
                     onChange={(e) => {
@@ -1012,10 +1179,14 @@ export default class Base extends Component {
                     }}
                     className="acms-admin-margin-right-small"
                   >
+=======
+                  <select name="square" onChange={(e) => { this.updateState('square', e.target.value); }} className="acms-admin-margin-right-small">
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                     <option value="">作らない</option>
                     <option value="squareWidth">width</option>
                   </select>
                   <span className="input-append">
+<<<<<<< HEAD
                     <input
                       type="text"
                       autoComplete="off"
@@ -1027,6 +1198,9 @@ export default class Base extends Component {
                       placeholder="例）250px"
                     />
                     <span className="add-on"> px</span>
+=======
+                    <input type="text" autoComplete="off" name="squareSize" onInput={(e) => { this.updateState('squareSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）250px" /><span className="add-on"> px</span>
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
                   </span>
                 </div>
               </div>
@@ -1067,6 +1241,7 @@ export default class Base extends Component {
     const { useExpand, startHeadingLevel, endHeadingLevel } = this.state;
     return (
       <div>
+<<<<<<< HEAD
         <p className="acms-admin-form-checkbox">
           <input
             type="checkbox"
@@ -1103,6 +1278,31 @@ export default class Base extends Component {
             }}
           />
         </div>
+=======
+        開始見出しレベル
+        <span style={{ display: 'inline-block', width: '5px', height: '1px' }} />
+        <input
+          type="text"
+          value={startHeadingLevel}
+          onInput={(e) => {
+            this.setState({
+              startHeadingLevel: e.target.value
+            });
+          }}
+        />
+        <span style={{ display: 'inline-block', width: '15px', height: '1px' }} />
+        終了見出しレベル
+        <span style={{ display: 'inline-block', width: '5px', height: '1px' }} />
+        <input
+          type="text"
+          value={endHeadingLevel}
+          onInput={(e) => {
+            this.setState({
+              endHeadingLevel: e.target.value
+            });
+          }}
+        />
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
       </div>
     );
   }

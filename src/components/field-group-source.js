@@ -31,6 +31,7 @@ export default class FieldGroupSource extends Component {
 
           return (
             <Fragment>
+<<<<<<< HEAD
               {!jsValidator && !bottom && (
                 <Fragment>
                   {validator.message && (
@@ -53,6 +54,22 @@ export default class FieldGroupSource extends Component {
                   </p>
                 </div>
               )}
+=======
+              {(!jsValidator && !bottom) && <Fragment>
+                {validator.message && <Fragment>
+                  {preview ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
+                  <p className={classnames({ 'acms-admin-text-error': acmscss })}>{validator.message}</p>
+                  {preview ? null : `<!-- END ${name}:validator#${validator.option} -->`}
+                </Fragment>}
+              </Fragment>}
+              {jsValidator &&
+                <div data-validator-label={`${name}-v-${validator.option}`} className={`validator-result-${classSuffix}`}>
+                  <p className="error-text">
+                    <span className="acms-admin-icon acms-admin-icon-attention" />{validator.message}
+                  </p>
+                </div>
+              }
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
             </Fragment>
           );
         })}

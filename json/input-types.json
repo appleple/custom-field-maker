@@ -1,0 +1,46 @@
+{
+  "text": {
+    "label": "テキスト",
+    "subTypes": [
+      { "value": "", "label": "--" },
+      { "value": "tel", "label": "電話" },
+      { "value": "number", "label": "数値" },
+      { "value": "email", "label": "メール" }
+    ]
+  },
+  "textarea": {
+    "label": "テキストエリア",
+    "subTypes": [
+      { "value": "", "label": "--" },
+      { "value": "lite-editor", "label": "ライトエディター" }
+    ]
+  },
+  "rich-editor": {
+    "label": "リッチエディター",
+    "subTypes": []
+  },
+  "table": {
+    "label": "テーブル",
+    "subTypes": []
+  },
+  "select": {
+    "label": "セレクトボックス",
+    "subTypes": []
+  },
+  "radio": {
+    "label": "ラジオボタン",
+    "subTypes": []
+  },
+  "media": {
+    "label": "メディア",
+    "subTypes": []
+  },
+  "image": {
+    "label": "画像",
+    "subTypes": []
+  },
+  "file": {
+    "label": "ファイル",
+    "subTypes": []
+  }
+}

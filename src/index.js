@@ -16,5 +16,10 @@ export default () => {
 return (
   <Provider store={store}>
     <CustomFieldMaker />
+<<<<<<< HEAD
   </Provider>);
+=======
+  </Provider>
+  );
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
 }

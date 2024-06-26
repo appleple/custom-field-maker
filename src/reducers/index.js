@@ -11,6 +11,7 @@ const initialState = {
   groupName: null,
   unitGroupTitle: null,
   unitGroupName: null,
+  tag: 'section',
   acmscss: true,
   jsValidator: false,
   direction: 'horizontal',
@@ -100,6 +101,10 @@ export default (state = initialState, action) => {
       );
     case types.RESTORE:
       return preserveState(Object.assign({}, state, action.storage));
+    case types.SETTAG:
+      return preserveState(Object.assign({}, state, {
+        tag: state.tag
+      }));
     case types.TOGGLEACMSCSS:
       return preserveState(
         Object.assign({}, state, {

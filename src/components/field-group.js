@@ -7,6 +7,7 @@ export default class FieldGroup extends Base {
     super(props);
     this.state = {
       type: 'text',
+      subType: '',
       title: '',
       name: '',
       tooltip: '',
@@ -105,7 +106,7 @@ export default class FieldGroup extends Base {
   }
 
   render() {
-    const { groupAlert, duplicatedField, openGroup, groupTitle, groupName, type, title, name, tooltip } = this.state;
+    const { groupAlert, duplicatedField, openGroup, groupTitle, groupName, type, subType, title, name, tooltip } = this.state;
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムフィールドグループ</h2>

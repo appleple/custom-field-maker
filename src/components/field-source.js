@@ -1,9 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
-
-const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
+import Section from './input/section';
+import Table from './input/table';
 
 export default class FieldSource extends Component {
+  static Section = ({ tag, ...rest }) => tag === "section" && <Section {...rest} />;
+  static Table = ({ tag,  ...rest }) => tag === "table" && <Table {...rest} />;
+
   constructor(props) {
     super(props);
   }
@@ -16,7 +19,7 @@ export default class FieldSource extends Component {
     }
   }
 
-  renderValidator(item, acmscss) {
+  renderValidator = (item, acmscss) => {
     const { preview, jsValidator } = this.props;
 
     if (!item.openValidator) {
@@ -26,13 +29,14 @@ export default class FieldSource extends Component {
     const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
 
     return (
-      <Fragment>
+      <Fragment key={item.name}>
         {item.validator.map((validator) => {
           if (!validator.option) {
             return null;
           }
 
           return (
+<<<<<<< HEAD
             <Fragment>
               <input
                 type="hidden"
@@ -64,19 +68,42 @@ export default class FieldSource extends Component {
               )}
             </Fragment>
           );
+=======
+          <Fragment key={validator.option}>
+            <input type="hidden" name={`${name}:v#${validator.option}`} value={validator.value} id={`${name}-v-${validator.option}`} />
+            {!jsValidator &&
+            <>
+              {validator.message &&
+              <>
+                {preview ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
+                <p className={classnames({ 'acms-admin-text-error': acmscss })}>{validator.message}</p>
+                {preview ? null : `<!-- END ${name}:validator#${validator.option} -->`}
+              </>}
+            </>
+            }
+            {jsValidator &&
+            <div data-validator-label={`${name}-v-${validator.option}`} className={`validator-result-{${name}:v#${validator.option}}`}>
+              <p className="error-text">
+                <span className="acms-admin-icon acms-admin-icon-attention" />{validator.message}
+              </p>
+            </div>
+            }
+          </Fragment>);
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
         })}
         {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
       </Fragment>
     );
   }
 
-  renderNoSearch(item) {
+  renderNoSearch = (item) => {
     if (!item.noSearch) {
       return null;
     }
     return <input type="hidden" name={`${item.name}:search`} value="0" />;
   }
 
+<<<<<<< HEAD
   renderTh(item) {
     const { jsValidator } = this.props;
     return (
@@ -550,6 +577,20 @@ export default class FieldSource extends Component {
         {jsValidator && '<!-- </form> -->'}
       </Fragment>
     );
+=======
+  render() {
+    const { children, tag, ...rest } = this.props;
+    const { renderValidator, renderNoSearch } = this;
+
+    return React.Children.map(children, (child) => {
+      return React.cloneElement(child, {
+        tag,
+        renderValidator,
+        renderNoSearch,
+        ...rest
+      });
+    });
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
   }
 }
 

@@ -1,5 +1,6 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
+<<<<<<< HEAD
 const prod = require('./webpack.prod.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -12,6 +13,16 @@ module.exports = merge(prod, {
     client: {
       overlay: false,
     },
+=======
+const webpack = require('webpack');
+const prodConfig = require('./webpack.prod.js');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = merge(prodConfig, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
     static: [
       {
         directory: path.resolve(__dirname, ''),
@@ -19,6 +30,7 @@ module.exports = merge(prod, {
     ],
     open: true,
     hot: true,
+<<<<<<< HEAD
     port: 3000,
   },
   plugins: [
@@ -36,5 +48,17 @@ module.exports = merge(prod, {
     //     },
     //   },
     // })
+=======
+    port: 3000
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin(
+      {
+        template: './example/index.html',
+        filename: 'index.html'
+      }
+    )
+>>>>>>> b5e9292 (reactを16.14.0にアップデート)
   ],
 });

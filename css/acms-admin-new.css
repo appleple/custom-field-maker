@@ -1,0 +1,33 @@
+.acms-admin-form-item {
+  display :flex;
+  flex-direction: column;
+}
+.acms-admin-form-item-heading {
+  padding-bottom: 0.2em;
+}
+
+legend {
+  display: block;
+  padding: 0;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  padding: 0.01em 0 0 0;
+}
+
+@media screen and (min-width: 768px) {
+  .acms-admin-form-item {
+    flex-direction: row;
+    align-items: center;
+  }
+  .acms-admin-form-item-heading {
+    flex-basis: 30%;
+    padding-right: 1rem;
+    text-align: right;
+  }
+  .acms-admin-form-item-input {
+    flex-basis: 70%;
+  }
+}
