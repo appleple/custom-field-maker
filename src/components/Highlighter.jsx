@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useCallback, useMemo } from 'react';
-import { renderToStaticMarkup, renderToString } from 'react-dom/server';
+import React, { useEffect, useRef, useCallback } from 'react';
+import { renderToString } from 'react-dom/server';
 import { XmlEntities } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
 import hljs from 'highlight.js/lib/highlight';
@@ -14,26 +14,28 @@ const entities = new XmlEntities();
 export function Highlighter({ children }) {
   const { preview, setSource } = useMakerContext();
   const codeRef = useRef();
-  const renderedChildren = useMemo(() => renderToStaticMarkup(children), []);
+  const renderedChildren = renderToString(children);
 
   useEffect(() => {
     buildSource();
-  }, [renderToString(children)]);
+  }, [renderedChildren, buildSource]);
 
   const buildSource = useCallback(() => {
-    let html = renderToString(children);
+    let html = renderedChildren;
     html = html.replace(/&quot;/g, '"');
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
     html = html.replace(/&lt;/g, '<');
     html = html.replace(/&gt;/g, '>');
-    html = removeReactText(html)
-    const encodedHtml = entities.encode(beautifyHtml(html, {
-      unformatted: ['code', 'pre'],
-      indent_inner_html: true,
-      indent_char: ' ',
-      indent_size: 2,
-      sep: '\n'
-    }));
+    html = removeReactText(html);
+    const encodedHtml = entities.encode(
+      beautifyHtml(html, {
+        unformatted: ['code', 'pre'],
+        indent_inner_html: true,
+        indent_char: ' ',
+        indent_size: 2,
+        sep: '\n',
+      })
+    );
 
     codeRef.current.innerHTML = encodedHtml;
     hljs.highlightBlock(codeRef.current);
@@ -41,13 +43,13 @@ export function Highlighter({ children }) {
     if (preview.source !== encodedHtml) {
       setSource(encodedHtml);
     }
-  });
+  }, [renderedChildren, setSource, preview.source]);
 
-  const removeReactText = (html) => {
+  const removeReactText = html => {
     html = html.replace(/<!-- (\/?)reactroot(.*?)-->/g, '');
     html = html.replace(/ data-reactroot=""/g, '');
     return html;
-  }
+  };
 
   return (
     <div>
