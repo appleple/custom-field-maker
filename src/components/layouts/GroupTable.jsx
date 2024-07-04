@@ -1,12 +1,11 @@
 import React, { useRef } from 'react'
-import { Label } from '../html/Label'
+import classnames from 'classnames'
 import { TextInput } from '../html/TextInput'
 import { TextareaInput } from '../html/TextareaInput'
 import { useMakerContext } from '../../store/MakerContext'
 import { useEditorContext } from '../../store/EditorContext'
-import classnames from 'classnames'
 
-export const GroupTable = (props) => {
+export function GroupTable(props) {
   const { fieldgroup } = props
   const { preview } = useMakerContext()
   const { editor } = useEditorContext()
@@ -154,12 +153,8 @@ export const GroupTable = (props) => {
             <input type="hidden" name={`@${groupName}[]`} value={`${item.name}@old`} />
             <input type="hidden" name={`${item.name}:extension`} value="file" />
             </>}
-          {item.type === 'media' && <>
-            <input type="hidden" name={`${item.name}:extension`} value="media" />
-            </>}
-          {item.type === 'rich-editor' && <>
-            <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
-          </>}
+          {item.type === 'media' && <input type="hidden" name={`${item.name}:extension`} value="media" />}
+          {item.type === 'rich-editor' && <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />}
           <input type="hidden" name={`@${groupName}[]`} value={item.name} />
           <input type="hidden" name="field[]" value={item.name} />
           {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}

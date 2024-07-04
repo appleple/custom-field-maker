@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMakerContext } from '../../store/MakerContext'
 
-export const PreviewModeNavigator = () => {
+export function PreviewModeNavigator() {
   const { setEditMode } = useMakerContext()
 
   const updateMode = (editMode) => {

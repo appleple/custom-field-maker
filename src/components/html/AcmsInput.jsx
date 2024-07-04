@@ -4,7 +4,7 @@ import { useMakerContext } from "../../store/MakerContext";
 import { useEditorContext } from "../../store/EditorContext";
 
 export const renderValidator = (props) => {
-  const { maker } = useMakerContext()
+  const { maker, preview: { acmscss } } = useMakerContext()
   const { editor } = useEditorContext()
 
   if (!props.openValidator) {

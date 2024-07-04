@@ -165,6 +165,7 @@ export default class FieldGroupConfirmSource extends Component {
                   } else if (item.type === 'table') {
                     return this.wrapTable(<td>{`{${item.name}}[raw]`}</td>, item.name);
                   }
+<<<<<<< HEAD
                 })}
               </ConditionalWrap>
             </tr>
@@ -173,5 +174,73 @@ export default class FieldGroupConfirmSource extends Component {
         </table>
       </Fragment>
     );
+=======
+
+                  return this.wrapTable(<td>
+                    {`<!-- BEGIN ${item.name}@path:veil -->`}
+                    <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
+                      <img src={src} width="64" height="64" alt={alt} />
+                    </a>
+                    {`<!-- END ${item.name}@path:veil -->`}
+                  </td>, item.title);
+                } else if (item.type === 'image') {
+                  return this.wrapTable(<td>
+                    {`<!-- BEGIN ${item.name}@path:veil -->`}
+                    <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} className={classnames({ 'acms-admin-img-responsive': acmscss })} alt={`{${item.name}@alt}`} />
+                    {`<!-- END ${item.name}@path:veil -->`}
+                  </td>, item.title);
+                } else if (item.type === 'media') {
+                  return this.wrapTable(<td>
+                    {`<!-- BEGIN_IF [{${item.name}@type}/eq/file] -->`}
+                    <a href={`{${item.name}@path}`}>
+                      <img
+                        alt={`{${item.name}@alt}`}
+                        src={`{${item.name}@thumbnail}`}
+                        style={{ width: '64px', height: 'auto' }}
+                      />
+                    </a>
+                    {`<!-- END_IF -->`}
+                    {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                    {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                    <a href={`{${item.name}@link}`}>
+                    {`<!-- END_IF -->`}
+                    {item.useFocusImage && <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
+                    <img className="js-focused-image" data-focus-x={`{${item.name}@focalX}`} data-focus-y={`{${item.name}@focalY}`} alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`} />
+                    </div>}
+                    {!item.useFocusImage &&
+                    <img
+                      alt={`{${item.name}@alt}`}
+                      src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
+                    />}
+                    {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
+                    </a>
+                    {`<!-- END_IF -->`}
+
+                  {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
+                  <p>{`{${item.name}@text}`}</p>
+                  {'<!-- END_IF -->'}
+                  {'<!-- END_IF -->'}
+                  </td>, item.title);
+                } else if (item.type === 'lite-editor') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}}[raw]`}
+                  </td>, item.name);
+                } else if (item.type === 'rich-editor') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}@html}[raw]`}
+                  </td>, item.name);
+                } else if (item.type === 'table') {
+                  return this.wrapTable(<td>
+                    {`{${item.name}}[raw]`}
+                  </td>, item.name);
+                }
+              })}
+            </ConditionalWrap>
+          </tr>
+          {`<!-- END ${groupName}:loop -->`}
+        </tbody>
+      </table>
+    </Fragment>);
+>>>>>>> 51184c2 (build: eslint を導入)
   }
 }

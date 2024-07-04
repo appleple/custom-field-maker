@@ -173,7 +173,7 @@ export default class Input extends Component {
   }
 
   renderCheckbox(item) {
-    const { acmscss, renderNoSearch } = this.props;
+    const { acmscss, renderNoSearch, renderValidator } = this.props;
 
     return (
       <>

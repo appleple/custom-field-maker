@@ -22,6 +22,7 @@ export default class UnitGroup extends Base {
       path: 'path',
       converter: '',
       normal: 'size',
+<<<<<<< HEAD
       resize: 'true',
       option: [
         {
@@ -36,6 +37,17 @@ export default class UnitGroup extends Base {
           message: '',
         },
       ],
+=======
+      option: [{
+        value: '',
+        label: ''
+      }],
+      validator: [{
+        option: '',
+        value: '',
+        message: ''
+      }],
+>>>>>>> 51184c2 (build: eslint を導入)
       optionFormat: 'pref',
       unitGroupTitle: '',
       unitGroupName: '',

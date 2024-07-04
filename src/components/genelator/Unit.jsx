@@ -21,6 +21,7 @@ export default class Unit extends Base {
       path: 'path',
       converter: '',
       normal: 'size',
+<<<<<<< HEAD
       resize: 'true',
       option: [
         {
@@ -35,6 +36,17 @@ export default class Unit extends Base {
           message: '',
         },
       ],
+=======
+      option: [{
+        value: '',
+        label: ''
+      }],
+      validator: [{
+        option: '',
+        value: '',
+        message: ''
+      }],
+>>>>>>> 51184c2 (build: eslint を導入)
       optionFormat: 'pref',
       openValidator: false,
       openConverter: false,
@@ -56,7 +68,7 @@ export default class Unit extends Base {
 
   submit() {
     const { name, type, title } = this.state;
-    const { maker, addCustomunit } = this.context
+    const { addCustomunit } = this.context
     if (name && type && title) {
       addCustomunit(this.state);
     } else {

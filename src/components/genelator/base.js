@@ -100,11 +100,17 @@ export default class Base extends Component {
     this.setState({
       option: [
         ...option.slice(0, idx),
+<<<<<<< HEAD
         Object.assign({}, item, {
           label,
         }),
         ...option.slice(idx + 1),
       ],
+=======
+        { ...item, label},
+        ...option.slice(idx + 1)
+      ]
+>>>>>>> 51184c2 (build: eslint を導入)
     });
   }
 
@@ -114,11 +120,17 @@ export default class Base extends Component {
     this.setState({
       option: [
         ...option.slice(0, idx),
+<<<<<<< HEAD
         Object.assign({}, item, {
           value,
         }),
         ...option.slice(idx + 1),
       ],
+=======
+        { ...item, value},
+        ...option.slice(idx + 1)
+      ]
+>>>>>>> 51184c2 (build: eslint を導入)
     });
   }
 
@@ -149,11 +161,17 @@ export default class Base extends Component {
     this.setState({
       validator: [
         ...validator.slice(0, idx),
+<<<<<<< HEAD
         Object.assign({}, item, {
           option,
         }),
         ...validator.slice(idx + 1),
       ],
+=======
+        { ...item, option},
+        ...validator.slice(idx + 1)
+      ]
+>>>>>>> 51184c2 (build: eslint を導入)
     });
   }
 
@@ -163,11 +181,17 @@ export default class Base extends Component {
     this.setState({
       validator: [
         ...validator.slice(0, idx),
+<<<<<<< HEAD
         Object.assign({}, item, {
           value,
         }),
         ...validator.slice(idx + 1),
       ],
+=======
+        { ...item, value},
+        ...validator.slice(idx + 1)
+      ]
+>>>>>>> 51184c2 (build: eslint を導入)
     });
   }
 
@@ -177,11 +201,17 @@ export default class Base extends Component {
     this.setState({
       validator: [
         ...validator.slice(0, idx),
+<<<<<<< HEAD
         Object.assign({}, item, {
           message,
         }),
         ...validator.slice(idx + 1),
       ],
+=======
+        { ...item, message},
+        ...validator.slice(idx + 1)
+      ]
+>>>>>>> 51184c2 (build: eslint を導入)
     });
   }
 
@@ -462,6 +492,7 @@ export default class Base extends Component {
               </tr>
               <tr>
                 <td>s</td>
+<<<<<<< HEAD
                 <td>「全角」スペースを「半角」に変換します（U+3000 -> U+0020）。</td>
 <<<<<<< HEAD:src/components/base.js
                 <td>
@@ -469,12 +500,16 @@ export default class Base extends Component {
                     追加
                   </button>
 =======
+=======
+                <td>「全角」スペースを「半角」に変換します（U+3000 -&gt; U+0020）。</td>
+>>>>>>> 51184c2 (build: eslint を導入)
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 's')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>S</td>
+<<<<<<< HEAD
                 <td>「半角」スペースを「全角」に変換します（U+0020 -> U+3000）。</td>
 <<<<<<< HEAD:src/components/base.js
                 <td>
@@ -482,6 +517,9 @@ export default class Base extends Component {
                     追加
                   </button>
 =======
+=======
+                <td>「半角」スペースを「全角」に変換します（U+0020 -&gt; U+3000）。</td>
+>>>>>>> 51184c2 (build: eslint を導入)
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'S')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
@@ -768,9 +806,7 @@ export default class Base extends Component {
     );
 =======
         onChange={onChange}>
-        {Object.keys(inputTypesJson).map((input, index) => {
-          return <option key={index} value={input}>{inputTypesJson[input].label}</option>
-        })}
+        {Object.keys(inputTypesJson).map((input, index) => <option key={index} value={input}>{inputTypesJson[input].label}</option>)}
       </select>
     );
   }

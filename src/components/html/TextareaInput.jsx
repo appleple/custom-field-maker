@@ -3,10 +3,10 @@ import classnames from "classnames"
 import { useMakerContext } from '../../store/MakerContext';
 import { renderValidator, renderNoSearch } from './AcmsInput'
 
-export const TextareaInput = (props) => {
+export function TextareaInput(props) {
   const { name, type, subType } = props
   const { preview } = useMakerContext()
-  const selectedType = subType ? subType : type
+  const selectedType = subType || type
 
   const classname = classnames({
     'acms-admin-form-width-full': preview && preview.acmscss,

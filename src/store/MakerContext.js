@@ -1,6 +1,37 @@
 import React, { useContext, createContext, useState } from 'react';
 
-export const MakerContext = createContext({})
+export const MakerContext = createContext({
+  customfield: [],
+  fieldgroup: [],
+  customunit: [],
+  unitgroup: [],
+  snippets: [],
+  preview: {
+    mode: 'normal',
+    editMode: 'source',
+    source: '',
+    copied: false,
+    tag: 'section',
+    acmscss: true,
+    jsValidator: false,
+    direction: 'horizontal'
+  },
+  addCustomfield: () => {},
+  addCustomunit: () => {},
+  setGroupTitleName: () => {},
+  addGroupItem: () => {},
+  setUnitGroupTitleName: () => {},
+  addUnitGroupItem: () => {},
+  clearGroupItem: () => {},
+  clearUnitGroupItem: () => {},
+  setSource: () => {},
+  setMode: () => {},
+  setEditMode: () => {},
+  setTag: () => {},
+  setAcmscss: () => {},
+  setJsValidator: () => {},
+  setSnippets: () => {}
+})
 
 export function MakerContextProvider({ children }) {
   // const initialState = {

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Section } from './layouts/Section';
 import { Table } from './layouts/Table';
+import { useMakerContext } from '../store/MakerContext';
 
-export const FieldSource = ({ customfield, preview }) => {
+export function FieldSource({ customfield }) {
+  const { preview } = useMakerContext();
   if (!customfield) return null;
+
 
   return (
     <>
@@ -11,4 +14,4 @@ export const FieldSource = ({ customfield, preview }) => {
       {preview.tag === 'table' && <Table customfield={customfield} preview={preview} />}
     </>
   );
-};
+}

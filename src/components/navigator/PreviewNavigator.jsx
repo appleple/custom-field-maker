@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMakerContext } from '../../store/MakerContext'
 
-export const PreviewNavigator = () => {
+export function PreviewNavigator() {
   const { preview, setTag, setAcmscss, setJsValidator } = useMakerContext()
 
   const updateTag = (tag) => {

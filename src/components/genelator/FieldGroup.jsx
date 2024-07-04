@@ -22,7 +22,6 @@ export default class FieldGroup extends Base {
       path: 'path',
       converter: '',
       normal: 'size',
-      resize: 'true',
       useDropArea: true,
       dropAreaWidth: 200,
       dropAreaHeight: 200,
@@ -139,7 +138,7 @@ export default class FieldGroup extends Base {
 
   render() {
     const { clearGroupItem } = this.context
-    const { groupAlert, duplicatedField, openGroup, groupTitle, groupName, type, subType, title, name, tooltip } = this.state;
+    const { openGroup, groupTitle, groupName, type } = this.state;
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムフィールドグループ</h2>

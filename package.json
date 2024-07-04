@@ -95,8 +95,8 @@
     "redux": "^4.2.1"
   },
   "peerDependencies": {
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -116,6 +116,9 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^8.57.0",
+    "eslint-import-resolver-webpack": "^0.13.8",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-webpack-plugin": "^4.2.0",
     "file-loader": "^0.10.0",
@@ -129,6 +132,7 @@
     "sass-loader": "^13.3.2",
     "style-loader": "^0.13.1",
     "svgo": "^1.0.5",
+    "typescript-eslint": "^7.15.0",
     "url-loader": "^0.5.7",
     "webpack": "^5.31.2",
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)

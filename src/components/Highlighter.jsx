@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import { XmlEntities } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
@@ -11,13 +11,14 @@ import { useMakerContext } from '../store/MakerContext';
 hljs.registerLanguage('xml', xml);
 const entities = new XmlEntities();
 
-export const Highlighter = ({ children }) => {
+export function Highlighter({ children }) {
   const { preview, setSource } = useMakerContext();
   const codeRef = useRef();
+  const renderedChildren = useMemo(() => renderToStaticMarkup(children), []);
 
   useEffect(() => {
     buildSource();
-  }, [children]);
+  }, [renderToString(children)]);
 
   const buildSource = useCallback(() => {
     let html = renderToString(children);
@@ -55,5 +56,4 @@ export const Highlighter = ({ children }) => {
       </pre>
     </div>
   );
-};
-
+}

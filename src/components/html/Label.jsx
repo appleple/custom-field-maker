@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Label = (props) => {
+export function Label(props) {
   const { item, preview } = props
 
   return (

@@ -31,15 +31,13 @@ function CustomFieldMaker() {
               <PreviewNavigator />
 
               {preview.editMode === 'source' &&
-              <>
-                <Highlighter>
+              <Highlighter>
                   <p>Highlighter</p>
-                  {preview.mode === 'normal' && <FieldSource customfield={customfield} preview={preview} />}
-                  {preview.mode === 'unit' && <FieldSource customfield={customunit} preview={preview} />}
-                  {preview.mode === 'group' && <FieldGroupSource fieldgroup={fieldgroup} preview={preview} />}
-                  {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} preview={preview} />}
+                  {preview.mode === 'normal' && <FieldSource customfield={customfield} />}
+                  {preview.mode === 'unit' && <FieldSource customfield={customunit} />}
+                  {preview.mode === 'group' && <FieldGroupSource fieldgroup={fieldgroup} />}
+                  {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />}
                 </Highlighter>
-              </>
               }
 
               {preview.editMode === 'preview' &&

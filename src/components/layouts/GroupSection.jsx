@@ -1,10 +1,10 @@
 import React from 'react'
+import classnames from 'classnames'
 import { Label } from '../html/Label'
 import { TextInput } from '../html/TextInput'
 import { TextareaInput } from '../html/TextareaInput'
-import classnames from 'classnames'
 
-export const GroupSection = (props) => {
+export function GroupSection(props) {
   const { fieldgroup, preview } = props
 
   return (

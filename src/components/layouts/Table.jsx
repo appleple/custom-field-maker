@@ -4,7 +4,7 @@ import { Label } from '../html/Label'
 import { TextInput } from '../html/TextInput'
 import { TextareaInput } from '../html/TextareaInput'
 
-export const Table = (props) => {
+export function Table(props) {
   const { customfield, preview } = props
 
   return (

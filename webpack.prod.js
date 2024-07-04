@@ -1,4 +1,5 @@
 const path = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -7,7 +8,11 @@ module.exports = {
     children: true,
   },
   entry: {
+<<<<<<< HEAD
     index: './example/src/index.js',
+=======
+    index: './src/index.jsx',
+>>>>>>> 51184c2 (build: eslint を導入)
   },
   output: {
 <<<<<<< HEAD
@@ -24,7 +29,7 @@ module.exports = {
   },
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.json'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -47,5 +52,17 @@ module.exports = {
         type: 'asset',
       },
     ],
-  }
+  },
+  plugins: [
+    new ESLintPlugin({
+      cache: false,
+      context: './src',
+      extensions: ['js', 'ts', 'tsx', 'jsx'],
+      exclude: ['/node_modules/'],
+      emitError: true,
+      emitWarning: true,
+      failOnError: true,
+      fix: true
+    }),
+  ]
 };

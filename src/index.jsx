@@ -3,11 +3,9 @@ import CustomFieldMaker from './containers';
 import { MakerContextProvider } from './store/MakerContext';
 
 function App() {
-  return (
-    <MakerContextProvider>
+  return <MakerContextProvider>
       <CustomFieldMaker />
     </MakerContextProvider>
-  );
 }
 
 export default App

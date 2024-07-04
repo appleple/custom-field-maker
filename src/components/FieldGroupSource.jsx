@@ -1,8 +1,10 @@
 import React from 'react'
 import { GroupSection } from './layouts/GroupSection'
 import { GroupTable } from './layouts/GroupTable'
+import { useMakerContext } from '../store/MakerContext'
 
-export const FieldGroupSource = ({ fieldgroup, preview }) => {
+export function FieldGroupSource({ fieldgroup }) {
+  const { preview } = useMakerContext()
   if (!fieldgroup) return null;
 
   return (

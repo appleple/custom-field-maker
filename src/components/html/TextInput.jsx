@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames';
 import { renderValidator, renderNoSearch } from './AcmsInput'
 
-export const TextInput = (props) => {
+export function TextInput(props) {
   const { item, preview } = props
   const selectedType = item.subType ? item.subType : item.type
 

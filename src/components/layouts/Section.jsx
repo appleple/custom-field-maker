@@ -4,7 +4,7 @@ import { TextInput } from '../html/TextInput'
 import { TextareaInput } from '../html/TextareaInput'
 import { MediaInput } from '../html/MediaInput'
 
-export const Section = (props) => {
+export function Section(props) {
   const { customfield, preview } = props
 
   return (

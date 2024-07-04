@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMakerContext } from '../../store/MakerContext';
 
-export const EditorModeNavigator = () => {
+export function EditorModeNavigator() {
   const { preview, setMode } = useMakerContext();
 
   const updateMode = (e) => {
@@ -65,4 +65,4 @@ export const EditorModeNavigator = () => {
       </div>
     </>
   );
-};
+}
