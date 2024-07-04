@@ -62,7 +62,6 @@ module.exports = {
   },
   plugins: [
     new ESLintPlugin({
-      cache: false,
       context: './src',
       extensions: ['js', 'ts', 'tsx', 'jsx'],
       exclude: ['/node_modules/'],
