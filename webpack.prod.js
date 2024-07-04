@@ -9,10 +9,14 @@ module.exports = {
   },
   entry: {
 <<<<<<< HEAD
+<<<<<<< HEAD
     index: './example/src/index.js',
 =======
     index: './src/index.jsx',
 >>>>>>> 51184c2 (build: eslint を導入)
+=======
+    index: './example/index.js',
+>>>>>>> da80202 (pretteir の設定 & node のバージョンアップ)
   },
   output: {
 <<<<<<< HEAD
@@ -42,14 +46,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' }
-        ]
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
         test: /\.(jpg|png|svg)$/,
+<<<<<<< HEAD
         type: 'asset',
+=======
+        use: {
+          loader: 'url-loader',
+        },
+>>>>>>> da80202 (pretteir の設定 & node のバージョンアップ)
       },
     ],
   },
@@ -62,7 +69,7 @@ module.exports = {
       emitError: true,
       emitWarning: true,
       failOnError: true,
-      fix: true
+      fix: true,
     }),
-  ]
+  ],
 };

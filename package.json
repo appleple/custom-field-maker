@@ -28,8 +28,16 @@
     "dev": "webpack serve --config webpack.dev.js",
     "start": "npm-run-all -p dev",
     "prettier": "prettier ./src/**/*.js --write",
+<<<<<<< HEAD
     "deploy": "np --yolo --any-branch",
     "prepack": "npm run build"
+=======
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "deploy": "np --no-cleanup --any-branch",
+    "svgo": "svgo ./src/assets/images/*.svg ./lib/assets/images/*.svg",
+    "prepare": "husky"
+>>>>>>> da80202 (pretteir の設定 & node のバージョンアップ)
   },
   "jest": {
     "verbose": true,
@@ -111,11 +119,10 @@
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
-    "electron-prebuilt": "^1.4.13",
-    "electron-reload": "^1.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-webpack": "^0.13.8",
     "eslint-plugin-jsx-a11y": "^6.9.0",
     "eslint-plugin-react": "^7.34.3",
@@ -123,10 +130,12 @@
     "eslint-webpack-plugin": "^4.2.0",
     "file-loader": "^0.10.0",
     "html-webpack-plugin": "^5.6.0",
+    "husky": "^9.0.11",
     "jest": "^25.1.0",
+    "lint-staged": "^15.2.7",
     "np": "^2.20.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.9.2",
+    "prettier": "^1.19.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "sass-loader": "^13.3.2",

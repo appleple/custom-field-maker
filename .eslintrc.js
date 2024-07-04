@@ -11,13 +11,11 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended"
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
   ],
-  plugins: [
-    'react',
-    "jsx-a11y"
-  ],
+  plugins: ['react', 'jsx-a11y'],
   rules: {
     'react/prop-types': 'off',
     // 関数コンポーネントは関数宣言を強制
