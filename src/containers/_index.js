@@ -118,11 +118,28 @@ class CustomfieldMaker extends Component {
     } = this.props;
 =======
     const { mode, editMode, source, copied, tag } = this.state;
+<<<<<<< HEAD:src/containers/index.js
     const { actions, customfield, groupitems,
       customunit, unitgroupitems, groupTitle,
       unitGroupTitle, unitGroupName,
       groupName, acmscss, jsValidator, direction } = this.props;
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+    const {
+      actions,
+      customfield,
+      groupitems,
+      customunit,
+      unitgroupitems,
+      groupTitle,
+      unitGroupTitle,
+      unitGroupName,
+      groupName,
+      acmscss,
+      jsValidator,
+      direction
+    } = this.props;
+>>>>>>> 5763b9c (global state 持ち方を修正):src/containers/_index.js
 
     return (
       <div className="acms-admin-form">
@@ -182,6 +199,7 @@ class CustomfieldMaker extends Component {
         {mode === 'group' && <FieldGroup actions={actions} />}
         {mode === 'unit' && <Unit actions={actions} />}
         {mode === 'unit-group' && <UnitGroup actions={actions} />}
+
         <div className="acms-admin-tabs">
           <ul className="customFieldTabs">
             <li>
@@ -222,7 +240,12 @@ class CustomfieldMaker extends Component {
                     acms-admin.cssを使用する
                   </label>
                 </div>
+<<<<<<< HEAD:src/containers/index.js
                 {(mode === 'normal' || mode === 'group') && (
+=======
+
+                {(mode === 'normal' || mode === 'group') &&
+>>>>>>> 5763b9c (global state 持ち方を修正):src/containers/_index.js
                   <div className="acms-admin-form-checkbox" style={{ marginTop: '5px' }}>
                     <input
                       type="checkbox"
@@ -382,7 +405,7 @@ class CustomfieldMaker extends Component {
                       jsValidator={jsValidator}
                       tag={tag}>
                       <FieldSource.Section />
-                      <FieldSource.Table />
+                      {/* <FieldSource.Table /> */}
                     </FieldSource>
                   }
                   {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} jsValidator={jsValidator} groupTitle={groupTitle} groupName={groupName} direction={direction} />}

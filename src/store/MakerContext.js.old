@@ -1,0 +1,70 @@
+import React, { useContext, createContext, useState } from 'react';
+
+export const MakerContext = createContext({})
+
+export function MakerContextProvider({ children }) {
+  const initialState = {
+    customfield: [],
+    groupitems: [],
+    customunit: [],
+    unitgroupitems: [],
+    snippets: [],
+    groupTitle: null,
+    groupName: null,
+    unitGroupTitle: null,
+    unitGroupName: null,
+    tag: 'section',
+    acmscss: true,
+    jsValidator: false,
+    direction: 'horizontal'
+  }
+
+  const [maker, setMaker] = useState(initialState)
+
+  const setMakerState = (newState) => setMaker({ ...newState })
+  const addCustomfield = (newCustomfield) => setMaker(prevState => ({ ...prevState, customfield: [...prevState.customfield, newCustomfield] }))
+  const addCustomunit = (newCustomunit) => setMaker(prevState => ({ ...prevState, customunit: [...prevState.customunit, newCustomunit] }));
+  const setGroupTitleName = (groupTitle, groupName) => setMaker(prevState => ({ ...prevState, groupTitle, groupName }));
+  const addGroupItem =(newGroupItem) => setMaker(prevState => ({ ...prevState, groupitems: [...prevState.groupitems, newGroupItem] }));
+  const setUnitGroupTitleName = (unitGroupTitle, unitGroupName) => setMaker(prevState => ({ ...prevState, unitGroupTitle, unitGroupName }));
+  const addUnitGroupItem =(newUnitGroupItem) => setMaker(prevState => ({ ...prevState, unitgroupitems: [...prevState.unitgroupitems, newUnitGroupItem] }));
+
+  const clearGroupItem = () => setMaker(prevState => ({ ...prevState, groupitems: [] }))
+  const clearUnitGroupItem = () => setMaker(prevState => ({ ...prevState, unitgroupitems: [] }))
+
+  const setTag = (tag) => setMaker(prevState => ({ ...prevState, tag }));
+  const setAcmscss = (acmscss) => setMaker(prevState => ({ ...prevState, acmscss }));
+  const setJsValidator = (jsValidator) => setMaker(prevState => ({ ...prevState, jsValidator }));
+
+
+
+  // const clearCustomfield = () => ({ type: types.CLEARCUSTOMFIELD });
+  // const clearCustomUnit = () => ({ type: types.CLEARCUSTOMUNIT });
+  // const clearUnitGroupTitleName = () => ({ type: types.CLEARUNITGROUPTITLENAME });
+  // const restore = (storage) => ({ type: types.RESTORE, storage });
+  // const addSnippet = (name, value) => ({ type: types.ADDSNIPPET, name, value });
+  // const changeDirection = (direction) => ({ type: types.CHANGEDIRECTION, direction });
+
+  return (
+    <MakerContext.Provider
+      value={{
+        maker,
+        setMakerState,
+        addCustomfield,
+        addCustomunit,
+        setGroupTitleName,
+        addGroupItem,
+        setUnitGroupTitleName,
+        addUnitGroupItem,
+        clearGroupItem,
+        clearUnitGroupItem,
+        setTag,
+        setAcmscss,
+        setJsValidator
+      }}>
+      {children}
+    </MakerContext.Provider>
+  );
+}
+
+export const useMakerContext = () => useContext(MakerContext)

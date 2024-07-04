@@ -17,6 +17,7 @@ module.exports = merge(prod, {
 const webpack = require('webpack');
 const prodConfig = require('./webpack.prod.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = merge(prodConfig, {
   mode: 'development',
@@ -58,7 +59,22 @@ module.exports = merge(prodConfig, {
         template: './example/index.html',
         filename: 'index.html'
       }
+<<<<<<< HEAD
     )
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
   ],
+=======
+    ),
+    // new ESLintPlugin({
+    //   extensions: ['js', 'jsx'],
+    //   overrideConfig: {
+    //     plugins: ['react-hooks'],
+    //     rules: {
+    //       'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    //       'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    //     },
+    //   },
+    // })
+  ]
+>>>>>>> 5763b9c (global state 持ち方を修正)
 });

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Tooltip } from 'react-tooltip';
 
-import ModalDialog from './modal-dialog';
-import stateManger from '../lib/history';
-import prefJson from '../../json/pref.json';
-import prefEnJson from '../../json/pref-en.json';
-import prefNumberJson from '../../json/pref-number.json';
-import inputTypesJson from '../../json/input-types.json';
+import ModalDialog from '../modal-dialog';
+import stateManger from '../../lib/history';
+import prefJson from '../../../json/pref.json';
+import prefEnJson from '../../../json/pref-en.json';
+import prefNumberJson from '../../../json/pref-number.json';
+import inputTypesJson from '../../../json/input-types.json';
 
 const snippetJSON = {
   pref: prefJson,
@@ -248,7 +248,7 @@ export default class Base extends Component {
             ))}
 =======
           {option.map((item, idx) =>
-            (<tr>
+            (<tr key={idx}>
               <td>
                 <div className="customFieldOptionTableInput">
                   <span className="customFieldOptionTableAppend">項目名（label）</span><input type="text" value={item.label} onInput={(e) => { this.updateOptionLabel(idx, e.target.value); }} className="acms-admin-form-width-full" placeholder="例）東京都" />
@@ -367,7 +367,7 @@ export default class Base extends Component {
   }
 
   renderModal() {
-    const { openConverter, converter } = this.state;
+    const { openConverter } = this.state;
     return (
       <div>
         <ModalDialog
@@ -385,136 +385,196 @@ export default class Base extends Component {
               <tr>
                 <td>r</td>
                 <td>「全角」英字を「半角」に変換します</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'r')}>
                     追加
                   </button>
                 </td>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'r')}>追加</button></td>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
               </tr>
               <tr>
                 <td>R</td>
                 <td>「半角」英字を「全角」に変換します</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'R')}>
                     追加
                   </button>
                 </td>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'R')}>追加</button></td>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
               </tr>
               <tr>
                 <td>n</td>
                 <td>「全角」数字を「半角」に変換します</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'n')}>
                     追加
                   </button>
                 </td>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'n')}>追加</button></td>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
               </tr>
               <tr>
                 <td>N</td>
                 <td>「半角」数字を「全角」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'N')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'N')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>a</td>
                 <td>「全角」英数字を「半角」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'a')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'a')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>A</td>
                 <td>「半角」英数字を「全角」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'A')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'A')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>s</td>
                 <td>「全角」スペースを「半角」に変換します（U+3000 -> U+0020）。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 's')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 's')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>S</td>
                 <td>「半角」スペースを「全角」に変換します（U+0020 -> U+3000）。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'S')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'S')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>k</td>
                 <td>「全角カタカナ」を「半角カタカナ」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'k')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'k')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>K</td>
                 <td>「半角カタカナ」を「全角カタカナ」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'K')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'K')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>h</td>
                 <td>「全角ひらがな」を「半角カタカナ」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'h')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'h')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>H</td>
                 <td>「半角カタカナ」を「全角ひらがな」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'H')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'H')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>c</td>
                 <td>「全角カタカナ」を「全角ひらがな」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'c')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'c')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>C</td>
                 <td>「全角ひらがな」を「全角カタカナ」に変換します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'C')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'C')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
               <tr>
                 <td>V</td>
                 <td>濁点付きの文字を一文字に変換します。"K", "H" と共に使用します。</td>
+<<<<<<< HEAD:src/components/base.js
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'V')}>
                     追加
                   </button>
+=======
+                <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'V')}>追加</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
                 </td>
               </tr>
             </tbody>
@@ -525,6 +585,7 @@ export default class Base extends Component {
   }
 
   renderBasic() {
+<<<<<<< HEAD:src/components/base.js
 <<<<<<< HEAD
     const { title, name, tooltip } = this.state;
     return (
@@ -627,6 +688,9 @@ export default class Base extends Component {
       </table>
 =======
     const { title, name, tooltip, type } = this.state;
+=======
+    const { title, name, tooltip } = this.state;
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
     return (
     <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
       <tbody>
@@ -662,9 +726,9 @@ export default class Base extends Component {
           {this.typeSelectRender()}
           {this.subTypeSelectRender()}
         </td>
-        <td><input type="text" value={title} onInput={(e) => { this.updateState('title', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
-        <td><input type="text" value={name} onInput={(e) => { this.updateState('name', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）name" /></td>
-        <td><input type="text" value={tooltip} onInput={(e) => { this.updateState('tooltip', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
+        <td><input type="text" value={title} onChange={(e) => { this.updateState('title', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）氏名" /></td>
+        <td><input type="text" value={name} onChange={(e) => { this.updateState('name', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）name" /></td>
+        <td><input type="text" value={tooltip} onChange={(e) => { this.updateState('tooltip', e.target.value); }} className="acms-admin-form-width-full" placeholder="例）ここにお名前を入力してください" /></td>
       </tr>
       </tbody>
     </table>
@@ -704,8 +768,8 @@ export default class Base extends Component {
     );
 =======
         onChange={onChange}>
-        {Object.keys(inputTypesJson).map((input) => {
-          return <option value={input}>{inputTypesJson[input].label}</option>
+        {Object.keys(inputTypesJson).map((input, index) => {
+          return <option key={index} value={input}>{inputTypesJson[input].label}</option>
         })}
       </select>
     );
@@ -735,6 +799,7 @@ export default class Base extends Component {
     const { noSearch } = this.state;
     return (
       <p className="acms-admin-form-checkbox">
+<<<<<<< HEAD:src/components/base.js
         <input
           type="checkbox"
           value={noSearch}
@@ -745,6 +810,13 @@ export default class Base extends Component {
           <i className="acms-admin-ico-checkbox" />
           カスタムフィールド検索の対象外にする
         </label>
+=======
+        <input type="checkbox" value={noSearch} id="noSearch-checkbox" onChange={this.updateState.bind(this, 'noSearch', !noSearch)} />
+        <label htmlFor="noSearch-checkbox">
+          <i className="acms-admin-ico-checkbox" />
+          カスタムフィールド検索の対象外にする
+      </label>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
       </p>
     );
   }
@@ -1416,9 +1488,13 @@ export default class Base extends Component {
         <p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
           <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
           typeとタイトルとフィールド、全てを入力しないとソースコードを生成できません。
+<<<<<<< HEAD:src/components/base.js
           <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeAlert.bind(this)}>
             ×
           </button>
+=======
+          <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeAlert.bind(this)}>×</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
         </p>
       );
     }
@@ -1432,12 +1508,16 @@ export default class Base extends Component {
         <p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
           <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
           group名を入力しないとgroupを生成できません。
+<<<<<<< HEAD:src/components/base.js
           <button
             className="js-acms-alert-close acms-admin-alert-icon-after"
             onClick={this.removeGroupAlert.bind(this)}
           >
             ×
           </button>
+=======
+          <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeGroupAlert.bind(this)}>×</button>
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
         </p>
       );
     }

@@ -1,7 +1,13 @@
 import React from 'react';
 import Base from './base';
+import { MakerContext } from '../../store/MakerContext'
 
 export default class Field extends Base {
+<<<<<<< HEAD:src/components/field.js
+=======
+  static contextType = MakerContext
+
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/Field.jsx
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +21,7 @@ export default class Field extends Base {
       path: 'path',
       converter: '',
       normal: 'size',
-      alt: false,
+      resize: true,
       useDropArea: true,
       dropAreaWidth: 200,
       dropAreaHeight: 200,
@@ -26,6 +32,7 @@ export default class Field extends Base {
       endHeadingLevel: 3,
       mediaType: 'image',
       useExpand: true,
+<<<<<<< HEAD:src/components/field.js
       resize: true,
       option: [
         {
@@ -40,22 +47,41 @@ export default class Field extends Base {
           message: '',
         },
       ],
+=======
+      option: [{
+        value: '',
+        label: ''
+      }],
+      validator: [{
+        option: '',
+        value: '',
+        message: ''
+      }],
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/Field.jsx
       optionFormat: 'pref',
       openValidator: false,
       openConverter: false,
+      alt: false,
+      fileNameMethod: 'random',
       noSearch: false,
+<<<<<<< HEAD:src/components/field.js
       extension: '',
       fileNameMethod: 'random',
+=======
+      extension: ''
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/Field.jsx
     };
   }
 
   submit() {
-    const { name, type, title } = this.state;
-    const { actions } = this.props;
+    const { alert, name, type, title } = this.state
+    const { addCustomfield } = this.context
+
     if (name && type && title) {
-      if(this.state.alert) this.setState({ alert: false })
-      actions.addCustomfield(this.state);
+      if(alert) this.setState({ alert: false })
+      addCustomfield(this.state);
     } else {
+<<<<<<< HEAD:src/components/field.js
 <<<<<<< HEAD
       this.setState({
         alert: true,
@@ -112,6 +138,12 @@ export default class Field extends Base {
   // }
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
 
+=======
+      this.setState({ alert: true })
+    }
+  }
+
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/Field.jsx
   render() {
     const { type } = this.state;
     return (

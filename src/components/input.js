@@ -21,7 +21,7 @@ export default class Input extends Component {
             <span className="acms-admin-icon acms-admin-icon-checklist" />
           </label>
         }
-      </>
+        </>
     );
   }
 

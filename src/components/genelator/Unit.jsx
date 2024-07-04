@@ -1,11 +1,18 @@
 import React from 'react';
 import Base from './base';
+import { MakerContext } from '../../store/MakerContext'
 
 export default class Unit extends Base {
+<<<<<<< HEAD:src/components/unit.js
+=======
+  static contextType = MakerContext
+
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/Unit.jsx
   constructor(props) {
     super(props);
     this.state = {
       type: 'text',
+      subType: '',
       title: '',
       name: '',
       tooltip: '',
@@ -49,13 +56,17 @@ export default class Unit extends Base {
 
   submit() {
     const { name, type, title } = this.state;
-    const { actions } = this.props;
+    const { maker, addCustomunit } = this.context
     if (name && type && title) {
-      actions.addCustomUnit(this.state);
+      addCustomunit(this.state);
     } else {
+<<<<<<< HEAD:src/components/unit.js
       this.setState({
         alert: true,
       });
+=======
+      this.setState({ alert: true });
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/Unit.jsx
     }
   }
 
@@ -87,7 +98,7 @@ export default class Unit extends Base {
   }
 
   render() {
-    const { type, title, name, tooltip } = this.state;
+    const { type } = this.state;
     return (
       <div>
         <h2 className="acms-admin-admin-title2">カスタムユニット</h2>

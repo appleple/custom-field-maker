@@ -1,12 +1,19 @@
 import React from 'react';
 import { Tooltip } from 'react-tooltip';
 import Base from './base';
+import { MakerContext } from '../../store/MakerContext';
 
 export default class UnitGroup extends Base {
+<<<<<<< HEAD:src/components/unit-group.js
+=======
+  static contextType = MakerContext
+
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/UnitGroup.jsx
   constructor(props) {
     super(props);
     this.state = {
       type: 'text',
+      subType: '',
       title: '',
       name: '',
       tooltip: '',
@@ -53,7 +60,7 @@ export default class UnitGroup extends Base {
   }
 
   showGroup() {
-    const { actions } = this.props;
+    const { setUnitGroupTitleName } = this.context
     const { unitGroupName, unitGroupTitle } = this.state;
     if (!unitGroupName) {
       this.setState({
@@ -65,16 +72,20 @@ export default class UnitGroup extends Base {
         duplicatedField: false,
         openGroup: true,
       });
+<<<<<<< HEAD:src/components/unit-group.js
       actions.setUnitGroupTitleName({
         unitGroupTitle,
         unitGroupName,
       });
+=======
+      setUnitGroupTitleName(unitGroupTitle, unitGroupName);
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/UnitGroup.jsx
     }
   }
 
   addNewGroup() {
-    const { actions } = this.props;
-    actions.clearUnitGroupItem();
+    const { clearUnitGroupItem } = this.context
+    clearUnitGroupItem();
     this.clearValue();
     this.setState({
       openGroup: false,
@@ -84,7 +95,7 @@ export default class UnitGroup extends Base {
   }
 
   addGroup() {
-    const { actions } = this.props;
+    const { setUnitGroupTitleName, addUnitGroupItem } = this.context
     const { type, title, name, unitGroupName, unitGroupTitle } = this.state;
     if (name == unitGroupName) {
       this.setState({
@@ -93,11 +104,16 @@ export default class UnitGroup extends Base {
       return;
     }
     if (type && title && name) {
+<<<<<<< HEAD:src/components/unit-group.js
       actions.setUnitGroupTitleName({
         unitGroupName,
         unitGroupTitle,
       });
       actions.addUnitGroupItem(this.state);
+=======
+      setUnitGroupTitleName(unitGroupName, unitGroupTitle);
+      addUnitGroupItem(this.state);
+>>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/UnitGroup.jsx
     } else {
       this.setState({
         alert: true,
