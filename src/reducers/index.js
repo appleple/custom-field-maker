@@ -102,9 +102,11 @@ export default (state = initialState, action) => {
     case types.RESTORE:
       return preserveState(Object.assign({}, state, action.storage));
     case types.SETTAG:
-      return preserveState(Object.assign({}, state, {
-        tag: state.tag
-      }));
+      return preserveState(
+        Object.assign({}, state, {
+          tag: state.tag,
+        })
+      );
     case types.TOGGLEACMSCSS:
       return preserveState(
         Object.assign({}, state, {

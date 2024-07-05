@@ -69,43 +69,48 @@ export function MakerContextProvider({
   const [preview, setPreview] = useState(previewProp);
 
   // const setMakerState = (newState) => setMaker({ ...newState })
-  const addCustomfield = useCallback(newCustomfield => setCustomfield(prevState => [...prevState, newCustomfield]), [
-    setCustomfield,
-  ]);
-  const addCustomunit = useCallback(newCustomunit => setCustomunit(prevState => [...prevState, newCustomunit]), [
-    setCustomunit,
-  ]);
+  const addCustomfield = useCallback(
+    (newCustomfield) => setCustomfield((prevState) => [...prevState, newCustomfield]),
+    [setCustomfield]
+  );
+  const addCustomunit = useCallback(
+    (newCustomunit) => setCustomunit((prevState) => [...prevState, newCustomunit]),
+    [setCustomunit]
+  );
 
-  const setGroupTitleName = useCallback((title, name) => setGroup(prevState => ({ ...prevState, title, name })), [
-    setGroup,
-  ]);
+  const setGroupTitleName = useCallback(
+    (title, name) => setGroup((prevState) => ({ ...prevState, title, name })),
+    [setGroup]
+  );
   const addGroupItem = useCallback(
-    newGroupItem => setGroup(prevState => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
+    (newGroupItem) => setGroup((prevState) => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
     [setGroup]
   );
 
   const setUnitGroupTitleName = useCallback(
-    (title, name) => setUnitgroup(prevState => ({ ...prevState, title, name })),
+    (title, name) => setUnitgroup((prevState) => ({ ...prevState, title, name })),
     [setUnitgroup]
   );
   const addUnitGroupItem = useCallback(
-    newGroupItem => setUnitgroup(prevState => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
+    (newGroupItem) => setUnitgroup((prevState) => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
     [setUnitgroup]
   );
 
-  const clearGroupItem = useCallback(() => setGroup(prevState => ({ ...prevState, items: [] })), [setGroup]);
-  const clearUnitGroupItem = useCallback(() => setUnitgroup(prevState => ({ ...prevState, items: [] })), [
-    setUnitgroup,
-  ]);
+  const clearGroupItem = useCallback(() => setGroup((prevState) => ({ ...prevState, items: [] })), [setGroup]);
+  const clearUnitGroupItem = useCallback(
+    () => setUnitgroup((prevState) => ({ ...prevState, items: [] })),
+    [setUnitgroup]
+  );
 
-  const setTag = useCallback(tag => setPreview(prevState => ({ ...prevState, tag })), [setPreview]);
-  const setAcmscss = useCallback(acmscss => setPreview(prevState => ({ ...prevState, acmscss })), [setPreview]);
-  const setJsValidator = useCallback(jsValidator => setPreview(prevState => ({ ...prevState, jsValidator })), [
-    setPreview,
-  ]);
-  const setSource = useCallback(source => setPreview(prevState => ({ ...prevState, source })), [setPreview]);
-  const setMode = useCallback(mode => setPreview(prevState => ({ ...prevState, mode })), [setPreview]);
-  const setEditMode = useCallback(editMode => setPreview(prevState => ({ ...prevState, editMode })), [setPreview]);
+  const setTag = useCallback((tag) => setPreview((prevState) => ({ ...prevState, tag })), [setPreview]);
+  const setAcmscss = useCallback((acmscss) => setPreview((prevState) => ({ ...prevState, acmscss })), [setPreview]);
+  const setJsValidator = useCallback(
+    (jsValidator) => setPreview((prevState) => ({ ...prevState, jsValidator })),
+    [setPreview]
+  );
+  const setSource = useCallback((source) => setPreview((prevState) => ({ ...prevState, source })), [setPreview]);
+  const setMode = useCallback((mode) => setPreview((prevState) => ({ ...prevState, mode })), [setPreview]);
+  const setEditMode = useCallback((editMode) => setPreview((prevState) => ({ ...prevState, editMode })), [setPreview]);
 
   // const clearCustomfield = () => ({ type: types.CLEARCUSTOMFIELD });
   // const clearCustomUnit = () => ({ type: types.CLEARCUSTOMUNIT });

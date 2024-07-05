@@ -137,7 +137,7 @@ class CustomfieldMaker extends Component {
       groupName,
       acmscss,
       jsValidator,
-      direction
+      direction,
     } = this.props;
 >>>>>>> 5763b9c (global state 持ち方を修正):src/containers/_index.js
 
@@ -244,8 +244,12 @@ class CustomfieldMaker extends Component {
                 {(mode === 'normal' || mode === 'group') && (
 =======
 
+<<<<<<< HEAD
                 {(mode === 'normal' || mode === 'group') &&
 >>>>>>> 5763b9c (global state 持ち方を修正):src/containers/_index.js
+=======
+                {(mode === 'normal' || mode === 'group') && (
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                   <div className="acms-admin-form-checkbox" style={{ marginTop: '5px' }}>
                     <input
                       type="checkbox"
@@ -260,6 +264,7 @@ class CustomfieldMaker extends Component {
                   </div>
                 )}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
                 {mode === 'normal' && (
                   <button
@@ -297,17 +302,61 @@ class CustomfieldMaker extends Component {
 =======
                 {mode === 'normal' &&
                   <select id="tag" onChange={(e) => this.updateState('tag', e.target.value)}  className="acms-admin-form-width-quarter">
+=======
+                {mode === 'normal' && (
+                  <select
+                    id="tag"
+                    onChange={(e) => this.updateState('tag', e.target.value)}
+                    className="acms-admin-form-width-quarter"
+                  >
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                     <option value="section">--</option>
                     <option value="table">table</option>
                   </select>
-                }
+                )}
 
+<<<<<<< HEAD
                 {mode === 'normal' && <button onClick={this.clearCustomfield.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'group' && <button onClick={this.clearGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'unit' && <button onClick={this.clearCustomUnit.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {mode === 'unit-group' && <button onClick={this.clearUnitGroupItem.bind(this)} className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right">履歴クリア</button>}
                 {editMode !== 'preview' &&
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+                {mode === 'normal' && (
+                  <button
+                    onClick={this.clearCustomfield.bind(this)}
+                    className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
+                  >
+                    履歴クリア
+                  </button>
+                )}
+                {mode === 'group' && (
+                  <button
+                    onClick={this.clearGroupItem.bind(this)}
+                    className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
+                  >
+                    履歴クリア
+                  </button>
+                )}
+                {mode === 'unit' && (
+                  <button
+                    onClick={this.clearCustomUnit.bind(this)}
+                    className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
+                  >
+                    履歴クリア
+                  </button>
+                )}
+                {mode === 'unit-group' && (
+                  <button
+                    onClick={this.clearUnitGroupItem.bind(this)}
+                    className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
+                  >
+                    履歴クリア
+                  </button>
+                )}
+                {editMode !== 'preview' && (
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                   <div style={{ display: 'inline-block', position: 'relative', float: 'right', marginRight: '10px' }}>
                     <CopyToClipboard text={source} onCopy={() => this.setState({ copied: true })}>
                       <button className="acms-admin-btn-admin">コードをコピー</button>
@@ -331,7 +380,12 @@ class CustomfieldMaker extends Component {
                         className={classnames('customFieldDirectionBtn', {
                           active: direction === 'horizontal',
                         })}
+<<<<<<< HEAD
                         data-tooltip-id="group-field-direction-horizontal"
+=======
+                        data-tip
+                        data-for="group-field-direction-horizontal"
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                       >
                         <input
                           type="radio"
@@ -348,7 +402,12 @@ class CustomfieldMaker extends Component {
                         className={classnames('customFieldDirectionBtn', {
                           active: direction === 'vertical',
                         })}
+<<<<<<< HEAD
                         data-tooltip-id="group-field-direction-vertical"
+=======
+                        data-tip
+                        data-for="group-field-direction-vertical"
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                       >
                         <input
                           type="radio"
@@ -361,19 +420,35 @@ class CustomfieldMaker extends Component {
                         <img src={rowIcon} />
                       </label>
                     </div>
+<<<<<<< HEAD
                     <Tooltip
                       id="group-field-direction-vertical"
                       place="top"
                       variant="dark"
+=======
+                    <ReactTooltip
+                      id="group-field-direction-vertical"
+                      place="top"
+                      type="dark"
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                       effect="solid"
                       className="acms-admin-tooltip acms-tooltip customFieldTooltip"
                     >
                       <span>縦向きレイアウト用にソースコードを生成します。</span>
+<<<<<<< HEAD
                     </Tooltip>
                     <Tooltip
                       id="group-field-direction-horizontal"
                       place="top"
                       variant="dark"
+=======
+                    </ReactTooltip>
+                    <ReactTooltip
+                      id="group-field-direction-horizontal"
+                      place="top"
+                      type="dark"
+                      effect="solid"
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                       className="acms-admin-tooltip acms-tooltip customFieldTooltip"
                     >
                       <span>横向きレイアウト用にソースコードを生成します。</span>
@@ -383,6 +458,7 @@ class CustomfieldMaker extends Component {
               </div>
               {editMode === 'source' && (
                 <Highlighter onSourceGenerated={this.setSource.bind(this)}>
+<<<<<<< HEAD
 <<<<<<< HEAD
                   {mode === 'normal' && (
                     <FieldSource customfield={customfield} acmscss={acmscss} jsValidator={jsValidator} />
@@ -441,15 +517,61 @@ class CustomfieldMaker extends Component {
                   {mode === 'normal' &&
                     <FieldSource
                       customfield={customfield}
+=======
+                  {mode === 'normal' && (
+                    <FieldSource customfield={customfield} acmscss={acmscss} jsValidator={jsValidator} tag={tag}>
+                      <FieldSource.Section />
+                      {/* <FieldSource.Table /> */}
+                    </FieldSource>
+                  )}
+                  {mode === 'group' && (
+                    <FieldGroupSource
+                      groupitems={groupitems}
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                       acmscss={acmscss}
-                      tag={tag}
-                      preview>
+                      jsValidator={jsValidator}
+                      groupTitle={groupTitle}
+                      groupName={groupName}
+                      direction={direction}
+                    />
+                  )}
+                  {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} />}
+                  {mode === 'unit-group' && (
+                    <UnitGroupSource
+                      unitgroupitems={unitgroupitems}
+                      acmscss={acmscss}
+                      jsValidator={jsValidator}
+                      unitGroupTitle={unitGroupTitle}
+                      unitGroupName={unitGroupName}
+                      direction={direction}
+                    />
+                  )}
+                </Highlighter>
+              )}
+              {editMode === 'preview' && (
+                <div className="customFieldPreview">
+                  {mode === 'normal' && (
+                    <FieldSource customfield={customfield} acmscss={acmscss} tag={tag} preview>
                       <FieldSource.Section />
                       <FieldSource.Table />
                     </FieldSource>
+<<<<<<< HEAD
                   }
                   {mode === 'group' && <FieldGroupSource groupitems={groupitems} acmscss={acmscss} groupTitle={groupTitle} groupName={groupName} preview direction={direction} />}
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+                  )}
+                  {mode === 'group' && (
+                    <FieldGroupSource
+                      groupitems={groupitems}
+                      acmscss={acmscss}
+                      groupTitle={groupTitle}
+                      groupName={groupName}
+                      preview
+                      direction={direction}
+                    />
+                  )}
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                   {mode === 'unit' && <UnitSource customunit={customunit} acmscss={acmscss} preview />}
                   {mode === 'unit-group' && (
                     <UnitGroupSource

@@ -4,7 +4,7 @@ const initialState = {
   mode: 'normal',
   editMode: 'source',
   source: '',
-  copied: false
+  copied: false,
 };
 
 export const EditorContext = createContext({});
@@ -24,8 +24,9 @@ export function EditorContextProvider({ children }) {
         setEditorState,
         setSource,
         setMode,
-        setEditMode
-      }}>
+        setEditMode,
+      }}
+    >
       {children}
     </EditorContext.Provider>
   );

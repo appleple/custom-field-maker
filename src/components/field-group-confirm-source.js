@@ -166,6 +166,9 @@ export default class FieldGroupConfirmSource extends Component {
                     return this.wrapTable(<td>{`{${item.name}}[raw]`}</td>, item.name);
                   }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
                 })}
               </ConditionalWrap>
             </tr>
@@ -174,6 +177,7 @@ export default class FieldGroupConfirmSource extends Component {
         </table>
       </Fragment>
     );
+<<<<<<< HEAD
 =======
 
                   return this.wrapTable(<td>
@@ -242,5 +246,7 @@ export default class FieldGroupConfirmSource extends Component {
       </table>
     </Fragment>);
 >>>>>>> 51184c2 (build: eslint を導入)
+=======
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
   }
 }

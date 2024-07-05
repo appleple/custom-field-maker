@@ -43,7 +43,11 @@ export default class ModalDialog extends Component {
 
     return (
       <div className={classnames('acms-admin-modal', { in: show })} id="converter" style={style}>
+<<<<<<< HEAD
         <div className="acms-admin-modal-dialog" role="dialog" aria-modal>
+=======
+        <div className="acms-admin-modal-dialog">
+>>>>>>> 4399586 (build: update prrttier & add .editorconfig)
           <div className="acms-admin-modal-content">
 <<<<<<< HEAD
             <header className="acms-admin-modal-header">
