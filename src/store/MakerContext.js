@@ -43,7 +43,7 @@ const defaultPreview = {
   source: '',
   copied: false,
   tag: 'section',
-  acmscss: false,
+  acmscss: true,
   jsValidator: false,
   direction: 'horizontal',
 };
