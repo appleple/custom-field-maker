@@ -1,38 +1,5 @@
 import React, { useContext, createContext, useState, useMemo, useCallback } from 'react';
 
-export const MakerContext = createContext({
-  customfield: [],
-  fieldgroup: [],
-  customunit: [],
-  unitgroup: [],
-  snippets: [],
-  preview: {
-    mode: 'normal',
-    editMode: 'source',
-    source: '',
-    copied: false,
-    tag: 'section',
-    acmscss: true,
-    jsValidator: false,
-    direction: 'horizontal',
-  },
-  addCustomfield: () => {},
-  addCustomunit: () => {},
-  setGroupTitleName: () => {},
-  addGroupItem: () => {},
-  setUnitGroupTitleName: () => {},
-  addUnitGroupItem: () => {},
-  clearGroupItem: () => {},
-  clearUnitGroupItem: () => {},
-  setSource: () => {},
-  setMode: () => {},
-  setEditMode: () => {},
-  setTag: () => {},
-  setAcmscss: () => {},
-  setJsValidator: () => {},
-  setSnippets: () => {},
-});
-
 const defaultCustomfield = [];
 const defaultFieldgroup = { items: [], title: null, name: null };
 const defaultCustomunit = [];
@@ -47,6 +14,28 @@ const defaultPreview = {
   jsValidator: false,
   direction: 'horizontal',
 };
+
+export const MakerContext = createContext({
+  customfield: defaultCustomfield,
+  fieldgroup: defaultFieldgroup,
+  customunit: defaultCustomunit,
+  unitgroup: defaultUnitgroup,
+  preview: defaultPreview,
+  addCustomfield: () => {},
+  addCustomunit: () => {},
+  setGroupTitleName: () => {},
+  addGroupItem: () => {},
+  setUnitGroupTitleName: () => {},
+  addUnitGroupItem: () => {},
+  clearGroupItem: () => {},
+  clearUnitGroupItem: () => {},
+  setSource: () => {},
+  setMode: () => {},
+  setEditMode: () => {},
+  setTag: () => {},
+  setAcmscss: () => {},
+  setJsValidator: () => {},
+});
 
 export function MakerContextProvider({
   children,
