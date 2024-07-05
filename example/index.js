@@ -4,6 +4,8 @@ import CustomFieldMaker from '../src';
 import '../src/css/custom-field-maker.css';
 
 ReactDOM.render(
-  <CustomFieldMaker />,
+  <React.StrictMode>
+    <CustomFieldMaker />,
+  </React.StrictMode>,
   document.getElementById('app')
 );

@@ -6,44 +6,44 @@ import hljs from 'highlight.js/lib/highlight';
 import 'highlight.js/styles/default.css';
 import 'highlight.js/styles/xcode.css';
 import xml from 'highlight.js/lib/languages/xml';
-import { useMakerContext } from '../store/MakerContext';
 
 hljs.registerLanguage('xml', xml);
 const entities = new XmlEntities();
 
-export function Highlighter({ children }) {
-  const { preview, setSource } = useMakerContext();
+export function Highlighter({ children, onHighlight = () => {} }) {
   const codeRef = useRef();
-  const renderedChildren = renderToString(children);
 
   useEffect(() => {
-    buildSource();
-  }, [renderedChildren, buildSource]);
+    buildSource(children);
+  }, [children, buildSource]);
 
-  const buildSource = useCallback(() => {
-    let html = renderedChildren;
-    html = html.replace(/&quot;/g, '"');
-    html = html.replace(/data-tmp="(.*?)"/g, '$1');
-    html = html.replace(/&lt;/g, '<');
-    html = html.replace(/&gt;/g, '>');
-    html = removeReactText(html);
-    const encodedHtml = entities.encode(
-      beautifyHtml(html, {
-        unformatted: ['code', 'pre'],
-        indent_inner_html: true,
-        indent_char: ' ',
-        indent_size: 2,
-        sep: '\n',
-      })
-    );
+  const buildSource = useCallback(
+    reactNode => {
+      let html = renderToString(reactNode);
+      html = html.replace(/&quot;/g, '"');
+      html = html.replace(/data-tmp="(.*?)"/g, '$1');
+      html = html.replace(/&lt;/g, '<');
+      html = html.replace(/&gt;/g, '>');
+      html = removeReactText(html);
+      const encodedHtml = entities.encode(
+        beautifyHtml(html, {
+          unformatted: ['code', 'pre'],
+          indent_inner_html: true,
+          indent_char: ' ',
+          indent_size: 2,
+          sep: '\n',
+        })
+      );
 
-    codeRef.current.innerHTML = encodedHtml;
-    hljs.highlightBlock(codeRef.current);
+      codeRef.current.innerHTML = encodedHtml;
+      hljs.highlightBlock(codeRef.current);
 
-    if (preview.source !== encodedHtml) {
-      setSource(encodedHtml);
-    }
-  }, [renderedChildren, setSource, preview.source]);
+      if (onHighlight) {
+        onHighlight(encodedHtml);
+      }
+    },
+    [onHighlight]
+  );
 
   const removeReactText = html => {
     html = html.replace(/<!-- (\/?)reactroot(.*?)-->/g, '');

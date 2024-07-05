@@ -11,8 +11,16 @@ import { FieldSource } from '../components/FieldSource';
 import { FieldGroupSource } from '../components/FieldGroupSource';
 import { Highlighter } from '../components/Highlighter';
 
+import { MakerContextProvider } from '../store/MakerContext';
+
 function CustomFieldMaker() {
-  const { customfield, fieldgroup, customunit, unitgroup, preview } = useMakerContext();
+  const { customfield, fieldgroup, customunit, unitgroup, preview, setSource } = useMakerContext();
+
+  const handleHighlight = source => {
+    if (preview.source !== source) {
+      setSource(source);
+    }
+  };
 
   return (
     <>
@@ -31,12 +39,20 @@ function CustomFieldMaker() {
               <PreviewNavigator />
 
               {preview.editMode === 'source' && (
-                <Highlighter>
+                <Highlighter onHighlight={handleHighlight}>
                   <p>Highlighter</p>
-                  {preview.mode === 'normal' && <FieldSource customfield={customfield} />}
-                  {preview.mode === 'unit' && <FieldSource customfield={customunit} />}
-                  {preview.mode === 'group' && <FieldGroupSource fieldgroup={fieldgroup} />}
-                  {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />}
+                  <MakerContextProvider
+                    customfield={customfield}
+                    customunit={customunit}
+                    fieldgroup={fieldgroup}
+                    unitgroup={unitgroup}
+                    preview={preview}
+                  >
+                    {preview.mode === 'normal' && <FieldSource customfield={customfield} />}
+                    {preview.mode === 'unit' && <FieldSource customfield={customunit} />}
+                    {preview.mode === 'group' && <FieldGroupSource fieldgroup={fieldgroup} />}
+                    {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />}
+                  </MakerContextProvider>
                 </Highlighter>
               )}
 

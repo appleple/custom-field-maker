@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { Tooltip } from 'react-tooltip';
+=======
+import ReactTooltip from 'react-tooltip';
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
 
 import ModalDialog from '../modal-dialog';
 import stateManger from '../../lib/history';
@@ -98,6 +102,7 @@ export default class Base extends Component {
     const { option } = this.state;
     const item = option[idx];
     this.setState({
+<<<<<<< HEAD
       option: [
         ...option.slice(0, idx),
 <<<<<<< HEAD
@@ -111,6 +116,9 @@ export default class Base extends Component {
         ...option.slice(idx + 1)
       ]
 >>>>>>> 51184c2 (build: eslint を導入)
+=======
+      option: [...option.slice(0, idx), { ...item, label }, ...option.slice(idx + 1)],
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
     });
   }
 
@@ -118,6 +126,7 @@ export default class Base extends Component {
     const { option } = this.state;
     const item = option[idx];
     this.setState({
+<<<<<<< HEAD
       option: [
         ...option.slice(0, idx),
 <<<<<<< HEAD
@@ -131,6 +140,9 @@ export default class Base extends Component {
         ...option.slice(idx + 1)
       ]
 >>>>>>> 51184c2 (build: eslint を導入)
+=======
+      option: [...option.slice(0, idx), { ...item, value }, ...option.slice(idx + 1)],
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
     });
   }
 
@@ -159,6 +171,7 @@ export default class Base extends Component {
     const { validator } = this.state;
     const item = validator[idx];
     this.setState({
+<<<<<<< HEAD
       validator: [
         ...validator.slice(0, idx),
 <<<<<<< HEAD
@@ -172,6 +185,9 @@ export default class Base extends Component {
         ...validator.slice(idx + 1)
       ]
 >>>>>>> 51184c2 (build: eslint を導入)
+=======
+      validator: [...validator.slice(0, idx), { ...item, option }, ...validator.slice(idx + 1)],
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
     });
   }
 
@@ -179,6 +195,7 @@ export default class Base extends Component {
     const { validator } = this.state;
     const item = validator[idx];
     this.setState({
+<<<<<<< HEAD
       validator: [
         ...validator.slice(0, idx),
 <<<<<<< HEAD
@@ -192,6 +209,9 @@ export default class Base extends Component {
         ...validator.slice(idx + 1)
       ]
 >>>>>>> 51184c2 (build: eslint を導入)
+=======
+      validator: [...validator.slice(0, idx), { ...item, value }, ...validator.slice(idx + 1)],
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
     });
   }
 
@@ -199,6 +219,7 @@ export default class Base extends Component {
     const { validator } = this.state;
     const item = validator[idx];
     this.setState({
+<<<<<<< HEAD
       validator: [
         ...validator.slice(0, idx),
 <<<<<<< HEAD
@@ -212,6 +233,9 @@ export default class Base extends Component {
         ...validator.slice(idx + 1)
       ]
 >>>>>>> 51184c2 (build: eslint を導入)
+=======
+      validator: [...validator.slice(0, idx), { ...item, message }, ...validator.slice(idx + 1)],
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
     });
   }
 
@@ -236,6 +260,9 @@ export default class Base extends Component {
         <table className="acms-admin-table customFieldOptionTable">
           <tbody>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
             {option.map((item, idx) => (
               <tr key={idx}>
                 <td>
@@ -244,7 +271,11 @@ export default class Base extends Component {
                     <input
                       type="text"
                       value={item.label}
+<<<<<<< HEAD
                       onInput={(e) => {
+=======
+                      onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                         this.updateOptionLabel(idx, e.target.value);
                       }}
                       className="acms-admin-form-width-full"
@@ -258,7 +289,11 @@ export default class Base extends Component {
                     <input
                       type="text"
                       value={item.value}
+<<<<<<< HEAD
                       onInput={(e) => {
+=======
+                      onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                         this.updateOptionValue(idx, e.target.value);
                       }}
                       className="acms-admin-form-width-full"
@@ -276,6 +311,7 @@ export default class Base extends Component {
                 </td>
               </tr>
             ))}
+<<<<<<< HEAD
 =======
           {option.map((item, idx) =>
             (<tr key={idx}>
@@ -294,6 +330,8 @@ export default class Base extends Component {
               </td>
             </tr>))}
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
           </tbody>
         </table>
         <p>
@@ -314,7 +352,11 @@ export default class Base extends Component {
           <input
             type="text"
             value={title}
+<<<<<<< HEAD
             onInput={(e) => {
+=======
+            onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               this.updateState('title', e.target.value);
             }}
           />
@@ -324,7 +366,11 @@ export default class Base extends Component {
           <input
             type="text"
             value={name}
+<<<<<<< HEAD
             onInput={(e) => {
+=======
+            onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               this.updateState('name', e.target.value);
             }}
           />
@@ -347,11 +393,20 @@ export default class Base extends Component {
       <p>
         <span className="customFieldBold">
           選択項目（option要素）
+<<<<<<< HEAD
           <i className="acms-admin-icon-tooltip" data-tooltip-id="option-value-tip" />
           <Tooltip
             id="option-value-tip"
             place="top"
             variant="dark"
+=======
+          <i className="acms-admin-icon-tooltip" data-tip data-for="option-value-tip" />
+          <ReactTooltip
+            id="option-value-tip"
+            place="top"
+            type="dark"
+            effect="solid"
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
             className="acms-admin-tooltip acms-tooltip customFieldTooltip"
           >
             <span>option要素の選択項目になります。</span>
@@ -374,7 +429,11 @@ export default class Base extends Component {
               <select
                 style={{ verticalAlign: 'middle', marginRight: '5px' }}
                 value={optionFormat}
+<<<<<<< HEAD
                 onChange={(e) => {
+=======
+                onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   this.updateState('optionFormat', e.target.value);
                 }}
               >
@@ -415,79 +474,115 @@ export default class Base extends Component {
               <tr>
                 <td>r</td>
                 <td>「全角」英字を「半角」に変換します</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'r')}>
                     追加
                   </button>
                 </td>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'r')}>追加</button></td>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               </tr>
               <tr>
                 <td>R</td>
                 <td>「半角」英字を「全角」に変換します</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'R')}>
                     追加
                   </button>
                 </td>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'R')}>追加</button></td>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               </tr>
               <tr>
                 <td>n</td>
                 <td>「全角」数字を「半角」に変換します</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'n')}>
                     追加
                   </button>
                 </td>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'n')}>追加</button></td>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               </tr>
               <tr>
                 <td>N</td>
                 <td>「半角」数字を「全角」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'N')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'N')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>a</td>
                 <td>「全角」英数字を「半角」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'a')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'a')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>A</td>
                 <td>「半角」英数字を「全角」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'A')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'A')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
@@ -502,9 +597,16 @@ export default class Base extends Component {
 =======
 =======
                 <td>「全角」スペースを「半角」に変換します（U+3000 -&gt; U+0020）。</td>
+<<<<<<< HEAD
 >>>>>>> 51184c2 (build: eslint を導入)
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 's')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+                <td>
+                  <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 's')}>
+                    追加
+                  </button>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
@@ -519,100 +621,149 @@ export default class Base extends Component {
 =======
 =======
                 <td>「半角」スペースを「全角」に変換します（U+0020 -&gt; U+3000）。</td>
+<<<<<<< HEAD
 >>>>>>> 51184c2 (build: eslint を導入)
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'S')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+                <td>
+                  <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'S')}>
+                    追加
+                  </button>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>k</td>
                 <td>「全角カタカナ」を「半角カタカナ」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'k')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'k')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>K</td>
                 <td>「半角カタカナ」を「全角カタカナ」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'K')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'K')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>h</td>
                 <td>「全角ひらがな」を「半角カタカナ」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'h')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'h')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>H</td>
                 <td>「半角カタカナ」を「全角ひらがな」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'H')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'H')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>c</td>
                 <td>「全角カタカナ」を「全角ひらがな」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'c')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'c')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>C</td>
                 <td>「全角ひらがな」を「全角カタカナ」に変換します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'C')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'C')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
               <tr>
                 <td>V</td>
                 <td>濁点付きの文字を一文字に変換します。"K", "H" と共に使用します。</td>
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 <td>
                   <button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'V')}>
                     追加
                   </button>
+<<<<<<< HEAD
 =======
                 <td><button className="acms-admin-btn" onClick={this.addConverter.bind(this, 'V')}>追加</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 </td>
               </tr>
             </tbody>
@@ -632,11 +783,20 @@ export default class Base extends Component {
           <tr>
             <th className="acms-admin-table-left">
               入力欄の種類
+<<<<<<< HEAD
               <i className="acms-admin-icon-tooltip" data-tooltip-id="type-tip" />
               <Tooltip
                 id="type-tip"
                 place="top"
                 variant="dark"
+=======
+              <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="type-tip" />
+              <ReactTooltip
+                id="type-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 className="acms-admin-tooltip acms-tooltip customFieldTooltip"
               >
                 <span>
@@ -644,11 +804,16 @@ export default class Base extends Component {
                   <br />
                   選択しないと生成ボタンを押してもソースコードが生成されません。
                 </span>
+<<<<<<< HEAD
               </Tooltip>
+=======
+              </ReactTooltip>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               <span className="acms-admin-label acms-admin-label-danger">必須</span>
             </th>
             <th className="acms-admin-table-left">
               タイトル
+<<<<<<< HEAD
               <i className="acms-admin-icon-tooltip" data-tooltip-id="title-tip" />
               <Tooltip
                 id="title-tip"
@@ -658,10 +823,23 @@ export default class Base extends Component {
               >
                 <span>見出しになります。</span>
               </Tooltip>
+=======
+              <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip" />
+              <ReactTooltip
+                id="title-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+              >
+                <span>見出しになります。</span>
+              </ReactTooltip>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               <span className="acms-admin-label acms-admin-label-danger">必須</span>
             </th>
             <th className="acms-admin-table-left">
               フィールド
+<<<<<<< HEAD
               <i className="acms-admin-icon-tooltip" data-tooltip-id="field-tip" />
               <Tooltip
                 id="field-tip"
@@ -671,10 +849,23 @@ export default class Base extends Component {
               >
                 <span>フィールド名です。name属性として使用されます。</span>
               </Tooltip>
+=======
+              <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip" />
+              <ReactTooltip
+                id="field-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+              >
+                <span>フィールド名です。name属性として使用されます。</span>
+              </ReactTooltip>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               <span className="acms-admin-label acms-admin-label-danger">必須</span>
             </th>
             <th className="acms-admin-table-left">
               ツールチップ
+<<<<<<< HEAD
               <i className="acms-admin-icon-tooltip" data-tooltip-id="tooltip-tip" />
               <Tooltip
                 id="tooltip-tip"
@@ -688,11 +879,34 @@ export default class Base extends Component {
           </tr>
           <tr>
             <td>{this.typeSelectRender()}</td>
+=======
+              <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="tooltip-tip" />
+              <ReactTooltip
+                id="tooltip-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+              >
+                <span>カスタムフィールドの説明用のツールチップを付与します。</span>
+              </ReactTooltip>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              {this.typeSelectRender()}
+              {this.subTypeSelectRender()}
+            </td>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
             <td>
               <input
                 type="text"
                 value={title}
+<<<<<<< HEAD
                 onInput={(e) => {
+=======
+                onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   this.updateState('title', e.target.value);
                 }}
                 className="acms-admin-form-width-full"
@@ -703,7 +917,11 @@ export default class Base extends Component {
               <input
                 type="text"
                 value={name}
+<<<<<<< HEAD
                 onInput={(e) => {
+=======
+                onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   this.updateState('name', e.target.value);
                 }}
                 className="acms-admin-form-width-full"
@@ -714,7 +932,11 @@ export default class Base extends Component {
               <input
                 type="text"
                 value={tooltip}
+<<<<<<< HEAD
                 onInput={(e) => {
+=======
+                onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   this.updateState('tooltip', e.target.value);
                 }}
                 className="acms-admin-form-width-full"
@@ -724,6 +946,7 @@ export default class Base extends Component {
           </tr>
         </tbody>
       </table>
+<<<<<<< HEAD
 =======
     const { title, name, tooltip, type } = this.state;
 =======
@@ -771,18 +994,21 @@ export default class Base extends Component {
       </tbody>
     </table>
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
     );
   }
 
   typeSelectRender() {
     const { type } = this.state;
 
-    const onChange = (e) => {
-      this.updateState('subType', '')
-      this.updateState('type', e.target.value)
-    }
+    const onChange = e => {
+      this.updateState('subType', '');
+      this.updateState('type', e.target.value);
+    };
 
     return (
+<<<<<<< HEAD
       <select
         id="type"
         value={type}
@@ -807,6 +1033,14 @@ export default class Base extends Component {
 =======
         onChange={onChange}>
         {Object.keys(inputTypesJson).map((input, index) => <option key={index} value={input}>{inputTypesJson[input].label}</option>)}
+=======
+      <select id="type" value={type} className="acms-admin-form-width-full" onChange={onChange}>
+        {Object.keys(inputTypesJson).map((input, index) => (
+          <option key={index} value={input}>
+            {inputTypesJson[input].label}
+          </option>
+        ))}
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
       </select>
     );
   }
@@ -815,18 +1049,20 @@ export default class Base extends Component {
     const { type, subType } = this.state;
     const subTypes = Array.isArray(inputTypesJson[type]?.subTypes) ? inputTypesJson[type].subTypes : [];
 
-    const onChange = (e) => {
-      this.updateState('subType', e.target.value)
-    }
+    const onChange = e => {
+      this.updateState('subType', e.target.value);
+    };
 
-    if(subTypes.length > 0) {
+    if (subTypes.length > 0) {
       return (
         <select id="subType" value={subType} className="acms-admin-form-width-full" onChange={onChange}>
-          {subTypes.map((subType) => (
-            <option key={subType.value} value={subType.value}>{subType.label}</option>
+          {subTypes.map(subType => (
+            <option key={subType.value} value={subType.value}>
+              {subType.label}
+            </option>
           ))}
         </select>
-      )
+      );
     }
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
   }
@@ -835,13 +1071,17 @@ export default class Base extends Component {
     const { noSearch } = this.state;
     return (
       <p className="acms-admin-form-checkbox">
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
         <input
           type="checkbox"
           value={noSearch}
           id="noSearch-checkbox"
           onChange={this.updateState.bind(this, 'noSearch', !noSearch)}
         />
+<<<<<<< HEAD
         <label htmlFor="noSearch-checkbox">
           <i className="acms-admin-ico-checkbox" />
           カスタムフィールド検索の対象外にする
@@ -853,6 +1093,12 @@ export default class Base extends Component {
           カスタムフィールド検索の対象外にする
       </label>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+        <label htmlFor="noSearch-checkbox">
+          <i className="acms-admin-ico-checkbox" />
+          カスタムフィールド検索の対象外にする
+        </label>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
       </p>
     );
   }
@@ -881,6 +1127,7 @@ export default class Base extends Component {
           </label>
           <i
             className="acms-admin-icon-tooltip"
+<<<<<<< HEAD
             data-tooltip-id="option-tip"
             style={{ marginLeft: '5px' }}
           />
@@ -888,6 +1135,17 @@ export default class Base extends Component {
             id="option-tip"
             place="top"
             variant="dark"
+=======
+            data-for="option-tip"
+            data-tip="React-tooltip"
+            style={{ marginLeft: '5px' }}
+          />
+          <ReactTooltip
+            id="option-tip"
+            place="top"
+            type="dark"
+            effect="solid"
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
             className="acms-admin-tooltip acms-tooltip customFieldTooltip"
           >
             <span>変換・入力チェック用の項目を表示します。</span>
@@ -898,23 +1156,40 @@ export default class Base extends Component {
             {/text|textarea|radio|select/.exec(type) && this.noSearchCheckRender()}
             <p className="customFieldBold">
               テキストの変換
+<<<<<<< HEAD
               <i className="acms-admin-icon-tooltip" data-tip data-tooltip-id="convert-tip" />
               <Tooltip
                 id="convert-tip"
                 place="top"
                 variant="dark"
+=======
+              <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip" />
+              <ReactTooltip
+                id="convert-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                 className="acms-admin-tooltip acms-tooltip customFieldTooltip"
               >
                 <span>
                   テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。
                 </span>
+<<<<<<< HEAD
               </Tooltip>
+=======
+              </ReactTooltip>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
             </p>
             <p>
               <input
                 type="text"
                 value={converter}
+<<<<<<< HEAD
                 onInput={(e) => {
+=======
+                onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   this.updateState('converter', e.target.value);
                 }}
                 className="acms-admin-form-width-quarter acms-admin-margin-right-small"
@@ -926,6 +1201,7 @@ export default class Base extends Component {
             </p>
             {showValidator && (
               <table className="acms-admin-table customFieldOptionTable">
+<<<<<<< HEAD
                 <tbody>
                   <tr>
                     <th>
@@ -1028,6 +1304,111 @@ export default class Base extends Component {
                     </tr>
                   ))}
                 </tbody>
+=======
+                <tr>
+                  <th>
+                    入力チェック
+                    <i className="acms-admin-icon-tooltip" data-tip data-for="validate-tip" />
+                    <ReactTooltip
+                      id="validate-tip"
+                      place="top"
+                      type="dark"
+                      effect="solid"
+                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                    >
+                      <span>フィールドに入力された値が条件に合っているかをチェックします。</span>
+                    </ReactTooltip>
+                  </th>
+                  <th>
+                    値
+                    <i className="acms-admin-icon-tooltip" data-tip data-for="validate-value-tip" />
+                    <ReactTooltip
+                      id="validate-value-tip"
+                      place="top"
+                      type="dark"
+                      effect="solid"
+                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                    >
+                      <span>最小文字数や、正規表現チェックをバリデータに設定した際に設定する値となります。</span>
+                    </ReactTooltip>
+                  </th>
+                  <th>
+                    メッセージ
+                    <i className="acms-admin-icon-tooltip" data-tip data-for="validate-message-tip" />
+                    <ReactTooltip
+                      id="validate-message-tip"
+                      place="top"
+                      type="dark"
+                      effect="solid"
+                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                    >
+                      <span>
+                        フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。
+                      </span>
+                    </ReactTooltip>
+                  </th>
+                  <th />
+                </tr>
+                {validator.map((item, idx) => (
+                  <tr>
+                    <td>
+                      <select
+                        className="acms-admin-form-width-full"
+                        onChange={e => {
+                          this.updateValidatorOption(idx, e.target.value);
+                        }}
+                      >
+                        <option value="">▼ バリデータを選択</option>
+                        <optgroup label="入力値の制限">
+                          <option value="required">必須 ( required )</option>
+                          <option value="minlength">最小文字数 ( minlength )</option>
+                          <option value="maxlength">最大文字数 ( maxlength )</option>
+                          <option value="min">下限値 ( min )</option>
+                          <option value="max">上限値 ( max )</option>
+                        </optgroup>
+                        <optgroup label="形式チェック">
+                          <option value="digits">数字チェック ( digits )</option>
+                          <option value="email">メールアドレスチェック ( email )</option>
+                          <option value="hiragana">ひらがなチェック ( hiragana )</option>
+                          <option value="katakana">カタカナチェック ( katakana )</option>
+                          <option value="url">URLチェック ( url )</option>
+                          <option value="dates">日付チェック ( dates )</option>
+                          <option value="times">時間チェック ( times )</option>
+                          <option value="regex">正規表現マッチ ( regex )</option>
+                        </optgroup>
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={item.value}
+                        onInput={e => {
+                          this.updateValidatorValue(idx, e.target.value);
+                        }}
+                        className="acms-admin-form-width-full"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        value={item.message}
+                        onInput={e => {
+                          this.updateValidatorMessage(idx, e.target.value);
+                        }}
+                        className="acms-admin-form-width-full"
+                      />
+                    </td>
+                    <td>
+                      <button
+                        onClick={this.removeValidator.bind(this, idx)}
+                        className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+                      >
+                        削除
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               </table>
             )}
             {showValidator && (
@@ -1047,6 +1428,7 @@ export default class Base extends Component {
     return (
       <p>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>
 =======
         <button
@@ -1054,11 +1436,15 @@ export default class Base extends Component {
           className="acms-admin-btn-admin"
           style={{ marginRight: '5px' }}>
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+        <button onClick={this.clearValue.bind(this)} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
           クリア
         </button>
         <button
           onClick={this.submit.bind(this)}
           className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn"
+<<<<<<< HEAD
 <<<<<<< HEAD
           style={{ marginRight: '5px' }}
         >
@@ -1073,6 +1459,13 @@ export default class Base extends Component {
           onClick={this.backState.bind(this)}
           className="acms-admin-btn-admin">
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+          style={{ marginRight: '5px' }}
+        >
+          生成
+        </button>
+        <button onClick={this.backState.bind(this)} className="acms-admin-btn-admin">
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
           元に戻す
         </button>
       </p>
@@ -1134,28 +1527,52 @@ export default class Base extends Component {
               </Tooltip>
 =======
               <i className="acms-admin-icon-tooltip" data-tip data-for="image-size-tip" />
-              <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <ReactTooltip
+                id="image-size-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+              >
                 <span>通常画像の画像サイズを指定します</span>
               </ReactTooltip>
             </th>
             <th className="acms-admin-table-left">
               large画像生成
               <i className="acms-admin-icon-tooltip" data-tip data-for="image-large-size-tip" />
-              <ReactTooltip id="image-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <ReactTooltip
+                id="image-size-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+              >
                 <span>通常画像よりも大きい画像を生成できます。</span>
               </ReactTooltip>
             </th>
             <th className="acms-admin-table-left">
               tiny画像生成
               <i className="acms-admin-icon-tooltip" data-tip data-for="image-tiny-size-tip" />
-              <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <ReactTooltip
+                id="image-tiny-size-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+              >
                 <span>通常画像よりも小さい画像を生成できます。</span>
               </ReactTooltip>
             </th>
             <th className="acms-admin-table-left">
               square画像生成
               <i className="acms-admin-icon-tooltip" data-tip data-for="image-square-size-tip" />
-              <ReactTooltip id="image-tiny-size-tip" place="top" type="dark" effect="solid" className="acms-admin-tooltip acms-tooltip customFieldTooltip">
+              <ReactTooltip
+                id="image-tiny-size-tip"
+                place="top"
+                type="dark"
+                effect="solid"
+                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+              >
                 <span>通常画像を指定したサイズで中央から正方形にトリミングして生成します。</span>
               </ReactTooltip>
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
@@ -1166,36 +1583,55 @@ export default class Base extends Component {
               <div className="acms-form-group">
                 <div className="controls">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <select
                     name="normal"
                     onChange={(e) => {
+=======
+                  <select
+                    name="normal"
+                    onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                       this.updateState('normal', e.target.value);
                     }}
                     className="acms-admin-margin-right-small"
                   >
+<<<<<<< HEAD
 =======
                   <select name="normal" onChange={(e) => { this.updateState('normal', e.target.value); }} className="acms-admin-margin-right-small">
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <option value="size">長辺</option>
                     <option value="width">幅</option>
                     <option value="height">高さ</option>
                   </select>
                   <span className="input-append">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <input
                       type="text"
                       autoComplete="off"
                       name="normalSize"
+<<<<<<< HEAD
                       onInput={(e) => {
+=======
+                      onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                         this.updateState('normalSize', e.target.value);
                       }}
                       className="customFieldSizeInput"
                       placeholder="例）200px"
                     />
                     <span className="add-on"> px</span>
+<<<<<<< HEAD
 =======
                     <input type="text" autoComplete="off" name="normalSize" onInput={(e) => { this.updateState('normalSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）200px" /><span className="add-on"> px</span>
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   </span>
                 </div>
               </div>
@@ -1204,36 +1640,55 @@ export default class Base extends Component {
               <div className="acms-form-group">
                 <div className="controls">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <select
                     name="large"
                     onChange={(e) => {
+=======
+                  <select
+                    name="large"
+                    onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                       this.updateState('large', e.target.value);
                     }}
                     className="acms-admin-margin-right-small"
                   >
+<<<<<<< HEAD
 =======
                   <select name="large" onChange={(e) => { this.updateState('large', e.target.value); }} className="acms-admin-margin-right-small">
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <option value="">作らない</option>
                     <option value="largeWidth">width</option>
                     <option value="largeHeight">height</option>
                   </select>
                   <span className="input-append">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <input
                       type="text"
                       autoComplete="off"
                       name="largeSize"
+<<<<<<< HEAD
                       onInput={(e) => {
+=======
+                      onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                         this.updateState('largeSize', e.target.value);
                       }}
                       className="customFieldSizeInput"
                       placeholder="例）400px"
                     />
                     <span className="add-on"> px</span>
+<<<<<<< HEAD
 =======
                     <input type="text" autoComplete="off" name="largeSize" onInput={(e) => { this.updateState('largeSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）400px" /><span className="add-on"> px</span>
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   </span>
                 </div>
               </div>
@@ -1242,36 +1697,55 @@ export default class Base extends Component {
               <div className="acms-form-group">
                 <div className="controls">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <select
                     name="tiny"
                     onChange={(e) => {
+=======
+                  <select
+                    name="tiny"
+                    onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                       this.updateState('tiny', e.target.value);
                     }}
                     className="acms-admin-margin-right-small"
                   >
+<<<<<<< HEAD
 =======
                   <select name="tiny" onChange={(e) => { this.updateState('tiny', e.target.value); }} className="acms-admin-margin-right-small">
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <option value="">作らない</option>
                     <option value="tinyWidth">width</option>
                     <option value="tinyHeight">height</option>
                   </select>
                   <span className="input-append">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <input
                       type="text"
                       autoComplete="off"
                       name="tinySize"
+<<<<<<< HEAD
                       onInput={(e) => {
+=======
+                      onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                         this.updateState('tinySize', e.target.value);
                       }}
                       className="customFieldSizeInput"
                       placeholder="例）100px"
                     />
                     <span className="add-on"> px</span>
+<<<<<<< HEAD
 =======
                     <input type="text" autoComplete="off" name="tinySize" onInput={(e) => { this.updateState('tinySize', e.target.value); }} className="customFieldSizeInput" placeholder="例）100px" /><span className="add-on"> px</span>
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   </span>
                 </div>
               </div>
@@ -1280,35 +1754,54 @@ export default class Base extends Component {
               <div className="acms-form-group">
                 <div className="controls">
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <select
                     name="square"
                     onChange={(e) => {
+=======
+                  <select
+                    name="square"
+                    onChange={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                       this.updateState('square', e.target.value);
                     }}
                     className="acms-admin-margin-right-small"
                   >
+<<<<<<< HEAD
 =======
                   <select name="square" onChange={(e) => { this.updateState('square', e.target.value); }} className="acms-admin-margin-right-small">
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <option value="">作らない</option>
                     <option value="squareWidth">width</option>
                   </select>
                   <span className="input-append">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                     <input
                       type="text"
                       autoComplete="off"
                       name="squareSize"
+<<<<<<< HEAD
                       onInput={(e) => {
+=======
+                      onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                         this.updateState('squareSize', e.target.value);
                       }}
                       className="customFieldSizeInput"
                       placeholder="例）250px"
                     />
                     <span className="add-on"> px</span>
+<<<<<<< HEAD
 =======
                     <input type="text" autoComplete="off" name="squareSize" onInput={(e) => { this.updateState('squareSize', e.target.value); }} className="customFieldSizeInput" placeholder="例）250px" /><span className="add-on"> px</span>
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   </span>
                 </div>
               </div>
@@ -1350,6 +1843,9 @@ export default class Base extends Component {
     return (
       <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
         <p className="acms-admin-form-checkbox">
           <input
             type="checkbox"
@@ -1367,7 +1863,11 @@ export default class Base extends Component {
           <input
             type="text"
             value={startHeadingLevel}
+<<<<<<< HEAD
             onInput={(e) => {
+=======
+            onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               this.setState({
                 startHeadingLevel: e.target.value,
               });
@@ -1379,13 +1879,18 @@ export default class Base extends Component {
           <input
             type="text"
             value={endHeadingLevel}
+<<<<<<< HEAD
             onInput={(e) => {
+=======
+            onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               this.setState({
                 endHeadingLevel: e.target.value,
               });
             }}
           />
         </div>
+<<<<<<< HEAD
 =======
         開始見出しレベル
         <span style={{ display: 'inline-block', width: '5px', height: '1px' }} />
@@ -1411,13 +1916,27 @@ export default class Base extends Component {
           }}
         />
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
       </div>
     );
   }
 
   renderMediaOption() {
+<<<<<<< HEAD
     const { mediaType, useDropArea, useFocusImage, dropAreaWidth, dropAreaHeight, focusImageWidth, focusImageHeight } =
       this.state;
+=======
+    const {
+      mediaType,
+      useDropArea,
+      useFocusImage,
+      dropAreaWidth,
+      dropAreaHeight,
+      focusImageWidth,
+      focusImageHeight,
+    } = this.state;
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
     return (
       <div>
         <p style={{ marginBottom: '5px' }}>選べるメディアのタイプを選択</p>
@@ -1524,6 +2043,7 @@ export default class Base extends Component {
         <p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
           <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
           typeとタイトルとフィールド、全てを入力しないとソースコードを生成できません。
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
           <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeAlert.bind(this)}>
             ×
@@ -1531,6 +2051,11 @@ export default class Base extends Component {
 =======
           <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeAlert.bind(this)}>×</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+          <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeAlert.bind(this)}>
+            ×
+          </button>
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
         </p>
       );
     }
@@ -1544,16 +2069,22 @@ export default class Base extends Component {
         <p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
           <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
           group名を入力しないとgroupを生成できません。
+<<<<<<< HEAD
 <<<<<<< HEAD:src/components/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
           <button
             className="js-acms-alert-close acms-admin-alert-icon-after"
             onClick={this.removeGroupAlert.bind(this)}
           >
             ×
           </button>
+<<<<<<< HEAD
 =======
           <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={this.removeGroupAlert.bind(this)}>×</button>
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/base.js
+=======
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
         </p>
       );
     }
@@ -1628,7 +2159,11 @@ export default class Base extends Component {
               <input
                 type="text"
                 value={fileName}
+<<<<<<< HEAD
                 onInput={(e) => {
+=======
+                onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
                   this.updateState('fileName', e.target.value);
                 }}
                 placeholder="例）example.pdf"
@@ -1642,7 +2177,11 @@ export default class Base extends Component {
           <input
             type="text"
             value={extension}
+<<<<<<< HEAD
             onInput={(e) => {
+=======
+            onInput={e => {
+>>>>>>> 8348c4a (preview の変更が入力ソースに反映されない問題の修正)
               this.updateState('extension', e.target.value);
             }}
             placeholder="例）pdf"

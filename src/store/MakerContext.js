@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState, useMemo } from 'react';
+import React, { useContext, createContext, useState, useMemo, useCallback } from 'react';
 
 export const MakerContext = createContext({
   customfield: [],
@@ -33,7 +33,29 @@ export const MakerContext = createContext({
   setSnippets: () => {},
 });
 
-export function MakerContextProvider({ children }) {
+const defaultCustomfield = [];
+const defaultFieldgroup = { items: [], title: null, name: null };
+const defaultCustomunit = [];
+const defaultUnitgroup = { items: [], title: null, name: null };
+const defaultPreview = {
+  mode: 'normal',
+  editMode: 'source',
+  source: '',
+  copied: false,
+  tag: 'section',
+  acmscss: false,
+  jsValidator: false,
+  direction: 'horizontal',
+};
+
+export function MakerContextProvider({
+  children,
+  customfield: customfieldProp = defaultCustomfield,
+  fieldgroup: fieldgroupProp = defaultFieldgroup,
+  customunit: customunitProp = defaultCustomunit,
+  unitgroup: unitgroupProp = defaultUnitgroup,
+  preview: previewProp = defaultPreview,
+}) {
   // const initialState = {
   //   customfield: [],
   //   groupitems: [],
@@ -51,43 +73,50 @@ export function MakerContextProvider({ children }) {
   // }
 
   // const [maker, setMaker] = useState(initialState)
-  const [customfield, setCustomfield] = useState([]);
-  const [fieldgroup, setGroup] = useState({ items: [], title: null, name: null });
-  const [customunit, setCustomunit] = useState([]);
-  const [unitgroup, setUnitgroup] = useState({ items: [], title: null, name: null });
-  const [snippets, setSnippets] = useState([]);
-  const [preview, setPreview] = useState({
-    mode: 'normal',
-    editMode: 'source',
-    source: '',
-    copied: false,
-    tag: 'section',
-    acmscss: true,
-    jsValidator: false,
-    direction: 'horizontal',
-  });
+  const [customfield, setCustomfield] = useState(customfieldProp);
+  const [fieldgroup, setGroup] = useState(fieldgroupProp);
+  const [customunit, setCustomunit] = useState(customunitProp);
+  const [unitgroup, setUnitgroup] = useState(unitgroupProp);
+  const [preview, setPreview] = useState(previewProp);
 
   // const setMakerState = (newState) => setMaker({ ...newState })
-  const addCustomfield = newCustomfield => setCustomfield(prevState => [...prevState, newCustomfield]);
-  const addCustomunit = newCustomunit => setCustomunit(prevState => [...prevState, newCustomunit]);
+  const addCustomfield = useCallback(newCustomfield => setCustomfield(prevState => [...prevState, newCustomfield]), [
+    setCustomfield,
+  ]);
+  const addCustomunit = useCallback(newCustomunit => setCustomunit(prevState => [...prevState, newCustomunit]), [
+    setCustomunit,
+  ]);
 
-  const setGroupTitleName = (title, name) => setGroup(prevState => ({ ...prevState, title, name }));
-  const addGroupItem = newGroupItem =>
-    setGroup(prevState => ({ ...prevState, items: [...prevState.items, newGroupItem] }));
+  const setGroupTitleName = useCallback((title, name) => setGroup(prevState => ({ ...prevState, title, name })), [
+    setGroup,
+  ]);
+  const addGroupItem = useCallback(
+    newGroupItem => setGroup(prevState => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
+    [setGroup]
+  );
 
-  const setUnitGroupTitleName = (title, name) => setUnitgroup(prevState => ({ ...prevState, title, name }));
-  const addUnitGroupItem = newGroupItem =>
-    setUnitgroup(prevState => ({ ...prevState, items: [...prevState.items, newGroupItem] }));
+  const setUnitGroupTitleName = useCallback(
+    (title, name) => setUnitgroup(prevState => ({ ...prevState, title, name })),
+    [setUnitgroup]
+  );
+  const addUnitGroupItem = useCallback(
+    newGroupItem => setUnitgroup(prevState => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
+    [setUnitgroup]
+  );
 
-  const clearGroupItem = () => setGroup(prevState => ({ ...prevState, items: [] }));
-  const clearUnitGroupItem = () => setUnitgroup(prevState => ({ ...prevState, items: [] }));
+  const clearGroupItem = useCallback(() => setGroup(prevState => ({ ...prevState, items: [] })), [setGroup]);
+  const clearUnitGroupItem = useCallback(() => setUnitgroup(prevState => ({ ...prevState, items: [] })), [
+    setUnitgroup,
+  ]);
 
-  const setTag = tag => setPreview(prevState => ({ ...prevState, tag }));
-  const setAcmscss = acmscss => setPreview(prevState => ({ ...prevState, acmscss }));
-  const setJsValidator = jsValidator => setPreview(prevState => ({ ...prevState, jsValidator }));
-  const setSource = source => setPreview(prevState => ({ ...prevState, source }));
-  const setMode = mode => setPreview(prevState => ({ ...prevState, mode }));
-  const setEditMode = editMode => setPreview(prevState => ({ ...prevState, editMode }));
+  const setTag = useCallback(tag => setPreview(prevState => ({ ...prevState, tag })), [setPreview]);
+  const setAcmscss = useCallback(acmscss => setPreview(prevState => ({ ...prevState, acmscss })), [setPreview]);
+  const setJsValidator = useCallback(jsValidator => setPreview(prevState => ({ ...prevState, jsValidator })), [
+    setPreview,
+  ]);
+  const setSource = useCallback(source => setPreview(prevState => ({ ...prevState, source })), [setPreview]);
+  const setMode = useCallback(mode => setPreview(prevState => ({ ...prevState, mode })), [setPreview]);
+  const setEditMode = useCallback(editMode => setPreview(prevState => ({ ...prevState, editMode })), [setPreview]);
 
   // const clearCustomfield = () => ({ type: types.CLEARCUSTOMFIELD });
   // const clearCustomUnit = () => ({ type: types.CLEARCUSTOMUNIT });
@@ -101,7 +130,6 @@ export function MakerContextProvider({ children }) {
       customfield,
       fieldgroup,
       customunit,
-      snippets,
       unitgroup,
       preview,
       addCustomfield,
@@ -118,13 +146,11 @@ export function MakerContextProvider({ children }) {
       setTag,
       setAcmscss,
       setJsValidator,
-      setSnippets,
     }),
     [
       customfield,
       fieldgroup,
       customunit,
-      snippets,
       unitgroup,
       preview,
       addCustomfield,
@@ -141,7 +167,6 @@ export function MakerContextProvider({ children }) {
       setTag,
       setAcmscss,
       setJsValidator,
-      setSnippets,
     ]
   );
 
