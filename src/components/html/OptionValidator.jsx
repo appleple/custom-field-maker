@@ -29,18 +29,7 @@ export function OptionValidator(props) {
               value={validator.value}
               id={`${name}-v-${validator.option}`}
             />
-            {!jsValidator && (
-              <>
-                {validator.message && (
-                  <>
-                    {editMode === 'preview' ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
-                    <p className={classnames({ 'acms-admin-text-error': acmscss })}>{validator.message}</p>
-                    {editMode === 'preview' ? null : `<!-- END ${name}:validator#${validator.option} -->`}
-                  </>
-                )}
-              </>
-            )}
-            {!jsValidator && (
+            {jsValidator ? (
               <div
                 data-validator-label={`${name}-v-${validator.option}`}
                 className={`validator-result-{${name}:v#${validator.option}}`}
@@ -50,6 +39,16 @@ export function OptionValidator(props) {
                   {validator.message}
                 </p>
               </div>
+            ) : (
+              <>
+                {validator.message && (
+                  <>
+                    {editMode === 'preview' ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
+                    <p className={classnames({ 'acms-admin-text-error': acmscss })}>{validator.message}</p>
+                    {editMode === 'preview' ? null : `<!-- END ${name}:validator#${validator.option} -->`}
+                  </>
+                )}
+              </>
             )}
           </Fragment>
         );

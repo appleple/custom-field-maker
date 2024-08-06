@@ -4,6 +4,7 @@ import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
 import { Textarea } from '../html/Textarea';
 import { Checkbox } from '../html/Checkbox';
+import { Selectbox } from '../html/Selectbox';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function GroupSection() {
@@ -74,7 +75,7 @@ export function GroupSection() {
                                 <Heading item={item} id={`${item.name}${index}`} />
                               </label>
                               <span className="acms-admin-form-item-input">
-                                <Checkbox item={item} id={`${item.name}${index}`} />
+                                <Selectbox item={item} id={`${item.name}${index}`} />
                               </span>
                             </p>
                           );
@@ -153,6 +154,18 @@ export function GroupSection() {
                           </label>
                           <span className="acms-admin-form-item-input">
                             <Checkbox item={item} id={`${item.name}${index}`} isValue={false} />
+                          </span>
+                        </p>
+                      );
+                    }
+                    case 'selectbox': {
+                      return (
+                        <p key={index} className="acms-admin-form-item">
+                          <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                            <Heading item={item} />
+                          </label>
+                          <span className="acms-admin-form-item-input">
+                            <Selectbox item={item} id={`${item.name}${index}`} isValue={false} />
                           </span>
                         </p>
                       );

@@ -86,7 +86,6 @@ export default class FieldGroup extends Base {
 import React, { useCallback, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { useMakerContext } from '../../store/MakerContext';
-import { FieldClear } from './base/FieldClear';
 import { Alert } from './base/Alert';
 import { GroupAlert } from './base/GroupAlert';
 import { DuplicateAlert } from './base/DuplicateAlert';
@@ -145,6 +144,36 @@ const defaultProps = {
   openGroup: false,
   groupTitle: '',
   groupName: '',
+};
+
+const crearField = {
+  title: '',
+  name: '',
+  path: '',
+  normalSize: '',
+  tiny: '',
+  tinySize: '',
+  large: '',
+  largeSize: '',
+  square: '',
+  squareSize: '',
+  alt: true,
+  resize: true,
+  useExpand: true,
+  useDropArea: true,
+  dropAreaWidth: 200,
+  dropAreaHeight: 200,
+  useFocusImage: false,
+  focusImageWidth: 400,
+  focusImageHeight: 400,
+  startHeadingLevel: 2,
+  endHeadingLevel: 3,
+  mediaType: 'image',
+  openConverter: '',
+  openValidator: '',
+  converter: '',
+  tooltip: '',
+  placeholder: '',
 };
 
 export function FieldGroup() {
@@ -220,7 +249,7 @@ export function FieldGroup() {
 
   const addNewGroup = useCallback(() => {
     clearGroupItem();
-    FieldClear(setField);
+    setField(crearField);
     setField((prevState) => ({
       ...prevState,
       openGroup: false,
