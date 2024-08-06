@@ -26,6 +26,7 @@ module.exports = {
         unnamedComponents: 'function-expression',
       },
     ],
+    'jsx-a11y/label-has-associated-control': 'off',
   },
   overrides: [
     // プロジェクトにJavaScriptとTypeScriptが共存しているため、

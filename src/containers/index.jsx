@@ -1,29 +1,39 @@
 import React from 'react';
-import { useMakerContext } from '../store/MakerContext';
+import { MakerContextProvider, useMakerContext } from '../store/MakerContext';
 import { EditorModeNavigator } from '../components/navigator/EditorModeNavigator';
 import { PreviewModeNavigator } from '../components/navigator/PreviewModeNavigator';
 import { PreviewNavigator } from '../components/navigator/PreviewNavigator';
-import Field from '../components/genelator/Field';
-import FieldGroup from '../components/genelator/FieldGroup';
+import { Field } from '../components/genelator/Field';
+import { FieldGroup } from '../components/genelator/FieldGroup';
 import Unit from '../components/genelator/Unit';
 import UnitGroup from '../components/genelator/UnitGroup';
 import { FieldSource } from '../components/FieldSource';
 import { FieldGroupSource } from '../components/FieldGroupSource';
 import { Highlighter } from '../components/Highlighter';
+import { XmlEntities } from 'html-entities';
 
-import { MakerContextProvider } from '../store/MakerContext';
+const entities = new XmlEntities();
 
 function CustomFieldMaker() {
-  const { customfield, fieldgroup, customunit, unitgroup, preview, setSource } = useMakerContext();
+  const {
+    setSource,
+    customfield,
+    fieldgroup,
+    customunit,
+    unitgroup,
+    preview,
+    clipboard: { source },
+  } = useMakerContext();
 
-  const handleHighlight = source => {
-    if (preview.source !== source) {
-      setSource(source);
+  const onSource = (encodedHtml) => {
+    const decodedHtml = entities.decode(encodedHtml);
+    if (source !== decodedHtml) {
+      setSource(decodedHtml);
     }
   };
 
   return (
-    <>
+    <div className="acms-admin-form">
       <EditorModeNavigator />
       {preview.mode === 'normal' && <Field />}
       {preview.mode === 'group' && <FieldGroup />}
@@ -39,8 +49,7 @@ function CustomFieldMaker() {
               <PreviewNavigator />
 
               {preview.editMode === 'source' && (
-                <Highlighter onHighlight={handleHighlight}>
-                  <p>Highlighter</p>
+                <Highlighter onHighlight={onSource}>
                   <MakerContextProvider
                     customfield={customfield}
                     customunit={customunit}
@@ -48,28 +57,27 @@ function CustomFieldMaker() {
                     unitgroup={unitgroup}
                     preview={preview}
                   >
-                    {preview.mode === 'normal' && <FieldSource customfield={customfield} />}
-                    {preview.mode === 'unit' && <FieldSource customfield={customunit} />}
-                    {preview.mode === 'group' && <FieldGroupSource fieldgroup={fieldgroup} />}
-                    {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />}
+                    {preview.mode === 'normal' && <FieldSource />}
+                    {preview.mode === 'group' && <FieldGroupSource />}
+                    {/* {preview.mode === 'unit' && <FieldSource customfield={customunit} />} */}
+                    {/* {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />} */}
                   </MakerContextProvider>
                 </Highlighter>
               )}
 
               {preview.editMode === 'preview' && (
                 <>
-                  <p>Preview</p>
-                  {preview.mode === 'normal' && <FieldSource customfield={customfield} />}
-                  {preview.mode === 'group' && <FieldGroupSource fieldgroup={fieldgroup} />}
-                  {preview.mode === 'unit' && <FieldSource customfield={customunit} />}
-                  {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />}
+                  {preview.mode === 'normal' && <FieldSource />}
+                  {preview.mode === 'group' && <FieldGroupSource />}
+                  {/* {preview.mode === 'unit' && <FieldSource customfield={customunit} />} */}
+                  {/* {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />} */}
                 </>
               )}
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

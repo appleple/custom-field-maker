@@ -5,7 +5,7 @@ import '../src/css/custom-field-maker.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CustomFieldMaker />,
+    <CustomFieldMaker />
   </React.StrictMode>,
   document.getElementById('app')
 );

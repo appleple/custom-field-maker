@@ -2,11 +2,14 @@ import React from 'react';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function EditorModeNavigator() {
-  const { preview, setMode } = useMakerContext();
+  const {
+    preview: { mode },
+    setMode,
+  } = useMakerContext();
 
   const updateMode = (e) => {
-    const mode = e.target.value;
-    setMode(mode);
+    const newMode = e.target.value;
+    setMode(newMode);
   };
 
   return (
@@ -16,7 +19,7 @@ export function EditorModeNavigator() {
           type="radio"
           value="normal"
           id="input-radio-mode-normal"
-          checked={preview.mode === 'normal'}
+          checked={mode === 'normal'}
           onChange={updateMode}
         />
         <label htmlFor="input-radio-mode-normal">
@@ -29,7 +32,7 @@ export function EditorModeNavigator() {
           type="radio"
           value="group"
           id="input-radio-mode-group"
-          checked={preview.mode === 'group'}
+          checked={mode === 'group'}
           onChange={updateMode}
         />
         <label htmlFor="input-radio-mode-group">
@@ -38,13 +41,7 @@ export function EditorModeNavigator() {
         </label>
       </div>
       <div className="acms-admin-form-radio">
-        <input
-          type="radio"
-          value="unit"
-          id="input-radio-mode-unit"
-          checked={preview.mode === 'unit'}
-          onChange={updateMode}
-        />
+        <input type="radio" value="unit" id="input-radio-mode-unit" checked={mode === 'unit'} onChange={updateMode} />
         <label htmlFor="input-radio-mode-unit">
           <i className="acms-admin-ico-radio" />
           カスタムユニット
@@ -55,7 +52,7 @@ export function EditorModeNavigator() {
           type="radio"
           value="unit-group"
           id="input-radio-mode-unit-group"
-          checked={preview.mode === 'unit-group'}
+          checked={mode === 'unit-group'}
           onChange={updateMode}
         />
         <label htmlFor="input-radio-mode-unit-group">

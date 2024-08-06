@@ -5,7 +5,8 @@
       { "value": "", "label": "--" },
       { "value": "tel", "label": "電話" },
       { "value": "number", "label": "数値" },
-      { "value": "email", "label": "メール" }
+      { "value": "email", "label": "メール" },
+      { "value": "password", "label": "パスワード" }
     ]
   },
   "textarea": {
@@ -15,19 +16,15 @@
       { "value": "lite-editor", "label": "ライトエディター" }
     ]
   },
-  "rich-editor": {
-    "label": "リッチエディター",
+  "checkbox": {
+    "label": "チェックボックス",
     "subTypes": []
   },
-  "table": {
-    "label": "テーブル",
-    "subTypes": []
-  },
-  "select": {
+  "selectbox": {
     "label": "セレクトボックス",
     "subTypes": []
   },
-  "radio": {
+  "radioButton": {
     "label": "ラジオボタン",
     "subTypes": []
   },
@@ -41,6 +38,14 @@
   },
   "file": {
     "label": "ファイル",
+    "subTypes": []
+  },
+  "richEditor": {
+    "label": "リッチエディター",
+    "subTypes": []
+  },
+  "table": {
+    "label": "テーブル",
     "subTypes": []
   }
 }

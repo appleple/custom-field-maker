@@ -7,12 +7,14 @@ const defaultUnitgroup = { items: [], title: null, name: null };
 const defaultPreview = {
   mode: 'normal',
   editMode: 'source',
-  source: '',
-  copied: false,
   tag: 'section',
   acmscss: true,
   jsValidator: false,
   direction: 'horizontal',
+};
+const defaultClipboard = {
+  source: '',
+  copied: false,
 };
 
 export const MakerContext = createContext({
@@ -21,13 +23,16 @@ export const MakerContext = createContext({
   customunit: defaultCustomunit,
   unitgroup: defaultUnitgroup,
   preview: defaultPreview,
+  clipboard: defaultClipboard,
   addCustomfield: () => {},
   addCustomunit: () => {},
   setGroupTitleName: () => {},
   addGroupItem: () => {},
   setUnitGroupTitleName: () => {},
   addUnitGroupItem: () => {},
+  clearCustomfield: () => {},
   clearGroupItem: () => {},
+  clearCustomunit: () => {},
   clearUnitGroupItem: () => {},
   setSource: () => {},
   setMode: () => {},
@@ -44,6 +49,7 @@ export function MakerContextProvider({
   customunit: customunitProp = defaultCustomunit,
   unitgroup: unitgroupProp = defaultUnitgroup,
   preview: previewProp = defaultPreview,
+  clipboard: clipboardProp = defaultClipboard,
 }) {
   // const initialState = {
   //   customfield: [],
@@ -61,14 +67,13 @@ export function MakerContextProvider({
   //   direction: 'horizontal'
   // }
 
-  // const [maker, setMaker] = useState(initialState)
   const [customfield, setCustomfield] = useState(customfieldProp);
   const [fieldgroup, setGroup] = useState(fieldgroupProp);
   const [customunit, setCustomunit] = useState(customunitProp);
   const [unitgroup, setUnitgroup] = useState(unitgroupProp);
   const [preview, setPreview] = useState(previewProp);
+  const [clipboard, setClipboard] = useState(clipboardProp);
 
-  // const setMakerState = (newState) => setMaker({ ...newState })
   const addCustomfield = useCallback(
     (newCustomfield) => setCustomfield((prevState) => [...prevState, newCustomfield]),
     [setCustomfield]
@@ -96,7 +101,9 @@ export function MakerContextProvider({
     [setUnitgroup]
   );
 
+  const clearCustomfield = useCallback(() => setCustomfield([]), [setCustomfield]);
   const clearGroupItem = useCallback(() => setGroup((prevState) => ({ ...prevState, items: [] })), [setGroup]);
+  const clearCustomunit = useCallback(() => setCustomunit([]), [setCustomunit]);
   const clearUnitGroupItem = useCallback(
     () => setUnitgroup((prevState) => ({ ...prevState, items: [] })),
     [setUnitgroup]
@@ -108,12 +115,12 @@ export function MakerContextProvider({
     (jsValidator) => setPreview((prevState) => ({ ...prevState, jsValidator })),
     [setPreview]
   );
-  const setSource = useCallback((source) => setPreview((prevState) => ({ ...prevState, source })), [setPreview]);
   const setMode = useCallback((mode) => setPreview((prevState) => ({ ...prevState, mode })), [setPreview]);
   const setEditMode = useCallback((editMode) => setPreview((prevState) => ({ ...prevState, editMode })), [setPreview]);
 
-  // const clearCustomfield = () => ({ type: types.CLEARCUSTOMFIELD });
-  // const clearCustomUnit = () => ({ type: types.CLEARCUSTOMUNIT });
+  const setSource = useCallback((source) => setClipboard((prevState) => ({ ...prevState, source })), [setClipboard]);
+  const setCopied = useCallback((copied) => setClipboard((prevState) => ({ ...prevState, copied })), [setClipboard]);
+
   // const clearUnitGroupTitleName = () => ({ type: types.CLEARUNITGROUPTITLENAME });
   // const restore = (storage) => ({ type: types.RESTORE, storage });
   // const addSnippet = (name, value) => ({ type: types.ADDSNIPPET, name, value });
@@ -126,20 +133,24 @@ export function MakerContextProvider({
       customunit,
       unitgroup,
       preview,
+      clipboard,
       addCustomfield,
       addCustomunit,
       setGroupTitleName,
       addGroupItem,
       setUnitGroupTitleName,
       addUnitGroupItem,
+      clearCustomfield,
       clearGroupItem,
+      clearCustomunit,
       clearUnitGroupItem,
-      setSource,
       setMode,
       setEditMode,
       setTag,
       setAcmscss,
       setJsValidator,
+      setSource,
+      setCopied,
     }),
     [
       customfield,
@@ -147,20 +158,24 @@ export function MakerContextProvider({
       customunit,
       unitgroup,
       preview,
+      clipboard,
       addCustomfield,
       addCustomunit,
       setGroupTitleName,
       addGroupItem,
       setUnitGroupTitleName,
       addUnitGroupItem,
+      clearCustomfield,
       clearGroupItem,
+      clearCustomunit,
       clearUnitGroupItem,
-      setSource,
       setMode,
       setEditMode,
       setTag,
       setAcmscss,
       setJsValidator,
+      setSource,
+      setCopied,
     ]
   );
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { XmlEntities } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
 import hljs from 'highlight.js/lib/highlight';
@@ -13,13 +13,15 @@ const entities = new XmlEntities();
 export function Highlighter({ children, onHighlight = () => {} }) {
   const codeRef = useRef();
 
-  useEffect(() => {
-    buildSource(children);
-  }, [children, buildSource]);
+  const removeReactText = (html) => {
+    html = html.replace(/<!-- (\/?)reactroot(.*?)-->/g, '');
+    html = html.replace(/ data-reactroot=""/g, '');
+    return html;
+  };
 
   const buildSource = useCallback(
-    reactNode => {
-      let html = renderToString(reactNode);
+    (reactNode) => {
+      let html = renderToStaticMarkup(reactNode);
       html = html.replace(/&quot;/g, '"');
       html = html.replace(/data-tmp="(.*?)"/g, '$1');
       html = html.replace(/&lt;/g, '<');
@@ -45,11 +47,9 @@ export function Highlighter({ children, onHighlight = () => {} }) {
     [onHighlight]
   );
 
-  const removeReactText = html => {
-    html = html.replace(/<!-- (\/?)reactroot(.*?)-->/g, '');
-    html = html.replace(/ data-reactroot=""/g, '');
-    return html;
-  };
+  useEffect(() => {
+    buildSource(children);
+  }, [children, buildSource]);
 
   return (
     <div>

@@ -1,57 +1,70 @@
-import React from 'react'
+import React from 'react';
 import classnames from 'classnames';
-import { renderValidator, renderNoSearch } from './AcmsInput'
+import { useMakerContext } from '../../store/MakerContext';
+import { OptionValidator } from './OptionValidator';
+import { OptionNoSearch } from './OptionNoSearch';
 
 export function TextInput(props) {
-  const { item, preview } = props
-  const selectedType = item.subType ? item.subType : item.type
+  const { item, id = '', isValue = true } = props;
+  const {
+    preview: { mode, jsValidator, acmscss },
+  } = useMakerContext();
+  const selectedType = item.subType ? item.subType : item.type;
 
-  let attribute = {}
-  switch(preview.mode) {
+  let attribute = { id, value: '', name: '', hiddenName: '', placeholder: '' };
+  switch (mode) {
     case 'normal': {
       attribute = {
-        value: item.name,
+        value: `{${item.name}}`,
         name: item.name,
-        hiddenName: 'field[]'
-      }
-      break
+        hiddenName: 'field[]',
+        placeholder: item.placeholder,
+      };
+      break;
     }
     case 'group': {
       attribute = {
-        value: item.name,
-        name: `${item.name}[]`
-      }
-      break
+        value: `{${item.name}}`,
+        name: `${item.name}[]`,
+        placeholder: item.placeholder,
+      };
+      break;
     }
     case 'unit': {
       attribute = {
-        value: item.name,
+        value: `{${item.name}}`,
         name: `${item.name}{id}`,
-        hiddenName: 'unit[]'
-      }
-      break
+        hiddenName: 'unit[]',
+        placeholder: item.placeholder,
+      };
+      break;
     }
     case 'unit-group': {
       attribute = {
         value: item.name,
-        name: `${item.name}{id}`
-      }
-      break
+        name: `${item.name}{id}[]`,
+        placeholder: item.placeholder,
+      };
+      break;
     }
   }
 
   return (
     <>
       <input
+        id={id}
         type={selectedType}
         name={attribute.name}
-        value={`{${attribute.value}}`}
-        className={ classnames({ 'acms-admin-form-width-full': preview && preview.acmscss }) }
-        {...(preview && preview.jsValidator ? { 'data-validator': attribute.name } : {})}
+        defaultValue={isValue ? `${attribute.value}` : ''}
+        className={classnames({ 'acms-admin-form-width-full': acmscss })}
+        {...(attribute.placeholder ? { placeholder: attribute.placeholder } : {})}
+        {...(jsValidator ? { 'data-validator': attribute.name } : {})}
       />
-      {preview && preview.mode === 'normal' && <input type="hidden" name={attribute.hiddenName} value={attribute.name} />}
-      {renderValidator(item)}
-      {renderNoSearch(item)}
+      {(mode === 'normal') | (mode === 'unit') ? (
+        <input type="hidden" name={attribute.hiddenName} defaultValue={attribute.name} />
+      ) : null}
+      <OptionValidator item={item} />
+      <OptionNoSearch name={item.name} noSearch={item.noSearch} />
     </>
-  )
+  );
 }

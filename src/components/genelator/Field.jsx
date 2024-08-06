@@ -1,7 +1,19 @@
-import React from 'react';
-import Base from './base';
-import { MakerContext } from '../../store/MakerContext'
+import React, { useCallback, useEffect, useState } from 'react';
+import { useMakerContext } from '../../store/MakerContext';
+import { ConverterModal } from './base/ConverterModal';
+import { Alert } from './base/Alert';
+import { Basic } from './base/Basic';
+import { Snippet } from './base/Snippet';
+import { Maker } from './base/Maker';
+import { Validator } from './base/Validator';
+import { OptionItem } from './base/OptionItem';
+import { MediaOption } from './base/MediaOption';
+import { ImageOption } from './base/ImageOption';
+import { ImageResizeOption } from './base/ImageResizeOption';
+import { FileOption } from './base/FileOption';
+import { RichEditorOption } from './base/RichEditorOption';
 
+<<<<<<< HEAD
 export default class Field extends Base {
 <<<<<<< HEAD:src/components/field.js
 =======
@@ -72,11 +84,39 @@ export default class Field extends Base {
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/Field.jsx
     };
   }
+=======
+const defaultProps = {
+  // text, textarea
+  title: '',
+  name: '',
+  type: 'text',
+  subType: '',
+  tooltip: '',
+  placeholder: '',
+  alert: false,
+  duplicatedField: '',
+  path: 'path',
+  converter: '',
 
-  submit() {
-    const { alert, name, type, title } = this.state
-    const { addCustomfield } = this.context
+  // image
+  normal: 'size',
+  normalSize: null,
+  largeSize: null,
+  tiny: null,
+  tinySize: null,
+  square: null,
+>>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
 
+  resize: true,
+  useDropArea: true,
+  dropAreaWidth: 200,
+  dropAreaHeight: 200,
+  useFocusImage: false,
+  focusImageWidth: 400,
+  focusImageHeight: 400,
+  mediaType: 'image',
+
+<<<<<<< HEAD
     if (name && type && title) {
       if(alert) this.setState({ alert: false })
       addCustomfield(this.state);
@@ -184,7 +224,106 @@ export default class Field extends Base {
           {this.renderValidator()}
           {this.renderMake()}
         </div>
+=======
+  // richEditor
+  useExpand: true,
+  startHeadingLevel: 2,
+  endHeadingLevel: 3,
+
+  // select, checkbox, radio
+  option: [
+    {
+      value: '',
+      label: '',
+    },
+  ],
+  validator: [
+    {
+      option: '',
+      value: '',
+      message: '',
+    },
+  ],
+  optionFormat: 'pref',
+  openValidator: false,
+  openConverter: false,
+
+  alt: false,
+  fileNameMethod: 'random',
+  noSearch: false,
+  extension: '',
+};
+
+export function Field() {
+  const [field, setField] = useState(defaultProps);
+  const { customfield, addCustomfield } = useMakerContext();
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.persist();
+      if (field.name && field.type && field.title) {
+        if (field.alert) {
+          setField((prevState) => ({ ...prevState, alert: false }));
+        }
+        addCustomfield(field);
+      } else {
+        setField((prevState) => ({ ...prevState, alert: true }));
+      }
+    },
+    [field, addCustomfield]
+  );
+
+  useEffect(() => {
+    console.log(customfield);
+  }, [customfield]);
+
+  return (
+    <div>
+      <h2 className="acms-admin-admin-title2">カスタムフィールド</h2>
+      <div className="customFieldFunction">
+        <ConverterModal field={field} setField={setField} />
+        <Alert field={field} setField={setField} />
+        <Basic field={field} setField={setField} />
+        {field.type === 'selectbox' && (
+          <div>
+            <Snippet field={field} setField={setField} />
+            <OptionItem field={field} setField={setField} />
+          </div>
+        )}
+        {field.type === 'radioButton' && (
+          <div>
+            <Snippet field={field} setField={setField} />
+            <OptionItem field={field} setField={setField} />
+          </div>
+        )}
+        {field.type === 'checkbox' && (
+          <div>
+            <Snippet field={field} setField={setField} />
+            <OptionItem field={field} setField={setField} />
+          </div>
+        )}
+
+        {field.type === 'media' && <div>{<MediaOption field={field} setField={setField} />}</div>}
+
+        {field.type === 'image' && (
+          <div>
+            {<ImageOption setField={setField} />}
+            {<ImageResizeOption field={field} setField={setField} />}
+          </div>
+        )}
+
+        {field.type === 'file' && (
+          <div>
+            <FileOption field={field} setField={setField} />
+          </div>
+        )}
+
+        {field.type === 'richEditor' && <div>{<RichEditorOption field={field} setField={setField} />}</div>}
+
+        <Validator field={field} setField={setField} />
+        <Maker setField={setField} onSubmit={onSubmit} />
+>>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
       </div>
-    );
-  }
+    </div>
+  );
 }

@@ -1,3 +1,6 @@
+.acms-admin-form select {
+  appearance: none;
+}
 .acms-admin-form-item {
   display :flex;
   flex-direction: column;
@@ -30,4 +33,11 @@ fieldset {
   .acms-admin-form-item-input {
     flex-basis: 70%;
   }
+}
+
+.acms-flex {
+  display: flex;
+  align-items: center;
+  /* stylelint-disable-next-line order/properties-order */
+  gap: 32px;
 }
