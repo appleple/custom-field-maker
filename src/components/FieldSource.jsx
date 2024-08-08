@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section } from './layouts/Section';
-import { Table } from './layouts/Table';
+import { TableLayout } from './layouts/TableLayout';
 import { useMakerContext } from '../store/MakerContext';
 
 export function FieldSource() {
@@ -10,8 +10,8 @@ export function FieldSource() {
 
   return (
     <>
-      {tag === 'section' && <Section />}
-      {tag === 'table' && <Table />}
+      {tag === 'section' ? <Section /> : null}
+      {tag === 'table' ? <TableLayout /> : null}
     </>
   );
 }

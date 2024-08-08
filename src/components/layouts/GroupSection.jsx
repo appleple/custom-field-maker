@@ -5,12 +5,17 @@ import { TextInput } from '../html/TextInput';
 import { Textarea } from '../html/Textarea';
 import { Checkbox } from '../html/Checkbox';
 import { Selectbox } from '../html/Selectbox';
+import { RadioButton } from '../html/RadioButton';
+import { Media } from '../html/Media';
+import { ImageInput } from '../html/ImageInput';
+import { RichEditor } from '../html/RichEditor';
+import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function GroupSection() {
   const {
     fieldgroup,
-    preview: { acmscss, editMode },
+    preview: { acmscss, direction, editMode },
   } = useMakerContext();
 
   return (
@@ -23,7 +28,34 @@ export function GroupSection() {
             ? null
             : fieldgroup.items.length > 0 && (
                 <>
-                  {`<!-- BEGIN ${fieldgroup.name}:loop -->`}
+                  <div className={classnames({ 'acms-admin-hide-sp': acmscss })}>
+                    <div>
+                      <div
+                        className={classnames({
+                          'acms-admin-table-left acms-admin-admin-config-table-item-handle': acmscss,
+                        })}
+                      >
+                        &nbsp;
+                      </div>
+                      {direction === 'horizontal' &&
+                        fieldgroup &&
+                        fieldgroup.items.map((item, index) => (
+                          <span key={index}>
+                            <Heading item={item} />
+                          </span>
+                        ))}
+                      {direction === 'vertical' && <span />}
+                      <span
+                        className={classnames({
+                          'acms-admin-table-left acms-admin-admin-config-table-action': acmscss,
+                        })}
+                      >
+                        削除
+                      </span>
+                    </div>
+                  </div>
+
+                  {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
 
                   <div className="sortable-item acms-flex">
                     <div className="item-handle acms-admin-table-nowrap">
@@ -58,14 +90,14 @@ export function GroupSection() {
                         }
                         case 'checkbox': {
                           return (
-                            <p key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                            <fieldset key={index} className="acms-admin-form-item">
+                              <legend className="acms-admin-form-item-heading">
                                 <Heading item={item} id={`${item.name}${index}`} />
-                              </label>
-                              <span className="acms-admin-form-item-input">
+                              </legend>
+                              <div className="acms-admin-form-item-input">
                                 <Checkbox item={item} id={`${item.name}${index}`} />
-                              </span>
-                            </p>
+                              </div>
+                            </fieldset>
                           );
                         }
                         case 'selectbox': {
@@ -80,6 +112,18 @@ export function GroupSection() {
                             </p>
                           );
                         }
+                        case 'radioButton': {
+                          return (
+                            <fieldset key={index} className="acms-admin-form-item">
+                              <legend className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                                <Heading item={item} />
+                              </legend>
+                              <div className="acms-admin-form-item-input">
+                                <RadioButton item={item} id={`${item.name}${index}`} />
+                              </div>
+                            </fieldset>
+                          );
+                        }
                         case 'media': {
                           return (
                             <p key={index} className="acms-admin-form-item">
@@ -87,9 +131,45 @@ export function GroupSection() {
                                 <Heading item={item} />
                               </label>
                               <span className="acms-admin-form-item-input">
-                                <Textarea item={item} id={`${item.name}${index}`} />
+                                <Media item={item} id={`${item.name}${index}`} />
                               </span>
                             </p>
+                          );
+                        }
+                        case 'image': {
+                          return (
+                            <p key={index} className="acms-admin-form-item">
+                              <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                                <Heading item={item} />
+                              </label>
+                              <span className="acms-admin-form-item-input">
+                                <ImageInput item={item} id={`${item.name}${index}`} />
+                              </span>
+                            </p>
+                          );
+                        }
+                        case 'richEditor': {
+                          return (
+                            <p key={index} className="acms-admin-form-item">
+                              <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                                <Heading item={item} />
+                              </label>
+                              <span className="acms-admin-form-item-input">
+                                <RichEditor item={item} id={`${item.name}${index}`} />
+                              </span>
+                            </p>
+                          );
+                        }
+                        case 'table': {
+                          return (
+                            <div key={index} className="acms-admin-form-item">
+                              <p className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                                <Heading item={item} />
+                              </p>
+                              <div className="acms-admin-form-item-input">
+                                <Table item={item} id={`${item.name}${index}`} />
+                              </div>
+                            </div>
                           );
                         }
                         default: {
@@ -125,11 +205,11 @@ export function GroupSection() {
                     case 'text': {
                       return (
                         <p key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                          <label className="acms-admin-form-item-heading" id={`template-${item.name}${index}`}>
                             <Heading item={item} />
                           </label>
                           <span className="acms-admin-form-item-input">
-                            <TextInput item={item} id={`${item.name}${index}`} isValue={false} />
+                            <TextInput item={item} id={`template-${item.name}${index}`} isValue={false} />
                           </span>
                         </p>
                       );
@@ -137,25 +217,25 @@ export function GroupSection() {
                     case 'textarea': {
                       return (
                         <p key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                          <label className="acms-admin-form-item-heading" htmlFor={`template-${item.name}${index}`}>
                             <Heading item={item} />
                           </label>
                           <span className="acms-admin-form-item-input">
-                            <Textarea item={item} id={`${item.name}${index}`} isValue={false} />
+                            <Textarea item={item} id={`template-${item.name}${index}`} isValue={false} />
                           </span>
                         </p>
                       );
                     }
                     case 'checkbox': {
                       return (
-                        <p key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                        <fieldset key={index} className="acms-admin-form-item">
+                          <legend className="acms-admin-form-item-heading">
                             <Heading item={item} />
-                          </label>
-                          <span className="acms-admin-form-item-input">
-                            <Checkbox item={item} id={`${item.name}${index}`} isValue={false} />
-                          </span>
-                        </p>
+                          </legend>
+                          <div className="acms-admin-form-item-input">
+                            <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
+                          </div>
+                        </fieldset>
                       );
                     }
                     case 'selectbox': {
@@ -165,21 +245,69 @@ export function GroupSection() {
                             <Heading item={item} />
                           </label>
                           <span className="acms-admin-form-item-input">
-                            <Selectbox item={item} id={`${item.name}${index}`} isValue={false} />
+                            <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
                           </span>
                         </p>
+                      );
+                    }
+                    case 'radioButton': {
+                      return (
+                        <fieldset key={index} className="acms-admin-form-item">
+                          <legend className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                            <Heading item={item} />
+                          </legend>
+                          <div className="acms-admin-form-item-input">
+                            <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
+                          </div>
+                        </fieldset>
                       );
                     }
                     case 'media': {
                       return (
                         <p key={index} className="acms-admin-form-item">
-                          <span className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
                             <Heading item={item} />
-                          </span>
+                          </label>
                           <span className="acms-admin-form-item-input">
-                            <Textarea item={item} id={`${item.name}${index}`} isValue={false} />
+                            <Media item={item} id={`${item.name}${index}`} />
                           </span>
                         </p>
+                      );
+                    }
+                    case 'image': {
+                      return (
+                        <p key={index} className="acms-admin-form-item">
+                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                            <Heading item={item} />
+                          </label>
+                          <span className="acms-admin-form-item-input">
+                            <ImageInput item={item} id={`${item.name}${index}`} />
+                          </span>
+                        </p>
+                      );
+                    }
+                    case 'richEditor': {
+                      return (
+                        <p key={index} className="acms-admin-form-item">
+                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                            <Heading item={item} />
+                          </label>
+                          <span className="acms-admin-form-item-input">
+                            <RichEditor item={item} id={`${item.name}${index}`} />
+                          </span>
+                        </p>
+                      );
+                    }
+                    case 'table': {
+                      return (
+                        <div key={index} className="acms-admin-form-item">
+                          <p className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                            <Heading item={item} />
+                          </p>
+                          <div className="acms-admin-form-item-input">
+                            <Table item={item} id={`${item.name}${index}`} />
+                          </div>
+                        </div>
                       );
                     }
                     default: {
@@ -262,21 +390,23 @@ export function GroupSection() {
               <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
               <input type="hidden" name="field[]" value={item.name} />
               {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
-              {item.validator.map((validator, index) => {
-                if (!validator.option) {
-                  return null;
-                }
-                const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
-                return (
-                  <input
-                    key={index}
-                    type="hidden"
-                    name={`${name}:v#${validator.option}`}
-                    value={validator.value}
-                    id={`${name}-v-${validator.option}`}
-                  />
-                );
-              })}
+
+              {item.validator &&
+                item.validator.map((validator, index) => {
+                  if (!validator.option) {
+                    return null;
+                  }
+                  const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
+                  return (
+                    <input
+                      key={index}
+                      type="hidden"
+                      name={`${name}:v#${validator.option}`}
+                      value={validator.value}
+                      id={`${name}-v-${validator.option}`}
+                    />
+                  );
+                })}
               {(() => {
                 const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
                 return item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />;

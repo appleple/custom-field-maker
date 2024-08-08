@@ -303,7 +303,11 @@ export function Field() {
           </div>
         )}
 
-        {field.type === 'media' && <div>{<MediaOption field={field} setField={setField} />}</div>}
+        {field.type === 'media' && (
+          <div>
+            <MediaOption field={field} setField={setField} />
+          </div>
+        )}
 
         {field.type === 'image' && (
           <div>
@@ -320,7 +324,9 @@ export function Field() {
 
         {field.type === 'richEditor' && <div>{<RichEditorOption field={field} setField={setField} />}</div>}
 
-        <Validator field={field} setField={setField} />
+        {field.type !== 'media' && field.type !== 'richEditor' && field.type !== 'table' && (
+          <Validator field={field} setField={setField} />
+        )}
         <Maker setField={setField} onSubmit={onSubmit} />
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
       </div>

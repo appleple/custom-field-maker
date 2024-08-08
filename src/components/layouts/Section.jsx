@@ -9,6 +9,7 @@ import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
+import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function Section() {
@@ -128,6 +129,18 @@ export function Section() {
                   </label>
                   <span>
                     <RichEditor item={item} id={`${item.name}${index}`} />
+                  </span>
+                </p>
+              );
+            }
+            case 'table': {
+              return (
+                <p key={index} className="acms-admin-form-item">
+                  <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                    <Heading item={item} />
+                  </label>
+                  <span>
+                    <Table item={item} id={`${item.name}${index}`} />
                   </span>
                 </p>
               );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { GroupSection } from './layouts/GroupSection';
-// import { GroupTable } from './layouts/GroupTable'
+import { GroupTableLayout } from './layouts/GroupTableLayout';
 import { useMakerContext } from '../store/MakerContext';
 
 export function FieldGroupSource() {
@@ -11,7 +11,7 @@ export function FieldGroupSource() {
   return (
     <>
       {tag === 'section' ? <GroupSection /> : null}
-      {/* {tag === 'table' ? <GroupTable /> : null} */}
+      {tag === 'table' ? <GroupTableLayout /> : null}
     </>
   );
 }

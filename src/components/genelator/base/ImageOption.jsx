@@ -102,7 +102,9 @@ export function ImageOption(props) {
                 <select
                   name="large"
                   onChange={(e) => {
-                    this.updateState('large', e.target.value);
+                    const value = e.value;
+                    if (!value) return;
+                    setField((prevState) => ({ ...prevState, large: value }));
                   }}
                   className="acms-admin-margin-right-small"
                 >
@@ -183,7 +185,9 @@ export function ImageOption(props) {
                     autoComplete="off"
                     name="squareSize"
                     onInput={(e) => {
-                      this.updateState('squareSize', e.target.value);
+                      const value = e.value;
+                      if (!value) return;
+                      setField((prevState) => ({ ...prevState, squareSize: value }));
                     }}
                     className="customFieldSizeInput"
                     placeholder="例）250px"

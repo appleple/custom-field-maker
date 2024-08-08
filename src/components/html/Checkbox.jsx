@@ -5,24 +5,24 @@ import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function Checkbox(props) {
-  const { item } = props;
+  const { item, id = '', isChecked = true } = props;
   const {
     preview: { mode, acmscss },
   } = useMakerContext();
 
-  let attribute = { value: '', name: '', hiddenName: '' };
+  let attribute = { id, value: '', name: '', hiddenName: '' };
   switch (mode) {
     case 'normal': {
       attribute = {
-        value: `{${item.name}}`,
-        name: item.name,
+        value: `${item.name}`,
+        name: `${item.name}`,
         hiddenName: 'field[]',
       };
       break;
     }
     case 'group': {
       attribute = {
-        value: `{${item.name}}`,
+        value: item.name,
         name: `${item.name}[]`,
       };
       break;
@@ -56,7 +56,7 @@ export function Checkbox(props) {
               type="checkbox"
               name={`${item.name}[]`}
               value={option.value}
-              data-tmp={`{${item.name}:checked#${option.value}}`}
+              data-tmp={isChecked && `{${item.name}:checked#${option.value}}`}
               id={`input-checkbox-${item.name}-${option.value}`}
             />
             <label htmlFor={`input-checkbox-${item.name}-${option.value}`}>

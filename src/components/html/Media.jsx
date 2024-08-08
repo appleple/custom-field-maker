@@ -25,7 +25,8 @@ export function Media(props) {
       attribute = {
         id,
         value: `{${item.name}}`,
-        name: `${item.name}[]`,
+        name: `${item.name}`,
+        hiddenName: `${item.name}[]`,
       };
       break;
     }
@@ -144,14 +145,27 @@ export function Media(props) {
           </div>
         </>
       )}
-      <input
-        type="hidden"
-        name={attribute.name}
-        value={editMode === 'preview' ? '' : `{${attribute.name}}`}
-        className="js-value"
-      />
-      <input type="hidden" name="field[]" value={attribute.name} />
-      <input type="hidden" name={`${attribute.name}:extension`} value="media" />
+
+      {mode === 'normal' && (
+        <>
+          <input
+            type="hidden"
+            name={attribute.name}
+            value={editMode === 'preview' ? '' : attribute.value}
+            className="js-value"
+          />
+          <input type="hidden" name={attribute.hiddenName} value={editMode === 'preview' ? '' : attribute.value} />
+          <input type="hidden" name={`${attribute.name}:extension`} value="media" />
+        </>
+      )}
+      {mode === 'group' && (
+        <input
+          type="hidden"
+          name={attribute.hiddenName}
+          value={editMode === 'preview' ? '' : attribute.value}
+          className="js-value"
+        />
+      )}
     </div>
   );
 }

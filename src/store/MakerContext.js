@@ -40,6 +40,7 @@ export const MakerContext = createContext({
   setTag: () => {},
   setAcmscss: () => {},
   setJsValidator: () => {},
+  setDirection: () => {},
 });
 
 export function MakerContextProvider({
@@ -117,6 +118,10 @@ export function MakerContextProvider({
   );
   const setMode = useCallback((mode) => setPreview((prevState) => ({ ...prevState, mode })), [setPreview]);
   const setEditMode = useCallback((editMode) => setPreview((prevState) => ({ ...prevState, editMode })), [setPreview]);
+  const setDirection = useCallback(
+    (direction) => setPreview((prevState) => ({ ...prevState, direction })),
+    [setPreview]
+  );
 
   const setSource = useCallback((source) => setClipboard((prevState) => ({ ...prevState, source })), [setClipboard]);
   const setCopied = useCallback((copied) => setClipboard((prevState) => ({ ...prevState, copied })), [setClipboard]);
@@ -149,6 +154,7 @@ export function MakerContextProvider({
       setTag,
       setAcmscss,
       setJsValidator,
+      setDirection,
       setSource,
       setCopied,
     }),
@@ -174,6 +180,7 @@ export function MakerContextProvider({
       setTag,
       setAcmscss,
       setJsValidator,
+      setDirection,
       setSource,
       setCopied,
     ]

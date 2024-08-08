@@ -5,27 +5,25 @@ import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function RadioButton(props) {
-  const { item } = props;
+  const { item, id = '', isChecked = true } = props;
   const {
     preview: { mode, acmscss },
   } = useMakerContext();
 
-  let attribute = { value: '', name: '', hiddenName: '', placeholder: '' };
+  let attribute = { id, value: '', name: '', hiddenName: '' };
   switch (mode) {
     case 'normal': {
       attribute = {
-        value: `{${item.name}}`,
+        value: item.name,
         name: item.name,
         hiddenName: 'field[]',
-        placeholder: item.placeholder,
       };
       break;
     }
     case 'group': {
       attribute = {
-        value: `{${item.name}}`,
+        value: item.name,
         name: `${item.name}[]`,
-        placeholder: item.placeholder,
       };
       break;
     }
@@ -34,7 +32,6 @@ export function RadioButton(props) {
         value: `{${item.name}}`,
         name: `${item.name}{id}`,
         hiddenName: 'unit[]',
-        placeholder: item.placeholder,
       };
       break;
     }
@@ -42,7 +39,6 @@ export function RadioButton(props) {
       attribute = {
         value: item.name,
         name: `${item.name}{id}[]`,
-        placeholder: item.placeholder,
       };
       break;
     }
@@ -58,19 +54,21 @@ export function RadioButton(props) {
           <span key={`${item.name}${index}`} className={classnames({ 'acms-admin-form-radio': acmscss })}>
             <input
               type="radio"
-              name={item.name}
+              name={`${item.name}[]`}
               value={option.value}
-              data-tmp={`{${item.name}:checked#${option.value}}`}
-              id={`input-radio-${item.name}-${option.value}`}
+              data-tmp={isChecked && `{${item.name}:checked#${option.value}}`}
+              id={`input-radio-${item.name}-${id}`}
             />
-            <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+            <label htmlFor={`input-radio-${item.name}-${id}`}>
               <i className="acms-admin-ico-radio" />
               {option.label}
             </label>
           </span>
         );
       })}
-      {(mode === 'normal') | (mode === 'unit') ? <input type="hidden" name="field[]" value={attribute.name} /> : null}
+      {(mode === 'normal') | (mode === 'unit') ? (
+        <input type="hidden" name={attribute.hiddenName} value={attribute.name} />
+      ) : null}
 
       <OptionValidator item={item} />
       <OptionNoSearch name={item.name} noSearch={item.noSearch} />

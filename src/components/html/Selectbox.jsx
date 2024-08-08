@@ -5,7 +5,7 @@ import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function Selectbox(props) {
-  const { item, id = '' } = props;
+  const { item, id = '', isSelected = true } = props;
   const {
     preview: { mode, acmscss },
   } = useMakerContext();
@@ -24,7 +24,7 @@ export function Selectbox(props) {
     case 'group': {
       attribute = {
         value: `{${item.name}}`,
-        name: `${item.name}[]`,
+        name: `${item.name}`,
         placeholder: item.placeholder,
       };
       break;
@@ -50,20 +50,26 @@ export function Selectbox(props) {
 
   return (
     <>
-      <select name={attribute.name} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+      <select name={`${attribute.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
         <option value="" />
         {item.option.map((option, index) => {
           if (!option.label) {
             return null;
           }
           return (
-            <option key={index} value={option.value} data-tmp={`{${attribute.name}:selected#${option.value}}`}>
+            <option
+              key={index}
+              value={option.value}
+              data-tmp={isSelected && `{${attribute.name}:selected#${option.value}}`}
+            >
               {option.label}
             </option>
           );
         })}
       </select>
-      {(mode === 'normal') | (mode === 'unit') ? <input type="hidden" name="field[]" value={attribute.name} /> : null}
+      {(mode === 'normal') | (mode === 'unit') ? (
+        <input type="hidden" name={attribute.hiddenName} value={attribute.name} />
+      ) : null}
 
       <OptionValidator item={item} />
       <OptionNoSearch name={item.name} noSearch={item.noSearch} />
