@@ -14,8 +14,10 @@ import { useMakerContext } from '../../store/MakerContext';
 
 export function Section() {
   const {
-    customfield,
-    preview: { jsValidator },
+    state: {
+      customfield,
+      preview: { jsValidator },
+    },
   } = useMakerContext();
 
   return (

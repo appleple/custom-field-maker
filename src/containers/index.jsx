@@ -15,19 +15,11 @@ import { XmlEntities } from 'html-entities';
 const entities = new XmlEntities();
 
 function CustomFieldMaker() {
-  const {
-    setSource,
-    customfield,
-    fieldgroup,
-    customunit,
-    unitgroup,
-    preview,
-    clipboard: { source },
-  } = useMakerContext();
+  const { setSource, state, preview, clipboard } = useMakerContext();
 
   const onSource = (encodedHtml) => {
     const decodedHtml = entities.decode(encodedHtml);
-    if (source !== decodedHtml) {
+    if (clipboard.source !== decodedHtml) {
       setSource(decodedHtml);
     }
   };
@@ -35,8 +27,8 @@ function CustomFieldMaker() {
   return (
     <div className="acms-admin-form">
       <EditorModeNavigator />
-      {preview.mode === 'normal' && <Field />}
-      {preview.mode === 'group' && <FieldGroup />}
+      {preview.mode === 'customfield' && <Field />}
+      {preview.mode === 'fieldgroup' && <FieldGroup />}
       {/* {preview.mode === 'unit' && <Unit />}
       {preview.mode === 'unit-group' && <UnitGroup />} */}
 
@@ -50,15 +42,9 @@ function CustomFieldMaker() {
 
               {preview.editMode === 'source' && (
                 <Highlighter onHighlight={onSource}>
-                  <MakerContextProvider
-                    customfield={customfield}
-                    customunit={customunit}
-                    fieldgroup={fieldgroup}
-                    unitgroup={unitgroup}
-                    preview={preview}
-                  >
-                    {preview.mode === 'normal' && <FieldSource />}
-                    {preview.mode === 'group' && <FieldGroupSource />}
+                  <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                    {preview.mode === 'customfield' && <FieldSource />}
+                    {preview.mode === 'fieldgroup' && <FieldGroupSource />}
                     {/* {preview.mode === 'unit' && <FieldSource customfield={customunit} />} */}
                     {/* {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />} */}
                   </MakerContextProvider>
@@ -67,8 +53,8 @@ function CustomFieldMaker() {
 
               {preview.editMode === 'preview' && (
                 <>
-                  {preview.mode === 'normal' && <FieldSource />}
-                  {preview.mode === 'group' && <FieldGroupSource />}
+                  {preview.mode === 'customfield' && <FieldSource />}
+                  {preview.mode === 'fieldgroup' && <FieldGroupSource />}
                   {/* {preview.mode === 'unit' && <FieldSource customfield={customunit} />} */}
                   {/* {preview.mode === 'unit-group' && <FieldGroupSource fieldgroup={unitgroup} />} */}
                 </>

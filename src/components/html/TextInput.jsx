@@ -7,7 +7,9 @@ import { OptionNoSearch } from './OptionNoSearch';
 export function TextInput(props) {
   const { item, id = '', isValue = true } = props;
   const {
-    preview: { mode, jsValidator, acmscss },
+    state: {
+      preview: { mode, jsValidator, acmscss },
+    },
   } = useMakerContext();
   const selectedType = item.subType ? item.subType : item.type;
 

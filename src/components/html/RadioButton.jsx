@@ -10,11 +10,10 @@ export function RadioButton(props) {
     preview: { mode, acmscss },
   } = useMakerContext();
 
-  let attribute = { id, value: '', name: '', hiddenName: '' };
+  let attribute = { id, name: '', hiddenName: '' };
   switch (mode) {
     case 'normal': {
       attribute = {
-        value: item.name,
         name: item.name,
         hiddenName: 'field[]',
       };
@@ -22,14 +21,12 @@ export function RadioButton(props) {
     }
     case 'group': {
       attribute = {
-        value: item.name,
         name: `${item.name}[]`,
       };
       break;
     }
     case 'unit': {
       attribute = {
-        value: `{${item.name}}`,
         name: `${item.name}{id}`,
         hiddenName: 'unit[]',
       };
@@ -37,12 +34,14 @@ export function RadioButton(props) {
     }
     case 'unit-group': {
       attribute = {
-        value: item.name,
         name: `${item.name}{id}[]`,
       };
       break;
     }
   }
+
+  console.log(mode);
+  console.log(attribute.name);
 
   return (
     <>
@@ -54,7 +53,7 @@ export function RadioButton(props) {
           <span key={`${item.name}${index}`} className={classnames({ 'acms-admin-form-radio': acmscss })}>
             <input
               type="radio"
-              name={`${item.name}[]`}
+              name={attribute.name}
               value={option.value}
               data-tmp={isChecked && `{${item.name}:checked#${option.value}}`}
               id={`input-radio-${item.name}-${id}`}

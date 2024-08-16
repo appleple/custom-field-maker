@@ -17,9 +17,9 @@ export function EditorModeNavigator() {
       <div className="acms-admin-form-radio">
         <input
           type="radio"
-          value="normal"
+          value="customfield"
           id="input-radio-mode-normal"
-          checked={mode === 'normal'}
+          checked={mode === 'customfield'}
           onChange={updateMode}
         />
         <label htmlFor="input-radio-mode-normal">
@@ -30,9 +30,9 @@ export function EditorModeNavigator() {
       <div className="acms-admin-form-radio">
         <input
           type="radio"
-          value="group"
+          value="fieldgroup"
           id="input-radio-mode-group"
-          checked={mode === 'group'}
+          checked={mode === 'fieldgroup'}
           onChange={updateMode}
         />
         <label htmlFor="input-radio-mode-group">
@@ -41,7 +41,13 @@ export function EditorModeNavigator() {
         </label>
       </div>
       <div className="acms-admin-form-radio">
-        <input type="radio" value="unit" id="input-radio-mode-unit" checked={mode === 'unit'} onChange={updateMode} />
+        <input
+          type="radio"
+          value="customunit"
+          id="input-radio-mode-unit"
+          checked={mode === 'customunit'}
+          onChange={updateMode}
+        />
         <label htmlFor="input-radio-mode-unit">
           <i className="acms-admin-ico-radio" />
           カスタムユニット
@@ -50,9 +56,9 @@ export function EditorModeNavigator() {
       <div className="acms-admin-form-radio">
         <input
           type="radio"
-          value="unit-group"
+          value="unitgroup"
           id="input-radio-mode-unit-group"
-          checked={mode === 'unit-group'}
+          checked={mode === 'unitgroup'}
           onChange={updateMode}
         />
         <label htmlFor="input-radio-mode-unit-group">

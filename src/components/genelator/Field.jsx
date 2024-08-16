@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useMakerContext } from '../../store/MakerContext';
 import { ConverterModal } from './base/ConverterModal';
 import { Alert } from './base/Alert';
@@ -256,26 +256,26 @@ const defaultProps = {
 
 export function Field() {
   const [field, setField] = useState(defaultProps);
-  const { customfield, addCustomfield } = useMakerContext();
+  const { addCustomfield } = useMakerContext();
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.persist();
-      if (field.name && field.type && field.title) {
-        if (field.alert) {
-          setField((prevState) => ({ ...prevState, alert: false }));
-        }
-        addCustomfield(field);
-      } else {
-        setField((prevState) => ({ ...prevState, alert: true }));
-      }
+  const handleAddCustomfield = useCallback(
+    (fieldData) => {
+      addCustomfield(fieldData);
     },
-    [field, addCustomfield]
+    [addCustomfield]
   );
 
-  useEffect(() => {
-    console.log(customfield);
-  }, [customfield]);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (field.name && field.type && field.title) {
+      if (field.alert) {
+        setField((prevState) => ({ ...prevState, alert: false }));
+      }
+      handleAddCustomfield(field);
+    } else {
+      setField((prevState) => ({ ...prevState, alert: true }));
+    }
+  };
 
   return (
     <div>

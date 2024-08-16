@@ -1,11 +1,12 @@
-import React, { useContext, createContext, useState, useMemo, useCallback } from 'react';
+import React, { useState, useContext, createContext, useReducer, useCallback, useMemo } from 'react';
+import { makerReducer } from '../reducers/makerReducer';
 
 const defaultCustomfield = [];
 const defaultFieldgroup = { items: [], title: null, name: null };
 const defaultCustomunit = [];
 const defaultUnitgroup = { items: [], title: null, name: null };
 const defaultPreview = {
-  mode: 'normal',
+  mode: 'customfield',
   editMode: 'source',
   tag: 'section',
   acmscss: true,
@@ -17,11 +18,29 @@ const defaultClipboard = {
   copied: false,
 };
 
-export const MakerContext = createContext({
+const initialState = {
   customfield: defaultCustomfield,
   fieldgroup: defaultFieldgroup,
   customunit: defaultCustomunit,
   unitgroup: defaultUnitgroup,
+  preview: defaultPreview,
+  clipboard: defaultClipboard,
+  history: {
+    customfield: [],
+    fieldgroup: [],
+    customunit: [],
+    unitgroup: [],
+  },
+  currentIndex: {
+    customfield: -1,
+    fieldgroup: -1,
+    customunit: -1,
+    unitgroup: -1,
+  },
+};
+
+export const MakerContext = createContext({
+  state: initialState,
   preview: defaultPreview,
   clipboard: defaultClipboard,
   addCustomfield: () => {},
@@ -45,70 +64,68 @@ export const MakerContext = createContext({
 
 export function MakerContextProvider({
   children,
-  customfield: customfieldProp = defaultCustomfield,
-  fieldgroup: fieldgroupProp = defaultFieldgroup,
-  customunit: customunitProp = defaultCustomunit,
-  unitgroup: unitgroupProp = defaultUnitgroup,
+  state: stateProp = initialState,
   preview: previewProp = defaultPreview,
   clipboard: clipboardProp = defaultClipboard,
 }) {
-  // const initialState = {
-  //   customfield: [],
-  //   groupitems: [],
-  //   customunit: [],
-  //   unitgroupitems: [],
-  //   snippets: [],
-  //   groupTitle: null,
-  //   groupName: null,
-  //   unitGroupTitle: null,
-  //   unitGroupName: null,
-  //   tag: 'section',
-  //   acmscss: true,
-  //   jsValidator: false,
-  //   direction: 'horizontal'
-  // }
-
-  const [customfield, setCustomfield] = useState(customfieldProp);
-  const [fieldgroup, setGroup] = useState(fieldgroupProp);
-  const [customunit, setCustomunit] = useState(customunitProp);
-  const [unitgroup, setUnitgroup] = useState(unitgroupProp);
+  const [state, dispatch] = useReducer(makerReducer, stateProp);
   const [preview, setPreview] = useState(previewProp);
   const [clipboard, setClipboard] = useState(clipboardProp);
 
   const addCustomfield = useCallback(
-    (newCustomfield) => setCustomfield((prevState) => [...prevState, newCustomfield]),
-    [setCustomfield]
+    (newCustomfield) =>
+      dispatch({ type: 'UPDATE_STATE', payload: { customfield: [...state.customfield, newCustomfield] } }),
+    [dispatch]
   );
   const addCustomunit = useCallback(
-    (newCustomunit) => setCustomunit((prevState) => [...prevState, newCustomunit]),
-    [setCustomunit]
+    (newCustomunit) =>
+      dispatch({ type: 'UPDATE_STATE', payload: { customunit: [...state.customunit, newCustomunit] } }),
+    [dispatch]
   );
-
   const setGroupTitleName = useCallback(
-    (title, name) => setGroup((prevState) => ({ ...prevState, title, name })),
-    [setGroup]
+    (title, name) => dispatch({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...state.fieldgroup, title, name } } }),
+    [dispatch]
   );
   const addGroupItem = useCallback(
-    (newGroupItem) => setGroup((prevState) => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
-    [setGroup]
+    (newGroupItem) =>
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { fieldgroup: { ...state.fieldgroup, items: [...state.fieldgroup.items, newGroupItem] } },
+      }),
+    [dispatch]
   );
-
   const setUnitGroupTitleName = useCallback(
-    (title, name) => setUnitgroup((prevState) => ({ ...prevState, title, name })),
-    [setUnitgroup]
+    (title, name) => dispatch({ type: 'UPDATE_STATE', payload: { unitgroup: { ...state.unitgroup, title, name } } }),
+    [dispatch]
   );
   const addUnitGroupItem = useCallback(
-    (newGroupItem) => setUnitgroup((prevState) => ({ ...prevState, items: [...prevState.items, newGroupItem] })),
-    [setUnitgroup]
+    (newGroupItem) =>
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { unitgroup: { ...state.unitgroup, items: [...state.unitgroup.items, newGroupItem] } },
+      }),
+    [dispatch]
   );
 
-  const clearCustomfield = useCallback(() => setCustomfield([]), [setCustomfield]);
-  const clearGroupItem = useCallback(() => setGroup((prevState) => ({ ...prevState, items: [] })), [setGroup]);
-  const clearCustomunit = useCallback(() => setCustomunit([]), [setCustomunit]);
-  const clearUnitGroupItem = useCallback(
-    () => setUnitgroup((prevState) => ({ ...prevState, items: [] })),
-    [setUnitgroup]
+  const clearCustomfield = useCallback(
+    () => dispatch({ type: 'UPDATE_STATE', payload: { customfield: [] } }),
+    [dispatch]
   );
+  const clearGroupItem = useCallback(
+    () => dispatch({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...state.fieldgroup, items: [] } } }),
+    [dispatch]
+  );
+  const clearCustomunit = useCallback(
+    () => dispatch({ type: 'UPDATE_STATE', payload: { customunit: [] } }),
+    [dispatch]
+  );
+  const clearUnitGroupItem = useCallback(
+    () => dispatch({ type: 'UPDATE_STATE', payload: { unitgroup: { ...state.unitgroup, items: [] } } }),
+    [dispatch]
+  );
+
+  const undo = useCallback((target) => dispatch({ type: 'UNDO', payload: { target } }), [dispatch]);
+  const redo = useCallback((target) => dispatch({ type: 'REDO', payload: { target } }), [dispatch]);
 
   const setTag = useCallback((tag) => setPreview((prevState) => ({ ...prevState, tag })), [setPreview]);
   const setAcmscss = useCallback((acmscss) => setPreview((prevState) => ({ ...prevState, acmscss })), [setPreview]);
@@ -126,17 +143,9 @@ export function MakerContextProvider({
   const setSource = useCallback((source) => setClipboard((prevState) => ({ ...prevState, source })), [setClipboard]);
   const setCopied = useCallback((copied) => setClipboard((prevState) => ({ ...prevState, copied })), [setClipboard]);
 
-  // const clearUnitGroupTitleName = () => ({ type: types.CLEARUNITGROUPTITLENAME });
-  // const restore = (storage) => ({ type: types.RESTORE, storage });
-  // const addSnippet = (name, value) => ({ type: types.ADDSNIPPET, name, value });
-  // const changeDirection = (direction) => ({ type: types.CHANGEDIRECTION, direction });
-
   const value = useMemo(
     () => ({
-      customfield,
-      fieldgroup,
-      customunit,
-      unitgroup,
+      state,
       preview,
       clipboard,
       addCustomfield,
@@ -149,20 +158,19 @@ export function MakerContextProvider({
       clearGroupItem,
       clearCustomunit,
       clearUnitGroupItem,
-      setMode,
-      setEditMode,
       setTag,
       setAcmscss,
       setJsValidator,
+      setMode,
+      setEditMode,
       setDirection,
       setSource,
       setCopied,
+      undo,
+      redo,
     }),
     [
-      customfield,
-      fieldgroup,
-      customunit,
-      unitgroup,
+      state,
       preview,
       clipboard,
       addCustomfield,
@@ -175,14 +183,16 @@ export function MakerContextProvider({
       clearGroupItem,
       clearCustomunit,
       clearUnitGroupItem,
-      setMode,
-      setEditMode,
       setTag,
       setAcmscss,
       setJsValidator,
+      setMode,
+      setEditMode,
       setDirection,
       setSource,
       setCopied,
+      undo,
+      redo,
     ]
   );
 

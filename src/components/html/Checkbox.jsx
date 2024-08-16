@@ -10,26 +10,23 @@ export function Checkbox(props) {
     preview: { mode, acmscss },
   } = useMakerContext();
 
-  let attribute = { id, value: '', name: '', hiddenName: '' };
+  let attribute = { id, name: '', hiddenName: '' };
   switch (mode) {
     case 'normal': {
       attribute = {
-        value: `${item.name}`,
-        name: `${item.name}`,
+        name: item.name,
         hiddenName: 'field[]',
       };
       break;
     }
     case 'group': {
       attribute = {
-        value: item.name,
         name: `${item.name}[]`,
       };
       break;
     }
     case 'unit': {
       attribute = {
-        value: `{${item.name}}`,
         name: `${item.name}{id}`,
         hiddenName: 'unit[]',
       };
@@ -37,7 +34,6 @@ export function Checkbox(props) {
     }
     case 'unit-group': {
       attribute = {
-        value: item.name,
         name: `${item.name}{id}[]`,
       };
       break;
@@ -54,7 +50,7 @@ export function Checkbox(props) {
           <span key={`${item.name}${index}`} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
             <input
               type="checkbox"
-              name={`${item.name}[]`}
+              name={attribute.name}
               value={option.value}
               data-tmp={isChecked && `{${item.name}:checked#${option.value}}`}
               id={`input-checkbox-${item.name}-${option.value}`}

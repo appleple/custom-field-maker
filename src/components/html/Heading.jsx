@@ -4,7 +4,9 @@ import { useMakerContext } from '../../store/MakerContext';
 export function Heading(props) {
   const { item } = props;
   const {
-    preview: { jsValidator },
+    state: {
+      preview: { jsValidator },
+    },
   } = useMakerContext();
 
   return (

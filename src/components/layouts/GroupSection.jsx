@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
@@ -14,7 +14,7 @@ import { useMakerContext } from '../../store/MakerContext';
 
 export function GroupSection() {
   const {
-    fieldgroup,
+    state: { fieldgroup },
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
 
@@ -66,7 +66,7 @@ export function GroupSection() {
                       switch (item.type) {
                         case 'text': {
                           return (
-                            <p key={index} className="acms-admin-form-item">
+                            <p className="acms-admin-form-item">
                               <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                                 <Heading item={item} />
                               </label>
@@ -337,10 +337,10 @@ export function GroupSection() {
       {/* input hidden */}
       {fieldgroup.name && (
         <>
-          {fieldgroup.items.map((item) => (
-            <>
+          {fieldgroup.items.map((item, index) => (
+            <Fragment key={index}>
               {item.type === 'image' && (
-                <>
+                <Fragment>
                   {item.square && (
                     <>
                       <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squarePath`} />
@@ -372,7 +372,7 @@ export function GroupSection() {
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
                   <input type="hidden" name={`${item.name}:extension`} value="image" />
-                </>
+                </Fragment>
               )}
               {item.type === 'file' && (
                 <>
@@ -411,7 +411,7 @@ export function GroupSection() {
                 const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
                 return item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />;
               })()}
-            </>
+            </Fragment>
           ))}
           <input type="hidden" name="field[]" value={`@${fieldgroup.name}`} />
         </>
