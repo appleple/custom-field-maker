@@ -12,27 +12,27 @@ export function Checkbox(props) {
 
   let attribute = { id, name: '', hiddenName: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         name: item.name,
         hiddenName: 'field[]',
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         name: `${item.name}[]`,
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         name: `${item.name}{id}`,
         hiddenName: 'unit[]',
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         name: `${item.name}{id}[]`,
       };
@@ -53,16 +53,18 @@ export function Checkbox(props) {
               name={attribute.name}
               value={option.value}
               data-tmp={isChecked && `{${item.name}:checked#${option.value}}`}
-              id={`input-checkbox-${item.name}-${option.value}`}
+              id={`input-checkbox-${item.name}-${id}`}
             />
-            <label htmlFor={`input-checkbox-${item.name}-${option.value}`}>
+            <label htmlFor={`input-checkbox-${item.name}-${id}`}>
               <i className="acms-admin-ico-checkbox" />
               {option.label}
             </label>
           </span>
         );
       })}
-      {(mode === 'normal') | (mode === 'unit') ? <input type="hidden" name="field[]" value={attribute.name} /> : null}
+      {mode === 'customfield' || mode === 'customunit' ? (
+        <input type="hidden" name={attribute.hiddenName} value={attribute.name} />
+      ) : null}
 
       <OptionValidator item={item} />
       <OptionNoSearch name={item.name} noSearch={item.noSearch} />

@@ -12,7 +12,7 @@ export function Media(props) {
 
   let attribute = { value: '', name: '', hiddenName: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         id,
         value: `{${item.name}}`,
@@ -21,7 +21,7 @@ export function Media(props) {
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         id,
         value: `{${item.name}}`,
@@ -30,7 +30,7 @@ export function Media(props) {
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         id,
         value: `{${item.name}}`,
@@ -39,7 +39,7 @@ export function Media(props) {
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         id,
         value: item.name,
@@ -146,7 +146,7 @@ export function Media(props) {
         </>
       )}
 
-      {mode === 'normal' && (
+      {mode === 'customfield' && (
         <>
           <input
             type="hidden"
@@ -158,7 +158,7 @@ export function Media(props) {
           <input type="hidden" name={`${attribute.name}:extension`} value="media" />
         </>
       )}
-      {mode === 'group' && (
+      {mode === 'fieldgroup' && (
         <input
           type="hidden"
           name={attribute.hiddenName}

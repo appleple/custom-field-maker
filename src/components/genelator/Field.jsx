@@ -258,7 +258,7 @@ export function Field() {
   const [field, setField] = useState(defaultProps);
   const { addCustomfield } = useMakerContext();
 
-  const handleAddCustomfield = useCallback(
+  const onAddCustomfieldhandler = useCallback(
     (fieldData) => {
       addCustomfield(fieldData);
     },
@@ -271,7 +271,7 @@ export function Field() {
       if (field.alert) {
         setField((prevState) => ({ ...prevState, alert: false }));
       }
-      handleAddCustomfield(field);
+      onAddCustomfieldhandler(field);
     } else {
       setField((prevState) => ({ ...prevState, alert: true }));
     }

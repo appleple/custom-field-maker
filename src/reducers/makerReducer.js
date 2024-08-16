@@ -20,13 +20,14 @@ const initialState = {
 function makerReducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_STATE': {
-      const newState = {
-        ...state,
-        customfield: action.payload.customfield || state.customfield,
-        fieldgroup: action.payload.fieldgroup || state.fieldgroup,
-        customunit: action.payload.customunit || state.customunit,
-        unitgroup: action.payload.unitgroup || state.unitgroup,
-      };
+      const newState = { ...state };
+      Object.keys(action.payload).forEach((key) => {
+        if (typeof action.payload[key] === 'function') {
+          newState[key] = action.payload[key](state[key]);
+        } else {
+          newState[key] = action.payload[key];
+        }
+      });
 
       const updatedHistory = {};
       const updatedCurrentIndex = {};

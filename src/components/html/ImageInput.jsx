@@ -12,7 +12,7 @@ export function ImageInput(props) {
 
   let attribute = { id, value: '', name: '', hiddenName: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         value: `{${item.name}}`,
         name: item.name,
@@ -20,14 +20,14 @@ export function ImageInput(props) {
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}[]`,
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}{id}`,
@@ -35,7 +35,7 @@ export function ImageInput(props) {
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         value: item.name,
         name: `${item.name}{id}[]`,

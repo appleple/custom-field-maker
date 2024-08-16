@@ -74,7 +74,10 @@ export function MakerContextProvider({
 
   const addCustomfield = useCallback(
     (newCustomfield) =>
-      dispatch({ type: 'UPDATE_STATE', payload: { customfield: [...state.customfield, newCustomfield] } }),
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { customfield: (prevCustomfield) => [...prevCustomfield, newCustomfield] },
+      }),
     [dispatch]
   );
   const addCustomunit = useCallback(
@@ -83,14 +86,20 @@ export function MakerContextProvider({
     [dispatch]
   );
   const setGroupTitleName = useCallback(
-    (title, name) => dispatch({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...state.fieldgroup, title, name } } }),
+    (title, name) =>
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { fieldgroup: (prevFieldgroup) => ({ ...prevFieldgroup, title, name }) },
+      }),
     [dispatch]
   );
   const addGroupItem = useCallback(
     (newGroupItem) =>
       dispatch({
         type: 'UPDATE_STATE',
-        payload: { fieldgroup: { ...state.fieldgroup, items: [...state.fieldgroup.items, newGroupItem] } },
+        payload: {
+          fieldgroup: (prevFieldgroup) => ({ ...prevFieldgroup, items: [...prevFieldgroup.items, newGroupItem] }),
+        },
       }),
     [dispatch]
   );
@@ -115,17 +124,26 @@ export function MakerContextProvider({
     () => dispatch({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...state.fieldgroup, items: [] } } }),
     [dispatch]
   );
-  const clearCustomunit = useCallback(
-    () => dispatch({ type: 'UPDATE_STATE', payload: { customunit: [] } }),
-    [dispatch]
-  );
+  const clearCustomunit = useCallback(() => {
+    dispatch({ type: 'UPDATE_STATE', payload: { customunit: [] } });
+  }, [dispatch]);
   const clearUnitGroupItem = useCallback(
     () => dispatch({ type: 'UPDATE_STATE', payload: { unitgroup: { ...state.unitgroup, items: [] } } }),
     [dispatch]
   );
 
-  const undo = useCallback((target) => dispatch({ type: 'UNDO', payload: { target } }), [dispatch]);
-  const redo = useCallback((target) => dispatch({ type: 'REDO', payload: { target } }), [dispatch]);
+  const undo = useCallback(
+    (target) => {
+      dispatch({ type: 'UNDO', payload: { target } });
+    },
+    [dispatch]
+  );
+  const redo = useCallback(
+    (target) => {
+      dispatch({ type: 'REDO', payload: { target } });
+    },
+    [dispatch]
+  );
 
   const setTag = useCallback((tag) => setPreview((prevState) => ({ ...prevState, tag })), [setPreview]);
   const setAcmscss = useCallback((acmscss) => setPreview((prevState) => ({ ...prevState, acmscss })), [setPreview]);

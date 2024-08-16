@@ -182,73 +182,74 @@ export function Validator(props) {
                   </th>
                   <th />
                 </tr>
-                {validator.map((item, idx) => (
-                  <tr key={`validator${idx}`}>
-                    <td>
-                      <select
-                        className="acms-admin-form-width-full"
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (!validator) return;
-                          updateValidatorOption(idx, value);
-                        }}
-                      >
-                        <option value="">▼ バリデータを選択</option>
-                        <optgroup label="入力値の制限">
-                          <option value="required">必須 ( required )</option>
-                          <option value="minlength">最小文字数 ( minlength )</option>
-                          <option value="maxlength">最大文字数 ( maxlength )</option>
-                          <option value="min">下限値 ( min )</option>
-                          <option value="max">上限値 ( max )</option>
-                        </optgroup>
-                        <optgroup label="形式チェック">
-                          <option value="digits">数字チェック ( digits )</option>
-                          <option value="email">メールアドレスチェック ( email )</option>
-                          <option value="hiragana">ひらがなチェック ( hiragana )</option>
-                          <option value="katakana">カタカナチェック ( katakana )</option>
-                          <option value="url">URLチェック ( url )</option>
-                          <option value="dates">日付チェック ( dates )</option>
-                          <option value="times">時間チェック ( times )</option>
-                          <option value="regex">正規表現マッチ ( regex )</option>
-                        </optgroup>
-                      </select>
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        defaultValue={item.value}
-                        onInput={(e) => {
-                          const value = e.target.value;
-                          if (!value) return;
-                          updateValidatorValue(idx, value);
-                        }}
-                        className="acms-admin-form-width-full"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        defaultValue={item.message}
-                        onInput={(e) => {
-                          const value = e.target.value;
-                          if (!value) return;
-                          updateValidatorMessage(idx, value);
-                        }}
-                        className="acms-admin-form-width-full"
-                      />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          removeValidator(idx);
-                        }}
-                        className="acms-admin-btn-admin acms-admin-btn-admin-danger"
-                      >
-                        削除
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                {validator &&
+                  validator.map((item, idx) => (
+                    <tr key={`validator${idx}`}>
+                      <td>
+                        <select
+                          className="acms-admin-form-width-full"
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (!validator) return;
+                            updateValidatorOption(idx, value);
+                          }}
+                        >
+                          <option value="">▼ バリデータを選択</option>
+                          <optgroup label="入力値の制限">
+                            <option value="required">必須 ( required )</option>
+                            <option value="minlength">最小文字数 ( minlength )</option>
+                            <option value="maxlength">最大文字数 ( maxlength )</option>
+                            <option value="min">下限値 ( min )</option>
+                            <option value="max">上限値 ( max )</option>
+                          </optgroup>
+                          <optgroup label="形式チェック">
+                            <option value="digits">数字チェック ( digits )</option>
+                            <option value="email">メールアドレスチェック ( email )</option>
+                            <option value="hiragana">ひらがなチェック ( hiragana )</option>
+                            <option value="katakana">カタカナチェック ( katakana )</option>
+                            <option value="url">URLチェック ( url )</option>
+                            <option value="dates">日付チェック ( dates )</option>
+                            <option value="times">時間チェック ( times )</option>
+                            <option value="regex">正規表現マッチ ( regex )</option>
+                          </optgroup>
+                        </select>
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          defaultValue={item.value}
+                          onInput={(e) => {
+                            const value = e.target.value;
+                            if (!value) return;
+                            updateValidatorValue(idx, value);
+                          }}
+                          className="acms-admin-form-width-full"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          defaultValue={item.message}
+                          onInput={(e) => {
+                            const value = e.target.value;
+                            if (!value) return;
+                            updateValidatorMessage(idx, value);
+                          }}
+                          className="acms-admin-form-width-full"
+                        />
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => {
+                            removeValidator(idx);
+                          }}
+                          className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+                        >
+                          削除
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           )}

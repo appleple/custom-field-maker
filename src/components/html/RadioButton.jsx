@@ -12,36 +12,33 @@ export function RadioButton(props) {
 
   let attribute = { id, name: '', hiddenName: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         name: item.name,
         hiddenName: 'field[]',
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         name: `${item.name}[]`,
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         name: `${item.name}{id}`,
         hiddenName: 'unit[]',
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         name: `${item.name}{id}[]`,
       };
       break;
     }
   }
-
-  console.log(mode);
-  console.log(attribute.name);
 
   return (
     <>
@@ -65,7 +62,7 @@ export function RadioButton(props) {
           </span>
         );
       })}
-      {(mode === 'normal') | (mode === 'unit') ? (
+      {(mode === 'customfield') | (mode === 'customunit') ? (
         <input type="hidden" name={attribute.hiddenName} value={attribute.name} />
       ) : null}
 

@@ -21,7 +21,7 @@ export function FileInput(props) {
 
   let attribute = { value: '', name: '', hiddenName: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         id,
         value: `${item.name}`,
@@ -30,7 +30,7 @@ export function FileInput(props) {
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         id,
         value: `{${item.name}}`,
@@ -38,7 +38,7 @@ export function FileInput(props) {
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         id,
         value: `{${item.name}}`,
@@ -47,7 +47,7 @@ export function FileInput(props) {
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         id,
         value: item.name,

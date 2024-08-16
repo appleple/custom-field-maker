@@ -9,7 +9,7 @@ export function Table(props) {
 
   let attribute = { id, value: '', name: '', hiddenName: '', placeholder: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         value: `{${item.name}}`,
         name: item.name,
@@ -18,7 +18,7 @@ export function Table(props) {
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}[]`,
@@ -26,7 +26,7 @@ export function Table(props) {
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}{id}`,
@@ -35,7 +35,7 @@ export function Table(props) {
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         value: item.name,
         name: `${item.name}{id}[]`,
@@ -62,7 +62,7 @@ export function Table(props) {
           </tr>
         </table>
         {editMode === 'preview' ? null : '<!-- END_IF -->'}
-        {(mode === 'normal') | (mode === 'unit') ? (
+        {mode === 'customfield' || mode === 'customunit' ? (
           <>
             <input
               type="hidden"

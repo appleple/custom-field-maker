@@ -14208,14 +14208,11 @@
           t = arguments.length > 1 ? arguments[1] : void 0;
         switch (t.type) {
           case 'UPDATE_STATE': {
-            const n = {
-                ...e,
-                customfield: t.payload.customfield || e.customfield,
-                fieldgroup: t.payload.fieldgroup || e.fieldgroup,
-                customunit: t.payload.customunit || e.customunit,
-                unitgroup: t.payload.unitgroup || e.unitgroup,
-              },
-              a = {},
+            const n = { ...e };
+            Object.keys(t.payload).forEach((a) => {
+              'function' == typeof t.payload[a] ? (n[a] = t.payload[a](e[a])) : (n[a] = t.payload[a]);
+            });
+            const a = {},
               r = {};
             return (
               ['customfield', 'fieldgroup', 'customunit', 'unitgroup'].forEach((t) => {
@@ -14302,24 +14299,17 @@
         const [d, m] = (0, e.useReducer)(r, a),
           [p, f] = (0, e.useState)(s),
           [h, g] = (0, e.useState)(u),
-          b = (0, e.useCallback)(
-            (e) => m({ type: 'UPDATE_STATE', payload: { customfield: [...d.customfield, e] } }),
-            [m]
-          ),
+          b = (0, e.useCallback)((e) => m({ type: 'UPDATE_STATE', payload: { customfield: (t) => [...t, e] } }), [m]),
           v = (0, e.useCallback)(
             (e) => m({ type: 'UPDATE_STATE', payload: { customunit: [...d.customunit, e] } }),
             [m]
           ),
           y = (0, e.useCallback)(
-            (e, t) => m({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...d.fieldgroup, title: e, name: t } } }),
+            (e, t) => m({ type: 'UPDATE_STATE', payload: { fieldgroup: (n) => ({ ...n, title: e, name: t }) } }),
             [m]
           ),
           E = (0, e.useCallback)(
-            (e) =>
-              m({
-                type: 'UPDATE_STATE',
-                payload: { fieldgroup: { ...d.fieldgroup, items: [...d.fieldgroup.items, e] } },
-              }),
+            (e) => m({ type: 'UPDATE_STATE', payload: { fieldgroup: (t) => ({ ...t, items: [...t.items, e] }) } }),
             [m]
           ),
           _ = (0, e.useCallback)(
@@ -14336,13 +14326,25 @@
             () => m({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...d.fieldgroup, items: [] } } }),
             [m]
           ),
-          T = (0, e.useCallback)(() => m({ type: 'UPDATE_STATE', payload: { customunit: [] } }), [m]),
+          T = (0, e.useCallback)(() => {
+            m({ type: 'UPDATE_STATE', payload: { customunit: [] } });
+          }, [m]),
           S = (0, e.useCallback)(
             () => m({ type: 'UPDATE_STATE', payload: { unitgroup: { ...d.unitgroup, items: [] } } }),
             [m]
           ),
-          N = (0, e.useCallback)((e) => m({ type: 'UNDO', payload: { target: e } }), [m]),
-          C = (0, e.useCallback)((e) => m({ type: 'REDO', payload: { target: e } }), [m]),
+          N = (0, e.useCallback)(
+            (e) => {
+              m({ type: 'UNDO', payload: { target: e } });
+            },
+            [m]
+          ),
+          C = (0, e.useCallback)(
+            (e) => {
+              m({ type: 'REDO', payload: { target: e } });
+            },
+            [m]
+          ),
           O = (0, e.useCallback)((e) => f((t) => ({ ...t, tag: e })), [f]),
           R = (0, e.useCallback)((e) => f((t) => ({ ...t, acmscss: e })), [f]),
           A = (0, e.useCallback)((e) => f((t) => ({ ...t, jsValidator: e })), [f]),
@@ -17973,111 +17975,112 @@
                     ),
                     e.createElement('th', null)
                   ),
-                  a.map((t, n) =>
-                    e.createElement(
-                      'tr',
-                      { key: 'validator'.concat(n) },
+                  a &&
+                    a.map((t, n) =>
                       e.createElement(
-                        'td',
-                        null,
+                        'tr',
+                        { key: 'validator'.concat(n) },
                         e.createElement(
-                          'select',
-                          {
-                            className: 'acms-admin-form-width-full',
-                            onChange: (e) => {
+                          'td',
+                          null,
+                          e.createElement(
+                            'select',
+                            {
+                              className: 'acms-admin-form-width-full',
+                              onChange: (e) => {
+                                const t = e.target.value;
+                                a &&
+                                  ((e, t) => {
+                                    const n = a[e];
+                                    o((r) => ({
+                                      ...r,
+                                      validator: [...a.slice(0, e), { ...n, option: t }, ...a.slice(e + 1)],
+                                    }));
+                                  })(n, t);
+                              },
+                            },
+                            e.createElement('option', { value: '' }, '▼ バリデータを選択'),
+                            e.createElement(
+                              'optgroup',
+                              { label: '入力値の制限' },
+                              e.createElement('option', { value: 'required' }, '必須 ( required )'),
+                              e.createElement('option', { value: 'minlength' }, '最小文字数 ( minlength )'),
+                              e.createElement('option', { value: 'maxlength' }, '最大文字数 ( maxlength )'),
+                              e.createElement('option', { value: 'min' }, '下限値 ( min )'),
+                              e.createElement('option', { value: 'max' }, '上限値 ( max )')
+                            ),
+                            e.createElement(
+                              'optgroup',
+                              { label: '形式チェック' },
+                              e.createElement('option', { value: 'digits' }, '数字チェック ( digits )'),
+                              e.createElement('option', { value: 'email' }, 'メールアドレスチェック ( email )'),
+                              e.createElement('option', { value: 'hiragana' }, 'ひらがなチェック ( hiragana )'),
+                              e.createElement('option', { value: 'katakana' }, 'カタカナチェック ( katakana )'),
+                              e.createElement('option', { value: 'url' }, 'URLチェック ( url )'),
+                              e.createElement('option', { value: 'dates' }, '日付チェック ( dates )'),
+                              e.createElement('option', { value: 'times' }, '時間チェック ( times )'),
+                              e.createElement('option', { value: 'regex' }, '正規表現マッチ ( regex )')
+                            )
+                          )
+                        ),
+                        e.createElement(
+                          'td',
+                          null,
+                          e.createElement('input', {
+                            type: 'text',
+                            defaultValue: t.value,
+                            onInput: (e) => {
                               const t = e.target.value;
-                              a &&
+                              t &&
                                 ((e, t) => {
                                   const n = a[e];
                                   o((r) => ({
                                     ...r,
-                                    validator: [...a.slice(0, e), { ...n, option: t }, ...a.slice(e + 1)],
+                                    validator: [...a.slice(0, e), { ...n, value: t }, ...a.slice(e + 1)],
                                   }));
                                 })(n, t);
                             },
-                          },
-                          e.createElement('option', { value: '' }, '▼ バリデータを選択'),
-                          e.createElement(
-                            'optgroup',
-                            { label: '入力値の制限' },
-                            e.createElement('option', { value: 'required' }, '必須 ( required )'),
-                            e.createElement('option', { value: 'minlength' }, '最小文字数 ( minlength )'),
-                            e.createElement('option', { value: 'maxlength' }, '最大文字数 ( maxlength )'),
-                            e.createElement('option', { value: 'min' }, '下限値 ( min )'),
-                            e.createElement('option', { value: 'max' }, '上限値 ( max )')
-                          ),
-                          e.createElement(
-                            'optgroup',
-                            { label: '形式チェック' },
-                            e.createElement('option', { value: 'digits' }, '数字チェック ( digits )'),
-                            e.createElement('option', { value: 'email' }, 'メールアドレスチェック ( email )'),
-                            e.createElement('option', { value: 'hiragana' }, 'ひらがなチェック ( hiragana )'),
-                            e.createElement('option', { value: 'katakana' }, 'カタカナチェック ( katakana )'),
-                            e.createElement('option', { value: 'url' }, 'URLチェック ( url )'),
-                            e.createElement('option', { value: 'dates' }, '日付チェック ( dates )'),
-                            e.createElement('option', { value: 'times' }, '時間チェック ( times )'),
-                            e.createElement('option', { value: 'regex' }, '正規表現マッチ ( regex )')
-                          )
-                        )
-                      ),
-                      e.createElement(
-                        'td',
-                        null,
-                        e.createElement('input', {
-                          type: 'text',
-                          defaultValue: t.value,
-                          onInput: (e) => {
-                            const t = e.target.value;
-                            t &&
-                              ((e, t) => {
-                                const n = a[e];
-                                o((r) => ({
-                                  ...r,
-                                  validator: [...a.slice(0, e), { ...n, value: t }, ...a.slice(e + 1)],
-                                }));
-                              })(n, t);
-                          },
-                          className: 'acms-admin-form-width-full',
-                        })
-                      ),
-                      e.createElement(
-                        'td',
-                        null,
-                        e.createElement('input', {
-                          type: 'text',
-                          defaultValue: t.message,
-                          onInput: (e) => {
-                            const t = e.target.value;
-                            t &&
-                              ((e, t) => {
-                                const n = a[e];
-                                o((r) => ({
-                                  ...r,
-                                  validator: [...a.slice(0, e), { ...n, message: t }, ...a.slice(e + 1)],
-                                }));
-                              })(n, t);
-                          },
-                          className: 'acms-admin-form-width-full',
-                        })
-                      ),
-                      e.createElement(
-                        'td',
-                        null,
+                            className: 'acms-admin-form-width-full',
+                          })
+                        ),
                         e.createElement(
-                          'button',
-                          {
-                            onClick: () => {
-                              ((e) => {
-                                o((t) => ({ ...t, validator: [...a.slice(0, e), ...a.slice(e + 1)] }));
-                              })(n);
+                          'td',
+                          null,
+                          e.createElement('input', {
+                            type: 'text',
+                            defaultValue: t.message,
+                            onInput: (e) => {
+                              const t = e.target.value;
+                              t &&
+                                ((e, t) => {
+                                  const n = a[e];
+                                  o((r) => ({
+                                    ...r,
+                                    validator: [...a.slice(0, e), { ...n, message: t }, ...a.slice(e + 1)],
+                                  }));
+                                })(n, t);
                             },
-                            className: 'acms-admin-btn-admin acms-admin-btn-admin-danger',
-                          },
-                          '削除'
+                            className: 'acms-admin-form-width-full',
+                          })
+                        ),
+                        e.createElement(
+                          'td',
+                          null,
+                          e.createElement(
+                            'button',
+                            {
+                              onClick: () => {
+                                ((e) => {
+                                  o((t) => ({ ...t, validator: [...a.slice(0, e), ...a.slice(e + 1)] }));
+                                })(n);
+                              },
+                              className: 'acms-admin-btn-admin acms-admin-btn-admin-danger',
+                            },
+                            '削除'
+                          )
                         )
                       )
                     )
-                  )
                 )
               ),
               e.createElement(
@@ -19304,9 +19307,7 @@
       function Il(t) {
         const { item: n } = t,
           {
-            state: {
-              preview: { jsValidator: a },
-            },
+            preview: { jsValidator: a },
           } = u();
         return e.createElement(
           e.Fragment,
@@ -19407,20 +19408,18 @@
       function Bl(t) {
         const { item: n, id: a = '', isValue: r = !0 } = t,
           {
-            state: {
-              preview: { mode: i, jsValidator: l, acmscss: o },
-            },
+            preview: { mode: i, jsValidator: l, acmscss: o },
           } = u(),
           c = n.subType ? n.subType : n.type;
         let s = { id: a, value: '', name: '', hiddenName: '', placeholder: '' };
         switch (i) {
-          case 'normal':
+          case 'customfield':
             s = { value: '{'.concat(n.name, '}'), name: n.name, hiddenName: 'field[]', placeholder: n.placeholder };
             break;
-          case 'group':
+          case 'fieldgroup':
             s = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '[]'), placeholder: n.placeholder };
             break;
-          case 'unit':
+          case 'customunit':
             s = {
               value: '{'.concat(n.name, '}'),
               name: ''.concat(n.name, '{id}'),
@@ -19428,7 +19427,7 @@
               placeholder: n.placeholder,
             };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             s = { value: n.name, name: ''.concat(n.name, '{id}[]'), placeholder: n.placeholder };
         }
         return e.createElement(
@@ -19448,9 +19447,8 @@
               l ? { 'data-validator': s.name } : {}
             )
           ),
-          ('normal' === i) | ('unit' === i)
-            ? e.createElement('input', { type: 'hidden', name: s.hiddenName, defaultValue: s.name })
-            : null,
+          ['customfield', 'customunit'].includes(i) &&
+            e.createElement('input', { type: 'hidden', name: s.hiddenName, defaultValue: s.name }),
           e.createElement(Ml, { item: n }),
           e.createElement(zl, { name: n.name, noSearch: n.noSearch })
         );
@@ -19464,13 +19462,13 @@
           s = rl()({ 'acms-admin-form-width-full': o, 'js-lite-editor-field': 'lite-editor' === c });
         let d = { id: a, value: '', name: '', hiddenName: '', placeholder: '' };
         switch (i) {
-          case 'normal':
+          case 'customfield':
             d = { value: '{'.concat(n.name, '}'), name: n.name, hiddenName: 'field[]', placeholder: n.placeholder };
             break;
-          case 'group':
+          case 'fieldgroup':
             d = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '[]'), placeholder: n.placeholder };
             break;
-          case 'unit':
+          case 'customunit':
             d = {
               value: '{'.concat(n.name, '}'),
               name: ''.concat(n.name, '{id}'),
@@ -19478,7 +19476,7 @@
               placeholder: n.placeholder,
             };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             d = { value: n.name, name: ''.concat(n.name, '{id}[]'), placeholder: n.placeholder };
         }
         return e.createElement(
@@ -19489,7 +19487,7 @@
             jl({ name: d.name, className: s }, l ? { 'data-validator': d.name } : {}),
             r ? ''.concat(d.value) : ''
           ),
-          ('normal' === i) | ('unit' === i)
+          ('customfield' === i) | ('customunit' === i)
             ? e.createElement('input', { type: 'hidden', name: d.hiddenName, defaultValue: d.name })
             : null,
           e.createElement(Ml, { item: n }),
@@ -19503,13 +19501,13 @@
           } = u();
         let o = { id: a, value: '', name: '', hiddenName: '', placeholder: '' };
         switch (i) {
-          case 'normal':
+          case 'customfield':
             o = { value: '{'.concat(n.name, '}'), name: n.name, hiddenName: 'field[]', placeholder: n.placeholder };
             break;
-          case 'group':
+          case 'fieldgroup':
             o = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name), placeholder: n.placeholder };
             break;
-          case 'unit':
+          case 'customunit':
             o = {
               value: '{'.concat(n.name, '}'),
               name: ''.concat(n.name, '{id}'),
@@ -19517,7 +19515,7 @@
               placeholder: n.placeholder,
             };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             o = { value: n.name, name: ''.concat(n.name, '{id}[]'), placeholder: n.placeholder };
         }
         return e.createElement(
@@ -19537,7 +19535,7 @@
                 : null
             )
           ),
-          ('normal' === i) | ('unit' === i)
+          'customfield' === i || 'customunit' === i
             ? e.createElement('input', { type: 'hidden', name: o.hiddenName, value: o.name })
             : null,
           e.createElement(Ml, { item: n }),
@@ -19551,44 +19549,44 @@
           } = u();
         let o = { id: a, name: '', hiddenName: '' };
         switch (i) {
-          case 'normal':
+          case 'customfield':
             o = { name: n.name, hiddenName: 'field[]' };
             break;
-          case 'group':
+          case 'fieldgroup':
             o = { name: ''.concat(n.name, '[]') };
             break;
-          case 'unit':
+          case 'customunit':
             o = { name: ''.concat(n.name, '{id}'), hiddenName: 'unit[]' };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             o = { name: ''.concat(n.name, '{id}[]') };
         }
         return e.createElement(
           e.Fragment,
           null,
-          n.option.map((t, a) =>
+          n.option.map((t, i) =>
             t.label
               ? e.createElement(
                   'span',
-                  { key: ''.concat(n.name).concat(a), className: rl()({ 'acms-admin-form-checkbox': l }) },
+                  { key: ''.concat(n.name).concat(i), className: rl()({ 'acms-admin-form-checkbox': l }) },
                   e.createElement('input', {
                     type: 'checkbox',
                     name: o.name,
                     value: t.value,
                     'data-tmp': r && '{'.concat(n.name, ':checked#').concat(t.value, '}'),
-                    id: 'input-checkbox-'.concat(n.name, '-').concat(t.value),
+                    id: 'input-checkbox-'.concat(n.name, '-').concat(a),
                   }),
                   e.createElement(
                     'label',
-                    { htmlFor: 'input-checkbox-'.concat(n.name, '-').concat(t.value) },
+                    { htmlFor: 'input-checkbox-'.concat(n.name, '-').concat(a) },
                     e.createElement('i', { className: 'acms-admin-ico-checkbox' }),
                     t.label
                   )
                 )
               : null
           ),
-          ('normal' === i) | ('unit' === i)
-            ? e.createElement('input', { type: 'hidden', name: 'field[]', value: o.name })
+          'customfield' === i || 'customunit' === i
+            ? e.createElement('input', { type: 'hidden', name: o.hiddenName, value: o.name })
             : null,
           e.createElement(Ml, { item: n }),
           e.createElement(zl, { name: n.name, noSearch: n.noSearch })
@@ -19601,51 +19599,47 @@
           } = u();
         let o = { id: a, name: '', hiddenName: '' };
         switch (i) {
-          case 'normal':
+          case 'customfield':
             o = { name: n.name, hiddenName: 'field[]' };
             break;
-          case 'group':
+          case 'fieldgroup':
             o = { name: ''.concat(n.name, '[]') };
             break;
-          case 'unit':
+          case 'customunit':
             o = { name: ''.concat(n.name, '{id}'), hiddenName: 'unit[]' };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             o = { name: ''.concat(n.name, '{id}[]') };
         }
-        return (
-          console.log(i),
-          console.log(o.name),
-          e.createElement(
-            e.Fragment,
-            null,
-            n.option.map((t, i) =>
-              t.label
-                ? e.createElement(
-                    'span',
-                    { key: ''.concat(n.name).concat(i), className: rl()({ 'acms-admin-form-radio': l }) },
-                    e.createElement('input', {
-                      type: 'radio',
-                      name: o.name,
-                      value: t.value,
-                      'data-tmp': r && '{'.concat(n.name, ':checked#').concat(t.value, '}'),
-                      id: 'input-radio-'.concat(n.name, '-').concat(a),
-                    }),
-                    e.createElement(
-                      'label',
-                      { htmlFor: 'input-radio-'.concat(n.name, '-').concat(a) },
-                      e.createElement('i', { className: 'acms-admin-ico-radio' }),
-                      t.label
-                    )
+        return e.createElement(
+          e.Fragment,
+          null,
+          n.option.map((t, i) =>
+            t.label
+              ? e.createElement(
+                  'span',
+                  { key: ''.concat(n.name).concat(i), className: rl()({ 'acms-admin-form-radio': l }) },
+                  e.createElement('input', {
+                    type: 'radio',
+                    name: o.name,
+                    value: t.value,
+                    'data-tmp': r && '{'.concat(n.name, ':checked#').concat(t.value, '}'),
+                    id: 'input-radio-'.concat(n.name, '-').concat(a),
+                  }),
+                  e.createElement(
+                    'label',
+                    { htmlFor: 'input-radio-'.concat(n.name, '-').concat(a) },
+                    e.createElement('i', { className: 'acms-admin-ico-radio' }),
+                    t.label
                   )
-                : null
-            ),
-            ('normal' === i) | ('unit' === i)
-              ? e.createElement('input', { type: 'hidden', name: o.hiddenName, value: o.name })
-              : null,
-            e.createElement(Ml, { item: n }),
-            e.createElement(zl, { name: n.name, noSearch: n.noSearch })
-          )
+                )
+              : null
+          ),
+          ('customfield' === i) | ('customunit' === i)
+            ? e.createElement('input', { type: 'hidden', name: o.hiddenName, value: o.name })
+            : null,
+          e.createElement(Ml, { item: n }),
+          e.createElement(zl, { name: n.name, noSearch: n.noSearch })
         );
       }
       const Hl = (e) => {
@@ -19659,16 +19653,16 @@
           } = u();
         let o = { value: '', name: '', hiddenName: '' };
         switch (l) {
-          case 'normal':
+          case 'customfield':
             o = { id: a, value: '{'.concat(n.name, '}'), name: n.name, hiddenName: 'field[]' };
             break;
-          case 'group':
+          case 'fieldgroup':
             o = { id: a, value: '{'.concat(n.name, '}'), name: ''.concat(n.name), hiddenName: ''.concat(n.name, '[]') };
             break;
-          case 'unit':
+          case 'customunit':
             o = { id: a, value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '{id}'), hiddenName: 'unit[]' };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             o = { id: a, value: n.name, name: ''.concat(n.name, '{id}[]') };
         }
         return e.createElement(
@@ -19787,7 +19781,7 @@
                 )
               )
             ),
-          'normal' === l &&
+          'customfield' === l &&
             e.createElement(
               e.Fragment,
               null,
@@ -19800,7 +19794,7 @@
               e.createElement('input', { type: 'hidden', name: o.hiddenName, value: 'preview' === i ? '' : o.value }),
               e.createElement('input', { type: 'hidden', name: ''.concat(o.name, ':extension'), value: 'media' })
             ),
-          'group' === l &&
+          'fieldgroup' === l &&
             e.createElement('input', {
               type: 'hidden',
               name: o.hiddenName,
@@ -19816,16 +19810,16 @@
           } = u();
         let o = { id: a, value: '', name: '', hiddenName: '' };
         switch (r) {
-          case 'normal':
+          case 'customfield':
             o = { value: '{'.concat(n.name, '}'), name: n.name, hiddenName: 'field[]' };
             break;
-          case 'group':
+          case 'fieldgroup':
             o = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '[]') };
             break;
-          case 'unit':
+          case 'customunit':
             o = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '{id}'), hiddenName: 'unit[]' };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             o = { value: n.name, name: ''.concat(n.name, '{id}[]') };
         }
         return e.createElement(
@@ -19927,16 +19921,16 @@
         n.extension ? ((o += ''.concat(n.extension, '.svg')), (c += n.extension)) : (o += 'file.svg');
         let s = { value: '', name: '', hiddenName: '' };
         switch (l) {
-          case 'normal':
+          case 'customfield':
             s = { id: a, value: ''.concat(n.name), name: n.name, hiddenName: 'field[]' };
             break;
-          case 'group':
+          case 'fieldgroup':
             s = { id: a, value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '[]') };
             break;
-          case 'unit':
+          case 'customunit':
             s = { id: a, value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '{id}'), hiddenName: 'unit[]' };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             s = { id: a, value: n.name, name: ''.concat(n.name, '{id}[]') };
         }
         return e.createElement(
@@ -20014,16 +20008,16 @@
           };
         let s = { id: a, value: '', name: '', hiddenName: '', placeholder: '' };
         switch (r) {
-          case 'normal':
+          case 'customfield':
             s = { value: ''.concat(n.name), name: n.name, hiddenName: 'field[]' };
             break;
-          case 'group':
+          case 'fieldgroup':
             s = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '[]') };
             break;
-          case 'unit':
+          case 'customunit':
             s = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '{id}'), hiddenName: 'unit[]' };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             s = { value: n.name, name: ''.concat(n.name, '{id}[]') };
         }
         return e.createElement(
@@ -20068,13 +20062,13 @@
           } = u();
         let l = { id: a, value: '', name: '', hiddenName: '', placeholder: '' };
         switch (r) {
-          case 'normal':
+          case 'customfield':
             l = { value: '{'.concat(n.name, '}'), name: n.name, hiddenName: 'field[]', placeholder: n.placeholder };
             break;
-          case 'group':
+          case 'fieldgroup':
             l = { value: '{'.concat(n.name, '}'), name: ''.concat(n.name, '[]'), placeholder: n.placeholder };
             break;
-          case 'unit':
+          case 'customunit':
             l = {
               value: '{'.concat(n.name, '}'),
               name: ''.concat(n.name, '{id}'),
@@ -20082,7 +20076,7 @@
               placeholder: n.placeholder,
             };
             break;
-          case 'unit-group':
+          case 'unitgroup':
             l = { value: n.name, name: ''.concat(n.name, '{id}[]'), placeholder: n.placeholder };
         }
         return e.createElement(
@@ -20111,7 +20105,7 @@
               )
             ),
             'preview' === i ? null : '\x3c!-- END_IF --\x3e',
-            ('normal' === r) | ('unit' === r)
+            'customfield' === r || 'customunit' === r
               ? e.createElement(
                   e.Fragment,
                   null,

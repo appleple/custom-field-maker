@@ -7,15 +7,13 @@ import { OptionNoSearch } from './OptionNoSearch';
 export function TextInput(props) {
   const { item, id = '', isValue = true } = props;
   const {
-    state: {
-      preview: { mode, jsValidator, acmscss },
-    },
+    preview: { mode, jsValidator, acmscss },
   } = useMakerContext();
   const selectedType = item.subType ? item.subType : item.type;
 
   let attribute = { id, value: '', name: '', hiddenName: '', placeholder: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         value: `{${item.name}}`,
         name: item.name,
@@ -24,7 +22,7 @@ export function TextInput(props) {
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}[]`,
@@ -32,7 +30,7 @@ export function TextInput(props) {
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}{id}`,
@@ -41,7 +39,7 @@ export function TextInput(props) {
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         value: item.name,
         name: `${item.name}{id}[]`,
@@ -62,9 +60,9 @@ export function TextInput(props) {
         {...(attribute.placeholder ? { placeholder: attribute.placeholder } : {})}
         {...(jsValidator ? { 'data-validator': attribute.name } : {})}
       />
-      {(mode === 'normal') | (mode === 'unit') ? (
+      {['customfield', 'customunit'].includes(mode) && (
         <input type="hidden" name={attribute.hiddenName} defaultValue={attribute.name} />
-      ) : null}
+      )}
       <OptionValidator item={item} />
       <OptionNoSearch name={item.name} noSearch={item.noSearch} />
     </>

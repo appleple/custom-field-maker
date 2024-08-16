@@ -12,7 +12,7 @@ export function Selectbox(props) {
 
   let attribute = { id, value: '', name: '', hiddenName: '', placeholder: '' };
   switch (mode) {
-    case 'normal': {
+    case 'customfield': {
       attribute = {
         value: `{${item.name}}`,
         name: item.name,
@@ -21,7 +21,7 @@ export function Selectbox(props) {
       };
       break;
     }
-    case 'group': {
+    case 'fieldgroup': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}`,
@@ -29,7 +29,7 @@ export function Selectbox(props) {
       };
       break;
     }
-    case 'unit': {
+    case 'customunit': {
       attribute = {
         value: `{${item.name}}`,
         name: `${item.name}{id}`,
@@ -38,7 +38,7 @@ export function Selectbox(props) {
       };
       break;
     }
-    case 'unit-group': {
+    case 'unitgroup': {
       attribute = {
         value: item.name,
         name: `${item.name}{id}[]`,
@@ -67,7 +67,7 @@ export function Selectbox(props) {
           );
         })}
       </select>
-      {(mode === 'normal') | (mode === 'unit') ? (
+      {mode === 'customfield' || mode === 'customunit' ? (
         <input type="hidden" name={attribute.hiddenName} value={attribute.name} />
       ) : null}
 
