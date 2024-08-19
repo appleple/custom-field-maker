@@ -83,7 +83,7 @@ export function MakerContextProvider({
   const addCustomunit = useCallback(
     (newCustomunit) =>
       dispatch({ type: 'UPDATE_STATE', payload: { customunit: [...state.customunit, newCustomunit] } }),
-    [dispatch]
+    [dispatch, state.customunit]
   );
   const setGroupTitleName = useCallback(
     (title, name) =>
@@ -105,7 +105,7 @@ export function MakerContextProvider({
   );
   const setUnitGroupTitleName = useCallback(
     (title, name) => dispatch({ type: 'UPDATE_STATE', payload: { unitgroup: { ...state.unitgroup, title, name } } }),
-    [dispatch]
+    [dispatch, state.unitgroup]
   );
   const addUnitGroupItem = useCallback(
     (newGroupItem) =>
@@ -113,7 +113,7 @@ export function MakerContextProvider({
         type: 'UPDATE_STATE',
         payload: { unitgroup: { ...state.unitgroup, items: [...state.unitgroup.items, newGroupItem] } },
       }),
-    [dispatch]
+    [dispatch, state.unitgroup]
   );
 
   const clearCustomfield = useCallback(
@@ -122,14 +122,14 @@ export function MakerContextProvider({
   );
   const clearGroupItem = useCallback(
     () => dispatch({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...state.fieldgroup, items: [] } } }),
-    [dispatch]
+    [dispatch, state.fieldgroup]
   );
   const clearCustomunit = useCallback(() => {
     dispatch({ type: 'UPDATE_STATE', payload: { customunit: [] } });
   }, [dispatch]);
   const clearUnitGroupItem = useCallback(
     () => dispatch({ type: 'UPDATE_STATE', payload: { unitgroup: { ...state.unitgroup, items: [] } } }),
-    [dispatch]
+    [dispatch, state.unitgroup]
   );
 
   const undo = useCallback(

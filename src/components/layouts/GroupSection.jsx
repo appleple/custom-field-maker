@@ -281,7 +281,7 @@ export function GroupSection() {
                             <Heading item={item} />
                           </label>
                           <span className="acms-admin-form-item-input">
-                            <ImageInput item={item} id={`${item.name}${index}`} />
+                            <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
                           </span>
                         </p>
                       );
