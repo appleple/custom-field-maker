@@ -5,9 +5,7 @@ import { useMakerContext } from '../store/MakerContext';
 export function Notify(props) {
   const { message, onFinish = () => {} } = props;
   const {
-    state: {
-      clipboard: { copied },
-    },
+    clipboard: { copied },
   } = useMakerContext();
   const [active, setActive] = useState(false);
 

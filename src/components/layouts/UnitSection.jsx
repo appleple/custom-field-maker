@@ -12,7 +12,7 @@ import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 
-export function Section() {
+export function UnitSection() {
   const {
     state: { customfield },
     preview: { jsValidator },

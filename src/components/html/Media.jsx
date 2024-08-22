@@ -1,53 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
-
-const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
+import { OptionValidator } from './OptionValidator';
 
 export function Media(props) {
-  const { item, id } = props;
+  const { item, id, isValue = true } = props;
   const {
     preview: { acmscss, editMode, mode },
   } = useMakerContext();
 
-  let attribute = { value: '', name: '', hiddenName: '' };
-  switch (mode) {
-    case 'customfield': {
-      attribute = {
-        id,
-        value: `{${item.name}}`,
-        name: item.name,
-        hiddenName: 'field[]',
-      };
-      break;
-    }
-    case 'fieldgroup': {
-      attribute = {
-        id,
-        value: `{${item.name}}`,
-        name: `${item.name}`,
-        hiddenName: `${item.name}[]`,
-      };
-      break;
-    }
-    case 'customunit': {
-      attribute = {
-        id,
-        value: `{${item.name}}`,
-        name: `${item.name}{id}`,
-        hiddenName: 'unit[]',
-      };
-      break;
-    }
-    case 'unitgroup': {
-      attribute = {
-        id,
-        value: item.name,
-        name: `${item.name}{id}[]`,
-      };
-      break;
-    }
-  }
+  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
   return (
     <>
@@ -56,16 +18,16 @@ export function Media(props) {
           {!item.useDropArea && (
             <>
               <div>
-                {`<!-- BEGIN_IF [{${attribute.name}@thumbnail}/nem] -->`}
+                {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
                 <ConditionalWrap
                   condition={item.mediaType === 'file'}
-                  wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${attribute.name}@path}`}>{children}</a>}
+                  wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
                 >
                   <img
-                    src={`{${attribute.name}@thumbnail}`}
+                    src={`{${item.name}@thumbnail}`}
                     className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                     alt=""
-                    id={`${attribute.name}-preview`}
+                    id={`${item.name}-preview`}
                     {...(item.mediaType === 'file' && {
                       style: {
                         width: '64px',
@@ -77,7 +39,6 @@ export function Media(props) {
                 {'<!-- ELSE -->'}
                 <img
                   src=""
-                  alt=""
                   {...(item.mediaType === 'file'
                     ? {
                         style: {
@@ -87,8 +48,9 @@ export function Media(props) {
                         },
                       }
                     : { style: { display: 'none' } })}
+                  alt=""
                   className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
-                  id={`${attribute.name}-preview`}
+                  id={`${item.name}-preview`}
                 />
                 {'<!-- END_IF -->'}
                 <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
@@ -99,14 +61,14 @@ export function Media(props) {
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
-                  data-type={item.mediaType || 'all'}
+                  data-type={item.mediaType ? item.mediaType : 'all'}
                 >
                   メディアを選択
                 </button>
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
-                  data-type={item.mediaType || 'all'}
+                  data-type={item.mediaType ? item.mediaType : 'all'}
                   data-mode="upload"
                 >
                   アップロード
@@ -127,9 +89,9 @@ export function Media(props) {
             <>
               <div
                 className="js-droparea"
-                data-thumbnail={`{${attribute.name}@thumbnail}`}
-                data-type={item.mediaType || 'all'}
-                data-thumbnail-type={`{${attribute.name}@type}`}
+                data-thumbnail={`{${item.name}@thumbnail}`}
+                data-type={item.mediaType ? item.mediaType : 'all'}
+                data-thumbnail-type={`{${item.name}@type}`}
                 data-width={`${item.dropAreaWidth}px`}
                 data-height={`${item.dropAreaHeight}px`}
               />
@@ -140,7 +102,7 @@ export function Media(props) {
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
-                  data-type={item.mediaType || 'all'}
+                  data-type={item.mediaType ? item.mediaType : 'all'}
                 >
                   メディアを選択
                 </button>
@@ -149,21 +111,123 @@ export function Media(props) {
           )}
           <input
             type="hidden"
-            name={attribute.name}
-            value={editMode === 'preview' ? '' : attribute.value}
+            name={item.name}
+            id={id}
+            value={editMode === 'preview' ? '' : `{${item.name}}`}
             className="js-value"
           />
-          <input type="hidden" name={attribute.hiddenName} value={editMode === 'preview' ? '' : attribute.value} />
-          <input type="hidden" name={`${attribute.name}:extension`} value="media" />
+          <input type="hidden" name="field[]" value={item.name} />
+          <input type="hidden" name={`${item.name}:extension`} value="media" />
         </div>
       )}
+
       {mode === 'fieldgroup' && (
-        <input
-          type="hidden"
-          name={attribute.hiddenName}
-          value={editMode === 'preview' ? '' : attribute.value}
-          className="js-value"
-        />
+        <div className="js-media-field">
+          {!item.useDropArea && (
+            <>
+              <div>
+                {`<!-- BEGIN_IF [{${item.name}@thumbnail}/nem] -->`}
+                <ConditionalWrap
+                  condition={item.mediaType === 'file'}
+                  wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
+                >
+                  <img
+                    src={`{${item.name}@thumbnail}`}
+                    className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
+                    alt=""
+                    {...(item.mediaType === 'file' && {
+                      style: {
+                        width: '64px',
+                        height: 'auto',
+                      },
+                    })}
+                  />
+                </ConditionalWrap>
+                {'<!-- ELSE -->'}
+                <img
+                  alt=""
+                  src=""
+                  {...(item.mediaType === 'file'
+                    ? {
+                        style: {
+                          width: '64px',
+                          height: 'auto',
+                          display: 'none',
+                        },
+                      }
+                    : { style: { display: 'none' } })}
+                  className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
+                />
+                {'<!-- END_IF -->'}
+                <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
+                  許可されていないファイルのため挿入できません。
+                </p>
+              </div>
+              <div className={classnames({ 'acms-admin-margin-top-mini': acmscss })}>
+                <button
+                  type="button"
+                  className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
+                  data-type={item.mediaType ? item.mediaType : 'all'}
+                >
+                  メディアを選択
+                </button>
+                <button
+                  type="button"
+                  className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
+                  data-type={item.mediaType ? item.mediaType : 'all'}
+                  data-mode="upload"
+                >
+                  アップロード
+                </button>
+                <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>
+                  メディアを編集
+                </button>
+                <button
+                  type="button"
+                  className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}
+                >
+                  削除
+                </button>
+              </div>
+            </>
+          )}
+          {item.useDropArea && (
+            <>
+              <div
+                className="js-droparea"
+                data-width={`${item.dropAreaWidth}px`}
+                data-type={item.mediaType ? item.mediaType : 'all'}
+                {...(isValue && {
+                  'data-thumbnail': `{${item.name}@thumbnail}`,
+                })}
+                {...(!isValue && { 'data-thumbnail-type': '{media@type}' })}
+                data-height={`${item.dropAreaHeight}px`}
+              />
+              <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
+                許可されていないファイルのため挿入できません。
+              </p>
+              <div className="acms-admin-margin-top-mini">
+                <button
+                  type="button"
+                  className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
+                  data-type={item.mediaType ? item.mediaType : 'all'}
+                >
+                  メディアを選択
+                </button>
+              </div>
+            </>
+          )}
+
+          <input
+            type="hidden"
+            name={`${item.name}[]`}
+            {...(isValue && {
+              value: editMode === 'preview' ? '' : `{${item.name}}`,
+            })}
+            className="js-value"
+          />
+          <OptionValidator item={item} />
+        </div>
       )}
     </>
   );

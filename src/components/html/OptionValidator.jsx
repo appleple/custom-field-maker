@@ -5,9 +5,7 @@ import { useMakerContext } from '../../store/MakerContext';
 export function OptionValidator(props) {
   const { item } = props;
   const {
-    state: {
-      preview: { acmscss, jsValidator, editMode },
-    },
+    preview: { acmscss, jsValidator, editMode },
   } = useMakerContext();
 
   if (!item.openValidator) {

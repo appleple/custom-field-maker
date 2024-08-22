@@ -13,7 +13,7 @@ import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 
-export function TableLayout() {
+export function UnitTableLayout() {
   const {
     state: { customfield },
     preview: { jsValidator, acmscss },

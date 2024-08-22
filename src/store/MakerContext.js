@@ -23,8 +23,6 @@ const initialState = {
   fieldgroup: defaultFieldgroup,
   customunit: defaultCustomunit,
   unitgroup: defaultUnitgroup,
-  preview: defaultPreview,
-  clipboard: defaultClipboard,
   history: {
     customfield: [],
     fieldgroup: [],

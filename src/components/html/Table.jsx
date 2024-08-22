@@ -2,78 +2,85 @@ import React from 'react';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function Table(props) {
-  const { item, id = '' } = props;
+  const { item, id = '', isValue = true } = props;
   const {
-    preview: { mode, editMode },
+    preview: { mode, editMode, direction },
   } = useMakerContext();
 
-  let attribute = { id, value: '', name: '', hiddenName: '', placeholder: '' };
-  switch (mode) {
-    case 'customfield': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: item.name,
-        hiddenName: 'field[]',
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'fieldgroup': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}[]`,
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'customunit': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}{id}`,
-        hiddenName: 'unit[]',
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'unitgroup': {
-      attribute = {
-        value: item.name,
-        name: `${item.name}{id}[]`,
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-  }
+  const wrapTable = (children, title) => {
+    return (
+      <ConditionalWrap
+        condition={direction === 'vertical'}
+        wrap={(child) => (
+          <tr>
+            <th>{title}</th>
+            {child}
+          </tr>
+        )}
+      >
+        {children}
+      </ConditionalWrap>
+    );
+  };
+
+  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
   return (
-    <div className="js-editable-table-field">
-      <div className="js-editable-table">
-        {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${attribute.name}}[delnl]/nem] -->\n`}
-        {editMode === 'preview' ? null : `{${attribute.name}}[raw]`}
-        {editMode === 'preview' ? null : '<!-- ELSE -->'}
-        <table>
-          <tr>
-            <th>サンプル</th>
-            <th>サンプル</th>
-          </tr>
-          <tr>
-            <td>サンプル</td>
-            <td>サンプル</td>
-          </tr>
-        </table>
-        {editMode === 'preview' ? null : '<!-- END_IF -->'}
-        {mode === 'customfield' || mode === 'customunit' ? (
-          <>
-            <input
-              type="hidden"
-              className="js-editable-table-dest"
-              value={`{${attribute.name}}`}
-              name={attribute.name}
-            />
-            <input type="hidden" name="field[]" value={attribute.hiddenName} />
-          </>
-        ) : null}
-      </div>
-    </div>
+    <>
+      {mode === 'customfield' && (
+        <div className="js-editable-table-field">
+          <div className="js-editable-table">
+            {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
+            {editMode === 'preview' ? null : `{${item.name}}[raw]`}
+            {editMode === 'preview' ? null : '<!-- ELSE -->'}
+            <table>
+              <tr>
+                <th>サンプル</th>
+                <th>サンプル</th>
+              </tr>
+              <tr>
+                <td>サンプル</td>
+                <td>サンプル</td>
+              </tr>
+            </table>
+            {editMode === 'preview' ? null : '<!-- END_IF -->'}
+            <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={item.name} />
+            <input id={id} type="hidden" name="field[]" value={item.name} />
+          </div>
+        </div>
+      )}
+
+      {mode === 'fieldgroup' &&
+        wrapTable(
+          <div className="js-editable-table-field">
+            <div className="js-editable-table">
+              {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
+              {editMode === 'preview' ? null : `{${item.name}}[raw]`}
+              {editMode === 'preview' ? null : '<!-- ELSE -->'}
+              <table>
+                <tr>
+                  <th>サンプル</th>
+                  <th>サンプル</th>
+                </tr>
+                <tr>
+                  <td>サンプル</td>
+                  <td>サンプル</td>
+                </tr>
+              </table>
+              {editMode === 'preview' ? null : '<!-- END_IF -->'}
+              <input
+                id={id}
+                type="hidden"
+                className="js-editable-table-dest"
+                {...(isValue && {
+                  value: `{${item.name}}`,
+                })}
+                name={`${item.name}[]`}
+              />
+            </div>
+          </div>,
+          item.title
+        )}
+    </>
   );
 }

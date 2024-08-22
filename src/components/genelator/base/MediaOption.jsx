@@ -67,9 +67,29 @@ export function MediaOption(props) {
         </div>
         {useDropArea && (
           <div>
-            幅 <input type="text" defaultValue={dropAreaWidth} /> px
+            幅&nbsp;
+            <input
+              type="text"
+              defaultValue={dropAreaWidth}
+              onInput={(e) => {
+                const value = e.target.value;
+                if (!value) return;
+                setField((prevState) => ({ ...prevState, dropAreaWidth: value }));
+              }}
+            />
+            &nbsp;px
             <span style={{ display: 'inline-block', width: '15px', height: '1px' }} />
-            高さ <input type="text" defaultValue={dropAreaHeight} /> px
+            高さ&nbsp;
+            <input
+              type="text"
+              defaultValue={dropAreaHeight}
+              onInput={(e) => {
+                const value = e.target.value;
+                if (!value) return;
+                setField((prevState) => ({ ...prevState, dropAreaHeight: value }));
+              }}
+            />
+            &nbsp;px
           </div>
         )}
       </div>

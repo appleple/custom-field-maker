@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionNoSearch } from './OptionNoSearch';
 
 export function ImageInput(props) {
   const { item, id, isAttribute = true } = props;
@@ -9,258 +10,141 @@ export function ImageInput(props) {
     preview: { acmscss, editMode, mode, direction },
   } = useMakerContext();
 
-  let attribute = {
-    id,
-    value: '',
-    name: '',
-    namePath: '',
-    nameOld: '',
-    nameEdit: '',
-    nameAlt: '',
-    nameThumbnail: '',
-    nameType: '',
-    hiddenName: '',
-  };
   let style = {};
   let hiddenStyle = {};
 
-  switch (mode) {
-    case 'customfield': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: item.name,
-        namePath: `${item.name}@path`,
-        nameOld: `${item.name}@old`,
-        nameThumbnail: `${item.name}@thumbnail`,
-        nameType: `${item.name}@type`,
-        hiddenName: 'field[]',
-      };
-      break;
-    }
-    case 'fieldgroup': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}`,
-        namePath: `${item.name}@path`,
-        nameOld: `${item.name}@old[]`,
-        nameEdit: `${item.name}@edit[]`,
-        nameAlt: `${item.name}@alt`,
-        nameThumbnail: `${item.name}@thumbnail`,
-        nameType: `${item.name}@type`,
-        hiddenName: `${item.name}[]`,
-      };
-      if (item.normalSize) {
-        style.maxWidth = `${item.normalSize}px`;
-      }
-      hiddenStyle = Object.assign({}, style, { display: 'none' });
-      break;
-    }
-    case 'customunit': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}{id}`,
-        namePath: `${item.name}@path`,
-        nameOld: `${item.name}@old`,
-        nameThumbnail: `${item.name}@thumbnail`,
-        nameType: `${item.name}@type`,
-        hiddenName: 'unit[]',
-      };
-      break;
-    }
-    case 'unitgroup': {
-      attribute = {
-        value: item.name,
-        name: `${item.name}{id}[]`,
-        namePath: `${item.name}@path`,
-        nameOld: `${item.name}@old`,
-        nameThumbnail: `${item.name}@thumbnail`,
-        nameType: `${item.name}@type`,
-        hiddenName: 'unit[]',
-      };
-      break;
-    }
-  }
+  const wrapTable = (children, title) => {
+    return (
+      <ConditionalWrap
+        condition={direction === 'vertical'}
+        wrap={(child) => (
+          <tr>
+            <th>{title}</th>
+            {child}
+          </tr>
+        )}
+      >
+        {children}
+      </ConditionalWrap>
+    );
+  };
 
   const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
   return (
     <>
       {mode === 'customfield' && (
-        <div className="js-media-field">
-          {!item.useDropArea && (
-            <>
-              <div>
-                {`<!-- BEGIN_IF [{${attribute.nameThumbnail}}/nem] -->`}
-                <ConditionalWrap
-                  condition={item.mediaType === 'file'}
-                  wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${attribute.namePath}}`}>{children}</a>}
-                >
-                  <img
-                    src={`{${attribute.nameThumbnail}}`}
-                    className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
-                    alt=""
-                    id={`${attribute.name}-preview`}
-                    {...(item.mediaType === 'file' && {
-                      style: {
-                        width: '64px',
-                        height: 'auto',
-                      },
-                    })}
-                  />
-                </ConditionalWrap>
-                {'<!-- ELSE -->'}
-                <img
-                  src=""
-                  alt=""
-                  {...(item.mediaType === 'file'
-                    ? {
-                        style: {
-                          width: '64px',
-                          height: 'auto',
-                          display: 'none',
-                        },
-                      }
-                    : { style: { display: 'none' } })}
-                  className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
-                  id={`${attribute.name}-preview`}
-                />
-                {'<!-- END_IF -->'}
-                <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
-                  許可されていないファイルのため挿入できません。
-                </p>
-              </div>
-              <div className="acms-admin-margin-top-mini">
-                <button
-                  type="button"
-                  className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
-                  data-type={item.mediaType || 'all'}
-                >
-                  メディアを選択
-                </button>
-                <button
-                  type="button"
-                  className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
-                  data-type={item.mediaType || 'all'}
-                  data-mode="upload"
-                >
-                  アップロード
-                </button>
-                <button type="button" className={classnames('js-edit', { 'acms-admin-btn': acmscss })}>
-                  メディアを編集
-                </button>
-                <button
-                  type="button"
-                  className={classnames('js-remove', { 'acms-admin-btn acms-admin-btn-danger': acmscss })}
-                >
-                  削除
-                </button>
-              </div>
-            </>
-          )}
-          {item.useDropArea && (
-            <>
-              <div
-                className="js-droparea"
-                data-thumbnail={`{${attribute.nameThumbnail}}`}
-                data-type={item.mediaType || 'all'}
-                data-thumbnail-type={`{${attribute.nameType}}`}
-                data-width={`${item.dropAreaWidth}px`}
-                data-height={`${item.dropAreaHeight}px`}
-              />
-              <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
-                許可されていないファイルのため挿入できません。
-              </p>
-              <div className="acms-admin-margin-top-mini">
-                <button
-                  type="button"
-                  className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
-                  data-type={item.mediaType || 'all'}
-                >
-                  メディアを選択
-                </button>
-              </div>
-            </>
-          )}
-          <input
-            type="hidden"
-            name={attribute.name}
-            value={editMode === 'preview' ? '' : attribute.value}
-            className="js-value"
+        <div className={classnames({ 'js-img_resize_cf': item.resize })}>
+          {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+          <img
+            src={`%{ARCHIVES_DIR}{${item.name}@path}`}
+            className={classnames({
+              'acms-admin-img-responsive': acmscss,
+              'js-img_resize_preview': item.resize,
+            })}
+            style={item.normalSize ? { width: `${item.normalSize}px` } : null}
+            alt={`{${item.name}@alt}`}
           />
-          <input type="hidden" name={attribute.hiddenName} value={editMode === 'preview' ? '' : attribute.value} />
-          <input type="hidden" name={`${attribute.name}:extension`} value="media" />
+          <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
+          <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+            <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
+            <label htmlFor={`input-checkbox-${item.name}@edit`}>
+              {acmscss && <i className="acms-admin-ico-checkbox" />}
+              削除
+            </label>
+          </div>
+          {editMode === 'preview' ? null : '<!-- ELSE -->'}
+          <img
+            alt=""
+            src={`%{ARCHIVES_DIR}{${item.name}@path}`}
+            className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
+            style={item.normalSize ? { width: `${item.normalSize}px`, display: 'none' } : { display: 'none' }}
+          />
+          {editMode === 'preview' ? null : '<!-- END_IF -->'}
+          <input
+            type="file"
+            id={id}
+            name={item.name}
+            size="20"
+            className={classnames({ 'js-img_resize_input': item.resize })}
+          />
+          <br />
+          {item.alt && (
+            <>
+              代替テキスト:
+              <input type="text" name={`${item.name}@alt`} value={`{${item.name}@alt}`} size="40" />
+            </>
+          )}
+          <input type="hidden" name="field[]" value={item.name} />
+          <input type="hidden" name={`${item.name}:extension`} value="image" />
+
+          {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}`} value={item.normalSize} />}
+          {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}`} value={item.tinySize} />}
+          {item.large && <input type="hidden" name={`${item.name}@${item.large}`} value={item.largeSize} />}
+          {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={item.squareSize} />}
+
+          <input type="hidden" name={`${item.name}@filename`} value="" />
+          <OptionValidator item={item} />
+          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
         </div>
       )}
 
-      {mode === 'fieldgroup' && (
-        <>
-          <ConditionalWrap
-            condition={direction === 'vertical'}
-            wrap={(child) => (
-              <label>
-                <>{item.title}</>
-                {child}
-              </label>
-            )}
-          >
-            <span className={classnames({ 'js-img_resize_cf': item.resize })}>
-              {isAttribute && (
-                <>
-                  {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${attribute.namePath}}/nem] -->`}
-                  <img
-                    src={`%{ARCHIVES_DIR}{${attribute.namePath}}`}
-                    className={classnames({ 'js-img_resize_preview': item.resize })}
-                    style={style}
-                    alt={`{${attribute.nameAlt}}`}
+      {mode === 'fieldgroup' &&
+        wrapTable(
+          <div className={classnames({ 'js-img_resize_cf': item.resize })}>
+            {isAttribute && (
+              <>
+                {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
+                <img
+                  src={`%{ARCHIVES_DIR}{${item.name}@path}`}
+                  className={classnames({ 'js-img_resize_preview': item.resize })}
+                  style={style}
+                  alt={`{${item.name}@alt}`}
+                />
+                <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
+                <label
+                  htmlFor={`input-checkbox-${item.name}@edit[]`}
+                  className={classnames({ 'acms-admin-form-checkbox': acmscss })}
+                >
+                  <input
+                    type="checkbox"
+                    name={`${item.name}@edit[]`}
+                    value="delete"
+                    id={`input-checkbox-${item.name}@edit[]`}
                   />
-                  <input type="hidden" name={`${attribute.nameOld}`} value={`{${attribute.namePath}}`} />
-                  <label
-                    htmlFor={`input-checkbox-${attribute.nameEdit}`}
-                    className={classnames({ 'acms-admin-form-checkbox': acmscss })}
-                  >
-                    <input
-                      type="checkbox"
-                      name={`${attribute.nameEdit}`}
-                      value="delete"
-                      id={`input-checkbox-${attribute.nameEdit}`}
-                    />
-                    {acmscss && <i className="acms-admin-ico-checkbox" />}
-                    削除
-                  </label>
-                  {editMode === 'preview' ? null : '<!-- ELSE -->'}
-                </>
-              )}
+                  {acmscss && <i className="acms-admin-ico-checkbox" />}
+                  削除
+                </label>
+                {editMode === 'preview' ? null : '<!-- ELSE -->'}
 
-              <img
-                alt=""
-                src={`%{ARCHIVES_DIR}{${attribute.namePath}}`}
-                className={classnames({ 'js-img_resize_preview': item.resize })}
-                style={hiddenStyle}
-              />
-              {!isAttribute || editMode === 'preview' ? null : '<!-- END_IF -->'}
-              <input
-                type="file"
-                name={`${item.name}[]`}
-                className={classnames({ 'js-img_resize_input': item.resize })}
-              />
-              <br />
-              {item.alt && (
-                <>
-                  代替テキスト:
-                  <input type="text" name={`${attribute.nameAlt}[]`} value={`{${attribute.nameAlt}}`} size="40" />
-                </>
-              )}
-              {item.normalSize && (
-                <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />
-              )}
-              {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
-              {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
-              {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
-              <OptionValidator item={item} />
-            </span>
-          </ConditionalWrap>
-        </>
-      )}
+                <img
+                  alt=""
+                  src={`%{ARCHIVES_DIR}{${item.name}@path}`}
+                  className={classnames({ 'js-img_resize_preview': item.resize })}
+                  style={hiddenStyle}
+                />
+
+                {editMode === 'preview' ? null : '<!-- END_IF -->'}
+              </>
+            )}
+            {!isAttribute && <img src="" alt="" style={hiddenStyle} className="js-img_resize_preview" />}
+
+            <input type="file" name={`${item.name}[]`} className={classnames({ 'js-img_resize_input': item.resize })} />
+            <br />
+            {item.alt && (
+              <>
+                代替テキスト:
+                <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
+              </>
+            )}
+            {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
+            {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
+            {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
+            {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
+            <OptionValidator item={item} />
+          </div>,
+          item.title
+        )}
     </>
   );
 }

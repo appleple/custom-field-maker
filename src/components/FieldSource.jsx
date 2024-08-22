@@ -5,9 +5,7 @@ import { useMakerContext } from '../store/MakerContext';
 
 export function FieldSource() {
   const {
-    state: {
-      preview: { tag },
-    },
+    preview: { tag },
   } = useMakerContext();
 
   return (

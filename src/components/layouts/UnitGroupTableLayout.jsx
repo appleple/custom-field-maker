@@ -11,7 +11,7 @@ import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 
-export function GroupTableLayout() {
+export function UnitGroupTableLayout() {
   const {
     state: { fieldgroup },
     preview: { acmscss, direction, editMode },

@@ -44,7 +44,7 @@ export function PreviewNavigator() {
         </label>
       </div>
 
-      {(mode === 'normal' || mode === 'group') && (
+      {(mode === 'customfield' || mode === 'fieldgroup') && (
         <div className="acms-admin-form-checkbox" style={{ marginTop: '5px' }}>
           <input type="checkbox" onChange={onJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
           <label htmlFor="jsvalidator-checkbox">
@@ -59,7 +59,7 @@ export function PreviewNavigator() {
         <option value="table">table</option>
       </select>
 
-      {tag === 'table' && (mode === 'group' || mode === 'unit-group') && (
+      {tag === 'table' && (mode === 'fieldgroup' || mode === 'unitgroup') && (
         <div style={{ marginTop: '5px' }}>
           <span className="customFieldDirectionBtnGroupSide">ソースの追加方法</span>
           <div className="customFieldDirectionBtnGroup">
@@ -117,7 +117,7 @@ export function PreviewNavigator() {
         </div>
       )}
 
-      {mode === 'normal' && (
+      {mode === 'customfield' && (
         <button
           onClick={() => clearCustomfield()}
           className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
@@ -125,7 +125,7 @@ export function PreviewNavigator() {
           履歴クリア
         </button>
       )}
-      {mode === 'group' && (
+      {mode === 'fieldgroup' && (
         <button
           onClick={() => clearGroupItem()}
           className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
@@ -133,7 +133,7 @@ export function PreviewNavigator() {
           履歴クリア
         </button>
       )}
-      {mode === 'unit' && (
+      {mode === 'customunit' && (
         <button
           onClick={() => clearCustomunit()}
           className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
@@ -141,7 +141,7 @@ export function PreviewNavigator() {
           履歴クリア
         </button>
       )}
-      {mode === 'unit-group' && (
+      {mode === 'unitgroup' && (
         <button
           onClick={() => clearUnitGroupItem()}
           className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"

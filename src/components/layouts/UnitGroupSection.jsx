@@ -13,7 +13,7 @@ import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 
-export function GroupSection() {
+export function UnitGroupSection() {
   const {
     state: { fieldgroup },
     preview: { acmscss, direction, editMode },
