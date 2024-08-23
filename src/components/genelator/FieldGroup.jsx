@@ -106,6 +106,7 @@ const defaultProps = {
   subType: '',
   title: '',
   name: '',
+  placeholder: '',
   tooltip: '',
   alert: false,
   duplicatedField: '',
@@ -645,8 +646,16 @@ export function FieldGroup() {
                 <FileOption field={field} setField={setField} />
               </div>
             )}
-            {field.type === 'media' && <div>{<MediaOption field={field} setField={setField} />}</div>}
-            {field.type === 'rich-editor' && <div>{<RichEditorOption field={field} setField={setField} />}</div>}
+            {field.type === 'media' && (
+              <div>
+                <MediaOption field={field} setField={setField} />
+              </div>
+            )}
+            {field.type === 'rich-editor' && (
+              <div>
+                <RichEditorOption field={field} setField={setField} />
+              </div>
+            )}
             <Validator field={field} setField={setField} />
             <Maker setField={setField} onSubmit={addGroup} />
           </div>

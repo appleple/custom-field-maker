@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Tooltip } from 'react-tooltip';
 import Base from './base';
@@ -80,19 +81,116 @@ export default class UnitGroup extends Base {
       mediaType: 'image',
     };
   }
+=======
+import React, { useCallback, useState } from 'react';
+import ReactTooltip from 'react-tooltip';
+import { useMakerContext } from '../../store/MakerContext';
+import { Alert } from './base/Alert';
+import { GroupAlert } from './base/GroupAlert';
+import { DuplicateAlert } from './base/DuplicateAlert';
+import { Basic } from './base/Basic';
+import { ConverterModal } from './base/ConverterModal';
+import { Snippet } from './base/Snippet';
+import { Maker } from './base/Maker';
+import { Validator } from './base/Validator';
+import { OptionItem } from './base/OptionItem';
+import { MediaOption } from './base/MediaOption';
+import { ImageOption } from './base/ImageOption';
+import { ImageResizeOption } from './base/ImageResizeOption';
+import { FileOption } from './base/FileOption';
+import { RichEditorOption } from './base/RichEditorOption';
 
-  showGroup() {
-    const { setUnitGroupTitleName } = this.context;
-    const { unitGroupName, unitGroupTitle } = this.state;
-    if (!unitGroupName) {
-      this.setState({
-        groupAlert: true,
-      });
+const defaultProps = {
+  type: 'text',
+  subType: '',
+  title: '',
+  name: '',
+  placeholder: '',
+  tooltip: '',
+  alert: false,
+  duplicatedField: '',
+  path: 'path',
+  converter: '',
+  normal: 'size',
+  useDropArea: true,
+  dropAreaWidth: 200,
+  dropAreaHeight: 200,
+  useFocusImage: false,
+  focusImageWidth: 400,
+  focusImageHeight: 400,
+  startHeadingLevel: 2,
+  endHeadingLevel: 3,
+  mediaType: 'image',
+  useExpand: true,
+  option: [
+    {
+      value: '',
+      label: '',
+    },
+  ],
+  validator: [
+    {
+      option: '',
+      value: '',
+      message: '',
+    },
+  ],
+  optionFormat: 'pref',
+  openValidator: false,
+  openConverter: false,
+  alt: false,
+  fileNameMethod: 'random',
+  groupAlert: false,
+  openGroup: false,
+  groupTitle: '',
+  groupName: '',
+};
+
+const crearField = {
+  title: '',
+  name: '',
+  path: '',
+  normalSize: '',
+  tiny: '',
+  tinySize: '',
+  large: '',
+  largeSize: '',
+  square: '',
+  squareSize: '',
+  alt: true,
+  resize: true,
+  useExpand: true,
+  useDropArea: true,
+  dropAreaWidth: 200,
+  dropAreaHeight: 200,
+  useFocusImage: false,
+  focusImageWidth: 400,
+  focusImageHeight: 400,
+  startHeadingLevel: 2,
+  endHeadingLevel: 3,
+  mediaType: 'image',
+  openConverter: '',
+  openValidator: '',
+  converter: '',
+  tooltip: '',
+  placeholder: '',
+};
+>>>>>>> e53ec4b (ユニットグループ追加、メディアの対応確認)
+
+export function UnitGroup() {
+  const [field, setField] = useState(defaultProps);
+  const { setUnitGroupTitleName, addUnitGroupItem, clearUnitGroupItem } = useMakerContext();
+
+  const showGroup = useCallback(() => {
+    if (!field.groupName) {
+      setField((prevState) => ({ ...prevState, groupAlert: true }));
     } else {
-      this.setState({
+      setField((prevState) => ({
+        ...prevState,
         groupAlert: false,
         duplicatedField: false,
         openGroup: true,
+<<<<<<< HEAD
       });
 <<<<<<< HEAD:src/components/unit-group.js
       actions.setUnitGroupTitleName({
@@ -102,29 +200,19 @@ export default class UnitGroup extends Base {
 =======
       setUnitGroupTitleName(unitGroupTitle, unitGroupName);
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/UnitGroup.jsx
+=======
+      }));
+      setUnitGroupTitleName(field.groupTitle, field.groupName);
+>>>>>>> e53ec4b (ユニットグループ追加、メディアの対応確認)
     }
-  }
+  }, [field, setUnitGroupTitleName]);
 
-  addNewGroup() {
-    const { clearUnitGroupItem } = this.context;
-    clearUnitGroupItem();
-    this.clearValue();
-    this.setState({
-      openGroup: false,
-      unitGroupTitle: '',
-      unitGroupName: '',
-    });
-  }
-
-  addGroup() {
-    const { setUnitGroupTitleName, addUnitGroupItem } = this.context;
-    const { type, title, name, unitGroupName, unitGroupTitle } = this.state;
-    if (name == unitGroupName) {
-      this.setState({
-        duplicatedField: true,
-      });
+  const addGroup = useCallback(() => {
+    if (field.name == field.groupName) {
+      setField((prevState) => ({ ...prevState, duplicatedField: true }));
       return;
     }
+<<<<<<< HEAD
     if (type && title && name) {
 <<<<<<< HEAD:src/components/unit-group.js
       actions.setUnitGroupTitleName({
@@ -136,32 +224,124 @@ export default class UnitGroup extends Base {
       setUnitGroupTitleName(unitGroupName, unitGroupTitle);
       addUnitGroupItem(this.state);
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/UnitGroup.jsx
+=======
+    if (field.type && field.title && field.name) {
+      setUnitGroupTitleName(field.groupName, field.groupTitle);
+      addUnitGroupItem(field);
+>>>>>>> e53ec4b (ユニットグループ追加、メディアの対応確認)
     } else {
-      this.setState({
-        alert: true,
-      });
+      setField((prevState) => ({ ...prevState, alert: true }));
     }
-  }
+  }, [field, setUnitGroupTitleName, addUnitGroupItem]);
 
-  render() {
-    const { openGroup, unitGroupTitle, unitGroupName, type } = this.state;
-    return (
-      <div>
-        <h2 className="acms-admin-admin-title2">カスタムユニット（フィールドグループ）</h2>
-        <div className="customFieldFunction">
-          {this.renderGroupAlert()}
-          {this.renderDuplicateAlert()}
-          {this.renderAlert()}
-          {openGroup ? (
-            <div style={{ paddingBottom: '15px' }}>
-              <button
-                className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn"
-                onClick={this.addNewGroup.bind(this)}
-              >
-                新規グループ作成
-              </button>
-            </div>
-          ) : (
+  const addNewGroup = useCallback(() => {
+    clearUnitGroupItem();
+    setField(crearField);
+    setField((prevState) => ({
+      ...prevState,
+      openGroup: false,
+      groupTitle: '',
+      groupName: '',
+    }));
+  }, [clearUnitGroupItem]);
+
+  return (
+    <div>
+      <h2 className="acms-admin-admin-title2">カスタムユニット（フィールドグループ）</h2>
+      <div className="customFieldFunction">
+        <GroupAlert field={field} setField={setField} />
+        <DuplicateAlert field={field} setField={setField} />
+        <Alert field={field} setField={setField} />
+
+        {field.openGroup ? (
+          <div style={{ paddingBottom: '15px' }}>
+            <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={addNewGroup}>
+              新規グループ作成
+            </button>
+          </div>
+        ) : (
+          <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
+            <tbody>
+              <tr>
+                <th className="acms-admin-table-left">
+                  グループのタイトル
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-title-tip" />
+                  <ReactTooltip
+                    id="unit-group-title-tip"
+                    place="top"
+                    type="dark"
+                    effect="solid"
+                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                  >
+                    <span>フィールドグループのテーブル用のタイトルとなります。</span>
+                  </ReactTooltip>
+                  <span className="acms-admin-label acms-admin-label-danger">必須</span>
+                </th>
+                <th className="acms-admin-table-left" colSpan="2">
+                  フィールド名（変数）
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-field-tip" />
+                  <ReactTooltip
+                    id="unit-group-field-tip"
+                    place="top"
+                    type="dark"
+                    effect="solid"
+                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                  >
+                    <span>フィールドグループのフィールド名です。値を必ず入力してください。</span>
+                  </ReactTooltip>
+                  <span className="acms-admin-label acms-admin-label-danger">必須</span>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    defaultValue={field.groupTitle}
+                    onInput={(e) => {
+                      const value = e.target.value;
+                      if (!value) return;
+                      setField((prevState) => ({ ...prevState, groupTitle: value }));
+                    }}
+                    className="acms-admin-form-width-full"
+                    placeholder="例）スタッフリスト"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    defaultValue={field.groupName}
+                    onInput={(e) => {
+                      const value = e.target.value;
+                      if (!value) return;
+                      setField((prevState) => ({ ...prevState, groupName: value }));
+                    }}
+                    className="acms-admin-form-width-full"
+                    placeholder="例）group_staff"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="2">
+                  {field.openGroup ? (
+                    <button
+                      className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
+                      disabled
+                    >
+                      グループ生成
+                    </button>
+                  ) : (
+                    <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={showGroup}>
+                      グループ生成
+                    </button>
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        )}
+        {field.openGroup && (
+          <div>
+            <div className="customFieldLine" />
             <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
               <tbody>
                 <tr>
@@ -188,8 +368,11 @@ export default class UnitGroup extends Base {
                     >
                       <span>フィールドグループのテーブル用のタイトルとなります。</span>
                     </ReactTooltip>
+<<<<<<< HEAD
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
                     <span className="acms-admin-label acms-admin-label-danger">必須</span>
+=======
+>>>>>>> e53ec4b (ユニットグループ追加、メディアの対応確認)
                   </th>
                   <th className="acms-admin-table-left" colSpan="2">
                     フィールド名（変数）
@@ -214,6 +397,7 @@ export default class UnitGroup extends Base {
                     >
                       <span>フィールドグループのフィールド名です。値を必ず入力してください。</span>
                     </ReactTooltip>
+<<<<<<< HEAD
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
                     <span className="acms-admin-label acms-admin-label-danger">必須</span>
                   </th>
@@ -337,53 +521,62 @@ export default class UnitGroup extends Base {
               </table>
               {this.renderModal()}
               {this.renderBasic()}
+=======
+                  </th>
+                </tr>
+                <tr>
+                  <td>{field.groupTitle}</td>
+                  <td>{field.groupName}</td>
+                </tr>
+              </tbody>
+            </table>
+            <ConverterModal field={field} setField={setField} />
+            <Basic field={field} setField={setField} />
+>>>>>>> e53ec4b (ユニットグループ追加、メディアの対応確認)
 
-              <div className="customFieldLine" />
-              {type === 'select' && (
-                <div>
-                  {this.renderSnippet()}
-                  {this.renderOption()}
-                </div>
-              )}
-              {type === 'radio' && (
-                <div>
-                  {this.renderSnippet()}
-                  {this.renderOption()}
-                </div>
-              )}
-              {type === 'image' && (
-                <div>
-                  {this.renderImage()}
-                  {this.renderImageResize()}
-                </div>
-              )}
-              {type === 'file' && <div>{this.renderFile()}</div>}
-              {type === 'media' && <div>{this.renderMediaOption()}</div>}
-              {type === 'rich-editor' && <div>{this.renderRichEditorOption()}</div>}
-              {this.renderValidator(false)}
-              <p>
-                <button
-                  onClick={this.clearValue.bind(this)}
-                  className="acms-admin-btn-admin"
-                  style={{ marginRight: '5px' }}
-                >
-                  クリア
-                </button>
-                <button
-                  onClick={this.addGroup.bind(this)}
-                  className="acms-admin-btn-admin acms-admin-btn-admin-primary customFieldMakeBtn"
-                  style={{ marginRight: '5px' }}
-                >
-                  生成
-                </button>
-                <button onClick={this.backState.bind(this)} className="acms-admin-btn-admin">
-                  元に戻す
-                </button>
-              </p>
-            </div>
-          )}
-        </div>
+            {field.type === 'checkbox' && (
+              <div>
+                <OptionItem field={field} setField={setField} add={false} />
+              </div>
+            )}
+            {field.type === 'selectbox' && (
+              <div>
+                <Snippet field={field} setField={setField} />
+                <OptionItem field={field} setField={setField} />
+              </div>
+            )}
+            {field.type === 'radioButton' && (
+              <div>
+                <Snippet field={field} setField={setField} />
+                <OptionItem field={field} setField={setField} />
+              </div>
+            )}
+            {field.type === 'image' && (
+              <div>
+                <ImageOption setField={setField} />
+                <ImageResizeOption field={field} setField={setField} />
+              </div>
+            )}
+            {field.type === 'file' && (
+              <div>
+                <FileOption field={field} setField={setField} />
+              </div>
+            )}
+            {field.type === 'media' && (
+              <div>
+                <MediaOption field={field} setField={setField} />
+              </div>
+            )}
+            {field.type === 'rich-editor' && (
+              <div>
+                <RichEditorOption field={field} setField={setField} />
+              </div>
+            )}
+            <Validator field={field} setField={setField} />
+            <Maker setField={setField} onSubmit={addGroup} />
+          </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }

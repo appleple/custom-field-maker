@@ -138,13 +138,13 @@ export default class Unit extends Base {
 };
 export function Unit() {
   const [field, setField] = useState(defaultProps);
-  const { addCustomfield } = useMakerContext();
+  const { addCustomunit } = useMakerContext();
 
   const onAddCustomunitHandler = useCallback(
     (fieldData) => {
-      addCustomfield(fieldData);
+      addCustomunit(fieldData);
     },
-    [addCustomfield]
+    [addCustomunit]
   );
 
   const onSubmit = (e) => {

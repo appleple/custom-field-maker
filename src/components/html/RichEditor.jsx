@@ -1,29 +1,16 @@
 import React from 'react';
 import { useMakerContext } from '../../store/MakerContext';
+import { WrapTable } from './WrapTable';
 
 export function RichEditor(props) {
   const { item, id = '', isValue = true } = props;
   const {
-    preview: { mode, direction },
+    preview: { mode },
   } = useMakerContext();
 
-  const wrapTable = (children, title) => {
-    return (
-      <ConditionalWrap
-        condition={direction === 'vertical'}
-        wrap={(child) => (
-          <tr>
-            <th>{title}</th>
-            {child}
-          </tr>
-        )}
-      >
-        {children}
-      </ConditionalWrap>
-    );
+  const ConditionalWrap = ({ condition, wrap, children }) => {
+    return condition ? wrap(children) : children;
   };
-
-  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
   return (
     <>
@@ -54,8 +41,8 @@ export function RichEditor(props) {
         </ConditionalWrap>
       )}
 
-      {mode === 'fieldgroup' &&
-        wrapTable(
+      {mode === 'fieldgroup' && (
+        <WrapTable title={item.title}>
           <ConditionalWrap
             condition={item.useExpand}
             wrap={(children) => (
@@ -90,9 +77,80 @@ export function RichEditor(props) {
                 <input id={id} className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value="" />
               )}
             </div>
-          </ConditionalWrap>,
-          item.title
-        )}
+          </ConditionalWrap>
+        </WrapTable>
+      )}
+
+      {mode === 'customunit' && (
+        <ConditionalWrap
+          condition={item.useExpand}
+          wrap={(children) => (
+            <div className="js-expand js-acms-expand">
+              <div className="js-acms-expand-inner">
+                <button className="js-expand-btn js-acms-expand-btn" type="button">
+                  <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                </button>
+                {children}
+              </div>
+            </div>
+          )}
+        >
+          <div
+            className="js-smartblock"
+            data-heading-start={item.startHeadingLevel}
+            data-heading-end={item.endHeadingLevel}
+          >
+            <div className="js-smartblock-edit" />
+            <input
+              className="js-smartblock-body"
+              type="hidden"
+              name={`${item.name}{id}`}
+              value={`{${item.name}@html}`}
+            />
+            <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+            <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
+          </div>
+        </ConditionalWrap>
+      )}
+
+      {mode === 'unitgroup' && (
+        <WrapTable title={item.title}>
+          <ConditionalWrap
+            condition={item.useExpand}
+            wrap={(children) => (
+              <div className="js-expand js-acms-expand">
+                <div className="js-acms-expand-inner">
+                  <button className="js-expand-btn js-acms-expand-btn" type="button">
+                    <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                  </button>
+                  {children}
+                </div>
+              </div>
+            )}
+          >
+            <div
+              className="js-smartblock"
+              data-heading-start={item.startHeadingLevel}
+              data-heading-end={item.endHeadingLevel}
+            >
+              <div className="js-smartblock-edit" />
+              {isValue ? (
+                <input
+                  className="js-smartblock-body"
+                  type="hidden"
+                  name={`${item.name}{id}[]`}
+                  value={`{${item.name}@html}`}
+                />
+              ) : (
+                <>
+                  <input className="js-smartblock-body" type="hidden" name={`${item.name}{id}[]`} value="" />
+                  <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
+                </>
+              )}
+            </div>
+          </ConditionalWrap>
+        </WrapTable>
+      )}
     </>
   );
 }

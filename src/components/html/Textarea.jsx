@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
-import { OptionNoSearch } from './OptionNoSearch';
+import { WrapTable } from './WrapTable';
 
 export function Textarea(props) {
   const { item, id = '', isValue = true } = props;
@@ -16,59 +16,45 @@ export function Textarea(props) {
     'js-lite-editor-field': selectedType === 'lite-editor',
   });
 
-  let attribute = { id, value: '', name: '', hiddenName: '', placeholder: '' };
-  switch (mode) {
-    case 'customfield': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: item.name,
-        hiddenName: 'field[]',
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'fieldgroup': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}[]`,
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'customunit': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}{id}`,
-        hiddenName: 'unit[]',
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'unitgroup': {
-      attribute = {
-        value: item.name,
-        name: `${item.name}{id}[]`,
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-  }
-
   return (
     <>
-      <textarea
-        name={attribute.name}
-        className={classname}
-        {...(jsValidator ? { 'data-validator': attribute.name } : {})}
-      >
-        {isValue ? `${attribute.value}` : ''}
-      </textarea>
-      {(mode === 'customfield') | (mode === 'customunit') ? (
-        <input type="hidden" name={attribute.hiddenName} defaultValue={attribute.name} />
-      ) : null}
+      {mode === 'customfield' && (
+        <>
+          <textarea
+            id={id}
+            name={item.name}
+            className={classname}
+            {...(jsValidator ? { 'data-validator': item.name } : {})}
+          >{`{${item.name}}`}</textarea>
+          <input type="hidden" name="field[]" value={item.name} />
+        </>
+      )}
 
-      <OptionValidator item={item} />
-      <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+      {mode === 'fieldgroup' && (
+        <WrapTable title={item.title}>
+          <textarea id={id} name={`${item.name}[]`} className={classname}>
+            {isValue && `{${item.name}}`}
+          </textarea>
+          <OptionValidator item={item} />
+        </WrapTable>
+      )}
+
+      {mode === 'customunit' && (
+        <>
+          <textarea id={id} name={`${item.name}{id}`} className={classname}>{`{${item.name}}`}</textarea>
+          <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+          <OptionValidator item={item} />
+        </>
+      )}
+
+      {mode === 'unitgroup' && (
+        <WrapTable title={item.title}>
+          <textarea id={id} name={`${item.name}{id}[]`} className={classname}>
+            {isValue && `{${item.name}}`}
+          </textarea>
+          <OptionValidator item={item} />
+        </WrapTable>
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
@@ -11,23 +11,24 @@ import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
+import { OptionValidator } from '../html/OptionValidator';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function UnitGroupSection() {
   const {
-    state: { fieldgroup },
+    state: { unitgroup },
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
 
   return (
     <section>
-      {fieldgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{fieldgroup.title}</h2>}
+      {unitgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{unitgroup.title}</h2>}
 
-      {fieldgroup.name && (
+      {unitgroup.name && (
         <div className="js-fieldgroup-sortable adminTable acms-admin-table-admin-edit">
           {editMode === 'preview'
             ? null
-            : fieldgroup.items.length > 0 && (
+            : unitgroup.items.length > 0 && (
                 <>
                   <div className={classnames({ 'acms-admin-hide-sp': acmscss })}>
                     <div>
@@ -39,8 +40,8 @@ export function UnitGroupSection() {
                         &nbsp;
                       </div>
                       {direction === 'horizontal' &&
-                        fieldgroup &&
-                        fieldgroup.items.map((item, index) => (
+                        unitgroup &&
+                        unitgroup.items.map((item, index) => (
                           <span key={index}>
                             <Heading item={item} />
                           </span>
@@ -56,14 +57,14 @@ export function UnitGroupSection() {
                     </div>
                   </div>
 
-                  {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
+                  {editMode === 'preview' ? null : `<!-- BEGIN ${unitgroup.name}:loop -->`}
 
                   <div className="sortable-item acms-flex">
                     <div className="item-handle acms-admin-table-nowrap">
                       {acmscss && <i className="acms-admin-icon-sort" />}
                     </div>
 
-                    {fieldgroup.items.map((item, index) => {
+                    {unitgroup.items.map((item, index) => {
                       switch (item.type) {
                         case 'text': {
                           return (
@@ -202,18 +203,18 @@ export function UnitGroupSection() {
                     </div>
                   </div>
 
-                  {`<!-- END ${fieldgroup.name}:loop -->`}
+                  {`<!-- END ${unitgroup.name}:loop -->`}
                 </>
               )}
 
-          {fieldgroup.items.length > 0 && (
+          {unitgroup.items.length > 0 && (
             <>
               <div className="sortable-item item-template acms-flex">
                 <div className="item-handle acms-admin-table-nowrap">
                   <i className="acms-admin-icon-sort"></i>
                 </div>
 
-                {fieldgroup.items.map((item, index) => {
+                {unitgroup.items.map((item, index) => {
                   switch (item.type) {
                     case 'text': {
                       return (
@@ -341,7 +342,7 @@ export function UnitGroupSection() {
                   }
                 })}
 
-                {fieldgroup.items.length > 0 && (
+                {unitgroup.items.length > 0 && (
                   <div className="acms-admin-table-nowrap">
                     <button
                       type="button"
@@ -360,85 +361,65 @@ export function UnitGroupSection() {
       )}
 
       {/* input hidden */}
-      {fieldgroup.name && (
+      {unitgroup.name && (
         <>
-          {fieldgroup.items.map((item, index) => (
-            <Fragment key={index}>
+          {unitgroup.items.map((item) => (
+            <>
               {item.type === 'image' && (
-                <Fragment>
-                  {item.square && (
+                <>
+                  {item.square && item.squareSize && (
                     <>
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squarePath`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squareAlt`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squareX`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squareY`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squarePath`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squareAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squareX`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squareY`} />
                     </>
                   )}
-                  {item.large && (
+                  {item.large && item.largeSize && (
                     <>
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largePath`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largeAlt`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largeX`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largeY`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largePath`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largeAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largeX`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largeY`} />
                     </>
                   )}
-                  {item.tiny && (
+                  {item.tiny && item.tinySize && (
                     <>
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyPath`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyAlt`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyX`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyY`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@tinyPath`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}@tinyAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}@tinyX`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}@tinyY`} />
                     </>
                   )}
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@path`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@alt`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@x`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@y`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
-                  <input type="hidden" name={`${item.name}:extension`} value="image" />
-                </Fragment>
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@path`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@alt`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@x`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@y`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@edit`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@old`} />
+                  <input type="hidden" name={`${item.name}{id}:extension`} value="image" />
+                </>
               )}
               {item.type === 'file' && (
                 <>
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@path`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@alt`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
-                  <input type="hidden" name={`${item.name}:extension`} value="file" />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@path`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@alt`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@edit`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@old`} />
+                  <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
                 </>
               )}
-              {item.type === 'media' && <input type="hidden" name={`${item.name}:extension`} value="media" />}
-              {item.type === 'rich-editor' && (
-                <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
+              {item.type === 'media' && <input type="hidden" name={`${item.name}{id}:extension`} value="media" />}
+              {item.type === 'richEditor' && (
+                <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
               )}
-              <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
-              <input type="hidden" name="field[]" value={item.name} />
-              {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
-
-              {item.validator &&
-                item.validator.map((validator, index) => {
-                  if (!validator.option) {
-                    return null;
-                  }
-                  const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
-                  return (
-                    <input
-                      key={index}
-                      type="hidden"
-                      name={`${name}:v#${validator.option}`}
-                      value={validator.value}
-                      id={`${name}-v-${validator.option}`}
-                    />
-                  );
-                })}
-              {(() => {
-                const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
-                return item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />;
-              })()}
-            </Fragment>
+              <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}`} />
+              <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+              {item.noSearch && <input type="hidden" name={`${item.name}{id}:search`} value="0" />}
+              <OptionValidator item={item} />
+            </>
           ))}
-          <input type="hidden" name="field[]" value={`@${fieldgroup.name}`} />
+          <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />
         </>
       )}
     </section>

@@ -409,7 +409,7 @@ export function GroupSection() {
                 </>
               )}
               {item.type === 'media' && <input type="hidden" name={`${item.name}:extension`} value="media" />}
-              {item.type === 'rich-editor' && (
+              {item.type === 'richEditor' && (
                 <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
               )}
               <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />

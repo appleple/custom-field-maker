@@ -3,71 +3,126 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
+import { WrapTable } from './WrapTable';
 
 export function RadioButton(props) {
-  const { item, id = '', isChecked = true } = props;
+  const { item, isChecked = true } = props;
   const {
     preview: { mode, acmscss },
   } = useMakerContext();
 
-  let attribute = { id, name: '', hiddenName: '' };
-  switch (mode) {
-    case 'customfield': {
-      attribute = {
-        name: item.name,
-        hiddenName: 'field[]',
-      };
-      break;
-    }
-    case 'fieldgroup': {
-      attribute = {
-        name: `${item.name}[]`,
-      };
-      break;
-    }
-    case 'customunit': {
-      attribute = {
-        name: `${item.name}{id}`,
-        hiddenName: 'unit[]',
-      };
-      break;
-    }
-    case 'unitgroup': {
-      attribute = {
-        name: `${item.name}{id}[]`,
-      };
-      break;
-    }
-  }
-
   return (
     <>
-      {item.option.map((option, index) => {
-        if (!option.label) {
-          return null;
-        }
-        return (
-          <span key={`${item.name}${index}`} className={classnames({ 'acms-admin-form-radio': acmscss })}>
-            <input
-              type="radio"
-              name={attribute.name}
-              value={option.value}
-              data-tmp={isChecked && `{${item.name}:checked#${option.value}}`}
-              id={`input-radio-${item.name}-${id}`}
-            />
-            <label htmlFor={`input-radio-${item.name}-${id}`}>
-              <i className="acms-admin-ico-radio" />
-              {option.label}
-            </label>
-          </span>
-        );
-      })}
-      {(mode === 'customfield') | (mode === 'customunit') ? (
-        <input type="hidden" name={attribute.hiddenName} value={attribute.name} />
-      ) : null}
+      {mode === 'customfield' && (
+        <>
+          {item.option.map((option, index) => {
+            if (!option.label) {
+              return null;
+            }
+            return (
+              <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
+                <input
+                  type="radio"
+                  name={item.name}
+                  value={option.value}
+                  data-tmp={`{${item.name}:checked#${option.value}}`}
+                  id={`input-radio-${item.name}-${option.value}`}
+                />
+                <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+                  <i className="acms-admin-ico-radio" />
+                  {option.label}
+                </label>
+              </div>
+            );
+          })}
+          <input type="hidden" name="field[]" value={item.name} />
+          <OptionValidator item={item} />
+          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+        </>
+      )}
 
-      <OptionValidator item={item} />
-      <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+      {mode === 'fieldgroup' && (
+        <WrapTable title={item.title}>
+          {item.option.map((option, index) => {
+            if (!option.label) {
+              return null;
+            }
+            return (
+              <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
+                <input
+                  type="radio"
+                  name={`${item.name}[]`}
+                  value={option.value}
+                  {...(isChecked && {
+                    'data-tmp': `{${item.name}:checked#${option.value}}`,
+                  })}
+                  id={`input-radio-${item.name}-${option.value}`}
+                />
+                <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+                  {acmscss && <i className="acms-admin-ico-radio" />}
+                  {option.label}
+                </label>
+              </div>
+            );
+          })}
+          <OptionValidator item={item} />
+        </WrapTable>
+      )}
+
+      {mode === 'customunit' && (
+        <>
+          {item.option.map((option, index) => {
+            if (!option.label) {
+              return null;
+            }
+            return (
+              <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
+                <input
+                  type="radio"
+                  name={`${item.name}{id}`}
+                  value={option.value}
+                  data-tmp={`{${item.name}:checked#${option.value}}`}
+                  id={`input-radio-${item.name}-${option.value}-{id}`}
+                />
+                <label htmlFor={`input-radio-${item.name}-${option.value}-{id}`}>
+                  <i className="acms-admin-ico-radio" />
+                  {option.label}
+                </label>
+              </div>
+            );
+          })}
+          <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+          <OptionValidator item={item} />
+        </>
+      )}
+
+      {mode === 'unitgroup' && (
+        <WrapTable title={item.title}>
+          {item.option.map((option, index) => {
+            if (!option.label) {
+              return null;
+            }
+            return (
+              <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
+                <input
+                  type="radio"
+                  name={`${item.name}{id}[]`}
+                  value={option.value}
+                  {...(isChecked && {
+                    'data-tmp': `{${item.name}:checked#${option.value}}`,
+                  })}
+                  id={`input-radio-${item.name}-{id}-${option.value}`}
+                />
+                <label htmlFor={`input-radio-${item.name}-{id}-${option.value}`}>
+                  {acmscss && <i className="acms-admin-ico-radio" />}
+                  {option.label}
+                </label>
+              </div>
+            );
+          })}
+          <OptionValidator item={item} />
+        </WrapTable>
+      )}
     </>
   );
 }

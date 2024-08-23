@@ -14,7 +14,7 @@ import { useMakerContext } from '../../store/MakerContext';
 
 export function UnitSection() {
   const {
-    state: { customfield },
+    state: { customunit },
     preview: { jsValidator },
   } = useMakerContext();
 
@@ -22,8 +22,8 @@ export function UnitSection() {
     <>
       {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
 
-      {customfield.length > 0 &&
-        customfield.map((item, index) => {
+      {customunit.length > 0 &&
+        customunit.map((item, index) => {
           switch (item.type) {
             case 'text': {
               return (

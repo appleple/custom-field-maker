@@ -1,8 +1,12 @@
 import React from 'react';
+import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function PreviewModeNavigator() {
-  const { setEditMode } = useMakerContext();
+  const {
+    setEditMode,
+    preview: { editMode },
+  } = useMakerContext();
   const updateMode = (editMode) => {
     setEditMode(editMode);
   };
@@ -12,7 +16,7 @@ export function PreviewModeNavigator() {
       <li>
         <a
           href="#source"
-          // className={classnames({ customFieldTabActive: editMode === 'source' })}
+          className={classnames({ customFieldTabActive: editMode === 'source' })}
           onClick={() => updateMode('source')}
         >
           入力用ソース
@@ -21,7 +25,7 @@ export function PreviewModeNavigator() {
       <li>
         <a
           href="#preview"
-          // className={classnames({ customFieldTabActive: editMode === 'preview' })}
+          className={classnames({ customFieldTabActive: editMode === 'preview' })}
           onClick={() => updateMode('preview')}
         >
           プレビュー
@@ -30,7 +34,7 @@ export function PreviewModeNavigator() {
       <li>
         <a
           href="#confirm"
-          // className={classnames({ customFieldTabActive: editMode === 'confirm' })}
+          className={classnames({ customFieldTabActive: editMode === 'confirm' })}
           onClick={() => updateMode('confirm')}
         >
           出力用ソース

@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
+import { WrapTable } from './WrapTable';
 
 export function Selectbox(props) {
   const { item, id = '', isSelected = true } = props;
@@ -10,69 +11,96 @@ export function Selectbox(props) {
     preview: { mode, acmscss },
   } = useMakerContext();
 
-  let attribute = { id, value: '', name: '', hiddenName: '', placeholder: '' };
-  switch (mode) {
-    case 'customfield': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: item.name,
-        hiddenName: 'field[]',
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'fieldgroup': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}`,
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'customunit': {
-      attribute = {
-        value: `{${item.name}}`,
-        name: `${item.name}{id}`,
-        hiddenName: 'unit[]',
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-    case 'unitgroup': {
-      attribute = {
-        value: item.name,
-        name: `${item.name}{id}[]`,
-        placeholder: item.placeholder,
-      };
-      break;
-    }
-  }
-
   return (
     <>
-      <select name={`${attribute.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
-        <option value="" />
-        {item.option.map((option, index) => {
-          if (!option.label) {
-            return null;
-          }
-          return (
-            <option
-              key={index}
-              value={option.value}
-              data-tmp={isSelected && `{${attribute.name}:selected#${option.value}}`}
-            >
-              {option.label}
-            </option>
-          );
-        })}
-      </select>
-      {mode === 'customfield' || mode === 'customunit' ? (
-        <input type="hidden" name={attribute.hiddenName} value={attribute.name} />
-      ) : null}
+      {mode === 'customfield' && (
+        <>
+          <select id={id} name={item.name} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+            <option value="" />
+            {item.option.map((option, index) => {
+              if (!option.label) {
+                return null;
+              }
+              return (
+                <option key={index} value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>
+                  {option.label}
+                </option>
+              );
+            })}
+          </select>
+          <input type="hidden" name="field[]" value={item.name} />
 
-      <OptionValidator item={item} />
-      <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+          <OptionValidator item={item} />
+          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+        </>
+      )}
+
+      {mode === 'fieldgroup' && (
+        <WrapTable title={item.title}>
+          <select id={id} name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+            <option value="" />
+            {item.option.map((option, index) => {
+              if (!option.label) {
+                return null;
+              }
+              return (
+                <option
+                  key={index}
+                  value={option.value}
+                  data-tmp={isSelected && `{${item.name}:selected#${option.value}}`}
+                >
+                  {option.label}
+                </option>
+              );
+            })}
+          </select>
+          <OptionValidator item={item} />
+        </WrapTable>
+      )}
+
+      {mode === 'customunit' && (
+        <>
+          <select id={id} name={`${item.name}{id}`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+            <option value="" />
+            {item.option.map((option, index) => {
+              if (!option.label) {
+                return null;
+              }
+              return (
+                <option key={index} value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>
+                  {option.label}
+                </option>
+              );
+            })}
+          </select>
+          <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+          <OptionValidator item={item} />
+        </>
+      )}
+
+      {mode === 'unitgroup' && (
+        <WrapTable title={item.table}>
+          <select name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+            <option value="" />
+            {item.option.map((option, index) => {
+              if (!option.label) {
+                return null;
+              }
+              return (
+                <option
+                  key={index}
+                  value={option.value}
+                  {...(isSelected && {
+                    'data-tmp': `{${item.name}:selected#${option.value}}`,
+                  })}
+                >
+                  {option.label}
+                </option>
+              );
+            })}
+          </select>
+        </WrapTable>
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MakerContextProvider, useMakerContext } from '../store/MakerContext';
 import { EditorModeNavigator } from '../components/navigator/EditorModeNavigator';
 import { PreviewModeNavigator } from '../components/navigator/PreviewModeNavigator';
@@ -6,9 +6,11 @@ import { PreviewNavigator } from '../components/navigator/PreviewNavigator';
 import { Field } from '../components/genelator/Field';
 import { FieldGroup } from '../components/genelator/FieldGroup';
 import { Unit } from '../components/genelator/Unit';
-// import { UnitGroup } from '../components/genelator/UnitGroup';
+import { UnitGroup } from '../components/genelator/UnitGroup';
 import { FieldSource } from '../components/FieldSource';
 import { FieldGroupSource } from '../components/FieldGroupSource';
+import { UnitSource } from '../components/UnitSource';
+import { UnitGroupSource } from '../components/UnitGroupSource';
 import { FieldConfirmSource } from '../components/FieldConfirmSource';
 import { Highlighter } from '../components/Highlighter';
 import { XmlEntities } from 'html-entities';
@@ -25,13 +27,18 @@ function CustomFieldMaker() {
     }
   };
 
+  useEffect(() => {
+    console.log(state.customunit);
+    console.log(preview.mode);
+  }, [state.customunit, preview.mode]);
+
   return (
     <div className="acms-admin-form">
       <EditorModeNavigator />
       {preview.mode === 'customfield' && <Field />}
       {preview.mode === 'fieldgroup' && <FieldGroup />}
       {preview.mode === 'customunit' && <Unit />}
-      {/* {preview.mode === 'unit-group' && <UnitGroup />} */}
+      {preview.mode === 'unitgroup' && <UnitGroup />}
 
       <div className="acms-admin-tabs">
         <PreviewModeNavigator />
@@ -44,16 +51,20 @@ function CustomFieldMaker() {
               {preview.editMode === 'source' && (
                 <Highlighter onHighlight={onSource}>
                   <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                    {(preview.mode === 'customfield' || preview.mode === 'unit') && <FieldSource />}
-                    {(preview.mode === 'fieldgroup' || preview.mode === 'unitgroup') && <FieldGroupSource />}
+                    {preview.mode === 'customfield' && <FieldSource />}
+                    {preview.mode === 'fieldgroup' && <FieldGroupSource />}
+                    {preview.mode === 'customunit' && <UnitSource />}
+                    {preview.mode === 'unitgroup' && <UnitGroupSource />}
                   </MakerContextProvider>
                 </Highlighter>
               )}
 
               {preview.editMode === 'preview' && (
                 <>
-                  {(preview.mode === 'customfield' || preview.mode === 'customunit') && <FieldSource />}
-                  {(preview.mode === 'fieldgroup' || preview.mode === 'unitgroup') && <FieldGroupSource />}
+                  {preview.mode === 'customfield' && <FieldSource />}
+                  {preview.mode === 'fieldgroup' && <FieldGroupSource />}
+                  {preview.mode === 'customunit' && <UnitSource />}
+                  {preview.mode === 'unitgroup' && <UnitGroupSource />}
                 </>
               )}
 
