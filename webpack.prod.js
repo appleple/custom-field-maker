@@ -1,9 +1,12 @@
+// webpack.prod.js
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  cache: true,
+  cache: {
+    type: 'filesystem', // Webpack 5では推奨される方法
+  },
   stats: {
     children: true,
   },
@@ -29,7 +32,11 @@ module.exports = {
     filename: 'bundle.js',
     chunkFilename: `bundle.chunk.js?date=${new Date().getTime()}`,
     publicPath: '/',
+<<<<<<< HEAD
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+    clean: true, // ビルド時に dist フォルダをクリーンアップ
+>>>>>>> 6a88af4 (依存関係の整理)
   },
   resolve: {
     modules: ['node_modules'],
@@ -46,10 +53,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(jpg|png|svg)$/,
+<<<<<<< HEAD
 <<<<<<< HEAD
         type: 'asset',
 =======
@@ -57,6 +65,9 @@ module.exports = {
           loader: 'url-loader',
         },
 >>>>>>> da80202 (pretteir の設定 & node のバージョンアップ)
+=======
+        type: 'asset', // Webpack 5 の Asset Modules を使用
+>>>>>>> 6a88af4 (依存関係の整理)
       },
     ],
   },

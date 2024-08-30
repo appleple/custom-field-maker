@@ -1,5 +1,7 @@
+// webpack.dev.js
 const path = require('path');
 const { merge } = require('webpack-merge');
+<<<<<<< HEAD
 <<<<<<< HEAD
 const prod = require('./webpack.prod.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -16,13 +18,16 @@ module.exports = merge(prod, {
 =======
 const webpack = require('webpack');
 const prodConfig = require('./webpack.prod.js');
+=======
+>>>>>>> 6a88af4 (依存関係の整理)
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ESLintPlugin = require('eslint-webpack-plugin');
+const prodConfig = require('./webpack.prod.js');
 
 module.exports = merge(prodConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
 =======
@@ -35,6 +40,11 @@ module.exports = merge(prodConfig, {
         directory: path.resolve(__dirname, ''),
       },
     ],
+=======
+    static: {
+      directory: path.resolve(__dirname, ''),
+    },
+>>>>>>> 6a88af4 (依存関係の整理)
     open: false,
     hot: true,
 <<<<<<< HEAD
@@ -46,6 +56,7 @@ module.exports = merge(prodConfig, {
       template: './example/index.html',
       filename: 'index.html',
     }),
+<<<<<<< HEAD
     // new ESLintPlugin({
     //   extensions: ['js', 'jsx'],
     //   overrideConfig: {
@@ -69,6 +80,8 @@ module.exports = merge(prodConfig, {
 <<<<<<< HEAD
     )
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
+=======
+>>>>>>> 6a88af4 (依存関係の整理)
   ],
 =======
     ),
