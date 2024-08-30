@@ -47,56 +47,57 @@ export function OptionItem(props) {
     <div>
       <table className="acms-admin-table customFieldOptionTable">
         <tbody>
-          {option.map((item, idx) => (
-            <tr key={idx}>
-              <td>
-                <div className="customFieldOptionTableInput">
-                  <span className="customFieldOptionTableAppend">項目名（label）</span>
-                  <input
-                    type="text"
-                    defaultValue={item.label}
-                    onInput={(e) => {
-                      const value = e.target.value;
-                      if (!value) return;
-                      updateOptionLabel(idx, value);
-                    }}
-                    className="acms-admin-form-width-full"
-                    placeholder="例）東京都"
-                  />
-                </div>
-              </td>
-              <td>
-                <div className="customFieldOptionTableInput">
-                  <span className="customFieldOptionTableAppend">値（value）</span>
-                  <input
-                    type="text"
-                    defaultValue={item.value}
-                    onInput={(e) => {
-                      const value = e.target.value;
-                      if (!value) return;
-                      updateOptionValue(idx, value);
-                    }}
-                    className="acms-admin-form-width-full"
-                    style={{
-                      minWidth: '200px',
-                    }}
-                    placeholder="例）tokyo"
-                  />
-                </div>
-              </td>
-              {add && (
+          {option &&
+            option.map((item, idx) => (
+              <tr key={idx}>
                 <td>
-                  <button
-                    type="button"
-                    className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
-                    onClick={() => removeOption(idx)}
-                  >
-                    削除
-                  </button>
+                  <div className="customFieldOptionTableInput">
+                    <span className="customFieldOptionTableAppend">項目名（label）</span>
+                    <input
+                      type="text"
+                      defaultValue={item.label}
+                      onInput={(e) => {
+                        const value = e.target.value;
+                        if (!value) return;
+                        updateOptionLabel(idx, value);
+                      }}
+                      className="acms-admin-form-width-full"
+                      placeholder="例）東京都"
+                    />
+                  </div>
                 </td>
-              )}
-            </tr>
-          ))}
+                <td>
+                  <div className="customFieldOptionTableInput">
+                    <span className="customFieldOptionTableAppend">値（value）</span>
+                    <input
+                      type="text"
+                      defaultValue={item.value}
+                      onInput={(e) => {
+                        const value = e.target.value;
+                        if (!value) return;
+                        updateOptionValue(idx, value);
+                      }}
+                      className="acms-admin-form-width-full"
+                      style={{
+                        minWidth: '200px',
+                      }}
+                      placeholder="例）tokyo"
+                    />
+                  </div>
+                </td>
+                {add && (
+                  <td>
+                    <button
+                      type="button"
+                      className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
+                      onClick={() => removeOption(idx)}
+                    >
+                      削除
+                    </button>
+                  </td>
+                )}
+              </tr>
+            ))}
         </tbody>
       </table>
       {add && (

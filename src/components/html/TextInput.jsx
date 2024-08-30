@@ -32,7 +32,7 @@ export function TextInput(props) {
       )}
 
       {mode === 'fieldgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <input
             type={selectedType}
             name={`${item.name}[]`}
@@ -43,7 +43,7 @@ export function TextInput(props) {
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
           <OptionValidator item={item} />
-        </WrapTable>
+        </>
       )}
 
       {mode === 'customunit' && (

@@ -36,7 +36,7 @@ export function Selectbox(props) {
       )}
 
       {mode === 'fieldgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <select id={id} name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
             <option value="" />
             {item.option.map((option, index) => {
@@ -55,7 +55,7 @@ export function Selectbox(props) {
             })}
           </select>
           <OptionValidator item={item} />
-        </WrapTable>
+        </>
       )}
 
       {mode === 'customunit' && (

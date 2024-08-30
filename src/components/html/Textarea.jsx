@@ -31,12 +31,12 @@ export function Textarea(props) {
       )}
 
       {mode === 'fieldgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <textarea id={id} name={`${item.name}[]`} className={classname}>
             {isValue && `{${item.name}}`}
           </textarea>
           <OptionValidator item={item} />
-        </WrapTable>
+        </>
       )}
 
       {mode === 'customunit' && (

@@ -42,7 +42,7 @@ export function RadioButton(props) {
       )}
 
       {mode === 'fieldgroup' && (
-        <WrapTable title={item.title}>
+        <>
           {item.option.map((option, index) => {
             if (!option.label) {
               return null;
@@ -66,7 +66,7 @@ export function RadioButton(props) {
             );
           })}
           <OptionValidator item={item} />
-        </WrapTable>
+        </>
       )}
 
       {mode === 'customunit' && (

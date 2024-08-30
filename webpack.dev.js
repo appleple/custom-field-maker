@@ -35,7 +35,7 @@ module.exports = merge(prodConfig, {
         directory: path.resolve(__dirname, ''),
       },
     ],
-    open: true,
+    open: false,
     hot: true,
 <<<<<<< HEAD
 <<<<<<< HEAD

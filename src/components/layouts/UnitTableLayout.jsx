@@ -15,7 +15,7 @@ import { useMakerContext } from '../../store/MakerContext';
 
 export function UnitTableLayout() {
   const {
-    state: { customfield },
+    state: { customunit },
     preview: { jsValidator, acmscss },
   } = useMakerContext();
 
@@ -23,8 +23,8 @@ export function UnitTableLayout() {
     <>
       {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
       <table className={classnames({ 'acms-admin-table-admin-edit': acmscss })}>
-        {customfield.length > 0 &&
-          customfield.map((item, index) => {
+        {customunit.length > 0 &&
+          customunit.map((item, index) => {
             switch (item.type) {
               case 'text': {
                 return (

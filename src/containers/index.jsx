@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MakerContextProvider, useMakerContext } from '../store/MakerContext';
 import { EditorModeNavigator } from '../components/navigator/EditorModeNavigator';
 import { PreviewModeNavigator } from '../components/navigator/PreviewModeNavigator';
@@ -12,6 +12,9 @@ import { FieldGroupSource } from '../components/FieldGroupSource';
 import { UnitSource } from '../components/UnitSource';
 import { UnitGroupSource } from '../components/UnitGroupSource';
 import { FieldConfirmSource } from '../components/FieldConfirmSource';
+import { FieldGroupConfirmSource } from '../components/FieldGroupConfirmSource';
+import { UnitConfirmSource } from '../components/UnitConfirmSource';
+import { UnitGroupConfirmSource } from '../components/UnitGroupConfirmSource';
 import { Highlighter } from '../components/Highlighter';
 import { XmlEntities } from 'html-entities';
 
@@ -26,11 +29,6 @@ function CustomFieldMaker() {
       setSource(decodedHtml);
     }
   };
-
-  useEffect(() => {
-    console.log(state.customunit);
-    console.log(preview.mode);
-  }, [state.customunit, preview.mode]);
 
   return (
     <div className="acms-admin-form">
@@ -71,8 +69,10 @@ function CustomFieldMaker() {
               {preview.editMode === 'confirm' && (
                 <Highlighter onHighlight={onSource}>
                   <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                    {(preview.mode === 'customfield' || preview.mode === 'customunit') && <FieldConfirmSource />}
-                    {/* {(preview.mode === 'fieldgroup' || preview.mode === 'unitgroup') && <FieldGroupConfurmSource />} */}
+                    {preview.mode === 'customfield' && <FieldConfirmSource />}
+                    {preview.mode === 'fieldgroup' && <FieldGroupConfirmSource />}
+                    {preview.mode === 'customunit' && <UnitConfirmSource />}
+                    {preview.mode === 'unitgroup' && <UnitGroupConfirmSource />}
                   </MakerContextProvider>
                 </Highlighter>
               )}

@@ -54,10 +54,12 @@ export function PreviewNavigator() {
         </div>
       )}
 
-      <select id="tag" onChange={(e) => updateTag(e.target.value)} className="acms-admin-form-width-quarter">
-        <option value="section">--</option>
-        <option value="table">table</option>
-      </select>
+      {editMode !== 'confirm' && (
+        <select id="tag" onChange={(e) => updateTag(e.target.value)} className="acms-admin-form-width-quarter">
+          <option value="section">--</option>
+          <option value="table">table</option>
+        </select>
+      )}
 
       {tag === 'table' && (mode === 'fieldgroup' || mode === 'unitgroup') && (
         <div style={{ marginTop: '5px' }}>
@@ -117,47 +119,37 @@ export function PreviewNavigator() {
         </div>
       )}
 
-      {mode === 'customfield' && (
-        <button
-          onClick={() => clearCustomfield()}
-          className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
-        >
-          履歴クリア
-        </button>
-      )}
-      {mode === 'fieldgroup' && (
-        <button
-          onClick={() => clearGroupItem()}
-          className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
-        >
-          履歴クリア
-        </button>
-      )}
-      {mode === 'customunit' && (
-        <button
-          onClick={() => clearCustomunit()}
-          className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
-        >
-          履歴クリア
-        </button>
-      )}
-      {mode === 'unitgroup' && (
-        <button
-          onClick={() => clearUnitGroupItem()}
-          className="acms-admin-btn-admin acms-admin-btn-admin-danger acms-admin-float-right"
-        >
-          履歴クリア
-        </button>
-      )}
+      <div>
+        {editMode !== 'preview' && (
+          <div style={{ display: 'inline-block', position: 'relative', marginRight: '10px' }}>
+            <CopyToClipboard text={source} onCopy={() => setCopied(true)}>
+              <button className="acms-admin-btn-admin">コードをコピー</button>
+            </CopyToClipboard>
+            <Notify message="クリップボードにコピーしました" onFinish={() => setCopied(false)} />
+          </div>
+        )}
 
-      {editMode !== 'preview' && (
-        <div style={{ display: 'inline-block', position: 'relative', float: 'right', marginRight: '10px' }}>
-          <CopyToClipboard text={source} onCopy={() => setCopied(true)}>
-            <button className="acms-admin-btn-admin">コードをコピー</button>
-          </CopyToClipboard>
-          <Notify message="クリップボードにコピーしました" onFinish={() => setCopied(false)} />
-        </div>
-      )}
+        {mode === 'customfield' && (
+          <button onClick={() => clearCustomfield()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+            履歴クリア
+          </button>
+        )}
+        {mode === 'fieldgroup' && (
+          <button onClick={() => clearGroupItem()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+            履歴クリア
+          </button>
+        )}
+        {mode === 'customunit' && (
+          <button onClick={() => clearCustomunit()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+            履歴クリア
+          </button>
+        )}
+        {mode === 'unitgroup' && (
+          <button onClick={() => clearUnitGroupItem()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+            履歴クリア
+          </button>
+        )}
+      </div>
     </>
   );
 }

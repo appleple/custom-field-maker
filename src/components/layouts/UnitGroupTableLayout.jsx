@@ -13,13 +13,13 @@ import { useMakerContext } from '../../store/MakerContext';
 
 export function UnitGroupTableLayout() {
   const {
-    state: { fieldgroup },
+    state: { unitgroup },
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
   const tableRef = useRef();
 
   const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
-  const groupLength = fieldgroup.items.length;
+  const groupLength = unitgroup.items.length;
 
   const wrapTable = (children, title) => {
     return (
@@ -39,11 +39,11 @@ export function UnitGroupTableLayout() {
 
   return (
     <>
-      {fieldgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{fieldgroup.title}</h2>}
-      {fieldgroup.name && (
+      {unitgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{unitgroup.title}</h2>}
+      {unitgroup.name && (
         <>
           <table
-            className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}
+            className={classnames('js-unitgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}
             ref={tableRef}
           >
             <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
@@ -55,8 +55,8 @@ export function UnitGroupTableLayout() {
                 </th>
                 {direction === 'horizontal' && (
                   <>
-                    {fieldgroup &&
-                      fieldgroup.items.map((item, index) => (
+                    {unitgroup &&
+                      unitgroup.items.map((item, index) => (
                         <th key={index} className={classnames({ 'acms-admin-table-left': acmscss })}>
                           {item.title}
                           {item.tooltip && (
@@ -75,7 +75,7 @@ export function UnitGroupTableLayout() {
             </thead>
 
             <tbody>
-              {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
+              {editMode === 'preview' ? null : `<!-- BEGIN ${unitgroup.name}:loop -->`}
               <tr className="sortable-item">
                 <td className="item-handle acms-admin-table-nowrap">
                   {acmscss && <i className="acms-admin-icon-sort" />}
@@ -90,7 +90,7 @@ export function UnitGroupTableLayout() {
                   )}
                 >
                   <>
-                    {fieldgroup.items.map((item, index) => {
+                    {unitgroup.items.map((item, index) => {
                       switch (item.type) {
                         case 'text': {
                           return wrapTable(
@@ -198,7 +198,7 @@ export function UnitGroupTableLayout() {
                 </td>
               </tr>
 
-              {editMode === 'preview' ? null : `<!-- END ${fieldgroup.name}:loop -->`}
+              {editMode === 'preview' ? null : `<!-- END ${unitgroup.name}:loop -->`}
 
               {editMode === 'preview' ? null : (
                 <>
@@ -215,7 +215,7 @@ export function UnitGroupTableLayout() {
                       )}
                     >
                       <>
-                        {fieldgroup.items.map((item, index) => {
+                        {unitgroup.items.map((item, index) => {
                           switch (item.type) {
                             case 'text': {
                               return wrapTable(
@@ -325,51 +325,51 @@ export function UnitGroupTableLayout() {
         </>
       )}
 
-      {fieldgroup.name && (
+      {unitgroup.name && (
         <>
-          {fieldgroup.items.map((item) => (
+          {unitgroup.items.map((item) => (
             <>
               {item.type === 'image' && (
                 <>
                   {item.square && (
                     <>
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squarePath`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squareAlt`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squareX`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squareY`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squarePath`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squareAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squareX`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squareY`} />
                     </>
                   )}
                   {item.large && (
                     <>
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largePath`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largeAlt`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largeX`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@largeY`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largePath`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largeAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largeX`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largeY`} />
                     </>
                   )}
                   {item.tiny && (
                     <>
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyPath`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyAlt`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyX`} />
-                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@tinyY`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyPath`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyX`} />
+                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyY`} />
                     </>
                   )}
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@path`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@alt`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@x`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@y`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@path`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@alt`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@x`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@y`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@edit`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@old`} />
                   <input type="hidden" name={`${item.name}:extension`} value="image" />
                 </>
               )}
               {item.type === 'file' && (
                 <>
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@path`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@alt`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
-                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@path`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@alt`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@edit`} />
+                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@old`} />
                   <input type="hidden" name={`${item.name}:extension`} value="file" />
                 </>
               )}
@@ -377,7 +377,7 @@ export function UnitGroupTableLayout() {
               {item.type === 'rich-editor' && (
                 <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
               )}
-              <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
+              <input type="hidden" name={`@${unitgroup.name}[]`} value={item.name} />
               <input type="hidden" name="field[]" value={item.name} />
               {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
               {item.validator.map((validator, index) => {
@@ -401,7 +401,7 @@ export function UnitGroupTableLayout() {
               })()}
             </>
           ))}
-          <input type="hidden" name="field[]" value={`@${fieldgroup.name}`} />
+          <input type="hidden" name="field[]" value={`@${unitgroup.name}`} />
         </>
       )}
     </>

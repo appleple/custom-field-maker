@@ -42,43 +42,41 @@ export function RichEditor(props) {
       )}
 
       {mode === 'fieldgroup' && (
-        <WrapTable title={item.title}>
-          <ConditionalWrap
-            condition={item.useExpand}
-            wrap={(children) => (
-              <div className="js-expand js-acms-expand">
-                <div className="js-acms-expand-inner">
-                  <button className="js-expand-btn js-acms-expand-btn" type="button">
-                    <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
-                  </button>
-                  {children}
-                </div>
+        <ConditionalWrap
+          condition={item.useExpand}
+          wrap={(children) => (
+            <div className="js-expand js-acms-expand">
+              <div className="js-acms-expand-inner">
+                <button className="js-expand-btn js-acms-expand-btn" type="button">
+                  <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                </button>
+                {children}
               </div>
-            )}
-          >
-            <div
-              className="js-smartblock"
-              data-heading-start={item.startHeadingLevel}
-              data-heading-end={item.endHeadingLevel}
-            >
-              <div className="js-smartblock-edit" />
-              {isValue ? (
-                <>
-                  <input
-                    id={id}
-                    className="js-smartblock-body"
-                    type="hidden"
-                    name={`${item.name}[]`}
-                    value={`{${item.name}@html}`}
-                  />
-                  <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
-                </>
-              ) : (
-                <input id={id} className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value="" />
-              )}
             </div>
-          </ConditionalWrap>
-        </WrapTable>
+          )}
+        >
+          <div
+            className="js-smartblock"
+            data-heading-start={item.startHeadingLevel}
+            data-heading-end={item.endHeadingLevel}
+          >
+            <div className="js-smartblock-edit" />
+            {isValue ? (
+              <>
+                <input
+                  id={id}
+                  className="js-smartblock-body"
+                  type="hidden"
+                  name={`${item.name}[]`}
+                  value={`{${item.name}@html}`}
+                />
+                <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
+              </>
+            ) : (
+              <input id={id} className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value="" />
+            )}
+          </div>
+        </ConditionalWrap>
       )}
 
       {mode === 'customunit' && (

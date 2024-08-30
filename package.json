@@ -89,7 +89,6 @@
     "@reduxjs/toolkit": "^2.2.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "axios": "^0.18.1",
     "classnames": "^2.2.5",
     "clone": "^2.1.1",
     "highlight.js": "~9.13.1",

@@ -34,7 +34,7 @@ export function Table(props) {
       )}
 
       {mode === 'fieldgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <div className="js-editable-table-field">
             <div className="js-editable-table">
               {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
@@ -62,7 +62,7 @@ export function Table(props) {
               />
             </div>
           </div>
-        </WrapTable>
+        </>
       )}
 
       {mode === 'customunit' && (
