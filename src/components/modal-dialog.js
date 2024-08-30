@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 
 export default class ModalDialog extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      show: false
-    }
+      show: false,
+    };
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     if (props.open) {
       setTimeout(() => {
         this.setState({
-          show: true
+          show: true,
         });
       }, 1);
     }
@@ -23,8 +22,8 @@ export default class ModalDialog extends Component {
   hideDialog() {
     const { onClose } = this.props;
     this.setState({
-      show: false
-    })
+      show: false,
+    });
     if (onClose) {
       setTimeout(() => {
         onClose();
@@ -43,7 +42,7 @@ export default class ModalDialog extends Component {
     }
 
     return (
-      <div className={classnames("acms-admin-modal", {"in": show})} id="converter" style={style}>
+      <div className={classnames('acms-admin-modal', { in: show })} id="converter" style={style}>
         <div className="acms-admin-modal-dialog">
           <div className="acms-admin-modal-content">
             <div className="acms-admin-modal-header">
@@ -51,13 +50,11 @@ export default class ModalDialog extends Component {
               <h3>{title}</h3>
             </div>
             <div className="acms-admin-modal-body">
-              <div className="acms-admin-padding-small clearfix">
-                {children}
-              </div>
+              <div className="acms-admin-padding-small clearfix">{children}</div>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

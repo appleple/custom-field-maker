@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { XmlEntities } from 'html-entities';
+import { encode } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
-import hljs from 'highlight.js/lib/highlight';
+import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/default.css';
 import 'highlight.js/styles/xcode.css';
 import xml from 'highlight.js/lib/languages/xml';
 hljs.registerLanguage('xml', xml);
 
-const entities = new XmlEntities();
-
 export default class Highlighter extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      source: ''
+      source: '',
     };
   }
 
@@ -35,18 +32,18 @@ export default class Highlighter extends Component {
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
     html = html.replace(/&lt;/g, '<');
     html = html.replace(/&gt;/g, '>');
-    this.code.innerHTML = entities.encode(beautifyHtml(html, {
+    const code = beautifyHtml(html, {
       unformatted: ['code', 'pre'],
       indent_inner_html: true,
       indent_char: ' ',
       indent_size: 2,
-      sep: '\n'
-    }));
-    hljs.highlightBlock(this.code);
-    if (source !== this.code.innerText && this.props.onSourceGenerated) {
-      this.props.onSourceGenerated(this.code.innerText);
+      eol: '\n',
+    })
+    const { value = '', code: rawCode = '' } = hljs.highlight(code, { language: 'xml' });
+    if (source !== value && this.props.onSourceGenerated) {
+      this.props.onSourceGenerated(rawCode);
       this.setState({
-        source: this.code.innerText
+        source: value,
       });
     }
   }
@@ -60,7 +57,10 @@ export default class Highlighter extends Component {
     return (
       <div>
         <pre className="acms-admin-customfield-maker">
-          <code className="html" ref={(code) => { this.code = code; }} />
+          <code
+            className="html hljs"
+            dangerouslySetInnerHTML={{ __html: this.state.source }}
+          />
         </pre>
       </div>
     );

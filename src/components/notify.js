@@ -2,25 +2,24 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 
 export default class Notify extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      show: false
-    }
+      show: false,
+    };
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     const { onFinish } = this.props;
     if (props.show === true) {
       setTimeout(() => {
         this.setState({
-          active: true
-        })
-      },1);
+          active: true,
+        });
+      }, 1);
       setTimeout(() => {
         this.setState({
-          active: false
+          active: false,
         });
       }, 800);
       setTimeout(() => {
@@ -37,6 +36,6 @@ export default class Notify extends Component {
     if (!show) {
       return null;
     }
-    return (<div className={classnames('customFieldCopied', {active})}>{message}</div>)
+    return <div className={classnames('customFieldCopied', { active })}>{message}</div>;
   }
 }

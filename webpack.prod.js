@@ -7,7 +7,7 @@ module.exports = {
     children: true,
   },
   entry: {
-    index: './example/index.js',
+    index: './example/src/index.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -36,10 +36,8 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|svg)$/,
-        use: {
-          loader: 'url-loader'
-        }
-      }
+        type: 'asset/resource',
+      },
     ],
   }
 };

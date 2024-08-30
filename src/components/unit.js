@@ -2,7 +2,6 @@ import React from 'react';
 import Base from './base';
 
 export default class Unit extends Base {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -16,15 +15,19 @@ export default class Unit extends Base {
       converter: '',
       normal: 'size',
       resize: 'true',
-      option: [{
-        value: '',
-        label: ''
-      }],
-      validator: [{
-        option: '',
-        value: '',
-        message: ''
-      }],
+      option: [
+        {
+          value: '',
+          label: '',
+        },
+      ],
+      validator: [
+        {
+          option: '',
+          value: '',
+          message: '',
+        },
+      ],
       optionFormat: 'pref',
       openValidator: false,
       openConverter: false,
@@ -40,7 +43,7 @@ export default class Unit extends Base {
       focusImageHeight: 400,
       startHeadingLevel: 2,
       endHeadingLevel: 3,
-      mediaType: 'image'
+      mediaType: 'image',
     };
   }
 
@@ -51,7 +54,7 @@ export default class Unit extends Base {
       actions.addCustomUnit(this.state);
     } else {
       this.setState({
-        alert: true
+        alert: true,
       });
     }
   }
@@ -60,7 +63,14 @@ export default class Unit extends Base {
     const { type } = this.state;
 
     return (
-      <select id="type" value={type} className="acms-admin-form-width-full" onChange={(e) => { this.updateState('type', e.target.value); }}>
+      <select
+        id="type"
+        value={type}
+        className="acms-admin-form-width-full"
+        onChange={(e) => {
+          this.updateState('type', e.target.value);
+        }}
+      >
         <option value="text">テキスト</option>
         <option value="textarea">テキストエリア</option>
         <option value="lite-editor">インラインエディター</option>
@@ -72,7 +82,8 @@ export default class Unit extends Base {
         <option value="media">メディア</option>
         <option value="image">画像</option>
         <option value="file">ファイル</option>
-      </select>);
+      </select>
+    );
   }
 
   render() {
@@ -85,49 +96,37 @@ export default class Unit extends Base {
           {this.renderAlert()}
           {this.renderBasic()}
           <div className="customFieldLine" />
-          {type === 'select' &&
+          {type === 'select' && (
             <div>
               {this.renderSnippet()}
               {this.renderOption()}
             </div>
-          }
-          {type === 'radio' &&
+          )}
+          {type === 'radio' && (
             <div>
               {this.renderSnippet()}
               {this.renderOption()}
             </div>
-          }
-          {type === 'checkbox' &&
+          )}
+          {type === 'checkbox' && (
             <div>
               {this.renderSnippet()}
               {this.renderOption()}
             </div>
-          }
-          {type === 'image' &&
+          )}
+          {type === 'image' && (
             <div>
               {this.renderImage()}
               {this.renderImageResize()}
             </div>
-          }
-          {type === 'file' &&
-            <div>
-              {this.renderFile()}
-            </div>
-          }
-          {type === 'media' &&
-            <div>
-              {this.renderMediaOption()}
-            </div>
-          }
-          {
-            type === 'rich-editor' &&
-            <div>
-              {this.renderRichEditorOption()}
-            </div>
-          }
+          )}
+          {type === 'file' && <div>{this.renderFile()}</div>}
+          {type === 'media' && <div>{this.renderMediaOption()}</div>}
+          {type === 'rich-editor' && <div>{this.renderRichEditorOption()}</div>}
           {this.renderValidator(false)}
           {this.renderMake()}
         </div>
-      </div>);
+      </div>
+    );
   }
 }
