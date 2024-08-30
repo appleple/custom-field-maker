@@ -28,7 +28,7 @@ export function UnitTableLayoutConfirm() {
               <td>{`{${item.name}}[escape|nl2br]`}</td>
             </tr>
           );
-        } else if (item.type === 'select') {
+        } else if (item.type === 'selectbox') {
           return (
             <tr key={index}>
               <th>{item.title}</th>
@@ -43,7 +43,7 @@ export function UnitTableLayoutConfirm() {
               </td>
             </tr>
           );
-        } else if (item.type === 'radio') {
+        } else if (item.type === 'radioButton') {
           return (
             <tr key={index}>
               <th>{item.title}</th>
@@ -153,14 +153,14 @@ export function UnitTableLayoutConfirm() {
               </td>
             </tr>
           );
-        } else if (item.type === 'rich-editor') {
+        } else if (item.type === 'richEditor') {
           return (
             <tr key={index}>
               <th>{item.title}</th>
               <td>{`{${item.name}@html}[raw]`}</td>
             </tr>
           );
-        } else if (item.type === 'lite-editor') {
+        } else if (item.type === 'liteEditor') {
           return (
             <tr key={index}>
               <th>{item.title}</th>

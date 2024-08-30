@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
-import { WrapTable } from './WrapTable';
 
 export function TextInput(props) {
   const { item, id = '', isValue = true } = props;
@@ -20,12 +19,12 @@ export function TextInput(props) {
             id={id}
             type={selectedType}
             name={item.name}
-            value={`{${item.name}}`}
+            defaultValue={`{${item.name}}`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
             {...(jsValidator ? { 'data-validator': item.name } : {})}
           />
-          <input type="hidden" name="field[]" value={item.name} />
+          <input type="hidden" name="field[]" defaultValue={item.name} />
           <OptionValidator item={item} />
           <OptionNoSearch name={item.name} noSearch={item.noSearch} />
         </>
@@ -60,16 +59,14 @@ export function TextInput(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.title}>
-          <input
-            type={selectedType}
-            name={`${item.name}{id}[]`}
-            {...(isValue && {
-              value: `{${item.name}}`,
-            })}
-            className={classnames({ 'acms-admin-form-width-full': acmscss })}
-          />
-        </WrapTable>
+        <input
+          type={selectedType}
+          name={`${item.name}{id}[]`}
+          {...(isValue && {
+            value: `{${item.name}}`,
+          })}
+          className={classnames({ 'acms-admin-form-width-full': acmscss })}
+        />
       )}
     </>
   );

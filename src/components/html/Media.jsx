@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
-import { WrapTable } from './WrapTable';
 
 export function Media(props) {
   const { item, id, isValue = true } = props;
@@ -340,7 +339,7 @@ export function Media(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.table}>
+        <>
           <div className="js-media-field">
             {!item.useDropArea && (
               <>
@@ -448,7 +447,7 @@ export function Media(props) {
             />
             <OptionValidator item={item} />
           </div>
-        </WrapTable>
+        </>
       )}
     </>
   );

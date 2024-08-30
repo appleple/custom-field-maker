@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
-import { WrapTable } from './WrapTable';
 
 export function Selectbox(props) {
   const { item, id = '', isSelected = true } = props;
@@ -79,27 +78,25 @@ export function Selectbox(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.table}>
-          <select name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
-            <option value="" />
-            {item.option.map((option, index) => {
-              if (!option.label) {
-                return null;
-              }
-              return (
-                <option
-                  key={index}
-                  value={option.value}
-                  {...(isSelected && {
-                    'data-tmp': `{${item.name}:selected#${option.value}}`,
-                  })}
-                >
-                  {option.label}
-                </option>
-              );
-            })}
-          </select>
-        </WrapTable>
+        <select name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+          <option value="" />
+          {item.option.map((option, index) => {
+            if (!option.label) {
+              return null;
+            }
+            return (
+              <option
+                key={index}
+                value={option.value}
+                {...(isSelected && {
+                  'data-tmp': `{${item.name}:selected#${option.value}}`,
+                })}
+              >
+                {option.label}
+              </option>
+            );
+          })}
+        </select>
       )}
     </>
   );

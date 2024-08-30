@@ -23112,24 +23112,6 @@
         );
       }
       function qi(t) {
-        const { children: n, title: a } = t,
-          {
-            preview: { direction: r },
-          } = u(),
-          l = (e) => {
-            let { condition: t, wrap: n, children: a } = e;
-            return t ? n(a) : a;
-          };
-        return e.createElement(
-          l,
-          {
-            condition: 'vertical' === r,
-            wrap: (t) => e.createElement('table', null, e.createElement('tr', null, e.createElement('th', null, a), t)),
-          },
-          n
-        );
-      }
-      function Vi(t) {
         const { item: n, id: a = '', isValue: r = !0 } = t,
           {
             preview: { mode: l, jsValidator: i, acmscss: o },
@@ -23149,14 +23131,14 @@
                     id: a,
                     type: c,
                     name: n.name,
-                    value: '{'.concat(n.name, '}'),
+                    defaultValue: '{'.concat(n.name, '}'),
                     className: p()({ 'acms-admin-form-width-full': o }),
                   },
                   n.placeholder ? { placeholder: n.placeholder } : {},
                   i ? { 'data-validator': n.name } : {}
                 )
               ),
-              e.createElement('input', { type: 'hidden', name: 'field[]', value: n.name }),
+              e.createElement('input', { type: 'hidden', name: 'field[]', defaultValue: n.name }),
               e.createElement(Mi, { item: n }),
               e.createElement(Bi, { name: n.name, noSearch: n.noSearch })
             ),
@@ -23195,18 +23177,14 @@
             ),
           'unitgroup' === l &&
             e.createElement(
-              qi,
-              { title: n.title },
-              e.createElement(
-                'input',
-                zi({ type: c, name: ''.concat(n.name, '{id}[]') }, r && { value: '{'.concat(n.name, '}') }, {
-                  className: p()({ 'acms-admin-form-width-full': o }),
-                })
-              )
+              'input',
+              zi({ type: c, name: ''.concat(n.name, '{id}[]') }, r && { value: '{'.concat(n.name, '}') }, {
+                className: p()({ 'acms-admin-form-width-full': o }),
+              })
             )
         );
       }
-      function Ui(t) {
+      function Vi(t) {
         const { item: n, id: a = '', isValue: r = !0 } = t,
           {
             preview: { mode: l, jsValidator: i, acmscss: o },
@@ -23225,7 +23203,7 @@
                 zi({ id: a, name: n.name, className: s }, i ? { 'data-validator': n.name } : {}),
                 '{'.concat(n.name, '}')
               ),
-              e.createElement('input', { type: 'hidden', name: 'field[]', value: n.name })
+              e.createElement('input', { type: 'hidden', name: 'field[]', defaultValue: n.name })
             ),
           'fieldgroup' === l &&
             e.createElement(
@@ -23252,8 +23230,8 @@
             ),
           'unitgroup' === l &&
             e.createElement(
-              qi,
-              { title: n.title },
+              e.Fragment,
+              null,
               e.createElement(
                 'textarea',
                 { id: a, name: ''.concat(n.name, '{id}[]'), className: s },
@@ -23263,7 +23241,7 @@
             )
         );
       }
-      function Hi(t) {
+      function Ui(t) {
         const { item: n, id: a = '', isSelected: r = !0 } = t,
           {
             preview: { mode: l, acmscss: i },
@@ -23340,29 +23318,25 @@
             ),
           'unitgroup' === l &&
             e.createElement(
-              qi,
-              { title: n.table },
-              e.createElement(
-                'select',
-                { name: ''.concat(n.name, '{id}[]'), className: p()({ 'acms-admin-form-width-full': i }) },
-                e.createElement('option', { value: '' }),
-                n.option.map((t, a) =>
-                  t.label
-                    ? e.createElement(
-                        'option',
-                        zi(
-                          { key: a, value: t.value },
-                          r && { 'data-tmp': '{'.concat(n.name, ':selected#').concat(t.value, '}') }
-                        ),
-                        t.label
-                      )
-                    : null
-                )
+              'select',
+              { name: ''.concat(n.name, '{id}[]'), className: p()({ 'acms-admin-form-width-full': i }) },
+              e.createElement('option', { value: '' }),
+              n.option.map((t, a) =>
+                t.label
+                  ? e.createElement(
+                      'option',
+                      zi(
+                        { key: a, value: t.value },
+                        r && { 'data-tmp': '{'.concat(n.name, ':selected#').concat(t.value, '}') }
+                      ),
+                      t.label
+                    )
+                  : null
               )
             )
         );
       }
-      function Ki(t) {
+      function Hi(t) {
         const { item: n, isChecked: a = !0 } = t,
           {
             preview: { mode: r, acmscss: l },
@@ -23457,8 +23431,8 @@
             ),
           'unitgroup' === r &&
             e.createElement(
-              qi,
-              { title: n.title },
+              e.Fragment,
+              null,
               n.option.map((t, r) =>
                 t.label
                   ? e.createElement(
@@ -23485,7 +23459,7 @@
             )
         );
       }
-      function Gi(t) {
+      function Ki(t) {
         const { item: n, isChecked: a = !0 } = t,
           {
             preview: { mode: r, acmscss: l },
@@ -23580,8 +23554,8 @@
             ),
           'unitgroup' === r &&
             e.createElement(
-              qi,
-              { title: n.title },
+              e.Fragment,
+              null,
               n.option.map((t, r) =>
                 t.label
                   ? e.createElement(
@@ -23608,7 +23582,7 @@
             )
         );
       }
-      function Wi(t) {
+      function Gi(t) {
         const { item: n, id: a, isValue: r = !0 } = t,
           {
             preview: { acmscss: l, editMode: i, mode: o },
@@ -24009,8 +23983,8 @@
             ),
           'unitgroup' === o &&
             e.createElement(
-              qi,
-              { title: n.table },
+              e.Fragment,
+              null,
               e.createElement(
                 'div',
                 { className: 'js-media-field' },
@@ -24147,7 +24121,7 @@
             )
         );
       }
-      function $i(t) {
+      function Wi(t) {
         const { item: n, id: a, isAttribute: r = !0 } = t,
           {
             preview: { acmscss: l, editMode: i, mode: o },
@@ -24434,8 +24408,8 @@
               ),
             'unitgroup' === o &&
               e.createElement(
-                qi,
-                { title: n.title },
+                e.Fragment,
+                null,
                 e.createElement(
                   'div',
                   { className: p()({ 'js-img_resize_cf': n.resize }) },
@@ -24535,7 +24509,7 @@
           )
         );
       }
-      function Xi(t) {
+      function $i(t) {
         const { item: n, id: a, isValue: r = !0 } = t,
           {
             preview: { acmscss: l, editMode: i, mode: o },
@@ -24821,7 +24795,7 @@
           )
         );
       }
-      function Yi(t) {
+      function Xi(t) {
         const { item: n, id: a = '', isValue: r = !0 } = t,
           {
             preview: { mode: l },
@@ -24982,8 +24956,8 @@
             ),
           'unitgroup' === l &&
             e.createElement(
-              qi,
-              { title: n.title },
+              e.Fragment,
+              null,
               e.createElement(
                 i,
                 {
@@ -25041,7 +25015,7 @@
             )
         );
       }
-      function Qi(t) {
+      function Yi(t) {
         const { item: n, id: a = '', isValue: r = !0 } = t,
           {
             preview: { mode: l, editMode: i },
@@ -25165,8 +25139,8 @@
             ),
           'unitgroup' === l &&
             e.createElement(
-              qi,
-              { title: n.title },
+              e.Fragment,
+              null,
               e.createElement(
                 'div',
                 { className: 'js-editable-table-field' },
@@ -25206,7 +25180,7 @@
             )
         );
       }
-      function Zi() {
+      function Qi() {
         const {
           state: { customfield: t },
           preview: { jsValidator: n },
@@ -25230,7 +25204,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
+                      e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) })
                     )
                   );
                 case 'textarea':
@@ -25245,7 +25219,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
+                      e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
                     )
                   );
                 case 'selectbox':
@@ -25260,7 +25234,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
+                      e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
                     )
                   );
                 case 'checkbox':
@@ -25275,7 +25249,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Ki, { item: t })
+                      e.createElement(Hi, { item: t })
                     )
                   );
                 case 'radioButton':
@@ -25290,7 +25264,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Gi, { item: t })
+                      e.createElement(Ki, { item: t })
                     )
                   );
                 case 'media':
@@ -25302,7 +25276,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'image':
                   return e.createElement(
@@ -25313,7 +25287,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'file':
                   return e.createElement(
@@ -25324,7 +25298,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'richEditor':
                   return e.createElement(
@@ -25335,7 +25309,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'table':
                   return e.createElement(
@@ -25346,7 +25320,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 default:
                   return null;
@@ -25355,7 +25329,7 @@
           n && '\x3c!-- </form> --\x3e'
         );
       }
-      function Ji() {
+      function Zi() {
         const {
           state: { customfield: t },
           preview: { jsValidator: n, acmscss: a },
@@ -25375,70 +25349,70 @@
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'textarea':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'selectbox':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'checkbox':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Ki, { item: t }))
+                      e.createElement('td', null, e.createElement(Hi, { item: t }))
                     );
                   case 'radioButton':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Gi, { item: t }))
+                      e.createElement('td', null, e.createElement(Ki, { item: t }))
                     );
                   case 'media':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'image':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'file':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'richEditor':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'table':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   default:
                     return null;
@@ -25448,18 +25422,18 @@
           n && '\x3c!-- </form> --\x3e'
         );
       }
-      function eo() {
+      function Ji() {
         const {
           preview: { tag: t },
         } = u();
         return e.createElement(
           e.Fragment,
           null,
-          'section' === t ? e.createElement(Zi, null) : null,
-          'table' === t ? e.createElement(Ji, null) : null
+          'section' === t ? e.createElement(Qi, null) : null,
+          'table' === t ? e.createElement(Zi, null) : null
         );
       }
-      function to() {
+      function eo() {
         const {
           state: { fieldgroup: t },
           preview: { acmscss: n, direction: a, editMode: r },
@@ -25527,7 +25501,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'textarea':
@@ -25542,7 +25516,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'checkbox':
@@ -25557,7 +25531,7 @@
                                 e.createElement(
                                   'div',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'selectbox':
@@ -25572,7 +25546,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'radioButton':
@@ -25587,7 +25561,7 @@
                                 e.createElement(
                                   'div',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'media':
@@ -25602,7 +25576,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'image':
@@ -25617,7 +25591,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'file':
@@ -25632,7 +25606,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'richEditor':
@@ -25647,7 +25621,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'table':
@@ -25662,7 +25636,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             default:
@@ -25711,7 +25685,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Vi, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(qi, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'textarea':
@@ -25729,7 +25703,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Ui, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Vi, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'checkbox':
@@ -25744,7 +25718,7 @@
                             e.createElement(
                               'div',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Ki, { item: t, id: 'template-'.concat(t.name).concat(n), isChecked: !1 })
+                              e.createElement(Hi, { item: t, id: 'template-'.concat(t.name).concat(n), isChecked: !1 })
                             )
                           );
                         case 'selectbox':
@@ -25759,7 +25733,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n), isSelected: !1 })
+                              e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n), isSelected: !1 })
                             )
                           );
                         case 'radioButton':
@@ -25774,7 +25748,7 @@
                             e.createElement(
                               'div',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
+                              e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
                             )
                           );
                         case 'media':
@@ -25789,7 +25763,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'image':
@@ -25804,7 +25778,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement($i, { item: t, id: ''.concat(t.name).concat(n), isAttribute: !1 })
+                              e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isAttribute: !1 })
                             )
                           );
                         case 'file':
@@ -25819,7 +25793,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement($i, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'richEditor':
@@ -25834,7 +25808,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'table':
@@ -25849,7 +25823,7 @@
                             e.createElement(
                               'div',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         default:
@@ -26064,6 +26038,24 @@
             )
         );
       }
+      function to(t) {
+        const { children: n, title: a } = t,
+          {
+            preview: { direction: r },
+          } = u(),
+          l = (e) => {
+            let { condition: t, wrap: n, children: a } = e;
+            return t ? n(a) : a;
+          };
+        return e.createElement(
+          l,
+          {
+            condition: 'vertical' === r,
+            wrap: (t) => e.createElement('table', null, e.createElement('tr', null, e.createElement('th', null, a), t)),
+          },
+          n
+        );
+      }
       function no() {
         const {
             state: { fieldgroup: t },
@@ -26142,7 +26134,17 @@
                         switch (t.type) {
                           case 'text':
                             return e.createElement(
-                              qi,
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'textarea':
+                            return e.createElement(
+                              to,
                               { title: t.title },
                               e.createElement(
                                 'td',
@@ -26150,45 +26152,59 @@
                                 e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
                               )
                             );
-                          case 'textarea':
-                            return e.createElement(
-                              qi,
-                              { title: t.title },
-                              e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
-                            );
                           case 'checkbox':
                             return e.createElement(
-                              qi,
+                              to,
                               { title: t.title },
-                              e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
                             );
                           case 'selectbox':
                             return e.createElement(
-                              qi,
+                              to,
                               { title: t.title },
-                              e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
                             );
                           case 'radioButton':
                             return e.createElement(
-                              qi,
+                              to,
                               { title: t.title },
-                              e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
                             );
                           case 'media':
                             return e.createElement(
-                              qi,
+                              to,
                               { title: t.title },
-                              e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
                             );
                           case 'image':
                             return e.createElement(
-                              qi,
+                              to,
                               { title: t.title },
-                              e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) })
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
                             );
                           case 'richEditor':
                             return e.createElement(
-                              qi,
+                              to,
                               { title: t.title },
                               e.createElement(
                                 'td',
@@ -26215,18 +26231,18 @@
                                         )
                                       ),
                                   },
-                                  e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               )
                             );
                           case 'table':
                             return e.createElement(
-                              qi,
+                              to,
                               { title: t.title },
                               e.createElement(
                                 'td',
                                 null,
-                                e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) })
+                                e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
                               )
                             );
                           default:
@@ -26268,7 +26284,17 @@
                               switch (t.type) {
                                 case 'text':
                                   return e.createElement(
-                                    qi,
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                    )
+                                  );
+                                case 'textarea':
+                                  return e.createElement(
+                                    to,
                                     { title: t.title },
                                     e.createElement(
                                       'td',
@@ -26276,24 +26302,14 @@
                                       e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                                     )
                                   );
-                                case 'textarea':
-                                  return e.createElement(
-                                    qi,
-                                    { title: t.title },
-                                    e.createElement(
-                                      'td',
-                                      null,
-                                      e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
-                                    )
-                                  );
                                 case 'checkbox':
                                   return e.createElement(
-                                    qi,
+                                    to,
                                     { title: t.title },
                                     e.createElement(
                                       'td',
                                       null,
-                                      e.createElement(Ki, {
+                                      e.createElement(Hi, {
                                         item: t,
                                         id: 'template-'.concat(t.name).concat(n),
                                         isChecked: !1,
@@ -26302,62 +26318,62 @@
                                   );
                                 case 'selectbox':
                                   return e.createElement(
-                                    qi,
+                                    to,
                                     { title: t.title },
                                     e.createElement(
                                       'td',
                                       null,
-                                      e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n), isSelected: !1 })
+                                      e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n), isSelected: !1 })
                                     )
                                   );
                                 case 'radioButton':
                                   return e.createElement(
-                                    qi,
+                                    to,
                                     { title: t.title },
                                     e.createElement(
                                       'td',
                                       null,
-                                      e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
+                                      e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
                                     )
                                   );
                                 case 'media':
                                   return e.createElement(
-                                    qi,
+                                    to,
                                     { title: t.title },
                                     e.createElement(
                                       'td',
                                       null,
-                                      e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                      e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                                     )
                                   );
                                 case 'image':
                                   return e.createElement(
-                                    qi,
+                                    to,
                                     { title: t.title },
                                     e.createElement(
                                       'td',
                                       null,
-                                      e.createElement($i, { item: t, id: ''.concat(t.name).concat(n), isAttribute: !1 })
+                                      e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isAttribute: !1 })
                                     )
                                   );
                                 case 'richEditor':
                                   return e.createElement(
-                                    qi,
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                    )
+                                  );
+                                case 'table':
+                                  return e.createElement(
+                                    to,
                                     { title: t.title },
                                     e.createElement(
                                       'td',
                                       null,
                                       e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
-                                    )
-                                  );
-                                case 'table':
-                                  return e.createElement(
-                                    qi,
-                                    { title: t.title },
-                                    e.createElement(
-                                      'td',
-                                      null,
-                                      e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                                     )
                                   );
                                 default:
@@ -26593,7 +26609,7 @@
         return e.createElement(
           e.Fragment,
           null,
-          'section' === t ? e.createElement(to, null) : null,
+          'section' === t ? e.createElement(eo, null) : null,
           'table' === t ? e.createElement(no, null) : null
         );
       }
@@ -26621,7 +26637,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
+                      e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) })
                     )
                   );
                 case 'textarea':
@@ -26636,7 +26652,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
+                      e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
                     )
                   );
                 case 'selectbox':
@@ -26651,7 +26667,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
+                      e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
                     )
                   );
                 case 'checkbox':
@@ -26666,7 +26682,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Ki, { item: t })
+                      e.createElement(Hi, { item: t })
                     )
                   );
                 case 'radioButton':
@@ -26681,7 +26697,7 @@
                     e.createElement(
                       'span',
                       { className: 'acms-admin-form-item-input' },
-                      e.createElement(Gi, { item: t })
+                      e.createElement(Ki, { item: t })
                     )
                   );
                 case 'media':
@@ -26693,7 +26709,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'image':
                   return e.createElement(
@@ -26704,7 +26720,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'file':
                   return e.createElement(
@@ -26715,7 +26731,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'richEditor':
                   return e.createElement(
@@ -26726,7 +26742,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 case 'table':
                   return e.createElement(
@@ -26737,7 +26753,7 @@
                       { className: 'acms-admin-form-item-heading', htmlFor: ''.concat(t.name).concat(n) },
                       e.createElement(Pi, { item: t })
                     ),
-                    e.createElement('span', null, e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) }))
+                    e.createElement('span', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
                   );
                 default:
                   return null;
@@ -26766,70 +26782,70 @@
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'textarea':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'selectbox':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'checkbox':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Ki, { item: t }))
+                      e.createElement('td', null, e.createElement(Hi, { item: t }))
                     );
                   case 'radioButton':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Gi, { item: t }))
+                      e.createElement('td', null, e.createElement(Ki, { item: t }))
                     );
                   case 'media':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'image':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'file':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'richEditor':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'table':
                     return e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, e.createElement(Pi, { item: t })),
-                      e.createElement('td', null, e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) }))
+                      e.createElement('td', null, e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   default:
                     return null;
@@ -26918,7 +26934,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'textarea':
@@ -26933,7 +26949,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'checkbox':
@@ -26948,7 +26964,7 @@
                                 e.createElement(
                                   'div',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'selectbox':
@@ -26963,7 +26979,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'radioButton':
@@ -26978,7 +26994,7 @@
                                 e.createElement(
                                   'div',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'media':
@@ -26993,7 +27009,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'image':
@@ -27008,7 +27024,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'file':
@@ -27023,7 +27039,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'richEditor':
@@ -27038,7 +27054,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             case 'table':
@@ -27053,7 +27069,7 @@
                                 e.createElement(
                                   'span',
                                   { className: 'acms-admin-form-item-input' },
-                                  e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) })
+                                  e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
                                 )
                               );
                             default:
@@ -27102,7 +27118,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Vi, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(qi, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'textarea':
@@ -27120,7 +27136,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Ui, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Vi, { item: t, id: 'template-'.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'checkbox':
@@ -27135,7 +27151,7 @@
                             e.createElement(
                               'div',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Ki, { item: t, id: 'template-'.concat(t.name).concat(n), isChecked: !1 })
+                              e.createElement(Hi, { item: t, id: 'template-'.concat(t.name).concat(n), isChecked: !1 })
                             )
                           );
                         case 'selectbox':
@@ -27150,7 +27166,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n), isSelected: !1 })
+                              e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n), isSelected: !1 })
                             )
                           );
                         case 'radioButton':
@@ -27165,7 +27181,7 @@
                             e.createElement(
                               'div',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
+                              e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
                             )
                           );
                         case 'media':
@@ -27180,7 +27196,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'image':
@@ -27195,7 +27211,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement($i, { item: t, id: ''.concat(t.name).concat(n), isAttribute: !1 })
+                              e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isAttribute: !1 })
                             )
                           );
                         case 'file':
@@ -27210,7 +27226,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement($i, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'richEditor':
@@ -27225,7 +27241,7 @@
                             e.createElement(
                               'span',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         case 'table':
@@ -27240,7 +27256,7 @@
                             e.createElement(
                               'div',
                               { className: 'acms-admin-form-item-input' },
-                              e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                              e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
                             )
                           );
                         default:
@@ -27462,16 +27478,7 @@
             let { condition: t, wrap: n, children: a } = e;
             return t ? n(a) : a;
           },
-          o = t.items.length,
-          c = (t, n) =>
-            e.createElement(
-              i,
-              {
-                condition: 'vertical' === a,
-                wrap: (t) => e.createElement('tr', null, e.createElement('th', null, n), t),
-              },
-              t
-            );
+          o = t.items.length;
         return e.createElement(
           e.Fragment,
           null,
@@ -27533,126 +27540,127 @@
                       n && e.createElement('i', { className: 'acms-admin-icon-sort' })
                     ),
                     e.createElement(
-                      i,
-                      {
-                        condition: 'vertical' === a,
-                        wrap: (t) => e.createElement('td', null, e.createElement('table', null, t)),
-                      },
-                      e.createElement(
-                        e.Fragment,
-                        null,
-                        t.items.map((t, n) => {
-                          switch (t.type) {
-                            case 'text':
-                              return c(
+                      e.Fragment,
+                      null,
+                      t.items.map((t, n) => {
+                        switch (t.type) {
+                          case 'text':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'textarea':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'checkbox':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'selectbox':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'radioButton':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'media':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'image':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          case 'richEditor':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
                                 e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            case 'textarea':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            case 'checkbox':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            case 'selectbox':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(Hi, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            case 'radioButton':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            case 'media':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            case 'image':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement($i, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            case 'richEditor':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(
-                                    i,
-                                    {
-                                      condition: t.useExpand,
-                                      wrap: (t) =>
+                                  i,
+                                  {
+                                    condition: t.useExpand,
+                                    wrap: (t) =>
+                                      e.createElement(
+                                        'div',
+                                        { className: 'js-expand js-acms-expand' },
                                         e.createElement(
                                           'div',
-                                          { className: 'js-expand js-acms-expand' },
+                                          { className: 'js-acms-expand-inner' },
                                           e.createElement(
-                                            'div',
-                                            { className: 'js-acms-expand-inner' },
-                                            e.createElement(
-                                              'button',
-                                              { className: 'js-expand-btn js-acms-expand-btn', type: 'button' },
-                                              e.createElement('i', {
-                                                className:
-                                                  'acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon',
-                                              })
-                                            ),
-                                            t
-                                          )
-                                        ),
-                                    },
-                                    e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
-                                  )
-                                ),
-                                t.title
-                              );
-                            case 'table':
-                              return c(
-                                e.createElement(
-                                  'td',
-                                  null,
-                                  e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n) })
-                                ),
-                                t.title
-                              );
-                            default:
-                              return null;
-                          }
-                        })
-                      )
+                                            'button',
+                                            { className: 'js-expand-btn js-acms-expand-btn', type: 'button' },
+                                            e.createElement('i', {
+                                              className: 'acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon',
+                                            })
+                                          ),
+                                          t
+                                        )
+                                      ),
+                                  },
+                                  e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n) })
+                                )
+                              )
+                            );
+                          case 'table':
+                            return e.createElement(
+                              to,
+                              { title: t.title },
+                              e.createElement(
+                                'td',
+                                null,
+                                e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n) })
+                              )
+                            );
+                          default:
+                            return null;
+                        }
+                      })
                     ),
                     e.createElement(
                       'td',
@@ -27682,114 +27690,108 @@
                             n && e.createElement('i', { className: 'acms-admin-icon-sort' })
                           ),
                           e.createElement(
-                            i,
-                            {
-                              condition: 'vertical' === a,
-                              wrap: (t) => e.createElement('td', null, e.createElement('table', null, t)),
-                            },
-                            e.createElement(
-                              e.Fragment,
-                              null,
-                              t.items.map((t, n) => {
-                                switch (t.type) {
-                                  case 'text':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'textarea':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'checkbox':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Ki, {
-                                          item: t,
-                                          id: 'template-'.concat(t.name).concat(n),
-                                          isChecked: !1,
-                                        })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'selectbox':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Hi, {
-                                          item: t,
-                                          id: ''.concat(t.name).concat(n),
-                                          isSelected: !1,
-                                        })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'radioButton':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'media':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'image':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement($i, {
-                                          item: t,
-                                          id: ''.concat(t.name).concat(n),
-                                          isAttribute: !1,
-                                        })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'richEditor':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
-                                      ),
-                                      t.title
-                                    );
-                                  case 'table':
-                                    return c(
-                                      e.createElement(
-                                        'td',
-                                        null,
-                                        e.createElement(Qi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
-                                      ),
-                                      t.title
-                                    );
-                                  default:
-                                    return null;
-                                }
-                              })
-                            )
+                            e.Fragment,
+                            null,
+                            t.items.map((t, n) => {
+                              switch (t.type) {
+                                case 'text':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                    )
+                                  );
+                                case 'textarea':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Vi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                    )
+                                  );
+                                case 'checkbox':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Hi, {
+                                        item: t,
+                                        id: 'template-'.concat(t.name).concat(n),
+                                        isChecked: !1,
+                                      })
+                                    )
+                                  );
+                                case 'selectbox':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Ui, { item: t, id: ''.concat(t.name).concat(n), isSelected: !1 })
+                                    )
+                                  );
+                                case 'radioButton':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Ki, { item: t, id: ''.concat(t.name).concat(n), isChecked: !1 })
+                                    )
+                                  );
+                                case 'media':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Gi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                    )
+                                  );
+                                case 'image':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Wi, { item: t, id: ''.concat(t.name).concat(n), isAttribute: !1 })
+                                    )
+                                  );
+                                case 'richEditor':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Xi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                    )
+                                  );
+                                case 'table':
+                                  return e.createElement(
+                                    to,
+                                    { title: t.title },
+                                    e.createElement(
+                                      'td',
+                                      null,
+                                      e.createElement(Yi, { item: t, id: ''.concat(t.name).concat(n), isValue: !1 })
+                                    )
+                                  );
+                                default:
+                                  return null;
+                              }
+                            })
                           ),
                           e.createElement(
                             'td',
@@ -27840,113 +27842,116 @@
                       e.Fragment,
                       null,
                       n.square &&
+                        n.squareSize &&
                         e.createElement(
                           e.Fragment,
                           null,
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@squarePath'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@squarePath'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@squareAlt'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@squareAlt'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@squareX'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@squareX'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@squareY'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@squareY'),
                           })
                         ),
                       n.large &&
+                        n.largeSize &&
                         e.createElement(
                           e.Fragment,
                           null,
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@largePath'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@largePath'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@largeAlt'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@largeAlt'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@largeX'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@largeX'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@largeY'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@largeY'),
                           })
                         ),
                       n.tiny &&
+                        n.tinySize &&
                         e.createElement(
                           e.Fragment,
                           null,
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
-                            value: ''.concat(n.name, '@tinyPath'),
+                            name: '@'.concat(t.name, '{id}[]'),
+                            value: ''.concat(n.name, '{id}@tinyPath'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
+                            name: '@'.concat(t.name, '{id}[]'),
                             value: ''.concat(n.name, '@tinyAlt'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
+                            name: '@'.concat(t.name, '{id}[]'),
                             value: ''.concat(n.name, '@tinyX'),
                           }),
                           e.createElement('input', {
                             type: 'hidden',
-                            name: '@'.concat(t.name, '[]'),
+                            name: '@'.concat(t.name, '{id}[]'),
                             value: ''.concat(n.name, '@tinyY'),
                           })
                         ),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@path'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@path'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@alt'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@alt'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@x'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@x'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@y'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@y'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@edit'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@edit'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@old'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@old'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: ''.concat(n.name, ':extension'),
+                        name: ''.concat(n.name, '{id}:extension'),
                         value: 'image',
                       })
                     ),
@@ -27956,59 +27961,54 @@
                       null,
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@path'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@path'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@alt'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@alt'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@edit'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@edit'),
                       }),
                       e.createElement('input', {
                         type: 'hidden',
-                        name: '@'.concat(t.name, '[]'),
-                        value: ''.concat(n.name, '@old'),
+                        name: '@'.concat(t.name, '{id}[]'),
+                        value: ''.concat(n.name, '{id}@old'),
                       }),
-                      e.createElement('input', { type: 'hidden', name: ''.concat(n.name, ':extension'), value: 'file' })
+                      e.createElement('input', {
+                        type: 'hidden',
+                        name: ''.concat(n.name, '{id}:extension'),
+                        value: 'file',
+                      })
                     ),
                   'media' === n.type &&
-                    e.createElement('input', { type: 'hidden', name: ''.concat(n.name, ':extension'), value: 'media' }),
-                  'rich-editor' === n.type &&
                     e.createElement('input', {
                       type: 'hidden',
-                      name: ''.concat(n.name, ':extension'),
+                      name: ''.concat(n.name, '{id}:extension'),
+                      value: 'media',
+                    }),
+                  'richEditor' === n.type &&
+                    e.createElement('input', {
+                      type: 'hidden',
+                      name: ''.concat(n.name, '{id}:extension'),
                       value: 'rich-editor',
                     }),
-                  e.createElement('input', { type: 'hidden', name: '@'.concat(t.name, '[]'), value: n.name }),
-                  e.createElement('input', { type: 'hidden', name: 'field[]', value: n.name }),
-                  n.noSearch &&
-                    e.createElement('input', { type: 'hidden', name: ''.concat(n.name, ':search'), value: '0' }),
-                  n.validator.map((t, a) => {
-                    if (!t.option) return null;
-                    const r = 'file' === n.type || 'image' === n.type ? ''.concat(n.name, '@path') : n.name;
-                    return e.createElement('input', {
-                      key: a,
-                      type: 'hidden',
-                      name: ''.concat(r, ':v#').concat(t.option),
-                      value: t.value,
-                      id: ''.concat(r, '-v-').concat(t.option),
-                    });
+                  e.createElement('input', {
+                    type: 'hidden',
+                    name: '@'.concat(t.name, '{id}[]'),
+                    value: ''.concat(n.name, '{id}'),
                   }),
-                  (() => {
-                    const t = 'file' === n.type || 'image' === n.type ? ''.concat(n.name, '@path') : n.name;
-                    return (
-                      n.converter &&
-                      e.createElement('input', { type: 'hidden', name: ''.concat(t, ':c'), value: n.converter })
-                    );
-                  })()
+                  e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: ''.concat(n.name, '{id}') }),
+                  n.noSearch &&
+                    e.createElement('input', { type: 'hidden', name: ''.concat(n.name, '{id}:search'), value: '0' }),
+                  e.createElement(Mi, { item: n })
                 )
               ),
-              e.createElement('input', { type: 'hidden', name: 'field[]', value: '@'.concat(t.name) })
+              e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: '@'.concat(t.name, '{id}') })
             )
         );
       }
@@ -28047,7 +28047,7 @@
                 e.createElement('th', null, t.title),
                 e.createElement('td', null, '{'.concat(t.name, '}[escape|nl2br]'))
               );
-            if ('select' === t.type)
+            if ('selectbox' === t.type)
               return e.createElement(
                 'tr',
                 { key: n },
@@ -28066,7 +28066,7 @@
                   )
                 )
               );
-            if ('radio' === t.type)
+            if ('radioButton' === t.type)
               return e.createElement(
                 'tr',
                 { key: n },
@@ -28202,14 +28202,14 @@
                       '\x3c!-- END_IF --\x3e'
                     )
                   )
-                : 'rich-editor' === t.type
+                : 'richEditor' === t.type
                   ? e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, t.title),
                       e.createElement('td', null, '{'.concat(t.name, '@html}[raw]'))
                     )
-                  : 'lite-editor' === t.type || 'table' === t.type
+                  : 'liteEditor' === t.type || 'table' === t.type
                     ? e.createElement(
                         'tr',
                         { key: n },
@@ -28272,19 +28272,19 @@
                   t.items.map((t, a) => {
                     if ('text' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement('td', null, '{'.concat(t.name, '}'))
                       );
                     if ('textarea' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement('td', null, '{'.concat(t.name, '}[escape|nl2br]'))
                       );
-                    if ('select' === t.type)
+                    if ('selectbox' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement(
                           'td',
@@ -28302,9 +28302,9 @@
                           )
                         )
                       );
-                    if ('radio' === t.type)
+                    if ('radioButton' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement(
                           'td',
@@ -28328,7 +28328,7 @@
                       return (
                         t.extension ? ((n += ''.concat(t.extension, '.svg')), (r += t.extension)) : (n += 'file.svg'),
                         e.createElement(
-                          qi,
+                          to,
                           { key: a, title: t.title },
                           e.createElement(
                             'td',
@@ -28346,7 +28346,7 @@
                     }
                     return 'image' === t.type
                       ? e.createElement(
-                          qi,
+                          to,
                           { key: a, title: t.title },
                           e.createElement(
                             'td',
@@ -28362,7 +28362,7 @@
                         )
                       : 'media' === t.type
                         ? e.createElement(
-                            qi,
+                            to,
                             { key: a, title: t.title },
                             e.createElement(
                               'td',
@@ -28417,21 +28417,21 @@
                               '\x3c!-- END_IF --\x3e'
                             )
                           )
-                        : 'lite-editor' === t.type
+                        : 'liteEditor' === t.type
                           ? e.createElement(
-                              qi,
+                              to,
                               { key: a, title: t.title },
                               e.createElement('td', null, '{'.concat(t.name, '}[raw]'))
                             )
-                          : 'rich-editor' === t.type
+                          : 'richEditor' === t.type
                             ? e.createElement(
-                                qi,
+                                to,
                                 { key: a, title: t.title },
                                 e.createElement('td', null, '{'.concat(t.name, '@html}[raw]'))
                               )
                             : 'table' === t.type
                               ? e.createElement(
-                                  qi,
+                                  to,
                                   { key: a, title: t.title },
                                   e.createElement('td', null, '{'.concat(t.name, '}[raw]'))
                                 )
@@ -28471,7 +28471,7 @@
                 e.createElement('th', null, t.title),
                 e.createElement('td', null, '{'.concat(t.name, '}[escape|nl2br]'))
               );
-            if ('select' === t.type)
+            if ('selectbox' === t.type)
               return e.createElement(
                 'tr',
                 { key: n },
@@ -28490,7 +28490,7 @@
                   )
                 )
               );
-            if ('radio' === t.type)
+            if ('radioButton' === t.type)
               return e.createElement(
                 'tr',
                 { key: n },
@@ -28626,14 +28626,14 @@
                       '\x3c!-- END_IF --\x3e'
                     )
                   )
-                : 'rich-editor' === t.type
+                : 'richEditor' === t.type
                   ? e.createElement(
                       'tr',
                       { key: n },
                       e.createElement('th', null, t.title),
                       e.createElement('td', null, '{'.concat(t.name, '@html}[raw]'))
                     )
-                  : 'lite-editor' === t.type || 'table' === t.type
+                  : 'liteEditor' === t.type || 'table' === t.type
                     ? e.createElement(
                         'tr',
                         { key: n },
@@ -28696,19 +28696,19 @@
                   t.items.map((t, a) => {
                     if ('text' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement('td', null, '{'.concat(t.name, '}'))
                       );
                     if ('textarea' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement('td', null, '{'.concat(t.name, '}[escape|nl2br]'))
                       );
-                    if ('select' === t.type)
+                    if ('selectbox' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement(
                           'td',
@@ -28726,9 +28726,9 @@
                           )
                         )
                       );
-                    if ('radio' === t.type)
+                    if ('radioButton' === t.type)
                       return e.createElement(
-                        qi,
+                        to,
                         { key: a, title: t.title },
                         e.createElement(
                           'td',
@@ -28752,7 +28752,7 @@
                       return (
                         t.extension ? ((n += ''.concat(t.extension, '.svg')), (r += t.extension)) : (n += 'file.svg'),
                         e.createElement(
-                          qi,
+                          to,
                           { key: a, title: t.title },
                           e.createElement(
                             'td',
@@ -28770,7 +28770,7 @@
                     }
                     return 'image' === t.type
                       ? e.createElement(
-                          qi,
+                          to,
                           { key: a, title: t.title },
                           e.createElement(
                             'td',
@@ -28786,7 +28786,7 @@
                         )
                       : 'media' === t.type
                         ? e.createElement(
-                            qi,
+                            to,
                             { key: a, title: t.title },
                             e.createElement(
                               'td',
@@ -28841,21 +28841,21 @@
                               '\x3c!-- END_IF --\x3e'
                             )
                           )
-                        : 'lite-editor' === t.type
+                        : 'liteEditor' === t.type
                           ? e.createElement(
-                              qi,
+                              to,
                               { key: a, title: t.title },
                               e.createElement('td', null, '{'.concat(t.name, '}[raw]'))
                             )
-                          : 'rich-editor' === t.type
+                          : 'richEditor' === t.type
                             ? e.createElement(
-                                qi,
+                                to,
                                 { key: a, title: t.title },
                                 e.createElement('td', null, '{'.concat(t.name, '@html}[raw]'))
                               )
                             : 'table' === t.type
                               ? e.createElement(
-                                  qi,
+                                  to,
                                   { key: a, title: t.title },
                                   e.createElement('td', null, '{'.concat(t.name, '}[raw]'))
                                 )
@@ -28957,7 +28957,7 @@
                         e.createElement(
                           s,
                           { state: n, preview: a, clipboard: r },
-                          'customfield' === a.mode && e.createElement(eo, null),
+                          'customfield' === a.mode && e.createElement(Ji, null),
                           'fieldgroup' === a.mode && e.createElement(ao, null),
                           'customunit' === a.mode && e.createElement(io, null),
                           'unitgroup' === a.mode && e.createElement(so, null)
@@ -28965,9 +28965,17 @@
                       ),
                     'preview' === a.editMode &&
                       e.createElement(
-                        e.Fragment,
-                        null,
-                        'customfield' === a.mode && e.createElement(eo, null),
+                        'div',
+                        {
+                          style: {
+                            marginTop: '16px',
+                            marginBottom: '16px',
+                            padding: '8px',
+                            borderRadius: '5px',
+                            backgroundColor: '#fff',
+                          },
+                        },
+                        'customfield' === a.mode && e.createElement(Ji, null),
                         'fieldgroup' === a.mode && e.createElement(ao, null),
                         'customunit' === a.mode && e.createElement(io, null),
                         'unitgroup' === a.mode && e.createElement(so, null)

@@ -58,12 +58,20 @@ function CustomFieldMaker() {
               )}
 
               {preview.editMode === 'preview' && (
-                <>
+                <div
+                  style={{
+                    marginTop: '16px',
+                    marginBottom: '16px',
+                    padding: '8px',
+                    borderRadius: '5px',
+                    backgroundColor: '#fff',
+                  }}
+                >
                   {preview.mode === 'customfield' && <FieldSource />}
                   {preview.mode === 'fieldgroup' && <FieldGroupSource />}
                   {preview.mode === 'customunit' && <UnitSource />}
                   {preview.mode === 'unitgroup' && <UnitGroupSource />}
-                </>
+                </div>
               )}
 
               {preview.editMode === 'confirm' && (

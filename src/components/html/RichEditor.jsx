@@ -1,6 +1,5 @@
 import React from 'react';
 import { useMakerContext } from '../../store/MakerContext';
-import { WrapTable } from './WrapTable';
 
 export function RichEditor(props) {
   const { item, id = '', isValue = true } = props;
@@ -112,7 +111,7 @@ export function RichEditor(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <ConditionalWrap
             condition={item.useExpand}
             wrap={(children) => (
@@ -147,7 +146,7 @@ export function RichEditor(props) {
               )}
             </div>
           </ConditionalWrap>
-        </WrapTable>
+        </>
       )}
     </>
   );

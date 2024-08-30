@@ -54,7 +54,7 @@ export function UnitGroupTableLayoutConfirm() {
                       <td>{`{${item.name}}[escape|nl2br]`}</td>
                     </WrapTable>
                   );
-                } else if (item.type === 'select') {
+                } else if (item.type === 'selectbox') {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>
@@ -73,7 +73,7 @@ export function UnitGroupTableLayoutConfirm() {
                       </td>
                     </WrapTable>
                   );
-                } else if (item.type === 'radio') {
+                } else if (item.type === 'radioButton') {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>
@@ -168,13 +168,13 @@ export function UnitGroupTableLayoutConfirm() {
                       </td>
                     </WrapTable>
                   );
-                } else if (item.type === 'lite-editor') {
+                } else if (item.type === 'liteEditor') {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>{`{${item.name}}[raw]`}</td>
                     </WrapTable>
                   );
-                } else if (item.type === 'rich-editor') {
+                } else if (item.type === 'richEditor') {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>{`{${item.name}@html}[raw]`}</td>

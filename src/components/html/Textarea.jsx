@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
-import { WrapTable } from './WrapTable';
 
 export function Textarea(props) {
   const { item, id = '', isValue = true } = props;
@@ -26,7 +25,7 @@ export function Textarea(props) {
             className={classname}
             {...(jsValidator ? { 'data-validator': item.name } : {})}
           >{`{${item.name}}`}</textarea>
-          <input type="hidden" name="field[]" value={item.name} />
+          <input type="hidden" name="field[]" defaultValue={item.name} />
         </>
       )}
 
@@ -48,12 +47,12 @@ export function Textarea(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <textarea id={id} name={`${item.name}{id}[]`} className={classname}>
             {isValue && `{${item.name}}`}
           </textarea>
           <OptionValidator item={item} />
-        </WrapTable>
+        </>
       )}
     </>
   );

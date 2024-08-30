@@ -10,6 +10,8 @@ import { ImageInput } from '../html/ImageInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
+import { WrapTable } from '../html/WrapTable';
+import { OptionValidator } from '../html/OptionValidator';
 
 export function UnitGroupTableLayout() {
   const {
@@ -20,22 +22,6 @@ export function UnitGroupTableLayout() {
 
   const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
   const groupLength = unitgroup.items.length;
-
-  const wrapTable = (children, title) => {
-    return (
-      <ConditionalWrap
-        condition={direction === 'vertical'}
-        wrap={(child) => (
-          <tr>
-            <th>{title}</th>
-            {child}
-          </tr>
-        )}
-      >
-        {children}
-      </ConditionalWrap>
-    );
-  };
 
   return (
     <>
@@ -80,76 +66,75 @@ export function UnitGroupTableLayout() {
                 <td className="item-handle acms-admin-table-nowrap">
                   {acmscss && <i className="acms-admin-icon-sort" />}
                 </td>
-
-                <ConditionalWrap
-                  condition={direction === 'vertical'}
-                  wrap={(children) => (
-                    <td>
-                      <table>{children}</table>
-                    </td>
-                  )}
-                >
-                  <>
-                    {unitgroup.items.map((item, index) => {
-                      switch (item.type) {
-                        case 'text': {
-                          return wrapTable(
+                <>
+                  {unitgroup.items.map((item, index) => {
+                    switch (item.type) {
+                      case 'text': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <TextInput item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'textarea': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'textarea': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <Textarea item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'checkbox': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'checkbox': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <Checkbox item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'selectbox': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'selectbox': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <Selectbox item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'radioButton': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'radioButton': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <RadioButton item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'media': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'media': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <Media item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'image': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'image': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <ImageInput item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'richEditor': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'richEditor': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <ConditionalWrap
                                 condition={item.useExpand}
@@ -166,25 +151,25 @@ export function UnitGroupTableLayout() {
                               >
                                 <RichEditor item={item} id={`${item.name}${index}`} />
                               </ConditionalWrap>
-                            </td>,
-                            item.title
-                          );
-                        }
-                        case 'table': {
-                          return wrapTable(
+                            </td>
+                          </WrapTable>
+                        );
+                      }
+                      case 'table': {
+                        return (
+                          <WrapTable title={item.title}>
                             <td>
                               <Table item={item} id={`${item.name}${index}`} />
-                            </td>,
-                            item.title
-                          );
-                        }
-                        default: {
-                          return null;
-                        }
+                            </td>
+                          </WrapTable>
+                        );
                       }
-                    })}
-                  </>
-                </ConditionalWrap>
+                      default: {
+                        return null;
+                      }
+                    }
+                  })}
+                </>
 
                 <td className="acms-admin-table-nowrap">
                   <button
@@ -206,96 +191,97 @@ export function UnitGroupTableLayout() {
                     <td className="item-handle acms-admin-table-nowrap">
                       {acmscss && <i className="acms-admin-icon-sort" />}
                     </td>
-                    <ConditionalWrap
-                      condition={direction === 'vertical'}
-                      wrap={(children) => (
-                        <td>
-                          <table>{children}</table>
-                        </td>
-                      )}
-                    >
-                      <>
-                        {unitgroup.items.map((item, index) => {
-                          switch (item.type) {
-                            case 'text': {
-                              return wrapTable(
+                    <>
+                      {unitgroup.items.map((item, index) => {
+                        switch (item.type) {
+                          case 'text': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <TextInput item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'textarea': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'textarea': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <Textarea item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'checkbox': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'checkbox': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'selectbox': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'selectbox': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'radioButton': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'radioButton': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'media': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'media': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <Media item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'image': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'image': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'richEditor': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'richEditor': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            case 'table': {
-                              return wrapTable(
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'table': {
+                            return (
+                              <WrapTable title={item.title}>
                                 <td>
                                   <Table item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>,
-                                item.title
-                              );
-                            }
-                            default: {
-                              return null;
-                            }
+                                </td>
+                              </WrapTable>
+                            );
                           }
-                        })}
-                      </>
-                    </ConditionalWrap>
+                          default: {
+                            return null;
+                          }
+                        }
+                      })}
+                    </>
+
                     <td className="acms-admin-table-nowrap">
                       <button
                         type="button"
@@ -325,83 +311,66 @@ export function UnitGroupTableLayout() {
         </>
       )}
 
+      {/* input hidden */}
       {unitgroup.name && (
         <>
           {unitgroup.items.map((item) => (
             <>
               {item.type === 'image' && (
                 <>
-                  {item.square && (
+                  {item.square && item.squareSize && (
                     <>
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squarePath`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squareAlt`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squareX`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@squareY`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squarePath`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squareAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squareX`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@squareY`} />
                     </>
                   )}
-                  {item.large && (
+                  {item.large && item.largeSize && (
                     <>
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largePath`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largeAlt`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largeX`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@largeY`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largePath`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largeAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largeX`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@largeY`} />
                     </>
                   )}
-                  {item.tiny && (
+                  {item.tiny && item.tinySize && (
                     <>
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyPath`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyAlt`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyX`} />
-                      <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@tinyY`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@tinyPath`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}@tinyAlt`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}@tinyX`} />
+                      <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}@tinyY`} />
                     </>
                   )}
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@path`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@alt`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@x`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@y`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@edit`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@old`} />
-                  <input type="hidden" name={`${item.name}:extension`} value="image" />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@path`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@alt`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@x`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@y`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@edit`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@old`} />
+                  <input type="hidden" name={`${item.name}{id}:extension`} value="image" />
                 </>
               )}
               {item.type === 'file' && (
                 <>
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@path`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@alt`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@edit`} />
-                  <input type="hidden" name={`@${unitgroup.name}[]`} value={`${item.name}@old`} />
-                  <input type="hidden" name={`${item.name}:extension`} value="file" />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@path`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@alt`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@edit`} />
+                  <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@old`} />
+                  <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
                 </>
               )}
-              {item.type === 'media' && <input type="hidden" name={`${item.name}:extension`} value="media" />}
-              {item.type === 'rich-editor' && (
-                <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
+              {item.type === 'media' && <input type="hidden" name={`${item.name}{id}:extension`} value="media" />}
+              {item.type === 'richEditor' && (
+                <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
               )}
-              <input type="hidden" name={`@${unitgroup.name}[]`} value={item.name} />
-              <input type="hidden" name="field[]" value={item.name} />
-              {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
-              {item.validator.map((validator, index) => {
-                if (!validator.option) {
-                  return null;
-                }
-                const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
-                return (
-                  <input
-                    key={index}
-                    type="hidden"
-                    name={`${name}:v#${validator.option}`}
-                    value={validator.value}
-                    id={`${name}-v-${validator.option}`}
-                  />
-                );
-              })}
-              {(() => {
-                const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
-                return item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />;
-              })()}
+              <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}`} />
+              <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+              {item.noSearch && <input type="hidden" name={`${item.name}{id}:search`} value="0" />}
+              <OptionValidator item={item} />
             </>
           ))}
-          <input type="hidden" name="field[]" value={`@${unitgroup.name}`} />
+          <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />
         </>
       )}
     </>

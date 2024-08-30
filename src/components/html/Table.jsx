@@ -1,6 +1,5 @@
 import React from 'react';
 import { useMakerContext } from '../../store/MakerContext';
-import { WrapTable } from './WrapTable';
 
 export function Table(props) {
   const { item, id = '', isValue = true } = props;
@@ -95,7 +94,7 @@ export function Table(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <div className="js-editable-table-field">
             <div className="js-editable-table">
               {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}}[delnl]/nem] -->\n`}
@@ -123,7 +122,7 @@ export function Table(props) {
               />
             </div>
           </div>
-        </WrapTable>
+        </>
       )}
     </>
   );

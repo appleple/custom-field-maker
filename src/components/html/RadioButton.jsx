@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
-import { WrapTable } from './WrapTable';
 
 export function RadioButton(props) {
   const { item, isChecked = true } = props;
@@ -97,7 +96,7 @@ export function RadioButton(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.title}>
+        <>
           {item.option.map((option, index) => {
             if (!option.label) {
               return null;
@@ -121,7 +120,7 @@ export function RadioButton(props) {
             );
           })}
           <OptionValidator item={item} />
-        </WrapTable>
+        </>
       )}
     </>
   );

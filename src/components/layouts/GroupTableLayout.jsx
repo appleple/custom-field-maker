@@ -80,42 +80,54 @@ export function GroupTableLayout() {
                       case 'textarea': {
                         return (
                           <WrapTable title={item.title}>
-                            <Textarea item={item} id={`${item.name}${index}`} />
+                            <td>
+                              <Textarea item={item} id={`${item.name}${index}`} />
+                            </td>
                           </WrapTable>
                         );
                       }
                       case 'checkbox': {
                         return (
                           <WrapTable title={item.title}>
-                            <Checkbox item={item} id={`${item.name}${index}`} />
+                            <td>
+                              <Checkbox item={item} id={`${item.name}${index}`} />
+                            </td>
                           </WrapTable>
                         );
                       }
                       case 'selectbox': {
                         return (
                           <WrapTable title={item.title}>
-                            <Selectbox item={item} id={`${item.name}${index}`} />
+                            <td>
+                              <Selectbox item={item} id={`${item.name}${index}`} />
+                            </td>
                           </WrapTable>
                         );
                       }
                       case 'radioButton': {
                         return (
                           <WrapTable title={item.title}>
-                            <RadioButton item={item} id={`${item.name}${index}`} />
+                            <td>
+                              <RadioButton item={item} id={`${item.name}${index}`} />
+                            </td>
                           </WrapTable>
                         );
                       }
                       case 'media': {
                         return (
                           <WrapTable title={item.title}>
-                            <Media item={item} id={`${item.name}${index}`} />
+                            <td>
+                              <Media item={item} id={`${item.name}${index}`} />
+                            </td>
                           </WrapTable>
                         );
                       }
                       case 'image': {
                         return (
                           <WrapTable title={item.title}>
-                            <ImageInput item={item} id={`${item.name}${index}`} />
+                            <td>
+                              <ImageInput item={item} id={`${item.name}${index}`} />
+                            </td>
                           </WrapTable>
                         );
                       }

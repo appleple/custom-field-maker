@@ -27,6 +27,7 @@ module.exports = {
       },
     ],
     'jsx-a11y/label-has-associated-control': 'off',
+    'react/no-children-prop': 'off',
   },
   overrides: [
     // プロジェクトにJavaScriptとTypeScriptが共存しているため、

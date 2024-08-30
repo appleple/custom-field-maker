@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
-import { WrapTable } from './WrapTable';
 
 export function ImageInput(props) {
   const { item, id, isAttribute = true } = props;
@@ -191,7 +190,7 @@ export function ImageInput(props) {
       )}
 
       {mode === 'unitgroup' && (
-        <WrapTable title={item.title}>
+        <>
           <div className={classnames({ 'js-img_resize_cf': item.resize })}>
             {isAttribute && (
               <>
@@ -255,7 +254,7 @@ export function ImageInput(props) {
             )}
             {isAttribute && <OptionValidator item={item} />}
           </div>
-        </WrapTable>
+        </>
       )}
     </>
   );
