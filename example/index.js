@@ -1,11 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import CustomFieldMaker from '../src';
 import '../src/css/custom-field-maker.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <CustomFieldMaker />
-  </React.StrictMode>,
-  document.getElementById('app')
-);
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<CustomFieldMaker />);
