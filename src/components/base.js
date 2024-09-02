@@ -205,7 +205,7 @@ export default class Base extends Component {
         <table className="acms-admin-table customFieldOptionTable">
           <tbody>
             {option.map((item, idx) => (
-              <tr>
+              <tr key={idx}>
                 <td>
                   <div className="customFieldOptionTableInput">
                     <span className="customFieldOptionTableAppend">項目名（label）</span>
@@ -763,7 +763,7 @@ export default class Base extends Component {
                     <th />
                   </tr>
                   {validator.map((item, idx) => (
-                    <tr>
+                    <tr key={idx}>
                       <td>
                         <select
                           className="acms-admin-form-width-full"

@@ -43,12 +43,14 @@ export default class ModalDialog extends Component {
 
     return (
       <div className={classnames('acms-admin-modal', { in: show })} id="converter" style={style}>
-        <div className="acms-admin-modal-dialog">
+        <div className="acms-admin-modal-dialog" role="dialog" aria-modal>
           <div className="acms-admin-modal-content">
-            <div className="acms-admin-modal-header">
-              <i className="acms-admin-modal-hide acms-admin-icon-delete" onClick={this.hideDialog.bind(this)}></i>
-              <h3>{title}</h3>
-            </div>
+            <header className="acms-admin-modal-header">
+              <h3 className="acms-admin-modal-heading">{title}</h3>
+              <button type="button" className="acms-admin-modal-hide" onClick={this.hideDialog.bind(this)} aria-label="モーダルを閉じる">
+                <i className="acms-admin-icon-delete"></i>
+              </button>
+            </header>
             <div className="acms-admin-modal-body">
               <div className="acms-admin-padding-small clearfix">{children}</div>
             </div>

@@ -234,7 +234,7 @@ export default class FieldSource extends Component {
                             return null;
                           }
                           return (
-                            <option value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>
+                            <option key={option.value} value={option.value} data-tmp={`{${item.name}:selected#${option.value}}`}>
                               {option.label}
                             </option>
                           );
@@ -256,7 +256,7 @@ export default class FieldSource extends Component {
                           return null;
                         }
                         return (
-                          <div className={classnames({ 'acms-admin-form-radio': acmscss })}>
+                          <div key={option.value} className={classnames({ 'acms-admin-form-radio': acmscss })}>
                             <input
                               type="radio"
                               name={item.name}
@@ -287,7 +287,7 @@ export default class FieldSource extends Component {
                           return null;
                         }
                         return (
-                          <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+                          <div key={option.value} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                             <input
                               type="checkbox"
                               name={`${item.name}[]`}
