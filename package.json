@@ -12,7 +12,8 @@
     "dev": "webpack serve --config webpack.dev.js",
     "start": "npm-run-all -p dev",
     "prettier": "prettier ./src/**/*.js --write",
-    "deploy": "np --no-cleanup --any-branch"
+    "deploy": "np --yolo --any-branch",
+    "prepack": "npm run build"
   },
   "jest": {
     "verbose": true,
