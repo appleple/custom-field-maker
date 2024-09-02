@@ -51,38 +51,38 @@ export function Section() {
             }
             case 'selectbox': {
               return (
-                <p key={index} className="acms-admin-form-item">
-                  <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                <div key={index} className="acms-admin-form-item">
+                  <p className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
-                  </label>
+                  </p>
                   <span className="acms-admin-form-item-input">
                     <Selectbox item={item} id={`${item.name}${index}`} />
                   </span>
-                </p>
+                </div>
               );
             }
             case 'checkbox': {
               return (
-                <p key={index} className="acms-admin-form-item">
-                  <span className="acms-admin-form-item-heading">
+                <div key={index} className="acms-admin-form-item">
+                  <p className="acms-admin-form-item-heading">
                     <Heading item={item} />
-                  </span>
+                  </p>
                   <span className="acms-admin-form-item-input">
                     <Checkbox item={item} />
                   </span>
-                </p>
+                </div>
               );
             }
             case 'radioButton': {
               return (
-                <p key={index} className="acms-admin-form-item">
-                  <span className="acms-admin-form-item-heading">
+                <div key={index} className="acms-admin-form-item">
+                  <p className="acms-admin-form-item-heading">
                     <Heading item={item} />
-                  </span>
+                  </p>
                   <span className="acms-admin-form-item-input">
                     <RadioButton item={item} />
                   </span>
-                </p>
+                </div>
               );
             }
             case 'media': {

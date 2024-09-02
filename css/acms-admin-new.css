@@ -9,17 +9,6 @@
   padding-bottom: 0.2em;
 }
 
-legend {
-  display: contents;
-  padding: 0;
-}
-fieldset {
-  min-width: 0;
-  margin: 0;
-  padding: 0.01em 0 0 0;
-  border: 0;
-}
-
 @media screen and (min-width: 768px) {
   .acms-admin-form-item {
     flex-direction: row;

@@ -92,38 +92,38 @@ export function UnitGroupSection() {
                         }
                         case 'checkbox': {
                           return (
-                            <fieldset key={index} className="acms-admin-form-item">
-                              <legend className="acms-admin-form-item-heading">
+                            <div key={index} className="acms-admin-form-item">
+                              <p className="acms-admin-form-item-heading">
                                 <Heading item={item} id={`${item.name}${index}`} />
-                              </legend>
+                              </p>
                               <div className="acms-admin-form-item-input">
                                 <Checkbox item={item} id={`${item.name}${index}`} />
                               </div>
-                            </fieldset>
+                            </div>
                           );
                         }
                         case 'selectbox': {
                           return (
-                            <p key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                            <div key={index} className="acms-admin-form-item">
+                              <p className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                                 <Heading item={item} id={`${item.name}${index}`} />
-                              </label>
-                              <span className="acms-admin-form-item-input">
+                              </p>
+                              <div className="acms-admin-form-item-input">
                                 <Selectbox item={item} id={`${item.name}${index}`} />
-                              </span>
-                            </p>
+                              </div>
+                            </div>
                           );
                         }
                         case 'radioButton': {
                           return (
-                            <fieldset key={index} className="acms-admin-form-item">
-                              <legend className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                            <div key={index} className="acms-admin-form-item">
+                              <p className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
                                 <Heading item={item} />
-                              </legend>
+                              </p>
                               <div className="acms-admin-form-item-input">
                                 <RadioButton item={item} id={`${item.name}${index}`} />
                               </div>
-                            </fieldset>
+                            </div>
                           );
                         }
                         case 'media': {
@@ -242,38 +242,38 @@ export function UnitGroupSection() {
                     }
                     case 'checkbox': {
                       return (
-                        <fieldset key={index} className="acms-admin-form-item">
-                          <legend className="acms-admin-form-item-heading">
+                        <div key={index} className="acms-admin-form-item">
+                          <p className="acms-admin-form-item-heading">
                             <Heading item={item} />
-                          </legend>
+                          </p>
                           <div className="acms-admin-form-item-input">
                             <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
                           </div>
-                        </fieldset>
+                        </div>
                       );
                     }
                     case 'selectbox': {
                       return (
-                        <p key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                        <div key={index} className="acms-admin-form-item">
+                          <p className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                             <Heading item={item} />
-                          </label>
+                          </p>
                           <span className="acms-admin-form-item-input">
                             <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
                           </span>
-                        </p>
+                        </div>
                       );
                     }
                     case 'radioButton': {
                       return (
-                        <fieldset key={index} className="acms-admin-form-item">
-                          <legend className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
+                        <div key={index} className="acms-admin-form-item">
+                          <p className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
                             <Heading item={item} />
-                          </legend>
+                          </p>
                           <div className="acms-admin-form-item-input">
                             <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
                           </div>
-                        </fieldset>
+                        </div>
                       );
                     }
                     case 'media': {
@@ -326,14 +326,14 @@ export function UnitGroupSection() {
                     }
                     case 'table': {
                       return (
-                        <div key={index} className="acms-admin-form-item">
+                        <p key={index} className="acms-admin-form-item">
                           <p className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
                             <Heading item={item} />
                           </p>
-                          <div className="acms-admin-form-item-input">
+                          <span className="acms-admin-form-item-input">
                             <Table item={item} id={`${item.name}${index}`} isValue={false} />
-                          </div>
-                        </div>
+                          </span>
+                        </p>
                       );
                     }
                     default: {

@@ -129,11 +129,15 @@
     "url-loader": "^0.5.7",
     "webpack": "^5.31.2",
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4",
 =======
 >>>>>>> 6a88af4 (依存関係の整理)
+=======
+    "webpack-cli": "^5.1.4",
+>>>>>>> 35a3e0b (webpack-cli追加)
     "webpack-merge": "^6.0.1"
   }
 }
