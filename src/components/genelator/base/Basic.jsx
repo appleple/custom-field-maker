@@ -52,13 +52,19 @@ export function Basic(props) {
     return (
       <>
         {selectedSubTypes.length > 0 && (
-          <select id="subType" value={field.subType || ''} className="acms-admin-form-width-full" onChange={onChange}>
-            {selectedSubTypes.map((subType) => (
-              <option key={subType.value} value={subType.value}>
-                {subType.label}
-              </option>
-            ))}
-          </select>
+          <div
+            style={{
+              marginTop: '5px',
+            }}
+          >
+            <select id="subType" value={field.subType || ''} className="acms-admin-form-width-full" onChange={onChange}>
+              {selectedSubTypes.map((subType) => (
+                <option key={subType.value} value={subType.value}>
+                  {subType.label}
+                </option>
+              ))}
+            </select>
+          </div>
         )}
       </>
     );

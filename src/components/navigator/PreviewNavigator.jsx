@@ -119,7 +119,11 @@ export function PreviewNavigator() {
         </div>
       )}
 
-      <div>
+      <div
+        style={{
+          marginTop: '5px',
+        }}
+      >
         {editMode !== 'preview' && (
           <div style={{ display: 'inline-block', position: 'relative', marginRight: '10px' }}>
             <CopyToClipboard text={source} onCopy={() => setCopied(true)}>
