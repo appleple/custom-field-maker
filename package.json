@@ -4,8 +4,10 @@
   "description": "custom field maker for a-blog cms",
   "main": "lib/index.js",
   "files": [
+    "dist",
     "lib",
-    "css"
+    "css",
+    "screenshot.png"
   ],
   "scripts": {
     "test": "jest ./tests/**.test.js",
