@@ -3,6 +3,10 @@
   "version": "1.5.19",
   "description": "custom field maker for a-blog cms",
   "main": "lib/index.js",
+  "files": [
+    "lib",
+    "css"
+  ],
   "scripts": {
     "test": "jest ./tests/**.test.js",
     "build": "npm-run-all -p build:*",
