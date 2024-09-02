@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { encode } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
+import { decode } from 'html-entities';
 import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/default.css';
 import 'highlight.js/styles/xcode.css';
@@ -28,23 +28,22 @@ export default class Highlighter extends Component {
     const { source } = this.state;
     const { children } = this.props;
     let html = renderToStaticMarkup(children);
-    html = html.replace(/&quot;/g, '"');
     html = html.replace(/data-tmp="(.*?)"/g, '$1');
-    html = html.replace(/&lt;/g, '<');
-    html = html.replace(/&gt;/g, '>');
-    const code = beautifyHtml(html, {
+    html = beautifyHtml(decode(html, { level: 'html5' }), {
       unformatted: ['code', 'pre'],
       indent_inner_html: true,
       indent_char: ' ',
       indent_size: 2,
       eol: '\n',
-    })
-    const { value = '', code: rawCode = '' } = hljs.highlight(code, { language: 'xml' });
-    if (source !== value && this.props.onSourceGenerated) {
-      this.props.onSourceGenerated(rawCode);
+    });
+    const { value = '', code = '' } = hljs.highlight(html, { language: 'xml' });
+    if (source !== value) {
       this.setState({
         source: value,
       });
+      if (this.props.onSourceGenerated) {
+        this.props.onSourceGenerated(code);
+      }
     }
   }
 
