@@ -1,0 +1,14 @@
+.github/
+css/
+example/
+fonts/
+images/
+src/
+tests/
+node_modules/*
+.gitgnore
+.node-version
+babel.config.js
+webpack.dev.js
+webpack.prod.js
+prettier.config.js
