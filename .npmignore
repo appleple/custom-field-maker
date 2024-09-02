@@ -1,10 +1,10 @@
-.github/
-css/
-example/
-fonts/
-images/
-src/
-tests/
+/.github
+/css
+/example
+/fonts
+/images
+/src
+/tests
 node_modules/*
 .gitgnore
 .node-version
