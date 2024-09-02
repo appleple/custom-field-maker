@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { html as beautifyHtml } from 'js-beautify';
 import { decode } from 'html-entities';
 import hljs from 'highlight.js/lib/core';
-import 'highlight.js/styles/default.css';
 import 'highlight.js/styles/xcode.css';
 import xml from 'highlight.js/lib/languages/xml';
 hljs.registerLanguage('xml', xml);
