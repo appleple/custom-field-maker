@@ -13,6 +13,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: './bundle.js',
     chunkFilename: `./bundle.chunk.js?date=${new Date().getTime()}`,
+    clean: true,
   },
   resolve: {
     modules: ['node_modules'],
@@ -36,7 +37,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|svg)$/,
-        type: 'asset/resource',
+        type: 'asset',
       },
     ],
   }
