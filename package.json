@@ -7,12 +7,12 @@
     "test": "jest ./tests/**.test.js",
     "build": "npm-run-all -p build:*",
     "build:babel": "babel src --out-dir lib",
+    "build:svgo": "svgo ./src/assets/images -o ./lib/assets/images",
     "build:prod": "NODE_ENV=production webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
     "start": "npm-run-all -p dev",
     "prettier": "prettier ./src/**/*.js --write",
-    "deploy": "np --no-cleanup --any-branch",
-    "svgo": "svgo ./src/assets/images/*.svg ./lib/assets/images/*.svg"
+    "deploy": "np --no-cleanup --any-branch"
   },
   "jest": {
     "verbose": true,
