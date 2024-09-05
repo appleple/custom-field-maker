@@ -27,122 +27,122 @@ export function Section() {
           switch (item.type) {
             case 'text': {
               return (
-                <p key={index} className="acms-admin-form-item">
+                <div key={index} className="acms-admin-form-item">
                   <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
                   </label>
-                  <span className="acms-admin-form-item-input">
+                  <div className="acms-admin-form-item-input">
                     <TextInput item={item} id={`${item.name}${index}`} />
-                  </span>
-                </p>
+                  </div>
+                </div>
               );
             }
             case 'textarea': {
               return (
-                <p key={index} className="acms-admin-form-item">
+                <div key={index} className="acms-admin-form-item">
                   <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
                   </label>
-                  <span className="acms-admin-form-item-input">
+                  <div className="acms-admin-form-item-input">
                     <Textarea item={item} id={`${item.name}${index}`} />
-                  </span>
-                </p>
+                  </div>
+                </div>
               );
             }
             case 'selectbox': {
               return (
                 <div key={index} className="acms-admin-form-item">
-                  <p className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
-                  </p>
-                  <span className="acms-admin-form-item-input">
+                  </label>
+                  <div className="acms-admin-form-item-input">
                     <Selectbox item={item} id={`${item.name}${index}`} />
-                  </span>
+                  </div>
                 </div>
               );
             }
             case 'checkbox': {
               return (
-                <div key={index} className="acms-admin-form-item">
-                  <p className="acms-admin-form-item-heading">
+                <fieldset key={index} className="acms-admin-form-item">
+                  <legend className="acms-admin-form-item-heading">
                     <Heading item={item} />
-                  </p>
-                  <span className="acms-admin-form-item-input">
+                  </legend>
+                  <div className="acms-admin-form-item-input">
                     <Checkbox item={item} />
-                  </span>
-                </div>
+                  </div>
+                </fieldset>
               );
             }
             case 'radioButton': {
               return (
-                <div key={index} className="acms-admin-form-item">
-                  <p className="acms-admin-form-item-heading">
+                <fieldset key={index} className="acms-admin-form-item">
+                  <legend className="acms-admin-form-item-heading">
                     <Heading item={item} />
-                  </p>
-                  <span className="acms-admin-form-item-input">
+                  </legend>
+                  <div className="acms-admin-form-item-input">
                     <RadioButton item={item} />
-                  </span>
-                </div>
+                  </div>
+                </fieldset>
               );
             }
             case 'media': {
               return (
-                <p key={index} className="acms-admin-form-item">
+                <div key={index} className="acms-admin-form-item">
                   <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
                   </label>
-                  <span>
+                  <div className="acms-admin-form-item-input">
                     <Media item={item} id={`${item.name}${index}`} />
-                  </span>
-                </p>
+                  </div>
+                </div>
               );
             }
             case 'image': {
               return (
-                <p key={index} className="acms-admin-form-item">
+                <div key={index} className="acms-admin-form-item">
                   <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
                   </label>
-                  <span>
+                  <div className="acms-admin-form-item-input">
                     <ImageInput item={item} id={`${item.name}${index}`} />
-                  </span>
-                </p>
+                  </div>
+                </div>
               );
             }
             case 'file': {
               return (
-                <p key={index} className="acms-admin-form-item">
+                <div key={index} className="acms-admin-form-item">
                   <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
                   </label>
-                  <span>
+                  <div className="acms-admin-form-item-input">
                     <FileInput item={item} id={`${item.name}${index}`} />
-                  </span>
-                </p>
+                  </div>
+                </div>
               );
             }
             case 'richEditor': {
               return (
-                <p key={index} className="acms-admin-form-item">
+                <div key={index} className="acms-admin-form-item">
                   <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
                   </label>
-                  <span>
+                  <div className="acms-admin-form-item-input">
                     <RichEditor item={item} id={`${item.name}${index}`} />
-                  </span>
-                </p>
+                  </div>
+                </div>
               );
             }
             case 'table': {
               return (
-                <p key={index} className="acms-admin-form-item">
+                <div key={index} className="acms-admin-form-item">
                   <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
                     <Heading item={item} />
                   </label>
-                  <span>
+                  <div className="acms-admin-form-item-input">
                     <Table item={item} id={`${item.name}${index}`} />
-                  </span>
-                </p>
+                  </div>
+                </div>
               );
             }
             default: {
