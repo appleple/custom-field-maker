@@ -16,7 +16,7 @@ import { useMakerContext } from '../../store/MakerContext';
 export function GroupSection() {
   const {
     state: { fieldgroup },
-    preview: { acmscss, direction, editMode },
+    preview: { acmscss, editMode },
   } = useMakerContext();
 
   return (
@@ -24,28 +24,18 @@ export function GroupSection() {
       {fieldgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{fieldgroup.title}</h2>}
 
       {fieldgroup.name && (
-        <div className="js-fieldgroup-sortable adminTable acms-admin-table-admin-edit">
+        <div
+          className={classnames({
+            'js-fieldgroup-sortable': true,
+            'acms-admin-grid-layout': acmscss,
+          })}
+        >
           {editMode === 'preview'
             ? null
             : fieldgroup.items.length > 0 && (
                 <>
                   <div className={classnames({ 'acms-admin-hide-sp': acmscss })}>
                     <div>
-                      <div
-                        className={classnames({
-                          'acms-admin-table-left acms-admin-admin-config-table-item-handle': acmscss,
-                        })}
-                      >
-                        &nbsp;
-                      </div>
-                      {direction === 'horizontal' &&
-                        fieldgroup &&
-                        fieldgroup.items.map((item, index) => (
-                          <span key={index}>
-                            <Heading item={item} />
-                          </span>
-                        ))}
-                      {direction === 'vertical' && <span />}
                       <span
                         className={classnames({
                           'acms-admin-table-left acms-admin-admin-config-table-action': acmscss,
@@ -58,140 +48,183 @@ export function GroupSection() {
 
                   {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
 
-                  <div className="sortable-item acms-flex">
-                    <div className="item-handle acms-admin-table-nowrap">
+                  <div className="sortable-item acms-admin-flex acms-admin-flex-col acms-admin-flex-row-md acms-admin-flex-row-lg acms-admin-flex-row-xl  acms-admin-items-start acms-admin-items-center-md acms-admin-items-center-lg acms-admin-items-center-xl">
+                    <div className="item-handle acms-admin-padding-small">
                       {acmscss && <i className="acms-admin-icon-sort" />}
                     </div>
 
-                    {fieldgroup.items.map((item, index) => {
-                      switch (item.type) {
-                        case 'text': {
-                          return (
-                            <div className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
-                                <Heading item={item} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <TextInput item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        case 'textarea': {
-                          return (
-                            <div key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
-                                <Heading item={item} id={`${item.name}${index}`} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <Textarea item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        case 'checkbox': {
-                          return (
-                            <fieldset key={index} className="acms-admin-form-item">
-                              <legend className="acms-admin-form-item-heading">
-                                <Heading item={item} id={`${item.name}${index}`} />
-                              </legend>
-                              <div className="acms-admin-form-item-input">
-                                <Checkbox item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </fieldset>
-                          );
-                        }
-                        case 'selectbox': {
-                          return (
-                            <div key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
-                                <Heading item={item} id={`${item.name}${index}`} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <Selectbox item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        case 'radioButton': {
-                          return (
-                            <fieldset key={index} className="acms-admin-form-item">
-                              <legend className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                                <Heading item={item} />
-                              </legend>
-                              <div className="acms-admin-form-item-input">
-                                <RadioButton item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </fieldset>
-                          );
-                        }
-                        case 'media': {
-                          return (
-                            <div key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                                <Heading item={item} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <Media item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        case 'image': {
-                          return (
-                            <div key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                                <Heading item={item} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <ImageInput item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        case 'file': {
-                          return (
-                            <div key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                                <Heading item={item} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <FileInput item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        case 'richEditor': {
-                          return (
-                            <div key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                                <Heading item={item} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <RichEditor item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        case 'table': {
-                          return (
-                            <div key={index} className="acms-admin-form-item">
-                              <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                                <Heading item={item} />
-                              </label>
-                              <div className="acms-admin-form-item-input">
-                                <Table item={item} id={`${item.name}${index}`} />
-                              </div>
-                            </div>
-                          );
-                        }
-                        default: {
-                          return null;
-                        }
-                      }
-                    })}
+                    <div className="acms-admin-flex-1 acms-admin-padding-small">
+                      {fieldgroup.items.map((item, index) => (
+                        <div
+                          key={index}
+                          className={classnames({
+                            'acms-admin-flex': acmscss,
+                            'acms-admin-flex-col': acmscss,
+                            'acms-admin-flex-row-md': acmscss,
+                            'acms-admin-flex-row-lg': acmscss,
+                            'acms-admin-flex-row-xl': acmscss,
+                            'acms-admin-padding-small': acmscss,
+                          })}
+                        >
+                          {(() => {
+                            switch (item.type) {
+                              case 'text': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <TextInput item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              case 'textarea': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} id={`${item.name}${index}`} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <Textarea item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              case 'checkbox': {
+                                return (
+                                  <fieldset key={index} className="acms-admin-contents">
+                                    <legend className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}>
+                                      <Heading item={item} id={`${item.name}${index}`} />
+                                    </legend>
+                                    <div className="acms-admin-flex-1">
+                                      <Checkbox item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </fieldset>
+                                );
+                              }
+                              case 'selectbox': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} id={`${item.name}${index}`} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <Selectbox item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              case 'radioButton': {
+                                return (
+                                  <fieldset key={index} className="acms-admin-contents">
+                                    <legend
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      id={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} />
+                                    </legend>
+                                    <div className="acms-admin-flex-1">
+                                      <RadioButton item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </fieldset>
+                                );
+                              }
+                              case 'media': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <Media item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              case 'image': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <ImageInput item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              case 'file': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <FileInput item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              case 'richEditor': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <RichEditor item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              case 'table': {
+                                return (
+                                  <>
+                                    <label
+                                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                      htmlFor={`${item.name}${index}`}
+                                    >
+                                      <Heading item={item} />
+                                    </label>
+                                    <div className="acms-admin-flex-1">
+                                      <Table item={item} id={`${item.name}${index}`} />
+                                    </div>
+                                  </>
+                                );
+                              }
+                              default: {
+                                return null;
+                              }
+                            }
+                          })()}
+                        </div>
+                      ))}
+                    </div>
 
-                    <div className="acms-admin-table-nowrap">
+                    <div className="acms-admin-padding-small">
                       <button
                         type="button"
                         className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"
@@ -208,141 +241,184 @@ export function GroupSection() {
 
           {fieldgroup.items.length > 0 && (
             <>
-              <div className="sortable-item item-template acms-flex">
-                <div className="item-handle acms-admin-table-nowrap">
+              <div className="sortable-item item-template acms-admin-flex acms-admin-flex-col acms-admin-flex-row-md acms-admin-flex-row-lg acms-admin-flex-row-xl acms-admin-items-start acms-admin-items-center-md acms-admin-items-center-lg acms-admin-items-center-xl">
+                <div className="item-handle acms-admin-padding-small">
                   <i className="acms-admin-icon-sort"></i>
                 </div>
 
-                {fieldgroup.items.map((item, index) => {
-                  switch (item.type) {
-                    case 'text': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" id={`template-${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <TextInput item={item} id={`template-${item.name}${index}`} isValue={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    case 'textarea': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" htmlFor={`template-${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <Textarea item={item} id={`template-${item.name}${index}`} isValue={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    case 'checkbox': {
-                      return (
-                        <fieldset key={index} className="acms-admin-form-item">
-                          <legend className="acms-admin-form-item-heading">
-                            <Heading item={item} />
-                          </legend>
-                          <div className="acms-admin-form-item-input">
-                            <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
-                          </div>
-                        </fieldset>
-                      );
-                    }
-                    case 'selectbox': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    case 'radioButton': {
-                      return (
-                        <fieldset key={index} className="acms-admin-form-item">
-                          <legend className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                            <Heading item={item} />
-                          </legend>
-                          <div className="acms-admin-form-item-input">
-                            <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
-                          </div>
-                        </fieldset>
-                      );
-                    }
-                    case 'media': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <Media item={item} id={`${item.name}${index}`} isValue={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    case 'image': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    case 'file': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <FileInput item={item} id={`${item.name}${index}`} isValue={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    case 'richEditor': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    case 'table': {
-                      return (
-                        <div key={index} className="acms-admin-form-item">
-                          <label className="acms-admin-form-item-heading" id={`${item.name}${index}`}>
-                            <Heading item={item} />
-                          </label>
-                          <div className="acms-admin-form-item-input">
-                            <Table item={item} id={`${item.name}${index}`} isValue={false} />
-                          </div>
-                        </div>
-                      );
-                    }
-                    default: {
-                      return null;
-                    }
-                  }
-                })}
+                <div className="acms-admin-flex-1 acms-admin-padding-small">
+                  {fieldgroup.items.map((item, index) => (
+                    <div
+                      key={index}
+                      className={classnames({
+                        'acms-admin-flex': acmscss,
+                        'acms-admin-flex-col': acmscss,
+                        'acms-admin-flex-row-md': acmscss,
+                        'acms-admin-flex-row-lg': acmscss,
+                        'acms-admin-flex-row-xl': acmscss,
+                        'acms-admin-padding-small': acmscss,
+                      })}
+                    >
+                      {(() => {
+                        switch (item.type) {
+                          case 'text': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <TextInput item={item} id={`template-${item.name}${index}`} isValue={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          case 'textarea': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <Textarea item={item} id={`template-${item.name}${index}`} isValue={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          case 'checkbox': {
+                            return (
+                              <fieldset key={index} className="acms-admin-contents">
+                                <legend className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}>
+                                  <Heading item={item} />
+                                </legend>
+                                <div className="acms-admin-flex-1">
+                                  <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
+                                </div>
+                              </fieldset>
+                            );
+                          }
+                          case 'selectbox': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          case 'radioButton': {
+                            return (
+                              <fieldset key={index} className="acms-admin-contents">
+                                <legend
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  id={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </legend>
+                                <div className="acms-admin-flex-1">
+                                  <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
+                                </div>
+                              </fieldset>
+                            );
+                          }
+                          case 'media': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <Media item={item} id={`${item.name}${index}`} isValue={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          case 'image': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          case 'file': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <FileInput item={item} id={`${item.name}${index}`} isValue={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          case 'richEditor': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          case 'table': {
+                            return (
+                              <>
+                                <label
+                                  className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                  htmlFor={`${item.name}${index}`}
+                                >
+                                  <Heading item={item} />
+                                </label>
+                                <div className="acms-admin-flex-1">
+                                  <Table item={item} id={`${item.name}${index}`} isValue={false} />
+                                </div>
+                              </>
+                            );
+                          }
+                          default: {
+                            return null;
+                          }
+                        }
+                      })()}
+                    </div>
+                  ))}
+                </div>
 
                 {fieldgroup.items.length > 0 && (
-                  <div className="acms-admin-table-nowrap">
+                  <div className="acms-admin-padding-small">
                     <button
                       type="button"
                       className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"

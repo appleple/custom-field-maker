@@ -1,32 +1,402 @@
-.acms-admin-form select {
-  appearance: none;
-}
-.acms-admin-form-item {
-  display :flex;
-  flex-direction: column;
-}
-.acms-admin-form-item-heading {
-  padding-bottom: 0.2em;
-}
+/*
+  # a-blog cms に追加予定
 
-@media screen and (min-width: 768px) {
-  .acms-admin-form-item {
-    flex-direction: row;
-    align-items: center;
-  }
-  .acms-admin-form-item-heading {
-    flex-basis: 30%;
-    padding-right: 1rem;
-    text-align: right;
-  }
-  .acms-admin-form-item-input {
-    flex-basis: 70%;
-  }
-}
+  クラス名	デフォルトのブレイクポイント
+  acms-admin-col-	    全て
+  acms-admin-col-sm-	480px以上〜
+  acms-admin-col-md-	768px以上〜
+  acms-admin-col-lg-	1024px以上〜
+  acms-admin-col-xl-	1440px以上〜
 
+  min-width: global.$breakpoint-sm-min -> min-width: 480px
+  max-width: global.$breakpoint-md-max -> max-width: 767px
+  min-width: global.$breakpoint-md-min -> min-width: 768px
+  max-width: global.$breakpoint-lg-max -> max-width: 1023px
+  min-width: global.$breakpoint-lg-min -> min-width: 1024px
+  max-width: global.$breakpoint-xl-max -> max-width: 1439px
+  min-width: global.$breakpoint-xl-min -> min-width: 1440px
+*/
+
+/* --------------------------------------
+ユーティリティ
+-------------------------------------- */
 .acms-flex {
   display: flex;
+}
+.acms-flex-row {
+  flex-direction: row;
+}
+.acms-flex-col {
+  flex-direction: column;
+}
+.acms-contents {
+  display: contents;
+}
+.acms-flex-1 {
+  flex: 1 1 0%;
+}
+.acms-items-start	{
+  align-items: flex-start;
+}
+.acms-items-end	{
+  align-items: flex-end;
+}
+.acms-items-center	{
   align-items: center;
-  /* stylelint-disable-next-line order/properties-order */
-  gap: 32px;
+}
+.acms-items-baseline	{
+  align-items: baseline;
+}
+.acms-items-stretch	{
+  align-items: stretch;
+}
+
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .acms-flex-sm {
+    display: flex;
+  }
+  .acms-flex-row-sm {
+    flex-direction: row;
+  }
+  .acms-flex-col-sm {
+    flex-direction: column;
+  }
+  .acms-contents-sm {
+    display: contents;
+  }
+  .acms-flex-1-sm {
+    flex: 1 1 0%;
+  }
+  .acms-items-start-sm	{
+    align-items: flex-start;
+  }
+  .acms-items-end-sm	{
+    align-items: flex-end;
+  }
+  .acms-items-center-sm	{
+    align-items: center;
+  }
+  .acms-items-baseline-sm	{
+    align-items: baseline;
+  }
+  .acms-items-stretch-sm	{
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .acms-flex-md {
+    display: flex;
+  }
+  .acms-flex-row-md {
+    flex-direction: row;
+  }
+  .acms-flex-col-md {
+    flex-direction: column;
+  }
+  .acms-contents-md {
+    display: contents;
+  }
+  .acms-flex-1-md {
+    flex: 1 1 0%;
+  }
+  .acms-items-start-md	{
+    align-items: flex-start;
+  }
+  .acms-items-end-md	{
+    align-items: flex-end;
+  }
+  .acms-items-center-md	{
+    align-items: center;
+  }
+  .acms-items-baseline-md	{
+    align-items: baseline;
+  }
+  .acms-items-stretch-md	{
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .acms-flex-lg {
+    display: flex;
+  }
+  .acms-flex-row-lg {
+    flex-direction: row;
+  }
+  .acms-flex-col-lg {
+    flex-direction: column;
+  }
+  .acms-contents-lg {
+    display: contents;
+  }
+  .acms-flex-1-lg {
+    flex: 1 1 0%;
+  }
+  .acms-items-start-lg	{
+    align-items: flex-start;
+  }
+  .acms-items-end-lg	{
+    align-items: flex-end;
+  }
+  .acms-items-center-lg	{
+    align-items: center;
+  }
+  .acms-items-baseline-lg	{
+    align-items: baseline;
+  }
+  .acms-items-stretch-lg	{
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1440px) {
+  .acms-flex-xl {
+    display: flex;
+  }
+  .acms-flex-row-xl {
+    flex-direction: row;
+  }
+  .acms-flex-col-xl {
+    flex-direction: column;
+  }
+  .acms-contents-xl {
+    display: contents;
+  }
+  .acms-flex-1-xl {
+    flex: 1 1 0%;
+  }
+  .acms-items-start-xl	{
+    align-items: flex-start;
+  }
+  .acms-items-end-xl	{
+    align-items: flex-end;
+  }
+  .acms-items-center-xl	{
+    align-items: center;
+  }
+  .acms-items-baseline-xl	{
+    align-items: baseline;
+  }
+  .acms-items-stretch-xl	{
+    align-items: stretch;
+  }
+}
+
+/* --------------------------------------
+レイアウトクラス
+-------------------------------------- */
+
+.acms-admin-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 12px;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  .acms-admin-grid-layout {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+.acms-admin-grid-layout * {
+  box-sizing: border-box;
+}
+.acms-admin-grid-layout .acms-admin-icon-tooltip {
+  margin-left: 10px;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .acms-admin-grid-layout .acms-admin-icon-tooltip {
+      margin-right: -25px;
+  }
+}
+.acms-admin-grid-layout-heading {
+  width: 100%;
+  color: #4b4b4b;
+  font-weight: bold;
+  line-height: 1.7;
+  text-align: left;
+  vertical-align: top;
+}
+@media (min-width: 768px) {
+  .acms-admin-grid-layout-heading {
+    width: 250px;
+    padding-right: 35px;
+    text-align: right;
+  }
+}
+
+/*
+  # a-blog cms で build されるもの
+*/
+.acms-admin-flex {
+  display: flex;
+}
+.acms-admin-flex-row {
+  flex-direction: row;
+}
+.acms-admin-flex-col {
+  flex-direction: column;
+}
+.acms-admin-contents {
+  display: contents;
+}
+.acms-admin-flex-1 {
+  flex: 1 1 0%;
+}
+.acms-admin-items-start	{
+  align-items: flex-start;
+}
+.acms-admin-items-end	{
+  align-items: flex-end;
+}
+.acms-admin-items-center	{
+  align-items: flex-center;
+}
+.acms-admin-items-baseline	{
+  align-items: baseline;
+}
+.acms-admin-items-stretch	{
+  align-items: stretch;
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .acms-admin-flex-sm {
+    display: flex;
+  }
+  .acms-admin-flex-row-sm {
+    flex-direction: row;
+  }
+  .acms-admin-flex-col-sm {
+    flex-direction: column;
+  }
+  .acms-admin-contents-sm {
+    display: contents;
+  }
+  .acms-admin-flex-1-sm {
+    flex: 1 1 0%;
+  }
+  .acms-admin-items-start-sm	{
+    align-items: flex-start;
+  }
+  .acms-admin-items-end-sm	{
+    align-items: flex-end;
+  }
+  .acms-admin-items-center-sm	{
+    align-items: center;
+  }
+  .acms-admin-items-baseline-sm	{
+    align-items: baseline;
+  }
+  .acms-admin-items-stretch-sm	{
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .acms-admin-flex-md {
+    display: flex;
+  }
+  .acms-admin-flex-row-md {
+    flex-direction: row;
+  }
+  .acms-admin-flex-col-md {
+    flex-direction: column;
+  }
+  .acms-admin-contents-md {
+    display: contents;
+  }
+  .acms-admin-flex-1-md {
+    flex: 1 1 0%;
+  }
+  .acms-admin-items-start-md	{
+    align-items: flex-start;
+  }
+  .acms-admin-items-end-md	{
+    align-items: flex-end;
+  }
+  .acms-admin-items-center-md	{
+    align-items: center;
+  }
+  .acms-admin-items-baseline-md	{
+    align-items: baseline;
+  }
+  .acms-admin-items-stretch-md	{
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .acms-admin-flex-lg {
+    display: flex;
+  }
+  .acms-admin-flex-row-lg {
+    flex-direction: row;
+  }
+  .acms-admin-flex-col-lg {
+    flex-direction: column;
+  }
+  .acms-admin-contents-lg {
+    display: contents;
+  }
+  .acms-admin-flex-1-lg {
+    flex: 1 1 0%;
+  }
+  .acms-admin-items-start-lg	{
+    align-items: flex-start;
+  }
+  .acms-admin-items-end-lg	{
+    align-items: flex-end;
+  }
+  .acms-admin-items-center-lg	{
+    align-items: center;
+  }
+  .acms-admin-items-baseline-lg	{
+    align-items: baseline;
+  }
+  .acms-admin-items-stretch-lg	{
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1440px) {
+  .acms-admin-flex-xl {
+    display: flex;
+  }
+  .acms-admin-flex-row-xl {
+    flex-direction: row;
+  }
+  .acms-admin-flex-col-xl {
+    flex-direction: column;
+  }
+  .acms-admin-contents-xl {
+    display: contents;
+  }
+  .acms-admin-flex-1-xl {
+    flex: 1 1 0%;
+  }
+  .acms-admin-items-start-xl	{
+    align-items: flex-start;
+  }
+  .acms-admin-items-end-xl	{
+    align-items: flex-end;
+  }
+  .acms-admin-items-center-xl	{
+    align-items: center;
+  }
+  .acms-admin-items-baseline-xl	{
+    align-items: baseline;
+  }
+  .acms-admin-items-stretch-xl	{
+    align-items: stretch;
+  }
+}
+
+.acms-admin-form select {
+  appearance: none;
 }
