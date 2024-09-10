@@ -31,281 +31,300 @@ export function GroupTableLayout() {
             className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}
             ref={tableRef}
           >
-            <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
-              <tr>
-                <th
-                  className={classnames({ 'acms-admin-table-left acms-admin-admin-config-table-item-handle': acmscss })}
-                >
-                  &nbsp;
-                </th>
-                {direction === 'horizontal' && (
+            {editMode === 'preview'
+              ? null
+              : fieldgroup.items.length > 0 && (
                   <>
-                    {fieldgroup &&
-                      fieldgroup.items.map((item, index) => (
-                        <th key={index} className={classnames({ 'acms-admin-table-left': acmscss })}>
-                          {item.title}
-                          {item.tooltip && (
-                            <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip} />
-                          )}
+                    <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
+                      <tr>
+                        <th
+                          className={classnames({
+                            'acms-admin-table-left acms-admin-admin-config-table-item-handle': acmscss,
+                          })}
+                        >
+                          &nbsp;
                         </th>
-                      ))}
+                        {direction === 'horizontal' && (
+                          <>
+                            {fieldgroup &&
+                              fieldgroup.items.map((item, index) => (
+                                <th key={index} className={classnames({ 'acms-admin-table-left': acmscss })}>
+                                  {item.title}
+                                  {item.tooltip && (
+                                    <i
+                                      className="acms-admin-icon-tooltip js-acms-tooltip"
+                                      data-acms-tooltip={item.tooltip}
+                                    />
+                                  )}
+                                </th>
+                              ))}
+                          </>
+                        )}
+                        {direction === 'vertical' && <th />}
+
+                        <th
+                          className={classnames({
+                            'acms-admin-table-left acms-admin-admin-config-table-action': acmscss,
+                          })}
+                        >
+                          削除
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
+                      <tr className="sortable-item">
+                        <td className="item-handle acms-admin-table-nowrap">
+                          {acmscss && <i className="acms-admin-icon-sort" />}
+                        </td>
+                        <>
+                          {fieldgroup.items.map((item, index) => {
+                            switch (item.type) {
+                              case 'text': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <TextInput item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'textarea': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Textarea item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'checkbox': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Checkbox item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'selectbox': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Selectbox item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'radioButton': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <RadioButton item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'media': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Media item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'image': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <ImageInput item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'richEditor': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <ConditionalWrap
+                                        condition={item.useExpand}
+                                        wrap={(children) => (
+                                          <div className="js-expand js-acms-expand">
+                                            <div className="js-acms-expand-inner">
+                                              <button className="js-expand-btn js-acms-expand-btn" type="button">
+                                                <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                                              </button>
+                                              {children}
+                                            </div>
+                                          </div>
+                                        )}
+                                      >
+                                        <RichEditor item={item} id={`${item.name}${index}`} />
+                                      </ConditionalWrap>
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'table': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Table item={item} id={`${item.name}${index}`} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              default: {
+                                return null;
+                              }
+                            }
+                          })}
+                        </>
+
+                        <td className="acms-admin-table-nowrap">
+                          <button
+                            type="button"
+                            className={classnames('item-delete', {
+                              'acms-admin-btn-admin acms-admin-btn-admin-danger': acmscss,
+                            })}
+                          >
+                            削除
+                          </button>
+                        </td>
+                      </tr>
+
+                      {editMode === 'preview' ? null : `<!-- END ${fieldgroup.name}:loop -->`}
+
+                      {editMode === 'preview' ? null : (
+                        <>
+                          <tr className="sortable-item item-template">
+                            <td className="item-handle acms-admin-table-nowrap">
+                              {acmscss && <i className="acms-admin-icon-sort" />}
+                            </td>
+                            <>
+                              {fieldgroup.items.map((item, index) => {
+                                switch (item.type) {
+                                  case 'text': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <TextInput item={item} id={`${item.name}${index}`} isValue={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'textarea': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <Textarea item={item} id={`${item.name}${index}`} isValue={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'checkbox': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <Checkbox
+                                            item={item}
+                                            id={`template-${item.name}${index}`}
+                                            isChecked={false}
+                                          />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'selectbox': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'radioButton': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'media': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <Media item={item} id={`${item.name}${index}`} isValue={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'image': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'richEditor': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  case 'table': {
+                                    return (
+                                      <WrapTable title={item.title}>
+                                        <td>
+                                          <Table item={item} id={`${item.name}${index}`} isValue={false} />
+                                        </td>
+                                      </WrapTable>
+                                    );
+                                  }
+                                  default: {
+                                    return null;
+                                  }
+                                }
+                              })}
+                            </>
+
+                            <td className="acms-admin-table-nowrap">
+                              <button
+                                type="button"
+                                className={classnames('item-delete', {
+                                  'acms-admin-btn-admin acms-admin-btn-admin-danger': acmscss,
+                                })}
+                              >
+                                削除
+                              </button>
+                            </td>
+                          </tr>
+                        </>
+                      )}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colSpan={direction === 'horizontal' ? groupLength + 2 : 3}>
+                          <input
+                            type="button"
+                            className={classnames('item-insert', { 'acms-admin-btn-admin': acmscss })}
+                            value="追加"
+                          />
+                        </td>
+                      </tr>
+                    </tfoot>
                   </>
                 )}
-                {direction === 'vertical' && <th />}
-
-                <th className={classnames({ 'acms-admin-table-left acms-admin-admin-config-table-action': acmscss })}>
-                  削除
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
-              <tr className="sortable-item">
-                <td className="item-handle acms-admin-table-nowrap">
-                  {acmscss && <i className="acms-admin-icon-sort" />}
-                </td>
-                <>
-                  {fieldgroup.items.map((item, index) => {
-                    switch (item.type) {
-                      case 'text': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <TextInput item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'textarea': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Textarea item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'checkbox': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Checkbox item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'selectbox': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Selectbox item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'radioButton': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <RadioButton item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'media': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Media item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'image': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <ImageInput item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'richEditor': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <ConditionalWrap
-                                condition={item.useExpand}
-                                wrap={(children) => (
-                                  <div className="js-expand js-acms-expand">
-                                    <div className="js-acms-expand-inner">
-                                      <button className="js-expand-btn js-acms-expand-btn" type="button">
-                                        <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
-                                      </button>
-                                      {children}
-                                    </div>
-                                  </div>
-                                )}
-                              >
-                                <RichEditor item={item} id={`${item.name}${index}`} />
-                              </ConditionalWrap>
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'table': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Table item={item} id={`${item.name}${index}`} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      default: {
-                        return null;
-                      }
-                    }
-                  })}
-                </>
-
-                <td className="acms-admin-table-nowrap">
-                  <button
-                    type="button"
-                    className={classnames('item-delete', {
-                      'acms-admin-btn-admin acms-admin-btn-admin-danger': acmscss,
-                    })}
-                  >
-                    削除
-                  </button>
-                </td>
-              </tr>
-
-              {editMode === 'preview' ? null : `<!-- END ${fieldgroup.name}:loop -->`}
-
-              {editMode === 'preview' ? null : (
-                <>
-                  <tr className="sortable-item item-template">
-                    <td className="item-handle acms-admin-table-nowrap">
-                      {acmscss && <i className="acms-admin-icon-sort" />}
-                    </td>
-                    <>
-                      {fieldgroup.items.map((item, index) => {
-                        switch (item.type) {
-                          case 'text': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <TextInput item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'textarea': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Textarea item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'checkbox': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'selectbox': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'radioButton': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'media': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Media item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'image': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'richEditor': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'table': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Table item={item} id={`${item.name}${index}`} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          default: {
-                            return null;
-                          }
-                        }
-                      })}
-                    </>
-
-                    <td className="acms-admin-table-nowrap">
-                      <button
-                        type="button"
-                        className={classnames('item-delete', {
-                          'acms-admin-btn-admin acms-admin-btn-admin-danger': acmscss,
-                        })}
-                      >
-                        削除
-                      </button>
-                    </td>
-                  </tr>
-                </>
-              )}
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colSpan={direction === 'horizontal' ? groupLength + 2 : 3}>
-                  <input
-                    type="button"
-                    className={classnames('item-insert', { 'acms-admin-btn-admin': acmscss })}
-                    value="追加"
-                  />
-                </td>
-              </tr>
-            </tfoot>
           </table>
         </>
       )}

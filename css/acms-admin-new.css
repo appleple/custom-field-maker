@@ -21,7 +21,7 @@
 ユーティリティ
 -------------------------------------- */
 .acms-flex {
-  display: flex;
+  display: flex !important;
 }
 .acms-flex-row {
   flex-direction: row;
@@ -30,7 +30,7 @@
   flex-direction: column;
 }
 .acms-contents {
-  display: contents;
+  display: contents !important;
 }
 .acms-flex-1 {
   flex: 1 1 0%;
@@ -54,7 +54,7 @@
 
 @media (min-width: 480px) and (max-width: 767px) {
   .acms-flex-sm {
-    display: flex;
+    display: flex !important;
   }
   .acms-flex-row-sm {
     flex-direction: row;
@@ -63,7 +63,7 @@
     flex-direction: column;
   }
   .acms-contents-sm {
-    display: contents;
+    display: contents !important;
   }
   .acms-flex-1-sm {
     flex: 1 1 0%;
@@ -87,7 +87,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .acms-flex-md {
-    display: flex;
+    display: flex !important;
   }
   .acms-flex-row-md {
     flex-direction: row;
@@ -96,7 +96,7 @@
     flex-direction: column;
   }
   .acms-contents-md {
-    display: contents;
+    display: contents !important;
   }
   .acms-flex-1-md {
     flex: 1 1 0%;
@@ -120,7 +120,7 @@
 
 @media (min-width: 1024px) and (max-width: 1439px) {
   .acms-flex-lg {
-    display: flex;
+    display: flex !important;
   }
   .acms-flex-row-lg {
     flex-direction: row;
@@ -129,7 +129,7 @@
     flex-direction: column;
   }
   .acms-contents-lg {
-    display: contents;
+    display: contents !important;
   }
   .acms-flex-1-lg {
     flex: 1 1 0%;
@@ -153,7 +153,7 @@
 
 @media (min-width: 1440px) {
   .acms-flex-xl {
-    display: flex;
+    display: flex !important;
   }
   .acms-flex-row-xl {
     flex-direction: row;
@@ -162,7 +162,7 @@
     flex-direction: column;
   }
   .acms-contents-xl {
-    display: contents;
+    display: contents !important;
   }
   .acms-flex-1-xl {
     flex: 1 1 0%;
@@ -235,7 +235,7 @@
   # a-blog cms で build されるもの
 */
 .acms-admin-flex {
-  display: flex;
+  display: flex !important;
 }
 .acms-admin-flex-row {
   flex-direction: row;
@@ -244,7 +244,7 @@
   flex-direction: column;
 }
 .acms-admin-contents {
-  display: contents;
+  display: contents !important;
 }
 .acms-admin-flex-1 {
   flex: 1 1 0%;
@@ -267,7 +267,7 @@
 
 @media (min-width: 480px) and (max-width: 767px) {
   .acms-admin-flex-sm {
-    display: flex;
+    display: flex !important;
   }
   .acms-admin-flex-row-sm {
     flex-direction: row;
@@ -276,7 +276,7 @@
     flex-direction: column;
   }
   .acms-admin-contents-sm {
-    display: contents;
+    display: contents !important;
   }
   .acms-admin-flex-1-sm {
     flex: 1 1 0%;
@@ -300,7 +300,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .acms-admin-flex-md {
-    display: flex;
+    display: flex !important;
   }
   .acms-admin-flex-row-md {
     flex-direction: row;
@@ -309,7 +309,7 @@
     flex-direction: column;
   }
   .acms-admin-contents-md {
-    display: contents;
+    display: contents !important;
   }
   .acms-admin-flex-1-md {
     flex: 1 1 0%;
@@ -333,7 +333,7 @@
 
 @media (min-width: 1024px) and (max-width: 1439px) {
   .acms-admin-flex-lg {
-    display: flex;
+    display: flex !important;
   }
   .acms-admin-flex-row-lg {
     flex-direction: row;
@@ -342,7 +342,7 @@
     flex-direction: column;
   }
   .acms-admin-contents-lg {
-    display: contents;
+    display: contents !important;
   }
   .acms-admin-flex-1-lg {
     flex: 1 1 0%;
@@ -366,7 +366,7 @@
 
 @media (min-width: 1440px) {
   .acms-admin-flex-xl {
-    display: flex;
+    display: flex !important;
   }
   .acms-admin-flex-row-xl {
     flex-direction: row;
@@ -375,7 +375,7 @@
     flex-direction: column;
   }
   .acms-admin-contents-xl {
-    display: contents;
+    display: contents !important;
   }
   .acms-admin-flex-1-xl {
     flex: 1 1 0%;
