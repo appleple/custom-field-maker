@@ -22,7 +22,7 @@ export function Section() {
   return (
     <>
       {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
-      <div className={classnames({ 'acms-admin-grid-layout': acmscss })}>
+      <div className={classnames({ 'acms-admin-grid-edit-table': acmscss })}>
         {customfield.length > 0 &&
           customfield.map((item, index) => {
             switch (item.type) {
@@ -34,12 +34,10 @@ export function Section() {
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
                       'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />
@@ -57,13 +55,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />
@@ -81,13 +77,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />
@@ -105,13 +99,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
-                      <legend className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}>
+                      <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </legend>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
@@ -131,7 +123,7 @@ export function Section() {
                     })}
                   >
                     <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
-                      <legend className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}>
+                      <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </legend>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
@@ -148,13 +140,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />
@@ -172,13 +162,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />
@@ -196,13 +184,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />
@@ -220,13 +206,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />
@@ -244,13 +228,11 @@ export function Section() {
                     className={classnames({
                       'acms-admin-flex': acmscss,
                       'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
-                      'acms-admin-flex-row-lg': acmscss,
-                      'acms-admin-flex-row-xl': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
-                      className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                       htmlFor={`${item.name}${index}`}
                     >
                       <Heading item={item} />

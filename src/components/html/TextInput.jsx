@@ -66,6 +66,7 @@ export function TextInput(props) {
             value: `{${item.name}}`,
           })}
           className={classnames({ 'acms-admin-form-width-full': acmscss })}
+          {...(item.placeholder ? { placeholder: item.placeholder } : {})}
         />
       )}
     </>

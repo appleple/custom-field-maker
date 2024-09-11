@@ -29,7 +29,7 @@ export function UnitGroupTableLayout() {
       {unitgroup.name && (
         <>
           <table
-            className={classnames('js-unitgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}
+            className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}
             ref={tableRef}
           >
             <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
@@ -66,7 +66,15 @@ export function UnitGroupTableLayout() {
                 <td className="item-handle acms-admin-table-nowrap">
                   {acmscss && <i className="acms-admin-icon-sort" />}
                 </td>
-                <>
+
+                <ConditionalWrap
+                  condition={direction === 'vertical'}
+                  wrap={(children) => (
+                    <td>
+                      <table>{children}</table>
+                    </td>
+                  )}
+                >
                   {unitgroup.items.map((item, index) => {
                     switch (item.type) {
                       case 'text': {
@@ -169,7 +177,7 @@ export function UnitGroupTableLayout() {
                       }
                     }
                   })}
-                </>
+                </ConditionalWrap>
 
                 <td className="acms-admin-table-nowrap">
                   <button
@@ -191,7 +199,15 @@ export function UnitGroupTableLayout() {
                     <td className="item-handle acms-admin-table-nowrap">
                       {acmscss && <i className="acms-admin-icon-sort" />}
                     </td>
-                    <>
+
+                    <ConditionalWrap
+                      condition={direction === 'vertical'}
+                      wrap={(children) => (
+                        <td>
+                          <table>{children}</table>
+                        </td>
+                      )}
+                    >
                       {unitgroup.items.map((item, index) => {
                         switch (item.type) {
                           case 'text': {
@@ -280,7 +296,7 @@ export function UnitGroupTableLayout() {
                           }
                         }
                       })}
-                    </>
+                    </ConditionalWrap>
 
                     <td className="acms-admin-table-nowrap">
                       <button

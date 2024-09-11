@@ -29,30 +29,27 @@ export function GroupSection() {
             <div
               className={classnames({
                 'js-fieldgroup-sortable': true,
-                'acms-admin-grid-layout': acmscss,
+                'acms-admin-grid-edit-table': acmscss,
               })}
             >
               {editMode === 'preview'
                 ? null
                 : fieldgroup.items.length > 0 && (
                     <>
-                      <div className={classnames({ 'acms-admin-hide-sp': acmscss })}>
-                        <div>
-                          <span
-                            className={classnames({
-                              'acms-admin-table-left acms-admin-admin-config-table-action': acmscss,
-                            })}
-                          >
-                            削除
-                          </span>
-                        </div>
-                      </div>
-
                       {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
 
-                      <div className="sortable-item acms-admin-flex acms-admin-flex-col acms-admin-flex-row-md acms-admin-flex-row-lg acms-admin-flex-row-xl  acms-admin-items-start acms-admin-items-center-md acms-admin-items-center-lg acms-admin-items-center-xl">
+                      <div
+                        className={classnames({
+                          'sortable-item': true,
+                          'acms-admin-flex': acmscss,
+                          'acms-admin-flex-col': acmscss,
+                          'acms-admin-flex-row-min-md': acmscss,
+                          'acms-admin-items-start': acmscss,
+                          'acms-admin-items-center-min-md': acmscss,
+                        })}
+                      >
                         <div className="item-handle acms-admin-padding-small">
-                          {acmscss && <i className="acms-admin-icon-sort" />}
+                          <i className="acms-admin-icon-sort" />
                         </div>
 
                         <div className="acms-admin-flex-1 acms-admin-padding-small">
@@ -62,9 +59,7 @@ export function GroupSection() {
                               className={classnames({
                                 'acms-admin-flex': acmscss,
                                 'acms-admin-flex-col': acmscss,
-                                'acms-admin-flex-row-md': acmscss,
-                                'acms-admin-flex-row-lg': acmscss,
-                                'acms-admin-flex-row-xl': acmscss,
+                                'acms-admin-flex-row-min-md': acmscss,
                                 'acms-admin-padding-small': acmscss,
                               })}
                             >
@@ -74,12 +69,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}`}
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <TextInput item={item} id={`${item.name}`} />
                                         </div>
                                       </>
@@ -89,12 +84,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} id={`${item.name}${index}`} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <Textarea item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </>
@@ -102,11 +97,13 @@ export function GroupSection() {
                                   }
                                   case 'checkbox': {
                                     return (
-                                      <fieldset key={index} className="acms-admin-contents">
-                                        <legend className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}>
+                                      <fieldset className={classnames({ 'acms-admin-contents': acmscss })}>
+                                        <legend
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                                        >
                                           <Heading item={item} id={`${item.name}${index}`} />
                                         </legend>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <Checkbox item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </fieldset>
@@ -116,12 +113,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} id={`${item.name}${index}`} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <Selectbox item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </>
@@ -129,14 +126,14 @@ export function GroupSection() {
                                   }
                                   case 'radioButton': {
                                     return (
-                                      <fieldset key={index} className="acms-admin-contents">
+                                      <fieldset className={classnames({ 'acms-admin-contents': acmscss })}>
                                         <legend
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           id={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </legend>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <RadioButton item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </fieldset>
@@ -146,12 +143,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <Media item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </>
@@ -161,12 +158,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <ImageInput item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </>
@@ -176,12 +173,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <FileInput item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </>
@@ -191,12 +188,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <RichEditor item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </>
@@ -206,12 +203,12 @@ export function GroupSection() {
                                     return (
                                       <>
                                         <label
-                                          className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                           htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className="acms-admin-flex-1">
+                                        <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                           <Table item={item} id={`${item.name}${index}`} />
                                         </div>
                                       </>
@@ -244,7 +241,16 @@ export function GroupSection() {
               {fieldgroup.items.length > 0 && (
                 <>
                   <template className="item-template">
-                    <div className="sortable-item acms-admin-flex acms-admin-flex-col acms-admin-flex-row-md acms-admin-flex-row-lg acms-admin-flex-row-xl acms-admin-items-start acms-admin-items-center-md acms-admin-items-center-lg acms-admin-items-center-xl">
+                    <div
+                      className={classnames({
+                        'sortable-item': true,
+                        'acms-admin-flex': acmscss,
+                        'acms-admin-flex-col': acmscss,
+                        'acms-admin-flex-row-min-md': acmscss,
+                        'acms-admin-items-start': acmscss,
+                        'acms-admin-items-center-min-md': acmscss,
+                      })}
+                    >
                       <div className="item-handle acms-admin-padding-small">
                         <i className="acms-admin-icon-sort"></i>
                       </div>
@@ -255,9 +261,7 @@ export function GroupSection() {
                             className={classnames({
                               'acms-admin-flex': acmscss,
                               'acms-admin-flex-col': acmscss,
-                              'acms-admin-flex-row-md': acmscss,
-                              'acms-admin-flex-row-lg': acmscss,
-                              'acms-admin-flex-row-xl': acmscss,
+                              'acms-admin-flex-row-min-md': acmscss,
                               'acms-admin-padding-small': acmscss,
                             })}
                           >
@@ -267,12 +271,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <TextInput item={item} id={`${item.name}`} isValue={false} />
                                       </div>
                                     </>
@@ -282,12 +286,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}${index}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <Textarea item={item} id={`template-${item.name}${index}`} isValue={false} />
                                       </div>
                                     </>
@@ -295,11 +299,11 @@ export function GroupSection() {
                                 }
                                 case 'checkbox': {
                                   return (
-                                    <fieldset key={index} className="acms-admin-contents">
-                                      <legend className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}>
+                                    <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
+                                      <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                                         <Heading item={item} />
                                       </legend>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
                                       </div>
                                     </fieldset>
@@ -309,12 +313,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}${index}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
                                       </div>
                                     </>
@@ -322,14 +326,14 @@ export function GroupSection() {
                                 }
                                 case 'radioButton': {
                                   return (
-                                    <fieldset key={index} className="acms-admin-contents">
+                                    <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
                                       <legend
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         id={`${item.name}${index}`}
                                       >
                                         <Heading item={item} />
                                       </legend>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
                                       </div>
                                     </fieldset>
@@ -339,12 +343,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}${index}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <Media item={item} id={`${item.name}${index}`} isValue={false} />
                                       </div>
                                     </>
@@ -354,12 +358,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}${index}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
                                       </div>
                                     </>
@@ -369,12 +373,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <FileInput item={item} id={`${item.name}`} isValue={false} />
                                       </div>
                                     </>
@@ -384,12 +388,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}${index}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
                                       </div>
                                     </>
@@ -399,12 +403,12 @@ export function GroupSection() {
                                   return (
                                     <>
                                       <label
-                                        className={classnames({ 'acms-admin-grid-layout-heading': acmscss })}
+                                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         htmlFor={`${item.name}${index}`}
                                       >
                                         <Heading item={item} />
                                       </label>
-                                      <div className="acms-admin-flex-1">
+                                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                                         <Table item={item} id={`${item.name}${index}`} isValue={false} />
                                       </div>
                                     </>

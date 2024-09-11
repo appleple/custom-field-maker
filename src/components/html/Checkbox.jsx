@@ -102,7 +102,7 @@ export function Checkbox(props) {
               return null;
             }
             return (
-              <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
+              <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
                   type="checkbox"
                   name={`${item.name}{id}[]`}
@@ -110,10 +110,10 @@ export function Checkbox(props) {
                   {...(isChecked && {
                     'data-tmp': `{${item.name}:checked#${option.value}}`,
                   })}
-                  id={`input-radio-${item.name}-{id}-${option.value}`}
+                  id={`input-checkbox-${item.name}-{id}-${option.value}`}
                 />
-                <label htmlFor={`input-radio-${item.name}-{id}-${option.value}`}>
-                  {acmscss && <i className="acms-admin-ico-radio" />}
+                <label htmlFor={`input-checkbox-${item.name}-{id}-${option.value}`}>
+                  {acmscss && <i className="acms-admin-ico-checkbox" />}
                   {option.label}
                 </label>
               </div>

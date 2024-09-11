@@ -16,12 +16,10 @@ export function WrapTable(props) {
       condition={direction === 'vertical'}
       wrap={(children) => {
         return (
-          <table>
-            <tr>
-              <th>{title}</th>
-              {children}
-            </tr>
-          </table>
+          <tr>
+            <th>{title}</th>
+            {children}
+          </tr>
         );
       }}
     >

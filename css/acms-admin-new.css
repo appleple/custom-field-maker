@@ -52,77 +52,77 @@
 }
 
 
-@media (min-width: 480px) and (max-width: 767px) {
-  .acms-flex-sm {
+@media (min-width: 480px) {
+  .acms-flex-min-sm {
     display: flex !important;
   }
-  .acms-flex-row-sm {
+  .acms-flex-row-min-sm {
     flex-direction: row;
   }
-  .acms-flex-col-sm {
+  .acms-flex-col-min-sm {
     flex-direction: column;
   }
-  .acms-contents-sm {
+  .acms-contents-min-sm {
     display: contents !important;
   }
   .acms-flex-1-sm {
     flex: 1 1 0%;
   }
-  .acms-items-start-sm	{
+  .acms-items-start-min-sm	{
     align-items: flex-start;
   }
-  .acms-items-end-sm	{
+  .acms-items-end-min-sm	{
     align-items: flex-end;
   }
-  .acms-items-center-sm	{
+  .acms-items-center-min-sm	{
     align-items: center;
   }
-  .acms-items-baseline-sm	{
+  .acms-items-baseline-min-sm	{
     align-items: baseline;
   }
-  .acms-items-stretch-sm	{
+  .acms-items-stretch-min-sm	{
     align-items: stretch;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) {
   .acms-flex-md {
     display: flex !important;
   }
-  .acms-flex-row-md {
+  .acms-flex-row-min-md {
     flex-direction: row;
   }
-  .acms-flex-col-md {
+  .acms-flex-col-min-md {
     flex-direction: column;
   }
-  .acms-contents-md {
+  .acms-contents-min-md {
     display: contents !important;
   }
-  .acms-flex-1-md {
+  .acms-flex-1-min-md {
     flex: 1 1 0%;
   }
-  .acms-items-start-md	{
+  .acms-items-start-min-md	{
     align-items: flex-start;
   }
-  .acms-items-end-md	{
+  .acms-items-end-min-md	{
     align-items: flex-end;
   }
-  .acms-items-center-md	{
+  .acms-items-center-min-md	{
     align-items: center;
   }
-  .acms-items-baseline-md	{
+  .acms-items-baseline-min-md	{
     align-items: baseline;
   }
-  .acms-items-stretch-md	{
+  .acms-items-stretch-min-md	{
     align-items: stretch;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1439px) {
+@media (min-width: 1024px) {
   .acms-flex-lg {
     display: flex !important;
   }
-  .acms-flex-row-lg {
+  .acms-flex-row-min-lg {
     flex-direction: row;
   }
   .acms-flex-col-lg {
@@ -152,34 +152,34 @@
 }
 
 @media (min-width: 1440px) {
-  .acms-flex-xl {
+  .acms-flex-min-xl {
     display: flex !important;
   }
-  .acms-flex-row-xl {
+  .acms-flex-row-min-xl {
     flex-direction: row;
   }
-  .acms-flex-col-xl {
+  .acms-flex-col-min-xl {
     flex-direction: column;
   }
-  .acms-contents-xl {
+  .acms-contents-min-xl {
     display: contents !important;
   }
-  .acms-flex-1-xl {
+  .acms-flex-1-min-xl {
     flex: 1 1 0%;
   }
-  .acms-items-start-xl	{
+  .acms-items-start-min-xl	{
     align-items: flex-start;
   }
-  .acms-items-end-xl	{
+  .acms-items-end-min-xl	{
     align-items: flex-end;
   }
-  .acms-items-center-xl	{
+  .acms-items-center-min-xl	{
     align-items: center;
   }
-  .acms-items-baseline-xl	{
+  .acms-items-baseline-min-xl	{
     align-items: baseline;
   }
-  .acms-items-stretch-xl	{
+  .acms-items-stretch-min-xl	{
     align-items: stretch;
   }
 }
@@ -188,34 +188,32 @@
 レイアウトクラス
 -------------------------------------- */
 
-.acms-admin-grid-layout {
+.acms-admin-grid-edit-table {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 12px;
   box-sizing: border-box;
-  padding: 10px;
   font-size: 14px;
 }
 @media (min-width: 768px) {
-  .acms-admin-grid-layout {
+  .acms-admin-grid-edit-table {
     display: grid;
     gap: 10px;
-    padding: 10px;
   }
 }
-.acms-admin-grid-layout * {
+.acms-admin-grid-edit-table * {
   box-sizing: border-box;
 }
-.acms-admin-grid-layout .acms-admin-icon-tooltip {
+.acms-admin-grid-edit-table .acms-admin-icon-tooltip {
   margin-left: 10px;
   cursor: pointer;
 }
 @media (min-width: 768px) {
-  .acms-admin-grid-layout .acms-admin-icon-tooltip {
+  .acms-admin-grid-edit-table .acms-admin-icon-tooltip {
       margin-right: -25px;
   }
 }
-.acms-admin-grid-layout-heading {
+.acms-admin-grid-edit-table-heading {
   width: 100%;
   color: #4b4b4b;
   font-weight: bold;
@@ -224,7 +222,7 @@
   vertical-align: top;
 }
 @media (min-width: 768px) {
-  .acms-admin-grid-layout-heading {
+  .acms-admin-grid-edit-table-heading {
     width: 250px;
     padding-right: 35px;
     text-align: right;
@@ -265,134 +263,134 @@
   align-items: stretch;
 }
 
-@media (min-width: 480px) and (max-width: 767px) {
-  .acms-admin-flex-sm {
+@media (min-width: 480px) {
+  .acms-admin-flex-min-sm {
     display: flex !important;
   }
-  .acms-admin-flex-row-sm {
+  .acms-admin-flex-row-min-sm {
     flex-direction: row;
   }
-  .acms-admin-flex-col-sm {
+  .acms-admin-flex-col-min-sm {
     flex-direction: column;
   }
-  .acms-admin-contents-sm {
+  .acms-admin-contents-min-sm {
     display: contents !important;
   }
-  .acms-admin-flex-1-sm {
+  .acms-admin-flex-1-min-sm {
     flex: 1 1 0%;
   }
-  .acms-admin-items-start-sm	{
+  .acms-admin-items-start-min-sm	{
     align-items: flex-start;
   }
-  .acms-admin-items-end-sm	{
+  .acms-admin-items-end-min-sm	{
     align-items: flex-end;
   }
-  .acms-admin-items-center-sm	{
+  .acms-admin-items-center-min-sm	{
     align-items: center;
   }
-  .acms-admin-items-baseline-sm	{
+  .acms-admin-items-baseline-min-sm	{
     align-items: baseline;
   }
-  .acms-admin-items-stretch-sm	{
+  .acms-admin-items-stretch-min-sm	{
     align-items: stretch;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .acms-admin-flex-md {
+@media (min-width: 768px) {
+  .acms-admin-flex-min-md {
     display: flex !important;
   }
-  .acms-admin-flex-row-md {
+  .acms-admin-flex-row-min-md {
     flex-direction: row;
   }
-  .acms-admin-flex-col-md {
+  .acms-admin-flex-col-min-md {
     flex-direction: column;
   }
-  .acms-admin-contents-md {
+  .acms-admin-contents-min-md {
     display: contents !important;
   }
-  .acms-admin-flex-1-md {
+  .acms-admin-flex-1-min-md {
     flex: 1 1 0%;
   }
-  .acms-admin-items-start-md	{
+  .acms-admin-items-start-min-md	{
     align-items: flex-start;
   }
-  .acms-admin-items-end-md	{
+  .acms-admin-items-end-min-md	{
     align-items: flex-end;
   }
-  .acms-admin-items-center-md	{
+  .acms-admin-items-center-min-md	{
     align-items: center;
   }
-  .acms-admin-items-baseline-md	{
+  .acms-admin-items-baseline-min-md	{
     align-items: baseline;
   }
-  .acms-admin-items-stretch-md	{
+  .acms-admin-items-stretch-min-md	{
     align-items: stretch;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .acms-admin-flex-lg {
+@media (min-width: 1024px) {
+  .acms-admin-flex-min-lg {
     display: flex !important;
   }
-  .acms-admin-flex-row-lg {
+  .acms-admin-flex-row-min-lg {
     flex-direction: row;
   }
-  .acms-admin-flex-col-lg {
+  .acms-admin-flex-col-min-lg {
     flex-direction: column;
   }
-  .acms-admin-contents-lg {
+  .acms-admin-contents-min-lg {
     display: contents !important;
   }
-  .acms-admin-flex-1-lg {
+  .acms-admin-flex-1-min-lg {
     flex: 1 1 0%;
   }
-  .acms-admin-items-start-lg	{
+  .acms-admin-items-start-min-lg	{
     align-items: flex-start;
   }
-  .acms-admin-items-end-lg	{
+  .acms-admin-items-end-min-lg	{
     align-items: flex-end;
   }
-  .acms-admin-items-center-lg	{
+  .acms-admin-items-center-min-lg	{
     align-items: center;
   }
-  .acms-admin-items-baseline-lg	{
+  .acms-admin-items-baseline-min-lg	{
     align-items: baseline;
   }
-  .acms-admin-items-stretch-lg	{
+  .acms-admin-items-stretch-min-lg	{
     align-items: stretch;
   }
 }
 
 @media (min-width: 1440px) {
-  .acms-admin-flex-xl {
+  .acms-admin-flex-min-xl {
     display: flex !important;
   }
-  .acms-admin-flex-row-xl {
+  .acms-admin-flex-row-min-xl {
     flex-direction: row;
   }
-  .acms-admin-flex-col-xl {
+  .acms-admin-flex-col-min-xl {
     flex-direction: column;
   }
-  .acms-admin-contents-xl {
+  .acms-admin-contents-min-xl {
     display: contents !important;
   }
-  .acms-admin-flex-1-xl {
+  .acms-admin-flex-1-min-xl {
     flex: 1 1 0%;
   }
-  .acms-admin-items-start-xl	{
+  .acms-admin-items-start-min-xl	{
     align-items: flex-start;
   }
-  .acms-admin-items-end-xl	{
+  .acms-admin-items-end-min-xl	{
     align-items: flex-end;
   }
-  .acms-admin-items-center-xl	{
+  .acms-admin-items-center-min-xl	{
     align-items: center;
   }
-  .acms-admin-items-baseline-xl	{
+  .acms-admin-items-baseline-min-xl	{
     align-items: baseline;
   }
-  .acms-admin-items-stretch-xl	{
+  .acms-admin-items-stretch-min-xl	{
     align-items: stretch;
   }
 }
