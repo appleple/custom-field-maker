@@ -23,16 +23,24 @@ export function Textarea(props) {
             id={id}
             name={item.name}
             className={classname}
+            {...(item.placeholder ? { placeholder: item.placeholder } : {})}
             {...(jsValidator ? { 'data-validator': item.name } : {})}
-          >{`{${item.name}}`}</textarea>
+          >
+            {isValue ? `{${item.name}}` : ''}
+          </textarea>
           <input type="hidden" name="field[]" defaultValue={item.name} />
         </>
       )}
 
       {mode === 'fieldgroup' && (
         <>
-          <textarea id={id} name={`${item.name}[]`} className={classname}>
-            {isValue && `{${item.name}}`}
+          <textarea
+            id={id}
+            name={`${item.name}[]`}
+            className={classname}
+            {...(item.placeholder ? { placeholder: item.placeholder } : {})}
+          >
+            {isValue ? `{${item.name}}` : ''}
           </textarea>
           <OptionValidator item={item} />
         </>
@@ -40,7 +48,14 @@ export function Textarea(props) {
 
       {mode === 'customunit' && (
         <>
-          <textarea id={id} name={`${item.name}{id}`} className={classname}>{`{${item.name}}`}</textarea>
+          <textarea
+            id={id}
+            name={`${item.name}{id}`}
+            className={classname}
+            {...(item.placeholder ? { placeholder: item.placeholder } : {})}
+          >
+            {isValue ? `{${item.name}}` : ''}
+          </textarea>
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           <OptionValidator item={item} />
         </>
@@ -48,8 +63,13 @@ export function Textarea(props) {
 
       {mode === 'unitgroup' && (
         <>
-          <textarea id={id} name={`${item.name}{id}[]`} className={classname}>
-            {isValue && `{${item.name}}`}
+          <textarea
+            id={id}
+            name={`${item.name}{id}[]`}
+            className={classname}
+            {...(item.placeholder ? { placeholder: item.placeholder } : {})}
+          >
+            {isValue ? `{${item.name}}` : ''}
           </textarea>
           <OptionValidator item={item} />
         </>

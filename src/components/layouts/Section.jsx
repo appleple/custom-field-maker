@@ -32,8 +32,8 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
-                      'acms-admin-flex-row-md': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
                     <label
@@ -54,7 +54,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
@@ -76,7 +76,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
@@ -98,7 +98,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
@@ -139,7 +139,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
@@ -161,7 +161,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
@@ -183,7 +183,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
@@ -205,7 +205,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >
@@ -227,7 +227,7 @@ export function Section() {
                     key={index}
                     className={classnames({
                       'acms-admin-flex': acmscss,
-                      'acms-admin-flex-col': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
                       'acms-admin-flex-row-min-md': acmscss,
                     })}
                   >

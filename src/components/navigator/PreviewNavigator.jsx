@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import classnames from 'classnames';
 import CopyToClipboard from 'react-copy-to-clipboard';
@@ -6,6 +5,7 @@ import { Notify } from '../Notify';
 import { useMakerContext } from '../../store/MakerContext';
 import columnIcon from '../../assets/images/add_column.svg';
 import rowIcon from '../../assets/images/add_row.svg';
+import React from 'react';
 
 export function PreviewNavigator() {
   const {

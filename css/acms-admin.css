@@ -7248,7 +7248,6 @@ a.acms-admin-label-danger:focus {
 
 .acms-admin-tooltip::after {
   position: absolute;
-  top: 100%;
   left: 50%;
   width: 0;
   height: 0;
@@ -7256,6 +7255,7 @@ a.acms-admin-label-danger:focus {
   border: 6px solid transparent;
   border-top-color: #333;
   content: " ";
+  transform: translateY(-50%);
 }
 
 .acms-admin-tooltip.top-left::after {

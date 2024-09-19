@@ -1,13 +1,21 @@
 // webpack.prod.js
 const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
   cache: {
     type: 'filesystem', // Webpack 5では推奨される方法
   },
+  performance: {
+    hints: 'warning',
+    maxAssetSize: 600000, // 600 KiBに設定
+    maxEntrypointSize: 600000,
+  },
+
   stats: {
+    assets: true,
     children: true,
   },
   entry: {
@@ -31,6 +39,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     chunkFilename: `bundle.chunk.js?date=${new Date().getTime()}`,
+    assetModuleFilename: 'assets/[name][ext]', // アセットの出力先を指定
     publicPath: '/',
 <<<<<<< HEAD
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
@@ -59,6 +68,7 @@ module.exports = {
         test: /\.(jpg|png|svg)$/,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         type: 'asset',
 =======
         use: {
@@ -68,6 +78,12 @@ module.exports = {
 =======
         type: 'asset', // Webpack 5 の Asset Modules を使用
 >>>>>>> 6a88af4 (依存関係の整理)
+=======
+        type: 'asset/resource', // Webpack 5 の Asset Modules を使用
+        generator: {
+          filename: 'assets/[name][ext]', // アセットの出力パターンを指定
+        },
+>>>>>>> 798cf34 (libにassetsが吐き出されない問題を修正)
       },
     ],
   },
@@ -80,6 +96,14 @@ module.exports = {
       emitWarning: true,
       failOnError: true,
       fix: true,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/assets'),
+          to: path.resolve(__dirname, 'lib/assets'),
+        },
+      ],
     }),
   ],
 };

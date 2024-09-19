@@ -43,9 +43,9 @@ export function UnitGroupSection() {
                         className={classnames({
                           'sortable-item': true,
                           'acms-admin-flex': acmscss,
-                          'acms-admin-flex-col': acmscss,
+                          'acms-admin-flex-col-max-md': acmscss,
                           'acms-admin-flex-row-min-md': acmscss,
-                          'acms-admin-items-start': acmscss,
+                          'acms-admin-items-start-max-md': acmscss,
                           'acms-admin-items-center-min-md': acmscss,
                         })}
                       >
@@ -59,7 +59,7 @@ export function UnitGroupSection() {
                               key={index}
                               className={classnames({
                                 'acms-admin-flex': acmscss,
-                                'acms-admin-flex-col': acmscss,
+                                'acms-admin-flex-col-max-md': acmscss,
                                 'acms-admin-flex-row-min-md': acmscss,
                                 'acms-admin-padding-small': acmscss,
                               })}
@@ -246,9 +246,9 @@ export function UnitGroupSection() {
                       className={classnames({
                         'sortable-item': true,
                         'acms-admin-flex': acmscss,
-                        'acms-admin-flex-col': acmscss,
+                        'acms-admin-flex-col-max-md': acmscss,
                         'acms-admin-flex-row-min-md': acmscss,
-                        'acms-admin-items-start': acmscss,
+                        'acms-admin-items-start-max-md': acmscss,
                         'acms-admin-items-center-min-md': acmscss,
                       })}
                     >
@@ -262,7 +262,7 @@ export function UnitGroupSection() {
                             key={index}
                             className={classnames({
                               'acms-admin-flex': acmscss,
-                              'acms-admin-flex-col': acmscss,
+                              'acms-admin-flex-col-max-md': acmscss,
                               'acms-admin-flex-row-min-md': acmscss,
                               'acms-admin-padding-small': acmscss,
                             })}
