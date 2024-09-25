@@ -29,6 +29,7 @@ export function Textarea(props) {
             {isValue ? `{${item.name}}` : ''}
           </textarea>
           <input type="hidden" name="field[]" defaultValue={item.name} />
+          <OptionValidator item={item} />
         </>
       )}
 

@@ -2,7 +2,7 @@
   "text": {
     "label": "テキスト",
     "subTypes": [
-      { "value": "", "label": "--" },
+      { "value": "text", "label": "--" },
       { "value": "tel", "label": "電話" },
       { "value": "number", "label": "数値" },
       { "value": "email", "label": "メール" },
@@ -12,7 +12,7 @@
   "textarea": {
     "label": "テキストエリア",
     "subTypes": [
-      { "value": "", "label": "--" },
+      { "value": "textarea", "label": "--" },
       { "value": "lite-editor", "label": "ライトエディター" }
     ]
   },
