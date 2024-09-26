@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 export function Validator(props) {
@@ -7,6 +7,14 @@ export function Validator(props) {
     field: { type, validator, openValidator, converter, noSearch },
     setField,
   } = props;
+  const [isConverter, setIsConverter] = useState(false);
+
+  useEffect(() => {
+    const possibleConverter = ['text', 'textarea', 'checkbox', 'selectbox', 'radioButton'];
+    if (possibleConverter.includes(type)) {
+      setIsConverter(true);
+    }
+  }, [type, setIsConverter]);
 
   const noSearchCheck = () => {
     return (
@@ -100,41 +108,46 @@ export function Validator(props) {
       </div>
       {openValidator && (
         <div className="customFieldValidatorArea">
-          {/text|textarea|radio|select/.exec(type) && noSearchCheck()}
-          <div className="customFieldBold">
-            テキストの変換
-            <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip" />
-            <ReactTooltip
-              id="convert-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
-              <span>
-                テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。
-              </span>
-            </ReactTooltip>
-          </div>
-          <p>
-            <input
-              type="text"
-              defaultValue={converter}
-              onInput={(e) => {
-                const value = e.target.value;
-                if (!value) return;
-                setField((prevState) => ({ ...prevState, converter: value }));
-              }}
-              className="acms-admin-form-width-quarter acms-admin-margin-right-small"
-              placeholder="例）rs"
-            />
-            <button
-              className="acms-admin-btn"
-              onClick={() => setField((prevState) => ({ ...prevState, openConverter: true }))}
-            >
-              コンバーター参照
-            </button>
-          </p>
+          {isConverter && (
+            <div>
+              {/text|textarea|radio|select/.exec(type) && noSearchCheck()}
+              <div className="customFieldBold">
+                テキストの変換
+                <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip" />
+                <ReactTooltip
+                  id="convert-tip"
+                  place="top"
+                  type="dark"
+                  effect="solid"
+                  className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                >
+                  <span>
+                    テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。
+                  </span>
+                </ReactTooltip>
+              </div>
+              <p>
+                <input
+                  type="text"
+                  defaultValue={converter}
+                  onInput={(e) => {
+                    const value = e.target.value;
+                    if (!value) return;
+                    setField((prevState) => ({ ...prevState, converter: value }));
+                  }}
+                  className="acms-admin-form-width-quarter acms-admin-margin-right-small"
+                  placeholder="例）rs"
+                />
+                <button
+                  className="acms-admin-btn"
+                  onClick={() => setField((prevState) => ({ ...prevState, openConverter: true }))}
+                >
+                  コンバーター参照
+                </button>
+              </p>
+            </div>
+          )}
+
           {showValidator && (
             <table className="acms-admin-table customFieldOptionTable">
               <tbody>

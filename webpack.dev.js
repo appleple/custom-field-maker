@@ -29,6 +29,7 @@ module.exports = merge(prodConfig, {
   devServer: {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b5e9292 (reactを16.14.0にアップデート)
 =======
     client: {
@@ -41,6 +42,11 @@ module.exports = merge(prodConfig, {
       },
     ],
 =======
+=======
+    client: {
+      overlay: false,
+    },
+>>>>>>> 2755ad7 (開発環境の修正)
     static: {
       directory: path.resolve(__dirname, ''),
     },
