@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 export function Validator(props) {
@@ -7,14 +7,11 @@ export function Validator(props) {
     field: { type, validator, openValidator, converter, noSearch },
     setField,
   } = props;
-  const [isConverter, setIsConverter] = useState(false);
 
-  useEffect(() => {
+  const isConverter = useMemo(() => {
     const possibleConverter = ['text', 'textarea', 'checkbox', 'selectbox', 'radioButton'];
-    if (possibleConverter.includes(type)) {
-      setIsConverter(true);
-    }
-  }, [type, setIsConverter]);
+    return possibleConverter.includes(type);
+  }, [type]);
 
   const noSearchCheck = () => {
     return (

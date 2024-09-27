@@ -25,7 +25,6 @@ const crearField = {
   endHeadingLevel: 3,
   mediaType: 'image',
   openConverter: '',
-  openValidator: '',
   converter: '',
   tooltip: '',
   placeholder: '',
@@ -38,10 +37,17 @@ export function Maker(props) {
     undo,
   } = useMakerContext();
 
-  const onClearHandler = useCallback(() => setField(crearField), [setField]);
+  const onClearHandler = useCallback(() => {
+    setField((prevState) => {
+      console.log(prevState);
+      return {
+        ...prevState,
+        ...crearField,
+      };
+    });
+  }, [setField]);
 
   const onUndoHandler = () => {
-    console.log(mode);
     undo(mode), [mode, undo];
   };
 
