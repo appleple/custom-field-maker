@@ -40,7 +40,7 @@ export function FileInput(props) {
           </a>
           {editMode === 'preview' ? null : `<!-- END ${item.name}@path:veil -->`}
           <input type="file" name={item.name} id={id} />
-          <input type="hidden" name={item.hiddenName} value={item.value} />
+          <input type="hidden" name="field[]" value={item.name} />
           <input type="hidden" name={`${item.name}@baseName`} value={`{${item.name}@baseName}`} />
           <input type="hidden" name={`${item.name}:extension`} value="file" />
           {item.extension && <input type="hidden" name={`${item.name}@extension`} value={item.extension} />}
