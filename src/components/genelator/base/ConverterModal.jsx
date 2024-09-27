@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useRef, useCallback, useEffect } from 'react';
 import { ModalDialog } from '../../ModalDialog';
 
 export function ConverterModal(props) {
@@ -7,19 +7,39 @@ export function ConverterModal(props) {
     setField,
   } = props;
 
+  const optionsRef = useRef(null);
+
+  useEffect(() => {
+    const converterList = converter.split('');
+    const rows = optionsRef.current.querySelectorAll('tr');
+
+    rows.forEach((row) => {
+      const tdElement = row.querySelector('td');
+      if (tdElement) {
+        const tdText = tdElement.textContent.trim();
+        const isMatch = converterList.includes(tdText);
+        row.style.backgroundColor = isMatch ? '#e6f3ff' : '';
+      }
+    });
+  }, [converter]);
+
   const onConverter = useCallback(
     (addConverter) => {
-      let newConverter = converter;
-      const reg = new RegExp(addConverter, 'i');
-      if (newConverter.search(reg) === -1) {
-        newConverter += addConverter;
-      } else {
-        newConverter = newConverter.replace(newConverter.toUpperCase(), addConverter);
-        newConverter = newConverter.replace(newConverter.toLowerCase(), addConverter);
-      }
-      setField((prevState) => ({ ...prevState, converter: newConverter }));
+      setField((prevState) => {
+        const currentConverter = prevState.converter;
+        const index = currentConverter.toLowerCase().indexOf(addConverter.toLowerCase());
+        let newConverter = currentConverter;
+
+        if (index === -1) {
+          newConverter += addConverter;
+        } else {
+          newConverter = newConverter.slice(0, index) + addConverter + newConverter.slice(index + addConverter.length);
+        }
+
+        return { ...prevState, converter: newConverter };
+      });
     },
-    [converter, setField]
+    [setField]
   );
 
   const onOpenConverter = useCallback(() => {
@@ -29,7 +49,7 @@ export function ConverterModal(props) {
   return (
     <div>
       <ModalDialog open={openConverter} title="コンバーター参照" onClose={onOpenConverter}>
-        <table className="acms-admin-table acms-admin-table-heading acms-admin-table-hover">
+        <table className="acms-admin-table acms-admin-table-heading acms-admin-table-hover" ref={optionsRef}>
           <tbody>
             <tr>
               <th>オプション</th>

@@ -20416,18 +20416,30 @@
             field: { converter: n, openConverter: a },
             setField: r,
           } = t,
-          l = (0, e.useCallback)(
+          l = (0, e.useRef)(null);
+        (0, e.useEffect)(() => {
+          const e = n.split('');
+          l.current.querySelectorAll('tr').forEach((t) => {
+            const n = t.querySelector('td');
+            if (n) {
+              const a = n.textContent.trim(),
+                r = e.includes(a);
+              t.style.backgroundColor = r ? '#e6f3ff' : '';
+            }
+          });
+        }, [n]);
+        const i = (0, e.useCallback)(
             (e) => {
-              let t = n;
-              const a = new RegExp(e, 'i');
-              -1 === t.search(a)
-                ? (t += e)
-                : ((t = t.replace(t.toUpperCase(), e)), (t = t.replace(t.toLowerCase(), e))),
-                r((e) => ({ ...e, converter: t }));
+              r((t) => {
+                const n = t.converter,
+                  a = n.toLowerCase().indexOf(e.toLowerCase());
+                let r = n;
+                return -1 === a ? (r += e) : (r = r.slice(0, a) + e + r.slice(a + e.length)), { ...t, converter: r };
+              });
             },
-            [n, r]
+            [r]
           ),
-          i = (0, e.useCallback)(() => {
+          o = (0, e.useCallback)(() => {
             r((e) => ({ ...e, openConverter: !1 }));
           }, [r]);
         return e.createElement(
@@ -20435,10 +20447,10 @@
           null,
           e.createElement(
             si,
-            { open: a, title: 'コンバーター参照', onClose: i },
+            { open: a, title: 'コンバーター参照', onClose: o },
             e.createElement(
               'table',
-              { className: 'acms-admin-table acms-admin-table-heading acms-admin-table-hover' },
+              { className: 'acms-admin-table acms-admin-table-heading acms-admin-table-hover', ref: l },
               e.createElement(
                 'tbody',
                 null,
@@ -20457,7 +20469,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('r') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('r') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20468,7 +20480,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('R') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('R') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20479,7 +20491,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('n') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('n') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20490,7 +20502,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('N') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('N') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20501,7 +20513,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('a') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('a') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20512,7 +20524,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('A') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('A') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20523,7 +20535,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('s') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('s') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20534,7 +20546,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('S') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('S') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20545,7 +20557,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('k') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('k') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20556,7 +20568,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('K') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('K') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20567,7 +20579,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('h') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('h') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20578,7 +20590,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('H') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('H') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20589,7 +20601,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('c') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('c') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20600,7 +20612,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('C') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('C') }, '追加')
                   )
                 ),
                 e.createElement(
@@ -20611,7 +20623,7 @@
                   e.createElement(
                     'td',
                     null,
-                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => l('V') }, '追加')
+                    e.createElement('button', { className: 'acms-admin-btn', onClick: () => i('V') }, '追加')
                   )
                 )
               )
