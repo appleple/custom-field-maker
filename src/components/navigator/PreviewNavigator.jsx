@@ -134,22 +134,46 @@ export function PreviewNavigator() {
         )}
 
         {mode === 'customfield' && (
-          <button onClick={() => clearCustomfield()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+          <button
+            onClick={() => {
+              confirm('履歴クリアしますか？');
+              clearCustomfield();
+            }}
+            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+          >
             履歴クリア
           </button>
         )}
         {mode === 'fieldgroup' && (
-          <button onClick={() => clearGroupItem()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+          <button
+            onClick={() => {
+              confirm('履歴クリアしますか？');
+              clearGroupItem();
+            }}
+            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+          >
             履歴クリア
           </button>
         )}
         {mode === 'customunit' && (
-          <button onClick={() => clearCustomunit()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+          <button
+            onClick={() => {
+              confirm('履歴クリアしますか？');
+              clearCustomunit();
+            }}
+            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+          >
             履歴クリア
           </button>
         )}
         {mode === 'unitgroup' && (
-          <button onClick={() => clearUnitGroupItem()} className="acms-admin-btn-admin acms-admin-btn-admin-danger">
+          <button
+            onClick={() => {
+              confirm('履歴クリアしますか？');
+              clearUnitGroupItem();
+            }}
+            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+          >
             履歴クリア
           </button>
         )}

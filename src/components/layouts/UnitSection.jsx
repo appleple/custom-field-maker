@@ -28,35 +28,65 @@ export function UnitSection() {
             switch (item.type) {
               case 'text': {
                 return (
-                  <p key={index} className="acms-admin-form-item">
-                    <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
                     </label>
-                    <span className="acms-admin-form-item-input">
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <TextInput item={item} id={`${item.name}${index}`} />
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                 );
               }
               case 'textarea': {
                 return (
-                  <p key={index} className="acms-admin-form-item">
-                    <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
                     </label>
-                    <span className="acms-admin-form-item-input">
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <Textarea item={item} id={`${item.name}${index}`} />
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                 );
               }
               case 'selectbox': {
                 return (
-                  <div key={index} className="acms-admin-form-item">
-                    <p className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
-                    </p>
-                    <div className="acms-admin-form-item-input">
+                    </label>
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <Selectbox item={item} id={`${item.name}${index}`} />
                     </div>
                   </div>
@@ -64,86 +94,153 @@ export function UnitSection() {
               }
               case 'checkbox': {
                 return (
-                  <div key={index} className="acms-admin-form-item">
-                    <p className="acms-admin-form-item-heading">
-                      <Heading item={item} />
-                    </p>
-                    <div className="acms-admin-form-item-input">
-                      <Checkbox item={item} />
-                    </div>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
+                      <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
+                        <Heading item={item} />
+                      </legend>
+                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                        <Checkbox item={item} />
+                      </div>
+                    </fieldset>
                   </div>
                 );
               }
               case 'radioButton': {
                 return (
-                  <div key={index} className="acms-admin-form-item">
-                    <p className="acms-admin-form-item-heading">
-                      <Heading item={item} />
-                    </p>
-                    <div className="acms-admin-form-item-input">
-                      <RadioButton item={item} />
-                    </div>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-row': acmscss,
+                    })}
+                  >
+                    <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
+                      <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
+                        <Heading item={item} />
+                      </legend>
+                      <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                        <RadioButton item={item} />
+                      </div>
+                    </fieldset>
                   </div>
                 );
               }
               case 'media': {
                 return (
-                  <p key={index} className="acms-admin-form-item">
-                    <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
                     </label>
-                    <span>
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <Media item={item} id={`${item.name}${index}`} />
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                 );
               }
               case 'image': {
                 return (
-                  <p key={index} className="acms-admin-form-item">
-                    <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
                     </label>
-                    <span>
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <ImageInput item={item} id={`${item.name}${index}`} />
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                 );
               }
               case 'file': {
                 return (
-                  <p key={index} className="acms-admin-form-item">
-                    <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
                     </label>
-                    <span>
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <FileInput item={item} id={`${item.name}${index}`} />
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                 );
               }
               case 'richEditor': {
                 return (
-                  <p key={index} className="acms-admin-form-item">
-                    <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
                     </label>
-                    <span>
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <RichEditor item={item} id={`${item.name}${index}`} />
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                 );
               }
               case 'table': {
                 return (
-                  <p key={index} className="acms-admin-form-item">
-                    <label className="acms-admin-form-item-heading" htmlFor={`${item.name}${index}`}>
+                  <div
+                    key={index}
+                    className={classnames({
+                      'acms-admin-flex': acmscss,
+                      'acms-admin-flex-col-max-md': acmscss,
+                      'acms-admin-flex-row-min-md': acmscss,
+                    })}
+                  >
+                    <label
+                      className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                      htmlFor={`${item.name}${index}`}
+                    >
                       <Heading item={item} />
                     </label>
-                    <span>
+                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
                       <Table item={item} id={`${item.name}${index}`} />
-                    </span>
-                  </p>
+                    </div>
+                  </div>
                 );
               }
               default: {

@@ -49,11 +49,21 @@ export function UnitGroupSection() {
                           'acms-admin-items-center-min-md': acmscss,
                         })}
                       >
-                        <div className="item-handle acms-admin-padding-small">
+                        <div
+                          className={classnames({
+                            'item-handle': true,
+                            'acms-admin-padding-small': acmscss,
+                          })}
+                        >
                           <i className="acms-admin-icon-sort"></i>
                         </div>
 
-                        <div className="acms-admin-flex-1 acms-admin-padding-small">
+                        <div
+                          className={classnames({
+                            'acms-admin-flex-1': acmscss,
+                            'acms-admin-padding-small': acmscss,
+                          })}
+                        >
                           {unitgroup.items.map((item, index) => (
                             <div
                               key={index}
@@ -224,7 +234,11 @@ export function UnitGroupSection() {
                           ))}
                         </div>
 
-                        <div className="acms-admin-padding-small">
+                        <div
+                          className={classnames({
+                            'classnameacms-admin-padding-small': acmscss,
+                          })}
+                        >
                           <button
                             type="button"
                             className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"
@@ -252,11 +266,21 @@ export function UnitGroupSection() {
                         'acms-admin-items-center-min-md': acmscss,
                       })}
                     >
-                      <div className="item-handle acms-admin-padding-small">
+                      <div
+                        className={classnames({
+                          'item-handle': true,
+                          'acms-admin-padding-small': acmscss,
+                        })}
+                      >
                         <i className="acms-admin-icon-sort"></i>
                       </div>
 
-                      <div className="acms-admin-flex-1 acms-admin-padding-small">
+                      <div
+                        className={classnames({
+                          'acms-admin-flex-1': acmscss,
+                          'acms-admin-padding-small': acmscss,
+                        })}
+                      >
                         {unitgroup.items.map((item, index) => (
                           <div
                             key={index}
@@ -428,7 +452,11 @@ export function UnitGroupSection() {
                         ))}
                       </div>
 
-                      <div className="acms-admin-padding-small">
+                      <div
+                        className={classnames({
+                          'acms-admin-padding-small': acmscss,
+                        })}
+                      >
                         <button
                           type="button"
                           className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"
