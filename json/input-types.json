@@ -1,6 +1,6 @@
 [
   {
-    "テキスト": [
+    "テキスト（一行）": [
       { "value": "text", "label": "テキスト" },
       { "value": "tel", "label": "電話番号" },
       { "value": "number", "label": "数値" },
@@ -9,10 +9,11 @@
     ]
   },
   {
-    "テキストエリア": [
+    "テキスト（複数行）": [
       { "value": "textarea", "label": "テキストエリア" },
       { "value": "liteEditor", "label": "ライトエディター" },
-      { "value": "richEditor", "label": "リッチエディター" }
+      { "value": "richEditor", "label": "リッチエディター" },
+      { "value": "table", "label": "テーブル" }
     ]
   },
   {
@@ -23,11 +24,10 @@
     ]
   },
   {
-    "その他": [
+    "アップロード": [
       { "value": "media", "label": "メディア" },
       { "value": "image", "label": "画像" },
-      { "value": "file", "label": "ファイル" },
-      { "value": "table", "label": "テーブル" }
+      { "value": "file", "label": "ファイル" }
     ]
   }
 ]

@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 64px;
+  max-width: 960px;
 }
 
 .customFieldContainer h2 {
@@ -63,7 +64,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas:
     "areaInput   areaTitle       areaField"
-    "areaTooltip areaPlaceholder .";
+    "areaTooltip areaPlaceholder areaPlaceholder";
 }
 .customFieldGeneratorBasic label,
 .customFieldGeneratorBasic dt,

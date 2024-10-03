@@ -37,7 +37,6 @@ function CustomFieldMaker() {
       </div>
 
       <section>
-        <h2>コード生成エリア</h2>
         {preview.mode === 'customfield' && <Field />}
         {preview.mode === 'fieldgroup' && <FieldGroup />}
         {preview.mode === 'customunit' && <Unit />}

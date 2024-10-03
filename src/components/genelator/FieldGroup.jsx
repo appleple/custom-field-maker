@@ -178,7 +178,12 @@ const crearField = {
 
 export function FieldGroup() {
   const [field, setField] = useState(defaultProps);
-  const { setGroupTitleName, addGroupItem, clearGroupItem } = useMakerContext();
+  const {
+    state: { fieldgroup },
+    setGroupTitleName,
+    addGroupItem,
+    clearGroup,
+  } = useMakerContext();
 
   const showGroup = useCallback(() => {
     if (!field.groupName) {
@@ -247,8 +252,9 @@ export function FieldGroup() {
     }
   }, [field, setGroupTitleName, addGroupItem]);
 
-  const addNewGroup = useCallback(() => {
-    clearGroupItem();
+  const clearGroupHandler = useCallback(() => {
+    if (!confirm('生成したコードの履歴も消えてしまいます。よろしいですか？')) return;
+    clearGroup();
     setField(crearField);
     setField((prevState) => ({
       ...prevState,
@@ -367,21 +373,31 @@ export function FieldGroup() {
             :
 =======
     }));
-  }, [clearGroupItem]);
+  }, [clearGroup]);
 
   return (
     <div>
-      <div className="customFieldFunction">
+      <div className="customFieldContainer">
         <GroupAlert field={field} setField={setField} />
         <DuplicateAlert field={field} setField={setField} />
         <Alert field={field} setField={setField} />
 
-        {field.openGroup ? (
-          <div>
-            <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={addNewGroup}>
-              新規グループ作成
-            </button>
+        <div>
+          <div className="acms-flex acms-justify-between" style={{ marginBottom: '1em' }}>
+            <h2
+              style={{
+                margin: 0,
+              }}
+            >
+              グループ名
+            </h2>
+            {fieldgroup.title && fieldgroup.name && (
+              <button className="acms-admin-btn-admin acms-admin-btn-admin-danger" onClick={clearGroupHandler}>
+                グループを削除
+              </button>
+            )}
           </div>
+<<<<<<< HEAD
         ) : (
 <<<<<<< HEAD
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
@@ -421,66 +437,19 @@ export function FieldGroup() {
                 />
               </div>
             </div>
+=======
+>>>>>>> 0432564 (Fixed an issue where group names would disappear when switching fields in a group.)
 
-            <div className="customFieldGeneratorGroupVal">
-              <label htmlFor="groupName">
-                フィールド名（変数）
-                <i className="acms-admin-icon-tooltip" data-tip data-for="group-field-tip" />
-                <ReactTooltip
-                  id="group-field-tip"
-                  place="top"
-                  type="dark"
-                  effect="solid"
-                  className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                >
-                  <span>カスタムフィールドグループのフィールド名です。値を必ず入力してください。</span>
-                </ReactTooltip>
-                <span className="acms-admin-label acms-admin-label-danger">必須</span>
-              </label>
-              <div>
-                <input
-                  type="text"
-                  id="groupName"
-                  defaultValue={field.groupName}
-                  onInput={(e) => {
-                    const value = e.target.value;
-                    if (!value) return;
-                    setField((prevState) => ({ ...prevState, groupName: value }));
-                  }}
-                  className="acms-admin-form-width-full"
-                  placeholder="例）group_staff"
-                />
-              </div>
-            </div>
-
-            <div className="customFieldGeneratorGroupButton">
-              {field.openGroup ? (
-                <button
-                  className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
-                  id="makeGroup"
-                  disabled
-                >
-                  グループ生成
-                </button>
-              ) : (
-                <button
-                  className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn"
-                  id="makeGroup"
-                  onClick={showGroup}
-                >
-                  グループ生成
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-        {field.openGroup && (
-          <>
+          {fieldgroup.title && fieldgroup.name ? (
             <dl className="customFieldGeneratorGroup -openGroup" style={{ margin: 0 }}>
               <div className="customFieldGeneratorGroupTitle">
                 <dt>
+<<<<<<< HEAD
 >>>>>>> f4e47e5 (Design fixes for group generators and form options.)
                   グループのタイトル
+=======
+                  グループタイトル
+>>>>>>> 0432564 (Fixed an issue where group names would disappear when switching fields in a group.)
                   <i className="acms-admin-icon-tooltip" data-tip data-for="group-title-tip" />
                   <ReactTooltip
                     id="group-title-tip"
@@ -492,7 +461,7 @@ export function FieldGroup() {
                     <span>カスタムフィールドグループのテーブル用のタイトルとなります。</span>
                   </ReactTooltip>
                 </dt>
-                <dd>{field.groupTitle}</dd>
+                <dd>{fieldgroup.title}</dd>
               </div>
               <div className="customFieldGeneratorGroupVal">
                 <dt>
@@ -711,54 +680,150 @@ export function FieldGroup() {
             <ConverterModal field={field} setField={setField} />
 =======
                 </dt>
-                <dd>{field.groupName}</dd>
+                <dd>{fieldgroup.name}</dd>
               </div>
             </dl>
+          ) : (
+            <>
+              <div className="customFieldGeneratorGroup">
+                <div className="customFieldGeneratorGroupTitle">
+                  <label htmlFor="groupTitle">
+                    グループのタイトル
+                    <i className="acms-admin-icon-tooltip" data-tip data-for="group-title-tip" />
+                    <ReactTooltip
+                      id="group-title-tip"
+                      place="top"
+                      type="dark"
+                      effect="solid"
+                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                    >
+                      <span>カスタムフィールドグループのテーブル用のタイトルとなります。</span>
+                    </ReactTooltip>
+                    <span className="acms-admin-label acms-admin-label-danger">必須</span>
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      id="groupTitle"
+                      defaultValue={field.groupTitle}
+                      onInput={(e) => {
+                        const value = e.target.value;
+                        if (!value) return;
+                        setField((prevState) => ({ ...prevState, groupTitle: value }));
+                      }}
+                      className="acms-admin-form-width-full"
+                      placeholder="例）スタッフリスト"
+                    />
+                  </div>
+                </div>
 
+<<<<<<< HEAD
 >>>>>>> f4e47e5 (Design fixes for group generators and form options.)
             <Basic field={field} setField={setField} />
+=======
+                <div className="customFieldGeneratorGroupVal">
+                  <label htmlFor="groupName">
+                    フィールド名（変数）
+                    <i className="acms-admin-icon-tooltip" data-tip data-for="group-field-tip" />
+                    <ReactTooltip
+                      id="group-field-tip"
+                      place="top"
+                      type="dark"
+                      effect="solid"
+                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                    >
+                      <span>カスタムフィールドグループのフィールド名です。値を必ず入力してください。</span>
+                    </ReactTooltip>
+                    <span className="acms-admin-label acms-admin-label-danger">必須</span>
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      id="groupName"
+                      defaultValue={field.groupName}
+                      onInput={(e) => {
+                        const value = e.target.value;
+                        if (!value) return;
+                        setField((prevState) => ({ ...prevState, groupName: value }));
+                      }}
+                      className="acms-admin-form-width-full"
+                      placeholder="例）group_staff"
+                    />
+                  </div>
+                </div>
+                <div className="customFieldGeneratorGroupButton">
+                  {fieldgroup.title && fieldgroup.name ? (
+                    <button
+                      className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
+                      id="makeGroup"
+                      disabled
+                    >
+                      グループ生成
+                    </button>
+                  ) : (
+                    <button
+                      className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn"
+                      id="makeGroup"
+                      onClick={showGroup}
+                    >
+                      グループ生成
+                    </button>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+>>>>>>> 0432564 (Fixed an issue where group names would disappear when switching fields in a group.)
 
-            {field.type === 'checkbox' && (
-              <div>
-                <OptionItem field={field} setField={setField} add={false} />
-              </div>
-            )}
-            {field.type === 'selectbox' && (
-              <div>
-                <Snippet field={field} setField={setField} />
-                <OptionItem field={field} setField={setField} />
-              </div>
-            )}
-            {field.type === 'radioButton' && (
-              <div>
-                <Snippet field={field} setField={setField} />
-                <OptionItem field={field} setField={setField} />
-              </div>
-            )}
-            {field.type === 'image' && (
-              <div>
-                {<ImageOption setField={setField} />}
-                {<ImageResizeOption field={field} setField={setField} />}
-              </div>
-            )}
-            {field.type === 'file' && (
-              <div>
-                <FileOption field={field} setField={setField} />
-              </div>
-            )}
-            {field.type === 'media' && (
-              <div>
-                <MediaOption field={field} setField={setField} />
-              </div>
-            )}
-            {field.type === 'rich-editor' && (
-              <div>
-                <RichEditorOption field={field} setField={setField} />
-              </div>
-            )}
-            <Validator field={field} setField={setField} />
-            <Operator setField={setField} onSubmit={addGroup} />
-          </>
+        {fieldgroup.title && fieldgroup.name && (
+          <div>
+            <h2 className="customFieldHeading2">コード生成</h2>
+            <div className="customFieldFunction">
+              <Basic field={field} setField={setField} />
+
+              {field.type === 'checkbox' && (
+                <div>
+                  <OptionItem field={field} setField={setField} add={false} />
+                </div>
+              )}
+              {field.type === 'selectbox' && (
+                <div>
+                  <Snippet field={field} setField={setField} />
+                  <OptionItem field={field} setField={setField} />
+                </div>
+              )}
+              {field.type === 'radioButton' && (
+                <div>
+                  <Snippet field={field} setField={setField} />
+                  <OptionItem field={field} setField={setField} />
+                </div>
+              )}
+              {field.type === 'image' && (
+                <div>
+                  {<ImageOption setField={setField} />}
+                  {<ImageResizeOption field={field} setField={setField} />}
+                </div>
+              )}
+              {field.type === 'file' && (
+                <div>
+                  <FileOption field={field} setField={setField} />
+                </div>
+              )}
+              {field.type === 'media' && (
+                <div>
+                  <MediaOption field={field} setField={setField} />
+                </div>
+              )}
+              {field.type === 'rich-editor' && (
+                <div>
+                  <RichEditorOption field={field} setField={setField} />
+                </div>
+              )}
+              <Validator field={field} setField={setField} />
+              <Operator setField={setField} onSubmit={addGroup} />
+            </div>
+          </div>
         )}
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
       </div>

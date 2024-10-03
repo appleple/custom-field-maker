@@ -278,7 +278,7 @@ export function Field() {
 
   return (
     <div>
-      <ConverterModal field={field} setField={setField} />
+      <h2>コード生成</h2>
       <div className="customFieldFunction">
         <Alert field={field} setField={setField} />
         <Basic field={field} setField={setField} />
@@ -336,6 +336,7 @@ export function Field() {
         <Operator setField={setField} onSubmit={onSubmit} />
 >>>>>>> f4e47e5 (Design fixes for group generators and form options.)
       </div>
+      <ConverterModal field={field} setField={setField} />
     </div>
   );
 }

@@ -48,8 +48,10 @@ export const MakerContext = createContext({
   setUnitGroupTitleName: () => {},
   addUnitGroupItem: () => {},
   clearCustomfield: () => {},
+  clearGroup: () => {},
   clearGroupItem: () => {},
   clearCustomunit: () => {},
+  clearUnitGroup: () => {},
   clearUnitGroupItem: () => {},
   setSource: () => {},
   setMode: () => {},
@@ -118,6 +120,14 @@ export function MakerContextProvider({
     () => dispatch({ type: 'UPDATE_STATE', payload: { customfield: [] } }),
     [dispatch]
   );
+  const clearGroup = useCallback(
+    () =>
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { fieldgroup: { ...state.fieldgroup, title: null, name: null, items: [] } },
+      }),
+    [dispatch, state.fieldgroup]
+  );
   const clearGroupItem = useCallback(
     () => dispatch({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...state.fieldgroup, items: [] } } }),
     [dispatch, state.fieldgroup]
@@ -125,6 +135,14 @@ export function MakerContextProvider({
   const clearCustomunit = useCallback(() => {
     dispatch({ type: 'UPDATE_STATE', payload: { customunit: [] } });
   }, [dispatch]);
+  const clearUnitGroup = useCallback(
+    () =>
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { unitgroup: { ...state.unitgroup, title: null, name: null, items: [] } },
+      }),
+    [dispatch, state.unitgroup]
+  );
   const clearUnitGroupItem = useCallback(
     () => dispatch({ type: 'UPDATE_STATE', payload: { unitgroup: { ...state.unitgroup, items: [] } } }),
     [dispatch, state.unitgroup]
@@ -171,8 +189,10 @@ export function MakerContextProvider({
       setUnitGroupTitleName,
       addUnitGroupItem,
       clearCustomfield,
+      clearGroup,
       clearGroupItem,
       clearCustomunit,
+      clearUnitGroup,
       clearUnitGroupItem,
       setTag,
       setAcmscss,
@@ -196,6 +216,8 @@ export function MakerContextProvider({
       setUnitGroupTitleName,
       addUnitGroupItem,
       clearCustomfield,
+      clearGroup,
+      clearUnitGroup,
       clearGroupItem,
       clearCustomunit,
       clearUnitGroupItem,

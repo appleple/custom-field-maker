@@ -170,8 +170,8 @@ export function Unit() {
 
   return (
     <div>
+      <h2>コード生成</h2>
       <div className="customFieldFunction">
-        <ConverterModal field={field} setField={setField} />
         <Alert field={field} setField={setField} />
         <Basic field={field} setField={setField} />
         {field.type === 'selectbox' && (
@@ -288,6 +288,7 @@ export function Unit() {
         )}
         <Operator setField={setField} onSubmit={onSubmit} />
       </div>
+      <ConverterModal field={field} setField={setField} />
     </div>
   );
 >>>>>>> 8da1afd (フィールドグループの追加)

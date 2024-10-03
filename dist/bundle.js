@@ -72,7 +72,7 @@
       954: function (e, t, n) {
         (e.exports = n(765)()).push([
           e.id,
-          '.customFieldContainer {\n  display: grid;\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n  gap: 64px;\n}\n\n.customFieldContainer h2 {\n  color: #333;\n  margin: 0;\n  font-size: 20px;\n  margin-bottom: 1em;\n}\n\n/* ジェネレーター：全体\n-------------------------------------- */\n.customFieldFunction {\n  display: grid;\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n  gap: 24px;\n  background: #fff;\n}\n\n.customFieldFunction select {\n  min-height: 26px;\n  padding: 4px;\n  line-height: 1.5;\n  font-size: 14px;\n}\n\n/* ジェネレーター：フィールドグループ、ユニットグループ\n-------------------------------------- */\n.customFieldGeneratorGroup {\n  display: grid;\n  row-gap: 24px;\n  column-gap: 24px;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-areas:\n    "areaTitle  areaVal ."\n    "areaButton .       .";\n}\n.customFieldGeneratorGroup.-openGroup {\n  grid-template-areas: "areaTitle  areaVal .";\n}\n.customFieldGeneratorGroup dd {\n  margin: 0;\n}\n.customFieldGeneratorGroupTitle {\n  grid-area: areaTitle;\n}\n.customFieldGeneratorGroupVal {\n  grid-area: areaVal;\n}\n.customFieldGeneratorGroupButton {\n  grid-area: areaButton;\n}\n\n/* ジェネレーター：ベーシック\n-------------------------------------- */\n.customFieldGeneratorBasic {\n  display: grid;\n  row-gap: 24px;\n  column-gap: 24px;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-areas:\n    "areaInput   areaTitle       areaField"\n    "areaTooltip areaPlaceholder .";\n}\n.customFieldGeneratorBasic label,\n.customFieldGeneratorBasic dt,\n.customFieldGeneratorGroup label,\n.customFieldGeneratorGroup dt {\n  display: flex;\n  gap: 4px;\n  align-items: center;\n  padding-bottom: 8px;\n}\n.customFieldGeneratorBasicInput {\n  grid-area: areaInput;\n}\n.customFieldGeneratorBasicTitle {\n  grid-area: areaTitle;\n}\n.customFieldGeneratorBasicField {\n  grid-area: areaField;\n}\n.customFieldGeneratorBasicTooltip {\n  grid-area: areaTooltip;\n}\n.customFieldGeneratorBasicPlaceholder {\n  grid-area: areaPlaceholder;\n}\n\n/* ジェネレーター：バリデーター\n-------------------------------------- */\n.customFieldValidatorLabel {\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.customFieldValidatorToggle {\n  display: inline-block;\n  width: 5px;\n  height: 5px;\n  border-right: 2px solid #333;\n  border-bottom: 2px solid #333;\n  transition: transform;\n  transform: rotateZ(-45deg);\n  transform-origin: center center;\n}\n.customFieldValidatorToggle.-open {\n  transform: rotateZ(-315deg);\n}\n\n/* アコーディオン\n-------------------------------------- */\n.customFieldAccordionContent {\n  overflow: hidden;\n  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;\n  opacity: 0;\n}\n\n.customFieldAccordionContent.-open {\n  opacity: 1;\n}\n\n/* ナビゲーター：コード操作\n-------------------------------------- */\n.customFieldNavigatorCode {\n  display: grid;\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n  gap: 20px;\n}\n.customFieldNavigatorCodeButtonList {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n\n/* ボタン\n-------------------------------------- */\n.customFieldCopied {\n  position: absolute;\n  bottom: -40px;\n  left: -30px;\n  background-color: rgba(0, 0, 0, .5);\n  font-size: 10px;\n  width: 150px;\n  padding: 10px;\n  color: #ffffff;\n  text-align: center;\n  display: inline-block;\n  border-radius: 3px;\n  -webkit-transition: background-color .2s ease-in;\n  -moz-transition: background-color .2s ease-in;\n  -ms-transition: background-color .2s ease-in;\n  -o-transition: background-color .2s ease-in;\n  transition: background-color .2s ease-in;\n}\n\n.hljs {\n  border-radius: 5px;\n  padding: 20px;\n  background-color: #F0F0F0;\n  min-height: 19.391px;\n}\n\n.customFieldCopied:after {\n  content: \' \';\n  position: absolute;\n\theight: 0;\n  width: 0;\n  top: 0;\n\tleft: 50%;\n\tborder: 6px solid transparent;\n\tborder-bottom-color: rgba(0, 0, 0, .5);\n  margin-top: -12px;\n  margin-left: -6px;\n  -webkit-transition: border .2s ease-in;\n  -moz-transition: border .2s ease-in;\n  -ms-transition: border .2s ease-in;\n  -o-transition: border .2s ease-in;\n  transition: border .2s ease-in;\n}\n\n.customFieldCopied.active:after {\n  border-bottom-color: rgba(0, 0, 0, .8);\n}\n\n.customFieldLabelRequired {\n  background-color: #c40f32;\n  color: #ffffff;\n  font-size: 11px;\n  padding: 2px 5px;\n  border-radius: 2px;\n  margin-left: 10px;\n}\n\n.customFieldUseSnippet {\n  display: inline-block;\n  margin-left: 25px;\n}\n\n.customFieldLine {\n  height: 1px;\n  background-color: #cccccc;\n  border: none;\n}\n\n.customFieldValidatorArea {\n  display: grid;\n  gap: 16px;\n  grid-template-colmuns: repeat(1, minmax(0, 1fr));\n  margin-top: 8px;\n  background-color: #F7F7F7;\n  padding: 20px;\n}\n\n.customFieldValidatorArea .acms-admin-icon-tooltip {\n  margin-left: 10px;\n}\n\n.customFieldBold {\n  margin-bottom: 10px;\n}\n.customFieldBold .acms-admin-icon-tooltip {\n  margin-left: 10px;\n}\n\n.customFieldOptionTable {\n  width: auto !important;\n  /* border-top: 1px solid #ccc;\n  border-bottom: 1px solid #ccc; */\n}\n\n.customFieldOptionTable th,\n.customFieldOptionTable td {\n  border: none;\n  white-space: nowrap;\n  padding-top: 5px;\n  padding-bottom: 5px;\n}\n\n.customFieldOptionTable th:nth-child(1) {\n  width: 20%;\n}\n\n.customFieldOptionTable th:nth-child(2) {\n  width: 12%;\n}\n\n.customFieldOptionTable th:nth-child(3) {\n  width: 62%;\n}\n\n.customFieldOptionTable tr {\n  /* border-bottom: 1px solid #cccccc; */\n}\n\n.customFieldOptionTable th:first-child,\n.customFieldOptionTable td:first-child {\n  padding-left: 0;\n}\n\n.customFieldOptionTable th:last-child,\n.customFieldOptionTable td:last-child {\n  padding-right: 0;\n}\n\n.customFieldOptionTable td:last-child {\n  width: 50px;\n}\n\n.customFieldOptionTable .acms-admin-btn-admin {\n  margin-right: 0 !important;\n}\n\n.customFieldOptionTableInput {\n  display: table;\n  /*width: 100%;*/\n}\n\n.customFieldOptionTableAppend {\n  display: table-cell;\n}\n\n.customFieldOptionTable input {\n  display: table-cell;\n}\n\n.customFieldBasicTable {\n  border: none !important;\n}\n\n.customFieldBasicTable tr {\n  border: none !important;\n}\n\n.customFieldBasicTable td {\n  border-bottom: none !important;\n}\n\n.customFieldBasicTable .acms-admin-label {\n  margin-left: 10px;\n}\n\n.customFieldBasicTable th {\n  white-space: nowrap;\n}\n\n.customFieldBasicTableFirst td:nth-child(1) {\n  width: 12%;\n}\n\n.customFieldBasicTableFirst td:nth-child(2) {\n  width: 20%;\n}\n\n.customFieldBasicTableFirst td:nth-child(3) {\n  width: 20%;\n}\n\n.customFieldBasicTableFirst td:nth-child(4) {\n  width: 48%;\n}\n\n.customFieldBasicTableFirst {\n  margin-bottom: 10px;\n}\n\n.customFieldBasicTable tr:last-child td {\n  padding-bottom: 5px;\n}\n\n.customFieldSizeInput {\n  width: 50%;\n}\n\n.customFieldLine {\n  height: 1px;\n  background-color: #cccccc;\n}\n\n.customFieldBasicTableImg td {\n  width: 25%;\n  white-space: nowrap;\n}\n\n.customFieldBasicTableFile td:nth-child(1) {\n  width: 25%;\n}\n\n.customFieldInputGroup {\n  position: relative;\n  display: table;\n  border-collapse: separate;\n  width: 100%;\n}\n\n.customFieldInputGroup input {\n  display: table-cell;\n  position: relative;\n  z-index: 2;\n  float: left;\n  width: 100%;\n  margin-bottom: 0;\n}\n\n.customFieldInputGroupAddon {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle;\n  display: table-cell;\n  padding-right: 10px;\n}\n\n.customFieldBasicTableGroup {\n  border-bottom: none;\n  width: 40%;\n}\n\n.customFieldGroupBtn {\n  width: 185px;\n}\n\n.customFieldBasicTable tr {\n  border: none;\n}\n\n.customFieldBasicTable tr:last-child td {\n  border-bottom: none;\n}\n\n.customFieldBasicTable th:first-child,\n.customFieldBasicTable td:first-child {\n  padding-left: 0 !important;\n}\n\n.customFieldSubTable {\n  background: transparent;\n  border: none;\n  border-top: 1px solid #cccccc;\n  margin-top: 10px;\n}\n\n.customFieldGroupSubTable {\n  border-top: none;\n  margin-top: 0;\n}\n\n.customFieldSubTable tr {\n  border: none;\n}\n\n.customFieldSubTable tbody tr:last-child td,\n.customFieldSubTable tbody tr:last-child th {\n  border-bottom: none;\n}\n\n.customFieldCopied.active {\n  background-color: rgba(0, 0, 0, 0.8);\n}\n\n#converter {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.customFieldBold {\n  font-weight: bold;\n}\n\n.customFieldSnippet {\n  margin-left: 10px;\n}\n\n.customFieldOptionBlock {\n  margin-left: 20px;\n  margin-bottom: 10px;\n}\n\n.customFieldCopyBtn {\n  position: relative;\n  top: -2px;\n}\n\n.customFieldPreview {\n  background-color: #ffffff;\n  padding: 15px;\n}\n\n.customFieldPreview input[type=text],\n.customFieldPreview textarea {\n  color: #dddddd;\n}\n\n.customFieldUseSnippetLabel {\n  color: #006dec;\n  cursor: pointer;\n  display: inline-block;\n  height: 27px;\n  vertical-align: middle;\n  line-height: 27px;\n}\n\n.customFieldTooltip {\n  font-weight: normal;\n  white-space: normal;\n  word-wrap: break-word;\n  padding-left: 10px !important;\n  padding-right: 10px !important;\n  font-size: 12px;\n}\n\n.customFieldFileContainer {\n  padding-top: 10px;\n}\n\n.customFieldInputFileGroup {\n  display: inline-block;\n  width: 300px;\n  padding-right: 5px;\n}\n\n.customFieldInputFileExtGroup {\n  width: 100px;\n  display: inline-block;\n  margin-left: 5px;\n}\n\n.customFieldFileNameOptContainer {\n  padding-bottom: 10px;\n}\n\n.customFieldMakeBtn {\n  padding-right: 70px;\n  padding-left: 70px;\n}\n\n.customFieldTabs {\n\tmargin: 0;\n\tpadding: 0;\n}\n.customFieldTabs:before,\n.customFieldTabs:after {\n\tcontent: " ";\n\tdisplay: table;\n}\n.customFieldTabs:after {\n\tclear: both;\n}\n.customFieldTabs li {\n\tlist-style: none;\n\tfloat: left;\n\tmargin-right: 2px;\n}\n.customFieldTabs a {\n    position: relative;\n    display: block;\n    padding: 10px 8px;\n    color: #404040;\n    font-weight: 500;\n    font-size: 14px;\n    line-height: 1;\n\toutline: none;\n\ttext-decoration: none;\n}\n.customFieldTabs a:hover {\n\tcolor: #666;\n\tbackground: #F2F2F4;\n}\n.customFieldTabs a.customFieldTabActive {\n    color: #014cc5;\n    border-bottom: 3px solid #014cc5;\n    background: #f2f2f4\n}\n.customFieldTabs a.customFieldTabActive:before {\n    content: "";\n    position: absolute;\n    left: 0;\n    bottom: -1px;\n    width: 100%;\n    height: 1px;\n    background: #f2f2f4\n}\n\n.customFieldDirectionBtnGroup {\n  display: inline-table;\n  overflow: hidden;\n  margin-right: 15px;\n  border-radius: 3px;\n  vertical-align: middle;\n}\n\n.customFieldDirectionBtnGroup input {\n  display: none;\n}\n\n.customFieldDirectionBtnGroupSide {\n  display: inline-block;\n  margin-right: 5px;\n}\n\n.customFieldDirectionBtn {\n  display: table-cell;\n  background-color: #F7F7F7;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  padding: 5px 10px;\n  font-size: 11px;\n  cursor: pointer;\n}\n\n.customFieldDirectionBtn.active {\n  background-color: #e1e1e1;\n  border-color: rgba(0, 0, 0, .3);\n  box-shadow: inset 0 1px 2px rgba(0,0,0,.3);\n  color: #333;\n}\n\n.customFieldDirectionBtn img {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  vertical-align: middle;\n}\n',
+          '.customFieldContainer {\n  display: grid;\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n  gap: 64px;\n  max-width: 960px;\n}\n\n.customFieldContainer h2 {\n  color: #333;\n  margin: 0;\n  font-size: 20px;\n  margin-bottom: 1em;\n}\n\n/* ジェネレーター：全体\n-------------------------------------- */\n.customFieldFunction {\n  display: grid;\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n  gap: 24px;\n  background: #fff;\n}\n\n.customFieldFunction select {\n  min-height: 26px;\n  padding: 4px;\n  line-height: 1.5;\n  font-size: 14px;\n}\n\n/* ジェネレーター：フィールドグループ、ユニットグループ\n-------------------------------------- */\n.customFieldGeneratorGroup {\n  display: grid;\n  row-gap: 24px;\n  column-gap: 24px;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-areas:\n    "areaTitle  areaVal ."\n    "areaButton .       .";\n}\n.customFieldGeneratorGroup.-openGroup {\n  grid-template-areas: "areaTitle  areaVal .";\n}\n.customFieldGeneratorGroup dd {\n  margin: 0;\n}\n.customFieldGeneratorGroupTitle {\n  grid-area: areaTitle;\n}\n.customFieldGeneratorGroupVal {\n  grid-area: areaVal;\n}\n.customFieldGeneratorGroupButton {\n  grid-area: areaButton;\n}\n\n/* ジェネレーター：ベーシック\n-------------------------------------- */\n.customFieldGeneratorBasic {\n  display: grid;\n  row-gap: 24px;\n  column-gap: 24px;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-areas:\n    "areaInput   areaTitle       areaField"\n    "areaTooltip areaPlaceholder areaPlaceholder";\n}\n.customFieldGeneratorBasic label,\n.customFieldGeneratorBasic dt,\n.customFieldGeneratorGroup label,\n.customFieldGeneratorGroup dt {\n  display: flex;\n  gap: 4px;\n  align-items: center;\n  padding-bottom: 8px;\n}\n.customFieldGeneratorBasicInput {\n  grid-area: areaInput;\n}\n.customFieldGeneratorBasicTitle {\n  grid-area: areaTitle;\n}\n.customFieldGeneratorBasicField {\n  grid-area: areaField;\n}\n.customFieldGeneratorBasicTooltip {\n  grid-area: areaTooltip;\n}\n.customFieldGeneratorBasicPlaceholder {\n  grid-area: areaPlaceholder;\n}\n\n/* ジェネレーター：バリデーター\n-------------------------------------- */\n.customFieldValidatorLabel {\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.customFieldValidatorToggle {\n  display: inline-block;\n  width: 5px;\n  height: 5px;\n  border-right: 2px solid #333;\n  border-bottom: 2px solid #333;\n  transition: transform;\n  transform: rotateZ(-45deg);\n  transform-origin: center center;\n}\n.customFieldValidatorToggle.-open {\n  transform: rotateZ(-315deg);\n}\n\n/* アコーディオン\n-------------------------------------- */\n.customFieldAccordionContent {\n  overflow: hidden;\n  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;\n  opacity: 0;\n}\n\n.customFieldAccordionContent.-open {\n  opacity: 1;\n}\n\n/* ナビゲーター：コード操作\n-------------------------------------- */\n.customFieldNavigatorCode {\n  display: grid;\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n  gap: 20px;\n}\n.customFieldNavigatorCodeButtonList {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n\n/* ボタン\n-------------------------------------- */\n.customFieldCopied {\n  position: absolute;\n  bottom: -40px;\n  left: -30px;\n  background-color: rgba(0, 0, 0, .5);\n  font-size: 10px;\n  width: 150px;\n  padding: 10px;\n  color: #ffffff;\n  text-align: center;\n  display: inline-block;\n  border-radius: 3px;\n  -webkit-transition: background-color .2s ease-in;\n  -moz-transition: background-color .2s ease-in;\n  -ms-transition: background-color .2s ease-in;\n  -o-transition: background-color .2s ease-in;\n  transition: background-color .2s ease-in;\n}\n\n.hljs {\n  border-radius: 5px;\n  padding: 20px;\n  background-color: #F0F0F0;\n  min-height: 19.391px;\n}\n\n.customFieldCopied:after {\n  content: \' \';\n  position: absolute;\n\theight: 0;\n  width: 0;\n  top: 0;\n\tleft: 50%;\n\tborder: 6px solid transparent;\n\tborder-bottom-color: rgba(0, 0, 0, .5);\n  margin-top: -12px;\n  margin-left: -6px;\n  -webkit-transition: border .2s ease-in;\n  -moz-transition: border .2s ease-in;\n  -ms-transition: border .2s ease-in;\n  -o-transition: border .2s ease-in;\n  transition: border .2s ease-in;\n}\n\n.customFieldCopied.active:after {\n  border-bottom-color: rgba(0, 0, 0, .8);\n}\n\n.customFieldLabelRequired {\n  background-color: #c40f32;\n  color: #ffffff;\n  font-size: 11px;\n  padding: 2px 5px;\n  border-radius: 2px;\n  margin-left: 10px;\n}\n\n.customFieldUseSnippet {\n  display: inline-block;\n  margin-left: 25px;\n}\n\n.customFieldLine {\n  height: 1px;\n  background-color: #cccccc;\n  border: none;\n}\n\n.customFieldValidatorArea {\n  display: grid;\n  gap: 16px;\n  grid-template-colmuns: repeat(1, minmax(0, 1fr));\n  margin-top: 8px;\n  background-color: #F7F7F7;\n  padding: 20px;\n}\n\n.customFieldValidatorArea .acms-admin-icon-tooltip {\n  margin-left: 10px;\n}\n\n.customFieldBold {\n  margin-bottom: 10px;\n}\n.customFieldBold .acms-admin-icon-tooltip {\n  margin-left: 10px;\n}\n\n.customFieldOptionTable {\n  width: auto !important;\n  /* border-top: 1px solid #ccc;\n  border-bottom: 1px solid #ccc; */\n}\n\n.customFieldOptionTable th,\n.customFieldOptionTable td {\n  border: none;\n  white-space: nowrap;\n  padding-top: 5px;\n  padding-bottom: 5px;\n}\n\n.customFieldOptionTable th:nth-child(1) {\n  width: 20%;\n}\n\n.customFieldOptionTable th:nth-child(2) {\n  width: 12%;\n}\n\n.customFieldOptionTable th:nth-child(3) {\n  width: 62%;\n}\n\n.customFieldOptionTable tr {\n  /* border-bottom: 1px solid #cccccc; */\n}\n\n.customFieldOptionTable th:first-child,\n.customFieldOptionTable td:first-child {\n  padding-left: 0;\n}\n\n.customFieldOptionTable th:last-child,\n.customFieldOptionTable td:last-child {\n  padding-right: 0;\n}\n\n.customFieldOptionTable td:last-child {\n  width: 50px;\n}\n\n.customFieldOptionTable .acms-admin-btn-admin {\n  margin-right: 0 !important;\n}\n\n.customFieldOptionTableInput {\n  display: table;\n  /*width: 100%;*/\n}\n\n.customFieldOptionTableAppend {\n  display: table-cell;\n}\n\n.customFieldOptionTable input {\n  display: table-cell;\n}\n\n.customFieldBasicTable {\n  border: none !important;\n}\n\n.customFieldBasicTable tr {\n  border: none !important;\n}\n\n.customFieldBasicTable td {\n  border-bottom: none !important;\n}\n\n.customFieldBasicTable .acms-admin-label {\n  margin-left: 10px;\n}\n\n.customFieldBasicTable th {\n  white-space: nowrap;\n}\n\n.customFieldBasicTableFirst td:nth-child(1) {\n  width: 12%;\n}\n\n.customFieldBasicTableFirst td:nth-child(2) {\n  width: 20%;\n}\n\n.customFieldBasicTableFirst td:nth-child(3) {\n  width: 20%;\n}\n\n.customFieldBasicTableFirst td:nth-child(4) {\n  width: 48%;\n}\n\n.customFieldBasicTableFirst {\n  margin-bottom: 10px;\n}\n\n.customFieldBasicTable tr:last-child td {\n  padding-bottom: 5px;\n}\n\n.customFieldSizeInput {\n  width: 50%;\n}\n\n.customFieldLine {\n  height: 1px;\n  background-color: #cccccc;\n}\n\n.customFieldBasicTableImg td {\n  width: 25%;\n  white-space: nowrap;\n}\n\n.customFieldBasicTableFile td:nth-child(1) {\n  width: 25%;\n}\n\n.customFieldInputGroup {\n  position: relative;\n  display: table;\n  border-collapse: separate;\n  width: 100%;\n}\n\n.customFieldInputGroup input {\n  display: table-cell;\n  position: relative;\n  z-index: 2;\n  float: left;\n  width: 100%;\n  margin-bottom: 0;\n}\n\n.customFieldInputGroupAddon {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle;\n  display: table-cell;\n  padding-right: 10px;\n}\n\n.customFieldBasicTableGroup {\n  border-bottom: none;\n  width: 40%;\n}\n\n.customFieldGroupBtn {\n  width: 185px;\n}\n\n.customFieldBasicTable tr {\n  border: none;\n}\n\n.customFieldBasicTable tr:last-child td {\n  border-bottom: none;\n}\n\n.customFieldBasicTable th:first-child,\n.customFieldBasicTable td:first-child {\n  padding-left: 0 !important;\n}\n\n.customFieldSubTable {\n  background: transparent;\n  border: none;\n  border-top: 1px solid #cccccc;\n  margin-top: 10px;\n}\n\n.customFieldGroupSubTable {\n  border-top: none;\n  margin-top: 0;\n}\n\n.customFieldSubTable tr {\n  border: none;\n}\n\n.customFieldSubTable tbody tr:last-child td,\n.customFieldSubTable tbody tr:last-child th {\n  border-bottom: none;\n}\n\n.customFieldCopied.active {\n  background-color: rgba(0, 0, 0, 0.8);\n}\n\n#converter {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.customFieldBold {\n  font-weight: bold;\n}\n\n.customFieldSnippet {\n  margin-left: 10px;\n}\n\n.customFieldOptionBlock {\n  margin-left: 20px;\n  margin-bottom: 10px;\n}\n\n.customFieldCopyBtn {\n  position: relative;\n  top: -2px;\n}\n\n.customFieldPreview {\n  background-color: #ffffff;\n  padding: 15px;\n}\n\n.customFieldPreview input[type=text],\n.customFieldPreview textarea {\n  color: #dddddd;\n}\n\n.customFieldUseSnippetLabel {\n  color: #006dec;\n  cursor: pointer;\n  display: inline-block;\n  height: 27px;\n  vertical-align: middle;\n  line-height: 27px;\n}\n\n.customFieldTooltip {\n  font-weight: normal;\n  white-space: normal;\n  word-wrap: break-word;\n  padding-left: 10px !important;\n  padding-right: 10px !important;\n  font-size: 12px;\n}\n\n.customFieldFileContainer {\n  padding-top: 10px;\n}\n\n.customFieldInputFileGroup {\n  display: inline-block;\n  width: 300px;\n  padding-right: 5px;\n}\n\n.customFieldInputFileExtGroup {\n  width: 100px;\n  display: inline-block;\n  margin-left: 5px;\n}\n\n.customFieldFileNameOptContainer {\n  padding-bottom: 10px;\n}\n\n.customFieldMakeBtn {\n  padding-right: 70px;\n  padding-left: 70px;\n}\n\n.customFieldTabs {\n\tmargin: 0;\n\tpadding: 0;\n}\n.customFieldTabs:before,\n.customFieldTabs:after {\n\tcontent: " ";\n\tdisplay: table;\n}\n.customFieldTabs:after {\n\tclear: both;\n}\n.customFieldTabs li {\n\tlist-style: none;\n\tfloat: left;\n\tmargin-right: 2px;\n}\n.customFieldTabs a {\n    position: relative;\n    display: block;\n    padding: 10px 8px;\n    color: #404040;\n    font-weight: 500;\n    font-size: 14px;\n    line-height: 1;\n\toutline: none;\n\ttext-decoration: none;\n}\n.customFieldTabs a:hover {\n\tcolor: #666;\n\tbackground: #F2F2F4;\n}\n.customFieldTabs a.customFieldTabActive {\n    color: #014cc5;\n    border-bottom: 3px solid #014cc5;\n    background: #f2f2f4\n}\n.customFieldTabs a.customFieldTabActive:before {\n    content: "";\n    position: absolute;\n    left: 0;\n    bottom: -1px;\n    width: 100%;\n    height: 1px;\n    background: #f2f2f4\n}\n\n.customFieldDirectionBtnGroup {\n  display: inline-table;\n  overflow: hidden;\n  margin-right: 15px;\n  border-radius: 3px;\n  vertical-align: middle;\n}\n\n.customFieldDirectionBtnGroup input {\n  display: none;\n}\n\n.customFieldDirectionBtnGroupSide {\n  display: inline-block;\n  margin-right: 5px;\n}\n\n.customFieldDirectionBtn {\n  display: table-cell;\n  background-color: #F7F7F7;\n  border: 1px solid rgba(0, 0, 0, 0.2);\n  padding: 5px 10px;\n  font-size: 11px;\n  cursor: pointer;\n}\n\n.customFieldDirectionBtn.active {\n  background-color: #e1e1e1;\n  border-color: rgba(0, 0, 0, .3);\n  box-shadow: inset 0 1px 2px rgba(0,0,0,.3);\n  color: #333;\n}\n\n.customFieldDirectionBtn img {\n  display: inline-block;\n  width: 18px;\n  height: auto;\n  vertical-align: middle;\n}\n',
           '',
         ]);
       },
@@ -3484,7 +3484,7 @@
               function O(e) {
                 I.just_added_newline() && I.set_indent(F), I.add_token(e);
               }
-              function L(e) {
+              function D(e) {
                 e && (I.space_before_token = !0);
               }
               (this.beautify = function () {
@@ -3492,15 +3492,15 @@
                 for (var e, t, a = !1, r = !1, i = !1, o = '', c = ''; ; ) {
                   var s = w(),
                     C = '' !== s,
-                    D = -1 !== s.indexOf('\n');
+                    L = -1 !== s.indexOf('\n');
                   if (((c = o), (o = h), !h)) break;
                   if ('/' === h && '*' === y()) {
                     var P = 0 === F;
-                    (D || P) && I.add_new_line(), O(k()), I.add_new_line(), P && I.add_new_line(!0);
+                    (L || P) && I.add_new_line(), O(k()), I.add_new_line(), P && I.add_new_line(!0);
                   } else if ('/' === h && '/' === y())
-                    D || '{' === c || I.trim(!0), (I.space_before_token = !0), O(k()), I.add_new_line();
+                    L || '{' === c || I.trim(!0), (I.space_before_token = !0), O(k()), I.add_new_line();
                   else if ('@' === h)
-                    if ((L(C), '{' === y())) O(x('}'));
+                    if ((D(C), '{' === y())) O(x('}'));
                     else {
                       O(h);
                       var j = (void 0, void 0, (e = v), (t = x(': ,;{}()[]/=\'"')), (v = e - 1), E(), t);
@@ -3510,7 +3510,7 @@
                     }
                   else
                     '#' === h && '{' === y()
-                      ? (L(C), O(x('}')))
+                      ? (D(C), O(x('}')))
                       : '{' === h
                         ? '}' === y(!0)
                           ? (_(),
@@ -3539,13 +3539,13 @@
                                 ? (S(' ') && (I.space_before_token = !0), ':' === y() ? (E(), O('::')) : O(':'))
                                 : (O(':'), r || ((r = !0), (I.space_before_token = !0))))
                             : '"' === h || "'" === h
-                              ? (L(C), O(x(h)))
+                              ? (D(C), O(x(h)))
                               : ';' === h
                                 ? ((r = !1), O(h), _(!0) || I.add_new_line())
                                 : '(' === h
                                   ? S('url')
                                     ? (O(h), _(), E() && (')' !== h && '"' !== h && "'" !== h ? O(x(')')) : v--))
-                                    : (b++, L(C), O(h), _())
+                                    : (b++, D(C), O(h), _())
                                   : ')' === h
                                     ? (O(h), b--)
                                     : ',' === h
@@ -3558,12 +3558,12 @@
                                         : ']' === h
                                           ? O(h)
                                           : '[' === h
-                                            ? (L(C), O(h))
+                                            ? (D(C), O(h))
                                             : '=' === h
                                               ? (_(), O('='), g.test(h) && (h = ''))
                                               : '!' === h
                                                 ? (O(' '), O(h))
-                                                : (L(C), O(h));
+                                                : (D(C), O(h));
                 }
                 return I.get_code(m, f);
               }),
@@ -4594,13 +4594,13 @@
                       M(E.mode) &&
                         (('[' !== E.last_text && (',' !== E.last_text || (']' !== v && '}' !== v))) ||
                           k.keep_array_indentation ||
-                          L());
+                          D());
                   } else
                     'TK_RESERVED' === g && 'for' === E.last_text
                       ? (e = d.ForInitializer)
                       : 'TK_RESERVED' === g && c(E.last_text, ['if', 'while']) && (e = d.Conditional);
                   ';' === E.last_text || 'TK_START_BLOCK' === g
-                    ? L()
+                    ? D()
                     : 'TK_END_EXPR' === g || 'TK_START_EXPR' === g || 'TK_END_BLOCK' === g || '.' === E.last_text
                       ? O(h.wanted_newline)
                       : ('TK_RESERVED' === g && '(' === h.text) || 'TK_WORD' === g || 'TK_OPERATOR' === g
@@ -4670,7 +4670,7 @@
                     ? 'TK_OPERATOR' !== g &&
                       (a || 'TK_EQUALS' === g || ('TK_RESERVED' === g && H(E.last_text) && 'else' !== E.last_text))
                       ? (n.space_before_token = !0)
-                      : L(!1, !0)
+                      : D(!1, !0)
                     : (!M(y.mode) ||
                         ('TK_START_EXPR' !== g && 'TK_COMMA' !== g) ||
                         (('TK_COMMA' === g || k.space_in_paren) && (n.space_before_token = !0),
@@ -4680,7 +4680,7 @@
                           (E.multiline_frame = !1))),
                       'TK_OPERATOR' !== g &&
                         'TK_START_EXPR' !== g &&
-                        ('TK_START_BLOCK' !== g || E.inline_frame ? (n.space_before_token = !0) : L())),
+                        ('TK_START_BLOCK' !== g || E.inline_frame ? (n.space_before_token = !0) : D())),
                     P(),
                     j();
                 },
@@ -4690,11 +4690,11 @@
                   E.inline_frame && !e
                     ? (n.space_before_token = !0)
                     : 'expand' === k.brace_style
-                      ? e || L()
+                      ? e || D()
                       : e ||
                         (M(E.mode) && k.keep_array_indentation
-                          ? ((k.keep_array_indentation = !1), L(), (k.keep_array_indentation = !0))
-                          : L()),
+                          ? ((k.keep_array_indentation = !1), D(), (k.keep_array_indentation = !0))
+                          : D()),
                     V(),
                     P();
                 },
@@ -4722,7 +4722,7 @@
                         ? (n.space_before_token = !0)
                         : 'TK_COMMA' === g || 'TK_START_EXPR' === g || 'TK_EQUALS' === g || 'TK_OPERATOR' === g
                           ? q() || O()
-                          : L()),
+                          : D()),
                     P();
                 },
                 TK_EQUALS: function () {
@@ -4747,7 +4747,7 @@
                   if ('*' !== h.text || 'TK_DOT' !== g)
                     if ('::' !== h.text) {
                       if (('TK_OPERATOR' === g && c(k.operator_position, m) && O(), ':' === h.text && E.in_case))
-                        return (E.case_body = !0), j(), P(), L(), void (E.in_case = !1);
+                        return (E.case_body = !0), j(), P(), D(), void (E.in_case = !1);
                       var a = !0,
                         r = !0,
                         l = !1;
@@ -4768,7 +4768,7 @@
                           case u.after_newline:
                             return (
                               (n.space_before_token = !0),
-                              !i || o ? (K(1).wanted_newline ? L(!1, !0) : O()) : (n.space_before_token = !1),
+                              !i || o ? (K(1).wanted_newline ? D(!1, !0) : O()) : (n.space_before_token = !1),
                               P(),
                               void (n.space_before_token = !0)
                             );
@@ -4792,7 +4792,7 @@
                           : (c(h.text, ['--', '++', '!', '~']) || t) &&
                             ((a = !1),
                             (r = !1),
-                            !h.wanted_newline || ('--' !== h.text && '++' !== h.text) || L(!1, !0),
+                            !h.wanted_newline || ('--' !== h.text && '++' !== h.text) || D(!1, !0),
                             ';' === E.last_text && B(E.mode) && (a = !0),
                             'TK_RESERVED' === g
                               ? (a = !0)
@@ -4803,7 +4803,7 @@
                                   c(h.text, ['+', '-']) && c(E.last_text, ['--', '++']) && (r = !0)),
                             ((E.mode !== d.BlockStatement || E.inline_frame) && E.mode !== d.Statement) ||
                               ('{' !== E.last_text && ';' !== E.last_text) ||
-                              L());
+                              D());
                       (n.space_before_token = n.space_before_token || a), P(), (n.space_before_token = r);
                     } else P();
                   else P();
@@ -4814,9 +4814,9 @@
                     (n.space_before_token = !0),
                     E.declaration_statement
                       ? (B(E.parent.mode) && (E.declaration_assignment = !1),
-                        E.declaration_assignment ? ((E.declaration_assignment = !1), L(!1, !0)) : k.comma_first && O())
+                        E.declaration_assignment ? ((E.declaration_assignment = !1), D(!1, !0)) : k.comma_first && O())
                       : E.mode === d.ObjectLiteral || (E.mode === d.Statement && E.parent.mode === d.ObjectLiteral)
-                        ? (E.mode === d.Statement && V(), E.inline_frame || L())
+                        ? (E.mode === d.Statement && V(), E.inline_frame || D())
                         : k.comma_first && O();
                 },
                 TK_BLOCK_COMMENT: function (e) {
@@ -4826,7 +4826,7 @@
                       void (h.directives && 'end' === h.directives.preserve && (n.raw = k.test_output_raw))
                     );
                   if (h.directives)
-                    return L(!1, e), P(), 'start' === h.directives.preserve && (n.raw = !0), void L(!1, !0);
+                    return D(!1, e), P(), 'start' === h.directives.preserve && (n.raw = !0), void D(!1, !0);
                   if (!r.newline.test(h.text) && !h.wanted_newline)
                     return (n.space_before_token = !0), P(), void (n.space_before_token = !0);
                   var t,
@@ -4840,7 +4840,7 @@
                     o = h.whitespace_before,
                     c = o.length;
                   for (
-                    L(!1, e),
+                    D(!1, e),
                       a.length > 1 &&
                         ((l = (function (e) {
                           for (var t = 0; t < e.length; t++)
@@ -4857,16 +4857,16 @@
                     t < a.length;
                     t++
                   )
-                    L(!1, !0),
+                    D(!1, !0),
                       l
                         ? P(' ' + a[t].replace(/^\s+/g, ''))
                         : i && a[t].length > c
                           ? P(a[t].substring(c))
                           : n.add_token(a[t]);
-                  L(!1, e);
+                  D(!1, e);
                 },
                 TK_COMMENT: function (e) {
-                  h.wanted_newline ? L(!1, e) : n.trim(!0), (n.space_before_token = !0), P(), L(!1, e);
+                  h.wanted_newline ? D(!1, e) : n.trim(!0), (n.space_before_token = !0), P(), D(!1, e);
                 },
                 TK_DOT: function () {
                   U() || I(h, !0),
@@ -4876,7 +4876,7 @@
                     P();
                 },
                 TK_UNKNOWN: function (e) {
-                  P(), '\n' === h.text[h.text.length - 1] && L(!1, e);
+                  P(), '\n' === h.text[h.text.length - 1] && D(!1, e);
                 },
                 TK_EOF: function () {
                   for (; E.mode === d.Statement; ) V();
@@ -4950,13 +4950,13 @@
                   l++
                 )
                   I((h = e.comments_before[l]), t), w[h.type](t);
-                if (((h = r), a)) for (var i = 0; i < n; i += 1) L(i > 0, t);
+                if (((h = r), a)) for (var i = 0; i < n; i += 1) D(i > 0, t);
                 else if (
                   (k.max_preserve_newlines && n > k.max_preserve_newlines && (n = k.max_preserve_newlines),
                   k.preserve_newlines && e.newlines > 1)
                 ) {
-                  L(!1, t);
-                  for (var o = 1; o < n; o += 1) L(!0, t);
+                  D(!1, t);
+                  for (var o = 1; o < n; o += 1) D(!0, t);
                 }
               }
               (g = 'TK_START_BLOCK'),
@@ -4979,15 +4979,15 @@
                       c(h.text, f.positionable_operators);
                     t = t && a;
                   }
-                  if (t) L(!1, !0);
+                  if (t) D(!1, !0);
                   else if (k.wrap_line_length) {
                     if ('TK_RESERVED' === g && c(E.last_text, A)) return;
                     n.current_line.get_character_count() + h.text.length + (n.space_before_token ? 1 : 0) >=
-                      k.wrap_line_length && L(!1, !0);
+                      k.wrap_line_length && D(!1, !0);
                   }
                 }
               }
-              function L(e, t) {
+              function D(e, t) {
                 if (!t && ';' !== E.last_text && ',' !== E.last_text && '=' !== E.last_text && 'TK_OPERATOR' !== g)
                   for (
                     var a = K(1);
@@ -5001,7 +5001,7 @@
                     V();
                 n.add_new_line(e) && (E.multiline_frame = !0);
               }
-              function D() {
+              function L() {
                 n.just_added_newline() &&
                   (k.keep_array_indentation && M(E.mode) && h.wanted_newline
                     ? (n.current_line.push(h.whitespace_before), (n.space_before_token = !1))
@@ -5013,11 +5013,11 @@
                   if (k.comma_first && 'TK_COMMA' === g && n.just_added_newline() && ',' === n.previous_line.last()) {
                     var t = n.previous_line.pop();
                     n.previous_line.is_empty() && (n.previous_line.push(t), n.trim(!0), n.current_line.pop(), n.trim()),
-                      D(),
+                      L(),
                       n.add_token(','),
                       (n.space_before_token = !0);
                   }
-                  (e = e || h.text), D(), n.add_token(e);
+                  (e = e || h.text), L(), n.add_token(e);
                 }
               }
               function j() {
@@ -5100,12 +5100,12 @@
                           'TK_RESERVED' === g &&
                           c(E.last_text, ['var', 'let', 'const', 'set', 'get']))
                       ? I(h)
-                      : (I(h), L()),
+                      : (I(h), D()),
                   E.do_block && !E.do_while)
                 ) {
                   if ('TK_RESERVED' === h.type && 'while' === h.text)
                     return (n.space_before_token = !0), P(), (n.space_before_token = !0), void (E.do_while = !0);
-                  L(), (E.do_block = !1);
+                  D(), (E.do_block = !1);
                 }
                 if (E.if_block)
                   if (E.else_block || 'TK_RESERVED' !== h.type || 'else' !== h.text) {
@@ -5113,7 +5113,7 @@
                     (E.if_block = !1), (E.else_block = !1);
                   } else E.else_block = !0;
                 return 'TK_RESERVED' === h.type && ('case' === h.text || ('default' === h.text && E.in_case_statement))
-                  ? (L(),
+                  ? (D(),
                     (E.case_body || k.jslint_happy) &&
                       (E.indentation_level > 0 &&
                         (!E.parent || E.indentation_level > E.parent.indentation_level) &&
@@ -5130,16 +5130,16 @@
                           (n.just_added_newline() &&
                             !c(E.last_text, ['(', '[', '{', ':', '=', ',']) &&
                             'TK_OPERATOR' !== g)) &&
-                          (n.just_added_blankline() || h.comments_before.length || (L(), L(!0))),
+                          (n.just_added_blankline() || h.comments_before.length || (D(), D(!0))),
                         'TK_RESERVED' === g || 'TK_WORD' === g
                           ? ('TK_RESERVED' === g &&
                               (c(E.last_text, ['get', 'set', 'new', 'export', 'async']) || c(E.last_text, A))) ||
                             ('TK_RESERVED' === g && 'default' === E.last_text && 'export' === v)
                             ? (n.space_before_token = !0)
-                            : L()
+                            : D()
                           : 'TK_OPERATOR' === g || '=' === E.last_text
                             ? (n.space_before_token = !0)
-                            : (E.multiline_frame || (!B(E.mode) && !M(E.mode))) && L(),
+                            : (E.multiline_frame || (!B(E.mode) && !M(E.mode))) && D(),
                         P(),
                         void (E.last_word = h.text))
                       : ((_ = 'NONE'),
@@ -5179,8 +5179,8 @@
                               'end-expand' === k.brace_style ||
                               ('none' === k.brace_style && h.wanted_newline)) &&
                             !E.inline_frame
-                            ? L()
-                            : (n.trim(!0), '}' !== n.current_line.last() && L(), (n.space_before_token = !0))
+                            ? D()
+                            : (n.trim(!0), '}' !== n.current_line.last() && D(), (n.space_before_token = !0))
                           : 'NEWLINE' === _
                             ? 'TK_RESERVED' === g && H(E.last_text)
                               ? (n.space_before_token = !0)
@@ -5191,10 +5191,10 @@
                                   ':' === E.last_text ||
                                   ('TK_RESERVED' === h.type && 'if' === h.text && 'else' === E.last_text
                                     ? (n.space_before_token = !0)
-                                    : L())
-                                : 'TK_RESERVED' === h.type && c(h.text, f.line_starters) && ')' !== E.last_text && L()
+                                    : D())
+                                : 'TK_RESERVED' === h.type && c(h.text, f.line_starters) && ')' !== E.last_text && D()
                             : E.multiline_frame && M(E.mode) && ',' === E.last_text && '}' === v
-                              ? L()
+                              ? D()
                               : 'SPACE' === _ && (n.space_before_token = !0),
                         P(),
                         (E.last_word = h.text),
@@ -5531,17 +5531,17 @@
                         'TK_COMMA',
                       ])))
                 ) {
-                  var L = N,
-                    D = !1,
+                  var D = N,
+                    L = !1,
                     P = !1;
-                  if (((e = N), '/' === L))
-                    for (var j = !1; g.hasNext() && (D || j || g.peek() !== L) && !g.testChar(l.newline); )
+                  if (((e = N), '/' === D))
+                    for (var j = !1; g.hasNext() && (L || j || g.peek() !== D) && !g.testChar(l.newline); )
                       (e += g.peek()),
-                        D
-                          ? (D = !1)
-                          : ((D = '\\' === g.peek()), '[' === g.peek() ? (j = !0) : ']' === g.peek() && (j = !1)),
+                        L
+                          ? (L = !1)
+                          : ((L = '\\' === g.peek()), '[' === g.peek() ? (j = !0) : ']' === g.peek() && (j = !1)),
                         g.next();
-                  else if (t.e4x && '<' === L) {
+                  else if (t.e4x && '<' === D) {
                     var z =
                       /[\s\S]*?<(\/?)([-a-zA-Z:0-9_.]+|{[\s\S]+?}|!\[CDATA\[[\s\S]*?\]\])(\s+{[\s\S]+?}|\s+[-a-zA-Z:0-9_.]+|\s+[-a-zA-Z:0-9_.]+\s*=\s*('[^']*'|"[^"]*"|{[\s\S]+?}))*\s*(\/?)\s*>/g;
                     g.back();
@@ -5569,17 +5569,17 @@
                     }
                   } else {
                     var G = function (t, n, a) {
-                      for (var r; g.hasNext() && ((r = g.peek()), D || (r !== t && (n || !l.newline.test(r)))); )
-                        (D || n) && l.newline.test(r)
+                      for (var r; g.hasNext() && ((r = g.peek()), L || (r !== t && (n || !l.newline.test(r)))); )
+                        (L || n) && l.newline.test(r)
                           ? ('\r' === r && '\n' === g.peek(1) && (g.next(), (r = g.peek())), (e += '\n'))
                           : (e += r),
-                          D ? (('x' !== r && 'u' !== r) || (P = !0), (D = !1)) : (D = '\\' === r),
+                          L ? (('x' !== r && 'u' !== r) || (P = !0), (L = !1)) : (L = '\\' === r),
                           g.next(),
                           a &&
                             -1 !== e.indexOf(a, e.length - a.length) &&
                             ('`' === t ? G('}', n, '`') : G('`', n, '${'), g.hasNext() && (e += g.next()));
                     };
-                    '`' === L ? G('`', !0, '${') : G(L);
+                    '`' === D ? G('`', !0, '${') : G(D);
                   }
                   if (
                     (P &&
@@ -5606,7 +5606,7 @@
                           }
                         return t;
                       })(e)),
-                    g.peek() === L && ((e += L), g.next(), '/' === L))
+                    g.peek() === D && ((e += D), g.next(), '/' === D))
                   )
                     for (; g.hasNext() && l.isIdentifierStart(g.peekCharCode()); ) e += g.next();
                   return [e, 'TK_STRING'];
@@ -6254,8 +6254,8 @@
             ? (e.push(v(t)), !1)
             : ('' === t ? (e = a) : (a && e.push('\x3c!-- --\x3e'), e.push(v(t)), (e = !0)), e);
         }
-        var L = Object.assign,
-          D = Symbol.for('react.element'),
+        var D = Object.assign,
+          L = Symbol.for('react.element'),
           P = Symbol.for('react.portal'),
           j = Symbol.for('react.fragment'),
           z = Symbol.for('react.strict_mode'),
@@ -6386,7 +6386,7 @@
           if (
             ((e.context = 'object' == typeof i && null !== i ? i._currentValue2 : a),
             'function' == typeof (i = t.getDerivedStateFromProps) &&
-              ((r = null == (i = i(n, r)) ? r : L({}, r, i)), (e.state = r)),
+              ((r = null == (i = i(n, r)) ? r : D({}, r, i)), (e.state = r)),
             'function' != typeof t.getDerivedStateFromProps &&
               'function' != typeof e.getSnapshotBeforeUpdate &&
               ('function' == typeof e.UNSAFE_componentWillMount || 'function' == typeof e.componentWillMount))
@@ -6404,7 +6404,7 @@
                 for (l = i ? t[0] : e.state, r = !0, i = i ? 1 : 0; i < t.length; i++) {
                   var o = t[i];
                   null != (o = 'function' == typeof o ? o.call(e, l, n, a) : o) &&
-                    (r ? ((r = !1), (l = L({}, l, o))) : L(l, o));
+                    (r ? ((r = !1), (l = D({}, l, o))) : D(l, o));
                 }
                 e.state = l;
               }
@@ -6529,8 +6529,8 @@
         function Oe() {
           throw Error(r(394));
         }
-        function Le() {}
-        var De = {
+        function De() {}
+        var Le = {
             readContext: function (e) {
               return e._currentValue2;
             },
@@ -6547,16 +6547,16 @@
             useState: function (e) {
               return Re(Fe, e);
             },
-            useInsertionEffect: Le,
+            useInsertionEffect: De,
             useLayoutEffect: function () {},
             useCallback: function (e, t) {
               return Ie(function () {
                 return e;
               }, t);
             },
-            useImperativeHandle: Le,
-            useEffect: Le,
-            useDebugValue: Le,
+            useImperativeHandle: De,
+            useEffect: De,
+            useDebugValue: De,
             useDeferredValue: function (e) {
               return Se(), e;
             },
@@ -6643,14 +6643,14 @@
             if ('function' != typeof n.getChildContext) a = o;
             else {
               for (var c in (n = n.getChildContext())) if (!(c in i)) throw Error(r(108, Z(a) || 'Unknown', c));
-              a = L({}, o, n);
+              a = D({}, o, n);
             }
             (t.legacyContext = a), $e(e, t, l), (t.legacyContext = o);
           } else $e(e, t, l);
         }
         function Ge(e, t) {
           if (e && e.defaultProps) {
-            for (var n in ((t = L({}, t)), (e = e.defaultProps))) void 0 === t[n] && (t[n] = e[n]);
+            for (var n in ((t = D({}, t)), (e = e.defaultProps))) void 0 === t[n] && (t[n] = e[n]);
             return t;
           }
           return t;
@@ -7055,7 +7055,7 @@
         function $e(e, t, n) {
           if (((t.node = n), 'object' == typeof n && null !== n)) {
             switch (n.$$typeof) {
-              case D:
+              case L:
                 return void We(e, t, n.type, n.props, n.ref);
               case P:
                 throw Error(r(257));
@@ -7183,7 +7183,7 @@
           if (2 !== e.status) {
             var t = te,
               n = je.current;
-            je.current = De;
+            je.current = Le;
             var a = Pe;
             Pe = e.responseState;
             try {
@@ -7228,7 +7228,7 @@
             } catch (t) {
               qe(e, t), Ue(e, t);
             } finally {
-              (Pe = a), (je.current = n), n === De && oe(t);
+              (Pe = a), (je.current = n), n === Le && oe(t);
             }
           }
         }
@@ -7858,8 +7858,8 @@
           I = d('</script>'),
           A = d('<script src="'),
           O = d('<script type="module" src="'),
-          L = d('" async=""></script>'),
-          D = /(<\/|<)(s)(cript)/gi;
+          D = d('" async=""></script>'),
+          L = /(<\/|<)(s)(cript)/gi;
         function P(e, t, n, a) {
           return t + ('s' === n ? '\\u0073' : '\\u0053') + a;
         }
@@ -8026,8 +8026,8 @@
           Ie = d('</table>'),
           Ae = d('<table hidden><tbody id="'),
           Oe = d('">'),
-          Le = d('</tbody></table>'),
-          De = d('<table hidden><tr id="'),
+          De = d('</tbody></table>'),
+          Le = d('<table hidden><tr id="'),
           Pe = d('">'),
           je = d('</tr></table>'),
           ze = d('<table hidden><colgroup id="'),
@@ -8229,26 +8229,26 @@
         function Ot(e, t, n) {
           var a = e.id;
           e = e.overflow;
-          var r = 32 - Lt(a) - 1;
+          var r = 32 - Dt(a) - 1;
           (a &= ~(1 << r)), (n += 1);
-          var l = 32 - Lt(t) + r;
+          var l = 32 - Dt(t) + r;
           if (30 < l) {
             var i = r - (r % 5);
             return (
               (l = (a & ((1 << i) - 1)).toString(32)),
               (a >>= i),
               (r -= i),
-              { id: (1 << (32 - Lt(t) + r)) | (n << r) | a, overflow: l + e }
+              { id: (1 << (32 - Dt(t) + r)) | (n << r) | a, overflow: l + e }
             );
           }
           return { id: (1 << l) | (n << r) | a, overflow: e };
         }
-        var Lt = Math.clz32
+        var Dt = Math.clz32
             ? Math.clz32
             : function (e) {
-                return 0 == (e >>>= 0) ? 32 : (31 - ((Dt(e) / Pt) | 0)) | 0;
+                return 0 == (e >>>= 0) ? 32 : (31 - ((Lt(e) / Pt) | 0)) | 0;
               },
-          Dt = Math.log,
+          Lt = Math.log,
           Pt = Math.LN2,
           jt =
             'function' == typeof Object.is
@@ -8381,7 +8381,7 @@
             useId: function () {
               var e = Mt.treeContext,
                 t = e.overflow;
-              e = ((e = e.id) & ~(1 << (32 - Lt(e) - 1))).toString(32) + t;
+              e = ((e = e.id) & ~(1 << (32 - Dt(e) - 1))).toString(32) + t;
               var n = rn;
               if (null === n) throw Error(r(404));
               return (t = Ht++), (e = ':' + n.idPrefix + 'R' + e), 0 < t && (e += 'H' + t.toString(32)), e + ':';
@@ -9113,7 +9113,7 @@
                 case 5:
                   return o(e, Ae), o(e, t.segmentPrefix), o(e, m(a.toString(16))), c(e, Oe);
                 case 6:
-                  return o(e, De), o(e, t.segmentPrefix), o(e, m(a.toString(16))), c(e, Pe);
+                  return o(e, Le), o(e, t.segmentPrefix), o(e, m(a.toString(16))), c(e, Pe);
                 case 7:
                   return o(e, ze), o(e, t.segmentPrefix), o(e, m(a.toString(16))), c(e, Me);
                 default:
@@ -9133,7 +9133,7 @@
                 case 4:
                   return c(e, Ie);
                 case 5:
-                  return c(e, Le);
+                  return c(e, De);
                 case 6:
                   return c(e, je);
                 case 7:
@@ -9306,9 +9306,9 @@
                 (function (e, t, n, a, r) {
                   (e = void 0 === e ? '' : e), (t = void 0 === t ? R : d('<script nonce="' + N(t) + '">'));
                   var l = [];
-                  if ((void 0 !== n && l.push(t, m(('' + n).replace(D, P)), I), void 0 !== a))
-                    for (n = 0; n < a.length; n++) l.push(A, m(N(a[n])), L);
-                  if (void 0 !== r) for (a = 0; a < r.length; a++) l.push(O, m(N(r[a])), L);
+                  if ((void 0 !== n && l.push(t, m(('' + n).replace(L, P)), I), void 0 !== a))
+                    for (n = 0; n < a.length; n++) l.push(A, m(N(a[n])), D);
+                  if (void 0 !== r) for (a = 0; a < r.length; a++) l.push(O, m(N(r[a])), D);
                   return {
                     bootstrapChunks: l,
                     startInlineScript: t,
@@ -9553,11 +9553,11 @@
         Symbol.for('react.scope'), Symbol.for('react.debug_trace_mode');
         var O = Symbol.for('react.offscreen');
         Symbol.for('react.legacy_hidden'), Symbol.for('react.cache'), Symbol.for('react.tracing_marker');
-        var L = Symbol.iterator;
-        function D(e) {
+        var D = Symbol.iterator;
+        function L(e) {
           return null === e || 'object' != typeof e
             ? null
-            : 'function' == typeof (e = (L && e[L]) || e['@@iterator'])
+            : 'function' == typeof (e = (D && e[D]) || e['@@iterator'])
               ? e
               : null;
         }
@@ -10157,18 +10157,18 @@
         var Oe = !1;
         if (u)
           try {
-            var Le = {};
-            Object.defineProperty(Le, 'passive', {
+            var De = {};
+            Object.defineProperty(De, 'passive', {
               get: function () {
                 Oe = !0;
               },
             }),
-              window.addEventListener('test', Le, Le),
-              window.removeEventListener('test', Le, Le);
+              window.addEventListener('test', De, De),
+              window.removeEventListener('test', De, De);
           } catch (ue) {
             Oe = !1;
           }
-        function De(e, t, n, a, r, l, i, o, c) {
+        function Le(e, t, n, a, r, l, i, o, c) {
           var s = Array.prototype.slice.call(arguments, 3);
           try {
             t.apply(n, s);
@@ -10186,7 +10186,7 @@
             },
           };
         function Ve(e, t, n, a, r, l, i, o, c) {
-          (Pe = !1), (je = null), De.apply(Be, arguments);
+          (Pe = !1), (je = null), Le.apply(Be, arguments);
         }
         function qe(e) {
           var t = e,
@@ -10441,11 +10441,11 @@
           It = new Map(),
           At = new Map(),
           Ot = [],
-          Lt =
+          Dt =
             'mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset submit'.split(
               ' '
             );
-        function Dt(e, t) {
+        function Lt(e, t) {
           switch (e) {
             case 'focusin':
             case 'focusout':
@@ -10567,7 +10567,7 @@
         function Wt(e, t, n, a) {
           if (Ht) {
             var r = Xt(e, t, n, a);
-            if (null === r) Ha(e, t, a, $t, n), Dt(e, a);
+            if (null === r) Ha(e, t, a, $t, n), Lt(e, a);
             else if (
               (function (e, t, n, a, r) {
                 switch (t) {
@@ -10587,7 +10587,7 @@
               })(r, e, t, n, a)
             )
               a.stopPropagation();
-            else if ((Dt(e, a), 4 & t && -1 < Lt.indexOf(e))) {
+            else if ((Lt(e, a), 4 & t && -1 < Dt.indexOf(e))) {
               for (; null !== r; ) {
                 var l = Er(r);
                 if ((null !== l && xt(l), null === (l = Xt(e, t, n, a)) && Ha(e, t, a, $t, n), l === r)) break;
@@ -10974,11 +10974,11 @@
           }),
           An = rn(In),
           On = [9, 13, 27, 32],
-          Ln = u && 'CompositionEvent' in window,
-          Dn = null;
-        u && 'documentMode' in document && (Dn = document.documentMode);
-        var Pn = u && 'TextEvent' in window && !Dn,
-          jn = u && (!Ln || (Dn && 8 < Dn && 11 >= Dn)),
+          Dn = u && 'CompositionEvent' in window,
+          Ln = null;
+        u && 'documentMode' in document && (Ln = document.documentMode);
+        var Pn = u && 'TextEvent' in window && !Ln,
+          jn = u && (!Dn || (Ln && 8 < Ln && 11 >= Ln)),
           zn = String.fromCharCode(32),
           Mn = !1;
         function Bn(e, t) {
@@ -11251,8 +11251,8 @@
           Ra.set(e, t), c(t, [e]);
         }
         for (var Oa = 0; Oa < Ia.length; Oa++) {
-          var La = Ia[Oa];
-          Aa(La.toLowerCase(), 'on' + (La[0].toUpperCase() + La.slice(1)));
+          var Da = Ia[Oa];
+          Aa(Da.toLowerCase(), 'on' + (Da[0].toUpperCase() + Da.slice(1)));
         }
         Aa(Na, 'onAnimationEnd'),
           Aa(Ta, 'onAnimationIteration'),
@@ -11274,11 +11274,11 @@
           c('onCompositionEnd', 'compositionend focusout keydown keypress keyup mousedown'.split(' ')),
           c('onCompositionStart', 'compositionstart focusout keydown keypress keyup mousedown'.split(' ')),
           c('onCompositionUpdate', 'compositionupdate focusout keydown keypress keyup mousedown'.split(' '));
-        var Da =
+        var La =
             'abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange resize seeked seeking stalled suspend timeupdate volumechange waiting'.split(
               ' '
             ),
-          Pa = new Set('cancel close invalid load scroll toggle'.split(' ').concat(Da));
+          Pa = new Set('cancel close invalid load scroll toggle'.split(' ').concat(La));
         function ja(e, t, n) {
           var a = e.type || 'unknown-event';
           (e.currentTarget = n),
@@ -11592,7 +11592,7 @@
                   ya(i, n, r);
               }
               var b;
-              if (Ln)
+              if (Dn)
                 e: {
                   switch (e) {
                     case 'compositionstart':
@@ -11636,7 +11636,7 @@
                     })(e, n)
                   : (function (e, t) {
                       if (qn)
-                        return 'compositionend' === e || (!Ln && Bn(e, t))
+                        return 'compositionend' === e || (!Dn && Bn(e, t))
                           ? ((e = en()), (Jt = Zt = Qt = null), (qn = !1), e)
                           : null;
                       switch (e) {
@@ -11847,11 +11847,11 @@
         function Or() {
           Sr(Fr), Sr(Cr);
         }
-        function Lr(e, t, n) {
+        function Dr(e, t, n) {
           if (Cr.current !== Tr) throw Error(l(168));
           Nr(Cr, t), Nr(Fr, n);
         }
-        function Dr(e, t, n) {
+        function Lr(e, t, n) {
           var a = e.stateNode;
           if (((t = t.childContextTypes), 'function' != typeof a.getChildContext)) return n;
           for (var r in (a = a.getChildContext())) if (!(r in t)) throw Error(l(108, U(e) || 'Unknown', r));
@@ -11870,7 +11870,7 @@
           var a = e.stateNode;
           if (!a) throw Error(l(169));
           n
-            ? ((e = Dr(e, t, Rr)), (a.__reactInternalMemoizedMergedChildContext = e), Sr(Fr), Sr(Cr), Nr(Cr, e))
+            ? ((e = Lr(e, t, Rr)), (a.__reactInternalMemoizedMergedChildContext = e), Sr(Fr), Sr(Cr), Nr(Cr, e))
             : Sr(Fr),
             Nr(Fr, n);
         }
@@ -12125,7 +12125,7 @@
               : null !== t &&
                   (t.elementType === l || ('object' == typeof l && null !== l && l.$$typeof === A && bl(l) === t.type))
                 ? (((a = r(t, n.props)).ref = gl(e, t, n)), (a.return = e), a)
-                : (((a = Ls(n.type, n.key, n.props, null, e.mode, a)).ref = gl(e, t, n)), (a.return = e), a);
+                : (((a = Ds(n.type, n.key, n.props, null, e.mode, a)).ref = gl(e, t, n)), (a.return = e), a);
           }
           function u(e, t, n, a) {
             return null === t ||
@@ -12137,7 +12137,7 @@
           }
           function m(e, t, n, a, l) {
             return null === t || 7 !== t.tag
-              ? (((t = Ds(n, e.mode, a, l)).return = e), t)
+              ? (((t = Ls(n, e.mode, a, l)).return = e), t)
               : (((t = r(t, n)).return = e), t);
           }
           function d(e, t, n) {
@@ -12146,13 +12146,13 @@
             if ('object' == typeof t && null !== t) {
               switch (t.$$typeof) {
                 case x:
-                  return ((n = Ls(t.type, t.key, t.props, null, e.mode, n)).ref = gl(e, null, t)), (n.return = e), n;
+                  return ((n = Ds(t.type, t.key, t.props, null, e.mode, n)).ref = gl(e, null, t)), (n.return = e), n;
                 case _:
                   return ((t = zs(t, e.mode, n)).return = e), t;
                 case A:
                   return d(e, (0, t._init)(t._payload), n);
               }
-              if (te(t) || D(t)) return ((t = Ds(t, e.mode, n, null)).return = e), t;
+              if (te(t) || L(t)) return ((t = Ls(t, e.mode, n, null)).return = e), t;
               vl(e, t);
             }
             return null;
@@ -12170,7 +12170,7 @@
                 case A:
                   return p(e, t, (r = n._init)(n._payload), a);
               }
-              if (te(n) || D(n)) return null !== r ? null : m(e, t, n, a, null);
+              if (te(n) || L(n)) return null !== r ? null : m(e, t, n, a, null);
               vl(e, n);
             }
             return null;
@@ -12187,7 +12187,7 @@
                 case A:
                   return f(e, t, n, (0, a._init)(a._payload), r);
               }
-              if (te(a) || D(a)) return m(t, (e = e.get(n) || null), a, r, null);
+              if (te(a) || L(a)) return m(t, (e = e.get(n) || null), a, r, null);
               vl(t, a);
             }
             return null;
@@ -12228,7 +12228,7 @@
             );
           }
           function g(r, o, c, s) {
-            var u = D(c);
+            var u = L(c);
             if ('function' != typeof u) throw Error(l(150));
             if (null == (c = u.call(c))) throw Error(l(151));
             for (
@@ -12297,8 +12297,8 @@
                       t(a, u), (u = u.sibling);
                     }
                     i.type === w
-                      ? (((l = Ds(i.props.children, a.mode, c, i.key)).return = a), (a = l))
-                      : (((c = Ls(i.type, i.key, i.props, null, a.mode, c)).ref = gl(a, l, i)),
+                      ? (((l = Ls(i.props.children, a.mode, c, i.key)).return = a), (a = l))
+                      : (((c = Ds(i.type, i.key, i.props, null, a.mode, c)).ref = gl(a, l, i)),
                         (c.return = a),
                         (a = c));
                   }
@@ -12327,7 +12327,7 @@
                   return e(a, l, (u = i._init)(i._payload), c);
               }
               if (te(i)) return h(a, l, i, c);
-              if (D(i)) return g(a, l, i, c);
+              if (L(i)) return g(a, l, i, c);
               vl(a, i);
             }
             return ('string' == typeof i && '' !== i) || 'number' == typeof i
@@ -12387,16 +12387,16 @@
         }
         function Ol(e, t, n, a) {
           var r = t.interleaved;
-          return null === r ? ((n.next = n), Al(t)) : ((n.next = r.next), (r.next = n)), (t.interleaved = n), Ll(e, a);
+          return null === r ? ((n.next = n), Al(t)) : ((n.next = r.next), (r.next = n)), (t.interleaved = n), Dl(e, a);
         }
-        function Ll(e, t) {
+        function Dl(e, t) {
           e.lanes |= t;
           var n = e.alternate;
           for (null !== n && (n.lanes |= t), n = e, e = e.return; null !== e; )
             (e.childLanes |= t), null !== (n = e.alternate) && (n.childLanes |= t), (n = e), (e = e.return);
           return 3 === n.tag ? n.stateNode : null;
         }
-        var Dl = !1;
+        var Ll = !1;
         function Pl(e) {
           e.updateQueue = {
             baseState: e.memoizedState,
@@ -12425,12 +12425,12 @@
           if (null === a) return null;
           if (((a = a.shared), 2 & Cc)) {
             var r = a.pending;
-            return null === r ? (t.next = t) : ((t.next = r.next), (r.next = t)), (a.pending = t), Ll(e, n);
+            return null === r ? (t.next = t) : ((t.next = r.next), (r.next = t)), (a.pending = t), Dl(e, n);
           }
           return (
             null === (r = a.interleaved) ? ((t.next = t), Al(a)) : ((t.next = r.next), (r.next = t)),
             (a.interleaved = t),
-            Ll(e, n)
+            Dl(e, n)
           );
         }
         function Bl(e, t, n) {
@@ -12474,7 +12474,7 @@
         }
         function ql(e, t, n, a) {
           var r = e.updateQueue;
-          Dl = !1;
+          Ll = !1;
           var l = r.firstBaseUpdate,
             i = r.lastBaseUpdate,
             o = r.shared.pending;
@@ -12515,7 +12515,7 @@
                       m = j({}, m, d);
                       break e;
                     case 2:
-                      Dl = !0;
+                      Ll = !0;
                   }
                 }
                 null !== o.callback &&
@@ -12773,7 +12773,7 @@
           if (
             (i && ((a.memoizedState = r), (Eo = !0)),
             (a = a.queue),
-            Di(Ni.bind(null, n, a, e), [e]),
+            Li(Ni.bind(null, n, a, e), [e]),
             a.getSnapshot !== t || i || (null !== ci && 1 & ci.memoizedState.tag))
           ) {
             if (((n.flags |= 2048), Ri(9, Si.bind(null, n, a, r, t), void 0, null), null === Fc)) throw Error(l(349));
@@ -12809,7 +12809,7 @@
           }
         }
         function Ci(e) {
-          var t = Ll(e, 1);
+          var t = Dl(e, 1);
           null !== t && ns(t, e, 1, -1);
         }
         function Fi(e) {
@@ -12858,10 +12858,10 @@
           }
           (ii.flags |= e), (r.memoizedState = Ri(1 | t, n, l, a));
         }
-        function Li(e, t) {
+        function Di(e, t) {
           return Ai(8390656, 8, e, t);
         }
-        function Di(e, t) {
+        function Li(e, t) {
           return Oi(2048, 8, e, t);
         }
         function Pi(e, t) {
@@ -12986,7 +12986,7 @@
               return (vi().memoizedState = [e, void 0 === t ? null : t]), e;
             },
             useContext: Rl,
-            useEffect: Li,
+            useEffect: Di,
             useImperativeHandle: function (e, t, n) {
               return (n = null != n ? n.concat([e]) : null), Ai(4194308, 4, zi.bind(null, t, e), n);
             },
@@ -13046,7 +13046,7 @@
               var i = { value: n, getSnapshot: t };
               return (
                 (r.queue = i),
-                Li(Ni.bind(null, a, i, e), [e]),
+                Di(Ni.bind(null, a, i, e), [e]),
                 (a.flags |= 2048),
                 Ri(9, Si.bind(null, a, i, n, t), void 0, null),
                 n
@@ -13069,7 +13069,7 @@
             readContext: Rl,
             useCallback: Vi,
             useContext: Rl,
-            useEffect: Di,
+            useEffect: Li,
             useImperativeHandle: Mi,
             useInsertionEffect: Pi,
             useLayoutEffect: ji,
@@ -13095,7 +13095,7 @@
             readContext: Rl,
             useCallback: Vi,
             useContext: Rl,
-            useEffect: Di,
+            useEffect: Li,
             useImperativeHandle: Mi,
             useInsertionEffect: Pi,
             useLayoutEffect: ji,
@@ -13323,7 +13323,7 @@
               void 0 !== l.defaultProps ||
               null !== n.compare ||
               void 0 !== n.defaultProps
-              ? (((e = Ls(n.type, null, a, t, t.mode, r)).ref = t.ref), (e.return = t), (t.child = e))
+              ? (((e = Ds(n.type, null, a, t, t.mode, r)).ref = t.ref), (e.return = t), (t.child = e))
               : ((t.tag = 15), (t.type = l), wo(e, t, l, a, r));
           }
           if (((l = e.child), !(e.lanes & r))) {
@@ -13401,14 +13401,14 @@
               ('function' != typeof i.UNSAFE_componentWillReceiveProps &&
                 'function' != typeof i.componentWillReceiveProps) ||
               ((o !== a || c !== s) && io(t, i, a, s)),
-              (Dl = !1);
+              (Ll = !1);
             var d = t.memoizedState;
             (i.state = d),
               ql(t, a, i, r),
               (c = t.memoizedState),
-              o !== a || d !== c || Fr.current || Dl
+              o !== a || d !== c || Fr.current || Ll
                 ? ('function' == typeof u && (no(t, n, u, a), (c = t.memoizedState)),
-                  (o = Dl || ro(t, n, o, a, d, c, s))
+                  (o = Ll || ro(t, n, o, a, d, c, s))
                     ? (m ||
                         ('function' != typeof i.UNSAFE_componentWillMount &&
                           'function' != typeof i.componentWillMount) ||
@@ -13437,14 +13437,14 @@
               ('function' != typeof i.UNSAFE_componentWillReceiveProps &&
                 'function' != typeof i.componentWillReceiveProps) ||
               ((o !== m || d !== c) && io(t, i, a, c)),
-              (Dl = !1),
+              (Ll = !1),
               (d = t.memoizedState),
               (i.state = d),
               ql(t, a, i, r);
             var f = t.memoizedState;
-            o !== m || d !== f || Fr.current || Dl
+            o !== m || d !== f || Fr.current || Ll
               ? ('function' == typeof p && (no(t, n, p, a), (f = t.memoizedState)),
-                (s = Dl || ro(t, n, s, a, d, f, c) || !1)
+                (s = Ll || ro(t, n, s, a, d, f, c) || !1)
                   ? (u ||
                       ('function' != typeof i.UNSAFE_componentWillUpdate &&
                         'function' != typeof i.componentWillUpdate) ||
@@ -13491,8 +13491,8 @@
         function Fo(e) {
           var t = e.stateNode;
           t.pendingContext
-            ? Lr(0, t.pendingContext, t.pendingContext !== t.context)
-            : t.context && Lr(0, t.context, !1),
+            ? Dr(0, t.pendingContext, t.pendingContext !== t.context)
+            : t.context && Dr(0, t.context, !1),
             Xl(e, t.containerInfo);
         }
         function Ro(e, t, n, a, r) {
@@ -13501,8 +13501,8 @@
         var Io,
           Ao,
           Oo,
-          Lo,
-          Do = { dehydrated: null, treeContext: null, retryLane: 0 };
+          Do,
+          Lo = { dehydrated: null, treeContext: null, retryLane: 0 };
         function Po(e) {
           return { baseLanes: e, cachePool: null, transitions: null };
         }
@@ -13529,13 +13529,13 @@
                       (o = t.child),
                       (c = { mode: 'hidden', children: c }),
                       1 & r || null === o ? (o = Ps(c, r, 0, null)) : ((o.childLanes = 0), (o.pendingProps = c)),
-                      (e = Ds(e, r, n, null)),
+                      (e = Ls(e, r, n, null)),
                       (o.return = t),
                       (e.return = t),
                       (o.sibling = e),
                       (t.child = o),
                       (t.child.memoizedState = Po(n)),
-                      (t.memoizedState = Do),
+                      (t.memoizedState = Lo),
                       e)
                     : zo(t, c))
             );
@@ -13549,14 +13549,14 @@
                     : ((i = a.fallback),
                       (r = t.mode),
                       (a = Ps({ mode: 'visible', children: a.children }, r, 0, null)),
-                      ((i = Ds(i, r, o, null)).flags |= 2),
+                      ((i = Ls(i, r, o, null)).flags |= 2),
                       (a.return = t),
                       (i.return = t),
                       (a.sibling = i),
                       (t.child = a),
                       1 & t.mode && yl(t, e.child, null, o),
                       (t.child.memoizedState = Po(o)),
-                      (t.memoizedState = Do),
+                      (t.memoizedState = Lo),
                       i);
               if (!(1 & t.mode)) return Mo(e, t, o, null);
               if ('$!' === r.data) {
@@ -13603,7 +13603,7 @@
                   }
                   0 !== (r = r & (a.suspendedLanes | o) ? 0 : r) &&
                     r !== i.retryLane &&
-                    ((i.retryLane = r), Ll(e, r), ns(a, e, r, -1));
+                    ((i.retryLane = r), Dl(e, r), ns(a, e, r, -1));
                 }
                 return hs(), Mo(e, t, o, (a = so(Error(l(421)))));
               }
@@ -13626,7 +13626,7 @@
               1 & c || t.child === i
                 ? ((r = Os(i, s)).subtreeFlags = 14680064 & i.subtreeFlags)
                 : (((r = t.child).childLanes = 0), (r.pendingProps = s), (t.deletions = null)),
-              null !== a ? (o = Os(a, o)) : ((o = Ds(o, c, n, null)).flags |= 2),
+              null !== a ? (o = Os(a, o)) : ((o = Ls(o, c, n, null)).flags |= 2),
               (o.return = t),
               (r.return = t),
               (r.sibling = o),
@@ -13639,7 +13639,7 @@
                   : { baseLanes: c.baseLanes | n, cachePool: null, transitions: c.transitions }),
               (o.memoizedState = c),
               (o.childLanes = e.childLanes & ~n),
-              (t.memoizedState = Do),
+              (t.memoizedState = Lo),
               r
             );
           }
@@ -13842,7 +13842,7 @@
                       break;
                     case 'video':
                     case 'audio':
-                      for (r = 0; r < Da.length; r++) Ma(Da[r], a);
+                      for (r = 0; r < La.length; r++) Ma(La[r], a);
                       break;
                     case 'source':
                       Ma('error', a);
@@ -13918,7 +13918,7 @@
                         break;
                       case 'video':
                       case 'audio':
-                        for (r = 0; r < Da.length; r++) Ma(Da[r], e);
+                        for (r = 0; r < La.length; r++) Ma(La[r], e);
                         r = a;
                         break;
                       case 'source':
@@ -14004,7 +14004,7 @@
               }
               return Go(t), null;
             case 6:
-              if (e && null != t.stateNode) Lo(e, t, e.memoizedProps, a);
+              if (e && null != t.stateNode) Do(e, t, e.memoizedProps, a);
               else {
                 if ('string' != typeof a && null === t.stateNode) throw Error(l(166));
                 if (((n = $l(Wl.current)), $l(Kl.current), ml(t))) {
@@ -14047,7 +14047,7 @@
                 : ((a = null !== a) != (null !== e && null !== e.memoizedState) &&
                     a &&
                     ((t.child.flags |= 8192),
-                    1 & t.mode && (null === e || 1 & Jl.current ? 0 === Lc && (Lc = 3) : hs())),
+                    1 & t.mode && (null === e || 1 & Jl.current ? 0 === Dc && (Dc = 3) : hs())),
                   null !== t.updateQueue && (t.flags |= 4),
                   Go(t),
                   null);
@@ -14060,7 +14060,7 @@
               if (((a = !!(128 & t.flags)), null === (c = i.rendering)))
                 if (a) Ko(i, !1);
                 else {
-                  if (0 !== Lc || (null !== e && 128 & e.flags))
+                  if (0 !== Dc || (null !== e && 128 & e.flags))
                     for (e = t.child; null !== e; ) {
                       if (null !== (c = ei(e))) {
                         for (
@@ -14254,7 +14254,7 @@
               (t.updateQueue = u) && (t.flags |= 4);
             }
           }),
-          (Lo = function (e, t, n, a) {
+          (Do = function (e, t, n, a) {
             n !== a && (t.flags |= 4);
           });
         var Xo = !1,
@@ -14916,8 +14916,8 @@
           Ic = 0,
           Ac = 0,
           Oc = kr(0),
-          Lc = 0,
-          Dc = null,
+          Dc = 0,
+          Lc = null,
           Pc = 0,
           jc = 0,
           zc = 0,
@@ -14954,7 +14954,7 @@
           if (50 < Yc) throw ((Yc = 0), (Qc = null), Error(l(185)));
           vt(e, n, a),
             (2 & Cc && e === Fc) ||
-              (e === Fc && (!(2 & Cc) && (jc |= n), 4 === Lc && os(e, Ic)),
+              (e === Fc && (!(2 & Cc) && (jc |= n), 4 === Dc && os(e, Ic)),
               as(e, a),
               1 === n && 0 === Cc && !(1 & t.mode) && ((qc = Qe() + 500), Mr && qr()));
         }
@@ -15020,11 +15020,11 @@
               } catch (t) {
                 ps(e, t);
               }
-            Nl(), (Sc.current = i), (Cc = r), null !== Rc ? (t = 0) : ((Fc = null), (Ic = 0), (t = Lc));
+            Nl(), (Sc.current = i), (Cc = r), null !== Rc ? (t = 0) : ((Fc = null), (Ic = 0), (t = Dc));
           }
           if (0 !== t) {
             if ((2 === t && 0 !== (r = ft(e)) && ((a = r), (t = ls(e, r))), 1 === t))
-              throw ((n = Dc), ds(e, 0), os(e, a), as(e, Qe()), n);
+              throw ((n = Lc), ds(e, 0), os(e, a), as(e, Qe()), n);
             if (6 === t) os(e, a);
             else {
               if (
@@ -15062,7 +15062,7 @@
                   ((t = gs(e, a)), 2 === t && ((i = ft(e)), 0 !== i && ((a = i), (t = ls(e, i)))), 1 !== t)
                 ))
               )
-                throw ((n = Dc), ds(e, 0), os(e, a), as(e, Qe()), n);
+                throw ((n = Lc), ds(e, 0), os(e, a), as(e, Qe()), n);
               switch (((e.finishedWork = r), (e.finishedLanes = a), t)) {
                 case 0:
                 case 1:
@@ -15147,7 +15147,7 @@
             var a = ft(e);
             0 !== a && ((t = a), (n = ls(e, a)));
           }
-          if (1 === n) throw ((n = Dc), ds(e, 0), os(e, t), as(e, Qe()), n);
+          if (1 === n) throw ((n = Lc), ds(e, 0), os(e, t), as(e, Qe()), n);
           if (6 === n) throw Error(l(345));
           return (e.finishedWork = e.current.alternate), (e.finishedLanes = t), xs(e, Bc, Uc), as(e, Qe()), null;
         }
@@ -15211,8 +15211,8 @@
             ((Fc = e),
             (Rc = e = Os(e.current, null)),
             (Ic = Ac = t),
-            (Lc = 0),
-            (Dc = null),
+            (Dc = 0),
+            (Lc = null),
             (zc = jc = Pc = 0),
             (Bc = Mc = null),
             null !== Il)
@@ -15251,7 +15251,7 @@
                 (Nc.current = null),
                 null === n || null === n.return)
               ) {
-                (Lc = 1), (Dc = t), (Rc = null);
+                (Dc = 1), (Lc = t), (Rc = null);
                 break;
               }
               e: {
@@ -15291,7 +15291,7 @@
                     break e;
                   }
                 }
-                (i = s = co(s, c)), 4 !== Lc && (Lc = 2), null === Mc ? (Mc = [i]) : Mc.push(i), (i = o);
+                (i = s = co(s, c)), 4 !== Dc && (Dc = 2), null === Mc ? (Mc = [i]) : Mc.push(i), (i = o);
                 do {
                   switch (i.tag) {
                     case 3:
@@ -15328,7 +15328,7 @@
           return (Sc.current = Qi), null === e ? Qi : e;
         }
         function hs() {
-          (0 !== Lc && 3 !== Lc && 2 !== Lc) || (Lc = 4),
+          (0 !== Dc && 3 !== Dc && 2 !== Dc) || (Dc = 4),
             null === Fc || (!(268435455 & Pc) && !(268435455 & jc)) || os(Fc, Ic);
         }
         function gs(e, t) {
@@ -15343,7 +15343,7 @@
               ps(e, t);
             }
           if ((Nl(), (Cc = n), (Sc.current = a), null !== Rc)) throw Error(l(261));
-          return (Fc = null), (Ic = 0), Lc;
+          return (Fc = null), (Ic = 0), Dc;
         }
         function vs() {
           for (; null !== Rc; ) Es(Rc);
@@ -15361,13 +15361,13 @@
             var n = t.alternate;
             if (((e = t.return), 32768 & t.flags)) {
               if (null !== (n = $o(n, t))) return (n.flags &= 32767), void (Rc = n);
-              if (null === e) return (Lc = 6), void (Rc = null);
+              if (null === e) return (Dc = 6), void (Rc = null);
               (e.flags |= 32768), (e.subtreeFlags = 0), (e.deletions = null);
             } else if (null !== (n = Wo(n, t, Ac))) return void (Rc = n);
             if (null !== (t = t.sibling)) return void (Rc = t);
             Rc = t = e;
           } while (null !== t);
-          0 === Lc && (Lc = 5);
+          0 === Dc && (Dc = 5);
         }
         function xs(e, t, n) {
           var a = Et,
@@ -15701,13 +15701,13 @@
             (e.pingedLanes |= e.suspendedLanes & n),
             Fc === e &&
               (Ic & n) === n &&
-              (4 === Lc || (3 === Lc && (130023424 & Ic) === Ic && 500 > Qe() - Vc) ? ds(e, 0) : (zc |= n)),
+              (4 === Dc || (3 === Dc && (130023424 & Ic) === Ic && 500 > Qe() - Vc) ? ds(e, 0) : (zc |= n)),
             as(e, t);
         }
         function Ns(e, t) {
           0 === t && (1 & e.mode ? ((t = ut), !(130023424 & (ut <<= 1)) && (ut = 4194304)) : (t = 1));
           var n = es();
-          null !== (e = Ll(e, t)) && (vt(e, t, n), as(e, n));
+          null !== (e = Dl(e, t)) && (vt(e, t, n), as(e, n));
         }
         function Ts(e) {
           var t = e.memoizedState,
@@ -15778,14 +15778,14 @@
             n
           );
         }
-        function Ls(e, t, n, a, r, i) {
+        function Ds(e, t, n, a, r, i) {
           var o = 2;
           if (((a = e), 'function' == typeof e)) As(e) && (o = 1);
           else if ('string' == typeof e) o = 5;
           else
             e: switch (e) {
               case w:
-                return Ds(n.children, r, i, t);
+                return Ls(n.children, r, i, t);
               case k:
                 (o = 8), (r |= 8);
                 break;
@@ -15820,7 +15820,7 @@
             }
           return ((t = Is(o, n, t, r)).elementType = e), (t.type = a), (t.lanes = i), t;
         }
-        function Ds(e, t, n, a) {
+        function Ls(e, t, n, a) {
           return ((e = Is(7, e, a, t)).lanes = n), e;
         }
         function Ps(e, t, n, a) {
@@ -15898,7 +15898,7 @@
           }
           if (1 === e.tag) {
             var n = e.type;
-            if (Ar(n)) return Dr(e, n, t);
+            if (Ar(n)) return Lr(e, n, t);
           }
           return t;
         }
@@ -16344,7 +16344,7 @@
                 break;
               case 13:
                 us(function () {
-                  var t = Ll(e, 1);
+                  var t = Dl(e, 1);
                   if (null !== t) {
                     var n = es();
                     ns(t, e, 1, n);
@@ -16355,14 +16355,14 @@
           }),
           (_t = function (e) {
             if (13 === e.tag) {
-              var t = Ll(e, 134217728);
+              var t = Dl(e, 134217728);
               null !== t && ns(t, e, 134217728, es()), Gs(e, 134217728);
             }
           }),
           (wt = function (e) {
             if (13 === e.tag) {
               var t = ts(e),
-                n = Ll(e, t);
+                n = Dl(e, t);
               null !== n && ns(n, e, t, es()), Gs(e, t);
             }
           }),
@@ -16740,8 +16740,8 @@
         }
         var A = { current: null },
           O = { transition: null },
-          L = { ReactCurrentDispatcher: A, ReactCurrentBatchConfig: O, ReactCurrentOwner: w };
-        function D() {
+          D = { ReactCurrentDispatcher: A, ReactCurrentBatchConfig: O, ReactCurrentOwner: w };
+        function L() {
           throw Error('act(...) is not supported in production builds of React.');
         }
         (t.Children = {
@@ -16782,8 +16782,8 @@
           (t.PureComponent = E),
           (t.StrictMode = l),
           (t.Suspense = u),
-          (t.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = L),
-          (t.act = D),
+          (t.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = D),
+          (t.act = L),
           (t.cloneElement = function (e, t, a) {
             if (null == e)
               throw Error('React.cloneElement(...): The argument must be a React element, but you passed ' + e + '.');
@@ -16852,7 +16852,7 @@
               O.transition = t;
             }
           }),
-          (t.unstable_act = D),
+          (t.unstable_act = L),
           (t.useCallback = function (e, t) {
             return A.current.useCallback(e, t);
           }),
@@ -16980,7 +16980,7 @@
             if (null !== a(s)) (h = !0), O(_);
             else {
               var t = a(u);
-              null !== t && L(x, t.startTime - e);
+              null !== t && D(x, t.startTime - e);
             }
         }
         function _(e, n) {
@@ -16999,7 +16999,7 @@
             if (null !== d) var c = !0;
             else {
               var m = a(u);
-              null !== m && L(x, m.startTime - n), (c = !1);
+              null !== m && D(x, m.startTime - n), (c = !1);
             }
             return c;
           } finally {
@@ -17049,7 +17049,7 @@
         function O(e) {
           (S = e), k || ((k = !0), w());
         }
-        function L(e, n) {
+        function D(e, n) {
           N = v(function () {
             e(t.unstable_now());
           }, n);
@@ -17150,7 +17150,7 @@
               l > i
                 ? ((e.sortIndex = l),
                   n(u, e),
-                  null === a(s) && e === a(u) && (g ? (b(N), (N = -1)) : (g = !0), L(x, l - i)))
+                  null === a(s) && e === a(u) && (g ? (b(N), (N = -1)) : (g = !0), D(x, l - i)))
                 : ((e.sortIndex = o), n(s, e), h || f || ((h = !0), O(_))),
               e
             );
@@ -17523,8 +17523,10 @@
           setUnitGroupTitleName: () => {},
           addUnitGroupItem: () => {},
           clearCustomfield: () => {},
+          clearGroup: () => {},
           clearGroupItem: () => {},
           clearCustomunit: () => {},
+          clearUnitGroup: () => {},
           clearUnitGroupItem: () => {},
           setSource: () => {},
           setMode: () => {},
@@ -17563,37 +17565,53 @@
           ),
           w = (0, e.useCallback)(() => d({ type: 'UPDATE_STATE', payload: { customfield: [] } }), [d]),
           k = (0, e.useCallback)(
+            () =>
+              d({
+                type: 'UPDATE_STATE',
+                payload: { fieldgroup: { ...m.fieldgroup, title: null, name: null, items: [] } },
+              }),
+            [d, m.fieldgroup]
+          ),
+          S = (0, e.useCallback)(
             () => d({ type: 'UPDATE_STATE', payload: { fieldgroup: { ...m.fieldgroup, items: [] } } }),
             [d, m.fieldgroup]
           ),
-          S = (0, e.useCallback)(() => {
+          N = (0, e.useCallback)(() => {
             d({ type: 'UPDATE_STATE', payload: { customunit: [] } });
           }, [d]),
-          N = (0, e.useCallback)(
+          T = (0, e.useCallback)(
+            () =>
+              d({
+                type: 'UPDATE_STATE',
+                payload: { unitgroup: { ...m.unitgroup, title: null, name: null, items: [] } },
+              }),
+            [d, m.unitgroup]
+          ),
+          C = (0, e.useCallback)(
             () => d({ type: 'UPDATE_STATE', payload: { unitgroup: { ...m.unitgroup, items: [] } } }),
             [d, m.unitgroup]
           ),
-          T = (0, e.useCallback)(
+          F = (0, e.useCallback)(
             (e) => {
               d({ type: 'UNDO', payload: { target: e } });
             },
             [d]
           ),
-          C = (0, e.useCallback)(
+          R = (0, e.useCallback)(
             (e) => {
               d({ type: 'REDO', payload: { target: e } });
             },
             [d]
           ),
-          F = (0, e.useCallback)((e) => f((t) => ({ ...t, tag: e })), [f]),
-          R = (0, e.useCallback)((e) => f((t) => ({ ...t, acmscss: e })), [f]),
-          I = (0, e.useCallback)((e) => f((t) => ({ ...t, jsValidator: e })), [f]),
-          A = (0, e.useCallback)((e) => f((t) => ({ ...t, mode: e })), [f]),
-          O = (0, e.useCallback)((e) => f((t) => ({ ...t, editMode: e })), [f]),
-          L = (0, e.useCallback)((e) => f((t) => ({ ...t, direction: e })), [f]),
-          D = (0, e.useCallback)((e) => g((t) => ({ ...t, source: e })), [g]),
-          P = (0, e.useCallback)((e) => g((t) => ({ ...t, copied: e })), [g]),
-          j = (0, e.useMemo)(
+          I = (0, e.useCallback)((e) => f((t) => ({ ...t, tag: e })), [f]),
+          A = (0, e.useCallback)((e) => f((t) => ({ ...t, acmscss: e })), [f]),
+          O = (0, e.useCallback)((e) => f((t) => ({ ...t, jsValidator: e })), [f]),
+          D = (0, e.useCallback)((e) => f((t) => ({ ...t, mode: e })), [f]),
+          L = (0, e.useCallback)((e) => f((t) => ({ ...t, editMode: e })), [f]),
+          P = (0, e.useCallback)((e) => f((t) => ({ ...t, direction: e })), [f]),
+          j = (0, e.useCallback)((e) => g((t) => ({ ...t, source: e })), [g]),
+          z = (0, e.useCallback)((e) => g((t) => ({ ...t, copied: e })), [g]),
+          M = (0, e.useMemo)(
             () => ({
               state: m,
               preview: p,
@@ -17605,23 +17623,25 @@
               setUnitGroupTitleName: x,
               addUnitGroupItem: _,
               clearCustomfield: w,
-              clearGroupItem: k,
-              clearCustomunit: S,
-              clearUnitGroupItem: N,
-              setTag: F,
-              setAcmscss: R,
-              setJsValidator: I,
-              setMode: A,
-              setEditMode: O,
-              setDirection: L,
-              setSource: D,
-              setCopied: P,
-              undo: T,
-              redo: C,
+              clearGroup: k,
+              clearGroupItem: S,
+              clearCustomunit: N,
+              clearUnitGroup: T,
+              clearUnitGroupItem: C,
+              setTag: I,
+              setAcmscss: A,
+              setJsValidator: O,
+              setMode: D,
+              setEditMode: L,
+              setDirection: P,
+              setSource: j,
+              setCopied: z,
+              undo: F,
+              redo: R,
             }),
-            [m, p, h, v, b, E, y, x, _, w, k, S, N, F, R, I, A, O, L, D, P, T, C]
+            [m, p, h, v, b, E, y, x, _, w, k, T, S, N, C, I, A, O, D, L, P, j, z, F, R]
           );
-        return e.createElement(c.Provider, { value: j }, n);
+        return e.createElement(c.Provider, { value: M }, n);
       }
       const u = () => (0, e.useContext)(c);
       function m() {
@@ -17931,7 +17951,7 @@
         O = function (e) {
           return e && e.Math == Math && e;
         },
-        L =
+        D =
           O('object' == typeof globalThis && globalThis) ||
           O('object' == typeof window && window) ||
           O('object' == typeof self && self) ||
@@ -17940,7 +17960,7 @@
             return this;
           })() ||
           Function('return this')(),
-        D = {},
+        L = {},
         P = function (e) {
           try {
             return !!e();
@@ -18050,20 +18070,20 @@
           : function (e) {
               return 'object' == typeof e ? null !== e : we(e);
             },
-        Ne = L,
+        Ne = D,
         Te = _e,
         Ce = function (e, t) {
           return arguments.length < 2 ? ((n = Ne[e]), Te(n) ? n : void 0) : Ne[e] && Ne[e][t];
           var n;
         },
         Fe = ie({}.isPrototypeOf),
-        Re = L,
+        Re = D,
         Ie = Ce('navigator', 'userAgent') || '',
         Ae = Re.process,
         Oe = Re.Deno,
-        Le = (Ae && Ae.versions) || (Oe && Oe.version),
-        De = Le && Le.v8;
-      De && (W = (G = De.split('.'))[0] > 0 && G[0] < 4 ? 1 : +(G[0] + G[1])),
+        De = (Ae && Ae.versions) || (Oe && Oe.version),
+        Le = De && De.v8;
+      Le && (W = (G = Le.split('.'))[0] > 0 && G[0] < 4 ? 1 : +(G[0] + G[1])),
         !W && Ie && (!(G = Ie.match(/Edge\/(\d+)/)) || G[1] >= 74) && (G = Ie.match(/Chrome\/(\d+)/)) && (W = +G[1]);
       var Pe = W,
         je = P,
@@ -18108,7 +18128,7 @@
         Je = Se,
         et = TypeError,
         tt = { exports: {} },
-        nt = L,
+        nt = D,
         at = Object.defineProperty,
         rt = function (e, t) {
           try {
@@ -18120,7 +18140,7 @@
         },
         lt = rt,
         it = '__core-js_shared__',
-        ot = L[it] || lt(it, {}),
+        ot = D[it] || lt(it, {}),
         ct = ot;
       (tt.exports = function (e, t) {
         return ct[e] || (ct[e] = void 0 !== t ? t : {});
@@ -18150,7 +18170,7 @@
         Et = function (e) {
           return 'Symbol(' + (void 0 === e ? '' : e) + ')_' + bt(++gt + vt, 36);
         },
-        yt = L,
+        yt = D,
         xt = tt.exports,
         _t = ft,
         wt = Et,
@@ -18170,16 +18190,16 @@
         It = V,
         At = Se,
         Ot = He,
-        Lt = TypeError,
-        Dt = Rt('toPrimitive'),
+        Dt = TypeError,
+        Lt = Rt('toPrimitive'),
         Pt = function (e, t) {
           if (!At(e) || Ot(e)) return e;
           var n,
             a,
-            r = ((a = e[Dt]), Ye(a) ? void 0 : Xe(a));
+            r = ((a = e[Lt]), Ye(a) ? void 0 : Xe(a));
           if (r) {
             if ((void 0 === t && (t = 'default'), (n = It(r, e, t)), !At(n) || Ot(n))) return n;
-            throw Lt("Can't convert object to primitive value");
+            throw Dt("Can't convert object to primitive value");
           }
           return (
             void 0 === t && (t = 'number'),
@@ -18198,7 +18218,7 @@
           return jt(t) ? t : t + '';
         },
         Mt = Se,
-        Bt = L.document,
+        Bt = D.document,
         Vt = Mt(Bt) && Mt(Bt.createElement),
         qt = function (e) {
           return Vt ? Bt.createElement(e) : {};
@@ -18225,7 +18245,7 @@
         Qt = ft,
         Zt = Ht,
         Jt = Object.getOwnPropertyDescriptor;
-      D.f = Kt
+      L.f = Kt
         ? Jt
         : function (e, t) {
             if (((e = Xt(e)), (t = Yt(t)), Zt))
@@ -18314,10 +18334,10 @@
       var In,
         An,
         On,
-        Ln = Fn.inspectSource,
-        Dn = _e,
-        Pn = L.WeakMap,
-        jn = Dn(Pn) && /native code/.test(String(Pn)),
+        Dn = Fn.inspectSource,
+        Ln = _e,
+        Pn = D.WeakMap,
+        jn = Ln(Pn) && /native code/.test(String(Pn)),
         zn = tt.exports,
         Mn = Et,
         Bn = zn('keys'),
@@ -18326,7 +18346,7 @@
         },
         qn = {},
         Un = jn,
-        Hn = L,
+        Hn = D,
         Kn = Se,
         Gn = yn,
         Wn = ft,
@@ -18385,7 +18405,7 @@
         la = ft,
         ia = j,
         oa = Tn.CONFIGURABLE,
-        ca = Ln,
+        ca = Dn,
         sa = na.enforce,
         ua = na.get,
         ma = Object.defineProperty,
@@ -18457,18 +18477,18 @@
           };
         },
         Oa = { includes: Aa(!0), indexOf: Aa(!1) },
-        La = ft,
-        Da = be,
+        Da = ft,
+        La = be,
         Pa = Oa.indexOf,
         ja = qn,
         za = ie([].push),
         Ma = function (e, t) {
           var n,
-            a = Da(e),
+            a = La(e),
             r = 0,
             l = [];
-          for (n in a) !La(ja, n) && La(a, n) && za(l, n);
-          for (; t.length > r; ) La(a, (n = t[r++])) && (~Pa(l, n) || za(l, n));
+          for (n in a) !Da(ja, n) && Da(a, n) && za(l, n);
+          for (; t.length > r; ) Da(a, (n = t[r++])) && (~Pa(l, n) || za(l, n));
           return l;
         },
         Ba = [
@@ -18503,7 +18523,7 @@
           },
         Ya = ft,
         Qa = Xa,
-        Za = D,
+        Za = L,
         Ja = en,
         er = P,
         tr = _e,
@@ -18519,8 +18539,8 @@
         ir = (ar.NATIVE = 'N'),
         or = (ar.POLYFILL = 'P'),
         cr = ar,
-        sr = L,
-        ur = D.f,
+        sr = D,
+        ur = L.f,
         mr = yn,
         dr = function (e, t, n, a) {
           a || (a = {});
@@ -18592,17 +18612,17 @@
                         ? 'Arguments'
                         : a;
             },
-        Ar = Ln,
+        Ar = Dn,
         Or = function () {},
-        Lr = [],
-        Dr = Ce('Reflect', 'construct'),
+        Dr = [],
+        Lr = Ce('Reflect', 'construct'),
         Pr = /^\s*(?:class|function)\b/,
         jr = Cr(Pr.exec),
         zr = !Pr.exec(Or),
         Mr = function (e) {
           if (!Rr(e)) return !1;
           try {
-            return Dr(Or, Lr, e), !0;
+            return Lr(Or, Dr, e), !0;
           } catch (e) {
             return !1;
           }
@@ -18623,7 +18643,7 @@
         };
       Br.sham = !0;
       var Vr =
-          !Dr ||
+          !Lr ||
           Fr(function () {
             var e;
             return (
@@ -18841,8 +18861,8 @@
         ),
         (Rl = Al),
         (Fl[Cl][Rl] = !0);
-      var Ll = '__react_tooltip_hide_event',
-        Dl = '__react_tooltip_rebuild_event',
+      var Dl = '__react_tooltip_hide_event',
+        Ll = '__react_tooltip_rebuild_event',
         Pl = '__react_tooltip_show_event',
         jl = function (e, t) {
           var n;
@@ -19171,10 +19191,10 @@
         ri =
           (function (e) {
             (e.hide = function (e) {
-              jl(Ll, { target: e });
+              jl(Dl, { target: e });
             }),
               (e.rebuild = function () {
-                jl(Dl);
+                jl(Ll);
               }),
               (e.show = function (e) {
                 jl(Pl, { target: e });
@@ -19198,10 +19218,10 @@
             (Jl =
               (function (e) {
                 (e.prototype.bindWindowEvents = function (e) {
-                  window.removeEventListener(Ll, this.globalHide),
-                    window.addEventListener(Ll, this.globalHide, !1),
-                    window.removeEventListener(Dl, this.globalRebuild),
-                    window.addEventListener(Dl, this.globalRebuild, !1),
+                  window.removeEventListener(Dl, this.globalHide),
+                    window.addEventListener(Dl, this.globalHide, !1),
+                    window.removeEventListener(Ll, this.globalRebuild),
+                    window.addEventListener(Ll, this.globalRebuild, !1),
                     window.removeEventListener(Pl, this.globalShow),
                     window.addEventListener(Pl, this.globalShow, !1),
                     e &&
@@ -19209,8 +19229,8 @@
                       window.addEventListener('resize', this.onWindowResize, !1));
                 }),
                   (e.prototype.unbindWindowEvents = function () {
-                    window.removeEventListener(Ll, this.globalHide),
-                      window.removeEventListener(Dl, this.globalRebuild),
+                    window.removeEventListener(Dl, this.globalHide),
+                      window.removeEventListener(Ll, this.globalRebuild),
                       window.removeEventListener(Pl, this.globalShow),
                       window.removeEventListener('resize', this.onWindowResize);
                   }),
@@ -20723,7 +20743,7 @@
         );
       }
       var di = JSON.parse(
-        '[{"テキスト":[{"value":"text","label":"テキスト"},{"value":"tel","label":"電話番号"},{"value":"number","label":"数値"},{"value":"email","label":"メールアドレス"},{"value":"password","label":"パスワード"}]},{"テキストエリア":[{"value":"textarea","label":"テキストエリア"},{"value":"liteEditor","label":"ライトエディター"},{"value":"richEditor","label":"リッチエディター"}]},{"選択":[{"value":"checkbox","label":"チェックボックス"},{"value":"selectbox","label":"セレクトボックス"},{"value":"radioButton","label":"ラジオボタン"}]},{"その他":[{"value":"media","label":"メディア"},{"value":"image","label":"画像"},{"value":"file","label":"ファイル"},{"value":"table","label":"テーブル"}]}]'
+        '[{"テキスト（一行）":[{"value":"text","label":"テキスト"},{"value":"tel","label":"電話番号"},{"value":"number","label":"数値"},{"value":"email","label":"メールアドレス"},{"value":"password","label":"パスワード"}]},{"テキスト（複数行）":[{"value":"textarea","label":"テキストエリア"},{"value":"liteEditor","label":"ライトエディター"},{"value":"richEditor","label":"リッチエディター"},{"value":"table","label":"テーブル"}]},{"選択":[{"value":"checkbox","label":"チェックボックス"},{"value":"selectbox","label":"セレクトボックス"},{"value":"radioButton","label":"ラジオボタン"}]},{"アップロード":[{"value":"media","label":"メディア"},{"value":"image","label":"画像"},{"value":"file","label":"ファイル"}]}]'
       );
       function pi(t) {
         const { field: n, setField: a } = t,
@@ -20812,7 +20832,7 @@
                 value: n.title || '',
                 onChange: (e) => o(e, 'title'),
                 className: 'acms-admin-form-width-full',
-                placeholder: '氏名',
+                placeholder: '',
               })
             )
           ),
@@ -20849,23 +20869,7 @@
                 value: n.name || '',
                 onChange: (e) => o(e, 'name'),
                 className: 'acms-admin-form-width-full',
-                placeholder: 'name',
-              })
-            )
-          ),
-          e.createElement(
-            'div',
-            { className: 'customFieldGeneratorBasicTooltip' },
-            e.createElement('label', { className: '' }, 'ツールチップ'),
-            e.createElement(
-              'div',
-              null,
-              e.createElement('input', {
-                type: 'text',
-                value: n.tooltip || '',
-                onChange: (e) => o(e, 'tooltip'),
-                className: 'acms-admin-form-width-full',
-                placeholder: '姓名をスペースなしで入力して下さい',
+                placeholder: '',
               })
             )
           ),
@@ -20882,10 +20886,26 @@
                   value: n.placeholder || '',
                   onChange: (e) => o(e, 'placeholder'),
                   className: 'acms-admin-form-width-full',
-                  placeholder: '例）林檎太郎',
+                  placeholder: '',
                 })
               )
+            ),
+          e.createElement(
+            'div',
+            { className: 'customFieldGeneratorBasicTooltip' },
+            e.createElement('label', { className: '' }, 'ツールチップ'),
+            e.createElement(
+              'div',
+              null,
+              e.createElement('input', {
+                type: 'text',
+                value: n.tooltip || '',
+                onChange: (e) => o(e, 'tooltip'),
+                className: 'acms-admin-form-width-full',
+                placeholder: '',
+              })
             )
+          )
         );
       }
       const fi = {
@@ -22142,7 +22162,7 @@
         return e.createElement(
           'div',
           null,
-          e.createElement(ui, { field: t, setField: n }),
+          e.createElement('h2', null, 'コード生成'),
           e.createElement(
             'div',
             { className: 'customFieldFunction' },
@@ -22189,7 +22209,8 @@
                     : n((e) => ({ ...e, alert: !0 }));
               },
             })
-          )
+          ),
+          e.createElement(ui, { field: t, setField: n })
         );
       }
       function Ci(t) {
@@ -22322,249 +22343,276 @@
         };
       function Ai() {
         const [t, n] = (0, e.useState)(Ri),
-          { setGroupTitleName: a, addGroupItem: r, clearGroupItem: l } = u(),
-          i = (0, e.useCallback)(() => {
-            t.groupName
-              ? (n((e) => ({ ...e, groupAlert: !1, duplicatedField: !1, openGroup: !0 })), a(t.groupTitle, t.groupName))
-              : n((e) => ({ ...e, groupAlert: !0 }));
-          }, [t, a]),
+          {
+            state: { fieldgroup: a },
+            setGroupTitleName: r,
+            addGroupItem: l,
+            clearGroup: i,
+          } = u(),
           o = (0, e.useCallback)(() => {
+            t.groupName
+              ? (n((e) => ({ ...e, groupAlert: !1, duplicatedField: !1, openGroup: !0 })), r(t.groupTitle, t.groupName))
+              : n((e) => ({ ...e, groupAlert: !0 }));
+          }, [t, r]),
+          c = (0, e.useCallback)(() => {
             t.name !== t.groupName
               ? t.type && t.title && t.name
-                ? (a(t.groupTitle, t.groupName), r(t))
+                ? (r(t.groupTitle, t.groupName), l(t))
                 : n((e) => ({ ...e, alert: !0 }))
               : n((e) => ({ ...e, duplicatedField: !0 }));
-          }, [t, a, r]),
-          c = (0, e.useCallback)(() => {
-            l(), n(Ii), n((e) => ({ ...e, openGroup: !1, groupTitle: '', groupName: '' }));
-          }, [l]);
+          }, [t, r, l]),
+          s = (0, e.useCallback)(() => {
+            confirm('生成したコードの履歴も消えてしまいます。よろしいですか？') &&
+              (i(), n(Ii), n((e) => ({ ...e, openGroup: !1, groupTitle: '', groupName: '' })));
+          }, [i]);
         return e.createElement(
           'div',
           null,
           e.createElement(
             'div',
-            { className: 'customFieldFunction' },
+            { className: 'customFieldContainer' },
             e.createElement(Ci, { field: t, setField: n }),
             e.createElement(Fi, { field: t, setField: n }),
             e.createElement(mi, { field: t, setField: n }),
-            t.openGroup
-              ? e.createElement(
-                  'div',
-                  null,
+            e.createElement(
+              'div',
+              null,
+              e.createElement(
+                'div',
+                { className: 'acms-flex acms-justify-between', style: { marginBottom: '1em' } },
+                e.createElement('h2', { style: { margin: 0 } }, 'グループ名'),
+                a.title &&
+                  a.name &&
                   e.createElement(
                     'button',
-                    { className: 'acms-admin-btn acms-admin-btn-primary customFieldGroupBtn', onClick: c },
-                    '新規グループ作成'
+                    { className: 'acms-admin-btn-admin acms-admin-btn-admin-danger', onClick: s },
+                    'グループを削除'
                   )
-                )
-              : e.createElement(
-                  'div',
-                  { className: 'customFieldGeneratorGroup' },
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupTitle' },
-                    e.createElement(
-                      'label',
-                      { htmlFor: 'groupTitle' },
-                      'グループのタイトル',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-title-tip',
-                      }),
-                      e.createElement(
-                        ri,
-                        {
-                          id: 'group-title-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
-                        e.createElement('span', null, 'カスタムフィールドグループのテーブル用のタイトルとなります。')
-                      ),
-                      e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
-                    ),
+              ),
+              a.title && a.name
+                ? e.createElement(
+                    'dl',
+                    { className: 'customFieldGeneratorGroup -openGroup', style: { margin: 0 } },
                     e.createElement(
                       'div',
-                      null,
-                      e.createElement('input', {
-                        type: 'text',
-                        id: 'groupTitle',
-                        defaultValue: t.groupTitle,
-                        onInput: (e) => {
-                          const t = e.target.value;
-                          t && n((e) => ({ ...e, groupTitle: t }));
-                        },
-                        className: 'acms-admin-form-width-full',
-                        placeholder: '例）スタッフリスト',
-                      })
-                    )
-                  ),
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupVal' },
-                    e.createElement(
-                      'label',
-                      { htmlFor: 'groupName' },
-                      'フィールド名（変数）',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-field-tip',
-                      }),
+                      { className: 'customFieldGeneratorGroupTitle' },
                       e.createElement(
-                        ri,
-                        {
-                          id: 'group-field-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
+                        'dt',
+                        null,
+                        'グループタイトル',
+                        e.createElement('i', {
+                          className: 'acms-admin-icon-tooltip',
+                          'data-tip': !0,
+                          'data-for': 'group-title-tip',
+                        }),
                         e.createElement(
-                          'span',
-                          null,
-                          'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
+                          ri,
+                          {
+                            id: 'group-title-tip',
+                            place: 'top',
+                            type: 'dark',
+                            effect: 'solid',
+                            className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                          },
+                          e.createElement('span', null, 'カスタムフィールドグループのテーブル用のタイトルとなります。')
                         )
                       ),
-                      e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
+                      e.createElement('dd', null, a.title)
                     ),
                     e.createElement(
                       'div',
-                      null,
-                      e.createElement('input', {
-                        type: 'text',
-                        id: 'groupName',
-                        defaultValue: t.groupName,
-                        onInput: (e) => {
-                          const t = e.target.value;
-                          t && n((e) => ({ ...e, groupName: t }));
-                        },
-                        className: 'acms-admin-form-width-full',
-                        placeholder: '例）group_staff',
-                      })
+                      { className: 'customFieldGeneratorGroupVal' },
+                      e.createElement(
+                        'dt',
+                        null,
+                        'フィールド名（変数）',
+                        e.createElement('i', {
+                          className: 'acms-admin-icon-tooltip',
+                          'data-tip': !0,
+                          'data-for': 'group-field-tip',
+                        }),
+                        e.createElement(
+                          ri,
+                          {
+                            id: 'group-field-tip',
+                            place: 'top',
+                            type: 'dark',
+                            effect: 'solid',
+                            className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                          },
+                          e.createElement(
+                            'span',
+                            null,
+                            'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
+                          )
+                        )
+                      ),
+                      e.createElement('dd', null, a.name)
                     )
-                  ),
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupButton' },
-                    t.openGroup
-                      ? e.createElement(
-                          'button',
-                          {
-                            className:
-                              'acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn',
-                            id: 'makeGroup',
-                            disabled: !0,
-                          },
-                          'グループ生成'
-                        )
-                      : e.createElement(
-                          'button',
-                          {
-                            className: 'acms-admin-btn acms-admin-btn-primary customFieldGroupBtn',
-                            id: 'makeGroup',
-                            onClick: i,
-                          },
-                          'グループ生成'
-                        )
                   )
-                ),
-            t.openGroup &&
+                : e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      'div',
+                      { className: 'customFieldGeneratorGroup' },
+                      e.createElement(
+                        'div',
+                        { className: 'customFieldGeneratorGroupTitle' },
+                        e.createElement(
+                          'label',
+                          { htmlFor: 'groupTitle' },
+                          'グループのタイトル',
+                          e.createElement('i', {
+                            className: 'acms-admin-icon-tooltip',
+                            'data-tip': !0,
+                            'data-for': 'group-title-tip',
+                          }),
+                          e.createElement(
+                            ri,
+                            {
+                              id: 'group-title-tip',
+                              place: 'top',
+                              type: 'dark',
+                              effect: 'solid',
+                              className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                            },
+                            e.createElement(
+                              'span',
+                              null,
+                              'カスタムフィールドグループのテーブル用のタイトルとなります。'
+                            )
+                          ),
+                          e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
+                        ),
+                        e.createElement(
+                          'div',
+                          null,
+                          e.createElement('input', {
+                            type: 'text',
+                            id: 'groupTitle',
+                            defaultValue: t.groupTitle,
+                            onInput: (e) => {
+                              const t = e.target.value;
+                              t && n((e) => ({ ...e, groupTitle: t }));
+                            },
+                            className: 'acms-admin-form-width-full',
+                            placeholder: '例）スタッフリスト',
+                          })
+                        )
+                      ),
+                      e.createElement(
+                        'div',
+                        { className: 'customFieldGeneratorGroupVal' },
+                        e.createElement(
+                          'label',
+                          { htmlFor: 'groupName' },
+                          'フィールド名（変数）',
+                          e.createElement('i', {
+                            className: 'acms-admin-icon-tooltip',
+                            'data-tip': !0,
+                            'data-for': 'group-field-tip',
+                          }),
+                          e.createElement(
+                            ri,
+                            {
+                              id: 'group-field-tip',
+                              place: 'top',
+                              type: 'dark',
+                              effect: 'solid',
+                              className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                            },
+                            e.createElement(
+                              'span',
+                              null,
+                              'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
+                            )
+                          ),
+                          e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
+                        ),
+                        e.createElement(
+                          'div',
+                          null,
+                          e.createElement('input', {
+                            type: 'text',
+                            id: 'groupName',
+                            defaultValue: t.groupName,
+                            onInput: (e) => {
+                              const t = e.target.value;
+                              t && n((e) => ({ ...e, groupName: t }));
+                            },
+                            className: 'acms-admin-form-width-full',
+                            placeholder: '例）group_staff',
+                          })
+                        )
+                      ),
+                      e.createElement(
+                        'div',
+                        { className: 'customFieldGeneratorGroupButton' },
+                        a.title && a.name
+                          ? e.createElement(
+                              'button',
+                              {
+                                className:
+                                  'acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn',
+                                id: 'makeGroup',
+                                disabled: !0,
+                              },
+                              'グループ生成'
+                            )
+                          : e.createElement(
+                              'button',
+                              {
+                                className: 'acms-admin-btn acms-admin-btn-primary customFieldGroupBtn',
+                                id: 'makeGroup',
+                                onClick: o,
+                              },
+                              'グループ生成'
+                            )
+                      )
+                    )
+                  )
+            ),
+            a.title &&
+              a.name &&
               e.createElement(
-                e.Fragment,
+                'div',
                 null,
+                e.createElement('h2', { className: 'customFieldHeading2' }, 'コード生成'),
                 e.createElement(
-                  'dl',
-                  { className: 'customFieldGeneratorGroup -openGroup', style: { margin: 0 } },
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupTitle' },
+                  'div',
+                  { className: 'customFieldFunction' },
+                  e.createElement(pi, { field: t, setField: n }),
+                  'checkbox' === t.type &&
+                    e.createElement('div', null, e.createElement(yi, { field: t, setField: n, add: !1 })),
+                  'selectbox' === t.type &&
                     e.createElement(
-                      'dt',
+                      'div',
                       null,
-                      'グループのタイトル',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-title-tip',
-                      }),
-                      e.createElement(
-                        ri,
-                        {
-                          id: 'group-title-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
-                        e.createElement('span', null, 'カスタムフィールドグループのテーブル用のタイトルとなります。')
-                      )
+                      e.createElement(hi, { field: t, setField: n }),
+                      e.createElement(yi, { field: t, setField: n })
                     ),
-                    e.createElement('dd', null, t.groupTitle)
-                  ),
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupVal' },
+                  'radioButton' === t.type &&
                     e.createElement(
-                      'dt',
+                      'div',
                       null,
-                      'フィールド名（変数）',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-field-tip',
-                      }),
-                      e.createElement(
-                        ri,
-                        {
-                          id: 'group-field-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
-                        e.createElement(
-                          'span',
-                          null,
-                          'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
-                        )
-                      )
+                      e.createElement(hi, { field: t, setField: n }),
+                      e.createElement(yi, { field: t, setField: n })
                     ),
-                    e.createElement('dd', null, t.groupName)
-                  )
-                ),
-                e.createElement(pi, { field: t, setField: n }),
-                'checkbox' === t.type &&
-                  e.createElement('div', null, e.createElement(yi, { field: t, setField: n, add: !1 })),
-                'selectbox' === t.type &&
-                  e.createElement(
-                    'div',
-                    null,
-                    e.createElement(hi, { field: t, setField: n }),
-                    e.createElement(yi, { field: t, setField: n })
-                  ),
-                'radioButton' === t.type &&
-                  e.createElement(
-                    'div',
-                    null,
-                    e.createElement(hi, { field: t, setField: n }),
-                    e.createElement(yi, { field: t, setField: n })
-                  ),
-                'image' === t.type &&
-                  e.createElement(
-                    'div',
-                    null,
-                    e.createElement(_i, { setField: n }),
-                    e.createElement(wi, { field: t, setField: n })
-                  ),
-                'file' === t.type && e.createElement('div', null, e.createElement(ki, { field: t, setField: n })),
-                'media' === t.type && e.createElement('div', null, e.createElement(xi, { field: t, setField: n })),
-                'rich-editor' === t.type &&
-                  e.createElement('div', null, e.createElement(Si, { field: t, setField: n })),
-                e.createElement(Ei, { field: t, setField: n }),
-                e.createElement(vi, { setField: n, onSubmit: o })
+                  'image' === t.type &&
+                    e.createElement(
+                      'div',
+                      null,
+                      e.createElement(_i, { setField: n }),
+                      e.createElement(wi, { field: t, setField: n })
+                    ),
+                  'file' === t.type && e.createElement('div', null, e.createElement(ki, { field: t, setField: n })),
+                  'media' === t.type && e.createElement('div', null, e.createElement(xi, { field: t, setField: n })),
+                  'rich-editor' === t.type &&
+                    e.createElement('div', null, e.createElement(Si, { field: t, setField: n })),
+                  e.createElement(Ei, { field: t, setField: n }),
+                  e.createElement(vi, { setField: n, onSubmit: c })
+                )
               )
           ),
           e.createElement(ui, { field: t, setField: n })
@@ -22607,7 +22655,7 @@
         noSearch: !1,
         extension: '',
       };
-      function Li() {
+      function Di() {
         const [t, n] = (0, e.useState)(Oi),
           { addCustomunit: a } = u(),
           r = (0, e.useCallback)(
@@ -22619,10 +22667,10 @@
         return e.createElement(
           'div',
           null,
+          e.createElement('h2', null, 'コード生成'),
           e.createElement(
             'div',
             { className: 'customFieldFunction' },
-            e.createElement(ui, { field: t, setField: n }),
             e.createElement(mi, { field: t, setField: n }),
             e.createElement(pi, { field: t, setField: n }),
             'selectbox' === t.type &&
@@ -22669,10 +22717,11 @@
                     : n((e) => ({ ...e, alert: !0 }));
               },
             })
-          )
+          ),
+          e.createElement(ui, { field: t, setField: n })
         );
       }
-      const Di = {
+      const Li = {
           type: 'text',
           title: '',
           name: '',
@@ -22735,250 +22784,277 @@
           placeholder: '',
         };
       function ji() {
-        const [t, n] = (0, e.useState)(Di),
-          { setUnitGroupTitleName: a, addUnitGroupItem: r, clearUnitGroupItem: l } = u(),
-          i = (0, e.useCallback)(() => {
-            t.groupName
-              ? (n((e) => ({ ...e, groupAlert: !1, duplicatedField: !1, openGroup: !0 })), a(t.groupTitle, t.groupName))
-              : n((e) => ({ ...e, groupAlert: !0 }));
-          }, [t, a]),
+        const [t, n] = (0, e.useState)(Li),
+          {
+            state: { unitgroup: a },
+            setUnitGroupTitleName: r,
+            addUnitGroupItem: l,
+            clearUnitGroup: i,
+          } = u(),
           o = (0, e.useCallback)(() => {
+            t.groupName
+              ? (n((e) => ({ ...e, groupAlert: !1, duplicatedField: !1, openGroup: !0 })), r(t.groupTitle, t.groupName))
+              : n((e) => ({ ...e, groupAlert: !0 }));
+          }, [t, r]),
+          c = (0, e.useCallback)(() => {
             t.name != t.groupName
               ? t.type && t.title && t.name
-                ? (a(t.groupName, t.groupTitle), r(t))
+                ? (r(t.groupName, t.groupTitle), l(t))
                 : n((e) => ({ ...e, alert: !0 }))
               : n((e) => ({ ...e, duplicatedField: !0 }));
-          }, [t, a, r]),
-          c = (0, e.useCallback)(() => {
-            l(), n(Pi), n((e) => ({ ...e, openGroup: !1, groupTitle: '', groupName: '' }));
-          }, [l]);
+          }, [t, r, l]),
+          s = (0, e.useCallback)(() => {
+            confirm('生成したコードの履歴も消えてしまいます。よろしいですか？') &&
+              (i(), n(Pi), n((e) => ({ ...e, openGroup: !1, groupTitle: '', groupName: '' })));
+          }, [i]);
         return e.createElement(
           'div',
           null,
           e.createElement(
             'div',
-            { className: 'customFieldFunction' },
+            { className: 'customFieldContainer' },
             e.createElement(Ci, { field: t, setField: n }),
             e.createElement(Fi, { field: t, setField: n }),
             e.createElement(mi, { field: t, setField: n }),
-            t.openGroup
-              ? e.createElement(
-                  'div',
-                  null,
+            e.createElement(
+              'div',
+              null,
+              e.createElement(
+                'div',
+                { className: 'acms-flex acms-justify-between', style: { marginBottom: '1em' } },
+                e.createElement('h2', { style: { margin: 0 } }, 'グループ名'),
+                a.title &&
+                  a.name &&
                   e.createElement(
                     'button',
-                    { className: 'acms-admin-btn acms-admin-btn-primary customFieldGroupBtn', onClick: c },
-                    '新規グループ作成'
+                    { className: 'acms-admin-btn-admin acms-admin-btn-admin-danger', onClick: s },
+                    'グループを削除'
                   )
-                )
-              : e.createElement(
-                  'div',
-                  { className: 'customFieldGeneratorGroup' },
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupTitle' },
-                    e.createElement(
-                      'label',
-                      { htmlFor: 'groupTitle' },
-                      'グループのタイトル',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-title-tip',
-                      }),
-                      e.createElement(
-                        ri,
-                        {
-                          id: 'group-title-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
-                        e.createElement('span', null, 'カスタムフィールドグループのテーブル用のタイトルとなります。')
-                      ),
-                      e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
-                    ),
+              ),
+              a.title && a.name
+                ? e.createElement(
+                    'dl',
+                    { className: 'customFieldGeneratorGroup -openGroup', style: { margin: 0 } },
                     e.createElement(
                       'div',
-                      null,
-                      e.createElement('input', {
-                        type: 'text',
-                        id: 'groupTitle',
-                        defaultValue: t.groupTitle,
-                        onInput: (e) => {
-                          const t = e.target.value;
-                          t && n((e) => ({ ...e, groupTitle: t }));
-                        },
-                        className: 'acms-admin-form-width-full',
-                        placeholder: '例）スタッフリスト',
-                      })
-                    )
-                  ),
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupVal' },
-                    e.createElement(
-                      'label',
-                      { htmlFor: 'groupName' },
-                      'フィールド名（変数）',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-field-tip',
-                      }),
+                      { className: 'customFieldGeneratorGroupTitle' },
                       e.createElement(
-                        ri,
-                        {
-                          id: 'group-field-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
+                        'dt',
+                        null,
+                        'グループタイトル',
+                        e.createElement('i', {
+                          className: 'acms-admin-icon-tooltip',
+                          'data-tip': !0,
+                          'data-for': 'group-title-tip',
+                        }),
                         e.createElement(
-                          'span',
-                          null,
-                          'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
+                          ri,
+                          {
+                            id: 'group-title-tip',
+                            place: 'top',
+                            type: 'dark',
+                            effect: 'solid',
+                            className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                          },
+                          e.createElement('span', null, 'カスタムフィールドグループのテーブル用のタイトルとなります。')
                         )
                       ),
-                      e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
+                      e.createElement('dd', null, a.title)
                     ),
                     e.createElement(
                       'div',
-                      null,
-                      e.createElement('input', {
-                        type: 'text',
-                        id: 'groupName',
-                        defaultValue: t.groupName,
-                        onInput: (e) => {
-                          const t = e.target.value;
-                          t && n((e) => ({ ...e, groupName: t }));
-                        },
-                        className: 'acms-admin-form-width-full',
-                        placeholder: '例）group_staff',
-                      })
+                      { className: 'customFieldGeneratorGroupVal' },
+                      e.createElement(
+                        'dt',
+                        null,
+                        'フィールド名（変数）',
+                        e.createElement('i', {
+                          className: 'acms-admin-icon-tooltip',
+                          'data-tip': !0,
+                          'data-for': 'group-field-tip',
+                        }),
+                        e.createElement(
+                          ri,
+                          {
+                            id: 'group-field-tip',
+                            place: 'top',
+                            type: 'dark',
+                            effect: 'solid',
+                            className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                          },
+                          e.createElement(
+                            'span',
+                            null,
+                            'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
+                          )
+                        )
+                      ),
+                      e.createElement('dd', null, a.name)
                     )
-                  ),
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupButton' },
-                    t.openGroup
-                      ? e.createElement(
-                          'button',
-                          {
-                            className:
-                              'acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn',
-                            id: 'makeGroup',
-                            disabled: !0,
-                          },
-                          'グループ生成'
-                        )
-                      : e.createElement(
-                          'button',
-                          {
-                            className: 'acms-admin-btn acms-admin-btn-primary customFieldGroupBtn',
-                            id: 'makeGroup',
-                            onClick: i,
-                          },
-                          'グループ生成'
-                        )
                   )
-                ),
-            t.openGroup &&
+                : e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      'div',
+                      { className: 'customFieldGeneratorGroup' },
+                      e.createElement(
+                        'div',
+                        { className: 'customFieldGeneratorGroupTitle' },
+                        e.createElement(
+                          'label',
+                          { htmlFor: 'groupTitle' },
+                          'グループのタイトル',
+                          e.createElement('i', {
+                            className: 'acms-admin-icon-tooltip',
+                            'data-tip': !0,
+                            'data-for': 'group-title-tip',
+                          }),
+                          e.createElement(
+                            ri,
+                            {
+                              id: 'group-title-tip',
+                              place: 'top',
+                              type: 'dark',
+                              effect: 'solid',
+                              className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                            },
+                            e.createElement(
+                              'span',
+                              null,
+                              'カスタムフィールドグループのテーブル用のタイトルとなります。'
+                            )
+                          ),
+                          e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
+                        ),
+                        e.createElement(
+                          'div',
+                          null,
+                          e.createElement('input', {
+                            type: 'text',
+                            id: 'groupTitle',
+                            defaultValue: t.groupTitle,
+                            onInput: (e) => {
+                              const t = e.target.value;
+                              t && n((e) => ({ ...e, groupTitle: t }));
+                            },
+                            className: 'acms-admin-form-width-full',
+                            placeholder: '例）スタッフリスト',
+                          })
+                        )
+                      ),
+                      e.createElement(
+                        'div',
+                        { className: 'customFieldGeneratorGroupVal' },
+                        e.createElement(
+                          'label',
+                          { htmlFor: 'groupName' },
+                          'フィールド名（変数）',
+                          e.createElement('i', {
+                            className: 'acms-admin-icon-tooltip',
+                            'data-tip': !0,
+                            'data-for': 'group-field-tip',
+                          }),
+                          e.createElement(
+                            ri,
+                            {
+                              id: 'group-field-tip',
+                              place: 'top',
+                              type: 'dark',
+                              effect: 'solid',
+                              className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
+                            },
+                            e.createElement(
+                              'span',
+                              null,
+                              'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
+                            )
+                          ),
+                          e.createElement('span', { className: 'acms-admin-label acms-admin-label-danger' }, '必須')
+                        ),
+                        e.createElement(
+                          'div',
+                          null,
+                          e.createElement('input', {
+                            type: 'text',
+                            id: 'groupName',
+                            defaultValue: t.groupName,
+                            onInput: (e) => {
+                              const t = e.target.value;
+                              t && n((e) => ({ ...e, groupName: t }));
+                            },
+                            className: 'acms-admin-form-width-full',
+                            placeholder: '例）group_staff',
+                          })
+                        )
+                      ),
+                      e.createElement(
+                        'div',
+                        { className: 'customFieldGeneratorGroupButton' },
+                        t.openGroup
+                          ? e.createElement(
+                              'button',
+                              {
+                                className:
+                                  'acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn',
+                                id: 'makeGroup',
+                                disabled: !0,
+                              },
+                              'グループ生成'
+                            )
+                          : e.createElement(
+                              'button',
+                              {
+                                className: 'acms-admin-btn acms-admin-btn-primary customFieldGroupBtn',
+                                id: 'makeGroup',
+                                onClick: o,
+                              },
+                              'グループ生成'
+                            )
+                      )
+                    )
+                  )
+            ),
+            a.title &&
+              a.name &&
               e.createElement(
-                e.Fragment,
+                'div',
                 null,
+                e.createElement('h2', { className: 'customFieldHeading2' }, 'コード生成'),
                 e.createElement(
-                  'dl',
-                  { className: 'customFieldGeneratorGroup -openGroup', style: { margin: 0 } },
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupTitle' },
+                  'div',
+                  { className: 'customFieldFunction' },
+                  e.createElement(pi, { field: t, setField: n }),
+                  'checkbox' === t.type &&
+                    e.createElement('div', null, e.createElement(yi, { field: t, setField: n, add: !1 })),
+                  'selectbox' === t.type &&
                     e.createElement(
-                      'dt',
+                      'div',
                       null,
-                      'グループのタイトル',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-title-tip',
-                      }),
-                      e.createElement(
-                        ri,
-                        {
-                          id: 'group-title-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
-                        e.createElement('span', null, 'カスタムフィールドグループのテーブル用のタイトルとなります。')
-                      )
+                      e.createElement(hi, { field: t, setField: n }),
+                      e.createElement(yi, { field: t, setField: n })
                     ),
-                    e.createElement('dd', null, t.groupTitle)
-                  ),
-                  e.createElement(
-                    'div',
-                    { className: 'customFieldGeneratorGroupVal' },
+                  'radioButton' === t.type &&
                     e.createElement(
-                      'dt',
+                      'div',
                       null,
-                      'フィールド名（変数）',
-                      e.createElement('i', {
-                        className: 'acms-admin-icon-tooltip',
-                        'data-tip': !0,
-                        'data-for': 'group-field-tip',
-                      }),
-                      e.createElement(
-                        ri,
-                        {
-                          id: 'group-field-tip',
-                          place: 'top',
-                          type: 'dark',
-                          effect: 'solid',
-                          className: 'acms-admin-tooltip acms-tooltip customFieldTooltip',
-                        },
-                        e.createElement(
-                          'span',
-                          null,
-                          'カスタムフィールドグループのフィールド名です。値を必ず入力してください。'
-                        )
-                      )
+                      e.createElement(hi, { field: t, setField: n }),
+                      e.createElement(yi, { field: t, setField: n })
                     ),
-                    e.createElement('dd', null, t.groupName)
-                  )
-                ),
-                e.createElement(pi, { field: t, setField: n }),
-                'checkbox' === t.type &&
-                  e.createElement('div', null, e.createElement(yi, { field: t, setField: n, add: !1 })),
-                'selectbox' === t.type &&
-                  e.createElement(
-                    'div',
-                    null,
-                    e.createElement(hi, { field: t, setField: n }),
-                    e.createElement(yi, { field: t, setField: n })
-                  ),
-                'radioButton' === t.type &&
-                  e.createElement(
-                    'div',
-                    null,
-                    e.createElement(hi, { field: t, setField: n }),
-                    e.createElement(yi, { field: t, setField: n })
-                  ),
-                'image' === t.type &&
-                  e.createElement(
-                    'div',
-                    null,
-                    e.createElement(_i, { setField: n }),
-                    e.createElement(wi, { field: t, setField: n })
-                  ),
-                'file' === t.type && e.createElement('div', null, e.createElement(ki, { field: t, setField: n })),
-                'media' === t.type && e.createElement('div', null, e.createElement(xi, { field: t, setField: n })),
-                'rich-editor' === t.type &&
-                  e.createElement('div', null, e.createElement(Si, { field: t, setField: n })),
-                e.createElement(Ei, { field: t, setField: n }),
-                e.createElement(vi, { setField: n, onSubmit: o })
+                  'image' === t.type &&
+                    e.createElement(
+                      'div',
+                      null,
+                      e.createElement(_i, { setField: n }),
+                      e.createElement(wi, { field: t, setField: n })
+                    ),
+                  'file' === t.type && e.createElement('div', null, e.createElement(ki, { field: t, setField: n })),
+                  'media' === t.type && e.createElement('div', null, e.createElement(xi, { field: t, setField: n })),
+                  'rich-editor' === t.type &&
+                    e.createElement('div', null, e.createElement(Si, { field: t, setField: n })),
+                  e.createElement(Ei, { field: t, setField: n }),
+                  e.createElement(vi, { setField: n, onSubmit: c })
+                )
               )
           ),
           e.createElement(ui, { field: t, setField: n })
@@ -29492,10 +29568,9 @@
             e.createElement(
               'section',
               null,
-              e.createElement('h2', null, 'コード生成エリア'),
               'customfield' === a.mode && e.createElement(Ti, null),
               'fieldgroup' === a.mode && e.createElement(Ai, null),
-              'customunit' === a.mode && e.createElement(Li, null),
+              'customunit' === a.mode && e.createElement(Di, null),
               'unitgroup' === a.mode && e.createElement(ji, null)
             ),
             e.createElement(

@@ -87,7 +87,7 @@ export function Basic(props) {
             value={field.title || ''}
             onChange={(e) => handleInputChange(e, 'title')}
             className="acms-admin-form-width-full"
-            placeholder="氏名"
+            placeholder=""
           />
         </div>
       </div>
@@ -112,19 +112,7 @@ export function Basic(props) {
             value={field.name || ''}
             onChange={(e) => handleInputChange(e, 'name')}
             className="acms-admin-form-width-full"
-            placeholder="name"
-          />
-        </div>
-      </div>
-      <div className="customFieldGeneratorBasicTooltip">
-        <label className="">ツールチップ</label>
-        <div>
-          <input
-            type="text"
-            value={field.tooltip || ''}
-            onChange={(e) => handleInputChange(e, 'tooltip')}
-            className="acms-admin-form-width-full"
-            placeholder="姓名をスペースなしで入力して下さい"
+            placeholder=""
           />
         </div>
       </div>
@@ -137,11 +125,23 @@ export function Basic(props) {
               value={field.placeholder || ''}
               onChange={(e) => handleInputChange(e, 'placeholder')}
               className="acms-admin-form-width-full"
-              placeholder="例）林檎太郎"
+              placeholder=""
             />
           </div>
         </div>
       )}
+      <div className="customFieldGeneratorBasicTooltip">
+        <label className="">ツールチップ</label>
+        <div>
+          <input
+            type="text"
+            value={field.tooltip || ''}
+            onChange={(e) => handleInputChange(e, 'tooltip')}
+            className="acms-admin-form-width-full"
+            placeholder=""
+          />
+        </div>
+      </div>
     </div>
   );
 }
