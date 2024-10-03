@@ -4,7 +4,7 @@ import { ConverterModal } from './base/ConverterModal';
 import { Alert } from './base/Alert';
 import { Basic } from './base/Basic';
 import { Snippet } from './base/Snippet';
-import { Maker } from './base/Maker';
+import { Operator } from './base/Operator';
 import { Validator } from './base/Validator';
 import { OptionItem } from './base/OptionItem';
 import { MediaOption } from './base/MediaOption';
@@ -90,7 +90,6 @@ const defaultProps = {
   title: '',
   name: '',
   type: 'text',
-  subType: '',
   tooltip: '',
   placeholder: '',
   alert: false,
@@ -279,9 +278,8 @@ export function Field() {
 
   return (
     <div>
-      <h2 className="acms-admin-admin-title2">カスタムフィールド</h2>
+      <ConverterModal field={field} setField={setField} />
       <div className="customFieldFunction">
-        <ConverterModal field={field} setField={setField} />
         <Alert field={field} setField={setField} />
         <Basic field={field} setField={setField} />
         {field.type === 'selectbox' && (
@@ -327,8 +325,12 @@ export function Field() {
         {field.type !== 'media' && field.type !== 'richEditor' && field.type !== 'table' && (
           <Validator field={field} setField={setField} />
         )}
+<<<<<<< HEAD
         <Maker setField={setField} onSubmit={onSubmit} />
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
+=======
+        <Operator setField={setField} onSubmit={onSubmit} />
+>>>>>>> f4e47e5 (Design fixes for group generators and form options.)
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ export function TextInput(props) {
   const {
     preview: { mode, jsValidator, acmscss },
   } = useMakerContext();
-  const selectedType = item.subType ? item.subType : item.type;
 
   return (
     <>
@@ -17,7 +16,7 @@ export function TextInput(props) {
         <>
           <input
             id={id}
-            type={selectedType}
+            type={item.type}
             name={item.name}
             defaultValue={`{${item.name}}`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
@@ -33,7 +32,7 @@ export function TextInput(props) {
       {mode === 'fieldgroup' && (
         <>
           <input
-            type={selectedType}
+            type={item.type}
             name={`${item.name}[]`}
             {...(isValue && {
               value: `{${item.name}}`,
@@ -48,7 +47,7 @@ export function TextInput(props) {
       {mode === 'customunit' && (
         <>
           <input
-            type={selectedType}
+            type={item.type}
             name={`${item.name}{id}`}
             value={`{${item.name}}`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
@@ -60,7 +59,7 @@ export function TextInput(props) {
 
       {mode === 'unitgroup' && (
         <input
-          type={selectedType}
+          type={item.type}
           name={`${item.name}{id}[]`}
           {...(isValue && {
             value: `{${item.name}}`,

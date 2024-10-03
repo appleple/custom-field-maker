@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { useMakerContext } from '../../../store/MakerContext';
 
 const crearField = {
   title: '',
@@ -30,12 +29,8 @@ const crearField = {
   placeholder: '',
 };
 
-export function Maker(props) {
+export function Operator(props) {
   const { setField, onSubmit = () => {} } = props;
-  const {
-    preview: { mode },
-    undo,
-  } = useMakerContext();
 
   const onClearHandler = useCallback(() => {
     setField((prevState) => {
@@ -47,12 +42,8 @@ export function Maker(props) {
     });
   }, [setField]);
 
-  const onUndoHandler = () => {
-    undo(mode), [mode, undo];
-  };
-
   return (
-    <p>
+    <div className="customFieldOperator">
       <button type="button" onClick={onClearHandler} className="acms-admin-btn-admin" style={{ marginRight: '5px' }}>
         クリア
       </button>
@@ -64,9 +55,6 @@ export function Maker(props) {
       >
         生成
       </button>
-      <button onClick={onUndoHandler} className="acms-admin-btn-admin">
-        元に戻す
-      </button>
-    </p>
+    </div>
   );
 }

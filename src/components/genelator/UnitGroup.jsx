@@ -91,7 +91,7 @@ import { DuplicateAlert } from './base/DuplicateAlert';
 import { Basic } from './base/Basic';
 import { ConverterModal } from './base/ConverterModal';
 import { Snippet } from './base/Snippet';
-import { Maker } from './base/Maker';
+import { Operator } from './base/Operator';
 import { Validator } from './base/Validator';
 import { OptionItem } from './base/OptionItem';
 import { MediaOption } from './base/MediaOption';
@@ -102,7 +102,6 @@ import { RichEditorOption } from './base/RichEditorOption';
 
 const defaultProps = {
   type: 'text',
-  subType: '',
   title: '',
   name: '',
   placeholder: '',
@@ -247,99 +246,104 @@ export function UnitGroup() {
 
   return (
     <div>
-      <h2 className="acms-admin-admin-title2">カスタムユニット（フィールドグループ）</h2>
       <div className="customFieldFunction">
         <GroupAlert field={field} setField={setField} />
         <DuplicateAlert field={field} setField={setField} />
         <Alert field={field} setField={setField} />
 
         {field.openGroup ? (
-          <div style={{ paddingBottom: '15px' }}>
+          <div>
             <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={addNewGroup}>
               新規グループ作成
             </button>
           </div>
         ) : (
-          <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
-            <tbody>
-              <tr>
-                <th className="acms-admin-table-left">
-                  グループのタイトル
-                  <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-title-tip" />
-                  <ReactTooltip
-                    id="unit-group-title-tip"
-                    place="top"
-                    type="dark"
-                    effect="solid"
-                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                  >
-                    <span>フィールドグループのテーブル用のタイトルとなります。</span>
-                  </ReactTooltip>
-                  <span className="acms-admin-label acms-admin-label-danger">必須</span>
-                </th>
-                <th className="acms-admin-table-left" colSpan="2">
-                  フィールド名（変数）
-                  <i className="acms-admin-icon-tooltip" data-tip data-for="unit-group-field-tip" />
-                  <ReactTooltip
-                    id="unit-group-field-tip"
-                    place="top"
-                    type="dark"
-                    effect="solid"
-                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                  >
-                    <span>フィールドグループのフィールド名です。値を必ず入力してください。</span>
-                  </ReactTooltip>
-                  <span className="acms-admin-label acms-admin-label-danger">必須</span>
-                </th>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    type="text"
-                    defaultValue={field.groupTitle}
-                    onInput={(e) => {
-                      const value = e.target.value;
-                      if (!value) return;
-                      setField((prevState) => ({ ...prevState, groupTitle: value }));
-                    }}
-                    className="acms-admin-form-width-full"
-                    placeholder="例）スタッフリスト"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    defaultValue={field.groupName}
-                    onInput={(e) => {
-                      const value = e.target.value;
-                      if (!value) return;
-                      setField((prevState) => ({ ...prevState, groupName: value }));
-                    }}
-                    className="acms-admin-form-width-full"
-                    placeholder="例）group_staff"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td colSpan="2">
-                  {field.openGroup ? (
-                    <button
-                      className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
-                      disabled
-                    >
-                      グループ生成
-                    </button>
-                  ) : (
-                    <button className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn" onClick={showGroup}>
-                      グループ生成
-                    </button>
-                  )}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="customFieldGeneratorGroup">
+            <div className="customFieldGeneratorGroupTitle">
+              <label htmlFor="groupTitle">
+                グループのタイトル
+                <i className="acms-admin-icon-tooltip" data-tip data-for="group-title-tip" />
+                <ReactTooltip
+                  id="group-title-tip"
+                  place="top"
+                  type="dark"
+                  effect="solid"
+                  className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                >
+                  <span>カスタムフィールドグループのテーブル用のタイトルとなります。</span>
+                </ReactTooltip>
+                <span className="acms-admin-label acms-admin-label-danger">必須</span>
+              </label>
+              <div>
+                <input
+                  type="text"
+                  id="groupTitle"
+                  defaultValue={field.groupTitle}
+                  onInput={(e) => {
+                    const value = e.target.value;
+                    if (!value) return;
+                    setField((prevState) => ({ ...prevState, groupTitle: value }));
+                  }}
+                  className="acms-admin-form-width-full"
+                  placeholder="例）スタッフリスト"
+                />
+              </div>
+            </div>
+
+            <div className="customFieldGeneratorGroupVal">
+              <label htmlFor="groupName">
+                フィールド名（変数）
+                <i className="acms-admin-icon-tooltip" data-tip data-for="group-field-tip" />
+                <ReactTooltip
+                  id="group-field-tip"
+                  place="top"
+                  type="dark"
+                  effect="solid"
+                  className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                >
+                  <span>カスタムフィールドグループのフィールド名です。値を必ず入力してください。</span>
+                </ReactTooltip>
+                <span className="acms-admin-label acms-admin-label-danger">必須</span>
+              </label>
+              <div>
+                <input
+                  type="text"
+                  id="groupName"
+                  defaultValue={field.groupName}
+                  onInput={(e) => {
+                    const value = e.target.value;
+                    if (!value) return;
+                    setField((prevState) => ({ ...prevState, groupName: value }));
+                  }}
+                  className="acms-admin-form-width-full"
+                  placeholder="例）group_staff"
+                />
+              </div>
+            </div>
+
+            <div className="customFieldGeneratorGroupButton">
+              {field.openGroup ? (
+                <button
+                  className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
+                  id="makeGroup"
+                  disabled
+                >
+                  グループ生成
+                </button>
+              ) : (
+                <button
+                  className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn"
+                  id="makeGroup"
+                  onClick={showGroup}
+                >
+                  グループ生成
+                </button>
+              )}
+            </div>
+          </div>
         )}
         {field.openGroup && (
+<<<<<<< HEAD
           <div>
             <div className="customFieldLine" />
             <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableGroup">
@@ -531,6 +535,44 @@ export function UnitGroup() {
               </tbody>
             </table>
             <ConverterModal field={field} setField={setField} />
+=======
+          <>
+            <dl className="customFieldGeneratorGroup -openGroup" style={{ margin: 0 }}>
+              <div className="customFieldGeneratorGroupTitle">
+                <dt>
+                  グループのタイトル
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="group-title-tip" />
+                  <ReactTooltip
+                    id="group-title-tip"
+                    place="top"
+                    type="dark"
+                    effect="solid"
+                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                  >
+                    <span>カスタムフィールドグループのテーブル用のタイトルとなります。</span>
+                  </ReactTooltip>
+                </dt>
+                <dd>{field.groupTitle}</dd>
+              </div>
+              <div className="customFieldGeneratorGroupVal">
+                <dt>
+                  フィールド名（変数）
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="group-field-tip" />
+                  <ReactTooltip
+                    id="group-field-tip"
+                    place="top"
+                    type="dark"
+                    effect="solid"
+                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                  >
+                    <span>カスタムフィールドグループのフィールド名です。値を必ず入力してください。</span>
+                  </ReactTooltip>
+                </dt>
+                <dd>{field.groupName}</dd>
+              </div>
+            </dl>
+
+>>>>>>> f4e47e5 (Design fixes for group generators and form options.)
             <Basic field={field} setField={setField} />
 >>>>>>> e53ec4b (ユニットグループ追加、メディアの対応確認)
 
@@ -573,10 +615,12 @@ export function UnitGroup() {
               </div>
             )}
             <Validator field={field} setField={setField} />
-            <Maker setField={setField} onSubmit={addGroup} />
-          </div>
+            <Operator setField={setField} onSubmit={addGroup} />
+          </>
         )}
       </div>
+
+      <ConverterModal field={field} setField={setField} />
     </div>
   );
 }

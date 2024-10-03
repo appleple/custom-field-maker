@@ -4,7 +4,7 @@ import { ConverterModal } from './base/ConverterModal';
 import { Alert } from './base/Alert';
 import { Basic } from './base/Basic';
 import { Snippet } from './base/Snippet';
-import { Maker } from './base/Maker';
+import { Operator } from './base/Operator';
 import { Validator } from './base/Validator';
 import { OptionItem } from './base/OptionItem';
 import { MediaOption } from './base/MediaOption';
@@ -17,7 +17,6 @@ const defaultProps = {
   title: '',
   name: '',
   type: 'text',
-  subType: '',
   tooltip: '',
   placeholder: '',
   alert: false,
@@ -171,7 +170,6 @@ export function Unit() {
 
   return (
     <div>
-      <h2 className="acms-admin-admin-title2">カスタムユニット</h2>
       <div className="customFieldFunction">
         <ConverterModal field={field} setField={setField} />
         <Alert field={field} setField={setField} />
@@ -288,7 +286,7 @@ export function Unit() {
         {field.type !== 'media' && field.type !== 'richEditor' && field.type !== 'table' && (
           <Validator field={field} setField={setField} />
         )}
-        <Maker setField={setField} onSubmit={onSubmit} />
+        <Operator setField={setField} onSubmit={onSubmit} />
       </div>
     </div>
   );

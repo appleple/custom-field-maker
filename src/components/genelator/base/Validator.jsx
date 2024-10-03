@@ -1,34 +1,54 @@
-import React, { useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import ReactTooltip from 'react-tooltip';
+import { NoSearchBox } from './NoSearchBox';
 
 export function Validator(props) {
-  const showValidator = true;
   const {
     field: { type, validator, openValidator, converter, noSearch },
     setField,
   } = props;
 
+  const [height, setHeight] = useState(0);
+  const contentRef = useRef(null);
+
+  const updateHeight = useCallback(() => {
+    if (contentRef.current) {
+      const newHeight = openValidator ? `${contentRef.current.scrollHeight}px` : '0px';
+      setHeight(newHeight);
+    }
+  }, [openValidator]);
+
+  useEffect(() => {
+    updateHeight();
+
+    window.addEventListener('resize', updateHeight);
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      const currentRef = contentRef.current;
+      for (let entry of entries) {
+        if (entry.target === currentRef) {
+          updateHeight();
+        }
+      }
+    });
+
+    const currentRef = contentRef.current;
+    if (currentRef) {
+      resizeObserver.observe(currentRef);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+      if (currentRef) {
+        resizeObserver.unobserve(currentRef);
+      }
+    };
+  }, [updateHeight]);
+
   const isConverter = useMemo(() => {
     const possibleConverter = ['text', 'textarea', 'checkbox', 'selectbox', 'radioButton'];
     return possibleConverter.includes(type);
   }, [type]);
-
-  const noSearchCheck = () => {
-    return (
-      <p className="acms-admin-form-checkbox">
-        <input
-          type="checkbox"
-          value={noSearch}
-          id="noSearch-checkbox"
-          onChange={() => setField((prevState) => ({ ...prevState, noSearch: !noSearch }))}
-        />
-        <label htmlFor="noSearch-checkbox">
-          <i className="acms-admin-ico-checkbox" />
-          カスタムフィールド検索の対象外にする
-        </label>
-      </p>
-    );
-  };
 
   const updateValidatorOption = (idx, option) => {
     const item = validator[idx];
@@ -38,11 +58,11 @@ export function Validator(props) {
     }));
   };
 
-  const addValidator = () => {
+  const addValidator = useCallback(() => {
     setField((prevState) => ({
       ...prevState,
       validator: [
-        ...validator,
+        ...prevState.validator,
         {
           option: '',
           value: '',
@@ -50,7 +70,9 @@ export function Validator(props) {
         },
       ],
     }));
-  };
+    // 要素追加後に高さを更新
+    setTimeout(updateHeight, 0);
+  }, [setField, updateHeight]);
 
   const updateValidatorValue = (idx, value) => {
     const item = validator[idx];
@@ -78,38 +100,27 @@ export function Validator(props) {
   return (
     <div>
       <div>
-        <label style={{ color: '#006DEC', cursor: 'pointer' }}>
+        <label className="customFieldValidatorLabel">
           <input
             type="checkbox"
             value={openValidator}
             onChange={() => setField((prevState) => ({ ...prevState, openValidator: !openValidator }))}
             style={{ display: 'none' }}
           />
-          オプション
+          <span className={`customFieldValidatorToggle ${openValidator ? '-open' : ''}`}></span>フォームオプションを設定
         </label>
-        <i
-          className="acms-admin-icon-tooltip"
-          data-for="option-tip"
-          data-tip="React-tooltip"
-          style={{ marginLeft: '5px' }}
-        />
-        <ReactTooltip
-          id="option-tip"
-          place="top"
-          type="dark"
-          effect="solid"
-          className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-        >
-          <span>変換・入力チェック用の項目を表示します。</span>
-        </ReactTooltip>
       </div>
-      {openValidator && (
+
+      <div
+        className={`customFieldAccordionContent ${openValidator ? '-open' : ''}`}
+        style={{ maxHeight: height }}
+        ref={contentRef}
+      >
         <div className="customFieldValidatorArea">
           {isConverter && (
             <div>
-              {/text|textarea|radio|select/.exec(type) && noSearchCheck()}
               <div className="customFieldBold">
-                テキストの変換
+                コンバーター
                 <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip" />
                 <ReactTooltip
                   id="convert-tip"
@@ -123,13 +134,12 @@ export function Validator(props) {
                   </span>
                 </ReactTooltip>
               </div>
-              <p>
+              <div>
                 <input
                   type="text"
-                  defaultValue={converter}
-                  onInput={(e) => {
+                  value={converter}
+                  onChange={(e) => {
                     const value = e.target.value;
-                    if (!value) return;
                     setField((prevState) => ({ ...prevState, converter: value }));
                   }}
                   className="acms-admin-form-width-quarter acms-admin-margin-right-small"
@@ -139,139 +149,138 @@ export function Validator(props) {
                   className="acms-admin-btn"
                   onClick={() => setField((prevState) => ({ ...prevState, openConverter: true }))}
                 >
-                  コンバーター参照
+                  参照
                 </button>
-              </p>
+              </div>
             </div>
           )}
 
-          {showValidator && (
-            <table className="acms-admin-table customFieldOptionTable">
-              <tbody>
-                <tr>
-                  <th>
-                    入力チェック
-                    <i className="acms-admin-icon-tooltip" data-tip data-for="validate-tip" />
-                    <ReactTooltip
-                      id="validate-tip"
-                      place="top"
-                      type="dark"
-                      effect="solid"
-                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                    >
-                      <span>フィールドに入力された値が条件に合っているかをチェックします。</span>
-                    </ReactTooltip>
-                  </th>
-                  <th>
-                    値
-                    <i className="acms-admin-icon-tooltip" data-tip data-for="validate-value-tip" />
-                    <ReactTooltip
-                      id="validate-value-tip"
-                      place="top"
-                      type="dark"
-                      effect="solid"
-                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                    >
-                      <span>最小文字数や、正規表現チェックをバリデータに設定した際に設定する値となります。</span>
-                    </ReactTooltip>
-                  </th>
-                  <th>
-                    メッセージ
-                    <i className="acms-admin-icon-tooltip" data-tip data-for="validate-message-tip" />
-                    <ReactTooltip
-                      id="validate-message-tip"
-                      place="top"
-                      type="dark"
-                      effect="solid"
-                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                    >
-                      <span>
-                        フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。
-                      </span>
-                    </ReactTooltip>
-                  </th>
-                  <th />
-                </tr>
-                {validator &&
-                  validator.map((item, idx) => (
-                    <tr key={`validator${idx}`}>
-                      <td>
-                        <select
-                          className="acms-admin-form-width-full"
-                          onChange={(e) => {
-                            const value = e.target.value;
-                            if (!validator) return;
-                            updateValidatorOption(idx, value);
-                          }}
-                        >
-                          <option value="">▼ バリデータを選択</option>
-                          <optgroup label="入力値の制限">
-                            <option value="required">必須 ( required )</option>
-                            <option value="minlength">最小文字数 ( minlength )</option>
-                            <option value="maxlength">最大文字数 ( maxlength )</option>
-                            <option value="min">下限値 ( min )</option>
-                            <option value="max">上限値 ( max )</option>
-                          </optgroup>
-                          <optgroup label="形式チェック">
-                            <option value="digits">数字チェック ( digits )</option>
-                            <option value="email">メールアドレスチェック ( email )</option>
-                            <option value="hiragana">ひらがなチェック ( hiragana )</option>
-                            <option value="katakana">カタカナチェック ( katakana )</option>
-                            <option value="url">URLチェック ( url )</option>
-                            <option value="dates">日付チェック ( dates )</option>
-                            <option value="times">時間チェック ( times )</option>
-                            <option value="regex">正規表現マッチ ( regex )</option>
-                          </optgroup>
-                        </select>
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          defaultValue={item.value}
-                          onInput={(e) => {
-                            const value = e.target.value;
-                            if (!value) return;
-                            updateValidatorValue(idx, value);
-                          }}
-                          className="acms-admin-form-width-full"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          defaultValue={item.message}
-                          onInput={(e) => {
-                            const value = e.target.value;
-                            if (!value) return;
-                            updateValidatorMessage(idx, value);
-                          }}
-                          className="acms-admin-form-width-full"
-                        />
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => {
-                            removeValidator(idx);
-                          }}
-                          className="acms-admin-btn-admin acms-admin-btn-admin-danger"
-                        >
-                          削除
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          )}
-          {showValidator && (
-            <p>
-              <button onClick={addValidator} className="acms-admin-btn">
-                追加
-              </button>
-            </p>
+          <table className="acms-admin-table customFieldOptionTable" style={{ borderTop: 0 }}>
+            <tbody>
+              <tr>
+                <th>
+                  バリデーター
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-tip" />
+                  <ReactTooltip
+                    id="validate-tip"
+                    place="top"
+                    type="dark"
+                    effect="solid"
+                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                  >
+                    <span>フィールドに入力された値が条件に合っているかをチェックします。</span>
+                  </ReactTooltip>
+                </th>
+                <th>
+                  値
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-value-tip" />
+                  <ReactTooltip
+                    id="validate-value-tip"
+                    place="top"
+                    type="dark"
+                    effect="solid"
+                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                  >
+                    <span>最小文字数や、正規表現チェックをバリデータに設定した際に設定する値となります。</span>
+                  </ReactTooltip>
+                </th>
+                <th>
+                  メッセージ
+                  <i className="acms-admin-icon-tooltip" data-tip data-for="validate-message-tip" />
+                  <ReactTooltip
+                    id="validate-message-tip"
+                    place="top"
+                    type="dark"
+                    effect="solid"
+                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+                  >
+                    <span>フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。</span>
+                  </ReactTooltip>
+                </th>
+                <th />
+              </tr>
+              {validator &&
+                validator.map((item, idx) => (
+                  <tr key={`validator${idx}`}>
+                    <td>
+                      <select
+                        className="acms-admin-form-width-full"
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          if (!validator) return;
+                          updateValidatorOption(idx, value);
+                        }}
+                      >
+                        <option value="">▼ 選択</option>
+                        <optgroup label="入力値の制限">
+                          <option value="required">必須 ( required )</option>
+                          <option value="minlength">最小文字数 ( minlength )</option>
+                          <option value="maxlength">最大文字数 ( maxlength )</option>
+                          <option value="min">下限値 ( min )</option>
+                          <option value="max">上限値 ( max )</option>
+                        </optgroup>
+                        <optgroup label="形式チェック">
+                          <option value="digits">数字チェック ( digits )</option>
+                          <option value="email">メールアドレスチェック ( email )</option>
+                          <option value="hiragana">ひらがなチェック ( hiragana )</option>
+                          <option value="katakana">カタカナチェック ( katakana )</option>
+                          <option value="url">URLチェック ( url )</option>
+                          <option value="dates">日付チェック ( dates )</option>
+                          <option value="times">時間チェック ( times )</option>
+                          <option value="regex">正規表現マッチ ( regex )</option>
+                        </optgroup>
+                      </select>
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        defaultValue={item.value}
+                        onInput={(e) => {
+                          const value = e.target.value;
+                          if (!value) return;
+                          updateValidatorValue(idx, value);
+                        }}
+                        className="acms-admin-form-width-full"
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        defaultValue={item.message}
+                        onInput={(e) => {
+                          const value = e.target.value;
+                          if (!value) return;
+                          updateValidatorMessage(idx, value);
+                        }}
+                        className="acms-admin-form-width-full"
+                      />
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          removeValidator(idx);
+                        }}
+                        className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+                      >
+                        削除
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+
+          <div>
+            <button onClick={addValidator} className="acms-admin-btn">
+              追加
+            </button>
+          </div>
+
+          {/text|number|tel|email|password|textarea|radioButton|selectbox/.exec(type) && (
+            <NoSearchBox noSearch={noSearch} setField={setField} />
           )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

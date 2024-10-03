@@ -19,7 +19,7 @@ export function PreviewModeNavigator() {
           className={classnames({ customFieldTabActive: editMode === 'source' })}
           onClick={() => updateMode('source')}
         >
-          入力用ソース
+          入力用コード
         </a>
       </li>
       <li>
@@ -28,7 +28,7 @@ export function PreviewModeNavigator() {
           className={classnames({ customFieldTabActive: editMode === 'preview' })}
           onClick={() => updateMode('preview')}
         >
-          プレビュー
+          入力用プレビュー
         </a>
       </li>
       <li>
@@ -37,7 +37,7 @@ export function PreviewModeNavigator() {
           className={classnames({ customFieldTabActive: editMode === 'confirm' })}
           onClick={() => updateMode('confirm')}
         >
-          出力用ソース
+          出力用コード
         </a>
       </li>
     </ul>

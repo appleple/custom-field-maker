@@ -20,6 +20,7 @@ export function PreviewNavigator() {
     setCopied,
     preview: { jsValidator, acmscss, mode, editMode, tag, direction },
     clipboard: { source },
+    undo,
   } = useMakerContext();
 
   const updateTag = (tag) => {
@@ -34,150 +35,169 @@ export function PreviewNavigator() {
     setJsValidator(!jsValidator);
   };
 
+  const onUndoHandler = () => {
+    undo(mode), [mode, undo];
+  };
+
   return (
-    <>
-      <div className="acms-admin-form-checkbox" style={{ marginTop: '5px' }}>
-        <input type="checkbox" onChange={onAcmscss} checked={acmscss} id="acmscss-checkbox" />
-        <label htmlFor="acmscss-checkbox">
-          <i className="acms-admin-ico-checkbox" />
-          acms-admin.cssを使用する
-        </label>
-      </div>
+    <div className="customFieldNavigatorCode">
+      <div>
+        <div className="acms-flex acms-items-center" style={{ gap: '16px' }}>
+          {editMode !== 'confirm' && (
+            <div>
+              <select
+                id="tag"
+                onChange={(e) => updateTag(e.target.value)}
+                className="acms-admin-form-width-quarter"
+                style={{ width: '100px' }}
+              >
+                <option value="section">div タグ</option>
+                <option value="table">table タグ</option>
+              </select>
+            </div>
+          )}
 
-      {(mode === 'customfield' || mode === 'fieldgroup') && (
-        <div className="acms-admin-form-checkbox" style={{ marginTop: '5px' }}>
-          <input type="checkbox" onChange={onJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
-          <label htmlFor="jsvalidator-checkbox">
-            <i className="acms-admin-ico-checkbox" />
-            JavaScriptによるバリデートを使用する
-          </label>
-        </div>
-      )}
-
-      {editMode !== 'confirm' && (
-        <select id="tag" onChange={(e) => updateTag(e.target.value)} className="acms-admin-form-width-quarter">
-          <option value="section">--</option>
-          <option value="table">table</option>
-        </select>
-      )}
-
-      {tag === 'table' && (mode === 'fieldgroup' || mode === 'unitgroup') && (
-        <div style={{ marginTop: '5px' }}>
-          <span className="customFieldDirectionBtnGroupSide">ソースの追加方法</span>
-          <div className="customFieldDirectionBtnGroup">
-            <label
-              htmlFor="direction-horizontal"
-              className={classnames('customFieldDirectionBtn', {
-                active: direction === 'horizontal',
-              })}
-              data-tip
-              data-for="group-field-direction-horizontal"
-            >
-              <input
-                type="radio"
-                id="direction-horizontal"
-                onChange={() => setDirection('horizontal')}
-                checked={direction === 'horizontal'}
-              />
-              <img src={columnIcon} alt="" />
-            </label>
-            <label
-              htmlFor="direction-vertical"
-              className={classnames('customFieldDirectionBtn', {
-                active: direction === 'vertical',
-              })}
-              data-tip
-              data-for="group-field-direction-vertical"
-            >
-              <input
-                type="radio"
-                id="direction-vertical"
-                onChange={() => setDirection('vertical')}
-                checked={direction === 'vertical'}
-              />
-              <img src={rowIcon} alt="" />
+          <div className="acms-admin-form-checkbox" style={{ margin: 0 }}>
+            <input type="checkbox" onChange={onAcmscss} checked={acmscss} id="acmscss-checkbox" />
+            <label htmlFor="acmscss-checkbox">
+              <i className="acms-admin-ico-checkbox" />
+              acms-admin.css
             </label>
           </div>
-          <ReactTooltip
-            id="group-field-direction-vertical"
-            place="top"
-            type="dark"
-            effect="solid"
-            className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-          >
-            <span>縦向きレイアウト用にソースコードを生成します。</span>
-          </ReactTooltip>
-          <ReactTooltip
-            id="group-field-direction-horizontal"
-            place="top"
-            type="dark"
-            effect="solid"
-            className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-          >
-            <span>横向きレイアウト用にソースコードを生成します。</span>
-          </ReactTooltip>
-        </div>
-      )}
 
-      <div
-        style={{
-          marginTop: '5px',
-        }}
-      >
-        {editMode !== 'preview' && (
-          <div style={{ display: 'inline-block', position: 'relative', marginRight: '10px' }}>
-            <CopyToClipboard text={source} onCopy={() => setCopied(true)}>
-              <button className="acms-admin-btn-admin">コードをコピー</button>
-            </CopyToClipboard>
-            <Notify message="クリップボードにコピーしました" onFinish={() => setCopied(false)} />
+          {(mode === 'customfield' || mode === 'fieldgroup') && (
+            <div className="acms-admin-form-checkbox" style={{ margin: 0 }}>
+              <input type="checkbox" onChange={onJsValidator} checked={jsValidator} id="jsvalidator-checkbox" />
+              <label htmlFor="jsvalidator-checkbox">
+                <i className="acms-admin-ico-checkbox" />
+                JavaScriptのバリデート
+              </label>
+            </div>
+          )}
+        </div>
+
+        {tag === 'table' && (mode === 'fieldgroup' || mode === 'unitgroup') && (
+          <div style={{ marginTop: '5px' }}>
+            <span className="customFieldDirectionBtnGroupSide">ソースの追加方法</span>
+            <div className="customFieldDirectionBtnGroup">
+              <label
+                htmlFor="direction-horizontal"
+                className={classnames('customFieldDirectionBtn', {
+                  active: direction === 'horizontal',
+                })}
+                data-tip
+                data-for="group-field-direction-horizontal"
+              >
+                <input
+                  type="radio"
+                  id="direction-horizontal"
+                  onChange={() => setDirection('horizontal')}
+                  checked={direction === 'horizontal'}
+                />
+                <img src={columnIcon} alt="" />
+              </label>
+              <label
+                htmlFor="direction-vertical"
+                className={classnames('customFieldDirectionBtn', {
+                  active: direction === 'vertical',
+                })}
+                data-tip
+                data-for="group-field-direction-vertical"
+              >
+                <input
+                  type="radio"
+                  id="direction-vertical"
+                  onChange={() => setDirection('vertical')}
+                  checked={direction === 'vertical'}
+                />
+                <img src={rowIcon} alt="" />
+              </label>
+            </div>
+            <ReactTooltip
+              id="group-field-direction-vertical"
+              place="top"
+              type="dark"
+              effect="solid"
+              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+            >
+              <span>縦向きレイアウト用にソースコードを生成します。</span>
+            </ReactTooltip>
+            <ReactTooltip
+              id="group-field-direction-horizontal"
+              place="top"
+              type="dark"
+              effect="solid"
+              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+            >
+              <span>横向きレイアウト用にソースコードを生成します。</span>
+            </ReactTooltip>
           </div>
         )}
-
-        {mode === 'customfield' && (
-          <button
-            onClick={() => {
-              confirm('履歴クリアしますか？');
-              clearCustomfield();
-            }}
-            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
-          >
-            履歴クリア
-          </button>
-        )}
-        {mode === 'fieldgroup' && (
-          <button
-            onClick={() => {
-              confirm('履歴クリアしますか？');
-              clearGroupItem();
-            }}
-            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
-          >
-            履歴クリア
-          </button>
-        )}
-        {mode === 'customunit' && (
-          <button
-            onClick={() => {
-              confirm('履歴クリアしますか？');
-              clearCustomunit();
-            }}
-            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
-          >
-            履歴クリア
-          </button>
-        )}
-        {mode === 'unitgroup' && (
-          <button
-            onClick={() => {
-              confirm('履歴クリアしますか？');
-              clearUnitGroupItem();
-            }}
-            className="acms-admin-btn-admin acms-admin-btn-admin-danger"
-          >
-            履歴クリア
-          </button>
-        )}
       </div>
-    </>
+
+      <div className="customFieldNavigatorCodeButtonList">
+        <div style={{ display: 'inline-block', position: 'relative', marginRight: '10px' }}>
+          {editMode !== 'preview' && (
+            <>
+              <CopyToClipboard text={source} onCopy={() => setCopied(true)}>
+                <button className="acms-admin-btn-admin acms-admin-btn-admin-info">生成コードをコピー</button>
+              </CopyToClipboard>
+              <Notify message="クリップボードにコピーしました" onFinish={() => setCopied(false)} />
+            </>
+          )}
+        </div>
+
+        <div>
+          <button className="acms-admin-btn-admin" style={{ marginRight: '4px' }} onClick={onUndoHandler}>
+            生成コードを一つ戻す
+          </button>
+
+          {mode === 'customfield' && (
+            <button
+              onClick={() => {
+                confirm('履歴クリアしますか？');
+                clearCustomfield();
+              }}
+              className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+            >
+              生成コードをクリア
+            </button>
+          )}
+          {mode === 'fieldgroup' && (
+            <button
+              onClick={() => {
+                confirm('履歴クリアしますか？');
+                clearGroupItem();
+              }}
+              className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+            >
+              生成コードをクリア
+            </button>
+          )}
+          {mode === 'customunit' && (
+            <button
+              onClick={() => {
+                confirm('履歴クリアしますか？');
+                clearCustomunit();
+              }}
+              className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+            >
+              生成コードをクリア
+            </button>
+          )}
+          {mode === 'unitgroup' && (
+            <button
+              onClick={() => {
+                confirm('履歴クリアしますか？');
+                clearUnitGroupItem();
+              }}
+              className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+            >
+              生成コードをクリア
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

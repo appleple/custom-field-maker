@@ -1,51 +1,33 @@
-{
-  "text": {
-    "label": "テキスト",
-    "subTypes": [
-      { "value": "text", "label": "--" },
-      { "value": "tel", "label": "電話" },
+[
+  {
+    "テキスト": [
+      { "value": "text", "label": "テキスト" },
+      { "value": "tel", "label": "電話番号" },
       { "value": "number", "label": "数値" },
-      { "value": "email", "label": "メール" },
+      { "value": "email", "label": "メールアドレス" },
       { "value": "password", "label": "パスワード" }
     ]
   },
-  "textarea": {
-    "label": "テキストエリア",
-    "subTypes": [
-      { "value": "textarea", "label": "--" },
-      { "value": "lite-editor", "label": "ライトエディター" }
+  {
+    "テキストエリア": [
+      { "value": "textarea", "label": "テキストエリア" },
+      { "value": "liteEditor", "label": "ライトエディター" },
+      { "value": "richEditor", "label": "リッチエディター" }
     ]
   },
-  "checkbox": {
-    "label": "チェックボックス",
-    "subTypes": []
+  {
+    "選択": [
+      { "value": "checkbox", "label": "チェックボックス" },
+      { "value": "selectbox", "label": "セレクトボックス" },
+      { "value": "radioButton", "label": "ラジオボタン" }
+    ]
   },
-  "selectbox": {
-    "label": "セレクトボックス",
-    "subTypes": []
-  },
-  "radioButton": {
-    "label": "ラジオボタン",
-    "subTypes": []
-  },
-  "media": {
-    "label": "メディア",
-    "subTypes": []
-  },
-  "image": {
-    "label": "画像",
-    "subTypes": []
-  },
-  "file": {
-    "label": "ファイル",
-    "subTypes": []
-  },
-  "richEditor": {
-    "label": "リッチエディター",
-    "subTypes": []
-  },
-  "table": {
-    "label": "テーブル",
-    "subTypes": []
+  {
+    "その他": [
+      { "value": "media", "label": "メディア" },
+      { "value": "image", "label": "画像" },
+      { "value": "file", "label": "ファイル" },
+      { "value": "table", "label": "テーブル" }
+    ]
   }
-}
+]

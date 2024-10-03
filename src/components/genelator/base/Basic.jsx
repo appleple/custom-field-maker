@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import inputTypesJson from '../../../../json/input-types.json';
 
 export function Basic(props) {
   const { field, setField } = props;
-  const [selectedSubTypes, setSelectedSubTypes] = useState([]);
   const [isPlaceholder, setIsPlaceholder] = useState(true);
-
-  useEffect(() => {
-    const subTypes = Array.isArray(inputTypesJson[field.type]?.subTypes) ? inputTypesJson[field.type].subTypes : [];
-    setSelectedSubTypes(subTypes);
-  }, [field.type]);
 
   function TypeSelector() {
     const onChange = (e) => {
       const type = e.target.value;
+
       if (!type) return;
-      if ((type === 'text') | (type === 'textarea')) {
+      if (
+        (type === 'text') |
+        (type === 'tel') |
+        (type === 'number') |
+        (type === 'email') |
+        (type === 'password') |
+        (type === 'textarea')
+      ) {
         setIsPlaceholder(true);
       } else {
         setIsPlaceholder(false);
@@ -24,49 +26,24 @@ export function Basic(props) {
       setField((prevState) => ({
         ...prevState,
         type,
-        subType: '',
       }));
     };
 
     return (
       <select id="type" value={field.type || ''} className="acms-admin-form-width-full" onChange={onChange}>
-        {Object.keys(inputTypesJson).map((input, index) => (
-          <option key={index} value={input}>
-            {inputTypesJson[input].label}
-          </option>
-        ))}
-      </select>
-    );
-  }
-
-  function SubTypeSelector() {
-    const onChange = (e) => {
-      const subType = e.target.value;
-      if (!subType) return;
-      setField((prevState) => ({
-        ...prevState,
-        subType,
-      }));
-    };
-
-    return (
-      <>
-        {selectedSubTypes.length > 0 && (
-          <div
-            style={{
-              marginTop: '5px',
-            }}
-          >
-            <select id="subType" value={field.subType || ''} className="acms-admin-form-width-full" onChange={onChange}>
-              {selectedSubTypes.map((subType) => (
-                <option key={subType.value} value={subType.value}>
-                  {subType.label}
+        {inputTypesJson.map((group, groupIndex) => {
+          const [groupName, options] = Object.entries(group)[0];
+          return (
+            <optgroup key={groupIndex} label={groupName}>
+              {options.map((item, index) => (
+                <option key={index} value={item.value}>
+                  {item.label}
                 </option>
               ))}
-            </select>
-          </div>
-        )}
-      </>
+            </optgroup>
+          );
+        })}
+      </select>
     );
   }
 
@@ -79,132 +56,92 @@ export function Basic(props) {
   };
 
   return (
-    <table className="adminTable acms-admin-table-admin-edit customFieldBasicTable customFieldBasicTableFirst">
-      <thead>
-        <tr>
-          <th className="acms-admin-table-left">
-            入力欄の種類
-            <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="type-tip" />
-            <ReactTooltip
-              id="type-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
-              <span>
-                フィールドのタイプとなります。
-                <br />
-                選択しないと生成ボタンを押してもソースコードが生成されません。
-              </span>
-            </ReactTooltip>
-            <span className="acms-admin-label acms-admin-label-danger">必須</span>
-          </th>
-          <th className="acms-admin-table-left">
-            タイトル
-            <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip" />
-            <ReactTooltip
-              id="title-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
-              <span>見出しになります。</span>
-            </ReactTooltip>
-            <span className="acms-admin-label acms-admin-label-danger">必須</span>
-          </th>
-          <th className="acms-admin-table-left">
-            フィールド
-            <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip" />
-            <ReactTooltip
-              id="field-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
-              <span>フィールド名です。name属性として使用されます。</span>
-            </ReactTooltip>
-            <span className="acms-admin-label acms-admin-label-danger">必須</span>
-          </th>
-          <th className="acms-admin-table-left">
-            ツールチップ
-            <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="tooltip-tip" />
-            <ReactTooltip
-              id="tooltip-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
-              <span>カスタムフィールドの説明用のツールチップを付与します。</span>
-            </ReactTooltip>
-          </th>
-          {isPlaceholder && (
-            <th className="acms-admin-table-left">
-              プレースホルダー
-              <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="placeholder-tip" />
-              <ReactTooltip
-                id="placeholder-tip"
-                place="top"
-                type="dark"
-                effect="solid"
-                className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-              >
-                <span>placeholder属性を設定します。</span>
-              </ReactTooltip>
-            </th>
-          )}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <TypeSelector />
-            <SubTypeSelector />
-          </td>
-          <td>
+    <div className="customFieldGeneratorBasic">
+      <div className="customFieldGeneratorBasicInput">
+        <label className="">
+          タイプ
+          <span className="acms-admin-label acms-admin-label-danger">必須</span>
+        </label>
+        <div>
+          <TypeSelector />
+        </div>
+      </div>
+      <div className="customFieldGeneratorBasicTitle">
+        <label className="">
+          タイトル
+          <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip" />
+          <ReactTooltip
+            id="title-tip"
+            place="top"
+            type="dark"
+            effect="solid"
+            className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+          >
+            <span>見出しになります。</span>
+          </ReactTooltip>
+          <span className="acms-admin-label acms-admin-label-danger">必須</span>
+        </label>
+        <div>
+          <input
+            type="text"
+            value={field.title || ''}
+            onChange={(e) => handleInputChange(e, 'title')}
+            className="acms-admin-form-width-full"
+            placeholder="氏名"
+          />
+        </div>
+      </div>
+      <div className="customFieldGeneratorBasicField">
+        <label className="">
+          フィールド
+          <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip" />
+          <ReactTooltip
+            id="field-tip"
+            place="top"
+            type="dark"
+            effect="solid"
+            className="acms-admin-tooltip acms-tooltip customFieldTooltip"
+          >
+            <span>フィールド名です。name属性として使用されます。</span>
+          </ReactTooltip>
+          <span className="acms-admin-label acms-admin-label-danger">必須</span>
+        </label>
+        <div>
+          <input
+            type="text"
+            value={field.name || ''}
+            onChange={(e) => handleInputChange(e, 'name')}
+            className="acms-admin-form-width-full"
+            placeholder="name"
+          />
+        </div>
+      </div>
+      <div className="customFieldGeneratorBasicTooltip">
+        <label className="">ツールチップ</label>
+        <div>
+          <input
+            type="text"
+            value={field.tooltip || ''}
+            onChange={(e) => handleInputChange(e, 'tooltip')}
+            className="acms-admin-form-width-full"
+            placeholder="姓名をスペースなしで入力して下さい"
+          />
+        </div>
+      </div>
+      {isPlaceholder && (
+        <div className="customFieldGeneratorBasicPlaceholder">
+          <label className="">プレースホルダー</label>
+          <div>
             <input
               type="text"
-              value={field.title || ''}
-              onChange={(e) => handleInputChange(e, 'title')}
+              value={field.placeholder || ''}
+              onChange={(e) => handleInputChange(e, 'placeholder')}
               className="acms-admin-form-width-full"
-              placeholder="例）タイトル"
+              placeholder="例）林檎太郎"
             />
-          </td>
-          <td>
-            <input
-              type="text"
-              value={field.name || ''}
-              onChange={(e) => handleInputChange(e, 'name')}
-              className="acms-admin-form-width-full"
-              placeholder="例）name"
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              value={field.tooltip || ''}
-              onChange={(e) => handleInputChange(e, 'tooltip')}
-              className="acms-admin-form-width-full"
-              placeholder="例）ここにツールチップを入力してください"
-            />
-          </td>
-
-          {isPlaceholder && (
-            <td>
-              <input
-                type="text"
-                value={field.placeholder || ''}
-                onChange={(e) => handleInputChange(e, 'placeholder')}
-                className="acms-admin-form-width-full"
-                placeholder="例）ここにプレースホルダーを入力してください"
-              />
-            </td>
-          )}
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

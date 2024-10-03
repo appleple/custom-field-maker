@@ -16,17 +16,23 @@ import classnames from 'classnames';
 export function Section() {
   const {
     state: { customfield },
-    preview: { jsValidator, acmscss },
+    preview: { editMode, jsValidator, acmscss },
   } = useMakerContext();
 
   return (
     <>
-      {jsValidator && '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
+      {jsValidator &&
+        editMode !== 'preview' &&
+        '<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
       <div className={classnames({ 'acms-admin-grid-edit-table': acmscss })}>
         {customfield.length > 0 &&
           customfield.map((item, index) => {
             switch (item.type) {
-              case 'text': {
+              case 'text':
+              case 'tel':
+              case 'number':
+              case 'email':
+              case 'password': {
                 return (
                   <div
                     key={index}
@@ -48,7 +54,8 @@ export function Section() {
                   </div>
                 );
               }
-              case 'textarea': {
+              case 'textarea':
+              case 'liteEditor': {
                 return (
                   <div
                     key={index}
@@ -249,7 +256,7 @@ export function Section() {
             }
           })}
       </div>
-      {jsValidator && '<!-- </form> -->'}
+      {jsValidator && editMode !== 'preview' && '<!-- </form> -->'}
     </>
   );
 }

@@ -8,11 +8,10 @@ export function Textarea(props) {
   const {
     preview: { mode, jsValidator, acmscss },
   } = useMakerContext();
-  const selectedType = item.subType ? item.subType : item.type;
 
   const classname = classnames({
     'acms-admin-form-width-full': acmscss,
-    'js-lite-editor-field': selectedType === 'lite-editor',
+    'js-lite-editor-field': item.type === 'liteEditor',
   });
 
   return (
