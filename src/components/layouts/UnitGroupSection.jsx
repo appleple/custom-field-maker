@@ -58,7 +58,11 @@ export function UnitGroupSection() {
           >
             {(() => {
               switch (item.type) {
-                case 'text': {
+                case 'text':
+                case 'tel':
+                case 'number':
+                case 'email':
+                case 'password': {
                   return (
                     <>
                       <label
@@ -73,7 +77,8 @@ export function UnitGroupSection() {
                     </>
                   );
                 }
-                case 'textarea': {
+                case 'textarea':
+                case 'liteEditor': {
                   return (
                     <>
                       <label
@@ -285,7 +290,11 @@ export function UnitGroupSection() {
                             >
                               {(() => {
                                 switch (item.type) {
-                                  case 'text': {
+                                  case 'text':
+                                  case 'tel':
+                                  case 'number':
+                                  case 'email':
+                                  case 'password': {
                                     return (
                                       <>
                                         <label
@@ -300,7 +309,8 @@ export function UnitGroupSection() {
                                       </>
                                     );
                                   }
-                                  case 'textarea': {
+                                  case 'textarea':
+                                  case 'liteEditor': {
                                     return (
                                       <>
                                         <label

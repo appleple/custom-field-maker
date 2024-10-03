@@ -23,9 +23,9 @@ export function TextInput(props) {
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
             {...(jsValidator ? { 'data-validator': item.name } : {})}
           />
-          <input type="hidden" name="field[]" defaultValue={item.name} />
           <OptionValidator item={item} />
           <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+          <input type="hidden" name="field[]" defaultValue={item.name} />
         </>
       )}
 
@@ -53,20 +53,25 @@ export function TextInput(props) {
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
+          <OptionValidator item={item} />
+          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
         </>
       )}
 
       {mode === 'unitgroup' && (
-        <input
-          type={item.type}
-          name={`${item.name}{id}[]`}
-          {...(isValue && {
-            value: `{${item.name}}`,
-          })}
-          className={classnames({ 'acms-admin-form-width-full': acmscss })}
-          {...(item.placeholder ? { placeholder: item.placeholder } : {})}
-        />
+        <>
+          <input
+            type={item.type}
+            name={`${item.name}{id}[]`}
+            {...(isValue && {
+              value: `{${item.name}}`,
+            })}
+            className={classnames({ 'acms-admin-form-width-full': acmscss })}
+            {...(item.placeholder ? { placeholder: item.placeholder } : {})}
+          />
+          <OptionValidator item={item} />
+        </>
       )}
     </>
   );

@@ -21055,32 +21055,50 @@
             field: { type: n, validator: a, openValidator: r, converter: l, noSearch: i },
             setField: o,
           } = t,
-          [c, s] = (0, e.useState)(0),
-          u = (0, e.useRef)(null),
-          m = (0, e.useCallback)(() => {
-            if (u.current) {
-              const e = r ? ''.concat(u.current.scrollHeight, 'px') : '0px';
-              s(e);
+          {
+            preview: { mode: c },
+          } = u(),
+          [s, m] = (0, e.useState)(0),
+          d = (0, e.useRef)(null),
+          p = (0, e.useCallback)(() => {
+            if (d.current) {
+              const e = r ? ''.concat(d.current.scrollHeight, 'px') : '0px';
+              m(e);
             }
           }, [r]);
         (0, e.useEffect)(() => {
-          m(), window.addEventListener('resize', m);
+          p(), window.addEventListener('resize', p);
           const e = new ResizeObserver((e) => {
-              const t = u.current;
-              for (let n of e) n.target === t && m();
+              const t = d.current;
+              for (let n of e) n.target === t && p();
             }),
-            t = u.current;
+            t = d.current;
           return (
             t && e.observe(t),
             () => {
-              window.removeEventListener('resize', m), t && e.unobserve(t);
+              window.removeEventListener('resize', p), t && e.unobserve(t);
             }
           );
-        }, [m]);
-        const d = (0, e.useMemo)(() => ['text', 'textarea', 'checkbox', 'selectbox', 'radioButton'].includes(n), [n]),
-          p = (0, e.useCallback)(() => {
-            o((e) => ({ ...e, validator: [...e.validator, { option: '', value: '', message: '' }] })), setTimeout(m, 0);
-          }, [o, m]);
+        }, [p]);
+        const f = (0, e.useMemo)(
+            () =>
+              [
+                'text',
+                'tel',
+                'number',
+                'email',
+                'password',
+                'textarea',
+                'liteEditor',
+                'checkbox',
+                'selectbox',
+                'radioButton',
+              ].includes(n),
+            [n]
+          ),
+          h = (0, e.useCallback)(() => {
+            o((e) => ({ ...e, validator: [...e.validator, { option: '', value: '', message: '' }] })), setTimeout(p, 0);
+          }, [o, p]);
         return e.createElement(
           'div',
           null,
@@ -21102,11 +21120,11 @@
           ),
           e.createElement(
             'div',
-            { className: 'customFieldAccordionContent '.concat(r ? '-open' : ''), style: { maxHeight: c }, ref: u },
+            { className: 'customFieldAccordionContent '.concat(r ? '-open' : ''), style: { maxHeight: s }, ref: d },
             e.createElement(
               'div',
               { className: 'customFieldValidatorArea' },
-              d &&
+              f &&
                 e.createElement(
                   'div',
                   null,
@@ -21348,10 +21366,12 @@
               e.createElement(
                 'div',
                 null,
-                e.createElement('button', { onClick: p, className: 'acms-admin-btn' }, '追加')
+                e.createElement('button', { onClick: h, className: 'acms-admin-btn' }, '追加')
               ),
-              /text|number|tel|email|password|textarea|radioButton|selectbox/.exec(n) &&
-                e.createElement(bi, { noSearch: i, setField: o })
+              ('customfield' === c) | ('customunit' === c) &&
+                /text|number|tel|email|password|textarea|radioButton|selectbox/.exec(n)
+                ? e.createElement(bi, { noSearch: i, setField: o })
+                : e.createElement(e.Fragment, null)
             )
           )
         );
@@ -22159,10 +22179,7 @@
               ),
             'file' === t.type && e.createElement('div', null, e.createElement(ki, { field: t, setField: n })),
             'richEditor' === t.type && e.createElement('div', null, e.createElement(Si, { field: t, setField: n })),
-            'media' !== t.type &&
-              'richEditor' !== t.type &&
-              'table' !== t.type &&
-              e.createElement(Ei, { field: t, setField: n }),
+            e.createElement(Ei, { field: t, setField: n }),
             e.createElement(vi, {
               setField: n,
               onSubmit: (e) => {
@@ -23092,9 +23109,9 @@
                   i ? { 'data-validator': n.name } : {}
                 )
               ),
-              e.createElement('input', { type: 'hidden', name: 'field[]', defaultValue: n.name }),
               e.createElement(Bi, { item: n }),
-              e.createElement(Vi, { name: n.name, noSearch: n.noSearch })
+              e.createElement(Vi, { name: n.name, noSearch: n.noSearch }),
+              e.createElement('input', { type: 'hidden', name: 'field[]', defaultValue: n.name })
             ),
           'fieldgroup' === l &&
             e.createElement(
@@ -23127,17 +23144,24 @@
                   n.placeholder ? { placeholder: n.placeholder } : {}
                 )
               ),
+              e.createElement(Bi, { item: n }),
+              e.createElement(Vi, { name: n.name, noSearch: n.noSearch }),
               e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: ''.concat(n.name, '{id}') })
             ),
           'unitgroup' === l &&
             e.createElement(
-              'input',
-              Mi(
-                { type: n.type, name: ''.concat(n.name, '{id}[]') },
-                r && { value: '{'.concat(n.name, '}') },
-                { className: p()({ 'acms-admin-form-width-full': o }) },
-                n.placeholder ? { placeholder: n.placeholder } : {}
-              )
+              e.Fragment,
+              null,
+              e.createElement(
+                'input',
+                Mi(
+                  { type: n.type, name: ''.concat(n.name, '{id}[]') },
+                  r && { value: '{'.concat(n.name, '}') },
+                  { className: p()({ 'acms-admin-form-width-full': o }) },
+                  n.placeholder ? { placeholder: n.placeholder } : {}
+                )
+              ),
+              e.createElement(Bi, { item: n })
             )
         );
       }
@@ -23163,8 +23187,9 @@
                 ),
                 r ? '{'.concat(n.name, '}') : ''
               ),
-              e.createElement('input', { type: 'hidden', name: 'field[]', defaultValue: n.name }),
-              e.createElement(Bi, { item: n })
+              e.createElement(Bi, { item: n }),
+              e.createElement(Vi, { name: n.name, noSearch: n.noSearch }),
+              e.createElement('input', { type: 'hidden', name: 'field[]', defaultValue: n.name })
             ),
           'fieldgroup' === l &&
             e.createElement(
@@ -23192,8 +23217,9 @@
                 ),
                 r ? '{'.concat(n.name, '}') : ''
               ),
-              e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: ''.concat(n.name, '{id}') }),
-              e.createElement(Bi, { item: n })
+              e.createElement(Bi, { item: n }),
+              e.createElement(Vi, { name: n.name, noSearch: n.noSearch }),
+              e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: ''.concat(n.name, '{id}') })
             ),
           'unitgroup' === l &&
             e.createElement(
@@ -23284,25 +23310,31 @@
                 )
               ),
               e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: ''.concat(n.name, '{id}') }),
-              e.createElement(Bi, { item: n })
+              e.createElement(Bi, { item: n }),
+              e.createElement(Vi, { name: n.name, noSearch: n.noSearch })
             ),
           'unitgroup' === l &&
             e.createElement(
-              'select',
-              { name: ''.concat(n.name, '{id}[]'), className: p()({ 'acms-admin-form-width-full': i }) },
-              e.createElement('option', { value: '' }),
-              n.option.map((t, a) =>
-                t.label
-                  ? e.createElement(
-                      'option',
-                      Mi(
-                        { key: a, value: t.value },
-                        r && { 'data-tmp': '{'.concat(n.name, ':selected#').concat(t.value, '}') }
-                      ),
-                      t.label
-                    )
-                  : null
-              )
+              e.Fragment,
+              null,
+              e.createElement(
+                'select',
+                { name: ''.concat(n.name, '{id}[]'), className: p()({ 'acms-admin-form-width-full': i }) },
+                e.createElement('option', { value: '' }),
+                n.option.map((t, a) =>
+                  t.label
+                    ? e.createElement(
+                        'option',
+                        Mi(
+                          { key: a, value: t.value },
+                          r && { 'data-tmp': '{'.concat(n.name, ':selected#').concat(t.value, '}') }
+                        ),
+                        t.label
+                      )
+                    : null
+                )
+              ),
+              e.createElement(Bi, { item: n })
             )
         );
       }
@@ -23397,7 +23429,8 @@
                   : null
               ),
               e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: ''.concat(n.name, '{id}') }),
-              e.createElement(Bi, { item: n })
+              e.createElement(Bi, { item: n }),
+              e.createElement(Vi, { name: n.name, noSearch: n.noSearch })
             ),
           'unitgroup' === r &&
             e.createElement(
@@ -23520,7 +23553,8 @@
                   : null
               ),
               e.createElement('input', { type: 'hidden', name: 'unit{id}[]', value: ''.concat(n.name, '{id}') }),
-              e.createElement(Bi, { item: n })
+              e.createElement(Bi, { item: n }),
+              e.createElement(Vi, { name: n.name, noSearch: n.noSearch })
             ),
           'unitgroup' === r &&
             e.createElement(
@@ -23691,7 +23725,8 @@
                 className: 'js-value',
               }),
               e.createElement('input', { type: 'hidden', name: 'field[]', value: n.name }),
-              e.createElement('input', { type: 'hidden', name: ''.concat(n.name, ':extension'), value: 'media' })
+              e.createElement('input', { type: 'hidden', name: ''.concat(n.name, ':extension'), value: 'media' }),
+              e.createElement(Bi, { item: n })
             ),
           'fieldgroup' === o &&
             e.createElement(
@@ -24192,8 +24227,7 @@
                     value: n.squareSize,
                   }),
                 e.createElement('input', { type: 'hidden', name: ''.concat(n.name, '@filename'), value: '' }),
-                e.createElement(Bi, { item: n }),
-                e.createElement(Vi, { name: n.name, noSearch: n.noSearch })
+                e.createElement(Bi, { item: n })
               ),
             'fieldgroup' === o &&
               e.createElement(
@@ -24473,7 +24507,7 @@
                       name: ''.concat(n.name, '{id}@').concat(n.square, '[]'),
                       value: n.squareSize,
                     }),
-                  r && e.createElement(Bi, { item: n })
+                  e.createElement(Bi, { item: n })
                 )
               )
           )
@@ -24562,7 +24596,7 @@
                     name: ''.concat(n.name, '@filename'),
                     value: '@rawfilename',
                   }),
-                e.createElement(Vi, { name: n.name, noSearch: n.noSearch })
+                e.createElement(Bi, { item: n })
               ),
             'fieldgroup' === o &&
               e.createElement(
@@ -25441,6 +25475,10 @@
               t.map((t, n) => {
                 switch (t.type) {
                   case 'text':
+                  case 'tel':
+                  case 'number':
+                  case 'email':
+                  case 'password':
                     return e.createElement(
                       'tr',
                       { key: n },
@@ -25448,6 +25486,7 @@
                       e.createElement('td', null, e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'textarea':
+                  case 'liteEditor':
                     return e.createElement(
                       'tr',
                       { key: n },
@@ -25570,6 +25609,10 @@
                     (() => {
                       switch (t.type) {
                         case 'text':
+                        case 'tel':
+                        case 'number':
+                        case 'email':
+                        case 'password':
                           return e.createElement(
                             e.Fragment,
                             null,
@@ -25588,6 +25631,7 @@
                             )
                           );
                         case 'textarea':
+                        case 'liteEditor':
                           return e.createElement(
                             e.Fragment,
                             null,
@@ -25823,6 +25867,10 @@
                                   (() => {
                                     switch (t.type) {
                                       case 'text':
+                                      case 'tel':
+                                      case 'number':
+                                      case 'email':
+                                      case 'password':
                                         return e.createElement(
                                           e.Fragment,
                                           null,
@@ -25841,6 +25889,7 @@
                                           )
                                         );
                                       case 'textarea':
+                                      case 'liteEditor':
                                         return e.createElement(
                                           e.Fragment,
                                           null,
@@ -26337,6 +26386,10 @@
                               t.items.map((t, n) => {
                                 switch (t.type) {
                                   case 'text':
+                                  case 'tel':
+                                  case 'number':
+                                  case 'email':
+                                  case 'password':
                                     return e.createElement(
                                       no,
                                       { title: t.title },
@@ -26347,6 +26400,7 @@
                                       )
                                     );
                                   case 'textarea':
+                                  case 'liteEditor':
                                     return e.createElement(
                                       no,
                                       { title: t.title },
@@ -26490,6 +26544,10 @@
                                     t.items.map((t, n) => {
                                       switch (t.type) {
                                         case 'text':
+                                        case 'tel':
+                                        case 'number':
+                                        case 'email':
+                                        case 'password':
                                           return e.createElement(
                                             no,
                                             { title: t.title },
@@ -26504,6 +26562,7 @@
                                             )
                                           );
                                         case 'textarea':
+                                        case 'liteEditor':
                                           return e.createElement(
                                             no,
                                             { title: t.title },
@@ -26869,6 +26928,10 @@
               t.map((t, n) => {
                 switch (t.type) {
                   case 'text':
+                  case 'tel':
+                  case 'number':
+                  case 'email':
+                  case 'password':
                     return e.createElement(
                       'div',
                       {
@@ -26894,6 +26957,7 @@
                       )
                     );
                   case 'textarea':
+                  case 'liteEditor':
                     return e.createElement(
                       'div',
                       {
@@ -27137,6 +27201,10 @@
               t.map((t, n) => {
                 switch (t.type) {
                   case 'text':
+                  case 'tel':
+                  case 'number':
+                  case 'email':
+                  case 'password':
                     return e.createElement(
                       'tr',
                       { key: n },
@@ -27144,6 +27212,7 @@
                       e.createElement('td', null, e.createElement(qi, { item: t, id: ''.concat(t.name).concat(n) }))
                     );
                   case 'textarea':
+                  case 'liteEditor':
                     return e.createElement(
                       'tr',
                       { key: n },
@@ -27266,6 +27335,10 @@
                     (() => {
                       switch (t.type) {
                         case 'text':
+                        case 'tel':
+                        case 'number':
+                        case 'email':
+                        case 'password':
                           return e.createElement(
                             e.Fragment,
                             null,
@@ -27284,6 +27357,7 @@
                             )
                           );
                         case 'textarea':
+                        case 'liteEditor':
                           return e.createElement(
                             e.Fragment,
                             null,
@@ -27521,6 +27595,10 @@
                                   (() => {
                                     switch (t.type) {
                                       case 'text':
+                                      case 'tel':
+                                      case 'number':
+                                      case 'email':
+                                      case 'password':
                                         return e.createElement(
                                           e.Fragment,
                                           null,
@@ -27539,6 +27617,7 @@
                                           )
                                         );
                                       case 'textarea':
+                                      case 'liteEditor':
                                         return e.createElement(
                                           e.Fragment,
                                           null,
@@ -28010,6 +28089,10 @@
                       t.items.map((t, n) => {
                         switch (t.type) {
                           case 'text':
+                          case 'tel':
+                          case 'number':
+                          case 'email':
+                          case 'password':
                             return e.createElement(
                               no,
                               { title: t.title },
@@ -28020,6 +28103,7 @@
                               )
                             );
                           case 'textarea':
+                          case 'liteEditor':
                             return e.createElement(
                               no,
                               { title: t.title },
@@ -28163,6 +28247,10 @@
                             t.items.map((t, n) => {
                               switch (t.type) {
                                 case 'text':
+                                case 'tel':
+                                case 'number':
+                                case 'email':
+                                case 'password':
                                   return e.createElement(
                                     no,
                                     { title: t.title },
@@ -28173,6 +28261,7 @@
                                     )
                                   );
                                 case 'textarea':
+                                case 'liteEditor':
                                   return e.createElement(
                                     no,
                                     { title: t.title },

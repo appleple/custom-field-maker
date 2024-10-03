@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
-import { OptionNoSearch } from './OptionNoSearch';
 
 export function ImageInput(props) {
   const { item, id, isAttribute = true } = props;
@@ -74,7 +73,6 @@ export function ImageInput(props) {
 
           <input type="hidden" name={`${item.name}@filename`} value="" />
           <OptionValidator item={item} />
-          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
         </div>
       )}
 
@@ -252,7 +250,7 @@ export function ImageInput(props) {
             {item.square && item.squareSize && (
               <input type="hidden" name={`${item.name}{id}@${item.square}[]`} value={item.squareSize} />
             )}
-            {isAttribute && <OptionValidator item={item} />}
+            <OptionValidator item={item} />
           </div>
         </>
       )}

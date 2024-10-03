@@ -322,6 +322,7 @@ export function Field() {
 
         {field.type === 'richEditor' && <div>{<RichEditorOption field={field} setField={setField} />}</div>}
 
+<<<<<<< HEAD
         {field.type !== 'media' && field.type !== 'richEditor' && field.type !== 'table' && (
           <Validator field={field} setField={setField} />
         )}
@@ -329,6 +330,9 @@ export function Field() {
         <Maker setField={setField} onSubmit={onSubmit} />
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
 =======
+=======
+        <Validator field={field} setField={setField} />
+>>>>>>> 2ecb6df (Adjust display items in form options.)
         <Operator setField={setField} onSubmit={onSubmit} />
 >>>>>>> f4e47e5 (Design fixes for group generators and form options.)
       </div>

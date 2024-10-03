@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionNoSearch } from './OptionNoSearch';
 
 export function Textarea(props) {
   const { item, id = '', isValue = true } = props;
@@ -27,8 +28,9 @@ export function Textarea(props) {
           >
             {isValue ? `{${item.name}}` : ''}
           </textarea>
-          <input type="hidden" name="field[]" defaultValue={item.name} />
           <OptionValidator item={item} />
+          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+          <input type="hidden" name="field[]" defaultValue={item.name} />
         </>
       )}
 
@@ -56,8 +58,9 @@ export function Textarea(props) {
           >
             {isValue ? `{${item.name}}` : ''}
           </textarea>
-          <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           <OptionValidator item={item} />
+          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+          <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
         </>
       )}
 

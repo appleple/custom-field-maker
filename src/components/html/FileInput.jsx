@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
-import { OptionNoSearch } from './OptionNoSearch';
 
 export function FileInput(props) {
   const { item, id, isValue = true } = props;
@@ -53,8 +52,7 @@ export function FileInput(props) {
           {item.fileNameMethod === 'asis' && (
             <input type="hidden" name={`${item.name}@filename`} value="@rawfilename" />
           )}
-
-          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+          <OptionValidator item={item} />
         </>
       )}
 

@@ -74,29 +74,33 @@ export function Selectbox(props) {
           </select>
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           <OptionValidator item={item} />
+          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
         </>
       )}
 
       {mode === 'unitgroup' && (
-        <select name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
-          <option value="" />
-          {item.option.map((option, index) => {
-            if (!option.label) {
-              return null;
-            }
-            return (
-              <option
-                key={index}
-                value={option.value}
-                {...(isSelected && {
-                  'data-tmp': `{${item.name}:selected#${option.value}}`,
-                })}
-              >
-                {option.label}
-              </option>
-            );
-          })}
-        </select>
+        <>
+          <select name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+            <option value="" />
+            {item.option.map((option, index) => {
+              if (!option.label) {
+                return null;
+              }
+              return (
+                <option
+                  key={index}
+                  value={option.value}
+                  {...(isSelected && {
+                    'data-tmp': `{${item.name}:selected#${option.value}}`,
+                  })}
+                >
+                  {option.label}
+                </option>
+              );
+            })}
+          </select>
+          <OptionValidator item={item} />
+        </>
       )}
     </>
   );

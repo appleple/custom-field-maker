@@ -81,7 +81,11 @@ export function GroupTableLayout() {
                         <>
                           {fieldgroup.items.map((item, index) => {
                             switch (item.type) {
-                              case 'text': {
+                              case 'text':
+                              case 'tel':
+                              case 'number':
+                              case 'email':
+                              case 'password': {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
@@ -90,7 +94,8 @@ export function GroupTableLayout() {
                                   </WrapTable>
                                 );
                               }
-                              case 'textarea': {
+                              case 'textarea':
+                              case 'liteEditor': {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
@@ -206,7 +211,11 @@ export function GroupTableLayout() {
                             <>
                               {fieldgroup.items.map((item, index) => {
                                 switch (item.type) {
-                                  case 'text': {
+                                  case 'text':
+                                  case 'tel':
+                                  case 'number':
+                                  case 'email':
+                                  case 'password': {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
@@ -215,7 +224,8 @@ export function GroupTableLayout() {
                                       </WrapTable>
                                     );
                                   }
-                                  case 'textarea': {
+                                  case 'textarea':
+                                  case 'liteEditor': {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>

@@ -1,12 +1,16 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { NoSearchBox } from './NoSearchBox';
+import { useMakerContext } from '../../../store/MakerContext';
 
 export function Validator(props) {
   const {
     field: { type, validator, openValidator, converter, noSearch },
     setField,
   } = props;
+  const {
+    preview: { mode },
+  } = useMakerContext();
 
   const [height, setHeight] = useState(0);
   const contentRef = useRef(null);
@@ -46,7 +50,18 @@ export function Validator(props) {
   }, [updateHeight]);
 
   const isConverter = useMemo(() => {
-    const possibleConverter = ['text', 'textarea', 'checkbox', 'selectbox', 'radioButton'];
+    const possibleConverter = [
+      'text',
+      'tel',
+      'number',
+      'email',
+      'password',
+      'textarea',
+      'liteEditor',
+      'checkbox',
+      'selectbox',
+      'radioButton',
+    ];
     return possibleConverter.includes(type);
   }, [type]);
 
@@ -276,8 +291,11 @@ export function Validator(props) {
             </button>
           </div>
 
-          {/text|number|tel|email|password|textarea|radioButton|selectbox/.exec(type) && (
+          {(mode === 'customfield') | (mode === 'customunit') &&
+          /text|number|tel|email|password|textarea|radioButton|selectbox/.exec(type) ? (
             <NoSearchBox noSearch={noSearch} setField={setField} />
+          ) : (
+            <></>
           )}
         </div>
       </div>

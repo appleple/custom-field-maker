@@ -26,7 +26,11 @@ export function UnitSection() {
         {customunit.length > 0 &&
           customunit.map((item, index) => {
             switch (item.type) {
-              case 'text': {
+              case 'text':
+              case 'tel':
+              case 'number':
+              case 'email':
+              case 'password': {
                 return (
                   <div
                     key={index}
@@ -48,7 +52,8 @@ export function UnitSection() {
                   </div>
                 );
               }
-              case 'textarea': {
+              case 'textarea':
+              case 'liteEditor': {
                 return (
                   <div
                     key={index}

@@ -26,7 +26,11 @@ export function TableLayout() {
         {customfield.length > 0 &&
           customfield.map((item, index) => {
             switch (item.type) {
-              case 'text': {
+              case 'text':
+              case 'tel':
+              case 'number':
+              case 'email':
+              case 'password': {
                 return (
                   <tr key={index}>
                     <th>
@@ -38,7 +42,8 @@ export function TableLayout() {
                   </tr>
                 );
               }
-              case 'textarea': {
+              case 'textarea':
+              case 'liteEditor': {
                 return (
                   <tr key={index}>
                     <th>
