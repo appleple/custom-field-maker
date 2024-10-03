@@ -21109,7 +21109,6 @@
                 'email',
                 'password',
                 'textarea',
-                'liteEditor',
                 'checkbox',
                 'selectbox',
                 'radioButton',

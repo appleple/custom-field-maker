@@ -57,7 +57,6 @@ export function Validator(props) {
       'email',
       'password',
       'textarea',
-      'liteEditor',
       'checkbox',
       'selectbox',
       'radioButton',
