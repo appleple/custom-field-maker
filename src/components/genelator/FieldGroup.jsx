@@ -263,7 +263,7 @@ export function FieldGroup() {
       addGroupItem(field);
 >>>>>>> ca9d8d8 (Modifying test requests)
     }
-  }, [field, setGroupTitleName, addGroupItem]);
+  }, [field, addGroupItem]);
 
   const clearGroupHandler = useCallback(() => {
     if (!confirm('生成したコードの履歴も消えてしまいます。よろしいですか？')) return;

@@ -235,7 +235,7 @@ export function UnitGroup() {
     } else {
       setField((prevState) => ({ ...prevState, alert: true }));
     }
-  }, [field, setUnitGroupTitleName, addUnitGroupItem]);
+  }, [field, addUnitGroupItem]);
 
   const clearGroupHandler = useCallback(() => {
     if (!confirm('生成したコードの履歴も消えてしまいます。よろしいですか？')) return;
