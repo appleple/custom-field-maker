@@ -44,7 +44,6 @@ export function Textarea(props) {
           >
             {isValue ? `{${item.name}}` : ''}
           </textarea>
-          <OptionValidator item={item} />
         </>
       )}
 
@@ -74,7 +73,6 @@ export function Textarea(props) {
           >
             {isValue ? `{${item.name}}` : ''}
           </textarea>
-          <OptionValidator item={item} />
         </>
       )}
     </>

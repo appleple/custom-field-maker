@@ -116,20 +116,19 @@ export function Basic(props) {
           />
         </div>
       </div>
-      {isPlaceholder && (
-        <div className="customFieldGeneratorBasicPlaceholder">
-          <label className="">プレースホルダー</label>
-          <div>
-            <input
-              type="text"
-              value={field.placeholder || ''}
-              onChange={(e) => handleInputChange(e, 'placeholder')}
-              className="acms-admin-form-width-full"
-              placeholder=""
-            />
-          </div>
+      <div className="customFieldGeneratorBasicPlaceholder">
+        <label className="">プレースホルダー</label>
+        <div>
+          <input
+            type="text"
+            value={!isPlaceholder ? '' : field.placeholder || ''}
+            onChange={(e) => handleInputChange(e, 'placeholder')}
+            className="acms-admin-form-width-full"
+            placeholder=""
+            disabled={!isPlaceholder}
+          />
         </div>
-      )}
+      </div>
       <div className="customFieldGeneratorBasicTooltip">
         <label className="">ツールチップ</label>
         <div>

@@ -51,8 +51,8 @@ export function PreviewNavigator() {
                 className="acms-admin-form-width-quarter"
                 style={{ width: '100px' }}
               >
-                <option value="section">div タグ</option>
-                <option value="table">table タグ</option>
+                <option value="section">モダン</option>
+                <option value="table">テーブル</option>
               </select>
             </div>
           )}
@@ -155,7 +155,7 @@ export function PreviewNavigator() {
           {mode === 'customfield' && (
             <button
               onClick={() => {
-                confirm('履歴クリアしますか？');
+                confirm('生成コードをクリアしますか？');
                 clearCustomfield();
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
@@ -166,7 +166,7 @@ export function PreviewNavigator() {
           {mode === 'fieldgroup' && (
             <button
               onClick={() => {
-                confirm('履歴クリアしますか？');
+                confirm('生成コードをクリアしますか？');
                 clearGroupItem();
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
@@ -177,7 +177,7 @@ export function PreviewNavigator() {
           {mode === 'customunit' && (
             <button
               onClick={() => {
-                confirm('履歴クリアしますか？');
+                confirm('生成コードをクリアしますか？');
                 clearCustomunit();
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
@@ -188,7 +188,7 @@ export function PreviewNavigator() {
           {mode === 'unitgroup' && (
             <button
               onClick={() => {
-                confirm('履歴クリアしますか？');
+                confirm('生成コードをクリアしますか？');
                 clearUnitGroupItem();
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"

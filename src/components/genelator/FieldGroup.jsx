@@ -239,16 +239,29 @@ export function FieldGroup() {
       });
 =======
   const addGroup = useCallback(() => {
+    const flg = {
+      unDuplicatedField: false,
+      unAlert: false,
+    };
     if (field.name === field.groupName) {
       setField((prevState) => ({ ...prevState, duplicatedField: true }));
-      return;
-    }
-    if (field.type && field.title && field.name) {
-      setGroupTitleName(field.groupTitle, field.groupName);
-      addGroupItem(field);
     } else {
+      setField((prevState) => ({ ...prevState, duplicatedField: false }));
+      flg.unDuplicatedField = true;
+    }
+    if (!field.type || !field.title || !field.name) {
       setField((prevState) => ({ ...prevState, alert: true }));
+<<<<<<< HEAD
 >>>>>>> 95afb3b (カスタムフィールドの入力種類を追加)
+=======
+    } else {
+      setField((prevState) => ({ ...prevState, alert: false }));
+      flg.unAlert = true;
+    }
+
+    if (flg.unDuplicatedField && flg.unAlert) {
+      addGroupItem(field);
+>>>>>>> ca9d8d8 (Modifying test requests)
     }
   }, [field, setGroupTitleName, addGroupItem]);
 
@@ -378,10 +391,6 @@ export function FieldGroup() {
   return (
     <div>
       <div className="customFieldContainer">
-        <GroupAlert field={field} setField={setField} />
-        <DuplicateAlert field={field} setField={setField} />
-        <Alert field={field} setField={setField} />
-
         <div>
           <div className="acms-flex acms-justify-between" style={{ marginBottom: '1em' }}>
             <h2
@@ -397,6 +406,7 @@ export function FieldGroup() {
               </button>
             )}
           </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
         ) : (
 <<<<<<< HEAD
@@ -439,6 +449,9 @@ export function FieldGroup() {
             </div>
 =======
 >>>>>>> 0432564 (Fixed an issue where group names would disappear when switching fields in a group.)
+=======
+          <GroupAlert field={field} setField={setField} />
+>>>>>>> ca9d8d8 (Modifying test requests)
 
           {fieldgroup.title && fieldgroup.name ? (
             <dl className="customFieldGeneratorGroup -openGroup" style={{ margin: 0 }}>
@@ -780,6 +793,12 @@ export function FieldGroup() {
           <div>
             <h2 className="customFieldHeading2">コード生成</h2>
             <div className="customFieldFunction">
+              {(field.alert || field.duplicatedField) && (
+                <div>
+                  <DuplicateAlert field={field} setField={setField} />
+                  <Alert field={field} setField={setField} />
+                </div>
+              )}
               <Basic field={field} setField={setField} />
 
               {field.type === 'checkbox' && (

@@ -14,7 +14,13 @@ export function TableLayoutConfirm() {
         if (!item.name) {
           return null;
         }
-        if (item.type === 'text') {
+        if (
+          item.type === 'text' ||
+          item.type === 'tel' ||
+          item.type === 'number' ||
+          item.type === 'email' ||
+          item.type === 'password'
+        ) {
           return (
             <tr key={index}>
               <th>{item.title}</th>
@@ -49,9 +55,10 @@ export function TableLayoutConfirm() {
               <th>{item.title}</th>
               <td>
                 {item.option.map(
-                  (option) => `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
-            ${option.label}
-            <!-- END_IF -->`
+                  (option) =>
+                    `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
+                  ${option.label}
+                  <!-- END_IF -->`
                 )}
               </td>
             </tr>
@@ -64,9 +71,10 @@ export function TableLayoutConfirm() {
                 {`<!-- BEGIN ${item.name}:loop -->`}
                 {`<!-- BEGIN ${item.name}:glue -->,<!-- END ${item.name}:glue -->`}
                 {item.option.map(
-                  (option) => `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
-            ${option.label}
-            <!-- END_IF -->`
+                  (option) =>
+                    `<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->
+                  ${option.label}
+                  <!-- END_IF -->`
                 )}
                 {`<!-- END ${item.name}:loop -->`}
               </td>

@@ -20727,7 +20727,7 @@
                   className: 'acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention',
                   'aria-hidden': 'true',
                 }),
-                'typeとタイトルとフィールド、全てを入力しないとソースコードを生成できません。',
+                'タイプとタイトルとフィールド、全てを入力しないとソースコードを生成できません。',
                 e.createElement(
                   'button',
                   {

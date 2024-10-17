@@ -64,7 +64,6 @@ export function Checkbox(props) {
               </div>
             );
           })}
-          <OptionValidator item={item} />
         </>
       )}
 
@@ -120,7 +119,6 @@ export function Checkbox(props) {
               </div>
             );
           })}
-          <OptionValidator item={item} />
         </>
       )}
     </>

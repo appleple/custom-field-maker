@@ -9,13 +9,8 @@ export function Heading(props) {
 
   return (
     <>
-      {item.title}
-      {item.tooltip && <i className="acms-admin-icon-tooltip js-acms-tooltip" data-acms-tooltip={item.tooltip} />}
-      {jsValidator && (
-        <span className="valid-mark" data-validator={item.name}>
-          <span className="acms-admin-icon acms-admin-icon-checklist" />
-        </span>
-      )}
+      <span {...(jsValidator && { 'data-validator': item.name })}>{item.title}</span>
+      {item.tooltip && <i className="acms-admin-icon-tooltip js-acms-tooltip-hover" data-acms-tooltip={item.tooltip} />}
     </>
   );
 }

@@ -42,7 +42,13 @@ export function GroupTableLayoutConfirm() {
               )}
             >
               {fieldgroup.items.map((item, index) => {
-                if (item.type === 'text') {
+                if (
+                  item.type === 'text' ||
+                  item.type === 'tel' ||
+                  item.type === 'number' ||
+                  item.type === 'email' ||
+                  item.type === 'password'
+                ) {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>{`{${item.name}}`}</td>

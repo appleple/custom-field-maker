@@ -230,7 +230,6 @@ export function UnitGroup() {
 >>>>>>> 5763b9c (global state 持ち方を修正):src/components/genelator/UnitGroup.jsx
 =======
     if (field.type && field.title && field.name) {
-      setUnitGroupTitleName(field.groupName, field.groupTitle);
       addUnitGroupItem(field);
 >>>>>>> e53ec4b (ユニットグループ追加、メディアの対応確認)
     } else {
@@ -253,10 +252,6 @@ export function UnitGroup() {
   return (
     <div>
       <div className="customFieldContainer">
-        <GroupAlert field={field} setField={setField} />
-        <DuplicateAlert field={field} setField={setField} />
-        <Alert field={field} setField={setField} />
-
         <div>
           <div className="acms-flex acms-justify-between" style={{ marginBottom: '1em' }}>
             <h2
@@ -272,6 +267,7 @@ export function UnitGroup() {
               </button>
             )}
           </div>
+          <GroupAlert field={field} setField={setField} />
 
 <<<<<<< HEAD
             <div className="customFieldGeneratorGroupVal">
@@ -656,6 +652,12 @@ export function UnitGroup() {
           <div>
             <h2 className="customFieldHeading2">コード生成</h2>
             <div className="customFieldFunction">
+              {(field.alert || field.duplicatedField) && (
+                <div>
+                  <DuplicateAlert field={field} setField={setField} />
+                  <Alert field={field} setField={setField} />
+                </div>
+              )}
               <Basic field={field} setField={setField} />
 
               {field.type === 'checkbox' && (

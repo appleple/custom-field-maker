@@ -229,7 +229,6 @@ export function Media(props) {
             })}
             className="js-value"
           />
-          <OptionValidator item={item} />
         </div>
       )}
 
@@ -446,7 +445,6 @@ export function Media(props) {
               })}
               className="js-value"
             />
-            <OptionValidator item={item} />
           </div>
         </>
       )}

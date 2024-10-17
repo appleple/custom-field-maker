@@ -58,7 +58,6 @@ export function OptionItem(props) {
                       defaultValue={item.label}
                       onInput={(e) => {
                         const value = e.target.value;
-                        if (!value) return;
                         updateOptionLabel(idx, value);
                       }}
                       className="acms-admin-form-width-full"
@@ -74,7 +73,6 @@ export function OptionItem(props) {
                       defaultValue={item.value}
                       onInput={(e) => {
                         const value = e.target.value;
-                        if (!value) return;
                         updateOptionValue(idx, value);
                       }}
                       className="acms-admin-form-width-full"

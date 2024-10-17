@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMakerContext } from '../../store/MakerContext';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
@@ -11,8 +12,8 @@ import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
+import { OptionNoSearch } from '../html/OptionNoSearch';
 import { OptionValidator } from '../html/OptionValidator';
-import { useMakerContext } from '../../store/MakerContext';
 
 export function UnitGroupSection() {
   const {
@@ -547,8 +548,8 @@ export function UnitGroupSection() {
                   )}
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}`} />
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
-                  {item.noSearch && <input type="hidden" name={`${item.name}{id}:search`} value="0" />}
                   <OptionValidator item={item} />
+                  <OptionNoSearch name={item.name} noSearch={item.noSearch} />
                 </>
               ))}
               <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />

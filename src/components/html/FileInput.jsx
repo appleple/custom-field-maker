@@ -91,7 +91,6 @@ export function FileInput(props) {
             <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />
           )}
           <input type="file" name={`${item.name}[]`} />
-          <OptionValidator item={item} />
         </>
       )}
 
@@ -157,7 +156,6 @@ export function FileInput(props) {
               </a>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
-              <OptionValidator item={item} />
             </>
           )}
           <input type="file" name={`${item.name}{id}[]`} />

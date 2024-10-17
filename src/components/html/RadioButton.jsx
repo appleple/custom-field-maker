@@ -64,7 +64,6 @@ export function RadioButton(props) {
               </div>
             );
           })}
-          <OptionValidator item={item} />
         </>
       )}
 
@@ -120,7 +119,6 @@ export function RadioButton(props) {
               </div>
             );
           })}
-          <OptionValidator item={item} />
         </>
       )}
     </>

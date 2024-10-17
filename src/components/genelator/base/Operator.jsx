@@ -23,23 +23,23 @@ const crearField = {
   startHeadingLevel: 2,
   endHeadingLevel: 3,
   mediaType: 'image',
-  openConverter: '',
   converter: '',
   tooltip: '',
   placeholder: '',
+  validator: [
+    {
+      option: '',
+      value: '',
+      message: '',
+    },
+  ],
 };
 
 export function Operator(props) {
   const { setField, onSubmit = () => {} } = props;
 
   const onClearHandler = useCallback(() => {
-    setField((prevState) => {
-      console.log(prevState);
-      return {
-        ...prevState,
-        ...crearField,
-      };
-    });
+    setField((prevState) => ({ ...prevState, ...crearField }));
   }, [setField]);
 
   return (

@@ -53,7 +53,6 @@ export function Selectbox(props) {
               );
             })}
           </select>
-          <OptionValidator item={item} />
         </>
       )}
 
@@ -99,7 +98,6 @@ export function Selectbox(props) {
               );
             })}
           </select>
-          <OptionValidator item={item} />
         </>
       )}
     </>

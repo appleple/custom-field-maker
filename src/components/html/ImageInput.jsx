@@ -128,7 +128,6 @@ export function ImageInput(props) {
             {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
             {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
             {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
-            <OptionValidator item={item} />
           </div>
         </>
       )}
@@ -250,7 +249,6 @@ export function ImageInput(props) {
             {item.square && item.squareSize && (
               <input type="hidden" name={`${item.name}{id}@${item.square}[]`} value={item.squareSize} />
             )}
-            <OptionValidator item={item} />
           </div>
         </>
       )}

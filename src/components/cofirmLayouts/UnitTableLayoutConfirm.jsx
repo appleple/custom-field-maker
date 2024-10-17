@@ -14,7 +14,13 @@ export function UnitTableLayoutConfirm() {
         if (!item.name) {
           return null;
         }
-        if (item.type === 'text') {
+        if (
+          item.type === 'text' ||
+          item.type === 'tel' ||
+          item.type === 'number' ||
+          item.type === 'email' ||
+          item.type === 'password'
+        ) {
           return (
             <tr key={index}>
               <th>{item.title}</th>

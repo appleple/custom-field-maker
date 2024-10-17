@@ -5,7 +5,7 @@ import { useMakerContext } from '../../store/MakerContext';
 export function OptionValidator(props) {
   const { item } = props;
   const {
-    preview: { acmscss, jsValidator, editMode },
+    preview: { mode, acmscss, jsValidator, editMode },
   } = useMakerContext();
 
   if (!item.openValidator) {
@@ -53,7 +53,21 @@ export function OptionValidator(props) {
           </Fragment>
         );
       })}
-      {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
+      {item.converter &&
+        (() => {
+          switch (mode) {
+            case 'customfield':
+            case 'fieldgroup': {
+              return <input type="hidden" name={`${name}:c`} value={item.converter} />;
+            }
+            case 'customunit':
+            case 'unitgroup': {
+              return <input type="hidden" name={`${name}{id}:c`} value={item.converter} />;
+            }
+            default:
+              return null;
+          }
+        })()}
     </Fragment>
   );
 }
