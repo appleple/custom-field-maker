@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { WrapTable } from '../html/WrapTable';
