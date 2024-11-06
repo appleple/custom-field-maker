@@ -28,13 +28,18 @@ export function ModalDialog(props) {
     <div
       className={classnames('acms-admin-modal', { in: show })}
       id="converter"
+      aria-modal
       aria-hidden={show ? 'false' : 'true'}
       style={{ display: show ? 'block' : 'none' }}
+      aria-labelledby="converter-title"
     >
       <div className="acms-admin-modal-dialog">
         <div className="acms-admin-modal-content">
           <div className="acms-admin-modal-header">
-            <i
+            <h1 id="converter-title" className="acms-admin-modal-heading">
+              {title}
+            </h1>
+            <button
               className="acms-admin-modal-hide acms-admin-icon-delete"
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -42,10 +47,8 @@ export function ModalDialog(props) {
                 }
               }}
               onClick={hideDialog}
-              role="button"
-              tabIndex={0}
+              type="button"
             />
-            <h3>{title}</h3>
           </div>
           <div className="acms-admin-modal-body">{children}</div>
         </div>
