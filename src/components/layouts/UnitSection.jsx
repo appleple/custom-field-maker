@@ -16,7 +16,7 @@ import classnames from 'classnames';
 export const UnitSection = forwardRef((_props, ref) => {
   const {
     state: { customunit },
-    preview: { jsValidator, acmscss, editMode },
+    preview: { acmscss },
   } = useMakerContext();
 
   const renderFormComponent = (
@@ -253,14 +253,6 @@ export const UnitSection = forwardRef((_props, ref) => {
         })}
     </div>
   );
-
-  if (jsValidator && editMode !== 'preview') {
-    <>
-      {'<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
-      {renderFormComponent}
-      {'<!-- </form> -->'}
-    </>;
-  }
 
   return renderFormComponent;
 });

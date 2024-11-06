@@ -16,7 +16,7 @@ import { useMakerContext } from '../../store/MakerContext';
 export const UnitTableLayout = forwardRef((_props, ref) => {
   const {
     state: { customunit },
-    preview: { jsValidator, acmscss, editMode },
+    preview: { acmscss },
   } = useMakerContext();
 
   const renderFormComponent = (
@@ -156,14 +156,6 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
         })}
     </table>
   );
-
-  if (jsValidator && editMode !== 'preview') {
-    <>
-      {'<!-- <form action="" method="post" class="js-validator" enctype="multipart/form-data"> -->'}
-      {renderFormComponent}
-      {'<!-- </form> -->'}
-    </>;
-  }
 
   return renderFormComponent;
 });
