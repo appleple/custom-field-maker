@@ -46,7 +46,9 @@ export function Selectbox(props) {
                 <option
                   key={index}
                   value={option.value}
-                  data-tmp={isSelected && `{${item.name}:selected#${option.value}}`}
+                  {...(isSelected && {
+                    'data-tmp': `{${item.name}:selected#${option.value}}`,
+                  })}
                 >
                   {option.label}
                 </option>
