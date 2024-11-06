@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { forwardRef } from 'react';
 import classnames from 'classnames';
 import { TextInput } from '../html/TextInput';
 import { Textarea } from '../html/Textarea';
@@ -13,12 +13,11 @@ import { useMakerContext } from '../../store/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 import { OptionValidator } from '../html/OptionValidator';
 
-export function UnitGroupTableLayout() {
+export const UnitGroupTableLayout = forwardRef((_props, ref) => {
   const {
     state: { unitgroup },
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
-  const tableRef = useRef();
 
   const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
   const groupLength = unitgroup.items.length;
@@ -30,7 +29,7 @@ export function UnitGroupTableLayout() {
         <>
           <table
             className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}
-            ref={tableRef}
+            ref={ref}
           >
             <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
               <tr>
@@ -380,6 +379,9 @@ export function UnitGroupTableLayout() {
               {item.type === 'file' && (
                 <>
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@path`} />
+                  <input type="hidden" name={`@${item.name}{id}[]`} value={`{${item.name}{id}@fileSize}`} />
+                  <input type="hidden" name={`@${item.name}{id}[]`} value={`{${item.name}{id}@baseName}`} />
+                  <input type="hidden" name={`@${item.name}{id}[]`} value={`{${item.name}{id}@originalName}`} />
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@alt`} />
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@edit`} />
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@old`} />
@@ -401,4 +403,6 @@ export function UnitGroupTableLayout() {
       )}
     </>
   );
-}
+});
+
+UnitGroupTableLayout.displayName = 'UnitGroupTableLayout';

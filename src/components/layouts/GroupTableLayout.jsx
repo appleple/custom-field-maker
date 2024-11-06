@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { forwardRef } from 'react';
 import classnames from 'classnames';
 import { TextInput } from '../html/TextInput';
 import { Textarea } from '../html/Textarea';
@@ -12,12 +12,11 @@ import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 
-export function GroupTableLayout() {
+export const GroupTableLayout = forwardRef((_props, ref) => {
   const {
     state: { fieldgroup },
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
-  const tableRef = useRef();
 
   const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
   const groupLength = fieldgroup.items.length;
@@ -29,7 +28,7 @@ export function GroupTableLayout() {
         <>
           <table
             className={classnames('js-fieldgroup-sortable', { 'adminTable acms-admin-table-admin-edit': acmscss })}
-            ref={tableRef}
+            ref={ref}
           >
             {editMode === 'preview'
               ? null
@@ -381,6 +380,9 @@ export function GroupTableLayout() {
               {item.type === 'file' && (
                 <>
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@path`} />
+                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`{${item.name}@fileSize}`} />
+                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`{${item.name}@baseName}`} />
+                  <input type="hidden" name={`@${fieldgroup.name}[]`} value={`{${item.name}@originalName}`} />
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@alt`} />
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
@@ -420,4 +422,6 @@ export function GroupTableLayout() {
       )}
     </>
   );
-}
+});
+
+GroupTableLayout.displayName = 'GroupTableLayout';

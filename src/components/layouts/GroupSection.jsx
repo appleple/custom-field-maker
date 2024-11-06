@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { forwardRef, Fragment } from 'react';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
@@ -15,13 +15,13 @@ import { useMakerContext } from '../../store/MakerContext';
 import { OptionNoSearch } from '../html/OptionNoSearch';
 import { OptionValidator } from '../html/OptionValidator';
 
-export function GroupSection() {
+export const GroupSection = forwardRef((_props, ref) => {
   const {
     state: { fieldgroup },
     preview: { acmscss, editMode },
   } = useMakerContext();
 
-  const renderTemplateContent = () => (
+  const renderTemplateComponent = () => (
     <div
       className={classnames({
         'sortable-item': true,
@@ -232,7 +232,7 @@ export function GroupSection() {
   return (
     <>
       {fieldgroup.name && fieldgroup.title && (
-        <section>
+        <section ref={ref}>
           <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{fieldgroup.title}</h2>
 
           {fieldgroup.name && (
@@ -466,9 +466,9 @@ export function GroupSection() {
               {fieldgroup.items.length > 0 && (
                 <>
                   {editMode === 'preview' ? (
-                    <div className="item-template">{renderTemplateContent()}</div>
+                    <div className="item-template">{renderTemplateComponent()}</div>
                   ) : (
-                    <template className="item-template">{renderTemplateContent()}</template>
+                    <template className="item-template">{renderTemplateComponent()}</template>
                   )}
                   <div>
                     <input type="button" className="item-insert acms-admin-btn-admin" value="追加" />
@@ -484,7 +484,7 @@ export function GroupSection() {
               {fieldgroup.items.map((item, index) => (
                 <Fragment key={index}>
                   {item.type === 'image' && (
-                    <Fragment>
+                    <>
                       {item.square && (
                         <>
                           <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@squarePath`} />
@@ -516,11 +516,14 @@ export function GroupSection() {
                       <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
                       <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
                       <input type="hidden" name={`${item.name}:extension`} value="image" />
-                    </Fragment>
+                    </>
                   )}
                   {item.type === 'file' && (
                     <>
                       <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@path`} />
+                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`{${item.name}@fileSize}`} />
+                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`{${item.name}@baseName}`} />
+                      <input type="hidden" name={`@${fieldgroup.name}[]`} value={`{${item.name}@originalName}`} />
                       <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@alt`} />
                       <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@edit`} />
                       <input type="hidden" name={`@${fieldgroup.name}[]`} value={`${item.name}@old`} />
@@ -546,4 +549,6 @@ export function GroupSection() {
       )}
     </>
   );
-}
+});
+
+GroupSection.displayName = 'GroupSection';

@@ -40,7 +40,10 @@ export function FileInput(props) {
           {editMode === 'preview' ? null : `<!-- END ${item.name}@path:veil -->`}
           <input type="file" name={item.name} id={id} />
           <input type="hidden" name="field[]" value={item.name} />
+          <input type="hidden" name={`${item.name}@path`} value={`{${item.name}@path}`} />
+          <input type="hidden" name={`${item.name}@fileSize`} value={`{${item.name}@fileSize}`} />
           <input type="hidden" name={`${item.name}@baseName`} value={`{${item.name}@baseName}`} />
+          <input type="hidden" name={`${item.name}@originalName`} value={`{${item.name}@originalName}`} />
           <input type="hidden" name={`${item.name}:extension`} value="file" />
           {item.extension && <input type="hidden" name={`${item.name}@extension`} value={item.extension} />}
           {item.fileNameMethod === 'random' && item.fileName && (
@@ -119,7 +122,10 @@ export function FileInput(props) {
           {editMode === 'preview' ? null : '<!-- END_IF -->'}
           <input type="file" name={`${item.name}{id}`} />
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+          <input type="hidden" name={`${item.name}{id}@path`} value={`{${item.name}@path}`} />
+          <input type="hidden" name={`${item.name}{id}@fileSize`} value={`{${item.name}@fileSize}`} />
           <input type="hidden" name={`${item.name}{id}@baseName`} value={`{${item.name}@baseName}`} />
+          <input type="hidden" name={`${item.name}{id}@originalName`} value={`{${item.name}@originalName}`} />
           <input type="hidden" name={`${item.name}{id}:extension`} value="file" />
           {item.extension && <input type="hidden" name={`${item.name}{id}@extension`} value={item.extension} />}
           {item.fileNameMethod === 'random' && item.fileName && (

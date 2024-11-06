@@ -15,6 +15,8 @@ export function Textarea(props) {
     'js-lite-editor-field': item.type === 'liteEditor',
   });
 
+  const value = isValue ? `{${item.name}}` : '';
+
   return (
     <>
       {mode === 'customfield' && (
@@ -23,11 +25,11 @@ export function Textarea(props) {
             id={id}
             name={item.name}
             className={classname}
+            defaultValue={value}
+            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
             {...(jsValidator ? { 'data-validator': item.name } : {})}
-          >
-            {isValue ? `{${item.name}}` : ''}
-          </textarea>
+          />
           <OptionValidator item={item} />
           <OptionNoSearch name={item.name} noSearch={item.noSearch} />
           <input type="hidden" name="field[]" defaultValue={item.name} />
@@ -40,10 +42,10 @@ export function Textarea(props) {
             id={id}
             name={`${item.name}[]`}
             className={classname}
+            defaultValue={value}
+            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
-          >
-            {isValue ? `{${item.name}}` : ''}
-          </textarea>
+          />
         </>
       )}
 
@@ -53,13 +55,13 @@ export function Textarea(props) {
             id={id}
             name={`${item.name}{id}`}
             className={classname}
+            defaultValue={value}
+            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
-          >
-            {isValue ? `{${item.name}}` : ''}
-          </textarea>
+          />
           <OptionValidator item={item} />
           <OptionNoSearch name={item.name} noSearch={item.noSearch} />
-          <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
+          <input type="hidden" name="unit{id}[]" defaultValue={`${item.name}{id}`} />
         </>
       )}
 
@@ -69,10 +71,10 @@ export function Textarea(props) {
             id={id}
             name={`${item.name}{id}[]`}
             className={classname}
+            defaultValue={value}
+            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
-          >
-            {isValue ? `{${item.name}}` : ''}
-          </textarea>
+          />
         </>
       )}
     </>

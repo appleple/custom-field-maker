@@ -35,7 +35,7 @@ export function TextInput(props) {
             type={item.type}
             name={`${item.name}[]`}
             {...(isValue && {
-              value: `{${item.name}}`,
+              defaultValue: `{${item.name}}`,
             })}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
@@ -48,7 +48,7 @@ export function TextInput(props) {
           <input
             type={item.type}
             name={`${item.name}{id}`}
-            value={`{${item.name}}`}
+            defaultValue={`{${item.name}}`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
@@ -64,7 +64,7 @@ export function TextInput(props) {
             type={item.type}
             name={`${item.name}{id}[]`}
             {...(isValue && {
-              value: `{${item.name}}`,
+              defaultValue: `{${item.name}}`,
             })}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}

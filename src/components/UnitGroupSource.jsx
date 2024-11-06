@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { UnitGroupSection } from './layouts/UnitGroupSection';
 import { UnitGroupTableLayout } from './layouts/UnitGroupTableLayout';
 import { useMakerContext } from '../store/MakerContext';
@@ -8,10 +8,20 @@ export function UnitGroupSource() {
     preview: { tag },
   } = useMakerContext();
 
+  const currentRef = useRef(null);
+
+  useEffect(() => {
+    if (window.ACMS?.dispatchEvent && currentRef.current) {
+      window.ACMS.dispatchEvent('acmsCustomFieldMakerPreview', currentRef.current, {
+        item: currentRef.current,
+      });
+    }
+  }, [tag]);
+
   return (
     <>
-      {tag === 'section' ? <UnitGroupSection /> : null}
-      {tag === 'table' ? <UnitGroupTableLayout /> : null}
+      {tag === 'section' && <UnitGroupSection />}
+      {tag === 'table' && <UnitGroupTableLayout />}
     </>
   );
 }

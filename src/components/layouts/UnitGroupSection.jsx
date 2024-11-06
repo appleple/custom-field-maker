@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useMakerContext } from '../../store/MakerContext';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
@@ -15,13 +15,13 @@ import { Table } from '../html/Table';
 import { OptionNoSearch } from '../html/OptionNoSearch';
 import { OptionValidator } from '../html/OptionValidator';
 
-export function UnitGroupSection() {
+export const UnitGroupSection = forwardRef((_props, ref) => {
   const {
     state: { unitgroup },
     preview: { acmscss, editMode },
   } = useMakerContext();
 
-  const renderTemplateContent = () => (
+  const renderTemplateComponent = (
     <div
       className={classnames({
         'sortable-item': true,
@@ -238,7 +238,7 @@ export function UnitGroupSection() {
   return (
     <>
       {unitgroup.name && unitgroup.title && (
-        <section>
+        <section ref={ref}>
           {unitgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{unitgroup.title}</h2>}
 
           {unitgroup.name && (
@@ -476,9 +476,9 @@ export function UnitGroupSection() {
               {unitgroup.items.length > 0 && (
                 <>
                   {editMode === 'preview' ? (
-                    <div className="item-template">{renderTemplateContent()}</div>
+                    <div className="item-template">{renderTemplateComponent()}</div>
                   ) : (
-                    <template className="item-template">{renderTemplateContent()}</template>
+                    <template className="item-template">{renderTemplateComponent()}</template>
                   )}
 
                   <div>
@@ -536,6 +536,9 @@ export function UnitGroupSection() {
                   {item.type === 'file' && (
                     <>
                       <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@path`} />
+                      <input type="hidden" name={`@${item.name}{id}[]`} value={`{${item.name}{id}@fileSize}`} />
+                      <input type="hidden" name={`@${item.name}{id}[]`} value={`{${item.name}{id}@baseName}`} />
+                      <input type="hidden" name={`@${item.name}{id}[]`} value={`{${item.name}{id}@originalName}`} />
                       <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@alt`} />
                       <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@edit`} />
                       <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}@old`} />
@@ -559,4 +562,6 @@ export function UnitGroupSection() {
       )}
     </>
   );
-}
+});
+
+UnitGroupSection.displayName = 'UnitGroupSection';

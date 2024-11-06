@@ -56,10 +56,12 @@ function CustomFieldMaker() {
                 {preview.editMode === 'source' && (
                   <Highlighter onHighlight={onSource}>
                     <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                      {preview.mode === 'customfield' && <FieldSource />}
-                      {preview.mode === 'fieldgroup' && <FieldGroupSource />}
-                      {preview.mode === 'customunit' && <UnitSource />}
-                      {preview.mode === 'unitgroup' && <UnitGroupSource />}
+                      {{
+                        customfield: <FieldSource />,
+                        fieldgroup: <FieldGroupSource />,
+                        customunit: <UnitSource />,
+                        unitgroup: <UnitGroupSource />,
+                      }[preview.mode] || null}
                     </MakerContextProvider>
                   </Highlighter>
                 )}
@@ -74,20 +76,24 @@ function CustomFieldMaker() {
                       minHeight: '19.391px',
                     }}
                   >
-                    {preview.mode === 'customfield' && <FieldSource />}
-                    {preview.mode === 'fieldgroup' && <FieldGroupSource />}
-                    {preview.mode === 'customunit' && <UnitSource />}
-                    {preview.mode === 'unitgroup' && <UnitGroupSource />}
+                    {{
+                      customfield: <FieldSource />,
+                      fieldgroup: <FieldGroupSource />,
+                      customunit: <UnitSource />,
+                      unitgroup: <UnitGroupSource />,
+                    }[preview.mode] || null}
                   </div>
                 )}
 
                 {preview.editMode === 'confirm' && (
                   <Highlighter onHighlight={onSource}>
                     <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                      {preview.mode === 'customfield' && <FieldConfirmSource />}
-                      {preview.mode === 'fieldgroup' && <FieldGroupConfirmSource />}
-                      {preview.mode === 'customunit' && <UnitConfirmSource />}
-                      {preview.mode === 'unitgroup' && <UnitGroupConfirmSource />}
+                      {{
+                        customfield: <FieldConfirmSource />,
+                        fieldgroup: <FieldGroupConfirmSource />,
+                        customunit: <UnitConfirmSource />,
+                        unitgroup: <UnitGroupConfirmSource />,
+                      }[preview.mode] || null}
                     </MakerContextProvider>
                   </Highlighter>
                 )}
