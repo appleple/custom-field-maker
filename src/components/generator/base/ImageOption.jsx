@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
+import Tooltip from '../../Tooltip';
 
 export function ImageOption(props) {
   const { setField } = props;
@@ -10,55 +10,31 @@ export function ImageOption(props) {
         <tr>
           <th className="acms-admin-table-left">
             画像サイズ
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-size-tip" />
-            <ReactTooltip
-              id="image-size-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
+            <i className="acms-admin-icon-tooltip" data-tooltip-id="image-size-tip" />
+            <Tooltip id="image-size-tip" place="top" variant="dark">
               <span>通常画像の画像サイズを指定します</span>
-            </ReactTooltip>
+            </Tooltip>
           </th>
           <th className="acms-admin-table-left">
             large画像生成
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-large-size-tip" />
-            <ReactTooltip
-              id="image-size-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
+            <i className="acms-admin-icon-tooltip" data-tooltip-id="image-large-size-tip" />
+            <Tooltip id="image-large-size-tip" place="top" variant="dark">
               <span>通常画像よりも大きい画像を生成できます。</span>
-            </ReactTooltip>
+            </Tooltip>
           </th>
           <th className="acms-admin-table-left">
             tiny画像生成
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-tiny-size-tip" />
-            <ReactTooltip
-              id="image-tiny-size-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
+            <i className="acms-admin-icon-tooltip" data-tooltip-id="image-tiny-size-tip" />
+            <Tooltip id="image-tiny-size-tip" place="top" variant="dark">
               <span>通常画像よりも小さい画像を生成できます。</span>
-            </ReactTooltip>
+            </Tooltip>
           </th>
           <th className="acms-admin-table-left">
             square画像生成
-            <i className="acms-admin-icon-tooltip" data-tip data-for="image-square-size-tip" />
-            <ReactTooltip
-              id="image-tiny-size-tip"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
+            <i className="acms-admin-icon-tooltip" data-tooltip-id="image-square-size-tip" />
+            <Tooltip id="image-square-size-tip" place="top" variant="dark">
               <span>通常画像を指定したサイズで中央から正方形にトリミングして生成します。</span>
-            </ReactTooltip>
+            </Tooltip>
           </th>
         </tr>
         <tr>

@@ -1,4 +1,4 @@
-import ReactTooltip from 'react-tooltip';
+import Tooltip from '../Tooltip';
 import classnames from 'classnames';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { Notify } from '../Notify';
@@ -85,8 +85,7 @@ export function PreviewNavigator() {
                 className={classnames('customFieldDirectionBtn', {
                   active: direction === 'horizontal',
                 })}
-                data-tip
-                data-for="group-field-direction-horizontal"
+                data-tooltip-id="group-field-direction-horizontal"
               >
                 <input
                   type="radio"
@@ -101,8 +100,7 @@ export function PreviewNavigator() {
                 className={classnames('customFieldDirectionBtn', {
                   active: direction === 'vertical',
                 })}
-                data-tip
-                data-for="group-field-direction-vertical"
+                data-tooltip-id="group-field-direction-vertical"
               >
                 <input
                   type="radio"
@@ -113,24 +111,12 @@ export function PreviewNavigator() {
                 <img src={rowIcon} alt="" />
               </label>
             </div>
-            <ReactTooltip
-              id="group-field-direction-vertical"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
+            <Tooltip id="group-field-direction-vertical" place="top" variant="dark">
               <span>縦向きレイアウト用にソースコードを生成します。</span>
-            </ReactTooltip>
-            <ReactTooltip
-              id="group-field-direction-horizontal"
-              place="top"
-              type="dark"
-              effect="solid"
-              className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-            >
+            </Tooltip>
+            <Tooltip id="group-field-direction-horizontal" place="top" variant="dark">
               <span>横向きレイアウト用にソースコードを生成します。</span>
-            </ReactTooltip>
+            </Tooltip>
           </div>
         )}
       </div>

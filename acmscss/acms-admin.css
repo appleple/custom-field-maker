@@ -8077,6 +8077,8 @@ a.acms-admin-label-danger:focus {
 .acms-admin-tooltip[class] {
   --acms-admin-tooltip-bg-color: #333;
   --acms-admin-tooltip-color: #fff;
+  --acms-tooltip-line-height: 1.5;
+
   --rt-color-dark: var(--acms-admin-tooltip-bg-color);
   --rt-color-white: var(--acms-admin-tooltip-color);
   position: absolute;
@@ -8085,6 +8087,11 @@ a.acms-admin-label-danger:focus {
   max-width: 300px;
   padding: 6px 10px;
   color: #fff;
+  font-weight: normal;
+  line-height: var(--acms-tooltip-line-height);
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
   word-break: break-all;
   background: var(--acms-admin-tooltip-bg-color);
   border-radius: 4px;

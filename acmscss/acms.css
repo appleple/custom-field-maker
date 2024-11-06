@@ -6926,6 +6926,8 @@ th[aria-sort=descending] .acms-th-sort-btn-icon {
 .acms-tooltip[class] {
   --acms-tooltip-bg-color: #333;
   --acms-tooltip-color: #fff;
+  --acms-tooltip-line-height: 1.5;
+
   --rt-color-dark: var(--acms-tooltip-bg-color);
   --rt-color-white: var(--acms-tooltip-color);
   position: absolute;
@@ -6934,6 +6936,11 @@ th[aria-sort=descending] .acms-th-sort-btn-icon {
   max-width: 300px;
   padding: 6px 10px;
   color: #fff;
+  font-weight: normal;
+  line-height: var(--acms-tooltip-line-height);
+  white-space: normal;
+  text-align: left;
+  word-wrap: break-word;
   word-break: break-all;
   background: var(--acms-tooltip-bg-color);
   border-radius: 4px;

@@ -465,15 +465,6 @@
   line-height: 27px;
 }
 
-.customFieldTooltip {
-  font-weight: normal;
-  white-space: normal;
-  word-wrap: break-word;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-  font-size: 12px;
-}
-
 .customFieldFileContainer {
   padding-top: 10px;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import Tooltip from '../../Tooltip';
 import prefJson from '../../../../json/pref.json';
 
 import prefEnJson from '../../../../json/pref-en.json';
@@ -27,16 +27,10 @@ export function Snippet(props) {
     <div>
       <span className="customFieldBold">
         選択項目（option要素）
-        <i className="acms-admin-icon-tooltip" data-tip data-for="option-value-tip" />
-        <ReactTooltip
-          id="option-value-tip"
-          place="top"
-          type="dark"
-          effect="solid"
-          className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-        >
+        <i className="acms-admin-icon-tooltip" data-tooltip-id="option-value-tip" />
+        <Tooltip id="option-value-tip" place="top" variant="dark">
           <span>option要素の選択項目になります。</span>
-        </ReactTooltip>
+        </Tooltip>
       </span>
       <span className="customFieldUseSnippet">
         <label className="customFieldUseSnippetLabel" style={{ marginRight: '5px' }}>

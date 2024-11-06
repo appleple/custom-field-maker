@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
-import ReactTooltip from 'react-tooltip';
+import Tooltip from '../../Tooltip';
 import { NoSearchBox } from './NoSearchBox';
 import { useMakerContext } from '../../../store/MakerContext';
 
@@ -145,18 +145,12 @@ export function Validator(props) {
             <div>
               <div className="customFieldBold">
                 コンバーター
-                <i className="acms-admin-icon-tooltip" data-tip data-for="convert-tip" />
-                <ReactTooltip
-                  id="convert-tip"
-                  place="top"
-                  type="dark"
-                  effect="solid"
-                  className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                >
+                <i className="acms-admin-icon-tooltip" data-tooltip-id="convert-tip" />
+                <Tooltip id="convert-tip" place="top" variant="dark">
                   <span>
                     テキストフィールドに入力された値を別の値に変換します。詳しくは参照ボタンを押すと表示されるモーダルウィンドウに情報が記載されています。
                   </span>
-                </ReactTooltip>
+                </Tooltip>
               </div>
               <div>
                 <input
@@ -186,44 +180,26 @@ export function Validator(props) {
                   <tr>
                     <th>
                       バリデーター
-                      <i className="acms-admin-icon-tooltip" data-tip data-for="validate-tip" />
-                      <ReactTooltip
-                        id="validate-tip"
-                        place="top"
-                        type="dark"
-                        effect="solid"
-                        className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                      >
+                      <i className="acms-admin-icon-tooltip" data-tooltip-id="validate-tip" />
+                      <Tooltip id="validate-tip" place="top" variant="dark">
                         <span>フィールドに入力された値が条件に合っているかをチェックします。</span>
-                      </ReactTooltip>
+                      </Tooltip>
                     </th>
                     <th>
                       値
-                      <i className="acms-admin-icon-tooltip" data-tip data-for="validate-value-tip" />
-                      <ReactTooltip
-                        id="validate-value-tip"
-                        place="top"
-                        type="dark"
-                        effect="solid"
-                        className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                      >
+                      <i className="acms-admin-icon-tooltip" data-tooltip-id="validate-value-tip" />
+                      <Tooltip id="validate-value-tip" place="top" variant="dark">
                         <span>最小文字数や、正規表現チェックをバリデータに設定した際に設定する値となります。</span>
-                      </ReactTooltip>
+                      </Tooltip>
                     </th>
                     <th>
                       メッセージ
-                      <i className="acms-admin-icon-tooltip" data-tip data-for="validate-message-tip" />
-                      <ReactTooltip
-                        id="validate-message-tip"
-                        place="top"
-                        type="dark"
-                        effect="solid"
-                        className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                      >
+                      <i className="acms-admin-icon-tooltip" data-tooltip-id="validate-message-tip" />
+                      <Tooltip id="validate-message-tip" place="top" variant="dark">
                         <span>
                           フィールドに入力されている値が条件に合わなかった場合に表示されるメッセージになります。
                         </span>
-                      </ReactTooltip>
+                      </Tooltip>
                     </th>
                     <th />
                   </tr>

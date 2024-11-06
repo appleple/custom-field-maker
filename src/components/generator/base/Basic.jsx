@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import Tooltip from '../../Tooltip';
 import inputTypesJson from '../../../../json/input-types.json';
 
 export function Basic(props) {
@@ -69,16 +69,10 @@ export function Basic(props) {
       <div className="customFieldGeneratorBasicTitle">
         <label className="">
           タイトル
-          <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="title-tip" />
-          <ReactTooltip
-            id="title-tip"
-            place="top"
-            type="dark"
-            effect="solid"
-            className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-          >
+          <i className="acms-admin-icon-tooltip" data-tooltip-id="title-tip" />
+          <Tooltip id="title-tip" place="top" variant="dark">
             <span>見出しになります。</span>
-          </ReactTooltip>
+          </Tooltip>
           <span className="acms-admin-label acms-admin-label-danger">必須</span>
         </label>
         <div>
@@ -94,16 +88,10 @@ export function Basic(props) {
       <div className="customFieldGeneratorBasicField">
         <label className="">
           フィールド
-          <i className="acms-admin-icon-tooltip" data-tip="React-tooltip" data-for="field-tip" />
-          <ReactTooltip
-            id="field-tip"
-            place="top"
-            type="dark"
-            effect="solid"
-            className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-          >
+          <i className="acms-admin-icon-tooltip" data-tooltip-id="field-tip" />
+          <Tooltip id="field-tip" place="top" variant="dark">
             <span>フィールド名です。name属性として使用されます。</span>
-          </ReactTooltip>
+          </Tooltip>
           <span className="acms-admin-label acms-admin-label-danger">必須</span>
         </label>
         <div>

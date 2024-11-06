@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import Tooltip from '../Tooltip';
 import { useMakerContext } from '../../store/MakerContext';
 import { Alert } from './base/Alert';
 import { GroupAlert } from './base/GroupAlert';
@@ -174,32 +174,20 @@ export function FieldGroup() {
               <div className="customFieldGeneratorGroupTitle">
                 <dt>
                   グループタイトル
-                  <i className="acms-admin-icon-tooltip" data-tip data-for="group-title-tip" />
-                  <ReactTooltip
-                    id="group-title-tip"
-                    place="top"
-                    type="dark"
-                    effect="solid"
-                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                  >
+                  <i className="acms-admin-icon-tooltip" data-tip data-tooltip-id="group-title-tip" />
+                  <Tooltip id="group-title-tip" place="top" variant="dark">
                     <span>カスタムフィールドグループのテーブル用のタイトルとなります。</span>
-                  </ReactTooltip>
+                  </Tooltip>
                 </dt>
                 <dd>{fieldgroup.title}</dd>
               </div>
               <div className="customFieldGeneratorGroupVal">
                 <dt>
                   フィールド名（変数）
-                  <i className="acms-admin-icon-tooltip" data-tip data-for="group-field-tip" />
-                  <ReactTooltip
-                    id="group-field-tip"
-                    place="top"
-                    type="dark"
-                    effect="solid"
-                    className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                  >
+                  <i className="acms-admin-icon-tooltip" data-tooltip-id="group-field-tip" />
+                  <Tooltip id="group-field-tip" place="top" variant="dark">
                     <span>カスタムフィールドグループのフィールド名です。値を必ず入力してください。</span>
-                  </ReactTooltip>
+                  </Tooltip>
                 </dt>
                 <dd>{fieldgroup.name}</dd>
               </div>
@@ -210,16 +198,10 @@ export function FieldGroup() {
                 <div className="customFieldGeneratorGroupTitle">
                   <label htmlFor="groupTitle">
                     グループのタイトル
-                    <i className="acms-admin-icon-tooltip" data-tip data-for="group-title-tip" />
-                    <ReactTooltip
-                      id="group-title-tip"
-                      place="top"
-                      type="dark"
-                      effect="solid"
-                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                    >
+                    <i className="acms-admin-icon-tooltip" data-tooltip-id="group-title-tip" />
+                    <Tooltip id="group-title-tip" place="top" variant="dark">
                       <span>カスタムフィールドグループのテーブル用のタイトルとなります。</span>
-                    </ReactTooltip>
+                    </Tooltip>
                     <span className="acms-admin-label acms-admin-label-danger">必須</span>
                   </label>
                   <div>
@@ -241,16 +223,10 @@ export function FieldGroup() {
                 <div className="customFieldGeneratorGroupVal">
                   <label htmlFor="groupName">
                     フィールド名（変数）
-                    <i className="acms-admin-icon-tooltip" data-tip data-for="group-field-tip" />
-                    <ReactTooltip
-                      id="group-field-tip"
-                      place="top"
-                      type="dark"
-                      effect="solid"
-                      className="acms-admin-tooltip acms-tooltip customFieldTooltip"
-                    >
+                    <i className="acms-admin-icon-tooltip" data-tooltip-id="group-field-tip" />
+                    <Tooltip id="group-field-tip" place="top" variant="dark">
                       <span>カスタムフィールドグループのフィールド名です。値を必ず入力してください。</span>
-                    </ReactTooltip>
+                    </Tooltip>
                     <span className="acms-admin-label acms-admin-label-danger">必須</span>
                   </label>
                   <div>
