@@ -47,9 +47,7 @@ export function ModalDialog(props) {
             />
             <h3>{title}</h3>
           </div>
-          <div className="acms-admin-modal-body">
-            <div className="acms-admin-padding-small clearfix">{children}</div>
-          </div>
+          <div className="acms-admin-modal-body">{children}</div>
         </div>
       </div>
     </div>
