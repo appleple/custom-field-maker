@@ -1,50 +1,37 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { XmlEntities } from 'html-entities';
+import { decode } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
-import hljs from 'highlight.js/lib/highlight';
-import 'highlight.js/styles/default.css';
+import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/xcode.css';
 import xml from 'highlight.js/lib/languages/xml';
 
 hljs.registerLanguage('xml', xml);
-const entities = new XmlEntities();
 
 export function Highlighter({ children, onHighlight = () => {} }) {
-  const codeRef = useRef();
-
-  const removeReactText = (html) => {
-    html = html.replace(/<!-- (\/?)reactroot(.*?)-->/g, '');
-    html = html.replace(/ data-reactroot=""/g, '');
-    return html;
-  };
+  const [source, setSource] = useState('');
 
   const buildSource = useCallback(
     (reactNode) => {
       let html = renderToStaticMarkup(reactNode);
-      html = html.replace(/&quot;/g, '"');
       html = html.replace(/data-tmp="(.*?)"/g, '$1');
-      html = html.replace(/&lt;/g, '<');
-      html = html.replace(/&gt;/g, '>');
-      html = removeReactText(html);
-      const encodedHtml = entities.encode(
-        beautifyHtml(html, {
-          unformatted: ['code', 'pre'],
-          indent_inner_html: true,
-          indent_char: ' ',
-          indent_size: 2,
-          sep: '\n',
-        })
-      );
+      html = beautifyHtml(decode(html, { level: 'html5' }), {
+        unformatted: ['code', 'pre'],
+        indent_inner_html: true,
+        indent_char: ' ',
+        indent_size: 2,
+        eol: '\n',
+      });
 
-      codeRef.current.innerHTML = encodedHtml;
-      hljs.highlightBlock(codeRef.current);
-
-      if (onHighlight) {
-        onHighlight(encodedHtml);
+      const { value = '', code = '' } = hljs.highlight(html, { language: 'xml' });
+      if (source !== value) {
+        setSource(value);
+        if (onHighlight) {
+          onHighlight(code);
+        }
       }
     },
-    [onHighlight]
+    [onHighlight, source]
   );
 
   useEffect(() => {
@@ -54,7 +41,7 @@ export function Highlighter({ children, onHighlight = () => {} }) {
   return (
     <div>
       <pre className="acms-admin-customfield-maker">
-        <code className="html" ref={codeRef} />
+        <code className="html hljs" dangerouslySetInnerHTML={{ __html: source }} />
       </pre>
     </div>
   );

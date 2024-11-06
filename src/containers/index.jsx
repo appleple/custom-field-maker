@@ -16,15 +16,13 @@ import { FieldGroupConfirmSource } from '../components/FieldGroupConfirmSource';
 import { UnitConfirmSource } from '../components/UnitConfirmSource';
 import { UnitGroupConfirmSource } from '../components/UnitGroupConfirmSource';
 import { Highlighter } from '../components/Highlighter';
-import { XmlEntities } from 'html-entities';
-
-const entities = new XmlEntities();
+import { decode } from 'html-entities';
 
 function CustomFieldMaker() {
   const { setSource, state, preview, clipboard } = useMakerContext();
 
   const onSource = (encodedHtml) => {
-    const decodedHtml = entities.decode(encodedHtml);
+    const decodedHtml = decode(encodedHtml);
     if (clipboard.source !== decodedHtml) {
       setSource(decodedHtml);
     }
