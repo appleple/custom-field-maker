@@ -21,7 +21,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
     preview: { acmscss, editMode },
   } = useMakerContext();
 
-  const renderTemplateComponent = (
+  const renderTemplateComponent = () => (
     <div
       className={classnames({
         'sortable-item': true,
