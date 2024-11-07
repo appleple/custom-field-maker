@@ -1,3 +1,147 @@
+.customFieldContainer {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 64px;
+  max-width: 960px;
+}
+
+.customFieldContainer h2 {
+  color: #333;
+  margin: 0;
+  font-size: 20px;
+  margin-bottom: 1em;
+}
+
+/* ジェネレーター：全体
+-------------------------------------- */
+.customFieldFunction {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 24px;
+  background: #fff;
+}
+
+.customFieldFunction select {
+  min-height: 26px;
+  padding: 4px 24px 4px 4px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+/* ジェネレーター：フィールドグループ、ユニットグループ
+-------------------------------------- */
+.customFieldGeneratorGroup {
+  display: grid;
+  row-gap: 24px;
+  column-gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "areaTitle  areaVal ."
+    "areaButton .       .";
+}
+.customFieldGeneratorGroup.-openGroup {
+  grid-template-areas: "areaTitle  areaVal .";
+}
+.customFieldGeneratorGroup dd {
+  margin: 0;
+}
+.customFieldGeneratorGroupTitle {
+  grid-area: areaTitle;
+}
+.customFieldGeneratorGroupVal {
+  grid-area: areaVal;
+}
+.customFieldGeneratorGroupButton {
+  grid-area: areaButton;
+}
+
+/* ジェネレーター：ベーシック
+-------------------------------------- */
+.customFieldGeneratorBasic {
+  display: grid;
+  row-gap: 24px;
+  column-gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "areaInput   areaTitle       areaField"
+    "areaPlaceholder areaTooltip areaTooltip";
+}
+.customFieldGeneratorBasic label,
+.customFieldGeneratorBasic dt,
+.customFieldGeneratorGroup label,
+.customFieldGeneratorGroup dt {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding-bottom: 8px;
+}
+.customFieldGeneratorBasicInput {
+  grid-area: areaInput;
+}
+.customFieldGeneratorBasicTitle {
+  grid-area: areaTitle;
+}
+.customFieldGeneratorBasicField {
+  grid-area: areaField;
+}
+.customFieldGeneratorBasicTooltip {
+  grid-area: areaTooltip;
+}
+.customFieldGeneratorBasicPlaceholder {
+  grid-area: areaPlaceholder;
+}
+
+/* ジェネレーター：バリデーター
+-------------------------------------- */
+.customFieldValidatorLabel {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.customFieldValidatorToggle {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transition: transform;
+  transform: rotateZ(45deg);
+  transform-origin: center center;
+}
+
+/* アコーディオン
+-------------------------------------- */
+.customFieldAccordionContent {
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+}
+
+.customFieldAccordionContent.-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ナビゲーター：コード操作
+-------------------------------------- */
+.customFieldNavigatorCode {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 20px;
+}
+.customFieldNavigatorCodeButtonList {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ボタン
+-------------------------------------- */
 .customFieldCopied {
   position: absolute;
   bottom: -40px;
@@ -19,13 +163,9 @@
 
 .hljs {
   border-radius: 5px;
-}
-
-.customFieldFunction {
-  margin-bottom: 20px;
-  padding: 20px 9px 10px;
-  border: 1px solid #e8e8e8;
-  background: #fff;
+  padding: 20px;
+  background-color: #F0F0F0;
+  min-height: 19.391px;
 }
 
 .customFieldCopied:after {
@@ -71,23 +211,29 @@
 }
 
 .customFieldValidatorArea {
+  display: grid;
+  gap: 16px;
+  grid-template-colmuns: repeat(1, minmax(0, 1fr));
+  margin-top: 8px;
   background-color: #F7F7F7;
-  border: 1px solid #cccccc;
-  padding: 10px;
+  padding: 20px;
 }
 
 .customFieldValidatorArea .acms-admin-icon-tooltip {
   margin-left: 10px;
 }
 
+.customFieldBold {
+  margin-bottom: 10px;
+}
 .customFieldBold .acms-admin-icon-tooltip {
   margin-left: 10px;
 }
 
 .customFieldOptionTable {
   width: auto !important;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  /* border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc; */
 }
 
 .customFieldOptionTable th,
@@ -111,7 +257,7 @@
 }
 
 .customFieldOptionTable tr {
-  border-bottom: 1px solid #cccccc;
+  /* border-bottom: 1px solid #cccccc; */
 }
 
 .customFieldOptionTable th:first-child,
@@ -317,15 +463,6 @@
   height: 27px;
   vertical-align: middle;
   line-height: 27px;
-}
-
-.customFieldTooltip {
-  font-weight: normal;
-  white-space: normal;
-  word-wrap: break-word;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-  font-size: 12px;
 }
 
 .customFieldFileContainer {

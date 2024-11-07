@@ -1,23 +1,19 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
-const prod = require('./webpack.prod.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const prodConfig = require('./webpack.prod.js');
 
-process.env.BABEL_ENV = 'development';
-
-module.exports = merge(prod, {
+module.exports = merge(prodConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
     client: {
       overlay: false,
     },
-    static: [
-      {
-        directory: path.resolve(__dirname, ''),
-      },
-    ],
-    open: true,
+    static: {
+      directory: path.resolve(__dirname, ''),
+    },
+    open: false,
     hot: true,
     port: 3000,
   },
@@ -26,15 +22,5 @@ module.exports = merge(prod, {
       template: './example/index.html',
       filename: 'index.html',
     }),
-    // new ESLintPlugin({
-    //   extensions: ['js', 'jsx'],
-    //   overrideConfig: {
-    //     plugins: ['react-hooks'],
-    //     rules: {
-    //       'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-    //       'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
-    //     },
-    //   },
-    // })
   ],
 });

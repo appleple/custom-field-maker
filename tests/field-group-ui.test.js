@@ -1,7 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import FieldGroup from '../src/components/field-group';
-
+import FieldGroup from '../src/components/FieldGroup';
 
 describe('custom-field confirm source', () => {
   describe('basic', () => {
@@ -36,11 +35,11 @@ describe('custom-field confirm source', () => {
     test('when title is empty alert box will appear', () => {
       const group = renderer.create(<FieldGroup />).root;
       const button = group.findByProps({
-        id: 'makeGroup'
+        id: 'makeGroup',
       });
       button.props.onClick();
       const alertBox = group.findByProps({
-        className: 'acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger'
+        className: 'acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger',
       });
       expect(alertBox).toBeTruthy();
     });

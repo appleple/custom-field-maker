@@ -1,0 +1,33 @@
+[
+  {
+    "テキスト（一行）": [
+      { "value": "text", "label": "テキスト" },
+      { "value": "tel", "label": "電話番号" },
+      { "value": "number", "label": "数値" },
+      { "value": "email", "label": "メールアドレス" },
+      { "value": "password", "label": "パスワード" }
+    ]
+  },
+  {
+    "テキスト（複数行）": [
+      { "value": "textarea", "label": "テキストエリア" },
+      { "value": "liteEditor", "label": "ライトエディター" },
+      { "value": "richEditor", "label": "リッチエディター" },
+      { "value": "table", "label": "テーブル" }
+    ]
+  },
+  {
+    "選択": [
+      { "value": "checkbox", "label": "チェックボックス" },
+      { "value": "selectbox", "label": "セレクトボックス" },
+      { "value": "radioButton", "label": "ラジオボタン" }
+    ]
+  },
+  {
+    "アップロード": [
+      { "value": "media", "label": "メディア" },
+      { "value": "image", "label": "画像" },
+      { "value": "file", "label": "ファイル" }
+    ]
+  }
+]
