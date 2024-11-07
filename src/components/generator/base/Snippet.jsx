@@ -24,8 +24,16 @@ export function Snippet(props) {
   };
 
   return (
-    <div>
-      <span className="customFieldBold">
+    <div
+      style={{
+        marginBottom: '5px',
+        height: '31px',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+      }}
+    >
+      <span className="customFieldBold" style={{ marginBottom: 0 }}>
         選択項目（option要素）
         <i className="acms-admin-icon-tooltip" data-tooltip-id="option-value-tip" />
         <Tooltip id="option-value-tip" place="top" variant="dark">

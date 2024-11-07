@@ -46,7 +46,7 @@ export function OptionItem(props) {
   return (
     <div>
       <table className="acms-admin-table customFieldOptionTable">
-        <tbody>
+        <tbody style={{ paddingTop: '5px' }}>
           {option &&
             option.map((item, idx) => (
               <tr key={idx}>
