@@ -6940,7 +6940,7 @@ th[aria-sort=descending] .acms-th-sort-btn-icon {
   line-height: var(--acms-tooltip-line-height);
   white-space: normal;
   text-align: left;
-  word-wrap: break-word;
+  overflow-wrap: anywhere;
   word-break: break-all;
   background: var(--acms-tooltip-bg-color);
   border-radius: 4px;

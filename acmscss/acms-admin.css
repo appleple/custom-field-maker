@@ -8091,7 +8091,7 @@ a.acms-admin-label-danger:focus {
   line-height: var(--acms-tooltip-line-height);
   text-align: left;
   white-space: normal;
-  word-wrap: break-word;
+  overflow-wrap: anywhere;
   word-break: break-all;
   background: var(--acms-admin-tooltip-bg-color);
   border-radius: 4px;
