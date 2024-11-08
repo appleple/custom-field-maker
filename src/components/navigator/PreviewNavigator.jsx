@@ -42,7 +42,7 @@ export function PreviewNavigator() {
   return (
     <div className="customFieldNavigatorCode">
       <div>
-        <div className="acms-flex acms-items-center" style={{ gap: '16px' }}>
+        <div className="acms-admin-flex acms-admin-items-center" style={{ gap: '16px' }}>
           {editMode !== 'confirm' && (
             <div>
               <select
