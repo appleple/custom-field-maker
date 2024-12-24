@@ -164,7 +164,7 @@
 .hljs {
   border-radius: 5px;
   padding: 20px;
-  background-color: #F0F0F0 !important;
+  /* background-color: #F0F0F0 !important; */
   min-height: 19.391px;
 }
 

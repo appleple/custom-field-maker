@@ -3,10 +3,13 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { decode } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
 import hljs from 'highlight.js/lib/core';
-import 'highlight.js/styles/xcode.css';
+import 'highlight.js/styles/atom-one-dark.css';
 import xml from 'highlight.js/lib/languages/xml';
 
 hljs.registerLanguage('xml', xml);
+hljs.configure({
+  ignoreUnescapedHTML: true,
+});
 
 export function Highlighter({ children, onHighlight = () => {} }) {
   const [source, setSource] = useState('');
