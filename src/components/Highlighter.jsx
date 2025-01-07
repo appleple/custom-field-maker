@@ -3,10 +3,12 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { decode } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';
 import hljs from 'highlight.js/lib/core';
-import 'highlight.js/styles/atom-one-dark.css';
 import xml from 'highlight.js/lib/languages/xml';
+import twig from 'highlight.js/lib/languages/twig';
+import '../assets/atom-one-dark.css';
 
 hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('twig', twig);
 hljs.configure({
   ignoreUnescapedHTML: true,
 });
@@ -44,7 +46,10 @@ export function Highlighter({ children, onHighlight = () => {} }) {
   return (
     <div>
       <pre className="acms-admin-customfield-maker">
-        <code className="html hljs" dangerouslySetInnerHTML={{ __html: source }} />
+        <code
+          className="html twig acms-admin-hljs"
+          dangerouslySetInnerHTML={{ __html: source.replace(/class="hljs-/g, 'class="acms-admin-hljs-') }}
+        />
       </pre>
     </div>
   );

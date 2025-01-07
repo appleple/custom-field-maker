@@ -1,0 +1,90 @@
+pre code.acms-admin-hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.acms-admin-hljs {
+  padding: 3px 5px
+}
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+.acms-admin-hljs {
+  color: #abb2bf;
+  background: #282c34
+}
+.acms-admin-hljs-comment,
+.acms-admin-hljs-quote {
+  color: #5c6370;
+  font-style: italic
+}
+.acms-admin-hljs-doctag,
+.acms-admin-hljs-keyword,
+.acms-admin-hljs-formula {
+  color: #c678dd
+}
+.acms-admin-hljs-section,
+.acms-admin-hljs-name,
+.acms-admin-hljs-selector-tag,
+.acms-admin-hljs-deletion,
+.acms-admin-hljs-subst {
+  color: #e06c75
+}
+.acms-admin-hljs-literal {
+  color: #56b6c2
+}
+.acms-admin-hljs-string,
+.acms-admin-hljs-regexp,
+.acms-admin-hljs-addition,
+.acms-admin-hljs-attribute,
+.acms-admin-hljs-meta .acms-admin-hljs-string {
+  color: #98c379
+}
+.acms-admin-hljs-attr,
+.acms-admin-hljs-variable,
+.acms-admin-hljs-template-variable,
+.acms-admin-hljs-type,
+.acms-admin-hljs-selector-class,
+.acms-admin-hljs-selector-attr,
+.acms-admin-hljs-selector-pseudo,
+.acms-admin-hljs-number {
+  color: #d19a66
+}
+.acms-admin-hljs-symbol,
+.acms-admin-hljs-bullet,
+.acms-admin-hljs-link,
+.acms-admin-hljs-meta,
+.acms-admin-hljs-selector-id,
+.acms-admin-hljs-title {
+  color: #61aeee
+}
+.acms-admin-hljs-built_in,
+.acms-admin-hljs-title.class_,
+.acms-admin-hljs-class .acms-admin-hljs-title {
+  color: #e6c07b
+}
+.acms-admin-hljs-emphasis {
+  font-style: italic
+}
+.acms-admin-hljs-strong {
+  font-weight: bold
+}
+.acms-admin-hljs-link {
+  text-decoration: underline
+}
