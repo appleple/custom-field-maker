@@ -2,7 +2,7 @@ import React from 'react';
 import { useMakerContext } from '../../store/MakerContext';
 
 export function Table(props) {
-  const { item, id = '', isValue = true } = props;
+  const { item, isValue = true } = props;
   const {
     preview: { mode, editMode },
   } = useMakerContext();
@@ -27,7 +27,7 @@ export function Table(props) {
             </table>
             {editMode === 'preview' ? null : '<!-- END_IF -->'}
             <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={item.name} />
-            <input id={id} type="hidden" name="field[]" value={item.name} />
+            <input id={item.name} type="hidden" name="field[]" value={item.name} />
           </div>
         </div>
       )}
@@ -51,7 +51,7 @@ export function Table(props) {
               </table>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input
-                id={id}
+                id={item.name}
                 type="hidden"
                 className="js-editable-table-dest"
                 {...(isValue && {
@@ -82,7 +82,7 @@ export function Table(props) {
             </table>
             {editMode === 'preview' ? null : '<!-- END_IF -->'}
             <input
-              id={id}
+              id={item.name}
               type="hidden"
               className="js-editable-table-dest"
               value={`{${item.name}}`}
@@ -112,7 +112,7 @@ export function Table(props) {
               </table>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input
-                id={id}
+                id={item.name}
                 type="hidden"
                 className="js-editable-table-dest"
                 {...(isValue && {

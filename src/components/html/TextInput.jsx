@@ -5,7 +5,7 @@ import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function TextInput(props) {
-  const { item, id = '', isValue = true } = props;
+  const { item, isValue = true } = props;
   const {
     preview: { mode, jsValidator, acmscss },
   } = useMakerContext();
@@ -15,7 +15,7 @@ export function TextInput(props) {
       {mode === 'customfield' && (
         <>
           <input
-            id={id}
+            id={item.name}
             type={item.type}
             name={item.name}
             defaultValue={`{${item.name}}`}
@@ -32,6 +32,7 @@ export function TextInput(props) {
       {mode === 'fieldgroup' && (
         <>
           <input
+            id={item.name}
             type={item.type}
             name={`${item.name}[]`}
             {...(isValue && {
@@ -46,6 +47,7 @@ export function TextInput(props) {
       {mode === 'customunit' && (
         <>
           <input
+            id={item.name}
             type={item.type}
             name={`${item.name}{id}`}
             defaultValue={`{${item.name}}`}
@@ -61,6 +63,7 @@ export function TextInput(props) {
       {mode === 'unitgroup' && (
         <>
           <input
+            id={item.name}
             type={item.type}
             name={`${item.name}{id}[]`}
             {...(isValue && {

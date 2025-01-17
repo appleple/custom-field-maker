@@ -35,7 +35,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <TextInput item={item} id={`${item.name}${index}`} />
+                    <TextInput item={item} />
                   </td>
                 </tr>
               );
@@ -48,7 +48,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <Textarea item={item} id={`${item.name}${index}`} />
+                    <Textarea item={item} />
                   </td>
                 </tr>
               );
@@ -60,7 +60,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <Selectbox item={item} id={`${item.name}${index}`} />
+                    <Selectbox item={item} />
                   </td>
                 </tr>
               );
@@ -96,7 +96,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <Media item={item} id={`${item.name}${index}`} />
+                    <Media item={item} />
                   </td>
                 </tr>
               );
@@ -108,7 +108,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <ImageInput item={item} id={`${item.name}${index}`} />
+                    <ImageInput item={item} />
                   </td>
                 </tr>
               );
@@ -120,7 +120,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <FileInput item={item} id={`${item.name}${index}`} />
+                    <FileInput item={item} />
                   </td>
                 </tr>
               );
@@ -132,7 +132,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <RichEditor item={item} id={`${item.name}${index}`} />
+                    <RichEditor item={item} />
                   </td>
                 </tr>
               );
@@ -144,7 +144,7 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </th>
                   <td>
-                    <Table item={item} id={`${item.name}${index}`} />
+                    <Table item={item} />
                   </td>
                 </tr>
               );

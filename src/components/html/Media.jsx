@@ -112,7 +112,7 @@ export function Media(props) {
           <input
             type="hidden"
             name={item.name}
-            id={id}
+            id={item.name}
             value={editMode === 'preview' ? '' : `{${item.name}}`}
             className="js-value"
           />

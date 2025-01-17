@@ -5,7 +5,7 @@ import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function Textarea(props) {
-  const { item, id = '', isValue = true } = props;
+  const { item, isValue = true } = props;
   const {
     preview: { mode, jsValidator, acmscss },
   } = useMakerContext();
@@ -22,7 +22,7 @@ export function Textarea(props) {
       {mode === 'customfield' && (
         <>
           <textarea
-            id={id}
+            id={item.name}
             name={item.name}
             className={classname}
             defaultValue={value}
@@ -39,7 +39,7 @@ export function Textarea(props) {
       {mode === 'fieldgroup' && (
         <>
           <textarea
-            id={id}
+            id={item.name}
             name={`${item.name}[]`}
             className={classname}
             defaultValue={value}
@@ -52,7 +52,7 @@ export function Textarea(props) {
       {mode === 'customunit' && (
         <>
           <textarea
-            id={id}
+            id={item.name}
             name={`${item.name}{id}`}
             className={classname}
             defaultValue={value}
@@ -68,7 +68,7 @@ export function Textarea(props) {
       {mode === 'unitgroup' && (
         <>
           <textarea
-            id={id}
+            id={item.name}
             name={`${item.name}{id}[]`}
             className={classname}
             defaultValue={value}

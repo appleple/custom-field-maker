@@ -4,7 +4,7 @@ import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 
 export function ImageInput(props) {
-  const { item, id, isAttribute = true } = props;
+  const { item, isAttribute = true } = props;
   const {
     preview: { acmscss, editMode, mode },
   } = useMakerContext();
@@ -51,7 +51,7 @@ export function ImageInput(props) {
           {editMode === 'preview' ? null : '<!-- END_IF -->'}
           <input
             type="file"
-            id={id}
+            id={item.name}
             name={item.name}
             size="20"
             className={classnames({ 'js-img_resize_input': item.resize })}

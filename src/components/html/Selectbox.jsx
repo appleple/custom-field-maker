@@ -5,7 +5,7 @@ import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function Selectbox(props) {
-  const { item, id = '', isSelected = true } = props;
+  const { item, isSelected = true } = props;
   const {
     preview: { mode, acmscss },
   } = useMakerContext();
@@ -14,7 +14,7 @@ export function Selectbox(props) {
     <>
       {mode === 'customfield' && (
         <>
-          <select id={id} name={item.name} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+          <select id={item.name} name={item.name} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
             <option value="" />
             {item.option.map((option, index) => {
               if (!option.label) {
@@ -36,7 +36,11 @@ export function Selectbox(props) {
 
       {mode === 'fieldgroup' && (
         <>
-          <select id={id} name={`${item.name}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+          <select
+            id={item.name}
+            name={`${item.name}[]`}
+            className={classnames({ 'acms-admin-form-width-full': acmscss })}
+          >
             <option value="" />
             {item.option.map((option, index) => {
               if (!option.label) {
@@ -60,7 +64,11 @@ export function Selectbox(props) {
 
       {mode === 'customunit' && (
         <>
-          <select id={id} name={`${item.name}{id}`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+          <select
+            id={item.name}
+            name={`${item.name}{id}`}
+            className={classnames({ 'acms-admin-form-width-full': acmscss })}
+          >
             <option value="" />
             {item.option.map((option, index) => {
               if (!option.label) {
