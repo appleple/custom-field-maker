@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
+import { generateSafeId } from '../../utils';
 
 export function RadioButton(props) {
   const { item, isChecked = true } = props;

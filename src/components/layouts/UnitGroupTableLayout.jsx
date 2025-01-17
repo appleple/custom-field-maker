@@ -74,7 +74,7 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                     </td>
                   )}
                 >
-                  {unitgroup.items.map((item, index) => {
+                  {unitgroup.items.map((item) => {
                     switch (item.type) {
                       case 'text':
                       case 'tel':

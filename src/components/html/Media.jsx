@@ -4,7 +4,7 @@ import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 
 export function Media(props) {
-  const { item, id, isValue = true } = props;
+  const { item, isValue = true } = props;
   const {
     preview: { acmscss, editMode, mode },
   } = useMakerContext();

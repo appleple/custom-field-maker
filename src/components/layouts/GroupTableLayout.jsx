@@ -78,7 +78,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                           {acmscss && <i className="acms-admin-icon-sort" />}
                         </td>
                         <>
-                          {fieldgroup.items.map((item, index) => {
+                          {fieldgroup.items.map((item) => {
                             switch (item.type) {
                               case 'text':
                               case 'tel':
