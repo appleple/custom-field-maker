@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import React, { useRef, useMemo, useCallback } from 'react';
 import Tooltip from '../../Tooltip';
 import { NoSearchBox } from './NoSearchBox';
 import { useMakerContext } from '../../../store/MakerContext';
@@ -12,47 +12,7 @@ export function Validator(props) {
     preview: { mode },
   } = useMakerContext();
 
-  const [height, setHeight] = useState(0);
   const contentRef = useRef(null);
-
-  const updateHeight = useCallback(() => {
-    if (contentRef.current) {
-      let newHeight;
-      if (openValidator) {
-        newHeight = `${contentRef.current.scrollHeight}px`;
-      } else {
-        newHeight = '0px';
-      }
-      setHeight(newHeight);
-    }
-  }, [openValidator]);
-
-  useEffect(() => {
-    updateHeight();
-
-    window.addEventListener('resize', updateHeight);
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      const currentRef = contentRef.current;
-      for (let entry of entries) {
-        if (entry.target === currentRef) {
-          updateHeight();
-        }
-      }
-    });
-
-    const currentRef = contentRef.current;
-    if (currentRef) {
-      resizeObserver.observe(currentRef);
-    }
-
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-      if (currentRef) {
-        resizeObserver.unobserve(currentRef);
-      }
-    };
-  }, [updateHeight]);
 
   const isConverter = useMemo(() => {
     const possibleConverter = [
@@ -94,9 +54,7 @@ export function Validator(props) {
         },
       ],
     }));
-    // 要素追加後に高さを更新
-    setTimeout(updateHeight, 0);
-  }, [setField, updateHeight]);
+  }, [setField]);
 
   const updateValidatorValue = (idx, value) => {
     const item = validator[idx];
@@ -135,11 +93,7 @@ export function Validator(props) {
         </button>
       </div>
 
-      <div
-        className={`customFieldAccordionContent ${openValidator ? '-open' : ''}`}
-        style={{ maxHeight: height }}
-        ref={contentRef}
-      >
+      <div className={`customFieldAccordionContent ${openValidator ? '-open' : ''}`} ref={contentRef}>
         <div className="customFieldValidatorArea">
           {isConverter && (
             <div>
