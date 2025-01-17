@@ -51,50 +51,64 @@ function CustomFieldMaker() {
               <div className="clearfix">
                 <PreviewNavigator />
 
-                {preview.editMode === 'source' && (
-                  <Highlighter onHighlight={onSource}>
-                    <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                <ul>
+                  <li
+                    style={{
+                      display: preview.editMode === 'source' ? 'block' : 'none',
+                    }}
+                  >
+                    <Highlighter onHighlight={onSource}>
+                      <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                        {{
+                          customfield: <FieldSource />,
+                          fieldgroup: <FieldGroupSource />,
+                          customunit: <UnitSource />,
+                          unitgroup: <UnitGroupSource />,
+                        }[preview.mode] || null}
+                      </MakerContextProvider>
+                    </Highlighter>
+                  </li>
+
+                  <li
+                    style={{
+                      display: preview.editMode === 'preview' ? 'block' : 'none',
+                    }}
+                  >
+                    <div
+                      style={{
+                        borderRadius: '5px',
+                        padding: '20px',
+                        margin: '1em 0',
+                        backgroundColor: '#F0F0F0',
+                        minHeight: '19.391px',
+                      }}
+                    >
                       {{
                         customfield: <FieldSource />,
                         fieldgroup: <FieldGroupSource />,
                         customunit: <UnitSource />,
                         unitgroup: <UnitGroupSource />,
                       }[preview.mode] || null}
-                    </MakerContextProvider>
-                  </Highlighter>
-                )}
+                    </div>
+                  </li>
 
-                {preview.editMode === 'preview' && (
-                  <div
+                  <li
                     style={{
-                      borderRadius: '5px',
-                      padding: '20px',
-                      margin: '1em 0',
-                      backgroundColor: '#F0F0F0',
-                      minHeight: '19.391px',
+                      display: preview.editMode === 'confirm' ? 'block' : 'none',
                     }}
                   >
-                    {{
-                      customfield: <FieldSource />,
-                      fieldgroup: <FieldGroupSource />,
-                      customunit: <UnitSource />,
-                      unitgroup: <UnitGroupSource />,
-                    }[preview.mode] || null}
-                  </div>
-                )}
-
-                {preview.editMode === 'confirm' && (
-                  <Highlighter onHighlight={onSource}>
-                    <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                      {{
-                        customfield: <FieldConfirmSource />,
-                        fieldgroup: <FieldGroupConfirmSource />,
-                        customunit: <UnitConfirmSource />,
-                        unitgroup: <UnitGroupConfirmSource />,
-                      }[preview.mode] || null}
-                    </MakerContextProvider>
-                  </Highlighter>
-                )}
+                    <Highlighter onHighlight={onSource}>
+                      <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                        {{
+                          customfield: <FieldConfirmSource />,
+                          fieldgroup: <FieldGroupConfirmSource />,
+                          customunit: <UnitConfirmSource />,
+                          unitgroup: <UnitGroupConfirmSource />,
+                        }[preview.mode] || null}
+                      </MakerContextProvider>
+                    </Highlighter>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
