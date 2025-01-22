@@ -45,7 +45,7 @@ export function Highlighter({ children, onHighlight = () => {} }) {
 
   return (
     <div>
-      <pre className="acms-admin-customfield-maker">
+      <pre className="acms-admin-customfield-maker customFIeldmakerHeilighter">
         <code
           className="html twig acms-admin-hljs"
           dangerouslySetInnerHTML={{ __html: source.replace(/class="hljs-/g, 'class="acms-admin-hljs-') }}

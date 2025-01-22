@@ -56,7 +56,12 @@ function CustomFieldMaker() {
               <div className="clearfix">
                 <PreviewNavigator />
 
-                <ul>
+                <ul
+                  style={{
+                    padding: '16px 0',
+                    margin: '0',
+                  }}
+                >
                   <li
                     style={{
                       display: preview.editMode === 'source' ? 'block' : 'none',
@@ -81,11 +86,10 @@ function CustomFieldMaker() {
                   >
                     <div
                       style={{
-                        borderRadius: '5px',
-                        padding: '20px',
-                        margin: '1em 0',
+                        padding: '16px',
+                        margin: '0',
                         backgroundColor: '#F0F0F0',
-                        minHeight: '19.391px',
+                        minHeight: '18.398px',
                       }}
                     >
                       {{
