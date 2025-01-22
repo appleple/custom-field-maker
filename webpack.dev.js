@@ -23,4 +23,9 @@ module.exports = merge(prodConfig, {
       filename: 'index.html',
     }),
   ],
+  watchOptions: {
+    ignored: '**/node_modules/**',
+    aggregateTimeout: 300,
+    poll: 1000,
+  },
 });
