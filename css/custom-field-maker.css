@@ -116,21 +116,19 @@
 /* アコーディオン
 -------------------------------------- */
 .customFieldAccordionContent {
-  visibility: hidden;
-  opacity: 0;
-  display: none;
-  transition:
-    opacity 0.3s ease-out,
-    visibility 0s linear 0.3s;
+  display: grid;
+  transition: 0.3s;
+  transition-property: grid-template-rows;
+}
+.customFieldAccordionContent[aria-hidden=false] {
+  grid-template-rows: 0fr;
 }
 
-.customFieldAccordionContent.-open {
-  visibility: visible;
-  opacity: 1;
-  display: block;
-  transition:
-    opacity 0.3s ease-out,
-    visibility 0s linear;
+.customFieldAccordionContent[aria-hidden=true] {
+  grid-template-rows: 1fr;
+}
+.customFieldAccordionContent__inner {
+  overflow: hidden;
 }
 
 /* ナビゲーター：コード操作
