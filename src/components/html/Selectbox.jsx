@@ -89,7 +89,11 @@ export function Selectbox(props) {
 
       {mode === 'unitgroup' && (
         <>
-          <select name={`${item.name}{id}[]`} className={classnames({ 'acms-admin-form-width-full': acmscss })}>
+          <select
+            id={item.name}
+            name={`${item.name}{id}[]`}
+            className={classnames({ 'acms-admin-form-width-full': acmscss })}
+          >
             <option value="" />
             {item.option.map((option, index) => {
               if (!option.label) {
