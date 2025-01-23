@@ -120,11 +120,11 @@
   transition: 0.3s;
   transition-property: grid-template-rows;
 }
-.customFieldAccordionContent[aria-hidden=false] {
+.customFieldAccordionContent[aria-hidden=true] {
   grid-template-rows: 0fr;
 }
 
-.customFieldAccordionContent[aria-hidden=true] {
+.customFieldAccordionContent[aria-hidden=false] {
   grid-template-rows: 1fr;
 }
 .customFieldAccordionContent__inner {
@@ -579,4 +579,8 @@
   width: 18px;
   height: auto;
   vertical-align: middle;
+}
+
+.customFIeldmakerHeilighter {
+  margin: 0;
 }

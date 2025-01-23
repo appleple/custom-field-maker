@@ -93,7 +93,7 @@ export function Validator(props) {
         </button>
       </div>
 
-      <div className="customFieldAccordionContent" aria-hidden={openValidator ? 'true' : 'false'} ref={contentRef}>
+      <div className="customFieldAccordionContent" aria-hidden={openValidator ? 'false' : 'true'} ref={contentRef}>
         <div className="customFieldAccordionContent__inner">
           <div className="customFieldValidatorArea">
             {isConverter && (
