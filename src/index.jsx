@@ -4,7 +4,7 @@ import { MakerContextProvider } from './store/MakerContext';
 import { STORAGENAME } from './constants';
 
 function App() {
-  const state = JSON.parse(localStorage.getItem(STORAGENAME));
+  const state = JSON.parse(localStorage.getItem(STORAGENAME)) || undefined;
 
   return (
     <MakerContextProvider state={state}>
