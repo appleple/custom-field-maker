@@ -60,7 +60,6 @@ export const MakerContext = createContext({
   setAcmscss: () => {},
   setJsValidator: () => {},
   setDirection: () => {},
-  setStateAll: () => {},
 });
 
 export function MakerContextProvider({
@@ -81,14 +80,6 @@ export function MakerContextProvider({
       }),
     [dispatch]
   );
-  const setCustomfield = useCallback(
-    (setCustomfield) =>
-      dispatch({
-        type: 'UPDATE_STATE',
-        payload: { customfield: () => [setCustomfield] },
-      }),
-    [dispatch]
-  );
 
   const addCustomunit = useCallback(
     (newCustomunit) =>
@@ -97,14 +88,6 @@ export function MakerContextProvider({
         payload: { customunit: [...state.customunit, newCustomunit] },
       }),
     [dispatch, state.customunit]
-  );
-  const setCustomunit = useCallback(
-    (setCustomunit) =>
-      dispatch({
-        type: 'UPDATE_STATE',
-        payload: { customunit: [setCustomunit] },
-      }),
-    [dispatch]
   );
 
   const setGroupTitleName = useCallback(
@@ -125,16 +108,6 @@ export function MakerContextProvider({
       }),
     [dispatch]
   );
-  const setGroupItem = useCallback(
-    (setGroupItem) =>
-      dispatch({
-        type: 'UPDATE_STATE',
-        payload: {
-          fieldgroup: (prevFieldgroup) => ({ ...prevFieldgroup, items: [setGroupItem] }),
-        },
-      }),
-    [dispatch]
-  );
 
   const setUnitGroupTitleName = useCallback(
     (title, name) =>
@@ -151,26 +124,6 @@ export function MakerContextProvider({
         payload: { unitgroup: { ...state.unitgroup, items: [...state.unitgroup.items, newGroupItem] } },
       }),
     [dispatch, state.unitgroup]
-  );
-  const setUnitGroupItem = useCallback(
-    (setGroupItem) =>
-      dispatch({
-        type: 'UPDATE_STATE',
-        payload: { unitgroup: { ...state.unitgroup, items: [setGroupItem] } },
-      }),
-    [dispatch, state.unitgroup]
-  );
-
-  const setAllState = useCallback(
-    (state) => {
-      setCustomfield(state.customfield);
-      setCustomunit(state.customunit);
-      setGroupTitleName(state.fieldgroup.title, state.fieldgroup.name);
-      setGroupItem(state.fieldgroup.items);
-      setUnitGroupTitleName(state.unitgroup.title, state.unitgroup.name);
-      setUnitGroupItem(state.unitgroup.items);
-    },
-    [setCustomfield, setCustomunit, setGroupTitleName, setGroupItem, setUnitGroupTitleName, setUnitGroupItem]
   );
 
   const clearCustomfield = useCallback(
@@ -261,7 +214,6 @@ export function MakerContextProvider({
       setCopied,
       undo,
       redo,
-      setAllState,
     }),
     [
       state,
@@ -289,7 +241,6 @@ export function MakerContextProvider({
       setCopied,
       undo,
       redo,
-      setAllState,
     ]
   );
 
