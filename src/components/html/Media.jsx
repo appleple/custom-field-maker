@@ -203,7 +203,7 @@ export function Media(props) {
                 data-width={`${item.dropAreaWidth}px`}
                 data-type={item.mediaType ? item.mediaType : 'all'}
                 {...(isValue && { 'data-thumbnail': `{${item.name}@thumbnail}` })}
-                {...(!isValue && { 'data-thumbnail-type': '{media@type}' })}
+                {...(isValue && { 'data-thumbnail-type': `{${item.name}@type}` })}
                 data-height={`${item.dropAreaHeight}px`}
               />
               <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
