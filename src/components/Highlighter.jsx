@@ -14,7 +14,7 @@ hljs.configure({
 });
 
 export function Highlighter({ children, onHighlight = () => {} }) {
-  const [source, setSource] = useState('');
+  const [rawSource, setRawSource] = useState('');
 
   const buildSource = useCallback(
     (reactNode) => {
@@ -29,14 +29,14 @@ export function Highlighter({ children, onHighlight = () => {} }) {
       });
 
       const { value = '', code = '' } = hljs.highlight(html, { language: 'xml' });
-      if (source !== value) {
-        setSource(value);
+      if (rawSource !== value) {
+        setRawSource(value);
         if (onHighlight) {
           onHighlight(code);
         }
       }
     },
-    [onHighlight, source]
+    [onHighlight, rawSource]
   );
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export function Highlighter({ children, onHighlight = () => {} }) {
       <pre className="acms-admin-customfield-maker customFIeldmakerHeilighter">
         <code
           className="html twig acms-admin-hljs"
-          dangerouslySetInnerHTML={{ __html: source.replace(/class="hljs-/g, 'class="acms-admin-hljs-') }}
+          dangerouslySetInnerHTML={{ __html: rawSource.replace(/class="hljs-/g, 'class="acms-admin-hljs-') }}
         />
       </pre>
     </div>

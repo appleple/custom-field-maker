@@ -67,16 +67,18 @@ function CustomFieldMaker() {
                       display: preview.editMode === 'source' ? 'block' : 'none',
                     }}
                   >
-                    <Highlighter onHighlight={onSource}>
-                      <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                        {{
-                          customfield: <FieldSource />,
-                          fieldgroup: <FieldGroupSource />,
-                          customunit: <UnitSource />,
-                          unitgroup: <UnitGroupSource />,
-                        }[preview.mode] || null}
-                      </MakerContextProvider>
-                    </Highlighter>
+                    {preview.editMode === 'source' && (
+                      <Highlighter onHighlight={onSource}>
+                        <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                          {{
+                            customfield: <FieldSource />,
+                            fieldgroup: <FieldGroupSource />,
+                            customunit: <UnitSource />,
+                            unitgroup: <UnitGroupSource />,
+                          }[preview.mode] || null}
+                        </MakerContextProvider>
+                      </Highlighter>
+                    )}
                   </li>
 
                   <li
@@ -106,16 +108,18 @@ function CustomFieldMaker() {
                       display: preview.editMode === 'confirm' ? 'block' : 'none',
                     }}
                   >
-                    <Highlighter onHighlight={onSource}>
-                      <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                        {{
-                          customfield: <FieldConfirmSource />,
-                          fieldgroup: <FieldGroupConfirmSource />,
-                          customunit: <UnitConfirmSource />,
-                          unitgroup: <UnitGroupConfirmSource />,
-                        }[preview.mode] || null}
-                      </MakerContextProvider>
-                    </Highlighter>
+                    {preview.editMode === 'confirm' && (
+                      <Highlighter onHighlight={onSource}>
+                        <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                          {{
+                            customfield: <FieldConfirmSource />,
+                            fieldgroup: <FieldGroupConfirmSource />,
+                            customunit: <UnitConfirmSource />,
+                            unitgroup: <UnitGroupConfirmSource />,
+                          }[preview.mode] || null}
+                        </MakerContextProvider>
+                      </Highlighter>
+                    )}
                   </li>
                 </ul>
               </div>
