@@ -26,11 +26,8 @@ export function FileInput(props) {
           <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
           <input type="hidden" name={`${item.name}@secret`} value={`{${item.name}@secret}`} />
           <input type="hidden" name={`${item.name}@fileSize`} value={`{${item.name}@fileSize}`} />
-          <label
-            htmlFor={`input-checkbox-${item.name}@edit`}
-            className={classnames({ 'acms-admin-form-checkbox': acmscss })}
-          >
-            <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
+          <label htmlFor={`${item.name}-delete`} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+            <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`${item.name}-delete`} />
             {acmscss && <i className="acms-admin-ico-checkbox" />}
             削除
           </label>
@@ -65,13 +62,8 @@ export function FileInput(props) {
             <>
               {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
               <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-                <input
-                  type="checkbox"
-                  name={`${item.name}@edit[]`}
-                  value="delete"
-                  id={`input-checkbox-${item.name}{i}@edit[]`}
-                />
-                <label htmlFor={`input-checkbox-${item.name}{i}@edit[]`}>
+                <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`${item.name}-delete-{i}`} />
+                <label htmlFor={`${item.name}-delete-{i}`}>
                   {acmscss && <i className="acms-admin-ico-checkbox" />} 削除
                 </label>
               </div>
@@ -103,16 +95,8 @@ export function FileInput(props) {
           <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
           <input type="hidden" name={`${item.name}{id}@secret`} value={`{${item.name}@secret}`} />
           <input type="hidden" name={`${item.name}{id}@fileSize`} value={`{${item.name}@fileSize}`} />
-          <label
-            htmlFor={`input-checkbox-${item.name}{id}@edit`}
-            className={classnames({ 'acms-admin-form-checkbox': acmscss })}
-          >
-            <input
-              type="checkbox"
-              name={`${item.name}{id}@edit`}
-              value="delete"
-              id={`input-checkbox-${item.name}{id}@edit`}
-            />
+          <label htmlFor={`${item.name}-delete-{id}`} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+            <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`${item.name}-delete-{id}`} />
             {acmscss && <i className="acms-admin-ico-checkbox" />}
             削除
           </label>
@@ -151,9 +135,9 @@ export function FileInput(props) {
                   type="checkbox"
                   name={`${item.name}{id}@edit[]`}
                   value="delete"
-                  id={`input-checkbox-${item.name}{id}@edit[]`}
+                  id={`${item.name}-delete-{id}`}
                 />
-                <label htmlFor={`input-checkbox-${item.name}{id}@edit[]`}>
+                <label htmlFor={`${item.name}-delete-{id}`}>
                   {acmscss && <i className="acms-admin-ico-checkbox" />} 削除
                 </label>
               </div>
