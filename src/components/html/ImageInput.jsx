@@ -35,8 +35,8 @@ export function ImageInput(props) {
           />
           <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
           <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-            <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`input-checkbox-${item.name}@edit`} />
-            <label htmlFor={`input-checkbox-${item.name}@edit`}>
+            <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`${item.name}-delete`} />
+            <label htmlFor={`${item.name}-delete`}>
               {acmscss && <i className="acms-admin-ico-checkbox" />}
               削除
             </label>
@@ -90,15 +90,10 @@ export function ImageInput(props) {
                 />
                 <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
                 <label
-                  htmlFor={`input-checkbox-${item.name}@edit[]`}
+                  htmlFor={`${item.name}-delete-{i}`}
                   className={classnames({ 'acms-admin-form-checkbox': acmscss })}
                 >
-                  <input
-                    type="checkbox"
-                    name={`${item.name}@edit[]`}
-                    value="delete"
-                    id={`input-checkbox-${item.name}@edit[]`}
-                  />
+                  <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`${item.name}-delete-{i}`} />
                   {acmscss && <i className="acms-admin-ico-checkbox" />}
                   削除
                 </label>
@@ -143,13 +138,8 @@ export function ImageInput(props) {
           />
           <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
           <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-            <input
-              type="checkbox"
-              name={`${item.name}{id}@edit`}
-              value="delete"
-              id={`input-checkbox-${item.name}{id}@edit`}
-            />
-            <label htmlFor={`input-checkbox-${item.name}{id}@edit`}>
+            <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`${item.name}-delete-{id}`} />
+            <label htmlFor={`${item.name}-delete-{id}`}>
               {acmscss && <i className="acms-admin-ico-checkbox" />}
               削除
             </label>
@@ -203,14 +193,14 @@ export function ImageInput(props) {
 
                 <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
                 <label
-                  htmlFor={`input-checkbox-${item.name}{id}@edit[]`}
+                  htmlFor={`${item.name}-delete-{id}`}
                   className={classnames({ 'acms-admin-form-checkbox': acmscss })}
                 >
                   <input
                     type="checkbox"
                     name={`${item.name}{id}@edit[]`}
                     value="delete"
-                    id={`input-checkbox-${item.name}{id}@edit[]`}
+                    id={`${item.name}-delete-{id}`}
                   />
                   {acmscss && <i className="acms-admin-ico-checkbox" />}
                   削除
