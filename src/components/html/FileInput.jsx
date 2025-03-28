@@ -35,7 +35,7 @@ export function FileInput(props) {
             <img src={src} width="64" height="64" alt={alt} />
           </a>
           {editMode === 'preview' ? null : `<!-- END ${item.name}@path:veil -->`}
-          <input type="file" name={item.name} id={item.name} />
+          <input type="file" name={item.name} />
           <input type="hidden" name="field[]" value={item.name} />
           <input type="hidden" name={`${item.name}@path`} value={`{${item.name}@path}`} />
           <input type="hidden" name={`${item.name}@fileSize`} value={`{${item.name}@fileSize}`} />

@@ -34,7 +34,7 @@ export function RichEditor(props) {
           >
             <div className="js-smartblock-edit" />
             <input className="js-smartblock-body" type="hidden" name={item.name} value={`{${item.name}@html}`} />
-            <input id={item.name} type="hidden" name="field[]" value={item.name} />
+            <input type="hidden" name="field[]" value={item.name} />
             <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
           </div>
         </ConditionalWrap>
@@ -63,7 +63,6 @@ export function RichEditor(props) {
             {isValue ? (
               <>
                 <input
-                  id={item.name}
                   className="js-smartblock-body"
                   type="hidden"
                   name={`${item.name}[]`}
@@ -72,7 +71,7 @@ export function RichEditor(props) {
                 <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
               </>
             ) : (
-              <input id={item.name} className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value="" />
+              <input className="js-smartblock-body" type="hidden" name={`${item.name}[]`} value="" />
             )}
           </div>
         </ConditionalWrap>

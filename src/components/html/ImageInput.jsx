@@ -51,7 +51,6 @@ export function ImageInput(props) {
           {editMode === 'preview' ? null : '<!-- END_IF -->'}
           <input
             type="file"
-            id={item.name}
             name={item.name}
             size="20"
             className={classnames({ 'js-img_resize_input': item.resize })}
