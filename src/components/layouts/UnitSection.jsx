@@ -137,7 +137,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
-                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })} htmlFor={item.name}>
+                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                     <Heading item={item} />
                   </label>
                   <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
@@ -156,7 +156,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
-                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })} htmlFor={item.name}>
+                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                     <Heading item={item} />
                   </label>
                   <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
@@ -175,7 +175,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
-                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })} htmlFor={item.name}>
+                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                     <Heading item={item} />
                   </label>
                   <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
@@ -194,7 +194,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
-                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })} htmlFor={item.name}>
+                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                     <Heading item={item} />
                   </label>
                   <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
