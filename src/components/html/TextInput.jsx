@@ -47,7 +47,7 @@ export function TextInput(props) {
       {mode === 'customunit' && (
         <>
           <input
-            id={item.name}
+            id={`${item.name}{id}`}
             type={item.type}
             name={`${item.name}{id}`}
             defaultValue={`{${item.name}}`}
@@ -63,7 +63,7 @@ export function TextInput(props) {
       {mode === 'unitgroup' && (
         <>
           <input
-            id={item.name}
+            id={`${item.name}{id}`}
             type={item.type}
             name={`${item.name}{id}[]`}
             {...(isValue && {

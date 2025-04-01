@@ -35,8 +35,8 @@ export function ImageInput(props) {
           />
           <input type="hidden" name={`${item.name}@old`} value={`{${item.name}@path}`} />
           <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-            <input type="checkbox" name={`${item.name}@edit`} value="delete" id={`${item.name}-delete`} />
-            <label htmlFor={`${item.name}-delete`}>
+            <label>
+              <input type="checkbox" name={`${item.name}@edit`} value="delete" />
               {acmscss && <i className="acms-admin-ico-checkbox" />}
               削除
             </label>
@@ -54,6 +54,7 @@ export function ImageInput(props) {
             name={item.name}
             size="20"
             className={classnames({ 'js-img_resize_input': item.resize })}
+            id={item.name}
           />
           <br />
           {item.alt && (
@@ -88,11 +89,8 @@ export function ImageInput(props) {
                   alt={`{${item.name}@alt}`}
                 />
                 <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
-                <label
-                  htmlFor={`${item.name}-delete-{i}`}
-                  className={classnames({ 'acms-admin-form-checkbox': acmscss })}
-                >
-                  <input type="checkbox" name={`${item.name}@edit[]`} value="delete" id={`${item.name}-delete-{i}`} />
+                <label className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+                  <input type="checkbox" name={`${item.name}@edit[]`} value="delete" />
                   {acmscss && <i className="acms-admin-ico-checkbox" />}
                   削除
                 </label>
@@ -110,7 +108,12 @@ export function ImageInput(props) {
             )}
             {!isAttribute && <img src="" alt="" style={hiddenStyle} className="js-img_resize_preview" />}
 
-            <input type="file" name={`${item.name}[]`} className={classnames({ 'js-img_resize_input': item.resize })} />
+            <input
+              type="file"
+              name={`${item.name}[]`}
+              className={classnames({ 'js-img_resize_input': item.resize })}
+              id={item.name}
+            />
             <br />
             {item.alt && (
               <>
@@ -137,8 +140,8 @@ export function ImageInput(props) {
           />
           <input type="hidden" name={`${item.name}{id}@old`} value={`{${item.name}@path}`} />
           <div className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
-            <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" id={`${item.name}-delete-{id}`} />
-            <label htmlFor={`${item.name}-delete-{id}`}>
+            <label>
+              <input type="checkbox" name={`${item.name}{id}@edit`} value="delete" />
               {acmscss && <i className="acms-admin-ico-checkbox" />}
               削除
             </label>
@@ -156,6 +159,7 @@ export function ImageInput(props) {
             name={`${item.name}{id}`}
             size="20"
             className={classnames({ 'js-img_resize_input': item.resize })}
+            id={`${item.name}{id}`}
           />
           <br />
           {item.alt && (
@@ -191,16 +195,8 @@ export function ImageInput(props) {
                 </div>
 
                 <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
-                <label
-                  htmlFor={`${item.name}-delete-{id}`}
-                  className={classnames({ 'acms-admin-form-checkbox': acmscss })}
-                >
-                  <input
-                    type="checkbox"
-                    name={`${item.name}{id}@edit[]`}
-                    value="delete"
-                    id={`${item.name}-delete-{id}`}
-                  />
+                <label className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
+                  <input type="checkbox" name={`${item.name}{id}@edit[]`} value="delete" />
                   {acmscss && <i className="acms-admin-ico-checkbox" />}
                   削除
                 </label>
@@ -218,6 +214,7 @@ export function ImageInput(props) {
               type="file"
               name={`${item.name}{id}[]`}
               className={classnames({ 'js-img_resize_input': item.resize })}
+              id={`${item.name}{id}`}
             />
             <br />
             {item.alt && (

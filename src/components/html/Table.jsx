@@ -51,7 +51,6 @@ export function Table(props) {
               </table>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input
-                id={item.name}
                 type="hidden"
                 className="js-editable-table-dest"
                 {...(isValue && {
@@ -82,7 +81,6 @@ export function Table(props) {
             </table>
             {editMode === 'preview' ? null : '<!-- END_IF -->'}
             <input
-              id={item.name}
               type="hidden"
               className="js-editable-table-dest"
               value={`{${item.name}}`}
@@ -112,7 +110,6 @@ export function Table(props) {
               </table>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input
-                id={item.name}
                 type="hidden"
                 className="js-editable-table-dest"
                 {...(isValue && {

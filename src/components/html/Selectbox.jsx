@@ -65,7 +65,7 @@ export function Selectbox(props) {
       {mode === 'customunit' && (
         <>
           <select
-            id={item.name}
+            id={`${item.name}{id}`}
             name={`${item.name}{id}`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
           >
@@ -90,7 +90,7 @@ export function Selectbox(props) {
       {mode === 'unitgroup' && (
         <>
           <select
-            id={item.name}
+            id={`${item.name}{id}`}
             name={`${item.name}{id}[]`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
           >
