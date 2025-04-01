@@ -68,7 +68,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}{id}`}
                       >
                         <Heading item={item} />
                       </label>
@@ -84,7 +84,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}{id}`}
                       >
                         <Heading item={item} />
                       </label>
@@ -150,7 +150,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}{id}`}
                       >
                         <Heading item={item} />
                       </label>
@@ -165,7 +165,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}{id}`}
                       >
                         <Heading item={item} />
                       </label>
@@ -190,10 +190,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                 case 'table': {
                   return (
                     <>
-                      <label
-                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
-                      >
+                      <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
@@ -288,7 +285,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}{id}`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -304,7 +301,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}{id}`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -333,7 +330,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}{id}`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -376,7 +373,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}{id}`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -391,7 +388,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}{id}`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -420,7 +417,6 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
                                         >
                                           <Heading item={item} />
                                         </label>

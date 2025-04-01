@@ -189,14 +189,11 @@ export const GroupSection = forwardRef((_props, ref) => {
                 case 'table': {
                   return (
                     <>
-                      <label
-                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
-                      >
+                      <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <Table item={item} id={`${item.name}${index}`} isValue={false} />
+                        <Table item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -417,7 +414,6 @@ export const GroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
                                         >
                                           <Heading item={item} />
                                         </label>
