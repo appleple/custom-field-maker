@@ -48,7 +48,7 @@ export function RadioButton(props) {
             if (!option.label) {
               return null;
             }
-            const id = `${item.name}-${generateSafeId(option.value)}`;
+            const id = `${item.name}-${generateSafeId(option.value)}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
                 <input
@@ -105,7 +105,7 @@ export function RadioButton(props) {
             if (!option.label) {
               return null;
             }
-            const id = `${item.name}-${generateSafeId(option.value)}-{id}`;
+            const id = `${item.name}-${generateSafeId(option.value)}-{id}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
                 <input

@@ -37,7 +37,7 @@ export function Selectbox(props) {
       {mode === 'fieldgroup' && (
         <>
           <select
-            id={item.name}
+            id={`${item.name}[]`}
             name={`${item.name}[]`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
           >
@@ -90,7 +90,7 @@ export function Selectbox(props) {
       {mode === 'unitgroup' && (
         <>
           <select
-            id={`${item.name}{id}`}
+            id={`${item.name}{id}[]`}
             name={`${item.name}{id}[]`}
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
           >

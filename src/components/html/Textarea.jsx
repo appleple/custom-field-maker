@@ -39,7 +39,7 @@ export function Textarea(props) {
       {mode === 'fieldgroup' && (
         <>
           <textarea
-            id={item.name}
+            id={`${item.name}[]`}
             name={`${item.name}[]`}
             className={classname}
             defaultValue={value}
@@ -68,7 +68,7 @@ export function Textarea(props) {
       {mode === 'unitgroup' && (
         <>
           <textarea
-            id={`${item.name}{id}`}
+            id={`${item.name}{id}[]`}
             name={`${item.name}{id}[]`}
             className={classname}
             defaultValue={value}

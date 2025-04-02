@@ -32,7 +32,7 @@ export function TextInput(props) {
       {mode === 'fieldgroup' && (
         <>
           <input
-            id={item.name}
+            id={`${item.name}[]`}
             type={item.type}
             name={`${item.name}[]`}
             {...(isValue && {
@@ -63,7 +63,7 @@ export function TextInput(props) {
       {mode === 'unitgroup' && (
         <>
           <input
-            id={`${item.name}{id}`}
+            id={`${item.name}{id}[]`}
             type={item.type}
             name={`${item.name}{id}[]`}
             {...(isValue && {

@@ -85,7 +85,7 @@ export function FileInput(props) {
           {item.fileNameMethod === 'asis' && (
             <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />
           )}
-          <input type="file" name={`${item.name}[]`} id={item.name} />
+          <input type="file" name={`${item.name}[]`} id={`${item.name}[]`} />
         </>
       )}
 
@@ -143,7 +143,7 @@ export function FileInput(props) {
               <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />
             </>
           )}
-          <input type="file" name={`${item.name}{id}[]`} id={`${item.name}{id}`} />
+          <input type="file" name={`${item.name}{id}[]`} id={`${item.name}{id}[]`} />
           {!isValue && item.extension && (
             <input type="hidden" name={`${item.name}{id}@extension[]`} value="{extension}" />
           )}

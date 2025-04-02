@@ -112,7 +112,7 @@ export function ImageInput(props) {
               type="file"
               name={`${item.name}[]`}
               className={classnames({ 'js-img_resize_input': item.resize })}
-              id={item.name}
+              id={`${item.name}[]`}
             />
             <br />
             {item.alt && (
@@ -214,7 +214,7 @@ export function ImageInput(props) {
               type="file"
               name={`${item.name}{id}[]`}
               className={classnames({ 'js-img_resize_input': item.resize })}
-              id={`${item.name}{id}`}
+              id={`${item.name}{id}[]`}
             />
             <br />
             {item.alt && (

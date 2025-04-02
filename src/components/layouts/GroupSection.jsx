@@ -67,7 +67,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}[]`}
                       >
                         <Heading item={item} />
                       </label>
@@ -83,7 +83,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}[]`}
                       >
                         <Heading item={item} />
                       </label>
@@ -149,7 +149,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}[]`}
                       >
                         <Heading item={item} />
                       </label>
@@ -164,7 +164,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={item.name}
+                        htmlFor={`${item.name}[]`}
                       >
                         <Heading item={item} />
                       </label>
@@ -282,7 +282,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -298,7 +298,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -327,7 +327,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -370,7 +370,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
@@ -385,7 +385,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={item.name}
+                                          htmlFor={`${item.name}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
