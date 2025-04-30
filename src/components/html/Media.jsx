@@ -4,7 +4,7 @@ import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 
 export function Media(props) {
-  const { item, id, isValue = true } = props;
+  const { item, isValue = true } = props;
   const {
     preview: { acmscss, editMode, mode },
   } = useMakerContext();
@@ -27,7 +27,6 @@ export function Media(props) {
                     src={`{${item.name}@thumbnail}`}
                     className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                     alt=""
-                    id={`${item.name}-preview`}
                     {...(item.mediaType === 'file' && {
                       style: {
                         width: '64px',
@@ -50,7 +49,6 @@ export function Media(props) {
                     : { style: { display: 'none' } })}
                   alt=""
                   className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
-                  id={`${item.name}-preview`}
                 />
                 {'<!-- END_IF -->'}
                 <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
@@ -112,7 +110,6 @@ export function Media(props) {
           <input
             type="hidden"
             name={item.name}
-            id={id}
             value={editMode === 'preview' ? '' : `{${item.name}}`}
             className="js-value"
           />

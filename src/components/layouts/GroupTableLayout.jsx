@@ -78,7 +78,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                           {acmscss && <i className="acms-admin-icon-sort" />}
                         </td>
                         <>
-                          {fieldgroup.items.map((item, index) => {
+                          {fieldgroup.items.map((item) => {
                             switch (item.type) {
                               case 'text':
                               case 'tel':
@@ -88,7 +88,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <TextInput item={item} id={`${item.name}${index}`} />
+                                      <TextInput item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -98,7 +98,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <Textarea item={item} id={`${item.name}${index}`} />
+                                      <Textarea item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -107,7 +107,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <Checkbox item={item} id={`${item.name}${index}`} />
+                                      <Checkbox item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -116,7 +116,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <Selectbox item={item} id={`${item.name}${index}`} />
+                                      <Selectbox item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -125,7 +125,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <RadioButton item={item} id={`${item.name}${index}`} />
+                                      <RadioButton item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -134,7 +134,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <Media item={item} id={`${item.name}${index}`} />
+                                      <Media item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -143,7 +143,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <ImageInput item={item} id={`${item.name}${index}`} />
+                                      <ImageInput item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -165,7 +165,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                           </div>
                                         )}
                                       >
-                                        <RichEditor item={item} id={`${item.name}${index}`} />
+                                        <RichEditor item={item} />
                                       </ConditionalWrap>
                                     </td>
                                   </WrapTable>
@@ -175,7 +175,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <Table item={item} id={`${item.name}${index}`} />
+                                      <Table item={item} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -218,7 +218,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <TextInput item={item} id={`${item.name}${index}`} isValue={false} />
+                                          <TextInput item={item} isValue={false} />
                                         </td>
                                       </WrapTable>
                                     );
@@ -228,7 +228,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <Textarea item={item} id={`${item.name}${index}`} isValue={false} />
+                                          <Textarea item={item} isValue={false} />
                                         </td>
                                       </WrapTable>
                                     );
@@ -250,7 +250,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
+                                          <Selectbox item={item} isSelected={false} />
                                         </td>
                                       </WrapTable>
                                     );
@@ -259,7 +259,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
+                                          <RadioButton item={item} isChecked={false} />
                                         </td>
                                       </WrapTable>
                                     );
@@ -268,7 +268,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <Media item={item} id={`${item.name}${index}`} isValue={false} />
+                                          <Media item={item} isValue={false} />
                                         </td>
                                       </WrapTable>
                                     );
@@ -277,7 +277,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
+                                          <ImageInput item={item} isAttribute={false} />
                                         </td>
                                       </WrapTable>
                                     );
@@ -286,7 +286,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
+                                          <RichEditor item={item} isValue={false} />
                                         </td>
                                       </WrapTable>
                                     );
@@ -295,7 +295,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                     return (
                                       <WrapTable title={item.title}>
                                         <td>
-                                          <Table item={item} id={`${item.name}${index}`} isValue={false} />
+                                          <Table item={item} isValue={false} />
                                         </td>
                                       </WrapTable>
                                     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MakerContextProvider, useMakerContext } from '../store/MakerContext';
 import { EditorModeNavigator } from '../components/navigator/EditorModeNavigator';
 import { PreviewModeNavigator } from '../components/navigator/PreviewModeNavigator';
@@ -17,6 +17,7 @@ import { UnitConfirmSource } from '../components/UnitConfirmSource';
 import { UnitGroupConfirmSource } from '../components/UnitGroupConfirmSource';
 import { Highlighter } from '../components/Highlighter';
 import { decode } from 'html-entities';
+import { STORAGENAME } from '../constants';
 
 function CustomFieldMaker() {
   const { setSource, state, preview, clipboard } = useMakerContext();
@@ -27,6 +28,10 @@ function CustomFieldMaker() {
       setSource(decodedHtml);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem(STORAGENAME, JSON.stringify(state));
+  }, [state]);
 
   return (
     <div className="customFieldContainer acms-admin-form">
@@ -51,50 +56,72 @@ function CustomFieldMaker() {
               <div className="clearfix">
                 <PreviewNavigator />
 
-                {preview.editMode === 'source' && (
-                  <Highlighter onHighlight={onSource}>
-                    <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                <ul
+                  style={{
+                    padding: '16px 0',
+                    margin: '0',
+                  }}
+                >
+                  <li
+                    style={{
+                      display: preview.editMode === 'source' ? 'block' : 'none',
+                    }}
+                  >
+                    {preview.editMode === 'source' && (
+                      <Highlighter onHighlight={onSource}>
+                        <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                          {{
+                            customfield: <FieldSource />,
+                            fieldgroup: <FieldGroupSource />,
+                            customunit: <UnitSource />,
+                            unitgroup: <UnitGroupSource />,
+                          }[preview.mode] || null}
+                        </MakerContextProvider>
+                      </Highlighter>
+                    )}
+                  </li>
+
+                  <li
+                    style={{
+                      display: preview.editMode === 'preview' ? 'block' : 'none',
+                    }}
+                  >
+                    <div
+                      style={{
+                        padding: '16px',
+                        margin: '0',
+                        backgroundColor: '#F0F0F0',
+                        minHeight: '18.398px',
+                      }}
+                    >
                       {{
                         customfield: <FieldSource />,
                         fieldgroup: <FieldGroupSource />,
                         customunit: <UnitSource />,
                         unitgroup: <UnitGroupSource />,
                       }[preview.mode] || null}
-                    </MakerContextProvider>
-                  </Highlighter>
-                )}
+                    </div>
+                  </li>
 
-                {preview.editMode === 'preview' && (
-                  <div
+                  <li
                     style={{
-                      borderRadius: '5px',
-                      padding: '20px',
-                      margin: '1em 0',
-                      backgroundColor: '#F0F0F0',
-                      minHeight: '19.391px',
+                      display: preview.editMode === 'confirm' ? 'block' : 'none',
                     }}
                   >
-                    {{
-                      customfield: <FieldSource />,
-                      fieldgroup: <FieldGroupSource />,
-                      customunit: <UnitSource />,
-                      unitgroup: <UnitGroupSource />,
-                    }[preview.mode] || null}
-                  </div>
-                )}
-
-                {preview.editMode === 'confirm' && (
-                  <Highlighter onHighlight={onSource}>
-                    <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                      {{
-                        customfield: <FieldConfirmSource />,
-                        fieldgroup: <FieldGroupConfirmSource />,
-                        customunit: <UnitConfirmSource />,
-                        unitgroup: <UnitGroupConfirmSource />,
-                      }[preview.mode] || null}
-                    </MakerContextProvider>
-                  </Highlighter>
-                )}
+                    {preview.editMode === 'confirm' && (
+                      <Highlighter onHighlight={onSource}>
+                        <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                          {{
+                            customfield: <FieldConfirmSource />,
+                            fieldgroup: <FieldGroupConfirmSource />,
+                            customunit: <UnitConfirmSource />,
+                            unitgroup: <UnitGroupConfirmSource />,
+                          }[preview.mode] || null}
+                        </MakerContextProvider>
+                      </Highlighter>
+                    )}
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

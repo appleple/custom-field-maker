@@ -80,11 +80,16 @@ export function MakerContextProvider({
       }),
     [dispatch]
   );
+
   const addCustomunit = useCallback(
     (newCustomunit) =>
-      dispatch({ type: 'UPDATE_STATE', payload: { customunit: [...state.customunit, newCustomunit] } }),
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { customunit: [...state.customunit, newCustomunit] },
+      }),
     [dispatch, state.customunit]
   );
+
   const setGroupTitleName = useCallback(
     (title, name) =>
       dispatch({
@@ -103,8 +108,13 @@ export function MakerContextProvider({
       }),
     [dispatch]
   );
+
   const setUnitGroupTitleName = useCallback(
-    (title, name) => dispatch({ type: 'UPDATE_STATE', payload: { unitgroup: { ...state.unitgroup, title, name } } }),
+    (title, name) =>
+      dispatch({
+        type: 'UPDATE_STATE',
+        payload: { unitgroup: { ...state.unitgroup, title, name } },
+      }),
     [dispatch, state.unitgroup]
   );
   const addUnitGroupItem = useCallback(

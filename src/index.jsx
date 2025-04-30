@@ -1,11 +1,16 @@
 import React from 'react';
 import CustomFieldMaker from './containers';
 import { MakerContextProvider } from './store/MakerContext';
+import { STORAGENAME } from './constants';
 
 function App() {
-  return <MakerContextProvider>
+  const state = JSON.parse(localStorage.getItem(STORAGENAME)) || undefined;
+
+  return (
+    <MakerContextProvider state={state}>
       <CustomFieldMaker />
     </MakerContextProvider>
+  );
 }
 
-export default App
+export default App;

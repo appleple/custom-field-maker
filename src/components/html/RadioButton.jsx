@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
+import { generateSafeId } from '../../utils';
 
 export function RadioButton(props) {
   const { item, isChecked = true } = props;
@@ -18,6 +19,7 @@ export function RadioButton(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
                 <input
@@ -25,9 +27,9 @@ export function RadioButton(props) {
                   name={item.name}
                   value={option.value}
                   data-tmp={`{${item.name}:checked#${option.value}}`}
-                  id={`input-radio-${item.name}-${option.value}`}
+                  id={id}
                 />
-                <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+                <label htmlFor={id}>
                   <i className="acms-admin-ico-radio" />
                   {option.label}
                 </label>
@@ -46,6 +48,7 @@ export function RadioButton(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
                 <input
@@ -55,9 +58,9 @@ export function RadioButton(props) {
                   {...(isChecked && {
                     'data-tmp': `{${item.name}:checked#${option.value}}`,
                   })}
-                  id={`input-radio-${item.name}-${option.value}`}
+                  id={id}
                 />
-                <label htmlFor={`input-radio-${item.name}-${option.value}`}>
+                <label htmlFor={id}>
                   {acmscss && <i className="acms-admin-ico-radio" />}
                   {option.label}
                 </label>
@@ -73,6 +76,7 @@ export function RadioButton(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}-{id}`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
                 <input
@@ -80,9 +84,9 @@ export function RadioButton(props) {
                   name={`${item.name}{id}`}
                   value={option.value}
                   data-tmp={`{${item.name}:checked#${option.value}}`}
-                  id={`input-radio-${item.name}-${option.value}-{id}`}
+                  id={id}
                 />
-                <label htmlFor={`input-radio-${item.name}-${option.value}-{id}`}>
+                <label htmlFor={id}>
                   <i className="acms-admin-ico-radio" />
                   {option.label}
                 </label>
@@ -101,6 +105,7 @@ export function RadioButton(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}-{id}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-radio': acmscss })}>
                 <input
@@ -110,9 +115,9 @@ export function RadioButton(props) {
                   {...(isChecked && {
                     'data-tmp': `{${item.name}:checked#${option.value}}`,
                   })}
-                  id={`input-radio-${item.name}-{id}-${option.value}`}
+                  id={id}
                 />
-                <label htmlFor={`input-radio-${item.name}-{id}-${option.value}`}>
+                <label htmlFor={id}>
                   {acmscss && <i className="acms-admin-ico-radio" />}
                   {option.label}
                 </label>

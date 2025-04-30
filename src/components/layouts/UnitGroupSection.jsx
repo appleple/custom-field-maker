@@ -68,12 +68,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
+                        htmlFor={`${item.name}{id}[]`}
                       >
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <TextInput item={item} id={`${item.name}${index}`} isValue={false} />
+                        <TextInput item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -84,12 +84,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
+                        htmlFor={`${item.name}{id}[]`}
                       >
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <Textarea item={item} id={`${item.name}${index}`} isValue={false} />
+                        <Textarea item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -97,14 +97,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                 case 'checkbox': {
                   return (
                     <fieldset className={classnames({ 'acms-admin-contents': acmscss })}>
-                      <legend
-                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        id={`${item.name}${index}`}
-                      >
+                      <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </legend>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <Checkbox item={item} id={`${item.name}${index}`} isChecked={false} />
+                        <Checkbox item={item} isChecked={false} />
                       </div>
                     </fieldset>
                   );
@@ -114,12 +111,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
+                        htmlFor={`${item.name}{id}[]`}
                       >
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <Selectbox item={item} id={`${item.name}${index}`} isSelected={false} />
+                        <Selectbox item={item} isSelected={false} />
                       </div>
                     </>
                   );
@@ -127,14 +124,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                 case 'radioButton': {
                   return (
                     <fieldset className={classnames({ 'acms-admin-contents': acmscss })}>
-                      <legend
-                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        id={`${item.name}${index}`}
-                      >
+                      <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </legend>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <RadioButton item={item} id={`${item.name}${index}`} isChecked={false} />
+                        <RadioButton item={item} isChecked={false} />
                       </div>
                     </fieldset>
                   );
@@ -142,14 +136,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                 case 'media': {
                   return (
                     <>
-                      <label
-                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
-                      >
+                      <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <Media item={item} id={`${item.name}${index}`} isValue={false} />
+                        <Media item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -159,12 +150,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
+                        htmlFor={`${item.name}{id}[]`}
                       >
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <ImageInput item={item} id={`${item.name}${index}`} isAttribute={false} />
+                        <ImageInput item={item} isAttribute={false} />
                       </div>
                     </>
                   );
@@ -174,12 +165,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     <>
                       <label
                         className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
+                        htmlFor={`${item.name}{id}[]`}
                       >
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <FileInput item={item} id={`${item.name}${index}`} isValue={false} />
+                        <FileInput item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -187,14 +178,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                 case 'richEditor': {
                   return (
                     <>
-                      <label
-                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
-                      >
+                      <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <RichEditor item={item} id={`${item.name}${index}`} isValue={false} />
+                        <RichEditor item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -202,14 +190,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                 case 'table': {
                   return (
                     <>
-                      <label
-                        className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                        htmlFor={`${item.name}${index}`}
-                      >
+                      <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                        <Table item={item} id={`${item.name}${index}`} isValue={false} />
+                        <Table item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -300,12 +285,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
+                                          htmlFor={`${item.name}{id}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <TextInput item={item} id={`${item.name}${index}`} />
+                                          <TextInput item={item} />
                                         </div>
                                       </>
                                     );
@@ -316,12 +301,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
+                                          htmlFor={`${item.name}{id}[]`}
                                         >
-                                          <Heading item={item} id={`${item.name}${index}`} />
+                                          <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <Textarea item={item} id={`${item.name}${index}`} />
+                                          <Textarea item={item} />
                                         </div>
                                       </>
                                     );
@@ -332,10 +317,10 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                         <legend
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
                                         >
-                                          <Heading item={item} id={`${item.name}${index}`} />
+                                          <Heading item={item} />
                                         </legend>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <Checkbox item={item} id={`${item.name}${index}`} />
+                                          <Checkbox item={item} />
                                         </div>
                                       </fieldset>
                                     );
@@ -345,12 +330,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
+                                          htmlFor={`${item.name}{id}[]`}
                                         >
-                                          <Heading item={item} id={`${item.name}${index}`} />
+                                          <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <Selectbox item={item} id={`${item.name}${index}`} />
+                                          <Selectbox item={item} />
                                         </div>
                                       </>
                                     );
@@ -360,12 +345,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <fieldset className={classnames({ 'acms-admin-contents': acmscss })}>
                                         <legend
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          id={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </legend>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <RadioButton item={item} id={`${item.name}${index}`} />
+                                          <RadioButton item={item} />
                                         </div>
                                       </fieldset>
                                     );
@@ -375,12 +359,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <Media item={item} id={`${item.name}${index}`} />
+                                          <Media item={item} />
                                         </div>
                                       </>
                                     );
@@ -390,12 +373,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
+                                          htmlFor={`${item.name}{id}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <ImageInput item={item} id={`${item.name}${index}`} />
+                                          <ImageInput item={item} />
                                         </div>
                                       </>
                                     );
@@ -405,12 +388,12 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
+                                          htmlFor={`${item.name}{id}[]`}
                                         >
                                           <Heading item={item} />
                                         </label>
                                         <div className="acms-admin-flex-1">
-                                          <FileInput item={item} id={`${item.name}${index}`} />
+                                          <FileInput item={item} />
                                         </div>
                                       </>
                                     );
@@ -420,12 +403,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <RichEditor item={item} id={`${item.name}${index}`} />
+                                          <RichEditor item={item} />
                                         </div>
                                       </>
                                     );
@@ -435,12 +417,11 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       <>
                                         <label
                                           className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
-                                          htmlFor={`${item.name}${index}`}
                                         >
                                           <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
-                                          <Table item={item} id={`${item.name}${index}`} />
+                                          <Table item={item} />
                                         </div>
                                       </>
                                     );

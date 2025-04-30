@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionNoSearch } from './OptionNoSearch';
+import { generateSafeId } from '../../utils';
 
 export function Checkbox(props) {
   const { item, isChecked = true } = props;
@@ -18,16 +19,17 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
+                  id={id}
                   type="checkbox"
                   name={`${item.name}[]`}
                   value={option.value}
                   data-tmp={`{${item.name}:checked#${option.value}}`}
-                  id={`input-checkbox-${item.name}-${option.value}`}
                 />
-                <label htmlFor={`input-checkbox-${item.name}-${option.value}`}>
+                <label htmlFor={id}>
                   <i className="acms-admin-ico-checkbox" />
                   {option.label}
                 </label>
@@ -46,18 +48,19 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
+                  id={id}
                   type="checkbox"
                   name={`${item.name}[]`}
                   value={option.value}
                   {...(isChecked && {
                     'data-tmp': `{${item.name}:checked#${option.value}}`,
                   })}
-                  id={`input-checkbox-${item.name}-${option.value}`}
                 />
-                <label htmlFor={`input-checkbox-${item.name}-${option.value}`}>
+                <label htmlFor={id}>
                   <i className="acms-admin-ico-checkbox" />
                   {option.label}
                 </label>
@@ -73,6 +76,7 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}-{id}`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
@@ -80,9 +84,9 @@ export function Checkbox(props) {
                   name={`${item.name}{id}[]`}
                   value={option.value}
                   data-tmp={`{${item.name}:checked#${option.value}}`}
-                  id={`input-checkbox-${item.name}-${option.value}-{id}`}
+                  id={id}
                 />
-                <label htmlFor={`input-checkbox-${item.name}-${option.value}-{id}`}>
+                <label htmlFor={id}>
                   <i className="acms-admin-ico-checkbox" />
                   {option.label}
                 </label>
@@ -101,18 +105,19 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
+            const id = `${item.name}-${generateSafeId(option.value)}-{id}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
+                  id={id}
                   type="checkbox"
                   name={`${item.name}{id}[]`}
                   value={option.value}
                   {...(isChecked && {
                     'data-tmp': `{${item.name}:checked#${option.value}}`,
                   })}
-                  id={`input-checkbox-${item.name}-{id}-${option.value}`}
                 />
-                <label htmlFor={`input-checkbox-${item.name}-{id}-${option.value}`}>
+                <label htmlFor={id}>
                   {acmscss && <i className="acms-admin-ico-checkbox" />}
                   {option.label}
                 </label>
