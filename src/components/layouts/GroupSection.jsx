@@ -12,8 +12,6 @@ import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
-import { OptionNoSearch } from '../html/OptionNoSearch';
-import { OptionValidator } from '../html/OptionValidator';
 
 export const GroupSection = forwardRef((_props, ref) => {
   const {
