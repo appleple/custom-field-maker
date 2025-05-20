@@ -41,6 +41,12 @@ export function TextInput(props) {
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
+          {isValue && (
+            <>
+              <OptionValidator item={item} />
+              <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+            </>
+          )}
         </>
       )}
 

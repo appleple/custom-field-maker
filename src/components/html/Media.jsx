@@ -226,6 +226,7 @@ export function Media(props) {
             })}
             className="js-value"
           />
+          {isValue && <OptionValidator item={item} />}
         </div>
       )}
 

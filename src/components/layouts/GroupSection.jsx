@@ -521,9 +521,6 @@ export const GroupSection = forwardRef((_props, ref) => {
 
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
                   <input type="hidden" name="field[]" value={item.name} />
-
-                  <OptionValidator item={item} />
-                  <OptionNoSearch name={item.name} noSearch={item.noSearch} />
                 </Fragment>
               ))}
               <input type="hidden" name="field[]" value={`@${fieldgroup.name}`} />

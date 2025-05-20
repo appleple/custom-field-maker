@@ -59,6 +59,12 @@ export function Selectbox(props) {
               );
             })}
           </select>
+          {isValue && (
+            <>
+              <OptionValidator item={item} />
+              <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+            </>
+          )}
         </>
       )}
 

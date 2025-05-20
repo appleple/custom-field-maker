@@ -67,6 +67,12 @@ export function Checkbox(props) {
               </div>
             );
           })}
+          {isValue && (
+            <>
+              <OptionValidator item={item} />
+              <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+            </>
+          )}
         </>
       )}
 

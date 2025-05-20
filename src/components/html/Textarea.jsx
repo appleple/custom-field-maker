@@ -46,6 +46,12 @@ export function Textarea(props) {
             readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
+          {isValue && (
+            <>
+              <OptionValidator item={item} />
+              <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+            </>
+          )}
         </>
       )}
 

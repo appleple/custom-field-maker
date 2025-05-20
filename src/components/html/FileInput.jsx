@@ -86,6 +86,7 @@ export function FileInput(props) {
             <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />
           )}
           <input type="file" name={`${item.name}[]`} id={`${item.name}[]`} />
+          {isValue && <OptionValidator item={item} />}
         </>
       )}
 
