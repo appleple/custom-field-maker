@@ -1,0 +1,586 @@
+.customFieldContainer {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 64px;
+  max-width: 960px;
+}
+
+.customFieldContainer h2 {
+  color: #333;
+  margin: 0;
+  font-size: 20px;
+  margin-bottom: 1em;
+}
+
+/* ジェネレーター：全体
+-------------------------------------- */
+.customFieldFunction {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 24px;
+  background: #fff;
+}
+
+.customFieldFunction select {
+  min-height: 26px;
+  padding: 4px 24px 4px 4px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+/* ジェネレーター：フィールドグループ、ユニットグループ
+-------------------------------------- */
+.customFieldGeneratorGroup {
+  display: grid;
+  row-gap: 24px;
+  column-gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "areaTitle  areaVal ."
+    "areaButton .       .";
+}
+.customFieldGeneratorGroup.-openGroup {
+  grid-template-areas: "areaTitle  areaVal .";
+}
+.customFieldGeneratorGroup dd {
+  margin: 0;
+}
+.customFieldGeneratorGroupTitle {
+  grid-area: areaTitle;
+}
+.customFieldGeneratorGroupVal {
+  grid-area: areaVal;
+}
+.customFieldGeneratorGroupButton {
+  grid-area: areaButton;
+}
+
+/* ジェネレーター：ベーシック
+-------------------------------------- */
+.customFieldGeneratorBasic {
+  display: grid;
+  row-gap: 24px;
+  column-gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "areaInput   areaTitle       areaField"
+    "areaPlaceholder areaTooltip areaTooltip";
+}
+.customFieldGeneratorBasic label,
+.customFieldGeneratorBasic dt,
+.customFieldGeneratorGroup label,
+.customFieldGeneratorGroup dt {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding-bottom: 8px;
+}
+.customFieldGeneratorBasicInput {
+  grid-area: areaInput;
+}
+.customFieldGeneratorBasicTitle {
+  grid-area: areaTitle;
+}
+.customFieldGeneratorBasicField {
+  grid-area: areaField;
+}
+.customFieldGeneratorBasicTooltip {
+  grid-area: areaTooltip;
+}
+.customFieldGeneratorBasicPlaceholder {
+  grid-area: areaPlaceholder;
+}
+
+/* ジェネレーター：バリデーター
+-------------------------------------- */
+.customFieldValidatorLabel {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.customFieldValidatorToggle {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transition: transform;
+  transform: rotateZ(45deg);
+  transform-origin: center center;
+}
+
+/* アコーディオン
+-------------------------------------- */
+.customFieldAccordionContent {
+  display: grid;
+  transition: 0.3s;
+  transition-property: grid-template-rows;
+}
+.customFieldAccordionContent[aria-hidden=true] {
+  grid-template-rows: 0fr;
+}
+
+.customFieldAccordionContent[aria-hidden=false] {
+  grid-template-rows: 1fr;
+}
+.customFieldAccordionContent__inner {
+  overflow: hidden;
+}
+
+/* ナビゲーター：コード操作
+-------------------------------------- */
+.customFieldNavigatorCode {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 20px;
+}
+.customFieldNavigatorCodeButtonList {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ボタン
+-------------------------------------- */
+.customFieldCopied {
+  position: absolute;
+  bottom: -52px;
+  left: -30px;
+  background-color: rgba(0, 0, 0, .5);
+  font-size: 10px;
+  width: 150px;
+  padding: 10px;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  border-radius: 3px;
+  -webkit-transition: background-color .2s ease-in;
+  -moz-transition: background-color .2s ease-in;
+  -ms-transition: background-color .2s ease-in;
+  -o-transition: background-color .2s ease-in;
+  transition: background-color .2s ease-in;
+}
+
+.hljs {
+  border-radius: 5px;
+  padding: 20px;
+  /* background-color: #F0F0F0 !important; */
+  min-height: 19.391px;
+}
+
+.customFieldCopied:after {
+  content: ' ';
+  position: absolute;
+	height: 0;
+  width: 0;
+  top: 0;
+	left: 50%;
+	border: 6px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, .5);
+  margin-top: -12px;
+  margin-left: -6px;
+  -webkit-transition: border .2s ease-in;
+  -moz-transition: border .2s ease-in;
+  -ms-transition: border .2s ease-in;
+  -o-transition: border .2s ease-in;
+  transition: border .2s ease-in;
+}
+
+.customFieldCopied.active:after {
+  border-bottom-color: rgba(0, 0, 0, .8);
+}
+
+.customFieldLabelRequired {
+  background-color: #c40f32;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  margin-left: 10px;
+}
+
+.customFieldUseSnippet {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.customFieldLine {
+  height: 1px;
+  background-color: #cccccc;
+  border: none;
+}
+
+.customFieldValidatorArea {
+  display: grid;
+  gap: 16px;
+  grid-template-colmuns: repeat(1, minmax(0, 1fr));
+  margin-top: 8px;
+  background-color: #F7F7F7;
+  padding: 20px;
+}
+
+.customFieldValidatorArea .acms-admin-icon-tooltip {
+  margin-left: 10px;
+}
+
+.customFieldBold {
+  margin-bottom: 10px;
+}
+.customFieldBold .acms-admin-icon-tooltip {
+  margin-left: 10px;
+}
+
+.customFieldOptionTable {
+  width: auto !important;
+  /* border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc; */
+}
+
+.customFieldOptionTable th,
+.customFieldOptionTable td {
+  border: none;
+  white-space: nowrap;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.customFieldOptionTable th:nth-child(1) {
+  width: 20%;
+}
+
+.customFieldOptionTable th:nth-child(2) {
+  width: 12%;
+}
+
+.customFieldOptionTable th:nth-child(3) {
+  width: 62%;
+}
+
+.customFieldOptionTable tr {
+  /* border-bottom: 1px solid #cccccc; */
+}
+
+.customFieldOptionTable th:first-child,
+.customFieldOptionTable td:first-child {
+  padding-left: 0;
+}
+
+.customFieldOptionTable th:last-child,
+.customFieldOptionTable td:last-child {
+  padding-right: 0;
+}
+
+.customFieldOptionTable td:last-child {
+  width: 50px;
+}
+
+.customFieldOptionTable .acms-admin-btn-admin {
+  margin-right: 0 !important;
+}
+
+.customFieldOptionTableInput {
+  display: table;
+  /*width: 100%;*/
+}
+
+.customFieldOptionTableAppend {
+  display: table-cell;
+}
+
+.customFieldOptionTable input {
+  display: table-cell;
+}
+
+.customFieldBasicTable {
+  border: none !important;
+}
+
+.customFieldBasicTable tr {
+  border: none !important;
+}
+
+.customFieldBasicTable td {
+  border-bottom: none !important;
+}
+
+.customFieldBasicTable .acms-admin-label {
+  margin-left: 10px;
+}
+
+.customFieldBasicTable th {
+  white-space: nowrap;
+}
+
+.customFieldBasicTableFirst td:nth-child(1) {
+  width: 12%;
+}
+
+.customFieldBasicTableFirst td:nth-child(2) {
+  width: 20%;
+}
+
+.customFieldBasicTableFirst td:nth-child(3) {
+  width: 20%;
+}
+
+.customFieldBasicTableFirst td:nth-child(4) {
+  width: 48%;
+}
+
+.customFieldBasicTableFirst {
+  margin-bottom: 10px;
+}
+
+.customFieldBasicTable tr:last-child td {
+  padding-bottom: 5px;
+}
+
+.customFieldSizeInput {
+  width: 50%;
+}
+
+.customFieldLine {
+  height: 1px;
+  background-color: #cccccc;
+}
+
+.customFieldBasicTableImg td {
+  width: 25%;
+  white-space: nowrap;
+}
+
+.customFieldBasicTableFile td:nth-child(1) {
+  width: 25%;
+}
+
+.customFieldInputGroup {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  width: 100%;
+}
+
+.customFieldInputGroup input {
+  display: table-cell;
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.customFieldInputGroupAddon {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: table-cell;
+  padding-right: 10px;
+}
+
+.customFieldBasicTableGroup {
+  border-bottom: none;
+  width: 40%;
+}
+
+.customFieldGroupBtn {
+  width: 185px;
+}
+
+.customFieldBasicTable tr {
+  border: none;
+}
+
+.customFieldBasicTable tr:last-child td {
+  border-bottom: none;
+}
+
+.customFieldBasicTable th:first-child,
+.customFieldBasicTable td:first-child {
+  padding-left: 0 !important;
+}
+
+.customFieldSubTable {
+  background: transparent;
+  border: none;
+  border-top: 1px solid #cccccc;
+  margin-top: 10px;
+}
+
+.customFieldGroupSubTable {
+  border-top: none;
+  margin-top: 0;
+}
+
+.customFieldSubTable tr {
+  border: none;
+}
+
+.customFieldSubTable tbody tr:last-child td,
+.customFieldSubTable tbody tr:last-child th {
+  border-bottom: none;
+}
+
+.customFieldCopied.active {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#converter {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.customFieldBold {
+  font-weight: bold;
+}
+
+.customFieldSnippet {
+  margin-left: 10px;
+}
+
+.customFieldOptionBlock {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.customFieldCopyBtn {
+  position: relative;
+  top: -2px;
+}
+
+.customFieldPreview {
+  background-color: #ffffff;
+  padding: 15px;
+}
+
+.customFieldPreview input[type=text],
+.customFieldPreview textarea {
+  color: #dddddd;
+}
+
+.customFieldUseSnippetLabel {
+  color: #006dec;
+  cursor: pointer;
+  display: inline-block;
+  height: 27px;
+  vertical-align: middle;
+  line-height: 27px;
+}
+
+.customFieldFileContainer {
+  padding-top: 10px;
+}
+
+.customFieldInputFileGroup {
+  display: inline-block;
+  width: 300px;
+  padding-right: 5px;
+}
+
+.customFieldInputFileExtGroup {
+  width: 100px;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.customFieldFileNameOptContainer {
+  padding-bottom: 10px;
+}
+
+.customFieldMakeBtn {
+  padding-right: 70px;
+  padding-left: 70px;
+}
+
+.customFieldTabs {
+	margin: 0;
+	padding: 0;
+}
+.customFieldTabs:before,
+.customFieldTabs:after {
+	content: " ";
+	display: table;
+}
+.customFieldTabs:after {
+	clear: both;
+}
+.customFieldTabs li {
+	list-style: none;
+	float: left;
+	margin-right: 2px;
+}
+.customFieldTabs a {
+    position: relative;
+    display: block;
+    padding: 10px 8px;
+    color: #404040;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+	outline: none;
+	text-decoration: none;
+}
+.customFieldTabs a:hover {
+	color: #666;
+	background: #F2F2F4;
+}
+.customFieldTabs a.customFieldTabActive {
+    color: #014cc5;
+    border-bottom: 3px solid #014cc5;
+    background: #f2f2f4
+}
+.customFieldTabs a.customFieldTabActive:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 1px;
+    background: #f2f2f4
+}
+
+.customFieldDirectionBtnGroup {
+  display: inline-table;
+  overflow: hidden;
+  margin-right: 15px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.customFieldDirectionBtnGroup input {
+  display: none;
+}
+
+.customFieldDirectionBtnGroupSide {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.customFieldDirectionBtn {
+  display: table-cell;
+  background-color: #F7F7F7;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.customFieldDirectionBtn.active {
+  background-color: #e1e1e1;
+  border-color: rgba(0, 0, 0, .3);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
+  color: #333;
+}
+
+.customFieldDirectionBtn img {
+  display: inline-block;
+  width: 18px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.customFIeldmakerHeilighter {
+  margin: 0;
+}

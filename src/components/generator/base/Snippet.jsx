@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Tooltip from '../../Tooltip';
-import prefJson from '../../../../json/pref.json';
+import prefJson from '../../../json/pref.json';
 
-import prefEnJson from '../../../../json/pref-en.json';
-import prefNumberJson from '../../../../json/pref-number.json';
+import prefEnJson from '../../../json/pref-en.json';
+import prefNumberJson from '../../../json/pref-number.json';
 
 const snippetJSON = {
   pref: prefJson,
