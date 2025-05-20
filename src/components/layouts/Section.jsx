@@ -34,7 +34,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -54,7 +54,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -73,7 +73,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -92,7 +92,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -133,7 +133,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -152,7 +152,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -171,7 +171,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -190,7 +190,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -209,7 +209,7 @@ export const Section = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >

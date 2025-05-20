@@ -98,6 +98,25 @@ export function GroupTableLayoutConfirm() {
                       </td>
                     </WrapTable>
                   );
+                } else if (item.type === 'checkbox') {
+                  return (
+                    <WrapTable key={index} title={item.title}>
+                      <td>
+                        {item.option.map((option, optionIndex) => {
+                          if (!option.label) {
+                            return null;
+                          }
+                          return (
+                            <div key={optionIndex}>
+                              {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
+                              {option.label}
+                              {'<!-- END_IF -->'}
+                            </div>
+                          );
+                        })}
+                      </td>
+                    </WrapTable>
+                  );
                 } else if (item.type === 'file') {
                   let src = '/images/fileicon/';
                   let alt = 'file';
