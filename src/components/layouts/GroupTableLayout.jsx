@@ -11,6 +11,8 @@ import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
 import { WrapTable } from '../html/WrapTable';
+import { OptionValidatorFieldGroup } from '../html/OptionValidatorFieldGroup';
+import { OptionNoSearch } from '../html/OptionNoSearch';
 
 export const GroupTableLayout = forwardRef((_props, ref) => {
   const {
@@ -395,26 +397,9 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
               )}
               <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
               <input type="hidden" name="field[]" value={item.name} />
-              {item.noSearch && <input type="hidden" name={`${item.name}:search`} value="0" />}
-              {item.validator.map((validator, index) => {
-                if (!validator.option) {
-                  return null;
-                }
-                const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
-                return (
-                  <input
-                    key={index}
-                    type="hidden"
-                    name={`${name}:v#${validator.option}`}
-                    value={validator.value}
-                    id={`${name}-v-${validator.option}`}
-                  />
-                );
-              })}
-              {(() => {
-                const name = item.type === 'file' || item.type === 'image' ? `${item.name}@path` : item.name;
-                return item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />;
-              })()}
+
+              <OptionValidatorFieldGroup item={item} isMessage={false} />
+              <OptionNoSearch name={item.name} noSearch={item.noSearch} />
             </>
           ))}
           <input type="hidden" name="field[]" value={`@${fieldgroup.name}`} />

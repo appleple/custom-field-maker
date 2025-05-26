@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
 
 export function ImageInput(props) {
   const { item, isAttribute = true } = props;
@@ -125,7 +126,7 @@ export function ImageInput(props) {
             {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
             {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
             {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
-            {isAttribute && <OptionValidator item={item} />}
+            <OptionValidatorFieldGroup item={item} isTemplate={isAttribute} />
           </div>
         </>
       )}

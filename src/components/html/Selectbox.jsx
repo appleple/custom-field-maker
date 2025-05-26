@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function Selectbox(props) {
@@ -59,12 +60,7 @@ export function Selectbox(props) {
               );
             })}
           </select>
-          {isSelected && (
-            <>
-              <OptionValidator item={item} />
-              <OptionNoSearch name={item.name} noSearch={item.noSearch} />
-            </>
-          )}
+          <OptionValidatorFieldGroup item={item} isTemplate={isSelected} />
         </>
       )}
 

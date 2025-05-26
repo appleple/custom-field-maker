@@ -21,6 +21,7 @@ export function OptionValidator(props) {
           return null;
         }
 
+        // fieldgroupの
         return (
           <Fragment key={validator.option}>
             <input
@@ -29,6 +30,7 @@ export function OptionValidator(props) {
               value={validator.value}
               id={`${name}-v-${validator.option}`}
             />
+
             {jsValidator ? (
               <div
                 data-validator-label={`${name}-v-${validator.option}`}

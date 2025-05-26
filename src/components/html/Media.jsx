@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
 
 export function Media(props) {
   const { item, isValue = true } = props;
@@ -226,7 +227,7 @@ export function Media(props) {
             })}
             className="js-value"
           />
-          {isValue && <OptionValidator item={item} />}
+          <OptionValidatorFieldGroup item={item} isTemplate={isValue} />
         </div>
       )}
 

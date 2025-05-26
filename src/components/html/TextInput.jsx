@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../store/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
 import { OptionNoSearch } from './OptionNoSearch';
 
 export function TextInput(props) {
@@ -41,12 +42,7 @@ export function TextInput(props) {
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
-          {isValue && (
-            <>
-              <OptionValidator item={item} />
-              <OptionNoSearch name={item.name} noSearch={item.noSearch} />
-            </>
-          )}
+          <OptionValidatorFieldGroup item={item} isTemplate={isValue} />
         </>
       )}
 

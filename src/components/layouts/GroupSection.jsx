@@ -12,6 +12,8 @@ import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../store/MakerContext';
+import { OptionValidatorFieldGroup } from '../html/OptionValidatorFieldGroup';
+import { OptionNoSearch } from '../html/OptionNoSearch';
 
 export const GroupSection = forwardRef((_props, ref) => {
   const {
@@ -519,6 +521,9 @@ export const GroupSection = forwardRef((_props, ref) => {
 
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
                   <input type="hidden" name="field[]" value={item.name} />
+
+                  <OptionValidatorFieldGroup item={item} isMessage={false} />
+                  <OptionNoSearch name={item.name} noSearch={item.noSearch} />
                 </Fragment>
               ))}
               <input type="hidden" name="field[]" value={`@${fieldgroup.name}`} />
