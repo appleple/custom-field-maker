@@ -123,33 +123,36 @@ export function UnitTableLayoutConfirm() {
                   />
                 </a>
                 {`<!-- END_IF -->`}
+
                 {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                {`<a
+                  <!-- BEGIN_IF [{${item.name}@link}/nem] -->
+                  href={${item.name}@link}
+                  <!-- END_IF -->
+                  class="acms-inline-block"
+                  style="width: ${item.focusImageWidth}px; height: ${item.focusImageHeight}px;"
+                >`}
+                {item.useFocusImage && (
+                  <img
+                    className="js-focused-image"
+                    data-focus-x={`{${item.name}@focalX}`}
+                    data-focus-y={`{${item.name}@focalY}`}
+                    alt={`{${item.name}@alt}`}
+                    src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
+                    width={item.focusImageWidth}
+                    height={`{${item.name}@ratio}[getHeightFromRatio(${item.focusImageWidth})]`}
+                  />
+                )}
+                {!item.useFocusImage && (
+                  <img
+                    alt={`{${item.name}@alt}`}
+                    src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
+                    width="300"
+                    height={`{${item.name}@ratio}[getHeightFromRatio(300)]`}
+                  />
+                )}
                 {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                <a href={`{${item.name}@link}`}>
-                  {`<!-- END_IF -->`}
-                  {item.useFocusImage && (
-                    <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
-                      <img
-                        className="js-focused-image"
-                        data-focus-x={`{${item.name}@focalX}`}
-                        data-focus-y={`{${item.name}@focalY}`}
-                        alt={`{${item.name}@alt}`}
-                        src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
-                        width={item.focusImageWidth}
-                        height={`{${item.name}@ratio}[getHeightFromRatio(${item.focusImageWidth})]`}
-                      />
-                    </div>
-                  )}
-                  {!item.useFocusImage && (
-                    <img
-                      alt={`{${item.name}@alt}`}
-                      src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
-                      width="300"
-                      height={`{${item.name}@ratio}[getHeightFromRatio(300)]`}
-                    />
-                  )}
-                  {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                </a>
+                {`</a>`}
                 {`<!-- END_IF -->`}
 
                 {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}

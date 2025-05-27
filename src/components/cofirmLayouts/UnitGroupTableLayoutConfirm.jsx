@@ -164,26 +164,29 @@ export function UnitGroupTableLayoutConfirm() {
                           />
                         </a>
                         {`<!-- END_IF -->`}
+
                         {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                        {`<a
+                          <!-- BEGIN_IF [{${item.name}@link}/nem] -->
+                          href={${item.name}@link}
+                          <!-- END_IF -->
+                          class="acms-inline-block"
+                          style="width: ${item.focusImageWidth}px; height: ${item.focusImageHeight}px;"
+                        >`}
+                        {item.useFocusImage && (
+                          <img
+                            className="js-focused-image"
+                            data-focus-x={`{${item.name}@focalX}`}
+                            data-focus-y={`{${item.name}@focalY}`}
+                            alt={`{${item.name}@alt}`}
+                            src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
+                          />
+                        )}
+                        {!item.useFocusImage && (
+                          <img alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
+                        )}
                         {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                        <a href={`{${item.name}@link}`}>
-                          {`<!-- END_IF -->`}
-                          {item.useFocusImage && (
-                            <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
-                              <img
-                                className="js-focused-image"
-                                data-focus-x={`{${item.name}@focalX}`}
-                                data-focus-y={`{${item.name}@focalY}`}
-                                alt={`{${item.name}@alt}`}
-                                src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
-                              />
-                            </div>
-                          )}
-                          {!item.useFocusImage && (
-                            <img alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
-                          )}
-                          {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                        </a>
+                        {`</a>`}
                         {`<!-- END_IF -->`}
 
                         {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}

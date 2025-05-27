@@ -94,8 +94,13 @@ export function MediaOption(props) {
         )}
       </div>
       <p style={{ marginBottom: '5px' }}>トリミング</p>
-      <div style={{ display: 'flex' }}>
-        <div className="acms-admin-form-checkbox" style={{ paddingTop: '5px' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <div className="acms-admin-form-checkbox" style={{ lineHeight: '31px' }}>
           <input
             type="checkbox"
             onChange={() => {
@@ -114,10 +119,52 @@ export function MediaOption(props) {
           </label>
         </div>
         {useFocusImage && (
-          <div>
-            幅 <input type="text" defaultValue={focusImageWidth} /> px
-            <span style={{ display: 'inline-block', width: '15px', height: '1px' }} />
-            高さ <input type="text" defaultValue={focusImageHeight} /> px
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <span>幅</span>
+              <input
+                type="text"
+                defaultValue={focusImageWidth}
+                onInput={(e) => {
+                  const value = e.target.value;
+                  if (!value) return;
+                  setField((prevState) => ({ ...prevState, focusImageWidth: value }));
+                }}
+              />
+              <span>px</span>
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <span>高さ</span>
+              <input
+                type="text"
+                defaultValue={focusImageHeight}
+                onInput={(e) => {
+                  const value = e.target.value;
+                  if (!value) return;
+                  setField((prevState) => ({ ...prevState, focusImageHeight: value }));
+                }}
+              />
+              <span>px</span>
+            </div>
           </div>
         )}
       </div>
