@@ -27,7 +27,6 @@ export function Textarea(props) {
             name={item.name}
             className={classname}
             defaultValue={value}
-            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
             {...(jsValidator ? { 'data-validator': item.name } : {})}
           />
@@ -44,7 +43,6 @@ export function Textarea(props) {
             name={`${item.name}[]`}
             className={classname}
             defaultValue={value}
-            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
           <OptionValidatorFieldGroup item={item} isTemplate={!isValue} />
@@ -58,7 +56,6 @@ export function Textarea(props) {
             name={`${item.name}{id}`}
             className={classname}
             defaultValue={value}
-            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
           <OptionValidator item={item} />
@@ -74,7 +71,6 @@ export function Textarea(props) {
             name={`${item.name}{id}[]`}
             className={classname}
             defaultValue={value}
-            readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
         </>
