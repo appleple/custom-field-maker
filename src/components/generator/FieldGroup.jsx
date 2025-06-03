@@ -61,36 +61,6 @@ const defaultProps = {
   groupName: '',
 };
 
-const crearField = {
-  title: '',
-  name: '',
-  path: '',
-  normalSize: '',
-  tiny: '',
-  tinySize: '',
-  large: '',
-  largeSize: '',
-  square: '',
-  squareSize: '',
-  alt: true,
-  resize: true,
-  useExpand: true,
-  useDropArea: true,
-  dropAreaWidth: 200,
-  dropAreaHeight: 200,
-  useFocusImage: false,
-  focusImageWidth: 400,
-  focusImageHeight: 400,
-  startHeadingLevel: 2,
-  endHeadingLevel: 3,
-  mediaType: 'image',
-  openConverter: '',
-  openValidator: '',
-  converter: '',
-  tooltip: '',
-  placeholder: '',
-};
-
 export function FieldGroup() {
   const [field, setField] = useState(defaultProps);
   const {
@@ -140,7 +110,7 @@ export function FieldGroup() {
   const clearGroupHandler = useCallback(() => {
     if (!confirm('生成したコードの履歴も消えてしまいます。よろしいですか？')) return;
     clearGroup();
-    setField(crearField);
+    setField(defaultProps);
     setField((prevState) => ({
       ...prevState,
       openGroup: false,
