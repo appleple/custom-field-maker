@@ -42,7 +42,7 @@ export function TextInput(props) {
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
-          <OptionValidatorFieldGroup item={item} isTemplate={isValue} />
+          <OptionValidatorFieldGroup item={item} isTemplate={!isValue} />
         </>
       )}
 

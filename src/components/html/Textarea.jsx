@@ -47,7 +47,7 @@ export function Textarea(props) {
             readOnly
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
-          <OptionValidatorFieldGroup item={item} isTemplate={isValue} />
+          <OptionValidatorFieldGroup item={item} isTemplate={!isValue} />
         </>
       )}
 

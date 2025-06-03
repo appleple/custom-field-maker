@@ -227,7 +227,7 @@ export function Media(props) {
             })}
             className="js-value"
           />
-          <OptionValidatorFieldGroup item={item} isTemplate={isValue} />
+          <OptionValidatorFieldGroup item={item} isTemplate={!isValue} />
         </div>
       )}
 

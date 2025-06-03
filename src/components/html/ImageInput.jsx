@@ -126,7 +126,7 @@ export function ImageInput(props) {
             {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
             {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
             {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
-            <OptionValidatorFieldGroup item={item} isTemplate={isAttribute} />
+            <OptionValidatorFieldGroup item={item} isTemplate={!isAttribute} />
           </div>
         </>
       )}

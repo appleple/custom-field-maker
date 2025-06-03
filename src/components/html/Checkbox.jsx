@@ -68,7 +68,7 @@ export function Checkbox(props) {
               </div>
             );
           })}
-          <OptionValidatorFieldGroup item={item} isTemplate={isChecked} />
+          <OptionValidatorFieldGroup item={item} isTemplate={!isChecked} />
         </>
       )}
 

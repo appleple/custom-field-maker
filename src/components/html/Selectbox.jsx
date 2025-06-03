@@ -60,7 +60,7 @@ export function Selectbox(props) {
               );
             })}
           </select>
-          <OptionValidatorFieldGroup item={item} isTemplate={isSelected} />
+          <OptionValidatorFieldGroup item={item} isTemplate={!isSelected} />
         </>
       )}
 
