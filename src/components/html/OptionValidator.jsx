@@ -21,7 +21,6 @@ export function OptionValidator(props) {
           return null;
         }
 
-        // fieldgroupの
         return (
           <Fragment key={validator.option}>
             <input
