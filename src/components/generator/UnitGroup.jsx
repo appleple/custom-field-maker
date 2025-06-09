@@ -121,7 +121,11 @@ export function UnitGroup() {
               グループ名
             </h2>
             {unitgroup.title && unitgroup.name && (
-              <button className="acms-admin-btn-admin acms-admin-btn-admin-danger" onClick={clearGroupHandler}>
+              <button
+                type="button"
+                className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+                onClick={clearGroupHandler}
+              >
                 グループを削除
               </button>
             )}

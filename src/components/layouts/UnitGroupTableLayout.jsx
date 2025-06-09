@@ -332,11 +332,9 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
             <tfoot>
               <tr>
                 <td colSpan={direction === 'horizontal' ? groupLength + 2 : 3}>
-                  <input
-                    type="button"
-                    className={classnames('item-insert', { 'acms-admin-btn-admin': acmscss })}
-                    value="追加"
-                  />
+                  <button type="button" className={classnames('item-insert', { 'acms-admin-btn-admin': acmscss })}>
+                    追加
+                  </button>
                 </td>
               </tr>
             </tfoot>

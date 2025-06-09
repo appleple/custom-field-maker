@@ -132,7 +132,11 @@ export function FieldGroup() {
               グループ名
             </h2>
             {fieldgroup.title && fieldgroup.name && (
-              <button className="acms-admin-btn-admin acms-admin-btn-admin-danger" onClick={clearGroupHandler}>
+              <button
+                type="button"
+                className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+                onClick={clearGroupHandler}
+              >
                 グループを削除
               </button>
             )}

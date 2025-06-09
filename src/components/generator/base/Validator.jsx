@@ -216,6 +216,7 @@ export function Validator(props) {
                           </td>
                           <td>
                             <button
+                              type="button"
                               onClick={() => {
                                 removeValidator(idx);
                               }}

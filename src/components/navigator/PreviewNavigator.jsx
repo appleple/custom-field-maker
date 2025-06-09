@@ -126,7 +126,9 @@ export function PreviewNavigator() {
           {editMode !== 'preview' && (
             <>
               <CopyToClipboard text={source} onCopy={() => setCopied(true)}>
-                <button className="acms-admin-btn-admin acms-admin-btn-admin-info">生成コードをコピー</button>
+                <button type="button" className="acms-admin-btn-admin acms-admin-btn-admin-info">
+                  生成コードをコピー
+                </button>
               </CopyToClipboard>
               <Notify message="クリップボードにコピーしました" onFinish={() => setCopied(false)} />
             </>
@@ -134,12 +136,13 @@ export function PreviewNavigator() {
         </div>
 
         <div>
-          <button className="acms-admin-btn-admin" style={{ marginRight: '4px' }} onClick={onUndoHandler}>
+          <button type="button" className="acms-admin-btn-admin" style={{ marginRight: '4px' }} onClick={onUndoHandler}>
             生成コードを一つ戻す
           </button>
 
           {mode === 'customfield' && (
             <button
+              type="button"
               onClick={() => {
                 confirm('生成コードをクリアしますか？');
                 clearCustomfield();
@@ -151,6 +154,7 @@ export function PreviewNavigator() {
           )}
           {mode === 'fieldgroup' && (
             <button
+              type="button"
               onClick={() => {
                 confirm('生成コードをクリアしますか？');
                 clearGroupItem();
@@ -162,6 +166,7 @@ export function PreviewNavigator() {
           )}
           {mode === 'customunit' && (
             <button
+              type="button"
               onClick={() => {
                 confirm('生成コードをクリアしますか？');
                 clearCustomunit();
@@ -173,6 +178,7 @@ export function PreviewNavigator() {
           )}
           {mode === 'unitgroup' && (
             <button
+              type="button"
               onClick={() => {
                 confirm('生成コードをクリアしますか？');
                 clearUnitGroupItem();

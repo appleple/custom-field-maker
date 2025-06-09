@@ -209,7 +209,7 @@ export const GroupSection = forwardRef((_props, ref) => {
 
       {fieldgroup.items.length > 0 && (
         <div className={classnames({ 'acms-admin-padding-small': acmscss })}>
-          <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger" value="削除">
+          <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger">
             削除
           </button>
         </div>
@@ -436,7 +436,6 @@ export const GroupSection = forwardRef((_props, ref) => {
                           <button
                             type="button"
                             className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"
-                            value="削除"
                           >
                             削除
                           </button>
@@ -455,7 +454,9 @@ export const GroupSection = forwardRef((_props, ref) => {
                     <template className="item-template">{renderTemplateComponent()}</template>
                   )}
                   <div>
-                    <input type="button" className="item-insert acms-admin-btn-admin" value="追加" />
+                    <button type="button" className="item-insert acms-admin-btn-admin">
+                      追加
+                    </button>
                   </div>
                 </>
               )}
