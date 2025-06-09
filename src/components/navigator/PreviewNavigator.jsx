@@ -144,8 +144,9 @@ export function PreviewNavigator() {
             <button
               type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearCustomfield();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearCustomfield();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >
@@ -156,8 +157,9 @@ export function PreviewNavigator() {
             <button
               type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearGroupItem();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearGroupItem();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >
@@ -168,8 +170,9 @@ export function PreviewNavigator() {
             <button
               type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearCustomunit();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearCustomunit();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >
@@ -180,8 +183,9 @@ export function PreviewNavigator() {
             <button
               type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearUnitGroupItem();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearUnitGroupItem();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >
