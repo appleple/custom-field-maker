@@ -65,7 +65,7 @@ export function Snippet(props) {
               <option value="pref-en">都道府県（英語）</option>
               <option value="pref-number">都道府県（連番）</option>
             </select>
-            <button className="acms-admin-btn" onClick={applySnippet} style={{ verticalAlign: 'middle' }}>
+            <button type="button" className="acms-admin-btn" onClick={applySnippet} style={{ verticalAlign: 'middle' }}>
               追加
             </button>
           </span>

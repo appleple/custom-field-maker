@@ -31,13 +31,18 @@ export function GroupTableLayoutConfirm() {
           </>
         )}
         <tbody>
+          {/*
+            Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+          */}
           {`<!-- BEGIN ${fieldgroup.name}:loop -->`}
           <tr>
             <ConditionalWrap
               condition={direction === 'vertical'}
               wrap={(children) => (
                 <td>
-                  <table>{children}</table>
+                  <table>
+                    <tbody>{children}</tbody>
+                  </table>
                 </td>
               )}
             >
@@ -219,6 +224,9 @@ export function GroupTableLayoutConfirm() {
               })}
             </ConditionalWrap>
           </tr>
+          {/*
+            Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+          */}
           {`<!-- END ${fieldgroup.name}:loop -->`}
         </tbody>
       </table>

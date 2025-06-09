@@ -221,6 +221,7 @@ export function FieldGroup() {
                 <div className="customFieldGeneratorGroupButton">
                   {fieldgroup.title && fieldgroup.name ? (
                     <button
+                      type="button"
                       className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
                       id="makeGroup"
                       disabled
@@ -229,6 +230,7 @@ export function FieldGroup() {
                     </button>
                   ) : (
                     <button
+                      type="button"
                       className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn"
                       id="makeGroup"
                       onClick={showGroup}

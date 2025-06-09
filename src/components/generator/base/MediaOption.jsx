@@ -9,7 +9,7 @@ export function MediaOption(props) {
   return (
     <div>
       <p style={{ marginBottom: '5px' }}>選べるメディアのタイプを選択</p>
-      <p className="acms-admin-form-radio">
+      <div className="acms-admin-form-radio">
         <input
           type="checkbox"
           onChange={() => setField((prevState) => ({ ...prevState, mediaType: 'all' }))}
@@ -20,8 +20,8 @@ export function MediaOption(props) {
           <i className="acms-admin-ico-radio" />
           全てのタイプ
         </label>
-      </p>
-      <p className="acms-admin-form-radio">
+      </div>
+      <div className="acms-admin-form-radio">
         <input
           type="checkbox"
           onChange={() => setField((prevState) => ({ ...prevState, mediaType: 'image' }))}
@@ -32,8 +32,8 @@ export function MediaOption(props) {
           <i className="acms-admin-ico-radio" />
           画像のみ
         </label>
-      </p>
-      <p className="acms-admin-form-radio">
+      </div>
+      <div className="acms-admin-form-radio">
         <input
           type="checkbox"
           onChange={() => setField((prevState) => ({ ...prevState, mediaType: 'file' }))}
@@ -44,7 +44,7 @@ export function MediaOption(props) {
           <i className="acms-admin-ico-radio" />
           ファイルのみ
         </label>
-      </p>
+      </div>
       <p style={{ marginBottom: '5px' }}>ドロップエリア</p>
       <div style={{ display: 'flex' }}>
         <div className="acms-admin-form-checkbox" style={{ paddingTop: '5px' }}>

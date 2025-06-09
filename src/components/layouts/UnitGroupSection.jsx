@@ -474,8 +474,8 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
           {/* input hidden */}
           {unitgroup.name && (
             <>
-              {unitgroup.items.map((item) => (
-                <>
+              {unitgroup.items.map((item, index) => (
+                <React.Fragment key={index}>
                   {item.type === 'image' && (
                     <>
                       {item.square && item.squareSize && (
@@ -535,7 +535,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   <OptionValidator item={item} />
                   <OptionNoSearch name={item.name} noSearch={item.noSearch} />
-                </>
+                </React.Fragment>
               ))}
               <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />
             </>

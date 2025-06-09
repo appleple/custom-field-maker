@@ -210,6 +210,7 @@ export function UnitGroup() {
                 <div className="customFieldGeneratorGroupButton">
                   {field.openGroup ? (
                     <button
+                      type="button"
                       className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
                       id="makeGroup"
                       disabled
@@ -218,6 +219,7 @@ export function UnitGroup() {
                     </button>
                   ) : (
                     <button
+                      type="button"
                       className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn"
                       id="makeGroup"
                       onClick={showGroup}

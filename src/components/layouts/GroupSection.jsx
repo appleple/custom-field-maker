@@ -235,7 +235,6 @@ export const GroupSection = forwardRef((_props, ref) => {
                 : fieldgroup.items.length > 0 && (
                     <>
                       {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
-
                       <div
                         className={classnames({
                           'sortable-item': true,

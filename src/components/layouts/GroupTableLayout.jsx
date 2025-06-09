@@ -67,6 +67,9 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
             </thead>
 
             <tbody>
+              {/*
+                Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+              */}
               {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
               <tr className="sortable-item">
                 <td className="item-handle acms-admin-table-nowrap">
@@ -198,6 +201,9 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                 </td>
               </tr>
 
+              {/*
+                Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+              */}
               {editMode === 'preview' ? null : `<!-- END ${fieldgroup.name}:loop -->`}
 
               {editMode === 'preview' ? null : (

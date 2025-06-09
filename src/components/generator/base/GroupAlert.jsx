@@ -13,13 +13,17 @@ export function GroupAlert(props) {
   return (
     <>
       {groupAlert ? (
-        <p className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger" style={{ fontSize: '12px' }}>
+        <div
+          role="alert"
+          className="acms-admin-alert acms-admin-alert-icon acms-admin-alert-danger"
+          style={{ fontSize: '12px' }}
+        >
           <span className="acms-admin-icon acms-admin-alert-icon-before acms-admin-icon-attention" aria-hidden="true" />
           グループ名を入力しないとグループを生成できません。
-          <button className="js-acms-alert-close acms-admin-alert-icon-after" onClick={closeAlert}>
+          <button type="button" className="js-acms-alert-close acms-admin-alert-icon-after" onClick={closeAlert}>
             ×
           </button>
-        </p>
+        </div>
       ) : null}
     </>
   );

@@ -231,7 +231,7 @@ export function Validator(props) {
                 </table>
 
                 <div>
-                  <button onClick={addValidator} className="acms-admin-btn">
+                  <button type="button" onClick={addValidator} className="acms-admin-btn">
                     追加
                   </button>
                 </div>

@@ -60,6 +60,9 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
             </thead>
 
             <tbody>
+              {/*
+                Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+              */}
               {editMode === 'preview' ? null : `<!-- BEGIN ${unitgroup.name}:loop -->`}
               <tr className="sortable-item">
                 <td className="item-handle acms-admin-table-nowrap">
@@ -70,7 +73,9 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                   condition={direction === 'vertical'}
                   wrap={(children) => (
                     <td>
-                      <table>{children}</table>
+                      <table>
+                        <tbody>{children}</tbody>
+                      </table>
                     </td>
                   )}
                 >
@@ -199,6 +204,9 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                 </td>
               </tr>
 
+              {/*
+                Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+              */}
               {editMode === 'preview' ? null : `<!-- END ${unitgroup.name}:loop -->`}
 
               {editMode === 'preview' ? null : (
@@ -212,13 +220,15 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                       condition={direction === 'vertical'}
                       wrap={(children) => (
                         <td>
-                          <table>{children}</table>
+                          <table>
+                            <tbody>{children}</tbody>
+                          </table>
                         </td>
                       )}
                     >
                       {unitgroup.items.map((item, index) => (
                         <Fragment key={index}>
-                          {() => {
+                          {(() => {
                             switch (item.type) {
                               case 'text':
                               case 'tel':
@@ -310,7 +320,7 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                                 return null;
                               }
                             }
-                          }}
+                          })()}
                         </Fragment>
                       ))}
                     </ConditionalWrap>
