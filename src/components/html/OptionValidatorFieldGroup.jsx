@@ -37,7 +37,7 @@ export function OptionValidatorFieldGroup(props) {
               </p>
             </div>
           ) : (
-            isTemplate && (
+            !isTemplate && (
               <Fragment key={validator.option}>
                 {editMode === 'preview' ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
                 <p className={classnames({ 'acms-admin-text-error': acmscss })}>{validator.message}</p>
