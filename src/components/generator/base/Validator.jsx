@@ -1,7 +1,7 @@
 import React, { useRef, useMemo, useCallback } from 'react';
 import Tooltip from '../../Tooltip';
 import { NoSearchBox } from './NoSearchBox';
-import { useMakerContext } from '../../../store/MakerContext';
+import { useMakerContext } from '../../../stores/MakerContext';
 
 export function Validator(props) {
   const {

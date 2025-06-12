@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import classnames from 'classnames';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 
 export function OptionValidator(props) {
   const { item } = props;

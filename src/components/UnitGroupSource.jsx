@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { UnitGroupSection } from './layouts/UnitGroupSection';
 import { UnitGroupTableLayout } from './layouts/UnitGroupTableLayout';
-import { useMakerContext } from '../store/MakerContext';
+import { useMakerContext } from '../stores/MakerContext';
 
 export function UnitGroupSource() {
   const {

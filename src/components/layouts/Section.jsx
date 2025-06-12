@@ -10,7 +10,7 @@ import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import classnames from 'classnames';
 
 export const Section = forwardRef((_props, ref) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Section } from './layouts/Section';
 import { TableLayout } from './layouts/TableLayout';
-import { useMakerContext } from '../store/MakerContext';
+import { useMakerContext } from '../stores/MakerContext';
 
 export function FieldSource() {
   const {

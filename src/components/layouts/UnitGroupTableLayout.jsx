@@ -9,7 +9,7 @@ import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 import { OptionValidator } from '../html/OptionValidator';
 

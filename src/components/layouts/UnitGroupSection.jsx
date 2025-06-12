@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
