@@ -2,7 +2,7 @@ import Tooltip from '../Tooltip';
 import classnames from 'classnames';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { Notify } from '../Notify';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import columnIcon from '../../assets/images/add_column.svg';
 import rowIcon from '../../assets/images/add_row.svg';
 import React from 'react';
@@ -49,6 +49,7 @@ export function PreviewNavigator() {
                 id="tag"
                 onChange={(e) => updateTag(e.target.value)}
                 className="acms-admin-form-width-quarter"
+                value={tag}
                 style={{ width: '100px' }}
               >
                 <option value="section">モダン</option>
