@@ -23,7 +23,7 @@ export function OptionValidatorFieldGroup(props) {
 
         if (isMessage && validator.message) {
           const jsValidatorClassName = isTemplate
-            ? `validator-result-${index + 1}`
+            ? `validator-result-1`
             : `validator-result-{${name}:v#${validator.option}}`;
           return jsValidator ? (
             <div
