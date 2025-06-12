@@ -16,7 +16,7 @@ export function OptionValidatorFieldGroup(props) {
 
   return (
     <Fragment>
-      {item.validator.map((validator, index) => {
+      {item.validator.map((validator) => {
         if (!validator.option) {
           return null;
         }
