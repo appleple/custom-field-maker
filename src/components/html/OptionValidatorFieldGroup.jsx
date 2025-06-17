@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../stores/MakerContext';
+import { ConditionalWrap } from '../ConditionalWrap';
 
 export function OptionValidatorFieldGroup(props) {
   const { item, isTemplate = true, isMessage = true } = props;
@@ -16,49 +17,60 @@ export function OptionValidatorFieldGroup(props) {
 
   return (
     <Fragment>
-      {item.validator.map((validator) => {
-        if (!validator.option) {
-          return null;
-        }
-
-        if (isMessage && validator.message) {
-          const jsValidatorClassName = isTemplate
-            ? `validator-result-1`
-            : `validator-result-{${name}:v#${validator.option}}`;
-          return jsValidator ? (
-            <div
-              key={validator.option}
-              data-validator-label={`${name}-v-${validator.option}`}
-              className={jsValidatorClassName}
-            >
-              <p className="error-text">
-                <span className="acms-admin-icon acms-admin-icon-attention" />
-                {validator.message}
-              </p>
+      {item.validator && item.validator.length > 0 && (
+        <ConditionalWrap
+          condition={jsValidator && isMessage}
+          wrap={(children) => (
+            <div role="alert" aria-live="assertive">
+              {children}
             </div>
-          ) : (
-            !isTemplate && (
-              <Fragment key={validator.option}>
-                {editMode === 'preview' ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
-                <p className={classnames({ 'acms-admin-text-error': acmscss })}>{validator.message}</p>
-                {editMode === 'preview' ? null : `<!-- END ${name}:validator#${validator.option} -->`}
-              </Fragment>
-            )
-          );
-        } else {
-          return (
-            <Fragment key={validator.option}>
-              <input
-                type="hidden"
-                name={`${name}:v#${validator.option}`}
-                value={validator.value}
-                id={`${name}-v-${validator.option}`}
-              />
-              {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
-            </Fragment>
-          );
-        }
-      })}
+          )}
+        >
+          {item.validator.map((validator) => {
+            if (!validator.option) {
+              return null;
+            }
+
+            if (isMessage && validator.message) {
+              const jsValidatorClassName = isTemplate
+                ? `validator-result-1`
+                : `validator-result-{${name}:v#${validator.option}}`;
+              return jsValidator ? (
+                <div
+                  key={validator.option}
+                  data-validator-label={`${name}-v-${validator.option}`}
+                  className={jsValidatorClassName}
+                >
+                  <p className="error-text">
+                    <span className="acms-admin-icon acms-admin-icon-attention" />
+                    {validator.message}
+                  </p>
+                </div>
+              ) : (
+                !isTemplate && (
+                  <Fragment key={validator.option}>
+                    {editMode === 'preview' ? null : `<!-- BEGIN ${name}:validator#${validator.option} -->`}
+                    <p className={classnames({ 'acms-admin-text-error': acmscss })}>{validator.message}</p>
+                    {editMode === 'preview' ? null : `<!-- END ${name}:validator#${validator.option} -->`}
+                  </Fragment>
+                )
+              );
+            } else {
+              return (
+                <Fragment key={validator.option}>
+                  <input
+                    type="hidden"
+                    name={`${name}:v#${validator.option}`}
+                    value={validator.value}
+                    id={`${name}-v-${validator.option}`}
+                  />
+                  {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
+                </Fragment>
+              );
+            }
+          })}
+        </ConditionalWrap>
+      )}
     </Fragment>
   );
 }
