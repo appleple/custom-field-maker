@@ -13,6 +13,7 @@ import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 import { OptionValidatorFieldGroup } from '../html/OptionValidatorFieldGroup';
 import { OptionNoSearch } from '../html/OptionNoSearch';
+import { ConditionalWrap } from '../ConditionalWrap';
 
 export const GroupTableLayout = forwardRef((_props, ref) => {
   const {
@@ -20,7 +21,6 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
 
-  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
   const groupLength = fieldgroup.items.length;
 
   return (

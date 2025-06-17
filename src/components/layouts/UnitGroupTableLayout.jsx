@@ -12,6 +12,7 @@ import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 import { OptionValidator } from '../html/OptionValidator';
+import { ConditionalWrap } from '../ConditionalWrap';
 
 export const UnitGroupTableLayout = forwardRef((_props, ref) => {
   const {
@@ -19,7 +20,6 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
 
-  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
   const groupLength = unitgroup.items.length;
 
   return (

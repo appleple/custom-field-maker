@@ -3,14 +3,13 @@ import classnames from 'classnames';
 import { useMakerContext } from '../../stores/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
+import { ConditionalWrap } from '../ConditionalWrap';
 
 export function Media(props) {
   const { item, isValue = true } = props;
   const {
     preview: { acmscss, editMode, mode },
   } = useMakerContext();
-
-  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
   return (
     <>

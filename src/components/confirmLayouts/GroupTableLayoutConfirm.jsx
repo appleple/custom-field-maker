@@ -2,14 +2,13 @@ import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
+import { ConditionalWrap } from '../ConditionalWrap';
 
 export function GroupTableLayoutConfirm() {
   const {
     state: { fieldgroup },
     preview: { acmscss, direction },
   } = useMakerContext();
-
-  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
 
   return (
     <>
