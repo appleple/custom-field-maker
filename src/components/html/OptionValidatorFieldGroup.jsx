@@ -64,13 +64,13 @@ export function OptionValidatorFieldGroup(props) {
                     value={validator.value}
                     id={`${name}-v-${validator.option}`}
                   />
-                  {item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
                 </Fragment>
               );
             }
           })}
         </ConditionalWrap>
       )}
+      {!isMessage && item.converter && <input type="hidden" name={`${name}:c`} value={item.converter} />}
     </Fragment>
   );
 }
