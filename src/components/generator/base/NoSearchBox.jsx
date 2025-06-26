@@ -4,7 +4,7 @@ export function NoSearchBox(props) {
   const { noSearch, setField } = props;
 
   return (
-    <p className="acms-admin-form-checkbox" style={{ margin: 0 }}>
+    <div className="acms-admin-form-checkbox" style={{ margin: 0 }}>
       <input
         type="checkbox"
         value={noSearch}
@@ -15,6 +15,6 @@ export function NoSearchBox(props) {
         <i className="acms-admin-ico-checkbox" />
         カスタムフィールド検索の対象外にする
       </label>
-    </p>
+    </div>
   );
 }

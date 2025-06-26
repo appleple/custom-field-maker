@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import Tooltip from '../Tooltip';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import { Alert } from './base/Alert';
 import { GroupAlert } from './base/GroupAlert';
 import { DuplicateAlert } from './base/DuplicateAlert';
@@ -61,36 +61,6 @@ const defaultProps = {
   groupName: '',
 };
 
-const crearField = {
-  title: '',
-  name: '',
-  path: '',
-  normalSize: '',
-  tiny: '',
-  tinySize: '',
-  large: '',
-  largeSize: '',
-  square: '',
-  squareSize: '',
-  alt: true,
-  resize: true,
-  useExpand: true,
-  useDropArea: true,
-  dropAreaWidth: 200,
-  dropAreaHeight: 200,
-  useFocusImage: false,
-  focusImageWidth: 400,
-  focusImageHeight: 400,
-  startHeadingLevel: 2,
-  endHeadingLevel: 3,
-  mediaType: 'image',
-  openConverter: '',
-  openValidator: '',
-  converter: '',
-  tooltip: '',
-  placeholder: '',
-};
-
 export function FieldGroup() {
   const [field, setField] = useState(defaultProps);
   const {
@@ -140,7 +110,7 @@ export function FieldGroup() {
   const clearGroupHandler = useCallback(() => {
     if (!confirm('生成したコードの履歴も消えてしまいます。よろしいですか？')) return;
     clearGroup();
-    setField(crearField);
+    setField(defaultProps);
     setField((prevState) => ({
       ...prevState,
       openGroup: false,
@@ -153,7 +123,7 @@ export function FieldGroup() {
     <div>
       <div className="customFieldContainer">
         <div>
-          <div className="acms-flex acms-justify-between" style={{ marginBottom: '1em' }}>
+          <div className="acms-admin-flex acms-admin-justify-between" style={{ marginBottom: '1em' }}>
             <h2
               style={{
                 margin: 0,
@@ -162,7 +132,11 @@ export function FieldGroup() {
               グループ名
             </h2>
             {fieldgroup.title && fieldgroup.name && (
-              <button className="acms-admin-btn-admin acms-admin-btn-admin-danger" onClick={clearGroupHandler}>
+              <button
+                type="button"
+                className="acms-admin-btn-admin acms-admin-btn-admin-danger"
+                onClick={clearGroupHandler}
+              >
                 グループを削除
               </button>
             )}
@@ -247,6 +221,7 @@ export function FieldGroup() {
                 <div className="customFieldGeneratorGroupButton">
                   {fieldgroup.title && fieldgroup.name ? (
                     <button
+                      type="button"
                       className="acms-admin-btn acms-admin-btn-primary acms-admin-btn-disabled customFieldGroupBtn"
                       id="makeGroup"
                       disabled
@@ -255,6 +230,7 @@ export function FieldGroup() {
                     </button>
                   ) : (
                     <button
+                      type="button"
                       className="acms-admin-btn acms-admin-btn-primary customFieldGroupBtn"
                       id="makeGroup"
                       onClick={showGroup}

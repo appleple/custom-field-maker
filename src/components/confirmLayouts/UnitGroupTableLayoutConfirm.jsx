@@ -1,26 +1,25 @@
 import React from 'react';
 import classnames from 'classnames';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
+import { ConditionalWrap } from '../ConditionalWrap';
 
-export function GroupTableLayoutConfirm() {
+export function UnitGroupTableLayoutConfirm() {
   const {
-    state: { fieldgroup },
+    state: { unitgroup },
     preview: { acmscss, direction },
   } = useMakerContext();
 
-  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
-
   return (
     <>
-      {fieldgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{fieldgroup.title}</h2>}
+      {unitgroup.title && <h2 className={classnames({ 'acms-admin-admin-title2': acmscss })}>{unitgroup.title}</h2>}
       <table className={classnames({ 'adminTable acms-admin-table-admin-edit': acmscss })}>
         {direction === 'horizontal' && (
           <>
-            {fieldgroup && (
+            {unitgroup && (
               <thead className={classnames({ 'acms-admin-hide-sp': acmscss })}>
                 <tr>
-                  {fieldgroup.items.map((item, index) => (
+                  {unitgroup.items.map((item, index) => (
                     <th key={index} className={classnames({ 'acms-admin-table-left': acmscss })}>
                       {item.title}
                     </th>
@@ -31,17 +30,22 @@ export function GroupTableLayoutConfirm() {
           </>
         )}
         <tbody>
-          {`<!-- BEGIN ${fieldgroup.name}:loop -->`}
+          {/*
+            Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+          */}
+          {`<!-- BEGIN ${unitgroup.name}:loop -->`}
           <tr>
             <ConditionalWrap
               condition={direction === 'vertical'}
               wrap={(children) => (
                 <td>
-                  <table>{children}</table>
+                  <table>
+                    <tbody>{children}</tbody>
+                  </table>
                 </td>
               )}
             >
-              {fieldgroup.items.map((item, index) => {
+              {unitgroup.items.map((item, index) => {
                 if (
                   item.type === 'text' ||
                   item.type === 'tel' ||
@@ -80,6 +84,25 @@ export function GroupTableLayoutConfirm() {
                     </WrapTable>
                   );
                 } else if (item.type === 'radioButton') {
+                  return (
+                    <WrapTable key={index} title={item.title}>
+                      <td>
+                        {item.option.map((option, optionIndex) => {
+                          if (!option.label) {
+                            return null;
+                          }
+                          return (
+                            <div key={optionIndex}>
+                              {`<!-- BEGIN_IF [{${item.name}}/eq/${option.value}] -->`}
+                              {option.label}
+                              {'<!-- END_IF -->'}
+                            </div>
+                          );
+                        })}
+                      </td>
+                    </WrapTable>
+                  );
+                } else if (item.type === 'checkbox') {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>
@@ -145,26 +168,29 @@ export function GroupTableLayoutConfirm() {
                           />
                         </a>
                         {`<!-- END_IF -->`}
+
                         {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                        {`<a
+                          <!-- BEGIN_IF [{${item.name}@link}/nem] -->
+                          href={${item.name}@link}
+                          <!-- END_IF -->
+                          class="acms-inline-block"
+                          style="width: ${item.focusImageWidth}px; height: ${item.focusImageHeight}px;"
+                        >`}
+                        {item.useFocusImage && (
+                          <img
+                            className="js-focused-image"
+                            data-focus-x={`{${item.name}@focalX}`}
+                            data-focus-y={`{${item.name}@focalY}`}
+                            alt={`{${item.name}@alt}`}
+                            src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
+                          />
+                        )}
+                        {!item.useFocusImage && (
+                          <img alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
+                        )}
                         {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                        <a href={`{${item.name}@link}`}>
-                          {`<!-- END_IF -->`}
-                          {item.useFocusImage && (
-                            <div style={{ width: `${item.focusImageWidth}px`, height: `${item.focusImageHeight}px` }}>
-                              <img
-                                className="js-focused-image"
-                                data-focus-x={`{${item.name}@focalX}`}
-                                data-focus-y={`{${item.name}@focalY}`}
-                                alt={`{${item.name}@alt}`}
-                                src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}[resizeImg(${item.focusImageWidth})]`}
-                              />
-                            </div>
-                          )}
-                          {!item.useFocusImage && (
-                            <img alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
-                          )}
-                          {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
-                        </a>
+                        {`</a>`}
                         {`<!-- END_IF -->`}
 
                         {`<!-- BEGIN_IF [{${item.name}@text}/nem] -->`}
@@ -197,7 +223,10 @@ export function GroupTableLayoutConfirm() {
               })}
             </ConditionalWrap>
           </tr>
-          {`<!-- END ${fieldgroup.name}:loop -->`}
+          {/*
+            Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+          */}
+          {`<!-- END ${unitgroup.name}:loop -->`}
         </tbody>
       </table>
     </>

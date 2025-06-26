@@ -10,7 +10,7 @@ import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import classnames from 'classnames';
 
 export const UnitSection = forwardRef((_props, ref) => {
@@ -34,7 +34,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -57,7 +57,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -79,7 +79,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -101,7 +101,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -142,7 +142,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -161,7 +161,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -183,7 +183,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -205,7 +205,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >
@@ -224,7 +224,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   key={index}
                   className={classnames({
                     'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col-max-md': acmscss,
+                    'acms-admin-flex-col': acmscss,
                     'acms-admin-flex-row-min-md': acmscss,
                   })}
                 >

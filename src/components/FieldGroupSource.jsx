@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { GroupSection } from './layouts/GroupSection';
 import { GroupTableLayout } from './layouts/GroupTableLayout';
-import { useMakerContext } from '../store/MakerContext';
+import { useMakerContext } from '../stores/MakerContext';
 
 export function FieldGroupSource() {
   const {

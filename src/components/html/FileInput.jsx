@@ -1,7 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
 
 export function FileInput(props) {
   const { item, isValue = true } = props;
@@ -86,6 +87,7 @@ export function FileInput(props) {
             <input type="hidden" name={`${item.name}@filename[]`} value="@rawfilename" />
           )}
           <input type="file" name={`${item.name}[]`} id={`${item.name}[]`} />
+          <OptionValidatorFieldGroup item={item} isTemplate={!isValue} />
         </>
       )}
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
-import { useMakerContext } from '../store/MakerContext';
+import { useMakerContext } from '../stores/MakerContext';
 
 export function Notify(props) {
   const { message, onFinish = () => {} } = props;

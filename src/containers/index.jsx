@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MakerContextProvider, useMakerContext } from '../store/MakerContext';
+import { MakerContextProvider, useMakerContext } from '../stores/MakerContext';
 import { EditorModeNavigator } from '../components/navigator/EditorModeNavigator';
 import { PreviewModeNavigator } from '../components/navigator/PreviewModeNavigator';
 import { PreviewNavigator } from '../components/navigator/PreviewNavigator';

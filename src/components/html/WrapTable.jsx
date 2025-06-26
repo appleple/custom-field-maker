@@ -1,15 +1,12 @@
 import React from 'react';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
+import { ConditionalWrap } from '../ConditionalWrap';
 
 export function WrapTable(props) {
   const { children, title } = props;
   const {
     preview: { direction },
   } = useMakerContext();
-
-  const ConditionalWrap = ({ condition, wrap, children }) => {
-    return condition ? wrap(children) : children;
-  };
 
   return (
     <ConditionalWrap

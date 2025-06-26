@@ -8,7 +8,7 @@ export function RichEditorOption(props) {
 
   return (
     <div>
-      <p className="acms-admin-form-checkbox">
+      <div className="acms-admin-form-checkbox">
         <input
           type="checkbox"
           onChange={() => setField((prevState) => ({ ...prevState, useExpand: !useExpand }))}
@@ -18,7 +18,7 @@ export function RichEditorOption(props) {
         <label htmlFor="expand-checkbox">
           <i className="acms-admin-ico-checkbox" /> リッチエディターを拡大表示する
         </label>
-      </p>
+      </div>
       <div>
         開始見出しレベル
         <span style={{ display: 'inline-block', width: '5px', height: '1px' }} />

@@ -1,7 +1,7 @@
 import React, { useRef, useMemo, useCallback } from 'react';
 import Tooltip from '../../Tooltip';
 import { NoSearchBox } from './NoSearchBox';
-import { useMakerContext } from '../../../store/MakerContext';
+import { useMakerContext } from '../../../stores/MakerContext';
 
 export function Validator(props) {
   const {
@@ -216,6 +216,7 @@ export function Validator(props) {
                           </td>
                           <td>
                             <button
+                              type="button"
                               onClick={() => {
                                 removeValidator(idx);
                               }}
@@ -230,7 +231,7 @@ export function Validator(props) {
                 </table>
 
                 <div>
-                  <button onClick={addValidator} className="acms-admin-btn">
+                  <button type="button" onClick={addValidator} className="acms-admin-btn">
                     追加
                   </button>
                 </div>

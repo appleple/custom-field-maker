@@ -2,7 +2,7 @@ import Tooltip from '../Tooltip';
 import classnames from 'classnames';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { Notify } from '../Notify';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import columnIcon from '../../assets/images/add_column.svg';
 import rowIcon from '../../assets/images/add_row.svg';
 import React from 'react';
@@ -49,6 +49,7 @@ export function PreviewNavigator() {
                 id="tag"
                 onChange={(e) => updateTag(e.target.value)}
                 className="acms-admin-form-width-quarter"
+                value={tag}
                 style={{ width: '100px' }}
               >
                 <option value="section">モダン</option>
@@ -126,7 +127,9 @@ export function PreviewNavigator() {
           {editMode !== 'preview' && (
             <>
               <CopyToClipboard text={source} onCopy={() => setCopied(true)}>
-                <button className="acms-admin-btn-admin acms-admin-btn-admin-info">生成コードをコピー</button>
+                <button type="button" className="acms-admin-btn-admin acms-admin-btn-admin-info">
+                  生成コードをコピー
+                </button>
               </CopyToClipboard>
               <Notify message="クリップボードにコピーしました" onFinish={() => setCopied(false)} />
             </>
@@ -134,15 +137,17 @@ export function PreviewNavigator() {
         </div>
 
         <div>
-          <button className="acms-admin-btn-admin" style={{ marginRight: '4px' }} onClick={onUndoHandler}>
+          <button type="button" className="acms-admin-btn-admin" style={{ marginRight: '4px' }} onClick={onUndoHandler}>
             生成コードを一つ戻す
           </button>
 
           {mode === 'customfield' && (
             <button
+              type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearCustomfield();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearCustomfield();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >
@@ -151,9 +156,11 @@ export function PreviewNavigator() {
           )}
           {mode === 'fieldgroup' && (
             <button
+              type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearGroupItem();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearGroupItem();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >
@@ -162,9 +169,11 @@ export function PreviewNavigator() {
           )}
           {mode === 'customunit' && (
             <button
+              type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearCustomunit();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearCustomunit();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >
@@ -173,9 +182,11 @@ export function PreviewNavigator() {
           )}
           {mode === 'unitgroup' && (
             <button
+              type="button"
               onClick={() => {
-                confirm('生成コードをクリアしますか？');
-                clearUnitGroupItem();
+                if (confirm('生成コードをクリアしますか？')) {
+                  clearUnitGroupItem();
+                }
               }}
               className="acms-admin-btn-admin acms-admin-btn-admin-danger"
             >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 
 export function Heading(props) {
   const { item } = props;

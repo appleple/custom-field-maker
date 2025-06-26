@@ -100,7 +100,7 @@ export function OptionItem(props) {
       </table>
       {add && (
         <p>
-          <button className="acms-admin-btn" onClick={addOption}>
+          <button type="button" className="acms-admin-btn" onClick={addOption}>
             追加
           </button>
         </p>

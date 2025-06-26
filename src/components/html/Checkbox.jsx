@@ -1,7 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import { OptionValidator } from './OptionValidator';
+import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
 import { OptionNoSearch } from './OptionNoSearch';
 import { generateSafeId } from '../../utils';
 
@@ -67,6 +68,7 @@ export function Checkbox(props) {
               </div>
             );
           })}
+          <OptionValidatorFieldGroup item={item} isTemplate={!isChecked} />
         </>
       )}
 

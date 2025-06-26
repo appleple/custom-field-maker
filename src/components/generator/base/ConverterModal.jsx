@@ -60,13 +60,17 @@ export function ConverterModal(props) {
     const isAdded = converter.includes(option);
     if (isAdded) {
       return (
-        <button className="acms-admin-btn acms-admin-btn-danger" onClick={() => onRemoveConverter(option)}>
+        <button
+          type="button"
+          className="acms-admin-btn acms-admin-btn-danger"
+          onClick={() => onRemoveConverter(option)}
+        >
           削除
         </button>
       );
     }
     return (
-      <button className="acms-admin-btn" onClick={() => onConverter(option)}>
+      <button type="button" className="acms-admin-btn" onClick={() => onConverter(option)}>
         追加
       </button>
     );

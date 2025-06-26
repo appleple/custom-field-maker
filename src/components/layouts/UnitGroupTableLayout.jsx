@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, Fragment } from 'react';
 import classnames from 'classnames';
 import { TextInput } from '../html/TextInput';
 import { Textarea } from '../html/Textarea';
@@ -9,9 +9,10 @@ import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 import { OptionValidator } from '../html/OptionValidator';
+import { ConditionalWrap } from '../ConditionalWrap';
 
 export const UnitGroupTableLayout = forwardRef((_props, ref) => {
   const {
@@ -19,7 +20,6 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
     preview: { acmscss, direction, editMode },
   } = useMakerContext();
 
-  const ConditionalWrap = ({ condition, wrap, children }) => (condition ? wrap(children) : children);
   const groupLength = unitgroup.items.length;
 
   return (
@@ -60,6 +60,9 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
             </thead>
 
             <tbody>
+              {/*
+                Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+              */}
               {editMode === 'preview' ? null : `<!-- BEGIN ${unitgroup.name}:loop -->`}
               <tr className="sortable-item">
                 <td className="item-handle acms-admin-table-nowrap">
@@ -70,117 +73,123 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                   condition={direction === 'vertical'}
                   wrap={(children) => (
                     <td>
-                      <table>{children}</table>
+                      <table>
+                        <tbody>{children}</tbody>
+                      </table>
                     </td>
                   )}
                 >
-                  {unitgroup.items.map((item) => {
-                    switch (item.type) {
-                      case 'text':
-                      case 'tel':
-                      case 'number':
-                      case 'email':
-                      case 'password': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <TextInput item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'textarea':
-                      case 'liteEditor': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Textarea item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'checkbox': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Checkbox item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'selectbox': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Selectbox item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'radioButton': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <RadioButton item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'media': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Media item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'image': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <ImageInput item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'richEditor': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <ConditionalWrap
-                                condition={item.useExpand}
-                                wrap={(children) => (
-                                  <div className="js-expand js-acms-expand">
-                                    <div className="js-acms-expand-inner">
-                                      <button className="js-expand-btn js-acms-expand-btn" type="button">
-                                        <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
-                                      </button>
-                                      {children}
-                                    </div>
-                                  </div>
-                                )}
-                              >
-                                <RichEditor item={item} />
-                              </ConditionalWrap>
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      case 'table': {
-                        return (
-                          <WrapTable title={item.title}>
-                            <td>
-                              <Table item={item} />
-                            </td>
-                          </WrapTable>
-                        );
-                      }
-                      default: {
-                        return null;
-                      }
-                    }
-                  })}
+                  {unitgroup.items.map((item, index) => (
+                    <Fragment key={index}>
+                      {(() => {
+                        switch (item.type) {
+                          case 'text':
+                          case 'tel':
+                          case 'number':
+                          case 'email':
+                          case 'password': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <TextInput item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'textarea':
+                          case 'liteEditor': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <Textarea item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'checkbox': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <Checkbox item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'selectbox': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <Selectbox item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'radioButton': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <RadioButton item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'media': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <Media item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'image': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <ImageInput item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'richEditor': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <ConditionalWrap
+                                    condition={item.useExpand}
+                                    wrap={(children) => (
+                                      <div className="js-expand js-acms-expand">
+                                        <div className="js-acms-expand-inner">
+                                          <button className="js-expand-btn js-acms-expand-btn" type="button">
+                                            <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
+                                          </button>
+                                          {children}
+                                        </div>
+                                      </div>
+                                    )}
+                                  >
+                                    <RichEditor item={item} />
+                                  </ConditionalWrap>
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          case 'table': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <Table item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
+                          default: {
+                            return null;
+                          }
+                        }
+                      })()}
+                    </Fragment>
+                  ))}
                 </ConditionalWrap>
 
                 <td className="acms-admin-table-nowrap">
@@ -195,6 +204,9 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                 </td>
               </tr>
 
+              {/*
+                Text nodes cannot appear as a child of <tbody> というエラーが出るがReactの仕様のためしかたない。
+              */}
               {editMode === 'preview' ? null : `<!-- END ${unitgroup.name}:loop -->`}
 
               {editMode === 'preview' ? null : (
@@ -208,103 +220,109 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
                       condition={direction === 'vertical'}
                       wrap={(children) => (
                         <td>
-                          <table>{children}</table>
+                          <table>
+                            <tbody>{children}</tbody>
+                          </table>
                         </td>
                       )}
                     >
-                      {unitgroup.items.map((item, index) => {
-                        switch (item.type) {
-                          case 'text':
-                          case 'tel':
-                          case 'number':
-                          case 'email':
-                          case 'password': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <TextInput item={item} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'textarea':
-                          case 'liteEditor': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Textarea item={item} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'checkbox': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'selectbox': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Selectbox item={item} isSelected={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'radioButton': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <RadioButton item={item} isChecked={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'media': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Media item={item} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'image': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <ImageInput item={item} isAttribute={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'richEditor': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <RichEditor item={item} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          case 'table': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <Table item={item} isValue={false} />
-                                </td>
-                              </WrapTable>
-                            );
-                          }
-                          default: {
-                            return null;
-                          }
-                        }
-                      })}
+                      {unitgroup.items.map((item, index) => (
+                        <Fragment key={index}>
+                          {(() => {
+                            switch (item.type) {
+                              case 'text':
+                              case 'tel':
+                              case 'number':
+                              case 'email':
+                              case 'password': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <TextInput item={item} isValue={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'textarea':
+                              case 'liteEditor': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Textarea item={item} isValue={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'checkbox': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Checkbox item={item} id={`template-${item.name}${index}`} isChecked={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'selectbox': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Selectbox item={item} isSelected={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'radioButton': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <RadioButton item={item} isChecked={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'media': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Media item={item} isValue={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'image': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <ImageInput item={item} isAttribute={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'richEditor': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <RichEditor item={item} isValue={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'table': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <Table item={item} isValue={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              default: {
+                                return null;
+                              }
+                            }
+                          })()}
+                        </Fragment>
+                      ))}
                     </ConditionalWrap>
 
                     <td className="acms-admin-table-nowrap">
@@ -324,11 +342,9 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
             <tfoot>
               <tr>
                 <td colSpan={direction === 'horizontal' ? groupLength + 2 : 3}>
-                  <input
-                    type="button"
-                    className={classnames('item-insert', { 'acms-admin-btn-admin': acmscss })}
-                    value="追加"
-                  />
+                  <button type="button" className={classnames('item-insert', { 'acms-admin-btn-admin': acmscss })}>
+                    追加
+                  </button>
                 </td>
               </tr>
             </tfoot>
@@ -339,8 +355,8 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
       {/* input hidden */}
       {unitgroup.name && (
         <>
-          {unitgroup.items.map((item) => (
-            <>
+          {unitgroup.items.map((item, index) => (
+            <Fragment key={index}>
               {item.type === 'image' && (
                 <>
                   {item.square && item.squareSize && (
@@ -396,7 +412,7 @@ export const UnitGroupTableLayout = forwardRef((_props, ref) => {
               <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
               {item.noSearch && <input type="hidden" name={`${item.name}{id}:search`} value="0" />}
               <OptionValidator item={item} />
-            </>
+            </Fragment>
           ))}
           <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />
         </>

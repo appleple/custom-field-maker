@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Tooltip from '../../Tooltip';
-import inputTypesJson from '../../../../json/input-types.json';
+import inputTypesJson from '../../../json/input-types.json';
 
 export function Basic(props) {
   const { field, setField } = props;

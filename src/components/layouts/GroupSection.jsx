@@ -11,9 +11,9 @@ import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
+import { OptionValidatorFieldGroup } from '../html/OptionValidatorFieldGroup';
 import { OptionNoSearch } from '../html/OptionNoSearch';
-import { OptionValidator } from '../html/OptionValidator';
 
 export const GroupSection = forwardRef((_props, ref) => {
   const {
@@ -26,9 +26,9 @@ export const GroupSection = forwardRef((_props, ref) => {
       className={classnames({
         'sortable-item': true,
         'acms-admin-flex': acmscss,
-        'acms-admin-flex-col-max-md': acmscss,
+        'acms-admin-flex-col': acmscss,
         'acms-admin-flex-row-min-md': acmscss,
-        'acms-admin-items-start-max-md': acmscss,
+        'acms-admin-items-start': acmscss,
         'acms-admin-items-center-min-md': acmscss,
       })}
     >
@@ -51,7 +51,7 @@ export const GroupSection = forwardRef((_props, ref) => {
             key={index}
             className={classnames({
               'acms-admin-flex': acmscss,
-              'acms-admin-flex-col-max-md': acmscss,
+              'acms-admin-flex-col': acmscss,
               'acms-admin-flex-row-min-md': acmscss,
               'acms-admin-padding-small': acmscss,
             })}
@@ -209,7 +209,7 @@ export const GroupSection = forwardRef((_props, ref) => {
 
       {fieldgroup.items.length > 0 && (
         <div className={classnames({ 'acms-admin-padding-small': acmscss })}>
-          <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger" value="削除">
+          <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger">
             削除
           </button>
         </div>
@@ -235,14 +235,13 @@ export const GroupSection = forwardRef((_props, ref) => {
                 : fieldgroup.items.length > 0 && (
                     <>
                       {editMode === 'preview' ? null : `<!-- BEGIN ${fieldgroup.name}:loop -->`}
-
                       <div
                         className={classnames({
                           'sortable-item': true,
                           'acms-admin-flex': acmscss,
-                          'acms-admin-flex-col-max-md': acmscss,
+                          'acms-admin-flex-col': acmscss,
                           'acms-admin-flex-row-min-md': acmscss,
-                          'acms-admin-items-start-max-md': acmscss,
+                          'acms-admin-items-start': acmscss,
                           'acms-admin-items-center-min-md': acmscss,
                         })}
                       >
@@ -266,7 +265,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                               key={index}
                               className={classnames({
                                 'acms-admin-flex': acmscss,
-                                'acms-admin-flex-col-max-md': acmscss,
+                                'acms-admin-flex-col': acmscss,
                                 'acms-admin-flex-row-min-md': acmscss,
                                 'acms-admin-padding-small': acmscss,
                               })}
@@ -436,7 +435,6 @@ export const GroupSection = forwardRef((_props, ref) => {
                           <button
                             type="button"
                             className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"
-                            value="削除"
                           >
                             削除
                           </button>
@@ -455,7 +453,9 @@ export const GroupSection = forwardRef((_props, ref) => {
                     <template className="item-template">{renderTemplateComponent()}</template>
                   )}
                   <div>
-                    <input type="button" className="item-insert acms-admin-btn-admin" value="追加" />
+                    <button type="button" className="item-insert acms-admin-btn-admin">
+                      追加
+                    </button>
                   </div>
                 </>
               )}
@@ -522,7 +522,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
                   <input type="hidden" name="field[]" value={item.name} />
 
-                  <OptionValidator item={item} />
+                  <OptionValidatorFieldGroup item={item} isMessage={false} />
                   <OptionNoSearch name={item.name} noSearch={item.noSearch} />
                 </Fragment>
               ))}

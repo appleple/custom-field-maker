@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useMakerContext } from '../../store/MakerContext';
+import { useMakerContext } from '../../stores/MakerContext';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
@@ -26,9 +26,9 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
       className={classnames({
         'sortable-item': true,
         'acms-admin-flex': acmscss,
-        'acms-admin-flex-col-max-md': acmscss,
+        'acms-admin-flex-col': acmscss,
         'acms-admin-flex-row-min-md': acmscss,
-        'acms-admin-items-start-max-md': acmscss,
+        'acms-admin-items-start': acmscss,
         'acms-admin-items-center-min-md': acmscss,
       })}
     >
@@ -52,7 +52,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
             key={index}
             className={classnames({
               'acms-admin-flex': acmscss,
-              'acms-admin-flex-col-max-md': acmscss,
+              'acms-admin-flex-col': acmscss,
               'acms-admin-flex-row-min-md': acmscss,
               'acms-admin-padding-small': acmscss,
             })}
@@ -213,7 +213,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
           'acms-admin-padding-small': acmscss,
         })}
       >
-        <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger" value="削除">
+        <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger">
           削除
         </button>
       </div>
@@ -243,9 +243,9 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                         className={classnames({
                           'sortable-item': true,
                           'acms-admin-flex': acmscss,
-                          'acms-admin-flex-col-max-md': acmscss,
+                          'acms-admin-flex-col': acmscss,
                           'acms-admin-flex-row-min-md': acmscss,
-                          'acms-admin-items-start-max-md': acmscss,
+                          'acms-admin-items-start': acmscss,
                           'acms-admin-items-center-min-md': acmscss,
                         })}
                       >
@@ -269,7 +269,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                               key={index}
                               className={classnames({
                                 'acms-admin-flex': acmscss,
-                                'acms-admin-flex-col-max-md': acmscss,
+                                'acms-admin-flex-col': acmscss,
                                 'acms-admin-flex-row-min-md': acmscss,
                                 'acms-admin-padding-small': acmscss,
                               })}
@@ -443,7 +443,6 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                           <button
                             type="button"
                             className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"
-                            value="削除"
                           >
                             削除
                           </button>
@@ -463,7 +462,9 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                   )}
 
                   <div>
-                    <input type="button" className="item-insert acms-admin-btn-admin" value="追加" />
+                    <button type="button" className="item-insert acms-admin-btn-admin">
+                      追加
+                    </button>
                   </div>
                 </>
               )}
@@ -473,8 +474,8 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
           {/* input hidden */}
           {unitgroup.name && (
             <>
-              {unitgroup.items.map((item) => (
-                <>
+              {unitgroup.items.map((item, index) => (
+                <React.Fragment key={index}>
                   {item.type === 'image' && (
                     <>
                       {item.square && item.squareSize && (
@@ -534,7 +535,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   <OptionValidator item={item} />
                   <OptionNoSearch name={item.name} noSearch={item.noSearch} />
-                </>
+                </React.Fragment>
               ))}
               <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />
             </>
