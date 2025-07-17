@@ -33,9 +33,9 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label
@@ -44,7 +44,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   >
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <TextInput item={item} />
                   </div>
                 </div>
@@ -56,9 +56,9 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label
@@ -67,7 +67,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   >
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <Textarea item={item} />
                   </div>
                 </div>
@@ -78,9 +78,9 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label
@@ -89,7 +89,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   >
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <Selectbox item={item} />
                   </div>
                 </div>
@@ -100,16 +100,16 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
-                  <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
+                  <fieldset key={index} className={classnames({ 'acms-admin-d-contents': acmscss })}>
                     <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                       <Heading item={item} />
                     </legend>
-                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                    <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                       <Checkbox item={item} />
                     </div>
                   </fieldset>
@@ -121,15 +121,15 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
+                    'acms-admin-d-flex': acmscss,
                     'acms-admin-flex-row': acmscss,
                   })}
                 >
-                  <fieldset key={index} className={classnames({ 'acms-admin-contents': acmscss })}>
+                  <fieldset key={index} className={classnames({ 'acms-admin-d-contents': acmscss })}>
                     <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                       <Heading item={item} />
                     </legend>
-                    <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                    <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                       <RadioButton item={item} />
                     </div>
                   </fieldset>
@@ -141,15 +141,15 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <Media item={item} />
                   </div>
                 </div>
@@ -160,9 +160,9 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label
@@ -171,7 +171,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   >
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <ImageInput item={item} />
                   </div>
                 </div>
@@ -182,9 +182,9 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label
@@ -193,7 +193,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                   >
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <FileInput item={item} />
                   </div>
                 </div>
@@ -204,15 +204,15 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <RichEditor item={item} />
                   </div>
                 </div>
@@ -223,15 +223,15 @@ export const UnitSection = forwardRef((_props, ref) => {
                 <div
                   key={index}
                   className={classnames({
-                    'acms-admin-flex': acmscss,
-                    'acms-admin-flex-col': acmscss,
-                    'acms-admin-flex-row-min-md': acmscss,
+                    'acms-admin-d-flex': acmscss,
+                    'acms-admin-flex-column': acmscss,
+                    'acms-admin-flex-md-row': acmscss,
                   })}
                 >
                   <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })} htmlFor={item.name}>
                     <Heading item={item} />
                   </label>
-                  <div className={classnames({ 'acms-admin-flex-1': acmscss })}>
+                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <Table item={item} />
                   </div>
                 </div>

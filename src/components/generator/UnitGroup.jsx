@@ -112,7 +112,7 @@ export function UnitGroup() {
     <div>
       <div className="customFieldContainer">
         <div>
-          <div className="acms-admin-flex acms-admin-justify-between" style={{ marginBottom: '1em' }}>
+          <div className="acms-admin-d-flex acms-admin-justify-content-between" style={{ marginBottom: '1em' }}>
             <h2
               style={{
                 margin: 0,

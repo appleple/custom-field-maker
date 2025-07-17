@@ -21,13 +21,6 @@
   background: #fff;
 }
 
-.customFieldFunction select {
-  min-height: 26px;
-  padding: 4px 24px 4px 4px;
-  line-height: 1.5;
-  font-size: 14px;
-}
-
 /* ジェネレーター：フィールドグループ、ユニットグループ
 -------------------------------------- */
 .customFieldGeneratorGroup {
