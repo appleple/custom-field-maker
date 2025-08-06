@@ -166,6 +166,13 @@ export function UnitTableLayoutConfirm() {
                   </td>
                 </tr>
               );
+            } else if (item.type === 'blockEditor') {
+              return (
+                <tr key={index}>
+                  <th>{item.title}</th>
+                  <td>{`{${item.name}}[raw|fixBlockEditorContents]`}</td>
+                </tr>
+              );
             } else if (item.type === 'richEditor') {
               return (
                 <tr key={index}>

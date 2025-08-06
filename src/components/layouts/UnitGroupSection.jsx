@@ -10,6 +10,7 @@ import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
+import { BlockEditor } from '../html/BlockEditor';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { OptionNoSearch } from '../html/OptionNoSearch';
@@ -171,6 +172,18 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                       </label>
                       <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                         <FileInput item={item} isValue={false} />
+                      </div>
+                    </>
+                  );
+                }
+                case 'blockEditor': {
+                  return (
+                    <>
+                      <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
+                        <Heading item={item} />
+                      </label>
+                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                        <BlockEditor item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -394,6 +407,20 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                         </label>
                                         <div className="acms-admin-flex-fill">
                                           <FileInput item={item} />
+                                        </div>
+                                      </>
+                                    );
+                                  }
+                                  case 'blockEditor': {
+                                    return (
+                                      <>
+                                        <label
+                                          className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}
+                                        >
+                                          <Heading item={item} />
+                                        </label>
+                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                          <BlockEditor item={item} />
                                         </div>
                                       </>
                                     );

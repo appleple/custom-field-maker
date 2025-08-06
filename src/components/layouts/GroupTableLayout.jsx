@@ -7,6 +7,7 @@ import { Selectbox } from '../html/Selectbox';
 import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
+import { BlockEditor } from '../html/BlockEditor';
 import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
@@ -148,6 +149,15 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                               </WrapTable>
                             );
                           }
+                          case 'blockEditor': {
+                            return (
+                              <WrapTable title={item.title}>
+                                <td>
+                                  <BlockEditor item={item} />
+                                </td>
+                              </WrapTable>
+                            );
+                          }
                           case 'richEditor': {
                             return (
                               <WrapTable title={item.title}>
@@ -281,6 +291,15 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                   <WrapTable title={item.title}>
                                     <td>
                                       <ImageInput item={item} isAttribute={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'blockEditor': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <BlockEditor item={item} isValue={false} />
                                     </td>
                                   </WrapTable>
                                 );

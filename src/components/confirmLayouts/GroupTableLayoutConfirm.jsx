@@ -200,6 +200,12 @@ export function GroupTableLayoutConfirm() {
                       </td>
                     </WrapTable>
                   );
+                } else if (item.type === 'blockEditor') {
+                  return (
+                    <WrapTable key={index} title={item.title}>
+                      <td>{`{${item.name}}[raw|fixBlockEditorContents]`}</td>
+                    </WrapTable>
+                  );
                 } else if (item.type === 'liteEditor') {
                   return (
                     <WrapTable key={index} title={item.title}>

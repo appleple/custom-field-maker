@@ -11,8 +11,8 @@
   {
     "テキスト（複数行）": [
       { "value": "textarea", "label": "テキストエリア" },
+      { "value": "blockEditor", "label": "ブロックエディター" },
       { "value": "liteEditor", "label": "ライトエディター" },
-      { "value": "richEditor", "label": "リッチエディター" },
       { "value": "table", "label": "テーブル" }
     ]
   },
