@@ -51,77 +51,77 @@ function CustomFieldMaker() {
         <div className="acms-admin-tabs">
           <PreviewModeNavigator />
 
-          <div className="acms-admin-tabs-panel">
+          <div
+            id="source"
+            className="acms-admin-tabs-panel"
+            style={{ display: preview.editMode === 'source' ? 'block' : 'none' }}
+            aria-hidden={preview.editMode !== 'source'}
+          >
             <div>
-              <div className="clearfix">
-                <PreviewNavigator />
+              <PreviewNavigator />
 
-                <ul
+              <div className="acms-admin-py-4">
+                <Highlighter onHighlight={onSource}>
+                  <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                    {{
+                      customfield: <FieldSource />,
+                      fieldgroup: <FieldGroupSource />,
+                      customunit: <UnitSource />,
+                      unitgroup: <UnitGroupSource />,
+                    }[preview.mode] || null}
+                  </MakerContextProvider>
+                </Highlighter>
+              </div>
+            </div>
+          </div>
+          <div
+            id="preview"
+            className="acms-admin-tabs-panel"
+            style={{ display: preview.editMode === 'preview' ? 'block' : 'none' }}
+            aria-hidden={preview.editMode !== 'preview'}
+          >
+            <div>
+              <PreviewNavigator />
+
+              <div className="acms-admin-py-4">
+                <div
                   style={{
-                    padding: '16px 0',
+                    padding: '16px',
                     margin: '0',
+                    backgroundColor: '#F0F0F0',
+                    minHeight: '18.398px',
                   }}
                 >
-                  <li
-                    style={{
-                      display: preview.editMode === 'source' ? 'block' : 'none',
-                    }}
-                  >
-                    {preview.editMode === 'source' && (
-                      <Highlighter onHighlight={onSource}>
-                        <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                          {{
-                            customfield: <FieldSource />,
-                            fieldgroup: <FieldGroupSource />,
-                            customunit: <UnitSource />,
-                            unitgroup: <UnitGroupSource />,
-                          }[preview.mode] || null}
-                        </MakerContextProvider>
-                      </Highlighter>
-                    )}
-                  </li>
+                  {{
+                    customfield: <FieldSource />,
+                    fieldgroup: <FieldGroupSource />,
+                    customunit: <UnitSource />,
+                    unitgroup: <UnitGroupSource />,
+                  }[preview.mode] || null}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            id="confirm"
+            className="acms-admin-tabs-panel"
+            style={{ display: preview.editMode === 'confirm' ? 'block' : 'none' }}
+            aria-hidden={preview.editMode !== 'confirm'}
+          >
+            <div>
+              <PreviewNavigator />
 
-                  <li
-                    style={{
-                      display: preview.editMode === 'preview' ? 'block' : 'none',
-                    }}
-                  >
-                    <div
-                      style={{
-                        padding: '16px',
-                        margin: '0',
-                        backgroundColor: '#F0F0F0',
-                        minHeight: '18.398px',
-                      }}
-                    >
-                      {{
-                        customfield: <FieldSource />,
-                        fieldgroup: <FieldGroupSource />,
-                        customunit: <UnitSource />,
-                        unitgroup: <UnitGroupSource />,
-                      }[preview.mode] || null}
-                    </div>
-                  </li>
-
-                  <li
-                    style={{
-                      display: preview.editMode === 'confirm' ? 'block' : 'none',
-                    }}
-                  >
-                    {preview.editMode === 'confirm' && (
-                      <Highlighter onHighlight={onSource}>
-                        <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                          {{
-                            customfield: <FieldConfirmSource />,
-                            fieldgroup: <FieldGroupConfirmSource />,
-                            customunit: <UnitConfirmSource />,
-                            unitgroup: <UnitGroupConfirmSource />,
-                          }[preview.mode] || null}
-                        </MakerContextProvider>
-                      </Highlighter>
-                    )}
-                  </li>
-                </ul>
+              <div className="acms-admin-py-4">
+                <Highlighter onHighlight={onSource}>
+                  <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                    {{
+                      customfield: <FieldConfirmSource />,
+                      fieldgroup: <FieldGroupConfirmSource />,
+                      customunit: <UnitConfirmSource />,
+                      unitgroup: <UnitGroupConfirmSource />,
+                    }[preview.mode] || null}
+                  </MakerContextProvider>
+                </Highlighter>
               </div>
             </div>
           </div>
