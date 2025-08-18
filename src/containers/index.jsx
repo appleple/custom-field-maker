@@ -56,6 +56,8 @@ function CustomFieldMaker() {
             className="acms-admin-tabs-panel"
             style={{ display: preview.editMode === 'source' ? 'block' : 'none' }}
             aria-hidden={preview.editMode !== 'source'}
+            role="tabpanel"
+            aria-labelledby="source-tab"
           >
             <div>
               <PreviewNavigator />
@@ -79,6 +81,8 @@ function CustomFieldMaker() {
             className="acms-admin-tabs-panel"
             style={{ display: preview.editMode === 'preview' ? 'block' : 'none' }}
             aria-hidden={preview.editMode !== 'preview'}
+            role="tabpanel"
+            aria-labelledby="preview-tab"
           >
             <div>
               <PreviewNavigator />
@@ -107,6 +111,8 @@ function CustomFieldMaker() {
             className="acms-admin-tabs-panel"
             style={{ display: preview.editMode === 'confirm' ? 'block' : 'none' }}
             aria-hidden={preview.editMode !== 'confirm'}
+            role="tabpanel"
+            aria-labelledby="confirm-tab"
           >
             <div>
               <PreviewNavigator />

@@ -61,6 +61,7 @@ export function PreviewModeNavigator() {
       <li role="presentation">
         <button
           ref={(el) => (tabRefs.current.source = el)}
+          id="source-tab"
           className={classnames({ 'acms-admin-tab-active': editMode === 'source' })}
           onClick={() => updateMode('source')}
           onKeyDown={(e) => handleKeyDown(e, 'source')}
@@ -75,6 +76,7 @@ export function PreviewModeNavigator() {
       <li role="presentation">
         <button
           ref={(el) => (tabRefs.current.preview = el)}
+          id="preview-tab"
           className={classnames({ 'acms-admin-tab-active': editMode === 'preview' })}
           onClick={() => updateMode('preview')}
           onKeyDown={(e) => handleKeyDown(e, 'preview')}
@@ -89,6 +91,7 @@ export function PreviewModeNavigator() {
       <li role="presentation">
         <button
           ref={(el) => (tabRefs.current.confirm = el)}
+          id="confirm-tab"
           className={classnames({ 'acms-admin-tab-active': editMode === 'confirm' })}
           onClick={() => updateMode('confirm')}
           onKeyDown={(e) => handleKeyDown(e, 'confirm')}
