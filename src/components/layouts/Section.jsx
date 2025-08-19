@@ -9,7 +9,6 @@ import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { BlockEditor } from '../html/BlockEditor';
-import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 import classnames from 'classnames';
@@ -200,25 +199,6 @@ export const Section = forwardRef((_props, ref) => {
                   </label>
                   <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
                     <BlockEditor item={item} />
-                  </div>
-                </div>
-              );
-            }
-            case 'richEditor': {
-              return (
-                <div
-                  key={index}
-                  className={classnames({
-                    'acms-admin-d-flex': acmscss,
-                    'acms-admin-flex-column': acmscss,
-                    'acms-admin-flex-md-row': acmscss,
-                  })}
-                >
-                  <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
-                    <Heading item={item} />
-                  </label>
-                  <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
-                    <RichEditor item={item} />
                   </div>
                 </div>
               );

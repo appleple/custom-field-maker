@@ -10,7 +10,6 @@ import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
 import { BlockEditor } from '../html/BlockEditor';
-import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 
@@ -135,18 +134,6 @@ export const UnitTableLayout = forwardRef((_props, ref) => {
                     </th>
                     <td>
                       <BlockEditor item={item} />
-                    </td>
-                  </tr>
-                );
-              }
-              case 'richEditor': {
-                return (
-                  <tr key={index}>
-                    <th>
-                      <Heading item={item} />
-                    </th>
-                    <td>
-                      <RichEditor item={item} />
                     </td>
                   </tr>
                 );

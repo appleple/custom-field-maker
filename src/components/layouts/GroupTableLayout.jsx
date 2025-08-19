@@ -8,13 +8,11 @@ import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { BlockEditor } from '../html/BlockEditor';
-import { RichEditor } from '../html/RichEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 import { OptionValidatorFieldGroup } from '../html/OptionValidatorFieldGroup';
 import { OptionNoSearch } from '../html/OptionNoSearch';
-import { ConditionalWrap } from '../ConditionalWrap';
 
 export const GroupTableLayout = forwardRef((_props, ref) => {
   const {
@@ -158,29 +156,6 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                               </WrapTable>
                             );
                           }
-                          case 'richEditor': {
-                            return (
-                              <WrapTable title={item.title}>
-                                <td>
-                                  <ConditionalWrap
-                                    condition={item.useExpand}
-                                    wrap={(children) => (
-                                      <div className="js-expand js-acms-expand">
-                                        <div className="js-acms-expand-inner">
-                                          <button className="js-expand-btn js-acms-expand-btn" type="button">
-                                            <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
-                                          </button>
-                                          {children}
-                                        </div>
-                                      </div>
-                                    )}
-                                  >
-                                    <RichEditor item={item} />
-                                  </ConditionalWrap>
-                                </td>
-                              </WrapTable>
-                            );
-                          }
                           case 'table': {
                             return (
                               <WrapTable title={item.title}>
@@ -300,15 +275,6 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                   <WrapTable title={item.title}>
                                     <td>
                                       <BlockEditor item={item} isValue={false} />
-                                    </td>
-                                  </WrapTable>
-                                );
-                              }
-                              case 'richEditor': {
-                                return (
-                                  <WrapTable title={item.title}>
-                                    <td>
-                                      <RichEditor item={item} isValue={false} />
                                     </td>
                                   </WrapTable>
                                 );
