@@ -229,7 +229,7 @@ export function ImageInput(props) {
               className={classnames({ 'js-img_resize_preview': item.resize })}
               style={hiddenStyle}
             />
-            {isAttribute && editMode === 'preview' ? null : '<!-- END_IF -->'}
+            {isAttribute && (editMode === 'preview' ? null : '<!-- END_IF -->')}
             <input
               type="file"
               name={`${item.name}{id}[]`}
