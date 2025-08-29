@@ -203,19 +203,13 @@ export function UnitGroupTableLayoutConfirm() {
                 } else if (item.type === 'blockEditor') {
                   return (
                     <WrapTable key={index} title={item.title}>
-                      <td>{`{${item.name}}[raw|fixBlockEditorContents]`}</td>
+                      <td>{`{${item.name}}[raw]`}</td>
                     </WrapTable>
                   );
                 } else if (item.type === 'liteEditor') {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>{`{${item.name}}[raw]`}</td>
-                    </WrapTable>
-                  );
-                } else if (item.type === 'richEditor') {
-                  return (
-                    <WrapTable key={index} title={item.title}>
-                      <td>{`{${item.name}@html}[raw]`}</td>
                     </WrapTable>
                   );
                 } else if (item.type === 'table') {

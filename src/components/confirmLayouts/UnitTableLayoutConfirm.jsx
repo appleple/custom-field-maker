@@ -170,14 +170,7 @@ export function UnitTableLayoutConfirm() {
               return (
                 <tr key={index}>
                   <th>{item.title}</th>
-                  <td>{`{${item.name}}[raw|fixBlockEditorContents]`}</td>
-                </tr>
-              );
-            } else if (item.type === 'richEditor') {
-              return (
-                <tr key={index}>
-                  <th>{item.title}</th>
-                  <td>{`{${item.name}@html}[raw]`}</td>
+                  <td>{`{${item.name}}[raw]`}</td>
                 </tr>
               );
             } else if (item.type === 'liteEditor') {
