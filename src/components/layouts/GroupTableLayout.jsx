@@ -397,8 +397,8 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                 </>
               )}
               {item.type === 'media' && <input type="hidden" name={`${item.name}:extension`} value="media" />}
-              {item.type === 'rich-editor' && (
-                <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
+              {item.type === 'blockEditor' && (
+                <input type="hidden" name={`${item.name}:extension`} value="block-editor" />
               )}
               <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
               <input type="hidden" name="field[]" value={item.name} />

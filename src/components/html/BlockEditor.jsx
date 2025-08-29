@@ -13,12 +13,8 @@ export function BlockEditor(props) {
         <div className="acms-admin-custom-field-content">
           <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
             <div className="js-target acms-admin-form-width-full"></div>
-            <input
-              type="hidden"
-              className="js-html"
-              name={item.name}
-              value={`{${item.name}}[raw|fixBlockEditorContents|escape]`}
-            />
+            <input type="hidden" className="js-html" name={item.name} value={`{${item.name}}`} />
+            <input type="hidden" name={`${item.name}:extension`} value="block-editor" />
             <input type="hidden" name="field[]" value={item.name} />
           </div>
         </div>
@@ -33,7 +29,7 @@ export function BlockEditor(props) {
               className="js-html"
               name={`${item.name}[]`}
               {...(isValue && {
-                defaultValue: `{${item.name}}[raw|fixBlockEditorContents|escape]`,
+                defaultValue: `{${item.name}}`,
               })}
             />
           </div>
@@ -44,12 +40,8 @@ export function BlockEditor(props) {
         <div className="acms-admin-custom-field-content">
           <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
             <div className="js-target acms-admin-form-width-full"></div>
-            <input
-              type="hidden"
-              className="js-html"
-              name={`${item.name}{id}`}
-              value={`{${item.name}}[raw|fixBlockEditorContents|escape]`}
-            />
+            <input type="hidden" className="js-html" name={`${item.name}{id}`} value={`{${item.name}}`} />
+            <input type="hidden" name={`${item.name}{id}:extension`} value="block-editor" />
             <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           </div>
         </div>
@@ -64,7 +56,7 @@ export function BlockEditor(props) {
               className="js-html"
               name={`${item.name}{id}[]`}
               {...(isValue && {
-                defaultValue: `{${item.name}}[raw|fixBlockEditorContents|escape]`,
+                defaultValue: `{${item.name}}`,
               })}
             />
           </div>

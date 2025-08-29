@@ -528,8 +528,8 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     </>
                   )}
                   {item.type === 'media' && <input type="hidden" name={`${item.name}{id}:extension`} value="media" />}
-                  {item.type === 'richEditor' && (
-                    <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
+                  {item.type === 'blockEditor' && (
+                    <input type="hidden" name={`${item.name}{id}:extension`} value="block-editor" />
                   )}
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}`} />
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
