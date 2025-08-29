@@ -7,6 +7,7 @@ import { Selectbox } from '../html/Selectbox';
 import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
+import { FileInput } from '../html/FileInput';
 import { BlockEditor } from '../html/BlockEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
@@ -147,6 +148,17 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                               </WrapTable>
                             );
                           }
+                          case 'file': {
+                            return (
+                              <>
+                                <WrapTable title={item.title}>
+                                  <td>
+                                    <FileInput item={item} />
+                                  </td>
+                                </WrapTable>
+                              </>
+                            );
+                          }
                           case 'blockEditor': {
                             return (
                               <WrapTable title={item.title}>
@@ -266,6 +278,15 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                   <WrapTable title={item.title}>
                                     <td>
                                       <ImageInput item={item} isAttribute={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'file': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <ImageInput item={item} isValue={false} />
                                     </td>
                                   </WrapTable>
                                 );

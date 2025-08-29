@@ -44,8 +44,9 @@ export function ImageOption(props) {
                 <select
                   name="normal"
                   onChange={(e) => {
-                    const value = e.value;
+                    const value = e.target.value;
                     if (!value) return;
+                    console.log(value);
                     setField((prevState) => ({ ...prevState, normal: value }));
                   }}
                   className="acms-admin-margin-right-small"
@@ -56,16 +57,16 @@ export function ImageOption(props) {
                 </select>
                 <span className="input-append">
                   <input
-                    type="text"
+                    type="number"
                     autoComplete="off"
                     name="normalSize"
                     onInput={(e) => {
-                      const value = e.value;
+                      const value = e.target.value;
                       if (!value) return;
                       setField((prevState) => ({ ...prevState, normalSize: value }));
                     }}
                     className="customFieldSizeInput"
-                    placeholder="例）200px"
+                    placeholder="例）200"
                   />
                   <span className="add-on"> px</span>
                 </span>
@@ -78,7 +79,7 @@ export function ImageOption(props) {
                 <select
                   name="large"
                   onChange={(e) => {
-                    const value = e.value;
+                    const value = e.target.value;
                     if (!value) return;
                     setField((prevState) => ({ ...prevState, large: value }));
                   }}
@@ -90,16 +91,16 @@ export function ImageOption(props) {
                 </select>
                 <span className="input-append">
                   <input
-                    type="text"
+                    type="number"
                     autoComplete="off"
                     name="largeSize"
                     onInput={(e) => {
-                      const value = e.value;
+                      const value = e.target.value;
                       if (!value) return;
                       setField((prevState) => ({ ...prevState, largeSize: value }));
                     }}
                     className="customFieldSizeInput"
-                    placeholder="例）400px"
+                    placeholder="例）400"
                   />
                   <span className="add-on"> px</span>
                 </span>
@@ -112,7 +113,7 @@ export function ImageOption(props) {
                 <select
                   name="tiny"
                   onChange={(e) => {
-                    const value = e.value;
+                    const value = e.target.value;
                     if (!value) return;
                     setField((prevState) => ({ ...prevState, tiny: value }));
                   }}
@@ -124,16 +125,16 @@ export function ImageOption(props) {
                 </select>
                 <span className="input-append">
                   <input
-                    type="text"
+                    type="number"
                     autoComplete="off"
                     name="tinySize"
                     onInput={(e) => {
-                      const value = e.value;
+                      const value = e.target.value;
                       if (!value) return;
                       setField((prevState) => ({ ...prevState, tinySize: value }));
                     }}
                     className="customFieldSizeInput"
-                    placeholder="例）100px"
+                    placeholder="例）100"
                   />
                   <span className="add-on"> px</span>
                 </span>
@@ -146,7 +147,7 @@ export function ImageOption(props) {
                 <select
                   name="square"
                   onChange={(e) => {
-                    const value = e.value;
+                    const value = e.target.value;
                     if (!value) return;
                     setField((prevState) => ({ ...prevState, square: value }));
                   }}
@@ -157,16 +158,16 @@ export function ImageOption(props) {
                 </select>
                 <span className="input-append">
                   <input
-                    type="text"
+                    type="number"
                     autoComplete="off"
                     name="squareSize"
                     onInput={(e) => {
-                      const value = e.value;
+                      const value = e.target.value;
                       if (!value) return;
                       setField((prevState) => ({ ...prevState, squareSize: value }));
                     }}
                     className="customFieldSizeInput"
-                    placeholder="例）250px"
+                    placeholder="例）250"
                   />
                   <span className="add-on"> px</span>
                 </span>

@@ -10,7 +10,7 @@ const defaultPreview = {
   editMode: 'source',
   tag: 'section',
   acmscss: true,
-  jsValidator: false,
+  jsValidator: true,
   direction: 'horizontal',
 };
 const defaultClipboard = {
