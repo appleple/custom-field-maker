@@ -21,13 +21,12 @@
     "dev": "webpack serve --config webpack.dev.js",
     "start": "npm-run-all -p dev",
     "prettier": "prettier ./src/**/*.js --write",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
     "deploy": "np --yolo --any-branch",
     "prepack": "npm run build",
     "prepare": "husky"
-  },
-  "jest": {
-    "verbose": true,
-    "testURL": "http://localhost/"
   },
   "author": "appleple",
   "license": "MIT",
@@ -63,6 +62,7 @@
     "eslint-webpack-plugin": "^4.2.0",
     "html-webpack-plugin": "^5.6.3",
     "husky": "^9.1.6",
+    "jsdom": "^26.1.0",
     "np": "^10.0.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
@@ -70,6 +70,8 @@
     "react-dom": "^18.3.1",
     "style-loader": "^4.0.0",
     "svgo": "^3.3.2",
+    "typescript": "^5.0.0",
+    "vitest": "^3.2.4",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0",
