@@ -8,7 +8,7 @@ import { Basic } from './base/Basic';
 import { ConverterModal } from './base/ConverterModal';
 import { Snippet } from './base/Snippet';
 import { Operator } from './base/Operator';
-import { Validator } from './base/Validator';
+import { FormOption } from './base/FormOption';
 import { OptionItem } from './base/OptionItem';
 import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
@@ -289,7 +289,7 @@ export function FieldGroup() {
                 </div>
               )}
 
-              <Validator field={field} setField={setField} />
+              <FormOption field={field} setField={setField} />
               <Operator setField={setField} onSubmit={addGroup} />
             </div>
           </div>

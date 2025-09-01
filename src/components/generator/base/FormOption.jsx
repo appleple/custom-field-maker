@@ -3,7 +3,7 @@ import Tooltip from '../../Tooltip';
 import { NoSearchBox } from './NoSearchBox';
 import { useMakerContext } from '../../../stores/MakerContext';
 
-export function Validator(props) {
+export function FormOption(props) {
   const {
     field: { type, validator, openValidator, converter, noSearch },
     setField,

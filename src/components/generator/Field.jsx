@@ -5,7 +5,7 @@ import { Alert } from './base/Alert';
 import { Basic } from './base/Basic';
 import { Snippet } from './base/Snippet';
 import { Operator } from './base/Operator';
-import { Validator } from './base/Validator';
+import { FormOption } from './base/FormOption';
 import { OptionItem } from './base/OptionItem';
 import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
@@ -137,7 +137,7 @@ export function Field() {
           </div>
         )}
 
-        <Validator field={field} setField={setField} />
+        <FormOption field={field} setField={setField} />
         <Operator setField={setField} onSubmit={onSubmit} />
       </div>
       <ConverterModal field={field} setField={setField} />
