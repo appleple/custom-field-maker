@@ -11,7 +11,7 @@ import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
 import { ImageResizeOption } from './base/ImageResizeOption';
 import { FileOption } from './base/FileOption';
-import { RichEditorOption } from './base/RichEditorOption';
+
 const defaultProps = {
   // text, textarea
   title: '',
@@ -135,8 +135,6 @@ export function Unit() {
             <FileOption field={field} setField={setField} />
           </div>
         )}
-
-        {field.type === 'richEditor' && <div>{<RichEditorOption field={field} setField={setField} />}</div>}
 
         {field.type !== 'media' && field.type !== 'richEditor' && field.type !== 'table' && (
           <Validator field={field} setField={setField} />

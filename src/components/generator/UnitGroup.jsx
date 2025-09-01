@@ -14,7 +14,6 @@ import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
 import { ImageResizeOption } from './base/ImageResizeOption';
 import { FileOption } from './base/FileOption';
-import { RichEditorOption } from './base/RichEditorOption';
 
 const defaultProps = {
   type: 'text',
@@ -278,11 +277,7 @@ export function UnitGroup() {
                   <MediaOption field={field} setField={setField} />
                 </div>
               )}
-              {field.type === 'rich-editor' && (
-                <div>
-                  <RichEditorOption field={field} setField={setField} />
-                </div>
-              )}
+
               <Validator field={field} setField={setField} />
               <Operator setField={setField} onSubmit={addGroup} />
             </div>
