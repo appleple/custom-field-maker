@@ -169,7 +169,7 @@ export function UnitGroupTableLayoutConfirm() {
                         </a>
                         {`<!-- END_IF -->`}
 
-                        {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                        {`<!-- BEGIN_IF [{${item.name}@type}/eq/image/_or_/{${item.name}@type}/eq/svg] -->`}
                         {`<a
                           <!-- BEGIN_IF [{${item.name}@link}/nem] -->
                           href={${item.name}@link}
