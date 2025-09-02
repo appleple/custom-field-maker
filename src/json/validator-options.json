@@ -1,0 +1,25 @@
+[
+  {
+    "group": "入力値の制限",
+    "options": [
+      { "value": "required", "label": "必須 ( required )" },
+      { "value": "minlength", "label": "最小文字数 ( minlength )" },
+      { "value": "maxlength", "label": "最大文字数 ( maxlength )" },
+      { "value": "min", "label": "下限値 ( min )" },
+      { "value": "max", "label": "上限値 ( max )" }
+    ]
+  },
+  {
+    "group": "形式チェック",
+    "options": [
+      { "value": "digits", "label": "数字チェック ( digits )" },
+      { "value": "email", "label": "メールアドレスチェック ( email )" },
+      { "value": "hiragana", "label": "ひらがなチェック ( hiragana )" },
+      { "value": "katakana", "label": "カタカナチェック ( katakana )" },
+      { "value": "url", "label": "URLチェック ( url )" },
+      { "value": "dates", "label": "日付チェック ( dates )" },
+      { "value": "times", "label": "時間チェック ( times )" },
+      { "value": "regex", "label": "正規表現マッチ ( regex )" }
+    ]
+  }
+]

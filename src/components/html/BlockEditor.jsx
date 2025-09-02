@@ -2,7 +2,6 @@ import React from 'react';
 import { useMakerContext } from '../../stores/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
-import { OptionNoSearch } from './OptionNoSearch';
 
 export function BlockEditor(props) {
   const { item, isValue = true } = props;
@@ -34,7 +33,6 @@ export function BlockEditor(props) {
             </div>
           </div>
           <OptionValidator item={item} />
-          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
         </>
       )}
 
@@ -68,7 +66,6 @@ export function BlockEditor(props) {
             </div>
           </div>
           <OptionValidator item={item} />
-          <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
         </>
       )}
 

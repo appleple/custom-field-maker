@@ -2,6 +2,8 @@ import React, { useRef, useMemo, useCallback } from 'react';
 import Tooltip from '../../Tooltip';
 import { NoSearchBox } from './NoSearchBox';
 import { useMakerContext } from '../../../stores/MakerContext';
+import inputTypesJson from '../../../json/input-types.json';
+import validatorOptionsJson from '../../../json/validator-options.json';
 
 export function FormOption(props) {
   const {
@@ -33,6 +35,23 @@ export function FormOption(props) {
     const possibleValue = ['minlength', 'maxlength', 'min', 'max', 'regex'];
     return possibleValue.includes(option);
   };
+
+  const getValidatorOptionsForType = (currentType) => {
+    const typeConfig = inputTypesJson.find((category) =>
+      Object.values(category)[0].some((item) => item.value === currentType)
+    );
+
+    if (typeConfig) {
+      const typeData = Object.values(typeConfig)[0].find((item) => item.value === currentType);
+      if (typeData && typeData.validator) {
+        return typeData.validator;
+      }
+    }
+
+    return null;
+  };
+
+  const allowedValidatorOptions = getValidatorOptionsForType(type);
 
   const updateValidatorOption = (idx, option) => {
     const item = validator[idx];
@@ -80,7 +99,7 @@ export function FormOption(props) {
   };
 
   return (
-    !(type === 'blockEditor') &&
+    !(mode === 'unitgroup' && type === 'blockEditor') &&
     !((mode === 'customunit' || mode === 'unitgroup') && type === 'file') &&
     !((mode === 'customunit' || mode === 'unitgroup') && type === 'image') &&
     !((mode === 'customunit' || mode === 'unitgroup') && type === 'liteEditor') && (
@@ -174,23 +193,33 @@ export function FormOption(props) {
                                 }}
                               >
                                 <option value="">▼ 選択</option>
-                                <optgroup label="入力値の制限">
-                                  <option value="required">必須 ( required )</option>
-                                  <option value="minlength">最小文字数 ( minlength )</option>
-                                  <option value="maxlength">最大文字数 ( maxlength )</option>
-                                  <option value="min">下限値 ( min )</option>
-                                  <option value="max">上限値 ( max )</option>
-                                </optgroup>
-                                <optgroup label="形式チェック">
-                                  <option value="digits">数字チェック ( digits )</option>
-                                  <option value="email">メールアドレスチェック ( email )</option>
-                                  <option value="hiragana">ひらがなチェック ( hiragana )</option>
-                                  <option value="katakana">カタカナチェック ( katakana )</option>
-                                  <option value="url">URLチェック ( url )</option>
-                                  <option value="dates">日付チェック ( dates )</option>
-                                  <option value="times">時間チェック ( times )</option>
-                                  <option value="regex">正規表現マッチ ( regex )</option>
-                                </optgroup>
+                                {(() => {
+                                  if (allowedValidatorOptions) {
+                                    return validatorOptionsJson
+                                      .map((group) => (
+                                        <optgroup key={group.group} label={group.group}>
+                                          {group.options
+                                            .filter((option) => allowedValidatorOptions.includes(option.value))
+                                            .map((option) => (
+                                              <option key={option.value} value={option.value}>
+                                                {option.label}
+                                              </option>
+                                            ))}
+                                        </optgroup>
+                                      ))
+                                      .filter((group) => group.props.children.length > 0);
+                                  } else {
+                                    return validatorOptionsJson.map((group) => (
+                                      <optgroup key={group.group} label={group.group}>
+                                        {group.options.map((option) => (
+                                          <option key={option.value} value={option.value}>
+                                            {option.label}
+                                          </option>
+                                        ))}
+                                      </optgroup>
+                                    ));
+                                  }
+                                })()}
                               </select>
                             </td>
                             <td>
