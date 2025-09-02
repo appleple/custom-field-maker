@@ -46,7 +46,6 @@ export function ImageOption(props) {
                   onChange={(e) => {
                     const value = e.target.value;
                     if (!value) return;
-                    console.log(value);
                     setField((prevState) => ({ ...prevState, normal: value }));
                   }}
                   className="acms-admin-margin-right-small"
