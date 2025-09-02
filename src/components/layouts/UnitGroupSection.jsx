@@ -534,7 +534,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}`} />
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   <OptionValidator item={item} />
-                  <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+                  <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
                 </React.Fragment>
               ))}
               <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />

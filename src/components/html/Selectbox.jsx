@@ -85,7 +85,7 @@ export function Selectbox(props) {
           </select>
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           <OptionValidator item={item} />
-          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+          <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
         </>
       )}
 

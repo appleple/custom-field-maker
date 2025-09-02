@@ -190,12 +190,6 @@ export function ImageInput(props) {
           )}
           <input type="hidden" name={`${item.name}{id}@filename`} value="" />
           <OptionValidator item={item} />
-          {console.log(
-            item.normal + ': ' + item.normalSize,
-            item.tiny + ': ' + item.tinySize,
-            item.large + ': ' + item.largeSize,
-            item.square + ': ' + item.squareSize
-          )}
         </span>
       )}
 
