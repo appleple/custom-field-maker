@@ -286,7 +286,7 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <ImageInput item={item} isValue={false} />
+                                      <FileInput item={item} isValue={false} />
                                     </td>
                                   </WrapTable>
                                 );
