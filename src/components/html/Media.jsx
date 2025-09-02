@@ -332,7 +332,6 @@ export function Media(props) {
           />
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           <input type="hidden" name={`${item.name}{id}:extension`} value="media" />
-          <OptionValidator item={item} />
         </div>
       )}
 

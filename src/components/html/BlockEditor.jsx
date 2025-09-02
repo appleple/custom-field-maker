@@ -65,7 +65,6 @@ export function BlockEditor(props) {
               <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
             </div>
           </div>
-          <OptionValidator item={item} />
         </>
       )}
 

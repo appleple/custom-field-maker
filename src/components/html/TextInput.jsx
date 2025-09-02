@@ -56,7 +56,6 @@ export function TextInput(props) {
             className={classnames({ 'acms-admin-form-width-full': acmscss })}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
-          <OptionValidator item={item} />
           <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
         </>

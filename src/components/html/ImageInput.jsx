@@ -189,7 +189,6 @@ export function ImageInput(props) {
             <input type="hidden" name={`${item.name}{id}@${item.square}`} value={`${item.squareSize}px`} />
           )}
           <input type="hidden" name={`${item.name}{id}@filename`} value="" />
-          <OptionValidator item={item} />
         </span>
       )}
 

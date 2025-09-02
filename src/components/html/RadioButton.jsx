@@ -96,7 +96,6 @@ export function RadioButton(props) {
             );
           })}
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
-          <OptionValidator item={item} />
           <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
         </>
       )}
