@@ -99,7 +99,7 @@ export function FormOption(props) {
   };
 
   return (
-    !(mode === 'unitgroup' && type === 'blockEditor') &&
+    !((mode === 'customunit' || mode === 'unitgroup') && type === 'blockEditor') &&
     !((mode === 'customunit' || mode === 'unitgroup') && type === 'file') &&
     !((mode === 'customunit' || mode === 'unitgroup') && type === 'image') &&
     !((mode === 'customunit' || mode === 'unitgroup') && type === 'liteEditor') && (
