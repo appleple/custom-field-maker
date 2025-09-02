@@ -52,7 +52,7 @@ function CustomFieldMaker() {
         <h2>コードプレビュー</h2>
         <div className="acms-admin-tabs">
           <PreviewModeNavigator />
-
+          
           {preview.editMode === 'source' && (
             <div
               id="source"
