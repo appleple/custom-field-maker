@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { useMakerContext } from '../../stores/MakerContext';
 import { OptionValidator } from './OptionValidator';
 import { OptionValidatorFieldGroup } from './OptionValidatorFieldGroup';
@@ -13,24 +14,29 @@ export function BlockEditor(props) {
     <>
       {mode === 'customfield' && (
         <>
-          <div className={{ 'acms-admin-custom-field-content': acmscss }}>
-            <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
-              <div
-                className={{
-                  'js-target': true,
-                  'acms-admin-form-width-full': acmscss,
-                }}
-              ></div>
-              <input
-                type="hidden"
-                className="js-html"
-                name={item.name}
-                value={`{${item.name}}`}
-                {...(jsValidator ? { 'data-validator': item.name } : {})}
-              />
-              <input type="hidden" name={`${item.name}:extension`} value="block-editor" />
-              <input type="hidden" name="field[]" value={item.name} />
-            </div>
+          <div
+            className={classnames({
+              'js-block-editor': true,
+              'acms-admin-form-box': acmscss,
+            })}
+            data-target=".js-target"
+            data-html=".js-html"
+          >
+            <div
+              className={classnames({
+                'js-target': true,
+                'acms-admin-form-width-full': acmscss,
+              })}
+            ></div>
+            <input
+              type="hidden"
+              className="js-html"
+              name={item.name}
+              value={`{${item.name}}`}
+              {...(jsValidator ? { 'data-validator': item.name } : {})}
+            />
+            <input type="hidden" name={`${item.name}:extension`} value="block-editor" />
+            <input type="hidden" name="field[]" value={item.name} />
           </div>
           <OptionValidator item={item} />
         </>
@@ -38,18 +44,28 @@ export function BlockEditor(props) {
 
       {mode === 'fieldgroup' && (
         <>
-          <div className="acms-admin-custom-field-content">
-            <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
-              <div className="js-target acms-admin-form-width-full"></div>
-              <input
-                type="hidden"
-                className="js-html"
-                name={`${item.name}[]`}
-                {...(isValue && {
-                  defaultValue: `{${item.name}}`,
-                })}
-              />
-            </div>
+          <div
+            className={classnames({
+              'js-block-editor': true,
+              'acms-admin-form-box': acmscss,
+            })}
+            data-target=".js-target"
+            data-html=".js-html"
+          >
+            <div
+              className={classnames({
+                'js-target': true,
+                'acms-admin-form-width-full': acmscss,
+              })}
+            ></div>
+            <input
+              type="hidden"
+              className="js-html"
+              name={`${item.name}[]`}
+              {...(isValue && {
+                defaultValue: `{${item.name}}`,
+              })}
+            />
           </div>
           <OptionValidatorFieldGroup item={item} isTemplate={!isValue} />
         </>
@@ -57,30 +73,50 @@ export function BlockEditor(props) {
 
       {mode === 'customunit' && (
         <>
-          <div className="acms-admin-custom-field-content">
-            <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
-              <div className="js-target acms-admin-form-width-full"></div>
-              <input type="hidden" className="js-html" name={`${item.name}{id}`} value={`{${item.name}}`} />
-              <input type="hidden" name={`${item.name}{id}:extension`} value="block-editor" />
-              <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
-            </div>
+          <div
+            className={classnames({
+              'js-block-editor': true,
+              'acms-admin-form-box': acmscss,
+            })}
+            data-target=".js-target"
+            data-html=".js-html"
+          >
+            <div
+              className={classnames({
+                'js-target': true,
+                'acms-admin-form-width-full': acmscss,
+              })}
+            ></div>
+            <input type="hidden" className="js-html" name={`${item.name}{id}`} value={`{${item.name}}`} />
+            <input type="hidden" name={`${item.name}{id}:extension`} value="block-editor" />
+            <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           </div>
         </>
       )}
 
       {mode === 'unitgroup' && (
-        <div className="acms-admin-custom-field-content">
-          <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
-            <div className="js-target acms-admin-form-width-full"></div>
-            <input
-              type="hidden"
-              className="js-html"
-              name={`${item.name}{id}[]`}
-              {...(isValue && {
-                defaultValue: `{${item.name}}`,
-              })}
-            />
-          </div>
+        <div
+          className={classnames({
+            'js-block-editor': true,
+            'acms-admin-form-box': acmscss,
+          })}
+          data-target=".js-target"
+          data-html=".js-html"
+        >
+          <div
+            className={classnames({
+              'js-target': true,
+              'acms-admin-form-width-full': acmscss,
+            })}
+          ></div>
+          <input
+            type="hidden"
+            className="js-html"
+            name={`${item.name}{id}[]`}
+            {...(isValue && {
+              defaultValue: `{${item.name}}`,
+            })}
+          />
         </div>
       )}
     </>
