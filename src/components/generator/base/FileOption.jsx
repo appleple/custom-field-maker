@@ -54,7 +54,6 @@ export function FileOption(props) {
               defaultValue={fileName}
               onInput={(e) => {
                 const value = e.target.value;
-                if (!value) return;
                 setField((prevState) => ({ ...prevState, fileName: value }));
               }}
               placeholder="例）example.pdf"
@@ -70,7 +69,6 @@ export function FileOption(props) {
           defaultValue={extension}
           onInput={(e) => {
             const value = e.target.value;
-            if (!value) return;
             setField((prevState) => ({ ...prevState, extension: value }));
           }}
           placeholder="例）pdf"

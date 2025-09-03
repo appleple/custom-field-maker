@@ -169,7 +169,7 @@ export function GroupTableLayoutConfirm() {
                         </a>
                         {`<!-- END_IF -->`}
 
-                        {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                        {`<!-- BEGIN_IF [{${item.name}@type}/eq/image/_or_/{${item.name}@type}/eq/svg] -->`}
                         {`<a
                           <!-- BEGIN_IF [{${item.name}@link}/nem] -->
                           href={${item.name}@link}
@@ -200,16 +200,16 @@ export function GroupTableLayoutConfirm() {
                       </td>
                     </WrapTable>
                   );
-                } else if (item.type === 'liteEditor') {
+                } else if (item.type === 'blockEditor') {
                   return (
                     <WrapTable key={index} title={item.title}>
                       <td>{`{${item.name}}[raw]`}</td>
                     </WrapTable>
                   );
-                } else if (item.type === 'richEditor') {
+                } else if (item.type === 'liteEditor') {
                   return (
                     <WrapTable key={index} title={item.title}>
-                      <td>{`{${item.name}@html}[raw]`}</td>
+                      <td>{`{${item.name}}[raw]`}</td>
                     </WrapTable>
                   );
                 } else if (item.type === 'table') {

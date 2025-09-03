@@ -8,13 +8,12 @@ import { Basic } from './base/Basic';
 import { ConverterModal } from './base/ConverterModal';
 import { Snippet } from './base/Snippet';
 import { Operator } from './base/Operator';
-import { Validator } from './base/Validator';
+import { FormOption } from './base/FormOption';
 import { OptionItem } from './base/OptionItem';
 import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
 import { ImageResizeOption } from './base/ImageResizeOption';
 import { FileOption } from './base/FileOption';
-import { RichEditorOption } from './base/RichEditorOption';
 
 const defaultProps = {
   type: 'text',
@@ -27,6 +26,7 @@ const defaultProps = {
   path: 'path',
   converter: '',
   normal: 'size',
+  resize: true,
   useDropArea: true,
   dropAreaWidth: 200,
   dropAreaHeight: 200,
@@ -71,7 +71,7 @@ export function FieldGroup() {
   } = useMakerContext();
 
   const showGroup = useCallback(() => {
-    if (!field.groupName) {
+    if (!field.groupTitle || !field.groupName) {
       setField((prevState) => ({ ...prevState, groupAlert: true }));
     } else {
       setField((prevState) => ({
@@ -185,7 +185,6 @@ export function FieldGroup() {
                       defaultValue={field.groupTitle}
                       onInput={(e) => {
                         const value = e.target.value;
-                        if (!value) return;
                         setField((prevState) => ({ ...prevState, groupTitle: value }));
                       }}
                       className="acms-admin-form-width-full"
@@ -210,7 +209,6 @@ export function FieldGroup() {
                       defaultValue={field.groupName}
                       onInput={(e) => {
                         const value = e.target.value;
-                        if (!value) return;
                         setField((prevState) => ({ ...prevState, groupName: value }));
                       }}
                       className="acms-admin-form-width-full"
@@ -289,12 +287,8 @@ export function FieldGroup() {
                   <MediaOption field={field} setField={setField} />
                 </div>
               )}
-              {field.type === 'rich-editor' && (
-                <div>
-                  <RichEditorOption field={field} setField={setField} />
-                </div>
-              )}
-              <Validator field={field} setField={setField} />
+
+              <FormOption field={field} setField={setField} />
               <Operator setField={setField} onSubmit={addGroup} />
             </div>
           </div>

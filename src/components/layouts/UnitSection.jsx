@@ -8,7 +8,7 @@ import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
-import { RichEditor } from '../html/RichEditor';
+import { BlockEditor } from '../html/BlockEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 import classnames from 'classnames';
@@ -199,7 +199,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                 </div>
               );
             }
-            case 'richEditor': {
+            case 'blockEditor': {
               return (
                 <div
                   key={index}
@@ -213,7 +213,7 @@ export const UnitSection = forwardRef((_props, ref) => {
                     <Heading item={item} />
                   </label>
                   <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
-                    <RichEditor item={item} />
+                    <BlockEditor item={item} />
                   </div>
                 </div>
               );

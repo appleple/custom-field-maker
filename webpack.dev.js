@@ -12,6 +12,7 @@ module.exports = merge(prodConfig, {
     },
     static: {
       directory: path.resolve(__dirname, ''),
+      serveIndex: false,
     },
     open: false,
     hot: true,

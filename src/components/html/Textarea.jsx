@@ -58,8 +58,7 @@ export function Textarea(props) {
             defaultValue={value}
             {...(item.placeholder ? { placeholder: item.placeholder } : {})}
           />
-          <OptionValidator item={item} />
-          <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+          <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
           <input type="hidden" name="unit{id}[]" defaultValue={`${item.name}{id}`} />
         </>
       )}

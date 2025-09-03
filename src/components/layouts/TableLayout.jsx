@@ -9,7 +9,7 @@ import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
-import { RichEditor } from '../html/RichEditor';
+import { BlockEditor } from '../html/BlockEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 
@@ -126,14 +126,14 @@ export const TableLayout = forwardRef((_props, ref) => {
                   </tr>
                 );
               }
-              case 'richEditor': {
+              case 'blockEditor': {
                 return (
                   <tr key={index}>
                     <th>
                       <Heading item={item} />
                     </th>
                     <td>
-                      <RichEditor item={item} />
+                      <BlockEditor item={item} />
                     </td>
                   </tr>
                 );

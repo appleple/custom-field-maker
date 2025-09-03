@@ -126,7 +126,7 @@ export function TableLayoutConfirm() {
                 </a>
                 {`<!-- END_IF -->`}
 
-                {`<!-- BEGIN_IF [{${item.name}@type}/eq/image] -->`}
+                {`<!-- BEGIN_IF [{${item.name}@type}/eq/image/_or_/{${item.name}@type}/eq/svg] -->`}
                 {`<a
                   <!-- BEGIN_IF [{${item.name}@link}/nem] -->
                   href={${item.name}@link}
@@ -162,11 +162,11 @@ export function TableLayoutConfirm() {
               </td>
             </tr>
           );
-        } else if (item.type === 'richEditor') {
+        } else if (item.type === 'blockEditor') {
           return (
             <tr key={index}>
               <th>{item.title}</th>
-              <td>{`{${item.name}@html}[raw]`}</td>
+              <td>{`{${item.name}}[raw]`}</td>
             </tr>
           );
         } else if (item.type === 'liteEditor') {

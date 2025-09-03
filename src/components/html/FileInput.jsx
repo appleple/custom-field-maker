@@ -123,7 +123,6 @@ export function FileInput(props) {
           {item.fileNameMethod === 'asis' && (
             <input type="hidden" name={`${item.name}{id}@filename`} value="@rawfilename" />
           )}
-          <OptionValidator item={item} />
         </>
       )}
 

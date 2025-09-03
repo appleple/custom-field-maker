@@ -40,10 +40,12 @@ function CustomFieldMaker() {
       </div>
 
       <section>
-        {preview.mode === 'customfield' && <Field />}
-        {preview.mode === 'fieldgroup' && <FieldGroup />}
-        {preview.mode === 'customunit' && <Unit />}
-        {preview.mode === 'unitgroup' && <UnitGroup />}
+        {{
+          customfield: <Field />,
+          fieldgroup: <FieldGroup />,
+          customunit: <Unit />,
+          unitgroup: <UnitGroup />,
+        }[preview.mode] || null}
       </section>
 
       <section>
@@ -59,23 +61,26 @@ function CustomFieldMaker() {
             role="tabpanel"
             aria-labelledby="source-tab"
           >
-            <div>
-              <PreviewNavigator />
+            {preview.editMode === 'source' && (
+              <div>
+                <PreviewNavigator />
 
-              <div className="acms-admin-py-4">
-                <Highlighter onHighlight={onSource}>
-                  <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                    {{
-                      customfield: <FieldSource />,
-                      fieldgroup: <FieldGroupSource />,
-                      customunit: <UnitSource />,
-                      unitgroup: <UnitGroupSource />,
-                    }[preview.mode] || null}
-                  </MakerContextProvider>
-                </Highlighter>
+                <div className="acms-admin-py-4">
+                  <Highlighter onHighlight={onSource}>
+                    <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                      {{
+                        customfield: <FieldSource />,
+                        fieldgroup: <FieldGroupSource />,
+                        customunit: <UnitSource />,
+                        unitgroup: <UnitGroupSource />,
+                      }[preview.mode] || null}
+                    </MakerContextProvider>
+                  </Highlighter>
+                </div>
               </div>
-            </div>
+            )}
           </div>
+
           <div
             id="preview"
             className="acms-admin-tabs-panel"
@@ -106,6 +111,7 @@ function CustomFieldMaker() {
               </div>
             </div>
           </div>
+
           <div
             id="confirm"
             className="acms-admin-tabs-panel"
@@ -114,22 +120,24 @@ function CustomFieldMaker() {
             role="tabpanel"
             aria-labelledby="confirm-tab"
           >
-            <div>
-              <PreviewNavigator />
+            {preview.editMode === 'confirm' && (
+              <div>
+                <PreviewNavigator />
 
-              <div className="acms-admin-py-4">
-                <Highlighter onHighlight={onSource}>
-                  <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
-                    {{
-                      customfield: <FieldConfirmSource />,
-                      fieldgroup: <FieldGroupConfirmSource />,
-                      customunit: <UnitConfirmSource />,
-                      unitgroup: <UnitGroupConfirmSource />,
-                    }[preview.mode] || null}
-                  </MakerContextProvider>
-                </Highlighter>
+                <div className="acms-admin-py-4">
+                  <Highlighter onHighlight={onSource}>
+                    <MakerContextProvider state={state} preview={preview} clipboard={clipboard}>
+                      {{
+                        customfield: <FieldConfirmSource />,
+                        fieldgroup: <FieldGroupConfirmSource />,
+                        customunit: <UnitConfirmSource />,
+                        unitgroup: <UnitGroupConfirmSource />,
+                      }[preview.mode] || null}
+                    </MakerContextProvider>
+                  </Highlighter>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

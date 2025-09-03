@@ -7,13 +7,13 @@ import { Selectbox } from '../html/Selectbox';
 import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
-import { RichEditor } from '../html/RichEditor';
+import { FileInput } from '../html/FileInput';
+import { BlockEditor } from '../html/BlockEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';
 import { OptionValidatorFieldGroup } from '../html/OptionValidatorFieldGroup';
 import { OptionNoSearch } from '../html/OptionNoSearch';
-import { ConditionalWrap } from '../ConditionalWrap';
 
 export const GroupTableLayout = forwardRef((_props, ref) => {
   const {
@@ -148,25 +148,22 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                               </WrapTable>
                             );
                           }
-                          case 'richEditor': {
+                          case 'file': {
+                            return (
+                              <>
+                                <WrapTable title={item.title}>
+                                  <td>
+                                    <FileInput item={item} />
+                                  </td>
+                                </WrapTable>
+                              </>
+                            );
+                          }
+                          case 'blockEditor': {
                             return (
                               <WrapTable title={item.title}>
                                 <td>
-                                  <ConditionalWrap
-                                    condition={item.useExpand}
-                                    wrap={(children) => (
-                                      <div className="js-expand js-acms-expand">
-                                        <div className="js-acms-expand-inner">
-                                          <button className="js-expand-btn js-acms-expand-btn" type="button">
-                                            <i className="acms-admin-icon acms-admin-icon-expand-arrow js-expand-icon" />
-                                          </button>
-                                          {children}
-                                        </div>
-                                      </div>
-                                    )}
-                                  >
-                                    <RichEditor item={item} />
-                                  </ConditionalWrap>
+                                  <BlockEditor item={item} />
                                 </td>
                               </WrapTable>
                             );
@@ -285,11 +282,20 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                                   </WrapTable>
                                 );
                               }
-                              case 'richEditor': {
+                              case 'file': {
                                 return (
                                   <WrapTable title={item.title}>
                                     <td>
-                                      <RichEditor item={item} isValue={false} />
+                                      <FileInput item={item} isValue={false} />
+                                    </td>
+                                  </WrapTable>
+                                );
+                              }
+                              case 'blockEditor': {
+                                return (
+                                  <WrapTable title={item.title}>
+                                    <td>
+                                      <BlockEditor item={item} isValue={false} />
                                     </td>
                                   </WrapTable>
                                 );
@@ -391,8 +397,8 @@ export const GroupTableLayout = forwardRef((_props, ref) => {
                 </>
               )}
               {item.type === 'media' && <input type="hidden" name={`${item.name}:extension`} value="media" />}
-              {item.type === 'rich-editor' && (
-                <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
+              {item.type === 'blockEditor' && (
+                <input type="hidden" name={`${item.name}:extension`} value="block-editor" />
               )}
               <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
               <input type="hidden" name="field[]" value={item.name} />

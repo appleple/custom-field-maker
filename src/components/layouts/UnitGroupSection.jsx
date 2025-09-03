@@ -10,7 +10,7 @@ import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
-import { RichEditor } from '../html/RichEditor';
+import { BlockEditor } from '../html/BlockEditor';
 import { Table } from '../html/Table';
 import { OptionNoSearch } from '../html/OptionNoSearch';
 import { OptionValidator } from '../html/OptionValidator';
@@ -175,14 +175,14 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     </>
                   );
                 }
-                case 'richEditor': {
+                case 'blockEditor': {
                   return (
                     <>
                       <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
-                        <RichEditor item={item} isValue={false} />
+                        <BlockEditor item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -398,7 +398,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                       </>
                                     );
                                   }
-                                  case 'richEditor': {
+                                  case 'blockEditor': {
                                     return (
                                       <>
                                         <label
@@ -407,7 +407,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                           <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
-                                          <RichEditor item={item} />
+                                          <BlockEditor item={item} />
                                         </div>
                                       </>
                                     );
@@ -528,13 +528,13 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                     </>
                   )}
                   {item.type === 'media' && <input type="hidden" name={`${item.name}{id}:extension`} value="media" />}
-                  {item.type === 'richEditor' && (
-                    <input type="hidden" name={`${item.name}{id}:extension`} value="rich-editor" />
+                  {item.type === 'blockEditor' && (
+                    <input type="hidden" name={`${item.name}{id}:extension`} value="block-editor" />
                   )}
                   <input type="hidden" name={`@${unitgroup.name}{id}[]`} value={`${item.name}{id}`} />
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   <OptionValidator item={item} />
-                  <OptionNoSearch name={item.name} noSearch={item.noSearch} />
+                  <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
                 </React.Fragment>
               ))}
               <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />

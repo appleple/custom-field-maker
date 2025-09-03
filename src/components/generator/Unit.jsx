@@ -5,13 +5,13 @@ import { Alert } from './base/Alert';
 import { Basic } from './base/Basic';
 import { Snippet } from './base/Snippet';
 import { Operator } from './base/Operator';
-import { Validator } from './base/Validator';
+import { FormOption } from './base/FormOption';
 import { OptionItem } from './base/OptionItem';
 import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
 import { ImageResizeOption } from './base/ImageResizeOption';
 import { FileOption } from './base/FileOption';
-import { RichEditorOption } from './base/RichEditorOption';
+
 const defaultProps = {
   // text, textarea
   title: '',
@@ -136,10 +136,8 @@ export function Unit() {
           </div>
         )}
 
-        {field.type === 'richEditor' && <div>{<RichEditorOption field={field} setField={setField} />}</div>}
-
         {field.type !== 'media' && field.type !== 'richEditor' && field.type !== 'table' && (
-          <Validator field={field} setField={setField} />
+          <FormOption field={field} setField={setField} />
         )}
         <Operator setField={setField} onSubmit={onSubmit} />
       </div>

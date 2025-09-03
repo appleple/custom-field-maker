@@ -68,9 +68,9 @@ export function ImageInput(props) {
           <input type="hidden" name={`${item.name}:extension`} value="image" />
 
           {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}`} value={item.normalSize} />}
-          {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}`} value={item.tinySize} />}
-          {item.large && <input type="hidden" name={`${item.name}@${item.large}`} value={item.largeSize} />}
-          {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={item.squareSize} />}
+          {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}`} value={`${item.tinySize}`} />}
+          {item.large && <input type="hidden" name={`${item.name}@${item.large}`} value={`${item.largeSize}`} />}
+          {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={`${item.squareSize}`} />}
 
           <input type="hidden" name={`${item.name}@filename`} value="" />
           <OptionValidator item={item} />
@@ -122,7 +122,9 @@ export function ImageInput(props) {
                 <input type="text" name={`${item.name}@alt[]`} value={`{${item.name}@alt}`} size="40" />
               </>
             )}
-            {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}[]`} value={item.normalSize} />}
+            {item.normalSize && (
+              <input type="hidden" name={`${item.name}@${item.normal}[]`} value={`${item.normalSize}`} />
+            )}
             {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
             {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
             {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
@@ -177,7 +179,6 @@ export function ImageInput(props) {
           {item.large && <input type="hidden" name={`${item.name}{id}@${item.large}`} value={item.largeSize} />}
           {item.square && <input type="hidden" name={`${item.name}{id}@${item.square}`} value={item.squareSize} />}
           <input type="hidden" name={`${item.name}{id}@filename`} value="" />
-          <OptionValidator item={item} />
         </span>
       )}
 
@@ -211,7 +212,7 @@ export function ImageInput(props) {
               className={classnames({ 'js-img_resize_preview': item.resize })}
               style={hiddenStyle}
             />
-            {isAttribute && editMode === 'preview' ? null : '<!-- END_IF -->'}
+            {isAttribute && (editMode === 'preview' ? null : '<!-- END_IF -->')}
             <input
               type="file"
               name={`${item.name}{id}[]`}

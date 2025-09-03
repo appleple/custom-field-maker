@@ -9,7 +9,7 @@ import { RadioButton } from '../html/RadioButton';
 import { Media } from '../html/Media';
 import { ImageInput } from '../html/ImageInput';
 import { FileInput } from '../html/FileInput';
-import { RichEditor } from '../html/RichEditor';
+import { BlockEditor } from '../html/BlockEditor';
 import { Table } from '../html/Table';
 import { useMakerContext } from '../../stores/MakerContext';
 import { OptionValidatorFieldGroup } from '../html/OptionValidatorFieldGroup';
@@ -174,14 +174,14 @@ export const GroupSection = forwardRef((_props, ref) => {
                     </>
                   );
                 }
-                case 'richEditor': {
+                case 'blockEditor': {
                   return (
                     <>
                       <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
                       <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
-                        <RichEditor item={item} isValue={false} />
+                        <BlockEditor item={item} isValue={false} />
                       </div>
                     </>
                   );
@@ -394,7 +394,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                       </>
                                     );
                                   }
-                                  case 'richEditor': {
+                                  case 'blockEditor': {
                                     return (
                                       <>
                                         <label
@@ -403,7 +403,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                           <Heading item={item} />
                                         </label>
                                         <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
-                                          <RichEditor item={item} />
+                                          <BlockEditor item={item} />
                                         </div>
                                       </>
                                     );
@@ -515,8 +515,8 @@ export const GroupSection = forwardRef((_props, ref) => {
                     </>
                   )}
                   {item.type === 'media' && <input type="hidden" name={`${item.name}:extension`} value="media" />}
-                  {item.type === 'richEditor' && (
-                    <input type="hidden" name={`${item.name}:extension`} value="rich-editor" />
+                  {item.type === 'blockEditor' && (
+                    <input type="hidden" name={`${item.name}:extension`} value="block-editor" />
                   )}
 
                   <input type="hidden" name={`@${fieldgroup.name}[]`} value={item.name} />
