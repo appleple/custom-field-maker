@@ -14,14 +14,7 @@ export function BlockEditor(props) {
     <>
       {mode === 'customfield' && (
         <>
-          <div
-            className={classnames({
-              'js-block-editor': true,
-              'acms-admin-form-box': acmscss,
-            })}
-            data-target=".js-target"
-            data-html=".js-html"
-          >
+          <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
             <div
               className={classnames({
                 'js-target': true,
@@ -44,14 +37,7 @@ export function BlockEditor(props) {
 
       {mode === 'fieldgroup' && (
         <>
-          <div
-            className={classnames({
-              'js-block-editor': true,
-              'acms-admin-form-box': acmscss,
-            })}
-            data-target=".js-target"
-            data-html=".js-html"
-          >
+          <div className="js-block-editor" data-target=".js-target" data-html=".js-html">
             <div
               className={classnames({
                 'js-target': true,
