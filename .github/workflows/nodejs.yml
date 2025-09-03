@@ -21,6 +21,7 @@ jobs:
       run: |
         npm install
         npm run build --if-present
-        # npm test
+        npm run type-check
+        npm run test:run
       env:
         CI: true

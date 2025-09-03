@@ -41,7 +41,7 @@ export const MakerContext = createContext({
   state: initialState,
   preview: defaultPreview,
   clipboard: defaultClipboard,
-  addCustomfield: () => {},
+  addCustomfield: (_newCustomfield) => {}, // eslint-disable-line no-unused-vars
   addCustomunit: () => {},
   setGroupTitleName: () => {},
   addGroupItem: () => {},

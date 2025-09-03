@@ -11,8 +11,9 @@ import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
 import { ImageResizeOption } from './base/ImageResizeOption';
 import { FileOption } from './base/FileOption';
+import type { FieldType } from '../../types/field.d';
 
-const defaultProps = {
+export const defaultProps: FieldType = {
   // text, textarea
   title: '',
   name: '',
@@ -31,6 +32,7 @@ const defaultProps = {
   tiny: null,
   tinySize: null,
   square: null,
+  squareSize: null,
 
   resize: true,
   useDropArea: true,
@@ -71,11 +73,11 @@ const defaultProps = {
 };
 
 export function Field() {
-  const [field, setField] = useState(defaultProps);
+  const [field, setField] = useState<FieldType>(defaultProps);
   const { addCustomfield } = useMakerContext();
 
   const onAddCustomfieldHandler = useCallback(
-    (fieldData) => {
+    (fieldData: FieldType) => {
       addCustomfield(fieldData);
     },
     [addCustomfield]
