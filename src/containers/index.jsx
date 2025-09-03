@@ -52,15 +52,16 @@ function CustomFieldMaker() {
         <h2>コードプレビュー</h2>
         <div className="acms-admin-tabs">
           <PreviewModeNavigator />
-          
-          {preview.editMode === 'source' && (
-            <div
-              id="source"
-              className="acms-admin-tabs-panel"
-              aria-hidden={preview.editMode !== 'source'}
-              role="tabpanel"
-              aria-labelledby="source-tab"
-            >
+
+          <div
+            id="source"
+            className="acms-admin-tabs-panel"
+            style={{ display: preview.editMode === 'source' ? 'block' : 'none' }}
+            aria-hidden={preview.editMode !== 'source'}
+            role="tabpanel"
+            aria-labelledby="source-tab"
+          >
+            {preview.editMode === 'source' && (
               <div>
                 <PreviewNavigator />
 
@@ -77,8 +78,8 @@ function CustomFieldMaker() {
                   </Highlighter>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           <div
             id="preview"
@@ -111,14 +112,15 @@ function CustomFieldMaker() {
             </div>
           </div>
 
-          {preview.editMode === 'confirm' && (
-            <div
-              id="confirm"
-              className="acms-admin-tabs-panel"
-              aria-hidden={preview.editMode !== 'confirm'}
-              role="tabpanel"
-              aria-labelledby="confirm-tab"
-            >
+          <div
+            id="confirm"
+            className="acms-admin-tabs-panel"
+            style={{ display: preview.editMode === 'confirm' ? 'block' : 'none' }}
+            aria-hidden={preview.editMode !== 'confirm'}
+            role="tabpanel"
+            aria-labelledby="confirm-tab"
+          >
+            {preview.editMode === 'confirm' && (
               <div>
                 <PreviewNavigator />
 
@@ -135,8 +137,8 @@ function CustomFieldMaker() {
                   </Highlighter>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
     </div>
