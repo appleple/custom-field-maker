@@ -228,7 +228,6 @@ export function FormOption(props) {
                                 defaultValue={item.value}
                                 onInput={(e) => {
                                   const value = e.target.value;
-                                  if (!value) return;
                                   updateValidatorValue(idx, value);
                                 }}
                                 className="acms-admin-form-width-full"
@@ -241,7 +240,6 @@ export function FormOption(props) {
                                 defaultValue={item.message}
                                 onInput={(e) => {
                                   const value = e.target.value;
-                                  if (!value) return;
                                   updateValidatorMessage(idx, value);
                                 }}
                                 className="acms-admin-form-width-full"

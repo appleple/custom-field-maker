@@ -45,7 +45,6 @@ export function ImageOption(props) {
                   name="normal"
                   onChange={(e) => {
                     const value = e.target.value;
-                    if (!value) return;
                     setField((prevState) => ({ ...prevState, normal: value }));
                   }}
                   className="acms-admin-margin-right-small"
@@ -61,7 +60,6 @@ export function ImageOption(props) {
                     name="normalSize"
                     onInput={(e) => {
                       const value = e.target.value;
-                      if (!value) return;
                       setField((prevState) => ({ ...prevState, normalSize: value }));
                     }}
                     className="customFieldSizeInput"
@@ -79,7 +77,6 @@ export function ImageOption(props) {
                   name="large"
                   onChange={(e) => {
                     const value = e.target.value;
-                    if (!value) return;
                     setField((prevState) => ({ ...prevState, large: value }));
                   }}
                   className="acms-admin-margin-right-small"
@@ -95,7 +92,6 @@ export function ImageOption(props) {
                     name="largeSize"
                     onInput={(e) => {
                       const value = e.target.value;
-                      if (!value) return;
                       setField((prevState) => ({ ...prevState, largeSize: value }));
                     }}
                     className="customFieldSizeInput"
@@ -113,7 +109,6 @@ export function ImageOption(props) {
                   name="tiny"
                   onChange={(e) => {
                     const value = e.target.value;
-                    if (!value) return;
                     setField((prevState) => ({ ...prevState, tiny: value }));
                   }}
                   className="acms-admin-margin-right-small"
@@ -129,7 +124,6 @@ export function ImageOption(props) {
                     name="tinySize"
                     onInput={(e) => {
                       const value = e.target.value;
-                      if (!value) return;
                       setField((prevState) => ({ ...prevState, tinySize: value }));
                     }}
                     className="customFieldSizeInput"
@@ -147,7 +141,6 @@ export function ImageOption(props) {
                   name="square"
                   onChange={(e) => {
                     const value = e.target.value;
-                    if (!value) return;
                     setField((prevState) => ({ ...prevState, square: value }));
                   }}
                   className="acms-admin-margin-right-small"
@@ -162,7 +155,6 @@ export function ImageOption(props) {
                     name="squareSize"
                     onInput={(e) => {
                       const value = e.target.value;
-                      if (!value) return;
                       setField((prevState) => ({ ...prevState, squareSize: value }));
                     }}
                     className="customFieldSizeInput"

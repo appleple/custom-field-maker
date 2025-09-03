@@ -70,7 +70,7 @@ export function FieldGroup() {
   } = useMakerContext();
 
   const showGroup = useCallback(() => {
-    if (!field.groupName) {
+    if (!field.groupTitle || !field.groupName) {
       setField((prevState) => ({ ...prevState, groupAlert: true }));
     } else {
       setField((prevState) => ({
@@ -184,7 +184,6 @@ export function FieldGroup() {
                       defaultValue={field.groupTitle}
                       onInput={(e) => {
                         const value = e.target.value;
-                        if (!value) return;
                         setField((prevState) => ({ ...prevState, groupTitle: value }));
                       }}
                       className="acms-admin-form-width-full"
@@ -209,7 +208,6 @@ export function FieldGroup() {
                       defaultValue={field.groupName}
                       onInput={(e) => {
                         const value = e.target.value;
-                        if (!value) return;
                         setField((prevState) => ({ ...prevState, groupName: value }));
                       }}
                       className="acms-admin-form-width-full"

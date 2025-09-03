@@ -73,7 +73,6 @@ export function MediaOption(props) {
               defaultValue={dropAreaWidth}
               onInput={(e) => {
                 const value = e.target.value;
-                if (!value) return;
                 setField((prevState) => ({ ...prevState, dropAreaWidth: value }));
               }}
             />
@@ -85,7 +84,6 @@ export function MediaOption(props) {
               defaultValue={dropAreaHeight}
               onInput={(e) => {
                 const value = e.target.value;
-                if (!value) return;
                 setField((prevState) => ({ ...prevState, dropAreaHeight: value }));
               }}
             />
@@ -139,7 +137,6 @@ export function MediaOption(props) {
                 defaultValue={focusImageWidth}
                 onInput={(e) => {
                   const value = e.target.value;
-                  if (!value) return;
                   setField((prevState) => ({ ...prevState, focusImageWidth: value }));
                 }}
               />
@@ -159,7 +156,6 @@ export function MediaOption(props) {
                 defaultValue={focusImageHeight}
                 onInput={(e) => {
                   const value = e.target.value;
-                  if (!value) return;
                   setField((prevState) => ({ ...prevState, focusImageHeight: value }));
                 }}
               />
