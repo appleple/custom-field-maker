@@ -26,6 +26,7 @@ const defaultProps = {
   path: 'path',
   converter: '',
   normal: 'size',
+  resize: true,
   useDropArea: true,
   dropAreaWidth: 200,
   dropAreaHeight: 200,
