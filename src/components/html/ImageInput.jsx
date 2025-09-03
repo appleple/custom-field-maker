@@ -67,12 +67,10 @@ export function ImageInput(props) {
           <input type="hidden" name="field[]" value={item.name} />
           <input type="hidden" name={`${item.name}:extension`} value="image" />
 
-          {item.normalSize && (
-            <input type="hidden" name={`${item.name}@${item.normal}`} value={`${item.normalSize}px`} />
-          )}
-          {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}`} value={`${item.tinySize}px`} />}
-          {item.large && <input type="hidden" name={`${item.name}@${item.large}`} value={`${item.largeSize}px`} />}
-          {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={`${item.squareSize}px`} />}
+          {item.normalSize && <input type="hidden" name={`${item.name}@${item.normal}`} value={item.normalSize} />}
+          {item.tiny && <input type="hidden" name={`${item.name}@${item.tiny}`} value={`${item.tinySize}`} />}
+          {item.large && <input type="hidden" name={`${item.name}@${item.large}`} value={`${item.largeSize}`} />}
+          {item.square && <input type="hidden" name={`${item.name}@${item.square}`} value={`${item.squareSize}`} />}
 
           <input type="hidden" name={`${item.name}@filename`} value="" />
           <OptionValidator item={item} />
@@ -125,15 +123,11 @@ export function ImageInput(props) {
               </>
             )}
             {item.normalSize && (
-              <input type="hidden" name={`${item.name}@${item.normal}[]`} value={`${item.normalSize}px`} />
+              <input type="hidden" name={`${item.name}@${item.normal}[]`} value={`${item.normalSize}`} />
             )}
-            {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={`${item.tinySize}px`} />}
-            {item.largeSize && (
-              <input type="hidden" name={`${item.name}@${item.large}[]`} value={`${item.largeSize}px`} />
-            )}
-            {item.square && (
-              <input type="hidden" name={`${item.name}@${item.square}[]`} value={`${item.squareSize}px`} />
-            )}
+            {item.tinySize && <input type="hidden" name={`${item.name}@${item.tiny}[]`} value={item.tinySize} />}
+            {item.largeSize && <input type="hidden" name={`${item.name}@${item.large}[]`} value={item.largeSize} />}
+            {item.square && <input type="hidden" name={`${item.name}@${item.square}[]`} value={item.squareSize} />}
             <OptionValidatorFieldGroup item={item} isTemplate={!isAttribute} />
           </div>
         </>
@@ -180,14 +174,10 @@ export function ImageInput(props) {
           )}
           <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
           <input type="hidden" name={`${item.name}{id}:extension`} value="image" />
-          {item.normalSize && (
-            <input type="hidden" name={`${item.name}{id}@${item.normal}`} value={`${item.normalSize}px`} />
-          )}
-          {item.tiny && <input type="hidden" name={`${item.name}{id}@${item.tiny}`} value={`${item.tinySize}px`} />}
-          {item.large && <input type="hidden" name={`${item.name}{id}@${item.large}`} value={`${item.largeSize}px`} />}
-          {item.square && (
-            <input type="hidden" name={`${item.name}{id}@${item.square}`} value={`${item.squareSize}px`} />
-          )}
+          {item.normalSize && <input type="hidden" name={`${item.name}{id}@${item.normal}`} value={item.normalSize} />}
+          {item.tiny && <input type="hidden" name={`${item.name}{id}@${item.tiny}`} value={item.tinySize} />}
+          {item.large && <input type="hidden" name={`${item.name}{id}@${item.large}`} value={item.largeSize} />}
+          {item.square && <input type="hidden" name={`${item.name}{id}@${item.square}`} value={item.squareSize} />}
           <input type="hidden" name={`${item.name}{id}@filename`} value="" />
         </span>
       )}
@@ -237,16 +227,16 @@ export function ImageInput(props) {
               </div>
             )}
             {item.normal && item.normalSize && (
-              <input type="hidden" name={`${item.name}{id}@${item.normal}[]`} value={`${item.normalSize}px`} />
+              <input type="hidden" name={`${item.name}{id}@${item.normal}[]`} value={item.normalSize} />
             )}
             {item.tiny && item.tinySize && (
-              <input type="hidden" name={`${item.name}{id}@${item.tiny}[]`} value={`${item.tinySize}px`} />
+              <input type="hidden" name={`${item.name}{id}@${item.tiny}[]`} value={item.tinySize} />
             )}
             {item.large && item.largeSize && (
-              <input type="hidden" name={`${item.name}{id}@${item.large}[]`} value={`${item.largeSize}px`} />
+              <input type="hidden" name={`${item.name}{id}@${item.large}[]`} value={item.largeSize} />
             )}
             {item.square && item.squareSize && (
-              <input type="hidden" name={`${item.name}{id}@${item.square}[]`} value={`${item.squareSize}px`} />
+              <input type="hidden" name={`${item.name}{id}@${item.square}[]`} value={item.squareSize} />
             )}
           </div>
         </>

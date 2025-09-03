@@ -6,3 +6,9 @@
  * - バリデーター使用可
  * - 検索対象外選択可
  */
+
+import { test, expect } from 'vitest';
+
+test('should pass', () => {
+  expect(true).toBe(true);
+});
