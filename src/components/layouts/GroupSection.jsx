@@ -42,7 +42,7 @@ export const GroupSection = forwardRef((_props, ref) => {
       </div>
       <div
         className={classnames({
-          'acms-admin-flex-fill': acmscss,
+          'acms-admin-flex-fit': acmscss,
           'acms-admin-padding-small': acmscss,
         })}
       >
@@ -71,7 +71,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       >
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <TextInput item={item} isValue={false} />
                       </div>
                     </>
@@ -87,7 +87,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       >
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <Textarea item={item} isValue={false} />
                       </div>
                     </>
@@ -99,7 +99,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </legend>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <Checkbox item={item} isChecked={false} />
                       </div>
                     </fieldset>
@@ -114,7 +114,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       >
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <Selectbox item={item} isSelected={false} />
                       </div>
                     </>
@@ -126,7 +126,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       <legend className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </legend>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <RadioButton item={item} isChecked={false} />
                       </div>
                     </fieldset>
@@ -138,7 +138,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <Media item={item} isValue={false} />
                       </div>
                     </>
@@ -153,7 +153,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       >
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <ImageInput item={item} isAttribute={false} />
                       </div>
                     </>
@@ -168,7 +168,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       >
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <FileInput item={item} isValue={false} />
                       </div>
                     </>
@@ -180,7 +180,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <BlockEditor item={item} isValue={false} />
                       </div>
                     </>
@@ -192,7 +192,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                       <label className={classnames({ 'acms-admin-grid-edit-table-heading': acmscss })}>
                         <Heading item={item} />
                       </label>
-                      <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                      <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                         <Table item={item} isValue={false} />
                       </div>
                     </>
@@ -256,7 +256,7 @@ export const GroupSection = forwardRef((_props, ref) => {
 
                         <div
                           className={classnames({
-                            'acms-admin-flex-fill': acmscss,
+                            'acms-admin-flex-fit': acmscss,
                             'acms-admin-padding-small': acmscss,
                           })}
                         >
@@ -285,7 +285,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <TextInput item={item} />
                                         </div>
                                       </>
@@ -301,7 +301,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <Textarea item={item} />
                                         </div>
                                       </>
@@ -315,7 +315,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </legend>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <Checkbox item={item} />
                                         </div>
                                       </fieldset>
@@ -330,7 +330,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <Selectbox item={item} />
                                         </div>
                                       </>
@@ -344,7 +344,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </legend>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <RadioButton item={item} />
                                         </div>
                                       </fieldset>
@@ -358,7 +358,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <Media item={item} />
                                         </div>
                                       </>
@@ -373,7 +373,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <ImageInput item={item} />
                                         </div>
                                       </>
@@ -388,7 +388,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <FileInput item={item} />
                                         </div>
                                       </>
@@ -402,7 +402,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <BlockEditor item={item} />
                                         </div>
                                       </>
@@ -416,7 +416,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                         >
                                           <Heading item={item} />
                                         </label>
-                                        <div className={classnames({ 'acms-admin-flex-fill': acmscss })}>
+                                        <div className={classnames({ 'acms-admin-flex-fit': acmscss })}>
                                           <Table item={item} />
                                         </div>
                                       </>
