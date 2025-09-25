@@ -261,10 +261,7 @@ export function MakerContextProvider({
   );
 
   {
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
-  }
-  {
-    /* @ts-ignore */
+    /* @ts-expect-error - 型の不一致を一時的に許可 */
   }
   return <MakerContext.Provider value={value}>{children}</MakerContext.Provider>;
 }
