@@ -12,6 +12,7 @@ const defaultPreview = {
   acmscss: true,
   jsValidator: true,
   direction: 'horizontal',
+  escapeSequence: false,
 };
 const defaultClipboard = {
   source: '',
@@ -177,6 +178,11 @@ export function MakerContextProvider({
     (jsValidator) => setPreview((prevState) => ({ ...prevState, jsValidator })),
     [setPreview]
   );
+  const setEscapeSequence = useCallback(
+    (escapeSequence) => setPreview((prevState) => ({ ...prevState, escapeSequence })),
+    [setPreview]
+  );
+
   const setMode = useCallback((mode) => setPreview((prevState) => ({ ...prevState, mode })), [setPreview]);
   const setEditMode = useCallback((editMode) => setPreview((prevState) => ({ ...prevState, editMode })), [setPreview]);
   const setDirection = useCallback(
@@ -207,6 +213,7 @@ export function MakerContextProvider({
       setTag,
       setAcmscss,
       setJsValidator,
+      setEscapeSequence,
       setMode,
       setEditMode,
       setDirection,
@@ -234,6 +241,7 @@ export function MakerContextProvider({
       setTag,
       setAcmscss,
       setJsValidator,
+      setEscapeSequence,
       setMode,
       setEditMode,
       setDirection,

@@ -16,9 +16,10 @@ export function PreviewNavigator() {
     setTag,
     setAcmscss,
     setJsValidator,
+    setEscapeSequence,
     setDirection,
     setCopied,
-    preview: { jsValidator, acmscss, mode, editMode, tag, direction },
+    preview: { jsValidator, acmscss, escapeSequence, mode, editMode, tag, direction },
     clipboard: { source },
     undo,
   } = useMakerContext();
@@ -35,8 +36,12 @@ export function PreviewNavigator() {
     setJsValidator(!jsValidator);
   };
 
+  const onEscapeSequence = () => {
+    setEscapeSequence(!escapeSequence);
+  };
+
   const onUndoHandler = () => {
-    undo(mode), [mode, undo];
+    (undo(mode), [mode, undo]);
   };
 
   return (
@@ -75,6 +80,14 @@ export function PreviewNavigator() {
               </label>
             </div>
           )}
+
+          <div className="acms-admin-form-checkbox" style={{ margin: 0 }}>
+            <input type="checkbox" onChange={onEscapeSequence} checked={escapeSequence} id="escapesequence-checkbox" />
+            <label htmlFor="escapesequence-checkbox">
+              <i className="acms-admin-ico-checkbox" />
+              エスケープシーケンス
+            </label>
+          </div>
         </div>
 
         {tag === 'table' && (mode === 'fieldgroup' || mode === 'unitgroup') && (
