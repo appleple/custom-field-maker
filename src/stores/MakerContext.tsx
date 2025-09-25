@@ -260,7 +260,6 @@ export function MakerContextProvider({
     ]
   );
 
-  // @ts-expect-error - 型の不一致を一時的に許可
   return <MakerContext.Provider value={value}>{children}</MakerContext.Provider>;
 }
 
