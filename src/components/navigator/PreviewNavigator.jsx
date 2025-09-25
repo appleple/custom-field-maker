@@ -85,7 +85,7 @@ export function PreviewNavigator() {
             <input type="checkbox" onChange={onEscapeSequence} checked={escapeSequence} id="escapesequence-checkbox" />
             <label htmlFor="escapesequence-checkbox">
               <i className="acms-admin-ico-checkbox" />
-              マルチバイト文字をエスケープしてIDを生成する
+              マルチバイト文字をエスケープしてID属性を生成する
             </label>
           </div>
         </div>
