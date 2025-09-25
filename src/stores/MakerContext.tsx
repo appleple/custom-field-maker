@@ -1,11 +1,13 @@
 import React, { useState, useContext, createContext, useReducer, useCallback, useMemo } from 'react';
-import { makerReducer } from '../reducers/makerReducer';
+import { makerReducer, MakerState } from '../reducers/makerReducer';
+import { PreviewType } from '../types/preview';
+import { ClipboardType } from '../types/clipboard';
 
 const defaultCustomfield = [];
 const defaultFieldgroup = { items: [], title: null, name: null };
 const defaultCustomunit = [];
 const defaultUnitgroup = { items: [], title: null, name: null };
-const defaultPreview = {
+const defaultPreview: PreviewType = {
   mode: 'customfield',
   editMode: 'source',
   tag: 'section',
@@ -14,12 +16,12 @@ const defaultPreview = {
   direction: 'horizontal',
   escapeSequence: false,
 };
-const defaultClipboard = {
+const defaultClipboard: ClipboardType = {
   source: '',
   copied: false,
 };
 
-const initialState = {
+const initialState: MakerState = {
   customfield: defaultCustomfield,
   fieldgroup: defaultFieldgroup,
   customunit: defaultCustomunit,
@@ -42,7 +44,7 @@ export const MakerContext = createContext({
   state: initialState,
   preview: defaultPreview,
   clipboard: defaultClipboard,
-  addCustomfield: (_newCustomfield) => {}, // eslint-disable-line no-unused-vars
+  addCustomfield: () => {},
   addCustomunit: () => {},
   setGroupTitleName: () => {},
   addGroupItem: () => {},
@@ -61,6 +63,10 @@ export const MakerContext = createContext({
   setAcmscss: () => {},
   setJsValidator: () => {},
   setDirection: () => {},
+  setEscapeSequence: () => {},
+  setCopied: () => {},
+  undo: () => {},
+  redo: () => {},
 });
 
 export function MakerContextProvider({
@@ -74,16 +80,17 @@ export function MakerContextProvider({
   const [clipboard, setClipboard] = useState(clipboardProp);
 
   const addCustomfield = useCallback(
-    (newCustomfield) =>
+    (newCustomfield: unknown) =>
       dispatch({
         type: 'UPDATE_STATE',
-        payload: { customfield: (prevCustomfield) => [...prevCustomfield, newCustomfield] },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        payload: { customfield: (prevCustomfield: any) => [...prevCustomfield, newCustomfield] },
       }),
     [dispatch]
   );
 
   const addCustomunit = useCallback(
-    (newCustomunit) =>
+    (newCustomunit: unknown) =>
       dispatch({
         type: 'UPDATE_STATE',
         payload: { customunit: [...state.customunit, newCustomunit] },
@@ -92,15 +99,16 @@ export function MakerContextProvider({
   );
 
   const setGroupTitleName = useCallback(
-    (title, name) =>
+    (title: string, name: string) =>
       dispatch({
         type: 'UPDATE_STATE',
-        payload: { fieldgroup: (prevFieldgroup) => ({ ...prevFieldgroup, title, name }) },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        payload: { fieldgroup: (prevFieldgroup: any) => ({ ...prevFieldgroup, title, name }) },
       }),
     [dispatch]
   );
   const addGroupItem = useCallback(
-    (newGroupItem) =>
+    (newGroupItem: unknown) =>
       dispatch({
         type: 'UPDATE_STATE',
         payload: {
@@ -111,7 +119,7 @@ export function MakerContextProvider({
   );
 
   const setUnitGroupTitleName = useCallback(
-    (title, name) =>
+    (title: string, name: string) =>
       dispatch({
         type: 'UPDATE_STATE',
         payload: { unitgroup: { ...state.unitgroup, title, name } },
@@ -119,7 +127,7 @@ export function MakerContextProvider({
     [dispatch, state.unitgroup]
   );
   const addUnitGroupItem = useCallback(
-    (newGroupItem) =>
+    (newGroupItem: unknown) =>
       dispatch({
         type: 'UPDATE_STATE',
         payload: { unitgroup: { ...state.unitgroup, items: [...state.unitgroup.items, newGroupItem] } },
@@ -252,6 +260,12 @@ export function MakerContextProvider({
     ]
   );
 
+  {
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+  }
+  {
+    /* @ts-ignore */
+  }
   return <MakerContext.Provider value={value}>{children}</MakerContext.Provider>;
 }
 
