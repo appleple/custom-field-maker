@@ -1,4 +1,37 @@
-const initialState = {
+export interface MakerState {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  customfield: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fieldgroup: { items: any[]; title: string | null; name: string | null };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  customunit: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  unitgroup: { items: any[]; title: string | null; name: string | null };
+  history: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    customfield: any[][];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fieldgroup: any[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    customunit: any[][];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    unitgroup: any[];
+  };
+  currentIndex: {
+    customfield: number;
+    fieldgroup: number;
+    customunit: number;
+    unitgroup: number;
+  };
+}
+
+export interface MakerAction {
+  type: 'UPDATE_STATE' | 'UNDO' | 'REDO';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  payload?: any;
+}
+
+const initialState: MakerState = {
   customfield: [],
   fieldgroup: { items: [], title: null, name: null },
   customunit: [],
@@ -17,22 +50,22 @@ const initialState = {
   },
 };
 
-function makerReducer(state = initialState, action) {
+function makerReducer(state: MakerState = initialState, action: MakerAction): MakerState {
   switch (action.type) {
     case 'UPDATE_STATE': {
       const newState = { ...state };
       Object.keys(action.payload).forEach((key) => {
         if (typeof action.payload[key] === 'function') {
-          newState[key] = action.payload[key](state[key]);
+          newState[key as keyof MakerState] = action.payload[key](state[key as keyof MakerState]);
         } else {
-          newState[key] = action.payload[key];
+          newState[key as keyof MakerState] = action.payload[key];
         }
       });
 
-      const updatedHistory = {};
-      const updatedCurrentIndex = {};
+      const updatedHistory: Partial<MakerState['history']> = {};
+      const updatedCurrentIndex: Partial<MakerState['currentIndex']> = {};
 
-      ['customfield', 'fieldgroup', 'customunit', 'unitgroup'].forEach((key) => {
+      (['customfield', 'fieldgroup', 'customunit', 'unitgroup'] as const).forEach((key) => {
         if (JSON.stringify(state[key]) !== JSON.stringify(newState[key])) {
           updatedHistory[key] = [...state.history[key].slice(0, state.currentIndex[key] + 1), newState[key]];
           updatedCurrentIndex[key] = state.currentIndex[key] + 1;

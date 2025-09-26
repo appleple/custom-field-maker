@@ -9,7 +9,7 @@ import { generateSafeId } from '../../utils';
 export function Checkbox(props) {
   const { item, isChecked = true } = props;
   const {
-    preview: { mode, acmscss },
+    preview: { mode, acmscss, escapeSequence },
   } = useMakerContext();
 
   return (
@@ -20,7 +20,7 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
-            const id = `${item.name}-${generateSafeId(option.value)}`;
+            const id = `${item.name}-${escapeSequence ? generateSafeId(option.value) : option.value}`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
@@ -49,7 +49,7 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
-            const id = `${item.name}-${generateSafeId(option.value)}[]`;
+            const id = `${item.name}-${escapeSequence ? generateSafeId(option.value) : option.value}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
@@ -78,7 +78,7 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
-            const id = `${item.name}-${generateSafeId(option.value)}-{id}`;
+            const id = `${item.name}-${escapeSequence ? generateSafeId(option.value) : option.value}-{id}`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input
@@ -106,7 +106,7 @@ export function Checkbox(props) {
             if (!option.label) {
               return null;
             }
-            const id = `${item.name}-${generateSafeId(option.value)}-{id}[]`;
+            const id = `${item.name}-${escapeSequence ? generateSafeId(option.value) : option.value}-{id}[]`;
             return (
               <div key={index} className={classnames({ 'acms-admin-form-checkbox': acmscss })}>
                 <input

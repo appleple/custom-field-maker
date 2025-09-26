@@ -29,6 +29,7 @@ describe('TextInput: customfield mode', () => {
     acmscss: true,
     jsValidator: true,
     direction: 'horizontal',
+    escapeSequence: false,
   };
 
   it('should render main input element with correct attributes', () => {
