@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function NoSearchBox(props) {
   const { noSearch, setField } = props;
 

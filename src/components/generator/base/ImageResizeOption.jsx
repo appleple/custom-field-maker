@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function ImageResizeOption(props) {
   const {
     field: { resize, alt },

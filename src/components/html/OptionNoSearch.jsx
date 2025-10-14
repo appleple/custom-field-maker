@@ -1,4 +1,3 @@
-import React from 'react';
 export function OptionNoSearch(props) {
   const { noSearch, name } = props;
 

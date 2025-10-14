@@ -5,7 +5,6 @@ import { Notify } from '../Notify';
 import { useMakerContext } from '../../stores/MakerContext';
 import columnIcon from '../../assets/images/add_column.svg';
 import rowIcon from '../../assets/images/add_row.svg';
-import React from 'react';
 
 export function PreviewNavigator() {
   const {

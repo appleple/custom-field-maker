@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMakerContext } from '../../stores/MakerContext';
 
 export function Table(props) {

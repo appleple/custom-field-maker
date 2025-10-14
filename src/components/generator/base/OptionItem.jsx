@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function OptionItem(props) {
   const {
     field: { option },

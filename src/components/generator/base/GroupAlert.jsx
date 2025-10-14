@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function GroupAlert(props) {
   const {
     field: { groupAlert },

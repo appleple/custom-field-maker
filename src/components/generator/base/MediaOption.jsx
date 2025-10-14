@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function MediaOption(props) {
   const {
     field: { mediaType, useDropArea, useFocusImage, dropAreaWidth, dropAreaHeight, focusImageWidth, focusImageHeight },

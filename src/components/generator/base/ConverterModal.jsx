@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from 'react';
+import { useRef, useCallback, useEffect } from 'react';
 import { ModalDialog } from '../../ModalDialog';
 
 export function ConverterModal(props) {

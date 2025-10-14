@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';
 import { Textarea } from '../html/Textarea';

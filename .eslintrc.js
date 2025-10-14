@@ -11,6 +11,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime', // React 17+ の新しいJSX変換用（react-in-jsx-scopeルールを自動で無効化）
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'prettier',
