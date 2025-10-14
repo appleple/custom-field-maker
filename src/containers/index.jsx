@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { MakerContextProvider, useMakerContext } from '../stores/MakerContext';
 import { EditorModeNavigator } from '../components/navigator/EditorModeNavigator';
 import { PreviewModeNavigator } from '../components/navigator/PreviewModeNavigator';

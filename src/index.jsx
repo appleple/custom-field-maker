@@ -1,4 +1,3 @@
-import React from 'react';
 import CustomFieldMaker from './containers';
 import { MakerContextProvider } from './stores/MakerContext';
 import { STORAGENAME } from './constants';

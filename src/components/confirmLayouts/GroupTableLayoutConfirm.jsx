@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames';
 import { useMakerContext } from '../../stores/MakerContext';
 import { WrapTable } from '../html/WrapTable';

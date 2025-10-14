@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Tooltip from '../../Tooltip';
 import prefJson from '../../../json/pref.json';
 

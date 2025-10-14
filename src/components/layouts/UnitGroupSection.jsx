@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef, Fragment } from 'react';
 import { useMakerContext } from '../../stores/MakerContext';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
@@ -475,7 +475,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
           {unitgroup.name && (
             <>
               {unitgroup.items.map((item, index) => (
-                <React.Fragment key={index}>
+                <Fragment key={index}>
                   {item.type === 'image' && (
                     <>
                       {item.square && item.squareSize && (
@@ -535,7 +535,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                   <input type="hidden" name="unit{id}[]" value={`${item.name}{id}`} />
                   <OptionValidator item={item} />
                   <OptionNoSearch name={`${item.name}{id}`} noSearch={item.noSearch} />
-                </React.Fragment>
+                </Fragment>
               ))}
               <input type="hidden" name="unit{id}[]" value={`@${unitgroup.name}{id}`} />
             </>

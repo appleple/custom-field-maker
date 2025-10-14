@@ -1,4 +1,3 @@
-import React from 'react';
 import { forwardRef } from 'react';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import classnames from 'classnames';

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { UnitSection } from './layouts/UnitSection';
 import { UnitTableLayout } from './layouts/UnitTableLayout';
 import { useMakerContext } from '../stores/MakerContext';
