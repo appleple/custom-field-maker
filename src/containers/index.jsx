@@ -30,8 +30,8 @@ function CustomFieldMaker() {
   };
 
   useEffect(() => {
-    localStorage.setItem(STORAGENAME, JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem(STORAGENAME, JSON.stringify({ state, preview }));
+  }, [state, preview]);
 
   return (
     <div className="customFieldContainer acms-admin-form">
