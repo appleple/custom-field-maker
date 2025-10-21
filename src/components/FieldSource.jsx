@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Section } from './layouts/Section';
 import { TableLayout } from './layouts/TableLayout';
 import { useMakerContext } from '../stores/MakerContext';

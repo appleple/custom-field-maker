@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { MakerContextProvider, useMakerContext } from '../stores/MakerContext';
 import { EditorModeNavigator } from '../components/navigator/EditorModeNavigator';
 import { PreviewModeNavigator } from '../components/navigator/PreviewModeNavigator';
@@ -30,8 +30,8 @@ function CustomFieldMaker() {
   };
 
   useEffect(() => {
-    localStorage.setItem(STORAGENAME, JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem(STORAGENAME, JSON.stringify({ state, preview }));
+  }, [state, preview]);
 
   return (
     <div className="customFieldContainer acms-admin-form">

@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback } from 'react';
+import { useRef, useMemo, useCallback } from 'react';
 import Tooltip from '../../Tooltip';
 import { NoSearchBox } from './NoSearchBox';
 import { useMakerContext } from '../../../stores/MakerContext';

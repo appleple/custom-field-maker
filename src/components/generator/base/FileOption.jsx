@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function FileOption(props) {
   const {
     field: { extension, fileName, fileNameMethod },

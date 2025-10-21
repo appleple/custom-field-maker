@@ -1,4 +1,4 @@
-import React, { forwardRef, Fragment } from 'react';
+import { forwardRef, Fragment } from 'react';
 import classnames from 'classnames';
 import { Heading } from '../html/Heading';
 import { TextInput } from '../html/TextInput';

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { decode } from 'html-entities';
 import { html as beautifyHtml } from 'js-beautify';

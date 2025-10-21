@@ -1,4 +1,4 @@
-import React, { useState, useContext, createContext, useReducer, useCallback, useMemo } from 'react';
+import { useState, useContext, createContext, useReducer, useCallback, useMemo } from 'react';
 import { makerReducer, MakerState } from '../reducers/makerReducer';
 import { PreviewType } from '../types/preview';
 import { ClipboardType } from '../types/clipboard';

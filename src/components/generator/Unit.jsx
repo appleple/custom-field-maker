@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useMakerContext } from '../../stores/MakerContext';
 import { ConverterModal } from './base/ConverterModal';
 import { Alert } from './base/Alert';
