@@ -10,6 +10,7 @@
     "json",
     "screenshot.png"
   ],
+  "type": "module",
   "target": "es5",
   "module": "commonjs",
   "overrides": {

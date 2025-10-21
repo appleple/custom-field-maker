@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   printWidth: 120, // 1行の最大文字数
   trailingComma: 'es5', // 配列やオブジェクトの最後の要素の後にカンマ
   tabWidth: 2, // インデント文字数

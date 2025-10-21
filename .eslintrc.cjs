@@ -49,6 +49,8 @@ module.exports = {
         ],
         // 定義前の変数の使用に警告
         '@typescript-eslint/no-use-before-define': 'warn',
+        // any型の使用を許可
+        '@typescript-eslint/no-explicit-any': 'off',
       },
     },
   ],

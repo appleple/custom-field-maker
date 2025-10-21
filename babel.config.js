@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   presets: [
     '@babel/preset-env',
     ['@babel/preset-react', { runtime: 'automatic' }], // React 17+の新しいJSX変換を有効化

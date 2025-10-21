@@ -1,9 +1,13 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const prodConfig = require('./webpack.prod.js');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { merge } from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import prodConfig from './webpack.prod.js';
 
-module.exports = merge(prodConfig, {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default merge(prodConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
