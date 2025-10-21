@@ -38,8 +38,15 @@ module.exports = {
       extends: ['plugin:@typescript-eslint/recommended'],
       plugins: ['@typescript-eslint'],
       rules: {
-        // 未使用変数を禁止
-        '@typescript-eslint/no-unused-vars': 'error',
+        // 未使用変数を禁止（ただし_プレフィックスは許可）
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          {
+            argsIgnorePattern: '^_',
+            varsIgnorePattern: '^_',
+            caughtErrorsIgnorePattern: '^_',
+          },
+        ],
         // 定義前の変数の使用に警告
         '@typescript-eslint/no-use-before-define': 'warn',
       },
