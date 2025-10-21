@@ -17,9 +17,10 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - name: Clean install dependencies
-      run: npm ci
+      run: |
+        rm -rf node_modules package-lock.json
+        npm install
     - name: npm build and test
       run: |
         npm run build --if-present
