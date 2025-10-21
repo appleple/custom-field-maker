@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "npm-run-all -p build:*",
-    "build:babel": "babel src --out-dir lib",
+    "build:babel": "babel src --out-dir lib --extensions .js,.jsx,.ts,.tsx",
     "build:json": "cp -r ./src/json ./lib/",
     "build:svgo": "svgo ./src/assets/images -o ./lib/assets/images",
     "build:prod": "NODE_ENV=production webpack --config webpack.prod.js",
