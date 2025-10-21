@@ -12,6 +12,9 @@
   ],
   "target": "es5",
   "module": "commonjs",
+  "overrides": {
+    "tmp": "^0.2.5"
+  },
   "scripts": {
     "build": "npm-run-all -p build:*",
     "build:babel": "babel src --out-dir lib",
