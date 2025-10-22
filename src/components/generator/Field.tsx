@@ -11,7 +11,7 @@ import { MediaOption } from './base/MediaOption';
 import { ImageOption } from './base/ImageOption';
 import { ImageResizeOption } from './base/ImageResizeOption';
 import { FileOption } from './base/FileOption';
-import type { FieldType } from '../../types/field.d';
+import type { FieldType } from '../../types/field';
 
 export const defaultProps: FieldType = {
   // text, textarea
