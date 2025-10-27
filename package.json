@@ -10,9 +10,6 @@
     "json",
     "screenshot.png"
   ],
-  "type": "module",
-  "target": "es5",
-  "module": "commonjs",
   "overrides": {
     "tmp": "^0.2.5"
   },
@@ -21,8 +18,8 @@
     "build:babel": "babel src --out-dir lib --extensions .js,.jsx,.ts,.tsx",
     "build:json": "cp -r ./src/json ./lib/",
     "build:svgo": "svgo ./src/assets/images -o ./lib/assets/images",
-    "build:prod": "NODE_ENV=production webpack --config webpack.prod.js",
-    "dev": "webpack serve --config webpack.dev.js",
+    "build:prod": "NODE_ENV=production webpack --config webpack.prod.mjs",
+    "dev": "webpack serve --config webpack.dev.mjs",
     "start": "npm-run-all -p dev",
     "prettier": "prettier ./src/**/*.js --write",
     "type-check": "tsc --noEmit",
