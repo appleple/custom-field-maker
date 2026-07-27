@@ -1,6 +1,6 @@
 {
   "name": "custom-field-maker",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "description": "custom field maker for a-blog cms",
   "main": "lib/index.js",
   "files": [
@@ -41,8 +41,8 @@
     "react-tooltip": "^5.28.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.0 <19.0.0",
-    "react-dom": ">=16.8.0 <19.0.0"
+    "react": ">=16.8.0 <20.0.0",
+    "react-dom": ">=16.8.0 <20.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.9",
