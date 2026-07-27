@@ -55,7 +55,7 @@
     "@testing-library/react": "^16.3.0",
     "@typescript-eslint/eslint-plugin": "^8.13.0",
     "babel-loader": "^9.2.1",
-    "copy-webpack-plugin": "^12.0.2",
+    "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -74,10 +74,10 @@
     "style-loader": "^4.0.0",
     "svgo": "^3.3.2",
     "typescript": "^5.0.0",
-    "vitest": "^3.2.4",
+    "vitest": "^4.1.9",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0",
+    "webpack-dev-server": "^6.0.0",
     "webpack-merge": "^6.0.1"
   },
   "optionalDependencies": {

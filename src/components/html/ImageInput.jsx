@@ -84,7 +84,7 @@ export function ImageInput(props) {
                 {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <img
                   src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-                  className={classnames({ 'js-img_resize_preview': item.resize })}
+                  className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
                   style={style}
                   alt={`{${item.name}@alt}`}
                 />
@@ -99,14 +99,21 @@ export function ImageInput(props) {
                 <img
                   alt=""
                   src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-                  className={classnames({ 'js-img_resize_preview': item.resize })}
+                  className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
                   style={hiddenStyle}
                 />
 
                 {editMode === 'preview' ? null : '<!-- END_IF -->'}
               </>
             )}
-            {!isAttribute && <img src="" alt="" style={hiddenStyle} className="js-img_resize_preview" />}
+            {!isAttribute && (
+              <img
+                src=""
+                alt=""
+                style={hiddenStyle}
+                className={classnames('js-img_resize_preview', { 'acms-admin-img-responsive': acmscss })}
+              />
+            )}
 
             <input
               type="file"
@@ -190,7 +197,10 @@ export function ImageInput(props) {
                 <div>
                   <img
                     src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-                    className={classnames({ 'js-img_resize_preview': item.resize })}
+                    className={classnames({
+                      'acms-admin-img-responsive': acmscss,
+                      'js-img_resize_preview': item.resize,
+                    })}
                     style={style}
                     alt={`{${item.name}@alt}`}
                   />
@@ -208,7 +218,7 @@ export function ImageInput(props) {
             <img
               alt=""
               src={`%{ARCHIVES_DIR}{${item.name}@path}`}
-              className={classnames({ 'js-img_resize_preview': item.resize })}
+              className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
               style={hiddenStyle}
             />
             {isAttribute && (editMode === 'preview' ? null : '<!-- END_IF -->')}
