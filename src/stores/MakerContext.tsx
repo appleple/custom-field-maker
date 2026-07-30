@@ -83,7 +83,6 @@ export function MakerContextProvider({
     (newCustomfield: unknown) =>
       dispatch({
         type: 'UPDATE_STATE',
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         payload: { customfield: (prevCustomfield: any) => [...prevCustomfield, newCustomfield] },
       }),
     [dispatch]
@@ -102,7 +101,6 @@ export function MakerContextProvider({
     (title: string, name: string) =>
       dispatch({
         type: 'UPDATE_STATE',
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         payload: { fieldgroup: (prevFieldgroup: any) => ({ ...prevFieldgroup, title, name }) },
       }),
     [dispatch]

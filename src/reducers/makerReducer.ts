@@ -1,20 +1,12 @@
 export interface MakerState {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   customfield: any[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fieldgroup: { items: any[]; title: string | null; name: string | null };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   customunit: any[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   unitgroup: { items: any[]; title: string | null; name: string | null };
   history: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     customfield: any[][];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fieldgroup: any[];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     customunit: any[][];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     unitgroup: any[];
   };
   currentIndex: {
@@ -27,7 +19,6 @@ export interface MakerState {
 
 export interface MakerAction {
   type: 'UPDATE_STATE' | 'UNDO' | 'REDO';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload?: any;
 }
 
