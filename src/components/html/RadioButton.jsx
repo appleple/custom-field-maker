@@ -15,6 +15,8 @@ export function RadioButton(props) {
     <>
       {mode === 'customfield' && (
         <>
+          {/* 未選択のラジオはPOSTされず必須チェックが効かないため、常に値が送信されるようガードする */}
+          <input type="hidden" name={item.name} value="" />
           {item.option.map((option, index) => {
             if (!option.label) {
               return null;
@@ -44,6 +46,8 @@ export function RadioButton(props) {
 
       {mode === 'fieldgroup' && (
         <>
+          {/* 未選択のラジオはPOSTされず必須チェックが効かないため、常に値が送信されるようガードする */}
+          <input type="hidden" name={`${item.name}[]`} value="" />
           {item.option.map((option, index) => {
             if (!option.label) {
               return null;
@@ -73,6 +77,8 @@ export function RadioButton(props) {
 
       {mode === 'customunit' && (
         <>
+          {/* 未選択のラジオはPOSTされず必須チェックが効かないため、常に値が送信されるようガードする */}
+          <input type="hidden" name={`${item.name}{id}`} value="" />
           {item.option.map((option, index) => {
             if (!option.label) {
               return null;
@@ -101,6 +107,8 @@ export function RadioButton(props) {
 
       {mode === 'unitgroup' && (
         <>
+          {/* 未選択のラジオはPOSTされず必須チェックが効かないため、常に値が送信されるようガードする */}
+          <input type="hidden" name={`${item.name}{id}[]`} value="" />
           {item.option.map((option, index) => {
             if (!option.label) {
               return null;
