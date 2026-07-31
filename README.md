@@ -1,6 +1,6 @@
 # カスタムフィールドメーカー（for a-blog cms）
 
-<img src="./screenshot.png" />
+![screenshot](./screenshot.png)
 
 
 ## 概要
