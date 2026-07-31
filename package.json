@@ -32,7 +32,7 @@
     "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",
-    "preversion": "npm run build && npm test",
+    "preversion": "npm run build && npm run test:run",
     "postversion": "git push && git push --tags",
     "release:major": "npm version major",
     "release:minor": "npm version minor",
