@@ -3,6 +3,10 @@
   "version": "1.7.0",
   "description": "custom field maker for a-blog cms",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appleple/custom-field-maker.git"
+  },
   "files": [
     "dist",
     "lib",
