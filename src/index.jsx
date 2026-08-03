@@ -3,14 +3,14 @@ import { MakerContextProvider } from './stores/MakerContext';
 import { STORAGENAME } from './constants';
 import './assets/custom-field-maker.css';
 
-function App() {
+function App({ onPreviewRendered }) {
   const savedData = JSON.parse(localStorage.getItem(STORAGENAME)) || {};
   const state = savedData.state || undefined;
   const preview = savedData.preview || undefined;
 
   return (
     <MakerContextProvider state={state} preview={preview}>
-      <CustomFieldMaker />
+      <CustomFieldMaker onPreviewRendered={onPreviewRendered} />
     </MakerContextProvider>
   );
 }

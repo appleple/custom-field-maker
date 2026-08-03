@@ -3,7 +3,7 @@ import { UnitSection } from './layouts/UnitSection';
 import { UnitTableLayout } from './layouts/UnitTableLayout';
 import { useMakerContext } from '../stores/MakerContext';
 
-export function UnitSource() {
+export function UnitSource({ onRendered = () => {} }) {
   const {
     preview: { tag },
   } = useMakerContext();
@@ -11,12 +11,10 @@ export function UnitSource() {
   const currentRef = useRef(null);
 
   useEffect(() => {
-    if (window.ACMS?.dispatchEvent && currentRef.current) {
-      window.ACMS.dispatchEvent('acmsCustomFieldMakerPreview', currentRef.current, {
-        item: currentRef.current,
-      });
+    if (currentRef.current) {
+      onRendered({ element: currentRef.current });
     }
-  }, [tag]);
+  }, [tag, onRendered]);
 
   return (
     <>

@@ -19,7 +19,7 @@ import { Highlighter } from '../components/Highlighter';
 import { decode } from 'html-entities';
 import { STORAGENAME } from '../constants';
 
-function CustomFieldMaker() {
+function CustomFieldMaker({ onPreviewRendered }) {
   const { setSource, state, preview, clipboard } = useMakerContext();
 
   const onSource = (encodedHtml) => {
@@ -102,10 +102,10 @@ function CustomFieldMaker() {
                   }}
                 >
                   {{
-                    customfield: <FieldSource />,
-                    fieldgroup: <FieldGroupSource />,
-                    customunit: <UnitSource />,
-                    unitgroup: <UnitGroupSource />,
+                    customfield: <FieldSource onRendered={onPreviewRendered} />,
+                    fieldgroup: <FieldGroupSource onRendered={onPreviewRendered} />,
+                    customunit: <UnitSource onRendered={onPreviewRendered} />,
+                    unitgroup: <UnitGroupSource onRendered={onPreviewRendered} />,
                   }[preview.mode] || null}
                 </div>
               </div>
