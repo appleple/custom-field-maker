@@ -12,12 +12,11 @@ import { MakerContextProvider } from '../../stores/MakerContext';
  * - 検索対象外選択不可
  *
  * @example
- * <div class="js-block-editor" data-target=".js-target" data-html=".js-html">
- *  <div class="js-target acms-admin-form-width-full"></div>
- *  <input type="hidden" class="js-html" name="hoge" value="{hoge}">
- *  <input type="hidden" name="hoge:extension" value="block-editor" />
- *  <input type="hidden" name="field[]" value="hoge">
- * </div>
+ * <acms-block-editor>
+ *  <input type="hidden" name="hoge" value="{hoge}">
+ * </acms-block-editor>
+ * <input type="hidden" name="hoge:extension" value="block-editor" />
+ * <input type="hidden" name="field[]" value="hoge">
  */
 describe('BlockEditor: customfield mode', () => {
   const mockItem = {
@@ -42,27 +41,32 @@ describe('BlockEditor: customfield mode', () => {
       </MakerContextProvider>
     );
 
-    const blockEditorContainer = container.querySelector('div.js-block-editor') as HTMLDivElement;
+    const blockEditorContainer = container.querySelector('acms-block-editor') as HTMLElement;
     expect(blockEditorContainer).toBeTruthy();
-    expect(blockEditorContainer.getAttribute('data-target')).toBe('.js-target');
-    expect(blockEditorContainer.getAttribute('data-html')).toBe('.js-html');
+    expect(blockEditorContainer.getAttribute('data-target')).toBeNull();
+    expect(blockEditorContainer.getAttribute('data-html')).toBeNull();
+    expect(blockEditorContainer.className).toContain('acms-admin-form-width-full');
 
-    const blockEditorDraw = blockEditorContainer.querySelector('div.js-target');
-    expect(blockEditorDraw).toBeTruthy();
+    // 子孫で最初に見つかる hidden input が HTML 同期対象になる（値を持たない input は要素外に出す）
+    const hiddenInputs = blockEditorContainer.querySelectorAll('input[type="hidden"]');
+    expect(hiddenInputs).toHaveLength(1);
 
-    const valueElement = blockEditorContainer.querySelector('input[type="hidden"].js-html') as HTMLInputElement;
+    const valueElement = hiddenInputs[0] as HTMLInputElement;
     expect(valueElement).toBeTruthy();
     expect(valueElement.name).toBe('custom_field_blockeditor');
     expect(valueElement.defaultValue).toBe('{custom_field_blockeditor}');
+    expect(valueElement.getAttribute('data-validator')).toBe('custom_field_blockeditor');
 
-    const extensionElement = blockEditorContainer.querySelector(
+    const extensionElement = container.querySelector(
       'input[type="hidden"][name$=":extension"][value="block-editor"]'
     ) as HTMLInputElement;
     expect(extensionElement).toBeTruthy();
     expect(extensionElement.name).toBe('custom_field_blockeditor:extension');
+    expect(blockEditorContainer.contains(extensionElement)).toBe(false);
 
-    const hiddenInput = blockEditorContainer.querySelector('input[type="hidden"][name="field[]"]') as HTMLInputElement;
+    const hiddenInput = container.querySelector('input[type="hidden"][name="field[]"]') as HTMLInputElement;
     expect(hiddenInput).toBeTruthy();
     expect(hiddenInput.defaultValue).toBe('custom_field_blockeditor');
+    expect(blockEditorContainer.contains(hiddenInput)).toBe(false);
   });
 });

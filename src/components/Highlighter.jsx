@@ -20,6 +20,11 @@ export function Highlighter({ children, onHighlight = () => {} }) {
     (reactNode) => {
       let html = renderToStaticMarkup(reactNode);
       html = html.replace(/data-tmp="(.*?)"/g, '$1');
+      // renderToStaticMarkup の出力はタグ間に空白を含まないため、この時点では
+      // "><" は必ずタグの境界（属性値やテキストは常にエンティティ化されている）。
+      // js-beautify（v1.8.0 以降）は inline タグ同士を改行なしで詰めてしまうため、
+      // タグ境界にあらかじめ改行を入れて明示的に行分けする。
+      html = html.replace(/></g, '>\n<');
       html = beautifyHtml(decode(html, { level: 'html5' }), {
         unformatted: ['code', 'pre'],
         indent_inner_html: true,
