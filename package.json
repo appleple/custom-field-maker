@@ -51,7 +51,7 @@
     "classnames": "^2.5.1",
     "highlight.js": "~11.11.1",
     "html-entities": "^2.6.0",
-    "js-beautify": "1.15.4",
+    "js-beautify": "2.0.3",
     "react-copy-to-clipboard": "^5.1.0",
     "react-tooltip": "^5.28.0"
   },
