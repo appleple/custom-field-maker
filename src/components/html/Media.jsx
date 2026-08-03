@@ -54,7 +54,7 @@ export function Media(props) {
                   許可されていないファイルのため挿入できません。
                 </p>
               </div>
-              <div className="acms-admin-margin-top-mini">
+              <div className="acms-admin-mt-1">
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
@@ -95,7 +95,7 @@ export function Media(props) {
               <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
                 許可されていないファイルのため挿入できません。
               </p>
-              <div className="acms-admin-margin-top-mini">
+              <div className="acms-admin-mt-1">
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
@@ -164,7 +164,7 @@ export function Media(props) {
                   許可されていないファイルのため挿入できません。
                 </p>
               </div>
-              <div className={classnames({ 'acms-admin-margin-top-mini': acmscss })}>
+              <div className={classnames({ 'acms-admin-mt-1': acmscss })}>
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
@@ -205,7 +205,7 @@ export function Media(props) {
               <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
                 許可されていないファイルのため挿入できません。
               </p>
-              <div className="acms-admin-margin-top-mini">
+              <div className="acms-admin-mt-1">
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
@@ -271,7 +271,7 @@ export function Media(props) {
                   許可されていないファイルのため挿入できません。
                 </p>
               </div>
-              <div className="acms-admin-margin-top-mini">
+              <div className="acms-admin-mt-1">
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
@@ -312,7 +312,7 @@ export function Media(props) {
               <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
                 許可されていないファイルのため挿入できません。
               </p>
-              <div className="acms-admin-margin-top-mini">
+              <div className="acms-admin-mt-1">
                 <button
                   type="button"
                   className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
@@ -381,7 +381,7 @@ export function Media(props) {
                     許可されていないファイルのため挿入できません。
                   </p>
                 </div>
-                <div className={classnames({ 'acms-admin-margin-top-mini': acmscss })}>
+                <div className={classnames({ 'acms-admin-mt-1': acmscss })}>
                   <button
                     type="button"
                     className={classnames('js-insert', { 'acms-admin-btn': acmscss })}
@@ -422,7 +422,7 @@ export function Media(props) {
                 <p className="js-text acms-admin-text-danger" style={{ display: 'none' }}>
                   許可されていないファイルのため挿入できません。
                 </p>
-                <div className="acms-admin-margin-top-mini">
+                <div className="acms-admin-mt-1">
                   <button
                     type="button"
                     className={classnames('js-insert', { 'acms-admin-btn': acmscss })}

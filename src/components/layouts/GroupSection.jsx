@@ -35,7 +35,7 @@ export const GroupSection = forwardRef((_props, ref) => {
       <div
         className={classnames({
           'item-handle': true,
-          'acms-admin-padding-small': acmscss,
+          'acms-admin-p-1': acmscss,
         })}
       >
         <i className="acms-admin-icon-sort"></i>
@@ -43,7 +43,7 @@ export const GroupSection = forwardRef((_props, ref) => {
       <div
         className={classnames({
           'acms-admin-flex-fit': acmscss,
-          'acms-admin-padding-small': acmscss,
+          'acms-admin-p-1': acmscss,
         })}
       >
         {fieldgroup.items.map((item, index) => (
@@ -53,7 +53,7 @@ export const GroupSection = forwardRef((_props, ref) => {
               'acms-admin-d-flex': acmscss,
               'acms-admin-flex-column': acmscss,
               'acms-admin-flex-md-row': acmscss,
-              'acms-admin-padding-small': acmscss,
+              'acms-admin-p-1': acmscss,
             })}
           >
             {(() => {
@@ -208,7 +208,7 @@ export const GroupSection = forwardRef((_props, ref) => {
       </div>
 
       {fieldgroup.items.length > 0 && (
-        <div className={classnames({ 'acms-admin-padding-small': acmscss })}>
+        <div className={classnames({ 'acms-admin-p-1': acmscss })}>
           <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger">
             削除
           </button>
@@ -248,7 +248,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                         <div
                           className={classnames({
                             'item-handle': true,
-                            'acms-admin-padding-small': acmscss,
+                            'acms-admin-p-1': acmscss,
                           })}
                         >
                           <i className="acms-admin-icon-sort" />
@@ -257,7 +257,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                         <div
                           className={classnames({
                             'acms-admin-flex-fit': acmscss,
-                            'acms-admin-padding-small': acmscss,
+                            'acms-admin-p-1': acmscss,
                           })}
                         >
                           {fieldgroup.items.map((item, index) => (
@@ -267,7 +267,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                                 'acms-admin-d-flex': acmscss,
                                 'acms-admin-flex-column': acmscss,
                                 'acms-admin-flex-md-row': acmscss,
-                                'acms-admin-padding-small': acmscss,
+                                'acms-admin-p-1': acmscss,
                               })}
                             >
                               {(() => {
@@ -431,7 +431,7 @@ export const GroupSection = forwardRef((_props, ref) => {
                           ))}
                         </div>
 
-                        <div className={classnames({ 'acms-admin-padding-small': acmscss })}>
+                        <div className={classnames({ 'acms-admin-p-1': acmscss })}>
                           <button
                             type="button"
                             className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger"

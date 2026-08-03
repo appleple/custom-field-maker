@@ -138,7 +138,7 @@ export function FormOption(props) {
                         const value = e.target.value;
                         setField((prevState) => ({ ...prevState, converter: value }));
                       }}
-                      className="acms-admin-form-width-quarter acms-admin-margin-right-small"
+                      className="acms-admin-form-width-quarter acms-admin-me-1"
                       placeholder="例）rs"
                     />
                     <button

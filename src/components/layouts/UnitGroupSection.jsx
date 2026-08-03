@@ -35,7 +35,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
       <div
         className={classnames({
           'item-handle': true,
-          'acms-admin-padding-small': acmscss,
+          'acms-admin-p-1': acmscss,
         })}
       >
         <i className="acms-admin-icon-sort"></i>
@@ -44,7 +44,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
       <div
         className={classnames({
           'acms-admin-flex-fit': acmscss,
-          'acms-admin-padding-small': acmscss,
+          'acms-admin-p-1': acmscss,
         })}
       >
         {unitgroup.items.map((item, index) => (
@@ -54,7 +54,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
               'acms-admin-d-flex': acmscss,
               'acms-admin-flex-column': acmscss,
               'acms-admin-flex-md-row': acmscss,
-              'acms-admin-padding-small': acmscss,
+              'acms-admin-p-1': acmscss,
             })}
           >
             {(() => {
@@ -210,7 +210,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
 
       <div
         className={classnames({
-          'acms-admin-padding-small': acmscss,
+          'acms-admin-p-1': acmscss,
         })}
       >
         <button type="button" className="item-delete acms-admin-btn-admin acms-admin-btn-admin-danger">
@@ -252,7 +252,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                         <div
                           className={classnames({
                             'item-handle': true,
-                            'acms-admin-padding-small': acmscss,
+                            'acms-admin-p-1': acmscss,
                           })}
                         >
                           <i className="acms-admin-icon-sort"></i>
@@ -261,7 +261,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                         <div
                           className={classnames({
                             'acms-admin-flex-fit': acmscss,
-                            'acms-admin-padding-small': acmscss,
+                            'acms-admin-p-1': acmscss,
                           })}
                         >
                           {unitgroup.items.map((item, index) => (
@@ -271,7 +271,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
                                 'acms-admin-d-flex': acmscss,
                                 'acms-admin-flex-column': acmscss,
                                 'acms-admin-flex-md-row': acmscss,
-                                'acms-admin-padding-small': acmscss,
+                                'acms-admin-p-1': acmscss,
                               })}
                             >
                               {(() => {
@@ -437,7 +437,7 @@ export const UnitGroupSection = forwardRef((_props, ref) => {
 
                         <div
                           className={classnames({
-                            'classnameacms-admin-padding-small': acmscss,
+                            'classnameacms-admin-p-1': acmscss,
                           })}
                         >
                           <button

@@ -46,7 +46,7 @@ export function ImageOption(props) {
                     const value = e.target.value;
                     setField((prevState) => ({ ...prevState, normal: value }));
                   }}
-                  className="acms-admin-margin-right-small"
+                  className="acms-admin-me-1"
                 >
                   <option value="size">長辺</option>
                   <option value="width">幅</option>
@@ -78,7 +78,7 @@ export function ImageOption(props) {
                     const value = e.target.value;
                     setField((prevState) => ({ ...prevState, large: value }));
                   }}
-                  className="acms-admin-margin-right-small"
+                  className="acms-admin-me-1"
                 >
                   <option value="">作らない</option>
                   <option value="largeWidth">width</option>
@@ -110,7 +110,7 @@ export function ImageOption(props) {
                     const value = e.target.value;
                     setField((prevState) => ({ ...prevState, tiny: value }));
                   }}
-                  className="acms-admin-margin-right-small"
+                  className="acms-admin-me-1"
                 >
                   <option value="">作らない</option>
                   <option value="tinyWidth">width</option>
@@ -142,7 +142,7 @@ export function ImageOption(props) {
                     const value = e.target.value;
                     setField((prevState) => ({ ...prevState, square: value }));
                   }}
-                  className="acms-admin-margin-right-small"
+                  className="acms-admin-me-1"
                 >
                   <option value="">作らない</option>
                   <option value="squareWidth">width</option>
