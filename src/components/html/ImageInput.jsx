@@ -25,6 +25,7 @@ export function ImageInput(props) {
         <div className={classnames({ 'js-img_resize_cf': item.resize })}>
           {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
           <img
+            loading="lazy"
             src={`%{ARCHIVES_DIR}{${item.name}@path}`}
             className={classnames({
               'acms-admin-img-responsive': acmscss,
@@ -43,6 +44,7 @@ export function ImageInput(props) {
           </div>
           {editMode === 'preview' ? null : '<!-- ELSE -->'}
           <img
+            loading="lazy"
             alt=""
             src={`%{ARCHIVES_DIR}{${item.name}@path}`}
             className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
@@ -83,6 +85,7 @@ export function ImageInput(props) {
               <>
                 {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <img
+                  loading="lazy"
                   src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                   className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
                   style={style}
@@ -97,6 +100,7 @@ export function ImageInput(props) {
                 {editMode === 'preview' ? null : '<!-- ELSE -->'}
 
                 <img
+                  loading="lazy"
                   alt=""
                   src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                   className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
@@ -108,6 +112,7 @@ export function ImageInput(props) {
             )}
             {!isAttribute && (
               <img
+                loading="lazy"
                 src=""
                 alt=""
                 style={hiddenStyle}
@@ -143,6 +148,7 @@ export function ImageInput(props) {
         <span className={classnames({ 'js-img_resize_cf': item.resize })}>
           {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
           <img
+            loading="lazy"
             src={`%{ARCHIVES_DIR}{${item.name}@path}`}
             className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
             style={item.normalSize ? { width: `${item.normalSize}px` } : null}
@@ -158,6 +164,7 @@ export function ImageInput(props) {
           </div>
           {editMode === 'preview' ? null : '<!-- ELSE -->'}
           <img
+            loading="lazy"
             src={`%{ARCHIVES_DIR}{${item.name}@path}`}
             alt=""
             className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}
@@ -196,6 +203,7 @@ export function ImageInput(props) {
                 {editMode === 'preview' ? null : `<!-- BEGIN_IF [{${item.name}@path}/nem] -->`}
                 <div>
                   <img
+                    loading="lazy"
                     src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                     className={classnames({
                       'acms-admin-img-responsive': acmscss,
@@ -216,6 +224,7 @@ export function ImageInput(props) {
               </>
             )}
             <img
+              loading="lazy"
               alt=""
               src={`%{ARCHIVES_DIR}{${item.name}@path}`}
               className={classnames({ 'acms-admin-img-responsive': acmscss, 'js-img_resize_preview': item.resize })}

@@ -134,7 +134,7 @@ export function UnitGroupTableLayoutConfirm() {
                       <td>
                         {`<!-- BEGIN ${item.name}@path:veil -->`}
                         <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                          <img src={src} width="64" height="64" alt={alt} />
+                          <img loading="lazy" src={src} width="64" height="64" alt={alt} />
                         </a>
                         {`<!-- END ${item.name}@path:veil -->`}
                       </td>
@@ -146,6 +146,7 @@ export function UnitGroupTableLayoutConfirm() {
                       <td>
                         {`<!-- BEGIN ${item.name}@path:veil -->`}
                         <img
+                          loading="lazy"
                           src={`%{ARCHIVES_DIR}{${item.name}@path}`}
                           className={classnames({ 'acms-admin-img-responsive': acmscss })}
                           alt={`{${item.name}@alt}`}
@@ -161,6 +162,7 @@ export function UnitGroupTableLayoutConfirm() {
                         {`<!-- BEGIN_IF [{${item.name}@type}/eq/file] -->`}
                         <a href={`{${item.name}@path}`}>
                           <img
+                            loading="lazy"
                             alt={`{${item.name}@alt}`}
                             src={`{${item.name}@thumbnail}`}
                             style={{ width: '64px', height: 'auto' }}
@@ -178,6 +180,7 @@ export function UnitGroupTableLayoutConfirm() {
                         >`}
                         {item.useFocusImage && (
                           <img
+                            loading="lazy"
                             className="js-focused-image"
                             data-focus-x={`{${item.name}@focalX}`}
                             data-focus-y={`{${item.name}@focalY}`}
@@ -186,7 +189,11 @@ export function UnitGroupTableLayoutConfirm() {
                           />
                         )}
                         {!item.useFocusImage && (
-                          <img alt={`{${item.name}@alt}`} src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`} />
+                          <img
+                            loading="lazy"
+                            alt={`{${item.name}@alt}`}
+                            src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
+                          />
                         )}
                         {`<!-- BEGIN_IF [{${item.name}@link}/nem] -->`}
                         {`</a>`}

@@ -45,7 +45,7 @@ describe('BlockEditor: customfield mode', () => {
     expect(blockEditorContainer).toBeTruthy();
     expect(blockEditorContainer.getAttribute('data-target')).toBeNull();
     expect(blockEditorContainer.getAttribute('data-html')).toBeNull();
-    expect(blockEditorContainer.className).toContain('acms-admin-form-width-full');
+    expect(blockEditorContainer.getAttribute('root-class')).toContain('acms-admin-form-width-full');
 
     // 子孫で最初に見つかる hidden input が HTML 同期対象になる（値を持たない input は要素外に出す）
     const hiddenInputs = blockEditorContainer.querySelectorAll('input[type="hidden"]');

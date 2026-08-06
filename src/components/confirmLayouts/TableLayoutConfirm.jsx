@@ -95,7 +95,7 @@ export function TableLayoutConfirm() {
               <td>
                 {`<!-- BEGIN ${item.name}@path:veil -->`}
                 <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                  <img src={src} width="64" height="64" alt={alt} />
+                  <img loading="lazy" src={src} width="64" height="64" alt={alt} />
                 </a>
                 {`<!-- END ${item.name}@path:veil -->`}
               </td>
@@ -106,7 +106,13 @@ export function TableLayoutConfirm() {
             <tr key={index}>
               <th>{item.title}</th>
               <td>
-                <img src={`%{ARCHIVES_DIR}{${item.name}@path}`} width="64" height="64" alt={`{${item.name}@alt}`} />
+                <img
+                  loading="lazy"
+                  src={`%{ARCHIVES_DIR}{${item.name}@path}`}
+                  width="64"
+                  height="64"
+                  alt={`{${item.name}@alt}`}
+                />
               </td>
             </tr>
           );
@@ -118,6 +124,7 @@ export function TableLayoutConfirm() {
                 {`<!-- BEGIN_IF [{${item.name}@type}/eq/file] -->`}
                 <a href={`{${item.name}@path}`}>
                   <img
+                    loading="lazy"
                     alt={`{${item.name}@alt}`}
                     src={`{${item.name}@thumbnail}`}
                     style={{ width: '64px', height: 'auto' }}
@@ -135,6 +142,7 @@ export function TableLayoutConfirm() {
                 >`}
                 {item.useFocusImage && (
                   <img
+                    loading="lazy"
                     className="js-focused-image"
                     data-focus-x={`{${item.name}@focalX}`}
                     data-focus-y={`{${item.name}@focalY}`}
@@ -146,6 +154,7 @@ export function TableLayoutConfirm() {
                 )}
                 {!item.useFocusImage && (
                   <img
+                    loading="lazy"
                     alt={`{${item.name}@alt}`}
                     src={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}
                     width="300"

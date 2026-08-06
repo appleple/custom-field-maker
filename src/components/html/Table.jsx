@@ -15,14 +15,16 @@ export function Table(props) {
             {editMode === 'preview' ? null : `{${item.name}}[raw]`}
             {editMode === 'preview' ? null : '<!-- ELSE -->'}
             <table>
-              <tr>
-                <th>サンプル</th>
-                <th>サンプル</th>
-              </tr>
-              <tr>
-                <td>サンプル</td>
-                <td>サンプル</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>サンプル</th>
+                  <th>サンプル</th>
+                </tr>
+                <tr>
+                  <td>サンプル</td>
+                  <td>サンプル</td>
+                </tr>
+              </tbody>
             </table>
             {editMode === 'preview' ? null : '<!-- END_IF -->'}
             <input type="hidden" className="js-editable-table-dest" value={`{${item.name}}`} name={item.name} />
@@ -39,14 +41,16 @@ export function Table(props) {
               {editMode === 'preview' ? null : `{${item.name}}[raw]`}
               {editMode === 'preview' ? null : '<!-- ELSE -->'}
               <table>
-                <tr>
-                  <th>サンプル</th>
-                  <th>サンプル</th>
-                </tr>
-                <tr>
-                  <td>サンプル</td>
-                  <td>サンプル</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <th>サンプル</th>
+                    <th>サンプル</th>
+                  </tr>
+                  <tr>
+                    <td>サンプル</td>
+                    <td>サンプル</td>
+                  </tr>
+                </tbody>
               </table>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input
@@ -69,14 +73,16 @@ export function Table(props) {
             {editMode === 'preview' ? null : `{${item.name}}[raw]`}
             {editMode === 'preview' ? null : '<!-- ELSE -->'}
             <table>
-              <tr>
-                <th>サンプル</th>
-                <th>サンプル</th>
-              </tr>
-              <tr>
-                <td>サンプル</td>
-                <td>サンプル</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>サンプル</th>
+                  <th>サンプル</th>
+                </tr>
+                <tr>
+                  <td>サンプル</td>
+                  <td>サンプル</td>
+                </tr>
+              </tbody>
             </table>
             {editMode === 'preview' ? null : '<!-- END_IF -->'}
             <input
@@ -98,14 +104,16 @@ export function Table(props) {
               {editMode === 'preview' ? null : `{${item.name}}[raw]`}
               {editMode === 'preview' ? null : '<!-- ELSE -->'}
               <table>
-                <tr>
-                  <th>サンプル</th>
-                  <th>サンプル</th>
-                </tr>
-                <tr>
-                  <td>サンプル</td>
-                  <td>サンプル</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <th>サンプル</th>
+                    <th>サンプル</th>
+                  </tr>
+                  <tr>
+                    <td>サンプル</td>
+                    <td>サンプル</td>
+                  </tr>
+                </tbody>
               </table>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input

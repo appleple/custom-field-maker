@@ -32,7 +32,7 @@ export function FileInput(props) {
             削除
           </label>
           <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-            <img src={src} width="64" height="64" alt={alt} />
+            <img loading="lazy" src={src} width="64" height="64" alt={alt} />
           </a>
           {editMode === 'preview' ? null : `<!-- END ${item.name}@path:veil -->`}
           <input type="file" name={item.name} id={item.name} />
@@ -68,7 +68,7 @@ export function FileInput(props) {
                 </label>
               </div>
               <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                <img src={src} width="64" height="64" alt={alt} />
+                <img loading="lazy" src={src} width="64" height="64" alt={alt} />
               </a>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input type="hidden" name={`${item.name}@old[]`} value={`{${item.name}@path}`} />
@@ -102,7 +102,7 @@ export function FileInput(props) {
             削除
           </label>
           <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-            <img src={src} width="64" height="64" alt={alt} />
+            <img loading="lazy" src={src} width="64" height="64" alt={alt} />
           </a>
           {editMode === 'preview' ? null : '<!-- END_IF -->'}
           <input type="file" name={`${item.name}{id}`} id={`${item.name}{id}`} />
@@ -137,7 +137,7 @@ export function FileInput(props) {
                 </label>
               </div>
               <a href={`%{ARCHIVES_DIR}{${item.name}@path}`}>
-                <img src={src} width="64" height="64" alt={alt} />
+                <img loading="lazy" src={src} width="64" height="64" alt={alt} />
               </a>
               {editMode === 'preview' ? null : '<!-- END_IF -->'}
               <input type="hidden" name={`${item.name}{id}@old[]`} value={`{${item.name}@path}`} />

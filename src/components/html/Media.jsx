@@ -23,6 +23,7 @@ export function Media(props) {
                   wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
                 >
                   <img
+                    loading="lazy"
                     src={`{${item.name}@thumbnail}`}
                     className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                     alt=""
@@ -36,6 +37,7 @@ export function Media(props) {
                 </ConditionalWrap>
                 {'<!-- ELSE -->'}
                 <img
+                  loading="lazy"
                   src=""
                   {...(item.mediaType === 'file'
                     ? {
@@ -131,6 +133,7 @@ export function Media(props) {
                       wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
                     >
                       <img
+                        loading="lazy"
                         src={`{${item.name}@thumbnail}`}
                         className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                         alt=""
@@ -146,6 +149,7 @@ export function Media(props) {
                   </>
                 )}
                 <img
+                  loading="lazy"
                   alt=""
                   src=""
                   {...(item.mediaType === 'file'
@@ -240,6 +244,7 @@ export function Media(props) {
                   wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
                 >
                   <img
+                    loading="lazy"
                     src={`{${item.name}@thumbnail}`}
                     className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                     alt={`{${item.name}@alt}`}
@@ -253,6 +258,7 @@ export function Media(props) {
                 </ConditionalWrap>
                 {'<!-- ELSE -->'}
                 <img
+                  loading="lazy"
                   alt=""
                   src=""
                   {...(item.mediaType === 'file'
@@ -348,6 +354,7 @@ export function Media(props) {
                         wrap={(children) => <a href={`%{MEDIA_ARCHIVES_DIR}{${item.name}@path}`}>{children}</a>}
                       >
                         <img
+                          loading="lazy"
                           src={`{${item.name}@thumbnail}`}
                           className={classnames('js-preview', { 'acms-admin-img-responsive': acmscss })}
                           alt={`{${item.name}@alt}`}
@@ -363,6 +370,7 @@ export function Media(props) {
                     </>
                   )}
                   <img
+                    loading="lazy"
                     alt=""
                     src=""
                     {...(item.mediaType === 'file'

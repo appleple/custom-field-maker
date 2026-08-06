@@ -14,7 +14,7 @@ export function BlockEditor(props) {
       {mode === 'customfield' && (
         <>
           <acms-block-editor
-            class={classnames({
+            root-class={classnames({
               'acms-admin-form-box': acmscss,
               'acms-admin-form-width-full': acmscss,
             })}
@@ -35,7 +35,7 @@ export function BlockEditor(props) {
       {mode === 'fieldgroup' && (
         <>
           <acms-block-editor
-            class={classnames({
+            root-class={classnames({
               'acms-admin-form-box': acmscss,
               'acms-admin-form-width-full': acmscss,
             })}
@@ -55,7 +55,7 @@ export function BlockEditor(props) {
       {mode === 'customunit' && (
         <>
           <acms-block-editor
-            class={classnames({
+            root-class={classnames({
               'acms-admin-form-box': acmscss,
               'acms-admin-form-width-full': acmscss,
             })}
@@ -69,7 +69,7 @@ export function BlockEditor(props) {
 
       {mode === 'unitgroup' && (
         <acms-block-editor
-          class={classnames({
+          root-class={classnames({
             'acms-admin-form-box': acmscss,
             'acms-admin-form-width-full': acmscss,
           })}
