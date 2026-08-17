@@ -49,7 +49,7 @@
   "dependencies": {
     "@babel/runtime": "^8.0.0",
     "classnames": "^2.5.1",
-    "highlight.js": "~11.11.1",
+    "highlight.js": "~11.12.0",
     "html-entities": "^2.6.0",
     "js-beautify": "2.0.3",
     "react-copy-to-clipboard": "^5.1.0",
